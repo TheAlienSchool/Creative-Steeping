@@ -101,7 +101,7 @@ nav.top-nav {
   z-index: 10;
   position: relative;
   padding-top: calc(var(--navH) + var(--space-xl));
-  padding-bottom: var(--space-xl);
+  padding-bottom: 120px;
 }
 
 .entrance-content {
@@ -246,6 +246,7 @@ nav.top-nav {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--space-xl);
   justify-items: center;
+  align-items: center;
 }
 
 @keyframes floatUp {
@@ -523,14 +524,14 @@ nav.top-nav {
 
   .vessel-matrix {
     grid-template-columns: 1fr;
-    gap: var(--space-xxl);
+    gap: var(--space-xl);
     margin: 3vh auto 10vh auto;
   }
 
   .hex-vessel {
-    width: min(80vw, 300px) !important;
-    height: min(91.4vw, 342px) !important;
-    /* maintain aspect ratio */
+    width: clamp(240px, 80vw, 300px) !important;
+    height: clamp(274px, 91.4vw, 342px) !important;
+    /* maintain aspect ratio exactly for hex SVG */
   }
 
   .vessel-detail-view {
@@ -630,6 +631,31 @@ nav.top-nav {
 
   .guide-left-nav {
     display: none !important;
+  }
+
+  nav.top-nav {
+    flex-wrap: wrap !important;
+    height: auto !important;
+    padding-top: var(--space-md) !important;
+    padding-bottom: var(--space-md) !important;
+  }
+
+  .nav-brand {
+    order: 1;
+  }
+
+  .nav-school {
+    order: 2;
+  }
+
+  .mode-toggles {
+    position: static !important;
+    transform: none !important;
+    order: 3;
+    width: 100%;
+    margin-top: var(--space-lg);
+    flex-wrap: wrap;
+    justify-content: center !important;
   }
 
   nav.top-nav {

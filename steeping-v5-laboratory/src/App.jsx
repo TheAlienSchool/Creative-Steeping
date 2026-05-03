@@ -1098,11 +1098,11 @@ function AppInner() {
                         </svg>
 
                         {/* 3. Typography Content */}
-                        <div style={{ zIndex: 3, textAlign: 'center', padding: '0 20px', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
-                          <div style={{ fontFamily: 'var(--fMono)', fontSize: '1.2rem', fontWeight: 'bold', letterSpacing: '0.1em', opacity: 0.9, marginBottom: '12px' }}>
+                        <div style={{ position: 'relative', zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '0 clamp(0.5rem, 4vw, var(--space-xl))', boxSizing: 'border-box' }}>
+                          <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.9rem', color: 'var(--acc)', letterSpacing: '0.15em', marginBottom: '8px' }}>
                             {vessel.num}
                           </div>
-                          <div style={{ fontFamily: 'var(--fSerif)', fontSize: '2rem', fontWeight: 'bold', fontStyle: 'italic', letterSpacing: '0.04em', lineHeight: 1.2, whiteSpace: 'pre-line' }}>
+                          <div style={{ fontFamily: 'var(--fSerif)', fontSize: 'clamp(1.2rem, 5vw, 1.6rem)', color: 'var(--t1)', fontStyle: 'italic', fontWeight: 600, lineHeight: 1.1, wordBreak: 'break-word' }}>
                             {vessel.name}
                           </div>
                         </div>

@@ -65,8 +65,9 @@ export const WhatSteepersSay = ({ m }) => {
 
     return (
         <div style={{
-            width: '100%', maxWidth: '1200px', margin: '15vh auto', position: 'relative', zIndex: 10,
-            animation: 'fadeIn 2s ease forwards', padding: '0 2rem'
+            width: '100%', maxWidth: '1200px', margin: 'clamp(4vh, 8vw, 15vh) auto', position: 'relative', zIndex: 10,
+            animation: 'fadeIn 2s ease forwards', padding: '0 clamp(1rem, 5vw, 2rem)',
+            paddingBottom: '120px', boxSizing: 'border-box'
         }}>
             
             <div style={{
@@ -84,7 +85,7 @@ export const WhatSteepersSay = ({ m }) => {
             </div>
 
             <div style={{
-                columnCount: 'auto', columnWidth: '350px', columnGap: '2.5rem'
+                columnCount: 'auto', columnWidth: 'min(100%, 350px)', columnGap: '2.5rem', boxSizing: 'border-box'
             }}>
                 {gardenInsights.map((insight, idx) => {
                     
@@ -97,20 +98,21 @@ export const WhatSteepersSay = ({ m }) => {
                             breakInside: 'avoid-column',
                             marginBottom: '2.5rem',
                             display: 'flex', flexDirection: 'column', gap: '1.2rem',
-                            padding: isHero ? 'var(--space-xl)' : '0',
+                            padding: isHero ? 'clamp(1.5rem, 5vw, var(--space-xl))' : '0',
                             background: isHero ? `linear-gradient(135deg, ${m.accent}10 0%, transparent 100%)` : 'transparent',
                             border: isHero ? `1px solid ${m.accent}20` : 'none',
                             borderLeft: !isHero && styleVariation === 1 ? `1px solid ${m.accent}` : 'none',
-                            paddingLeft: !isHero && styleVariation === 1 ? '1.5rem' : (isHero ? 'var(--space-xl)' : '0'),
+                            paddingLeft: !isHero && styleVariation === 1 ? '1.5rem' : (isHero ? 'clamp(1.5rem, 5vw, var(--space-xl))' : '0'),
+                            boxSizing: 'border-box'
                         }}>
                             
                             <Quote size={24} style={{ color: m.accent, opacity: 0.4 }} />
 
                             <div style={{
                                 fontFamily: isHero ? 'var(--fSerif)' : 'var(--fBody)',
-                                fontSize: isHero ? '1.8rem' : '1.2rem',
+                                fontSize: isHero ? 'clamp(1.2rem, 5vw, 1.8rem)' : 'clamp(1rem, 4vw, 1.2rem)',
                                 fontStyle: 'italic', color: m.text1, lineHeight: isHero ? 1.4 : 1.7,
-                                position: 'relative'
+                                position: 'relative', wordBreak: 'break-word'
                             }}>
                                 {insight.insight_text}
                             </div>
