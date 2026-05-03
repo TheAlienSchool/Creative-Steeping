@@ -80,9 +80,9 @@ export function Vessel02Detail({ modeString, playStrikingBowl, playHarmonicChord
                 5,000 Years in the Cup: A Descent
             </h3>
 
-            <div className="timeline-vertical-descent" style={{ position: 'relative', paddingLeft: '2rem', paddingBottom: '10vh' }}>
+            <div className="timeline-vertical-descent" style={{ position: 'relative', paddingLeft: 'clamp(1rem, 3vw, 2rem)', paddingBottom: '10vh' }}>
                 {/* The central spine */}
-                <div style={{ position: 'absolute', top: 0, bottom: 0, left: '2rem', width: '1px', background: `linear-gradient(to bottom, transparent, ${m.accent}60, transparent)` }} />
+                <div style={{ position: 'absolute', top: 0, bottom: 0, left: 'clamp(1rem, 3vw, 2rem)', width: '1px', background: `linear-gradient(to bottom, transparent, ${m.accent}60, transparent)` }} />
 
                 {TIMELINE_NODES.map((node, i) => (
                     <TimelineNode
@@ -145,7 +145,7 @@ export function Vessel02Detail({ modeString, playStrikingBowl, playHarmonicChord
             </div>
 
             {/* 3. INFOGRAPHIC 02: THE 22-MINUTE INTERVAL */}
-            <div style={{ marginTop: 'var(--space-xxl)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-lg)', alignItems: 'center' }}>
+            <div style={{ marginTop: 'var(--space-xxl)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-lg)', alignItems: 'center' }}>
                 <div>
                     <h3 style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', letterSpacing: '0.15em', color: m.accent, textTransform: 'uppercase', marginBottom: 'var(--space-md)' }}>
                         The 22-Minute Interval
@@ -247,7 +247,7 @@ const TimelineNode = ({ node, index, m, playHarmonicChord }) => {
             style={{
                 position: 'relative',
                 marginBottom: '10vh',
-                marginLeft: '3rem',
+                marginLeft: 'clamp(1.5rem, 5vw, 3rem)',
                 opacity: 0.6,
                 transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
                 cursor: 'default'
@@ -275,7 +275,7 @@ const TimelineNode = ({ node, index, m, playHarmonicChord }) => {
         >
             {/* The structural glyph marker on the line */}
             <div style={{
-                position: 'absolute', top: '12px', left: '-3rem',
+                position: 'absolute', top: '12px', left: 'clamp(-3rem, -5vw, -1.5rem)',
                 width: '8px', height: '8px',
                 transform: 'translate(-50%, -50%)',
                 borderRadius: '50%', backgroundColor: m.accent,
@@ -291,9 +291,9 @@ const TimelineNode = ({ node, index, m, playHarmonicChord }) => {
                 ✥ {node.year}
             </div>
 
-            <div style={{
+            <div className="timeline-text" style={{
                 fontFamily: 'var(--fBody)', color: m.text1, lineHeight: 1.6,
-                fontSize: '1.25rem',
+                fontSize: 'clamp(1rem, 4vw, 1.25rem)',
                 maxWidth: '600px',
                 transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
             }}>

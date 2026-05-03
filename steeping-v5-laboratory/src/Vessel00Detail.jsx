@@ -25,10 +25,10 @@ export function Vessel00Detail({ modeString, playStrikingBowl }) {
             </h3>
 
             <div style={{
-                position: 'relative', padding: 'var(--space-xl)', background: anchored ? m.bg : 'rgba(0,0,0,0.5)',
+                position: 'relative', padding: 'clamp(1rem, 4vw, var(--space-xl))', background: anchored ? m.bg : 'rgba(0,0,0,0.5)',
                 border: anchored ? `1px solid ${m.accent}` : `1px dashed ${m.text2}`,
                 transition: 'all 1.8s cubic-bezier(0.16, 1, 0.3, 1)', display: 'flex', flexDirection: 'column', alignItems: 'center',
-                width: '100%', maxWidth: '700px', margin: '0 auto'
+                width: '100%', maxWidth: '700px', margin: '0 auto', boxSizing: 'border-box'
             }}>
 
                 <div style={{ fontFamily: 'var(--fSerif)', fontSize: '1.6rem', color: m.text1, fontStyle: 'italic', marginBottom: '1.5rem', opacity: anchored ? 0.4 : 1 }}>
@@ -49,7 +49,7 @@ export function Vessel00Detail({ modeString, playStrikingBowl }) {
                             style={{
                                 background: 'transparent', border: 'none', borderBottom: `1px solid ${m.text1}`,
                                 color: m.text1, fontFamily: 'var(--fBody)', fontSize: '1.4rem',
-                                textAlign: 'center', width: '90%', outline: 'none', paddingBottom: '0.8rem',
+                                textAlign: 'center', width: '100%', outline: 'none', paddingBottom: '0.8rem',
                                 marginBottom: '2rem'
                             }}
                         />
