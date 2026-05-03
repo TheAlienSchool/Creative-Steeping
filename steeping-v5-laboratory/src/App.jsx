@@ -626,11 +626,11 @@ function AppInner() {
                 <b>[ STEEPING NOTES ]</b>
               </button>
 
-                <button onClick={() => setShowGuide(true)} style={{
+                <button onClick={() => { setShowGuide(true); setNavMenuOpen(false); }} style={{
                 background: 'none', border: 'none',
                 color: 'var(--acc)', textDecoration: 'none', borderBottom: '1px solid transparent',
                 transition: 'border-bottom 1.2s ease', cursor: 'pointer', fontFamily: 'var(--fMono)',
-                fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'normal',
+                fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap',
                 textAlign: 'right'
               }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--acc)'}
                 onMouseLeave={e => e.currentTarget.style.borderBottom = '1px solid transparent'}

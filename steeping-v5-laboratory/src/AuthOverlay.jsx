@@ -75,33 +75,33 @@ export const AuthOverlay = ({ m, onClose }) => {
                 }}>X</button>
 
                 <h2 style={{ fontFamily: 'var(--fSerif)', color: m.accent, letterSpacing: '0.15em', marginBottom: '2.5rem', fontWeight: 400, textAlign: 'center', textTransform: 'uppercase' }}>
-                    YOUR ENTRY.
+                    THE INVITATION
                 </h2>
                 
                 <div style={{ fontFamily: 'var(--fBody)', fontSize: '0.9rem', color: m.text2, fontStyle: 'italic', marginBottom: '2.5rem', textAlign: 'center' }}>
-                    You are navigating the surface tension. The space is patient.
+                    The depth of The Steeping Space responds to the depth of exchange you bring forth.
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem' }}>
                     {/* Layer 1 */}
                     <div style={{ padding: '1.5rem', border: `1px solid ${m.accent}20`, background: `${m.accent}05` }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-                            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.15em', fontSize: '1.1rem', margin: 0 }}>[ LAYER 1 : INTERACTIVE ]</h3>
-                            <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.text2, textTransform: 'uppercase' }}>Home</span>
+                            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.15em', fontSize: '1.1rem', margin: 0 }}>[ THE FOUNDATION ]</h3>
+                            <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.text2, textTransform: 'uppercase' }}>Surface</span>
                         </div>
                         <p style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1rem', lineHeight: '1.6', margin: 0 }}>
-                            <i>The Steeperverse</i> opens here. Navigate freely, generate sound with your movements, and begin a conversation with The Steeping Sage. This is your unhurried entry point.
+                            <i>The Steeperverse</i> opens here. Navigate freely, generate sound with your movements, and begin a conversation with The Steeping Sage. This layer offers introduction, wayfinding, and encouragements born of the CREATIVE STEEPING ethos.
                         </p>
                     </div>
 
                     {/* Layer 2 */}
                     <div style={{ padding: '1.5rem', border: `1px solid ${m.accent}40`, background: `${m.accent}10` }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-                            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.15em', fontSize: '1.1rem', margin: 0 }}>[ LAYER 2 : ENGAGED ]</h3>
+                            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.15em', fontSize: '1.1rem', margin: 0 }}>[ THE VESSEL MATRIX ]</h3>
                             <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.text2, textTransform: 'uppercase' }}>$44</span>
                         </div>
                         <p style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1rem', lineHeight: '1.6', margin: 0, marginBottom: '1.5rem' }}>
-                            Your steep deepens when it has somewhere to land. Layer 2 holds the full record of your presence, your vessel reflections, and your Steeping Notes across every session — a persistent practice, not a single visit.
+                            Your steep deepens when it has somewhere to land. The deeper waters require your conscious decision to invest. This layer holds the full record of your presence, your vessel reflections, and your Steeping Notes across every session. A persistent practice.
                         </p>
                         <button
                             disabled={loading}
@@ -115,18 +115,18 @@ export const AuthOverlay = ({ m, onClose }) => {
                             onMouseEnter={e => { e.currentTarget.style.backgroundColor = m.accent; e.currentTarget.style.color = m.bg; }}
                             onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = m.accent; }}
                         >
-                            [ ENTER LAYER 2 : THE JOURNEYER ]
+                            [ SECURE YOUR COORDINATES ]
                         </button>
                     </div>
 
                     {/* Layer 3 */}
                     <div style={{ padding: '1.5rem', border: `1px solid ${m.accent}80`, background: `${m.accent}18` }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-                            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.15em', fontSize: '1.1rem', margin: 0, textShadow: `0 0 10px ${m.accent}80` }}>[ LAYER 3 : INNERACTIVE ]</h3>
+                            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.15em', fontSize: '1.1rem', margin: 0, textShadow: `0 0 10px ${m.accent}80` }}>[ THE INNERACTIVE COHORT ]</h3>
                             <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.text2, textTransform: 'uppercase' }}>$777</span>
                         </div>
                         <p style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1rem', lineHeight: '1.6', margin: 0, marginBottom: '1.5rem' }}>
-                            The practitioner community. Direct one-on-one Steeping Sessions. Group cohorts with the architects of the practice. The full depth, held with others who are already doing the work.
+                            The practitioner community. Direct one-on-one Steeping Sessions. Group cohorts with the architects of the practice. The full depth, held with others who are already doing the work. This architecture awaits your reciprocal presence.
                         </p>
                         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                             <button

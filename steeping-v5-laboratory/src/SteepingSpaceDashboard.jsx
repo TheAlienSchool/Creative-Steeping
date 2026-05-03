@@ -81,7 +81,7 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
             {/* Top Navigation */}
             <header style={{
                 width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                padding: 'var(--space-lg) var(--space-xl)', zIndex: 10, position: 'relative'
+                padding: 'var(--space-md) clamp(1rem, 5vw, var(--space-xl))', zIndex: 10, position: 'relative'
             }}>
                 <div style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.4rem', fontSize: '0.75rem', textTransform: 'uppercase' }}>
                     <b>THE DEPARTMENT OF ONTOLOGICAL DESIGN</b>
@@ -115,7 +115,7 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
             {/* Core Instrument Gateway */}
             <div style={{
                 flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
-                width: '100%', maxWidth: '1200px', zIndex: 1, padding: 'var(--space-xxl) 2rem', textAlign: 'center'
+                width: '100%', maxWidth: '1200px', zIndex: 1, padding: 'var(--space-xxl) clamp(1rem, 5vw, 2rem)', textAlign: 'center', boxSizing: 'border-box'
             }}>
                 
                 <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.accent, letterSpacing: '0.25em', marginBottom: 'var(--space-lg)', opacity: 0.8 }}>
@@ -135,7 +135,7 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
                     fontFamily: 'var(--fBody)', fontSize: 'clamp(1rem, 2vw, 1.3rem)', color: m.text2,
                     lineHeight: 1.8, maxWidth: '600px', margin: 'var(--space-xl) auto var(--space-xl)',
                     borderLeft: `1px solid ${m.accent}40`, borderRight: `1px solid ${m.accent}40`,
-                    padding: '0 var(--space-lg)'
+                    padding: '0 clamp(1rem, 5vw, var(--space-lg))'
                 }}>
                     You are back. The instrument is ready. Your reflection picks up where it left you.
                 </div>
@@ -152,7 +152,7 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
                 </div>
 
                 {/* THE COLLECTIVE RESONANCE (STEEPING CIRCLES UI) */}
-                <div style={{ width: '100%', textAlign: 'left', marginBottom: 'var(--space-xxl)', border: `1px solid ${m.accent}40`, padding: 'var(--space-xl)', background: `linear-gradient(45deg, ${m.accent}05 0%, transparent 100%)` }}>
+                <div style={{ width: '100%', textAlign: 'left', marginBottom: 'var(--space-xxl)', border: `1px solid ${m.accent}40`, padding: 'clamp(1rem, 5vw, var(--space-xl))', background: `linear-gradient(45deg, ${m.accent}05 0%, transparent 100%)`, boxSizing: 'border-box' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.accent, letterSpacing: '0.25em', marginBottom: '1.5rem', borderBottom: `1px dashed ${m.accent}40`, paddingBottom: '0.8rem'}}>
                         <Users size={16} /> [ THE COLLECTIVE RESONANCE ]
                     </div>
@@ -215,9 +215,9 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
                             {ledgers.map(ledger => (
                                 <div key={ledger.id} style={{ 
-                                    border: `1px solid ${m.accent}20`, padding: 'var(--space-xl)', 
+                                    border: `1px solid ${m.accent}20`, padding: 'clamp(1rem, 5vw, var(--space-xl))', 
                                     background: `linear-gradient(135deg, ${m.accent}05 0%, transparent 100%)`,
-                                    position: 'relative', overflow: 'hidden'
+                                    position: 'relative', overflow: 'hidden', boxSizing: 'border-box'
                                 }}>
                                     {ledger.is_completed && (
                                         <div style={{ position: 'absolute', top: 0, right: 0, background: m.accent, color: m.bg, fontFamily: 'var(--fMono)', fontSize: '0.6rem', padding: '4px 8px', letterSpacing: '0.1em' }}>
@@ -281,9 +281,9 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
 const StatBox = ({ title, value, icon, m }) => (
     <div style={{ 
         border: `1px solid ${m.accent}30`, 
-        padding: 'var(--space-lg)', 
+        padding: 'clamp(1rem, 4vw, var(--space-lg))', 
         display: 'flex', flexDirection: 'column', gap: '8px',
-        background: `linear-gradient(180deg, ${m.accent}05 0%, transparent 100%)`
+        background: `linear-gradient(180deg, ${m.accent}05 0%, transparent 100%)`, boxSizing: 'border-box'
     }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: m.accent, fontFamily: 'var(--fMono)', fontSize: '0.65rem', letterSpacing: '0.15em' }}>
             <span style={{ opacity: 0.8 }}>{icon}</span>

@@ -22,9 +22,10 @@ body {
 */
 .app-container {
   position: relative;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   z-index: 1;
+  transition: background-color 1.5s cubic-bezier(0.16, 1, 0.3, 1), color 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* 
@@ -559,6 +560,12 @@ nav.top-nav {
     width: min(90%, 480px);
   }
 
+  .entrance-covenant p {
+    letter-spacing: 0.2em !important;
+    line-height: 1.8 !important;
+    font-size: 0.65rem !important;
+  }
+
   /* Navigation adjustments */
   .top-nav {
     flex-wrap: wrap;
@@ -576,10 +583,13 @@ nav.top-nav {
     justify-content: flex-start;
     order: 3;
     padding-top: var(--space-sm);
+    padding-right: 40px !important;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     overflow-x: auto;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
   }
 
   .mode-toggles::-webkit-scrollbar {
@@ -601,6 +611,20 @@ nav.top-nav {
     width: 95% !important;
     padding: 1.5rem !important;
     max-height: 85vh;
+  }
+
+  /* Wayfinding Overlay Responsive */
+  .wayfinding-split {
+    flex-direction: column !important;
+  }
+  
+  .wayfinding-diagram {
+    display: none !important;
+  }
+
+  .wayfinding-text {
+    padding: var(--space-xl) !important;
+    max-width: 100% !important;
   }
 
   /* Guide To The Steeperverse Responsive */
@@ -626,62 +650,13 @@ nav.top-nav {
   }
 
   .guide-container {
-    padding: 0 20px !important;
+    padding: 40px 20px 100px 20px !important;
   }
 
   .guide-left-nav {
     display: none !important;
   }
 
-  nav.top-nav {
-    flex-wrap: wrap !important;
-    height: auto !important;
-    padding-top: var(--space-md) !important;
-    padding-bottom: var(--space-md) !important;
-  }
-
-  .nav-brand {
-    order: 1;
-  }
-
-  .nav-school {
-    order: 2;
-  }
-
-  .mode-toggles {
-    position: static !important;
-    transform: none !important;
-    order: 3;
-    width: 100%;
-    margin-top: var(--space-lg);
-    flex-wrap: wrap;
-    justify-content: center !important;
-  }
-
-  nav.top-nav {
-    flex-wrap: wrap !important;
-    height: auto !important;
-    padding-top: var(--space-md) !important;
-    padding-bottom: var(--space-md) !important;
-  }
-
-  .nav-brand {
-    order: 1;
-  }
-
-  .nav-school {
-    order: 2;
-  }
-
-  .mode-toggles {
-    position: static !important;
-    transform: none !important;
-    order: 3;
-    width: 100%;
-    margin-top: var(--space-lg);
-    flex-wrap: wrap;
-    justify-content: center !important;
-  }
 
   .guide-tier-grid {
     flex-direction: column !important;
@@ -695,14 +670,18 @@ nav.top-nav {
   }
 
   .global-timer-controls {
-    bottom: 80px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: clamp(280px, 90%, 400px) !important;
-    background-color: rgba(0,0,0,0.95) !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+    padding-bottom: calc(var(--space-md) + env(safe-area-inset-bottom)) !important;
+    background-color: rgba(0,0,0,0.98) !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    border: 1px solid var(--acc) !important;
+    border: none !important;
+    border-top: 1px solid var(--acc) !important;
+    z-index: 100 !important;
   }
 
   .guided-compass-sticky {
@@ -746,6 +725,9 @@ nav.top-nav {
   .nav-dropdown-inner button, .nav-dropdown-inner a {
     font-size: 1.2rem !important;
     padding: 8px 0 !important;
+    white-space: normal !important;
+    text-align: center !important;
+    width: 100%;
   }
   .mobile-menu-close {
     display: block !important;

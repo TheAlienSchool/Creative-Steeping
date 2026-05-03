@@ -191,14 +191,14 @@ export const WayfindingOverlay = ({ m, onClose, playStrikingBowl, activeVessel }
             </div>
 
             {/* Main Content Area: Split 50/50 Diagram and Text */}
-            <div style={{
+            <div className="wayfinding-split" style={{
                 flex: 1, display: 'flex', minHeight: 0,
                 opacity: animating ? 0 : 1, transform: animating ? 'translateY(20px)' : 'translateY(0)',
                 transition: 'opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
             }}>
                 
                 {/* LEFT: Infographic Diagram */}
-                <div style={{
+                <div className="wayfinding-diagram" style={{
                     flex: 1, borderRight: `1px solid ${m.text2}20`,
                     display: 'flex', justifyContent: 'center', alignItems: 'center',
                     padding: 'var(--space-xxl)', position: 'relative'
@@ -217,7 +217,7 @@ export const WayfindingOverlay = ({ m, onClose, playStrikingBowl, activeVessel }
                 </div>
 
                 {/* RIGHT: Typography and Pedagogy */}
-                <div style={{
+                <div className="wayfinding-text" style={{
                     flex: 1, padding: '10%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', overflowY: 'auto'
                 }}>
                     <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', letterSpacing: '0.3em', color: m.accent, marginBottom: 'var(--space-lg)' }}>

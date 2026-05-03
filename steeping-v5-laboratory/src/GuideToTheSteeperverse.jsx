@@ -283,8 +283,7 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
                             ) : (
                                 <div className="guide-tier-grid" style={{ 
                                     display: 'flex', gap: 'var(--space-xl)', marginTop: 'var(--space-xl)', 
-                                    maxHeight: '45vh', overflowY: 'auto', paddingBottom: 'var(--space-xxl)',
-                                    paddingRight: 'var(--space-md)'
+                                    paddingBottom: 'var(--space-xxl)'
                                 }}>
                                     {/* Scrollbar styling injected via a simple style block or relying on global if they have one */}
                                     <style>{`
