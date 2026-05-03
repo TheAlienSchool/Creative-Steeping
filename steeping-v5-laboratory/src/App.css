@@ -638,6 +638,17 @@ nav.top-nav {
     padding-bottom: 80px !important;
   }
 
+  .guided-compass-sticky {
+    position: relative !important;
+    top: 0 !important;
+    margin-bottom: var(--space-xl) !important;
+  }
+
+  .guided-textarea {
+    padding: 2rem 1.5rem !important;
+    font-size: clamp(1.1rem, 4vw, 1.45rem) !important;
+  }
+
   .guide-scrolling-defunct {
     bottom: 20px !important;
   }
@@ -736,6 +747,33 @@ nav.top-nav {
     transform: scale(0.9);
     transform-origin: bottom left;
   }
+}
+
+/* Guided Journey Module Responsive Architecture */
+.guided-journey-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xxl);
+}
+@media (min-width: 900px) {
+  .guided-journey-grid {
+    grid-template-columns: minmax(250px, 1fr) 2fr;
+  }
+}
+.guided-compass-sticky {
+  position: sticky;
+  top: 15vh;
+}
+.guided-body-text {
+  font-size: clamp(1rem, 4vw, 1.15rem);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  max-width: 680px;
+}
+.guided-textarea {
+  font-size: 1.45rem;
+  line-height: 1.8;
+  padding: 4rem 1.5rem 2rem 5rem;
 }
 
 /* Landscape / iPad Tweaks */

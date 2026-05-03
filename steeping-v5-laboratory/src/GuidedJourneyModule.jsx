@@ -337,15 +337,9 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
     const handleBlockEarned = () => setEarnedBlocks(prev => prev + 1);
 
     return (
-        <div style={{
+        <div className="guided-journey-grid" style={{
             marginTop: 'var(--space-xxl)',
-            animation: 'fadeIn 1.2s ease forwards',
-            display: 'grid',
-            gridTemplateColumns: '1fr',
-            gap: 'var(--space-xxl)',
-            '@media (min-width: 900px)': {
-                gridTemplateColumns: 'minmax(250px, 1fr) 2fr',
-            }
+            animation: 'fadeIn 1.2s ease forwards'
         }}>
             <style>{`
                 @keyframes fluidic-scratchpad-idle {
@@ -389,8 +383,7 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
             
             {/* LEFT COLUMN: THE COMPASS (Sticky Reflection & ASCII Checkpoint) */}
             <div style={{ position: 'relative' }}>
-                <div style={{
-                    position: 'sticky', top: '15vh',
+                <div className="guided-compass-sticky" style={{
                     borderLeft: `2px solid ${insightCaptured ? m.accent : m.text2 + '60'}`,
                     paddingLeft: 'var(--space-xl)', // Increased padding
                     transition: 'border-color 1.5s ease'
@@ -399,7 +392,7 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
                         [ THE COMPASS ]
                     </h3>
                     
-                    <div style={{ fontFamily: 'var(--fSerif)', fontSize: '1.6rem', fontStyle: 'italic', letterSpacing: '0.02em', color: m.text1, lineHeight: 1.8, WebkitFontSmoothing: 'antialiased' }}>
+                    <div style={{ fontFamily: 'var(--fSerif)', fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', fontStyle: 'italic', letterSpacing: '0.02em', color: m.text1, lineHeight: 1.8, WebkitFontSmoothing: 'antialiased' }}>
                         {data.reflection}
                     </div>
 
@@ -588,9 +581,8 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
 
                             return (
                                 <ParallaxBlock key={idx} delay={0.1} onEarned={handleBlockEarned}>
-                                    <div style={{
-                                        fontFamily: 'var(--fBody)', fontSize: '1.25rem', color: m.text2,
-                                        lineHeight: 1.8, letterSpacing: '0.02em', maxWidth: '85%',
+                                    <div className="guided-body-text" style={{
+                                        fontFamily: 'var(--fBody)', color: m.text2,
                                         marginBottom: 'var(--space-md)'
                                     }}>
                                         {stanza}
@@ -690,12 +682,12 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
                                     }
                                 }}
                                 placeholder="Begin constructing the pause..."
+                                className="guided-textarea"
                                 style={{
                                     width: '100%', minHeight: '350px', 
                                     border: `1px solid ${insightCaptured ? m.accent : m.text2 + '80'}`,
                                     borderTop: `4px solid ${insightCaptured ? m.accent : m.text2}`,
                                     color: m.text1, fontFamily: 'var(--fSerif)', fontStyle: 'italic',
-                                    fontSize: '1.45rem', lineHeight: 1.8, padding: '4rem 1.5rem 2rem 5rem',
                                     outline: 'none', resize: 'vertical', position: 'relative', zIndex: 2,
                                     transition: 'all 1s ease',
                                     '--fluid-bg': m.bg,
