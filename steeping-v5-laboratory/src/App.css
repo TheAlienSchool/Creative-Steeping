@@ -700,6 +700,8 @@ nav.top-nav {
     transform: translateX(-50%) !important;
     width: clamp(280px, 90%, 400px) !important;
     background-color: rgba(0,0,0,0.95) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
     border: 1px solid var(--acc) !important;
   }
 
@@ -799,18 +801,10 @@ nav.top-nav {
     border-left: none !important;
     border-right: none !important;
     border-bottom: none !important;
-    backdrop-filter: blur(16px) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
     padding: var(--space-sm) 20px !important;
-    background: rgba(0, 0, 0, 0.85) !important;
-  }
-
-  /* Active Pause Timer (bottom left) */
-  .global-timer-controls {
-    bottom: 60px !important;
-    /* Positioned above the sonic controls strip */
-    left: 20px !important;
-    transform: scale(0.9);
-    transform-origin: bottom left;
+    background: rgba(0, 0, 0, 0.98) !important;
   }
 }
 
