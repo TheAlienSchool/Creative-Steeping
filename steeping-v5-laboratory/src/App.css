@@ -517,13 +517,18 @@ nav.top-nav {
   }
 
   .portal-screen {
-    padding: var(--navH) var(--space-md);
+    padding: 104px 20px 120px 20px !important; /* Fixed nav top + breathing room bottom */
   }
 
   .vessel-matrix {
     grid-template-columns: 1fr;
     gap: var(--space-xxl);
     margin: 3vh auto 10vh auto;
+  }
+
+  .hex-vessel {
+    width: min(80vw, 300px) !important;
+    height: min(91.4vw, 342px) !important; /* maintain aspect ratio */
   }
 
   .vessel-detail-view {
@@ -544,26 +549,43 @@ nav.top-nav {
     font-size: clamp(2.5rem, 10vw, 4rem);
     line-height: 1.1;
   }
+  
+  .entrance-input-group input {
+    font-size: 16px !important; /* Prevent iOS Zoom */
+    width: min(90%, 480px);
+  }
 
   /* Navigation adjustments */
   .top-nav {
     flex-wrap: wrap;
     height: auto;
-    padding: var(--space-md);
+    min-height: 104px;
+    padding: var(--space-md) 20px;
     gap: var(--space-md);
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.85) !important;
   }
   .mode-toggles {
     position: static !important;
     transform: none !important;
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
     order: 3;
     padding-top: var(--space-sm);
     border-top: 1px solid rgba(255,255,255,0.05);
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  .mode-toggles::-webkit-scrollbar {
+    display: none;
   }
   .nav-brand {
-    font-size: 0.8rem !important;
+    font-size: 0.9rem !important;
+    flex: 0 0 auto;
+  }
+  .nav-school {
+    gap: var(--space-sm) !important;
+    flex: 0 0 auto;
   }
   
   /* AuthOverlay and Ledger adjustments */
@@ -574,15 +596,35 @@ nav.top-nav {
   }
   
   /* Guide To The Steeperverse Responsive */
+  .guide-header {
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    padding: var(--space-md) 20px !important;
+  }
+  .guide-header-title {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .guide-brand {
+    display: none !important; /* Save space for the title */
+  }
+  .guide-return-btn {
+    width: 100%;
+    text-align: right;
+  }
   .guide-container {
-    padding: 0 var(--space-sm) !important;
+    padding: 0 20px !important;
   }
   .guide-left-nav {
     display: none !important;
   }
   .guide-tier-grid {
     flex-direction: column !important;
-    gap: var(--space-md) !important;
+    gap: var(--space-lg) !important;
+    padding-bottom: 80px !important;
+  }
+  .guide-scrolling-defunct {
+    bottom: 20px !important;
   }
   
   /* Steeping Ledger (Resonance Vault) */
@@ -596,19 +638,26 @@ nav.top-nav {
     gap: var(--space-sm) !important;
   }
 
-  /* Sonic engine toggles (bottom right) */
-  .sonic-engine-controls {
-    bottom: var(--space-sm) !important;
-    right: var(--space-sm) !important;
-    transform: scale(0.85);
-    transform-origin: bottom right;
+  /* Sonic engine toggles (bottom drawer approach) */
+  .sonic-controls {
+    bottom: env(safe-area-inset-bottom, 0) !important;
+    right: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    backdrop-filter: blur(16px) !important;
+    padding: var(--space-sm) 20px !important;
+    background: rgba(0,0,0,0.85) !important;
   }
   
   /* Active Pause Timer (bottom left) */
-  .active-pause-container {
-    bottom: var(--space-sm) !important;
-    left: var(--space-sm) !important;
-    transform: scale(0.85);
+  .global-timer-controls {
+    bottom: 60px !important; /* Positioned above the sonic controls strip */
+    left: 20px !important;
+    transform: scale(0.9);
     transform-origin: bottom left;
   }
 }

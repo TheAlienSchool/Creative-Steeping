@@ -340,6 +340,7 @@ function AppInner() {
   const [sonicVolume, setSonicVolumeState] = useState(0.5);
   const [sonicAmbient, setSonicAmbient] = useState(false); // Starts OFF
   const [audioEngineMode, setAudioEngineMode] = useState('soul_sonnet'); // 'soul_sonnet' or 'immersive'
+  const [sonicExpanded, setSonicExpanded] = useState(false); // Collapsible z-axis respect
 
   const m = MODES[mode];
 
@@ -1465,67 +1466,83 @@ function AppInner() {
       <StillnessCatalyst m={m} />
 
       {/* SONIC AWARENESS CONTROLS */}
-      <div className="sonic-controls" onClick={(e) => e.stopPropagation()}>
-        <div className="sonic-label">SONIC AWARENESS</div>
+      <div 
+        className="sonic-controls" 
+        onClick={(e) => { e.stopPropagation(); setSonicExpanded(!sonicExpanded); }}
+        style={{ cursor: 'pointer' }}
+      >
+        <div className="sonic-label" style={{ marginBottom: sonicExpanded ? 'var(--space-md)' : '0', transition: 'margin 0.4s ease' }}>
+          {sonicExpanded ? '[ SONIC AWARENESS ]' : 'SONIC AWARENESS'}
+        </div>
 
-        <div className="sonic-row">
-          <span style={{ opacity: 0.7 }}>ENGINE</span>
-          <button
-            className={`sonic-toggle`}
-            aria-label={`Switch audio engine mode. Current: ${audioEngineMode === 'soul_sonnet' ? 'Soul Sonnet' : 'Immersive'}`}
-            onClick={(e) => { e.stopPropagation(); setAudioEngineMode(prev => prev === 'soul_sonnet' ? 'immersive' : 'soul_sonnet'); }}
+        {sonicExpanded && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}
           >
-            {audioEngineMode === 'soul_sonnet' ? 'SOUL SONNET' : 'IMMERSIVE'}
-          </button>
-        </div>
-        <div style={{ fontSize: '0.55rem', color: m.accent, opacity: 0.7, marginTop: '-6px', marginBottom: '8px', lineHeight: 1.3, letterSpacing: '0.05em', maxWidth: '140px', whiteSpace: 'normal' }}>
-           A tight space forces the truth out. Let the rhythm catch the feeling before your mind tries to explain it.
-        </div>
+            <div className="sonic-row">
+              <span style={{ opacity: 0.7 }}>ENGINE</span>
+              <button
+                className={`sonic-toggle`}
+                aria-label={`Switch audio engine mode. Current: ${audioEngineMode === 'soul_sonnet' ? 'Soul Sonnet' : 'Immersive'}`}
+                onClick={(e) => { e.stopPropagation(); setAudioEngineMode(prev => prev === 'soul_sonnet' ? 'immersive' : 'soul_sonnet'); }}
+              >
+                {audioEngineMode === 'soul_sonnet' ? 'SOUL SONNET' : 'IMMERSIVE'}
+              </button>
+            </div>
+            <div style={{ fontSize: '0.55rem', color: m.accent, opacity: 0.7, marginTop: '-6px', marginBottom: '8px', lineHeight: 1.3, letterSpacing: '0.05em', maxWidth: '140px', whiteSpace: 'normal' }}>
+               A tight space forces the truth out. Let the rhythm catch the feeling before your mind tries to explain it.
+            </div>
 
-        <div className="sonic-row">
-          <span style={{ opacity: 0.7 }}>THEREMIN</span>
-          <button
-            className={`sonic-toggle ${sonicAmbient ? 'active' : ''}`}
-            aria-label={`Theremin ambient sound: ${sonicAmbient ? 'On' : 'Off'}. Click to toggle.`}
-            aria-pressed={sonicAmbient}
-            onClick={(e) => { e.stopPropagation(); setSonicAmbient(!sonicAmbient); }}
-            style={{
-              animation: !sonicAmbient ? 'event-flash 4s infinite alternate' : 'none',
-              boxShadow: !sonicAmbient ? '0 0 15px var(--acc)' : 'none'
-            }}
-          >
-            {sonicAmbient ? 'ON' : 'OFF'}
-          </button>
-        </div>
+            <div className="sonic-row">
+              <span style={{ opacity: 0.7 }}>THEREMIN</span>
+              <button
+                className={`sonic-toggle ${sonicAmbient ? 'active' : ''}`}
+                aria-label={`Theremin ambient sound: ${sonicAmbient ? 'On' : 'Off'}. Click to toggle.`}
+                aria-pressed={sonicAmbient}
+                onClick={(e) => { e.stopPropagation(); setSonicAmbient(!sonicAmbient); }}
+                style={{
+                  animation: !sonicAmbient ? 'event-flash 4s infinite alternate' : 'none',
+                  boxShadow: !sonicAmbient ? '0 0 15px var(--acc)' : 'none'
+                }}
+              >
+                {sonicAmbient ? 'ON' : 'OFF'}
+              </button>
+            </div>
 
-        <div className="sonic-row">
-          <span style={{ opacity: 0.7 }}>VOLUME</span>
-          <input
-            type="range"
-            min="0" max="1" step="0.05"
-            value={sonicVolume}
-            onChange={(e) => setSonicVolumeState(parseFloat(e.target.value))}
-            onClick={(e) => e.stopPropagation()}
-            className="sonic-slider"
-            aria-label="Master volume"
-            aria-valuemin={0}
-            aria-valuemax={1}
-            aria-valuenow={sonicVolume}
-          />
-        </div>
+            <div className="sonic-row">
+              <span style={{ opacity: 0.7 }}>VOLUME</span>
+              <input
+                type="range"
+                min="0" max="1" step="0.05"
+                value={sonicVolume}
+                onChange={(e) => setSonicVolumeState(parseFloat(e.target.value))}
+                onClick={(e) => e.stopPropagation()}
+                className="sonic-slider"
+                aria-label="Master volume"
+                aria-valuemin={0}
+                aria-valuemax={1}
+                aria-valuenow={sonicVolume}
+              />
+            </div>
 
-        {/* Reading Lens Toggle */}
-        <div className="sonic-row" style={{ marginTop: '4px', borderTop: `1px solid ${m.accent}20`, paddingTop: '8px' }}>
-          <span style={{ opacity: 0.7 }}>READING LENS</span>
-          <button
-            className={`a11y-reading-toggle sonic-toggle ${readingMode ? 'active' : ''}`}
-            aria-label={`Reading Lens mode: ${readingMode ? 'On' : 'Off'}. Optimises typography for dyslexic reading.`}
-            aria-pressed={readingMode}
-            onClick={(e) => { e.stopPropagation(); setReadingMode(prev => !prev); }}
-          >
-            {readingMode ? 'ON' : 'OFF'}
-          </button>
-        </div>
+            {/* Reading Lens Toggle */}
+            <div className="sonic-row" style={{ marginTop: '4px', borderTop: `1px solid ${m.accent}20`, paddingTop: '8px' }}>
+              <span style={{ opacity: 0.7 }}>READING LENS</span>
+              <button
+                className={`a11y-reading-toggle sonic-toggle ${readingMode ? 'active' : ''}`}
+                aria-label={`Reading Lens mode: ${readingMode ? 'On' : 'Off'}. Optimises typography for dyslexic reading.`}
+                aria-pressed={readingMode}
+                onClick={(e) => { e.stopPropagation(); setReadingMode(prev => !prev); }}
+              >
+                {readingMode ? 'ON' : 'OFF'}
+              </button>
+            </div>
+          </motion.div>
+        )}
       </div>
 
       {/* The Underworld UI Layer */}

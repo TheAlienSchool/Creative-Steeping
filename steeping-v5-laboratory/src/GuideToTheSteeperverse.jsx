@@ -150,10 +150,11 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
             <button 
                 onClick={onClick}
                 disabled={isLoading}
+                className="guide-tier-btn"
                 style={{
-                    marginTop: 'var(--space-md)', padding: '12px',
+                    marginTop: 'var(--space-md)', padding: '12px', width: '100%', minHeight: '52px',
                     background: 'transparent', border: `1px solid ${m.accent}`, color: m.accent,
-                    fontFamily: 'var(--fMono)', fontSize: '0.75rem', letterSpacing: '0.1em', cursor: 'pointer',
+                    fontFamily: 'var(--fMono)', fontSize: '1rem', letterSpacing: '0.1em', cursor: 'pointer',
                     transition: 'all 0.3s ease', opacity: isLoading ? 0.5 : 1
                 }}
                 onMouseEnter={e => { e.currentTarget.style.background = m.accent; e.currentTarget.style.color = m.bg; }}
@@ -183,17 +184,18 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
             }} />
 
             {/* Header Navigation */}
-            <div style={{
+            <div className="guide-header" style={{
                 display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                 padding: 'var(--space-lg) var(--space-xl)', borderBottom: `1px solid ${m.text2}20`,
                 fontFamily: 'var(--fMono)', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '0.2em',
                 zIndex: 10, position: 'relative'
             }}>
-                <div style={{ display: 'flex', gap: 'var(--space-xl)' }}>
-                    <span style={{ opacity: 0.6 }}>CREÅTIVE STEEPING</span>
-                    <span style={{ color: m.accent, fontWeight: 'bold' }}>GUIDE TO THE STEEPERVERSE</span>
+                <div className="guide-header-title" style={{ display: 'flex', gap: 'var(--space-xl)' }}>
+                    <span className="guide-brand" style={{ opacity: 0.6 }}>CREÅTIVE STEEPING</span>
+                    <span className="guide-title" style={{ color: m.accent, fontWeight: 'bold' }}>GUIDE TO THE STEEPERVERSE</span>
                 </div>
                 <button 
+                    className="guide-return-btn"
                     onClick={() => { if(playStrikingBowl) playStrikingBowl(40); onClose(); }}
                     style={{
                         background: 'none', border: 'none', color: m.text1,
@@ -261,12 +263,12 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
                             <h1 style={{ fontFamily: 'var(--fSerif)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontStyle: 'italic', lineHeight: 1.1, marginBottom: 'var(--space-sm)', color: m.text1 }}>
                                 {CHAPTERS[activeChapter].title}
                             </h1>
-                            <div style={{ fontFamily: 'var(--fMono)', fontSize: '1.2rem', color: m.text2, letterSpacing: '0.1em', marginBottom: 'var(--space-xl)' }}>
+                            <div style={{ fontFamily: 'var(--fMono)', fontSize: 'clamp(0.85rem, 3.5vw, 1.1rem)', color: m.text2, letterSpacing: '0.1em', marginBottom: 'var(--space-xl)', maxWidth: '90%' }}>
                                 {CHAPTERS[activeChapter].subtitle}
                             </div>
                             
                             {!CHAPTERS[activeChapter].isCrossroads ? (
-                                <p style={{ fontFamily: 'var(--fBody)', fontSize: '1.2rem', lineHeight: 1.8, color: m.text1, opacity: 0.9, maxWidth: '800px' }}>
+                                <p style={{ fontFamily: 'var(--fBody)', fontSize: 'clamp(1rem, 4vw, 1.15rem)', lineHeight: 1.7, letterSpacing: '0.01em', color: m.text1, opacity: 0.9, maxWidth: '680px', margin: '0 auto' }}>
                                     {CHAPTERS[activeChapter].content}
                                 </p>
                             ) : (
@@ -369,7 +371,7 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
                 )}
             </div>
             
-            <div style={{ position: 'absolute', bottom: 'var(--space-lg)', left: '50%', transform: 'translateX(-50%)', fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, letterSpacing: '0.4em', opacity: 0.4 }}>
+            <div className="guide-scrolling-defunct" style={{ position: 'absolute', bottom: 'var(--space-lg)', left: '50%', transform: 'translateX(-50%)', fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, letterSpacing: '0.4em', opacity: 0.4, width: '100%', textAlign: 'center' }}>
                 {CHAPTERS[activeChapter].isCrossroads ? 'CHOOSE YOUR ESSENCE. THE ARCHITECTURE AWAITS.' : 'SCROLLING DEFUNCT. USE ARCHITECTURE TO BREATHE.'}
             </div>
         </motion.div>
