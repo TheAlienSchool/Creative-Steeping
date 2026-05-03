@@ -96,7 +96,7 @@ const BuoyantGrain = () => (
       </filter>
     </svg>
     <div style={{
-      position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+      position: 'fixed', top: 0, left: 0, width: '100vw', height: '100dvh',
       pointerEvents: 'none', zIndex: 9999,
       mixBlendMode: 'overlay',
       opacity: 0.4,
@@ -367,7 +367,7 @@ function AppInner() {
     background: "var(--bg)",
     color: "var(--t1)",
     fontFamily: "var(--fBody)",
-    minHeight: "100vh",
+    minHeight: "100dvh",
     transition: "background 1.2s ease, color 1.2s ease"
   };
 
@@ -569,7 +569,7 @@ function AppInner() {
       {/* V5 Resonance Canvas */}
       <canvas
         ref={canvasRef}
-        style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' }}
+        style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100dvh', zIndex: 0, pointerEvents: 'none' }}
       />
 
       {/* GLOBAL NAVIGATION */}
@@ -603,17 +603,20 @@ function AppInner() {
             <span style={{ fontSize: '1rem', lineHeight: 1 }}>☰</span>
           </a>
 
-          <div style={{
+          <div className="nav-dropdown-container" style={{
             position: 'absolute', top: '100%', right: 0, paddingTop: '20px',
             opacity: navMenuOpen ? 1 : 0,
             visibility: navMenuOpen ? 'visible' : 'hidden', transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
             transform: navMenuOpen ? 'translateY(0)' : 'translateY(-10px)'
           }}>
-            <div style={{
+            <div className="nav-dropdown-inner" style={{
               display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 'var(--space-md)',
               background: 'var(--bg)', border: `1px solid var(--acc)`, padding: 'var(--space-lg)',
               boxShadow: `0 10px 40px rgba(0,0,0,0.8)`
             }}>
+              <button className="mobile-menu-close" onClick={(e) => { e.stopPropagation(); setNavMenuOpen(false); }} style={{ display: 'none', background: 'none', border: 'none', color: 'var(--acc)', fontFamily: 'var(--fMono)', fontSize: '1.2rem', letterSpacing: '0.15em', paddingBottom: 'var(--space-xl)', cursor: 'pointer' }}>
+                [ CLOSE MENU ]
+              </button>
               <button onClick={() => { setLedgerOpen(true); setNavMenuOpen(false); }} style={{
                 background: 'none', border: 'none',
                 color: 'var(--acc)', textDecoration: 'none', borderBottom: '1px solid transparent',
@@ -807,7 +810,7 @@ function AppInner() {
               </button>
             </div>
 
-            <div className="entrance-covenant">
+            <div className="entrance-covenant" style={{ maxWidth: '90vw', margin: '0 auto' }}>
               <p><span style={{ borderBottom: "1px solid var(--acc)", color: "var(--acc)", paddingBottom: "2px" }}>YOUR RESONANCE.</span> THIS IS HOW WE STEEP TOGETHER ACROSS OCEANS.</p>
             </div>
           </div>
@@ -1277,7 +1280,7 @@ function AppInner() {
                             {activeVessel.invocation}
                           </div>
 
-                          <div style={{ fontFamily: 'var(--fBody)', fontSize: '1.2rem', lineHeight: 1.8, color: 'var(--t1)', marginBottom: 'var(--space-xl)' }}>
+                          <div style={{ fontFamily: 'var(--fBody)', fontSize: 'clamp(1rem, 4vw, 1.2rem)', lineHeight: 1.8, color: 'var(--t1)', marginBottom: 'var(--space-xl)', maxWidth: '680px', margin: '0 auto var(--space-xl) auto' }}>
                             {activeVessel.body}
                           </div>
 
