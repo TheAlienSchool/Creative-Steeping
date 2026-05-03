@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from './supabaseClient';
 import { useAuth } from './useAuth';
@@ -61,6 +61,14 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
     const [activeChapter, setActiveChapter] = useState(0);
     const { user } = useAuth();
     const [checkoutLoading, setCheckoutLoading] = useState(false);
+    const scrollRef = useRef(null);
+
+    // Auto scroll to top when chapter changes
+    useEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }, [activeChapter]);
 
     const CHAPTERS = [
         {
@@ -248,8 +256,9 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
                 </AnimatePresence>
 
                 {/* The Content Frame */}
-                <div className="guide-container" style={{ maxWidth: '1000px', width: '100%', padding: '0 var(--space-xxl)', zIndex: 10 }}>
-                    <AnimatePresence mode="wait">
+                <div className="guide-scroll-area" ref={scrollRef} style={{ flex: 1, overflowY: 'auto', display: 'flex', alignItems: 'center', height: '100%', width: '100%' }}>
+                    <div className="guide-container" style={{ maxWidth: '1000px', width: '100%', padding: 'var(--space-xxl)', zIndex: 10, margin: 'auto' }}>
+                        <AnimatePresence mode="wait">
                         <motion.div
                             key={activeChapter}
                             initial={{ opacity: 0, y: 30 }}
@@ -350,10 +359,12 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
                         </motion.div>
                     </AnimatePresence>
                 </div>
+                </div>
 
                 {/* Right Interactive Arrow - Hidden on last frame */}
                 {activeChapter < CHAPTERS.length - 1 && (
                     <button 
+                        className="guide-next-btn"
                         onClick={nextChapter}
                         style={{
                             position: 'absolute', right: 'var(--space-xl)', top: '50%', transform: 'translateY(-50%)',

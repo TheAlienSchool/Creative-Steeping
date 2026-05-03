@@ -111,8 +111,8 @@ const AwarenessPlanningInteractive = ({ m, playAlgoraveSynth }) => {
                     </svg>
                 </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 200px', gap: '3rem', alignItems: 'center' }}>
-                <div style={{ fontFamily: 'var(--fSerif)', fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: m.text1, lineHeight: 1.4 }}>"{current.instruction}"</div>
+            <div className="ai-contemplation-grid" style={{ gap: '3rem', alignItems: 'center' }}>
+                <div style={{ fontFamily: 'var(--fSerif)', color: m.text1, lineHeight: 1.4 }}>"{current.instruction}"</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', borderLeft: `1px solid ${m.accent}20`, paddingLeft: '2rem' }}>
                     {phases.map((p, idx) => (
                         <div key={idx} style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: phase === idx ? m.accent : m.text2, opacity: phase === idx ? 1 : 0.4, letterSpacing: '0.15em', textTransform: 'uppercase', transition: 'all 0.3s ease', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>

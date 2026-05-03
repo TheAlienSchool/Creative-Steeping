@@ -98,7 +98,7 @@ const ResonanceVault = ({ m, issues, activeIssue, setActiveIssue, playStrikingBo
     return (
         <div style={{ marginBottom: 'var(--space-xxl)', borderBottom: `1px solid ${m.accent}30`, paddingBottom: 'var(--space-xl)' }}>
             {/* Header row */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-lg)' }}>
+            <div className="ledger-header" style={{ marginBottom: 'var(--space-lg)' }}>
                 <div style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.3em', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
                     <b>[ STEEPING NOTES LEDGER ]</b>
                     <span style={{ fontSize: '0.6rem', opacity: 0.5, padding: '2px 8px', border: `1px solid ${m.accent}40`, borderRadius: '12px' }}>

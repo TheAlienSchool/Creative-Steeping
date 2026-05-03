@@ -603,13 +603,13 @@ function AppInner() {
             <span style={{ fontSize: '1rem', lineHeight: 1 }}>☰</span>
           </a>
 
-          <div style={{
+          <div className="nav-dropdown-container" style={{
             position: 'absolute', top: '100%', right: 0, paddingTop: '20px',
             opacity: navMenuOpen ? 1 : 0,
             visibility: navMenuOpen ? 'visible' : 'hidden', transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
             transform: navMenuOpen ? 'translateY(0)' : 'translateY(-10px)'
           }}>
-            <div style={{
+            <div className="nav-dropdown-inner" style={{
               display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 'var(--space-md)',
               background: 'var(--bg)', border: `1px solid var(--acc)`, padding: 'var(--space-lg)',
               boxShadow: `0 10px 40px rgba(0,0,0,0.8)`
@@ -624,11 +624,12 @@ function AppInner() {
                 <b>[ STEEPING NOTES ]</b>
               </button>
 
-              <button onClick={() => setShowGuide(true)} style={{
+                <button onClick={() => setShowGuide(true)} style={{
                 background: 'none', border: 'none',
                 color: 'var(--acc)', textDecoration: 'none', borderBottom: '1px solid transparent',
                 transition: 'border-bottom 1.2s ease', cursor: 'pointer', fontFamily: 'var(--fMono)',
-                fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap'
+                fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'normal',
+                textAlign: 'right'
               }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--acc)'}
                 onMouseLeave={e => e.currentTarget.style.borderBottom = '1px solid transparent'}
                 title="View the Guide to the Steeperverse">
