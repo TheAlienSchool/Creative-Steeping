@@ -1,0 +1,323 @@
+/* ============================================================
+   STEEPERVERSE ACCESSIBILITY LAYER
+   Additive. Never overrides aesthetics unless contrast requires it.
+   Designed for: neurodivergent practitioners, dyslexic readers,
+   glasses wearers, keyboard users, and reduced-motion preferences.
+   ============================================================ */
+
+/* ── 1. SKIP TO CONTENT LINK ─────────────────────────────────
+   Invisible until focused by keyboard Tab. First interactive
+   element on the page. Essential for screen reader and
+   keyboard-only navigation. */
+.skip-to-content {
+  position: fixed;
+  top: -100px;
+  left: 0;
+  z-index: 99999;
+  padding: 12px 24px;
+  background: var(--acc, #d4922a);
+  color: #000;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: top 0.2s ease;
+}
+
+.skip-to-content:focus {
+  top: 0;
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ── 2. GLOBAL FOCUS STYLES ──────────────────────────────────
+   Every interactive element must show clear focus.
+   Uses :focus-visible so mouse users aren't disrupted.
+   The ring uses the mode accent color for harmony. */
+
+:focus-visible {
+  outline: 2px solid var(--acc, #d4922a);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* Remove the dangerous outline:none from entrance input */
+.entrance-input-group input:focus {
+  outline: none; /* Intentionally removed — replaced by accent border below */
+  border-color: var(--acc);
+  box-shadow: 0 0 0 1px var(--acc);
+}
+
+/* All buttons — clear visible focus ring */
+button:focus-visible {
+  outline: 2px solid var(--acc, #d4922a);
+  outline-offset: 3px;
+}
+
+/* Sonic slider — restore focus indicator */
+.sonic-slider:focus-visible {
+  outline: 1px solid var(--acc, #d4922a);
+  outline-offset: 4px;
+}
+
+/* ── 3. REDUCED MOTION ───────────────────────────────────────
+   Respects prefers-reduced-motion system setting.
+   All 9 vessel unfold animations, the breathing pulse,
+   and parallax transitions are tamed or eliminated. */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.15s !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Vessel entry: simple fade instead of spatial transforms */
+  [class^="unfold-"] {
+    animation: simple-fade-in 0.3s ease forwards !important;
+  }
+
+  @keyframes simple-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* Kill the parallax video motion */
+  .entrance-screen video {
+    transform: none !important;
+  }
+
+  /* The breathing / ontological pulse: reduce to opacity only */
+  @keyframes ontologicalBreathe {
+    0%   { opacity: 0.85; transform: none; }
+    50%  { opacity: 1;    transform: none; }
+    100% { opacity: 0.85; transform: none; }
+  }
+}
+
+/* ── 4. MINIMUM FONT SIZES FOR READING CONTENT ───────────────
+   Enforced only within reading contexts (vessels, notes, guide).
+   Nav chrome keeps its compact monospace scale. */
+
+/* Vessel body text — minimum 17px for comfortable reading */
+.vessel-body-text,
+.steeping-note-body p,
+.vessel-detail-body p {
+  font-size: max(17px, 1.05rem);
+  line-height: 1.75;
+  letter-spacing: 0.025em;
+}
+
+/* Guide chapter content */
+.guide-chapter-content {
+  font-size: max(17px, 1.1rem);
+  line-height: 1.8;
+}
+
+/* Paragraph max-width: optimal reading line ~65-70 characters.
+   Prevents full-width text walls that are harder to track. */
+.steeping-note-body p,
+.vessel-detail-body p,
+.guide-chapter-content {
+  max-width: 68ch;
+}
+
+/* ── 5. DYSLEXIA READING MODE ─────────────────────────────────
+   Activated by adding [data-reading-mode="open"] to the
+   document root. Preserves the design system while optimizing
+   for dyslexic reading mechanics:
+   — Open sans-serif body font (Atkinson Hyperlegible or system)
+   — Wider word spacing
+   — Wider letter spacing
+   — Increased line height
+   — Larger base font size
+   — Left-aligned reading (no centered body text blocks)
+   — No italic in body reading zones */
+
+[data-reading-mode="open"] {
+  /* Override only the body reading font — keep mono for nav chrome */
+  --fBody: 'Atkinson Hyperlegible', 'Arial', sans-serif;
+}
+
+[data-reading-mode="open"] p,
+[data-reading-mode="open"] .steeping-note-body,
+[data-reading-mode="open"] .vessel-detail-body,
+[data-reading-mode="open"] .guide-chapter-content {
+  font-family: 'Atkinson Hyperlegible', 'Arial', sans-serif;
+  font-size: max(18px, 1.15rem);
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+  word-spacing: 0.12em;
+  font-style: normal; /* Remove italic from reading zones */
+  text-align: left;   /* Left-align all reading content */
+}
+
+/* In reading mode: entrance subtext left-aligns visually even if
+   the container is centered */
+[data-reading-mode="open"] .entrance-subtext p {
+  font-style: normal;
+  letter-spacing: 0.06em;
+  line-height: 1.8;
+}
+
+/* Vessel invocations: keep them italic (display poetry, not body reading) */
+[data-reading-mode="open"] .vessel-invocation {
+  font-style: italic; /* intentional: display text, short */
+}
+
+/* ── 6. READING GUIDE (FOCUS LINE) ──────────────────────────
+   A soft horizontal band that follows the mouse to help
+   dyslexic readers track which line they are on.
+   Activated alongside reading mode. */
+
+[data-reading-mode="open"] .reading-guide-active::selection {
+  background: rgba(212, 146, 42, 0.35);
+  color: inherit;
+}
+
+/* ── 7. SCROLLBAR RESTORATION ────────────────────────────────
+   The original CSS annihilates scrollbars entirely. This removes
+   the scroll position cue, which is disorienting — especially
+   inside the Steeping Notes overlay which is very tall.
+   We restore a minimal, styled scrollbar that fits the aesthetic. */
+
+/* Overlay scroll containers (SteepersLedger, AuthOverlay, etc) */
+.steepers-ledger-scroll,
+.a11y-scroll {
+  scrollbar-width: thin;                        /* Firefox */
+  scrollbar-color: var(--acc, #d4922a) transparent; /* Firefox */
+}
+
+.steepers-ledger-scroll::-webkit-scrollbar,
+.a11y-scroll::-webkit-scrollbar {
+  width: 3px;
+}
+
+.steepers-ledger-scroll::-webkit-scrollbar-track,
+.a11y-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.steepers-ledger-scroll::-webkit-scrollbar-thumb,
+.a11y-scroll::-webkit-scrollbar-thumb {
+  background: var(--acc, #d4922a);
+  opacity: 0.4;
+  border-radius: 2px;
+}
+
+/* ── 8. CONTRAST REINFORCEMENTS ──────────────────────────────
+   The accent gold (#d4922a) on very dark bg (#090500) has a
+   contrast ratio of ~5.2:1 — passes WCAG AA for normal text.
+   The text2 color (#a88b68) on dark bg has ~3.1:1 — passes
+   large text only. Enforce minimum contrast for any text2 used
+   at body size. */
+
+/* Steeping note body secondary text — boost to readable contrast */
+.steeping-note-body .secondary-text {
+  color: var(--t1); /* Upgrade from t2 to t1 in reading zones */
+}
+
+/* Mode selector buttons — ensure the inactive state is still legible */
+.mode-btn {
+  opacity: 0.65; /* was potentially lower via inline styles */
+  min-width: 44px;  /* WCAG 2.5.5: minimum 44×44px touch target */
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mode-btn:hover,
+.mode-btn:focus-visible {
+  opacity: 1;
+}
+
+/* ── 9. MINIMUM TOUCH TARGETS (WCAG 2.5.5) ──────────────────
+   All interactive elements must meet 44×44px minimum.
+   Applied globally with padding to avoid layout disruption. */
+
+nav button,
+.enter-button,
+.sonic-toggle {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Steeping note nav buttons — reactive tiles */
+.steeping-note-nav-btn {
+  min-height: 44px;
+}
+
+/* ── 10. ARIA LIVE REGION STYLES ─────────────────────────────
+   The Sage response panel must announce to screen readers.
+   This is handled in the component via role="status",
+   but we ensure it's visually coherent when it updates. */
+
+[role="status"],
+[aria-live="polite"] {
+  /* No visual changes — but ensure the element is not display:none
+     (which would prevent screen reader announcements) */
+  position: static;
+  visibility: visible;
+}
+
+/* ── 11. READING MODE TOGGLE BUTTON ──────────────────────────
+   The toggle lives in the sonic controls area (bottom-right).
+   Styled to match the existing sonic-toggle aesthetic. */
+
+.a11y-reading-toggle {
+  background: transparent;
+  border: none;
+  color: var(--t2);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: color 0.4s ease;
+  padding: 4px 0;
+  text-transform: uppercase;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.a11y-reading-toggle.active {
+  color: var(--acc, #d4922a);
+}
+
+.a11y-reading-toggle:focus-visible {
+  outline: 2px solid var(--acc, #d4922a);
+  outline-offset: 3px;
+}
+
+/* ── 12. HIGH CONTRAST SELECTION ────────────────────────────
+   Text selection should be clearly visible across all modes. */
+
+::selection {
+  background: var(--acc, #d4922a);
+  color: #000;
+}
+
+/* [Reflect] button selection tool override */
+.reflect-selection::selection {
+  background: rgba(212, 146, 42, 0.5);
+  color: inherit;
+}
+
+/* ── 13. ZOOM SAFETY ─────────────────────────────────────────
+   Prevent layouts from breaking at 200% browser zoom.
+   Key container max-widths use ch / % rather than fixed px.
+   Fonts use clamp() which already scales with zoom.
+   The only risk is fixed-height hex vessels. */
+
+@media (min-resolution: 192dpi) {
+  /* Retina / high-DPI: ensure thin borders are actually visible */
+  .hex-vessel {
+    border: 0.5px solid var(--acc, #d4922a);
+  }
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#090500" />
+    <meta name="description" content="CREÅTIVE STEEPING — An immersive journey into the essence of your creative flavor. A sanctuary for reflection, resonance, and becoming." />
+    <title>CREÅTIVE STEEPING — A Journey to the Essence of Your Flavor</title>
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        background-color: #050505; /* Deep base color to prevent white flash */
+        color: #fff;
+      }
+      /* Screen reader / keyboard-only accessible skip link */
+      .skip-to-content {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #000;
+        color: #fff;
+        padding: 8px;
+        z-index: 9999;
+        text-decoration: none;
+        transition: top 0.2s;
+      }
+      .skip-to-content:focus {
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
