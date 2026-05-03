@@ -74,149 +74,140 @@ export const AuthOverlay = ({ m, onClose }) => {
                     border: 'none', color: m.accent, fontSize: '1.2rem', cursor: 'pointer', fontFamily: 'var(--fMono)'
                 }}>X</button>
 
-                <h2 style={{ fontFamily: 'var(--fSerif)', color: m.accent, letterSpacing: '0.15em', marginBottom: '2.5rem', fontWeight: 400, textAlign: 'center', textTransform: 'uppercase' }}>
-                    THE INVITATION
+                <h2 style={{ fontFamily: 'var(--fSerif)', color: m.accent, letterSpacing: '0.15em', marginBottom: '1.5rem', fontWeight: 400, textAlign: 'center', textTransform: 'uppercase' }}>
+                    YOUR STEEPING SEQUENCE
                 </h2>
                 
-                <div style={{ fontFamily: 'var(--fBody)', fontSize: '0.9rem', color: m.text2, fontStyle: 'italic', marginBottom: '2.5rem', textAlign: 'center' }}>
-                    The depth of The Steeping Space responds to the depth of exchange you bring forth.
+                <div style={{ fontFamily: 'var(--fBody)', fontSize: '1rem', color: m.text2, fontStyle: 'italic', marginBottom: '2.5rem', textAlign: 'center', maxWidth: '500px', margin: '0 auto 3rem auto' }}>
+                    A step-by-step architecture for navigating the Steeperverse and painting your insight into existence.
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem' }}>
-                    {/* Layer 1 */}
-                    <div style={{ padding: '1.5rem', border: `1px solid ${m.accent}20`, background: `${m.accent}05` }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-                            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.15em', fontSize: '1.1rem', margin: 0 }}>[ THE FOUNDATION ]</h3>
-                            <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.text2, textTransform: 'uppercase' }}>Surface</span>
-                        </div>
-                        <p style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1rem', lineHeight: '1.6', margin: 0 }}>
-                            <i>The Steeperverse</i> opens here. Navigate freely, generate sound with your movements, and begin a conversation with The Steeping Sage. This layer offers introduction, wayfinding, and encouragements born of the CREATIVE STEEPING ethos.
-                        </p>
-                    </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', marginBottom: '1rem', position: 'relative' }}>
+                    {/* The Connecting Line */}
+                    <div style={{ position: 'absolute', left: '24px', top: '24px', bottom: '24px', width: '2px', background: `${m.accent}30`, zIndex: 0 }} />
 
-                    {/* Layer 2 */}
-                    <div style={{ padding: '1.5rem', border: `1px solid ${m.accent}40`, background: `${m.accent}10` }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-                            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.15em', fontSize: '1.1rem', margin: 0 }}>[ THE VESSEL MATRIX ]</h3>
-                            <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.text2, textTransform: 'uppercase' }}>$44</span>
-                        </div>
-                        <p style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1rem', lineHeight: '1.6', margin: 0, marginBottom: '1.5rem' }}>
-                            Your steep deepens when it has somewhere to land. The deeper waters require your conscious decision to invest. This layer holds the full record of your presence, your vessel reflections, and your Steeping Notes across every session. A persistent practice.
-                        </p>
-                        <button
-                            disabled={loading}
-                            onClick={() => handleCheckout('journeyer')}
-                            style={{
-                                background: 'transparent', border: `1px solid ${m.accent}`, color: m.accent,
-                                padding: '0.6rem 1.2rem', fontFamily: 'var(--fMono)', fontSize: '0.8rem',
-                                letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.3s ease',
-                                opacity: loading ? 0.5 : 1
-                            }}
-                            onMouseEnter={e => { e.currentTarget.style.backgroundColor = m.accent; e.currentTarget.style.color = m.bg; }}
-                            onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = m.accent; }}
-                        >
-                            [ SECURE YOUR COORDINATES ]
-                        </button>
-                    </div>
-
-                    {/* Layer 3 */}
-                    <div style={{ padding: '1.5rem', border: `1px solid ${m.accent}80`, background: `${m.accent}18` }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-                            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.15em', fontSize: '1.1rem', margin: 0, textShadow: `0 0 10px ${m.accent}80` }}>[ THE INNERACTIVE COHORT ]</h3>
-                            <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.text2, textTransform: 'uppercase' }}>$777</span>
-                        </div>
-                        <p style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1rem', lineHeight: '1.6', margin: 0, marginBottom: '1.5rem' }}>
-                            The practitioner community. Direct one-on-one Steeping Sessions. Group cohorts with the architects of the practice. The full depth, held with others who are already doing the work. This architecture awaits your reciprocal presence.
-                        </p>
-                        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                            <button
-                                disabled={loading}
-                                onClick={() => handleCheckout('cohort')}
-                                style={{
-                                    background: m.accent, border: `1px solid ${m.accent}`, color: m.bg,
-                                    padding: '0.6rem 1.2rem', fontFamily: 'var(--fMono)', fontSize: '0.8rem',
-                                    letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.3s ease',
-                                    opacity: loading ? 0.5 : 1
-                                }}
-                                onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 0 20px ${m.accent}80`; }}
-                                onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; }}
-                            >
-                                [ COHORT SESSIONS ]
-                            </button>
-                            <button
-                                disabled={loading}
-                                onClick={() => handleCheckout('depth_semester')}
-                                style={{
-                                    background: 'transparent', border: `1px solid ${m.accent}60`, color: m.accent,
-                                    padding: '0.6rem 1.2rem', fontFamily: 'var(--fMono)', fontSize: '0.8rem',
-                                    letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.3s ease',
-                                    opacity: loading ? 0.5 : 1
-                                }}
-                                onMouseEnter={e => { e.currentTarget.style.backgroundColor = `${m.accent}20`; }}
-                                onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; }}
-                            >
-                                [ DEPTH SEMESTER ]
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div style={{ borderTop: `1px solid ${m.accent}30`, paddingTop: '2.5rem', textAlign: 'center' }}>
-                    {user ? (
-                        <div style={{ padding: '1.5rem' }}>
-                            <p style={{ fontFamily: 'var(--fBody)', color: m.accent, fontSize: '1.2rem', marginBottom: '0.5rem' }}>
-                                Your Steeping session is active:
+                    {/* Step 1 */}
+                    <div style={{ display: 'flex', gap: '1.5rem', position: 'relative', zIndex: 1 }}>
+                        <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: m.surface, border: `2px solid ${m.accent}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--fMono)', color: m.accent, fontWeight: 'bold', flexShrink: 0 }}>01</div>
+                        <div style={{ padding: '1.5rem', border: `1px solid ${m.accent}20`, background: `${m.accent}05`, flexGrow: 1, borderRadius: 'var(--curve)' }}>
+                            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.1em', fontSize: '1.1rem', margin: '0 0 0.5rem 0' }}>THE FOUNDATION</h3>
+                            <p style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '0.95rem', lineHeight: '1.6', margin: '0 0 1.5rem 0' }}>
+                                <b>Establish Presence.</b> Navigate freely, generate sound with your movements, and converse with The Sage. Set your first anchor by entering your email below to save your initial resonance.
                             </p>
-                            <div style={{ fontFamily: 'var(--fMono)', color: m.text1, fontSize: '0.9rem', marginBottom: '1.5rem' }}>
-                                {user.email}
-                            </div>
-                            <p style={{ fontFamily: 'var(--fBody)', color: m.text2, fontSize: '1rem' }}>
-                                The Inneractive layer — group cohorts, direct sessions with the architects — opens by invitation. Let me know you're here.
-                            </p>
-                        </div>
-                    ) : (
-                        <>
-                            <p style={{ fontFamily: 'var(--fBody)', color: m.text2, fontSize: '1.1rem', marginBottom: '1.5rem' }}>
-                            Your practice holds when you give it a home.
-                            </p>
-
-                            <form id="auth-login-form" onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
-                                <input
-                                    type="email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    placeholder="YOUR@EMAIL.COM"
-                                    style={{
-                                        background: 'transparent', border: 'none', borderBottom: `1px solid ${m.accent}60`,
-                                        color: m.accent, fontFamily: 'var(--fMono)', fontSize: '1.1rem', padding: '0.5rem',
-                                        textAlign: 'center', letterSpacing: '0.1em', outline: 'none', width: '80%', maxWidth: '300px'
-                                    }}
-                                />
-                                <button
-                                    type="submit"
-                                    disabled={loading}
-                                    style={{
-                                        background: 'transparent', border: `1px solid ${m.accent}60`,
-                                        color: m.accent, fontFamily: 'var(--fMono)', fontSize: '0.9rem',
-                                        padding: '0.75rem 1.5rem', marginTop: '1rem', cursor: 'pointer',
-                                        textTransform: 'uppercase', letterSpacing: '0.15em',
-                                        transition: 'all 0.3s ease',
-                                        opacity: loading ? 0.5 : 1
-                                    }}
-                                    onMouseEnter={e => e.currentTarget.style.backgroundColor = `${m.accent}15`}
-                                    onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
-                                >
-                                    {loading ? '[ TRANSMITTING ]' : '[ ESTABLISH PRESENCE ]'}
-                                </button>
-                            </form>
-
+                            
+                            {user ? (
+                                <div style={{ borderTop: `1px dashed ${m.accent}50`, paddingTop: '1rem' }}>
+                                    <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.accent }}>[ PRESENCE ESTABLISHED: {user.email} ]</span>
+                                </div>
+                            ) : (
+                                <form id="auth-login-form" onSubmit={handleLogin} style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
+                                    <input
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder="YOUR@EMAIL.COM"
+                                        style={{
+                                            background: 'transparent', border: 'none', borderBottom: `1px solid ${m.accent}60`,
+                                            color: m.accent, fontFamily: 'var(--fMono)', fontSize: '0.9rem', padding: '0.5rem',
+                                            letterSpacing: '0.1em', outline: 'none', flexGrow: 1, minWidth: '200px'
+                                        }}
+                                    />
+                                    <button
+                                        type="submit"
+                                        disabled={loading}
+                                        style={{
+                                            background: 'transparent', border: `1px solid ${m.accent}60`,
+                                            color: m.accent, fontFamily: 'var(--fMono)', fontSize: '0.8rem',
+                                            padding: '0.5rem 1rem', cursor: 'pointer', textTransform: 'uppercase',
+                                            letterSpacing: '0.15em', transition: 'all 0.3s ease', opacity: loading ? 0.5 : 1,
+                                            whiteSpace: 'nowrap'
+                                        }}
+                                        onMouseEnter={e => e.currentTarget.style.backgroundColor = `${m.accent}15`}
+                                        onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
+                                    >
+                                        {loading ? '[ TRANSMITTING ]' : '[ ESTABLISH ]'}
+                                    </button>
+                                </form>
+                            )}
                             {message && (
-                                <div style={{ marginTop: '1.5rem', fontFamily: 'var(--fMono)', fontSize: '0.85rem', color: m.text2 }}>
+                                <div style={{ marginTop: '1rem', fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.accent }}>
                                     {message}
                                 </div>
                             )}
-                        </>
-                    )}
+                        </div>
+                    </div>
+
+                    {/* Step 2 */}
+                    <div style={{ display: 'flex', gap: '1.5rem', position: 'relative', zIndex: 1 }}>
+                        <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: m.surface, border: `2px solid ${m.accent}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--fMono)', color: m.accent, fontWeight: 'bold', flexShrink: 0 }}>02</div>
+                        <div style={{ padding: '1.5rem', border: `1px solid ${m.accent}40`, background: `${m.accent}10`, flexGrow: 1, borderRadius: 'var(--curve)' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
+                                <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.1em', fontSize: '1.1rem', margin: 0 }}>THE VESSEL MATRIX</h3>
+                                <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.text2, textTransform: 'uppercase' }}>$44</span>
+                            </div>
+                            <p style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '0.95rem', lineHeight: '1.6', margin: '0 0 1.5rem 0' }}>
+                                <b>Construct Your Insight.</b> Secure your coordinates to unlock the 9-part Guided Journey. Here you will track your biometric resonance, map your discoveries, and build your persistent Steeping Space.
+                            </p>
+                            <button
+                                disabled={loading}
+                                onClick={() => handleCheckout('journeyer')}
+                                style={{
+                                    background: 'transparent', border: `1px solid ${m.accent}`, color: m.accent,
+                                    padding: '0.6rem 1.2rem', fontFamily: 'var(--fMono)', fontSize: '0.8rem',
+                                    letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.3s ease',
+                                    opacity: loading ? 0.5 : 1
+                                }}
+                                onMouseEnter={e => { e.currentTarget.style.backgroundColor = m.accent; e.currentTarget.style.color = m.bg; }}
+                                onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = m.accent; }}
+                            >
+                                [ SECURE YOUR COORDINATES ]
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Step 3 */}
+                    <div style={{ display: 'flex', gap: '1.5rem', position: 'relative', zIndex: 1 }}>
+                        <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: m.surface, border: `2px solid ${m.accent}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--fMono)', color: m.accent, fontWeight: 'bold', flexShrink: 0, boxShadow: `0 0 15px ${m.accent}60` }}>03</div>
+                        <div style={{ padding: '1.5rem', border: `1px solid ${m.accent}80`, background: `${m.accent}18`, flexGrow: 1, borderRadius: 'var(--curve)' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
+                                <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.1em', fontSize: '1.1rem', margin: 0, textShadow: `0 0 10px ${m.accent}80` }}>THE INNERACTIVE COHORT</h3>
+                                <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.text2, textTransform: 'uppercase' }}>$777</span>
+                            </div>
+                            <p style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '0.95rem', lineHeight: '1.6', margin: '0 0 1.5rem 0' }}>
+                                <b>Commune & Synthesize.</b> When you require the reflection of others, join the cohort. Direct one-on-one sessions, deep architectural work, and a shared environment with the architects of the practice.
+                            </p>
+                            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                                <button
+                                    disabled={loading}
+                                    onClick={() => handleCheckout('cohort')}
+                                    style={{
+                                        background: m.accent, border: `1px solid ${m.accent}`, color: m.bg,
+                                        padding: '0.6rem 1.2rem', fontFamily: 'var(--fMono)', fontSize: '0.8rem',
+                                        letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.3s ease',
+                                        opacity: loading ? 0.5 : 1
+                                    }}
+                                    onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 0 20px ${m.accent}80`; }}
+                                    onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; }}
+                                >
+                                    [ COHORT SESSIONS ]
+                                </button>
+                                <button
+                                    disabled={loading}
+                                    onClick={() => handleCheckout('depth_semester')}
+                                    style={{
+                                        background: 'transparent', border: `1px solid ${m.accent}60`, color: m.accent,
+                                        padding: '0.6rem 1.2rem', fontFamily: 'var(--fMono)', fontSize: '0.8rem',
+                                        letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.3s ease',
+                                        opacity: loading ? 0.5 : 1
+                                    }}
+                                    onMouseEnter={e => { e.currentTarget.style.backgroundColor = `${m.accent}20`; }}
+                                    onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; }}
+                                >
+                                    [ DEPTH SEMESTER ]
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

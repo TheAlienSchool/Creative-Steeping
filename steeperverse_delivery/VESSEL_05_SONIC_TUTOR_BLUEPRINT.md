@@ -10,7 +10,7 @@
 ## 1. THE ONTOLOGICAL OBJECTIVE
 To remove the friction between the practitioner's internal insight and their physical manifestation on the keyboard. By turning the keyboard into a 528Hz musical instrument, the practitioner learns to type not through rote memorization, but through *harmonic entrainment*.
 
-It is a "typing teacher" where the reward is not Words Per Minute (WPM), but **Harmonic Coherence**. 
+It operates as a "typing teacher" where the ultimate reward is **Harmonic Coherence** rather than Words Per Minute (WPM). 
 Typing correctly generates a beautiful, looping musical scale. The practitioner learns to play their journal like a piano.
 
 ---
@@ -24,7 +24,7 @@ As the practitioner learns to type, they are simultaneously typing out:
 2. The core lore of the Steeperverse (TURAO, The Pocket, The Pause).
 3. Their own stored journal entries (bringing their past insights back into physical memory).
 
-**The Reframe:** Mistakes are not punished with jarring buzzers (deficit spending). A missed key simply fails to strike the note, breaking the musical flow. The desire to hear the completed chord progression is the intrinsic motivator to type accurately.
+**The Reframe:** A missed key simply fails to strike the note, placing a momentary pause in the musical flow. The intrinsic desire to hear the completed chord progression serves as the primary motivator for accuracy.
 
 ---
 
@@ -45,12 +45,12 @@ The instrument scales with the practitioner's capacity.
 *   **Goal:** Achieve "The Pocket"—a state where typing speed matches the algorithmic rhythm of the portal.
 
 ### [ L3 ] The Generative Flow State (Mastery)
-*   **Mechanic:** The practitioner types their own live journal entry without a guided prompt. 
+*   **Mechanic:** The practitioner types their own live, unprompted journal entry. 
 *   **Sonic Mapping:** The Sonnet Engine analyzes typing speed, pauses, and cadence. It generates a live, algorithmic music score that *follows the practitioner*. 
     *   *Fast bursts of typing:* Arpeggiated, cascading notes.
     *   *Long pauses:* Deep, sustained, oceanic cello-like drones that hold the space while the practitioner thinks.
 *   **Visuals:** The "Hexagong HUD" fully engages, visualizing the practitioner's "Kinetic Yield" and "Resonance" in real-time.
-*   **Goal:** The ultimate cheat code to journaling success. The practitioner is no longer "typing"; they are conducting an orchestra using their subconscious thoughts.
+*   **Goal:** The ultimate cheat code to journaling success. The practitioner transcends "typing" and begins conducting an orchestra using their subconscious thoughts.
 
 ---
 
@@ -61,7 +61,7 @@ When it is time to build this module, the Agent must adhere to these technical c
 1. **The Audio Engine (`useSonicTutor.jsx`):** 
    *   Must utilize the Web Audio API (`AudioContext`).
    *   Frequencies must be mathematically derived from the 528Hz root (e.g., Solfeggio or Pythagorean tuning, not standard A=440Hz Equal Temperament if possible, to maintain the medicinal frequency).
-   *   Must include extremely generous `envelope.release` times to ensure notes overlap beautifully and do not click when stopped abruptly.
+   *   Must include extremely generous `envelope.release` times to ensure notes overlap beautifully and fade seamlessly.
 
 2. **React Performance Architecture:**
    *   Typing at 80+ WPM triggers massive re-renders if State is updated on every keystroke. 
@@ -78,4 +78,4 @@ When it is time to build this module, the Agent must adhere to these technical c
 ---
 
 ### AGENT DIRECTIVE:
-*Read this document thoroughly. This is not a standard gaming applet. It is a Neuro-Somatic tool designed to induce bilateral stimulation, focus, and creative integration. Do not use gamification tropes (points, red text for errors, timers that induce panic). Use Ontological Design principles: Resonance, Flow, and Accumulation.*
+*Read this document thoroughly. This operates as a Neuro-Somatic tool designed to induce bilateral stimulation, focus, and creative integration. Bypass standard gamification tropes (points, red text, panic timers) and exclusively deploy Ontological Design principles: Resonance, Flow, and Accumulation.*

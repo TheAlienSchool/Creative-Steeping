@@ -15,13 +15,13 @@ Reﬂect on your innermost passions, agitations, and true aspirations in your li
 
 Your aspirations will guide you, just as each breath will center you.
 
-What you aspire to do for yourself, and for others will provide oxygen to the ﬂame you should feel illuminating within. If you are not feeling a ﬂame, answer with more bravado.
+What you aspire to do for yourself, and for others will provide oxygen to the ﬂame you should feel illuminating within. Answer with bravado to ignite the flame.
 
 Go bigger until you feel the warmth of the ﬂame.
 
 Contemplate the elements of your life which have ignited your intentions to create - a home, career, family, community, company, partnership.
 
-See creative action as the pervasive catalyst rather than the supporting actor.
+See creative action as the pervasive catalyst.
 
 This understanding will ignite the furnace of your authentic expression.`,
         invocation: `Embers of the soul,\nWhispering dreams take flight,\nTruth's fire glows within.`
@@ -48,7 +48,7 @@ These experiences are the mirrors with which you have and will continue to obser
         invocation: `Journey's loam,\nTrials, triumphs seed as one,\nLight's art in motion.`
     },
     "03": {
-        reflection: `Beyond the unknown limits where your dreams touch the truth, lie the mountainous summits of your deepest aspirations. Yet these are not treacherous destinations. They are beacons of your potential, calling you to new height. With every dream, you have the opportunity to stretch towards the stars you aspire to be. These peaks, daunting yet alluring, are not just goals but reflections of your boundless opportunity to learn, to express, to adventure, to anticipate. To embrace the climb with enthusiasm for the sights at the heights.`,
+        reflection: `Beyond the unknown limits where your dreams touch the truth, lie the mountainous summits of your deepest aspirations. They operate as beacons of your potential, calling you to new height. With every dream, you have the opportunity to stretch towards the stars you aspire to be. These peaks, daunting yet alluring, serve as reflections of your boundless opportunity to learn, to express, to adventure, to anticipate. To embrace the climb with enthusiasm for the sights at the heights.`,
         interaction: `Identify your personal and professional aspirations.
 
 You should now see them more clearly than you have before. They may already be known to your world. They may be tucked away in your imaginarium.
@@ -67,7 +67,7 @@ Show yourself what you see, allowing the journal to set you - and see you - free
         invocation: `Peaks and summits call,\nIn skylit anticipation,\nWe find our true climb.`
     },
     "04": {
-        reflection: `How do you see where you are? How do you know where you will be if you do not take the time to see your potentiality. Our experience offers us an overwhelming amount of omniscience, however, we cast so much of our knowing upon our reflection in others. This is the opportunity to know yourself as genius. To know that you can see your brilliance through your opportunity to share with others.`,
+        reflection: `How do you see where you are? Taking the time to see your potentiality reveals where you will be. Our experience offers us an overwhelming amount of omniscience, however, we cast so much of our knowing upon our reflection in others. This is the opportunity to know yourself as genius. To know that you can see your brilliance through your opportunity to share with others.`,
         interaction: `Reﬂect on how you see yourself and how others might perceive you.
 
 Do not hesitate here. Your mind is a mirror of your soul’s expression and inquisition.
@@ -84,7 +84,7 @@ This introspection will shed light on your self-image - the external impression 
         invocation: `Mirror's quiet gaze,\nEchoes of self, seen and felt,\nTruth in reflection.`
     },
     "05": {
-        reflection: `Within life's labyrinth we walk paths angled by challenges, riddled with obstacles. Though the walls are your imagination’s gift and limitation’s joke. All paths lead to undiscovered parts of yourself. Each step is a teacher - harsh yet wise - guiding you to strengths untested yet accepted and welcomed. Within your core lies the key to a transformation. The union with your creative spirit. In every struggle, there is a lesson; in every challenge, a chance to transcend.`,
+        reflection: `Within life's labyrinth we walk paths angled by challenges, riddled with obstacles. The walls serve as your imagination’s gift, guiding your navigation. All paths lead to undiscovered parts of yourself. Each step is a teacher - harsh yet wise - guiding you to strengths untested yet accepted and welcomed. Within your core lies the key to a transformation. The union with your creative spirit. In every struggle, there is a lesson; in every challenge, a chance to transcend.`,
         interaction: `Take the time to acknowledge the obstacles impeding your self-expression.
 
 What have you placed in the way of your possibility?
@@ -127,7 +127,7 @@ Identify what sets you apart - your unique skills, experiences, and perspectives
 
 Shine your light - your radiance - into your journal as your essence, your seeds, your resources, and your voice meet your peripheral perception and your taste for possibilities.
 
-What sets you apart does not set you apart from others – it magnetizes others to the unique fragrance of your song and the unique redolence of your embodiment.
+What sets you apart magnetizes others to the unique fragrance of your song and the unique redolence of your embodiment.
 
 You are a ﬁnely crafted tea leaf in the ocean of existence. Accept this with honor.
 
@@ -135,7 +135,7 @@ Honor what you have learned. Honor the gift of living with your uniqueness.`,
         invocation: `Jewels of the soul,\nUnique light, uniquely shown,\nBeauty's true display.`
     },
     "08": {
-        reflection: `Reflection is a provocatively present process. Make reﬂection a regular part of your life. Revisit the insights and creations from your Creative Steeping journey regularly. They are living documents, evolving as you evolve. But do not linger too long. Action Orientation is the key to the Creative Opportunities you will begin to realize in your days – and in your dreams.`,
+        reflection: `Reflection is a provocatively present process. Make reﬂection a regular part of your life. Revisit the insights and creations from your Creative Steeping journey regularly. They are living documents, evolving as you evolve. Move forward with Action Orientation to unlock the Creative Opportunities you will begin to realize in your days – and in your dreams.`,
         interaction: `Blend your learnings into your everyday actions and decisions.
 
 Your tea times and your me times.

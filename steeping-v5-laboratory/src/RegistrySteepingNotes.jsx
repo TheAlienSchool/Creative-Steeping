@@ -226,7 +226,7 @@ const NightSkyIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth }) => {
 
     return (
         <div style={{ animation: 'fadeIn 1s ease' }}>
-            <IssueHeader m={m} title="The Grammar of" accent="The Night Sky" published="2026" designation="THE STEEPERVERSE" source="CONSTELLATION CATALOGUE :: SV-MAP-01" kicker="The stars are not above you. They are the grammar of what you already know." />
+            <IssueHeader m={m} title="The Grammar of" accent="The Night Sky" published="2026" designation="THE STEEPERVERSE" source="CONSTELLATION CATALOGUE :: SV-MAP-01" kicker="The stars operate as the grammar of what you already know." />
 
             <div style={{ position: 'relative', width: '100%', marginBottom: 'var(--space-xxl)', border: `1px solid ${m.accent}30`, minHeight: '400px', background: 'rgb(2,2,6)', overflow: 'hidden' }}>
                 <ConstellationCanvas m={m} active={mapActive} />
@@ -246,10 +246,10 @@ const NightSkyIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth }) => {
             <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xxl)' }}>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
                     <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>T</span>
-                    he <SongbookGlossaryItem m={m} term="Constellation Catalogue" definition="The celestial mythology of the Steeperverse — ten primary constellations, each a teaching, each a destination." /> constellations of the Steeperverse are named for archetypes of the creative journey. To look up at the Steeperverse sky is to see the architecture of your own awareness written in light. The stars are not decoration. They are grammar.
+                    he <SongbookGlossaryItem m={m} term="Constellation Catalogue" definition="The celestial mythology of the Steeperverse — ten primary constellations, each a teaching, each a destination." /> constellations of the Steeperverse are named for archetypes of the creative journey. To look up at the Steeperverse sky is to see the architecture of your own awareness written in light. The stars function as pure grammar.
                 </p>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                    Ten primary constellations mark the known sky. Each one is a teaching. Each one is a destination. The practitioner who learns to find them finds a reliable celestial navigation system — not for ships, but for the self moving through the geography of <SongbookGlossaryItem m={m} term="Capacity" definition="The internal space required to hold insight, expansion, and stillness simultaneously." />.
+                    Ten primary constellations mark the known sky. Each one is a teaching. Each one is a destination. The practitioner who learns to find them finds a reliable celestial navigation system designed explicitly for the self moving through the geography of <SongbookGlossaryItem m={m} term="Capacity" definition="The internal space required to hold insight, expansion, and stillness simultaneously." />.
                 </p>
             </div>
 
@@ -368,9 +368,9 @@ const FlowIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBow
             <b style={{ fontFamily: 'var(--fMono)', color: m.accent, display: 'block', marginBottom: '0.8rem', fontSize: '0.8rem' }}>THE BUMPS & THE SPACE</b>
             There is a moment most people have had — leaning into a task that matters, deadline close, breath held — when everything feels effortful and nothing lands correctly. The actions multiply. The intention strains. The output loses coherence. This is Bumps without Space: pure urgency with no ground to stand on.
             <br /><br />
-            Flow arrives differently. Something releases — not the effort, but the grip on the effort. The same actions that felt like pushing now feel like steering. The work still moves at speed, but the speed has weight behind it, like water with current. This is what jazz musicians call <SongbookGlossaryItem m={m} term="The Pocket" definition="The felt moment when rhythm, intention, and capacity lock together completely — when action and awareness arrive at the same coordinate." /> — the state where Capacity and Actional Intention occupy the same space at the same time.
+            Flow arrives differently. The grip releases. The effort remains, but the tension dissolves. The same actions that felt like pushing now feel like steering. The work still moves at speed, but the speed has weight behind it, like water with current. This is what jazz musicians call <SongbookGlossaryItem m={m} term="The Pocket" definition="The felt moment when rhythm, intention, and capacity lock together completely — when action and awareness arrive at the same coordinate." /> — the state where Capacity and Actional Intention occupy the same space at the same time.
             <br /><br />
-            The keyboard is a map of this. Its raised keys — the Bumps — carry the notes, the actions, the intentions. The Space bar is the held ground beneath all of them. A practitioner who has ever paused in the middle of urgent typing, taken a breath, and found the next sentence arrive more clearly than anything that came before — that practitioner has already felt the Space working. The Pocket is not a technique. It is a recognition. The Calibrator above helps locate it.
+            The keyboard is a map of this. Its raised keys — the Bumps — carry the notes, the actions, the intentions. The Space bar is the held ground beneath all of them. A practitioner who has ever paused in the middle of urgent typing, taken a breath, and found the next sentence arrive more clearly than anything that came before — that practitioner has already felt the Space working. The Pocket operates as a profound recognition of flow in motion. The Calibrator above helps locate it.
         </BodyText>
 
         <PullQuote m={m}>"The Pocket is recognition of flow in motion. The Algorithm of Å is recognition of flow in awareness. They are the same arrival."</PullQuote>
@@ -480,10 +480,10 @@ const NeutrinoIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth }) => (
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>B</span>
-                illions of neutrinos pass through your body every second. They arrive from the sun, from distant supernovae, from the collapse of stars that burned out before your grandmothers were born. They pass through the floor, through the planet, through the other side, and continue into the dark. They do not slow. They do not require permission. They carry the universe's signal without interruption.
+                illions of neutrinos pass through your body every second. They arrive from the sun, from distant supernovae, from the collapse of stars that burned out before your grandmothers were born. They pass through the floor, through the planet, through the other side, and continue into the dark. They maintain their velocity. They claim their passage. They carry the universe's signal without interruption.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                The <SongbookGlossaryItem m={m} term="Neutrino Stream" definition="The unseen energetic resonance connecting every star, system, and being in the Steeperverse." /> is the Steeperverse's model for exactly this phenomenon — the connective architecture beneath the visible surface of the practice. Every practitioner who steeps participates in this Stream, whether they sense it or not. The <SongbookGlossaryItem m={m} term="PING™" definition="The felt moment of recognition, clarity, and connection. Thought Momentum becoming visible. The subatomic indicator of resonance." /> is the moment the Stream becomes perceptible.
+                The <SongbookGlossaryItem m={m} term="Neutrino Stream" definition="The unseen energetic resonance connecting every star, system, and being in the Steeperverse." /> is the Steeperverse's model for exactly this phenomenon — the connective architecture beneath the visible surface of the practice. Every practitioner who steeps participates in this Stream in every moment of their practice. The <SongbookGlossaryItem m={m} term="PING™" definition="The felt moment of recognition, clarity, and connection. Thought Momentum becoming visible. The subatomic indicator of resonance." /> is the moment the Stream becomes perceptible.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 This is a polyrhythm — the text holds a downbeat while the silence between paragraphs carries the off-beat. The groove lives in both. The field below makes the Stream visible. Move through it slowly.
@@ -494,9 +494,9 @@ const NeutrinoIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth }) => (
 
         <BodyText m={m}>
             <b style={{ fontFamily: 'var(--fMono)', color: m.accent, display: 'block', marginBottom: '0.8rem', fontSize: '0.8rem' }}>THE PHYSICS OF CONNECTION</b>
-            The Stream does not require belief. It operates beneath the level of opinion. A practitioner sitting in stillness in their particular city, at their particular hour, is connected to every previous and future practitioner who has brought this same attention to this same practice. The Stream carries that resonance forward without their effort.
+            The Stream functions independent of belief. It operates firmly beneath the level of opinion. A practitioner sitting in stillness in their particular city, at their particular hour, is connected to every previous and future practitioner who has brought this same attention to this same practice. The Stream carries that resonance forward without their effort.
         </BodyText>
-        <PullQuote m={m}>"The PING is the moment the Stream recognizes you. It does not need you to be ready. It needs you to be still."</PullQuote>
+        <PullQuote m={m}>"The PING is the moment the Stream recognizes you. It requires only your stillness to arrive."</PullQuote>
     </div>
 );
 
@@ -551,7 +551,7 @@ const ArchiveIssue = ({ m, SongbookGlossaryItem, historicalScore }) => (
 
         <BodyText m={m}>
             <b style={{ fontFamily: 'var(--fMono)', color: m.accent, display: 'block', marginBottom: '0.8rem', fontSize: '0.8rem' }}>THE ACT OF THE SCRIBE</b>
-            Every practitioner who captures a PING — a line while reading, a recognition on the path, a fragment of clarity — is practicing the consciousness of The Scribe. The act is not documentation. It is the deliberate placement of a star on the personal constellation. The scrubber above makes that constellation audible: a tactile sweep through the Archive, each moment arriving like a distant wind chime.
+            Every practitioner who captures a PING — a line while reading, a recognition on the path, a fragment of clarity — is practicing the consciousness of The Scribe. The act functions as the deliberate placement of a star on the personal constellation. The scrubber above makes that constellation audible: a tactile sweep through the Archive, each moment arriving like a distant wind chime.
         </BodyText>
         <PullQuote m={m}>"The chain grows toward now. The Nib marks where the Scribe is still writing."</PullQuote>
     </div>
@@ -653,7 +653,7 @@ const AnglesIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingB
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>T</span>
-                he cosmos builds in angles. When the line between Point A and Point B snaps — when the distance becomes unbridgeable — the most profound navigational shift available is to add a third coordinate. The triangle holds where the line fails. It distributes force evenly across all three sides.
+                he cosmos builds in angles. When the line between Point A and Point B snaps — when the distance becomes unbridgeable — the most profound navigational shift available is to add a third coordinate. The triangle holds the space. It distributes force evenly across all three sides.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 In 1971, jazz musician Bob Dorough received an assignment: write a song to teach children multiplication. He looked at the mathematics and recognized that three is architecture. In 1989, De La Soul sampled his opening line and triangulated hip-hop culture — introducing the Daisy Age as the third coordinate in a binary era. Both understood what the <SongbookGlossaryItem m={m} term="Trivium" definition="The classical architecture of knowing: Grammar (the what), Logic (the why), Rhetoric (the how) — the three roads that converge at understanding." /> mapped 2,000 years earlier.
@@ -725,7 +725,7 @@ const DecayIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <BellParagraph m={m} playStrikingBowl={playStrikingBowl} delay={0}>
                 <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>A</span>
-                bell struck rings. The tone is clean, sharp, immediate. Then it decays. The wave spreads outward from the rim, diminishing in amplitude but not in beauty. The silence that follows is not emptiness — it is where the ear recalibrates.
+                bell struck rings. The tone is clean, sharp, immediate. Then it decays. The wave spreads outward from the rim, diminishing in amplitude but retaining its beauty. The silence that follows functions as the space where the ear recalibrates.
             </BellParagraph>
             <BellParagraph m={m} playStrikingBowl={playStrikingBowl} delay={1}>
                 Contemplation operates by the same physics. An idea enters awareness with clarity and energy. It rings. If the practitioner engages — moves with it, turns it, questions it — the signal deepens and the <SongbookGlossaryItem m={m} term="Capacity" definition="The internal space required to hold insight, expansion, and stillness simultaneously." /> that holds it expands. Time + Attention + Love = depth, complexity, refinement. The wine-aging model.
@@ -734,7 +734,7 @@ const DecayIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
                 The danger appears when interpretation replaces engagement. When the practitioner circles the idea without touching it — analyzing, contextualizing, positioning — the bell tone decays but the practitioner mistakes that decay for depth. The ring fades. The silence arrives. They are still circling.
             </BellParagraph>
             <BellParagraph m={m} playStrikingBowl={playStrikingBowl} delay={3}>
-                The <SongbookGlossaryItem m={m} term="a•i•Contemplation" definition="Action Intention Contemplation — a creative orientation practice moving through Pause, Pivot, and Merge to restore grounded direction." /> practice makes this distinction audible: Pause as creative intelligence versus Pause as fear masquerading as discernment. The first increases product value. The second hemorrhages it. The body knows which one is happening. The bell always knows when it stopped ringing.
+                The <SongbookGlossaryItem m={m} term="a•i•Contemplation" definition="Action Intention Contemplation — a creative orientation practice moving through Pause, Pivot, and Merge to restore grounded direction." /> practice makes this distinction audible: Pause as creative intelligence versus Pause as fear masquerading as discernment. The first increases product value. The second collapses it. The body knows which one is happening. The bell always knows when it stopped ringing.
             </BellParagraph>
         </div>
 
@@ -841,19 +841,19 @@ const RestIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBow
                     <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
                         <p style={{ margin: '0 0 var(--space-md) 0' }}>
                             <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>I</span>
-                            n musical notation, a rest has a specific symbol. It is not a gap in the score. It is a deliberate instruction to hold silence for a precise duration — an eighth rest, a quarter rest, a full measure of held space. The musician who cannot hold a rest cannot hold the groove.
+                            n musical notation, a rest has a specific symbol. It operates as a deliberate instruction to hold silence for a precise duration — an eighth rest, a quarter rest, a full measure of held space. The musician who understands the value of the rest holds the groove.
                         </p>
                         <p style={{ margin: '0 0 var(--space-md) 0' }}>
                             John Cage understood this precisely enough to compose four minutes and thirty-three seconds of rest — <SongbookGlossaryItem m={m} term={"4\u201933\u2033"} definition={"John Cage's 1952 composition: four minutes and thirty-three seconds of performed silence. The rest as the complete work."} />. The performers appeared. They sat. They held silence for the full duration. What the audience heard was the room: air conditioning, rustling programs, their own breathing, a cough, a bird outside. The room was the instrument. The rest revealed it.
                         </p>
                         <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                            <SongbookGlossaryItem m={m} term="Rest" definition="In the Steeperverse: not the absence of creation, but the container creation requires. Rest is architectural." /> in the Steeperverse is the same category of intelligence. It is the held space without which the insight that follows arrives into a vacuum and dissipates. The steam requires a vessel. The vessel requires knowing when to hold, and when to pour.
+                            <SongbookGlossaryItem m={m} term="Rest" definition="In the Steeperverse: the structural container that creation requires. Rest is architectural." /> in the Steeperverse is the same category of intelligence. It is the held space that ensures the insight that follows arrives into a secure vessel. The steam requires a vessel. The vessel requires knowing when to hold, and when to pour.
                         </p>
                         <p style={{ margin: '0 0 var(--space-md) 0' }}>
                             Miles Davis played fewer notes than anyone. His silence was his signature. In the space between his phrases, the audience leaned forward — unconsciously filling the rest with their own listening, their own memory, their own recognition. The rest did more work than the notes.
                         </p>
                     </div>
-                    <PullQuote m={m}>"The rest is notated. It is not optional. It is the held space the next note needs in order to be heard."</PullQuote>
+                    <PullQuote m={m}>"The rest is notated. It serves as the vital held space the next note needs in order to be heard."</PullQuote>
                 </>
             )}
         </div>
@@ -1610,13 +1610,14 @@ const AnechoicChamberIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, play
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>A</span>
-                n anechoic chamber is a room designed to completely absorb the reflections of sound, removing all external noise so the pure signal can be heard. This Steeping Space functions identically for your attention. 
+                n <SongbookGlossaryItem m={m} term="Anechoic Chamber" definition="A physical or psychological space entirely devoid of echo, reflection, and external resonance, constructed specifically to isolate the pure, native signal." /> is a room designed to completely absorb the reflections of sound, removing all external noise so the pure signal can be heard. This Steeping Space functions identically for your attention. 
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 It is a temporary suspension of the noise of modern earning structures and external expectations. When you are shielded from the dissonance of the world, the subtle frequency of your own intuition finally becomes audible.
             </p>
         </div>
-        <PullQuote m={m}>"The chamber doesn't create the signal. It merely removes the noise so you can hear what has always been broadcasting."</PullQuote>
+        <StepingPrompt m={m} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} prompt="What native signal becomes audible when you completely mute the expectations of the room?" />
+        <PullQuote m={m}>"The chamber removes the noise to reveal the signal that has always been broadcasting."</PullQuote>
     </div>
 );
 
@@ -1630,12 +1631,13 @@ const KnotIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBow
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>A</span>
-                knot is formed when the fluid dance between your intuition and your ego loses its reversibility. When the mind rigidly rejects what the body already knows, the system becomes stuck.
+                <SongbookGlossaryItem m={m} term="Knot" definition="A structural bind created when the ego refuses the movement the body has already initiated. A point of stuckness that requires resonance, not force, to untie." /> is formed when the fluid dance between your intuition and your ego loses its reversibility. When the mind rigidly rejects what the body already knows, the system becomes stuck.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                Untying the knot does not require analytical computation; it requires resonance. It is the active process of restoring the feedback loop so that your identity can evolve, rather than remaining trapped in a fixed, defensive posture.
+                Untying the knot requires pure resonance. It acts as the active process of restoring the feedback loop so that your identity can evolve, rather than remaining trapped in a fixed, defensive posture.
             </p>
         </div>
+        <StepingPrompt m={m} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} prompt="Where in your current work are you using analytical computation to solve a problem that actually requires resonance?" />
         <PullQuote m={m}>"Computation tightens the knot. Resonance dissolves it."</PullQuote>
     </div>
 );
@@ -1650,7 +1652,7 @@ const HarmonicEquivalenceIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>T</span>
-                he operator <b>:: = ::</b> is the Symbol of Harmonic Equivalence. It indicates that two distinct languages, arriving from entirely different coordinates, are describing the exact same physical mechanism.
+                he operator <b>:: = ::</b> is the <SongbookGlossaryItem m={m} term="Symbol of Harmonic Equivalence" definition="The mathematical operator of the plural now. It confirms that distinct vocabularies are pointing to the exact same somatic reality." />. It indicates that two distinct languages, arriving from entirely different coordinates, are describing the exact same physical mechanism.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 The body is the most sophisticated receiver in the known universe. Quincy Jones called the response the goosebump. Bashar called it highest excitement. Bessel van der Kolk called it the score. Eckhart Tolle called it the inner body.
@@ -1659,10 +1661,10 @@ const HarmonicEquivalenceIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, 
                 THE GOOSEBUMP :: = :: THE EXCITEMENT<br/>:: = :: THE SCORE :: = :: THE INNER BODY
             </div>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                You do not have to abandon your intellect to feel your body. You triangulate them.
+                You hold your intellect and feel your body simultaneously. You triangulate them.
             </p>
         </div>
-        <PullQuote m={m}>"Truth is not found by arguing which language is correct. Truth is the resonance that occurs when multiple languages point to the same goosebump."</PullQuote>
+        <PullQuote m={m}>"Truth reveals itself through the resonance that occurs when multiple languages point to the exact same goosebump."</PullQuote>
     </div>
 );
 
@@ -1679,13 +1681,14 @@ const WatcherIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStriking
                 here is the event. There is the body experiencing the event. And then there is the watcher behind the eyes, observing both.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                That silent presence has remained entirely unchanged since you were five years old, even as every cell in your body has been replaced. That presence is the ÅLïEN. We spend decades trying to domesticate it into the material world. But the watcher is not an invader; it is the ground you are standing on.
+                That silent presence has remained entirely unchanged since you were five years old, even as every cell in your body has been replaced. That presence is the <SongbookGlossaryItem m={m} term="ÅLïEN" definition="The unconditioned, observing presence behind the eyes. The foundational ground of awareness that remains intact across all physical and identity shifts." />. We spend decades trying to domesticate it into the material world. The watcher operates as the very ground you are standing on.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                Winning is not a zero-sum contest of accumulation. It is the moment the field recognizes its own nature through you.
+                Winning functions as the moment the field recognizes its own nature through you.
             </p>
         </div>
-        <PullQuote m={m}>"The watcher is not an invader; it is the ground you are standing on."</PullQuote>
+        <StepingPrompt m={m} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} prompt="Sit for 60 seconds and simply observe the observer. What does the ÅLïEN notice about your current posture?" />
+        <PullQuote m={m}>"The watcher operates as the very ground you are standing on."</PullQuote>
     </div>
 );
 
@@ -1702,13 +1705,13 @@ const DarkMatterIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrik
                 stronomers know that the visible stars are not enough to hold the universe together. The math does not work. Without an unseen, massive presence filling the gaps, the galaxies would tear themselves apart. This invisible glue is Dark Matter.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                In the Steeperverse, the Dark Matter modality is not a place of fear; it is the deep space of integration. When you enter this mode, you strip away the imagery, the light, the form—leaving only the architecture of the void. 
+                In the Steeperverse, the Dark Matter modality functions as the deep space of integration. When you enter this mode, you strip away the imagery, the light, the form—leaving only the pure architecture of the void. 
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                This is where The Steeping Sage operates as a subject matter expert. The Sage understands that the distance between the surface and the light is governed by an encouraging physics equation: <em>"It is better to light a candle than to curse the darkness."</em> The Sage's role is not to drag you out of the void, but to sit with you inside of it, striking the match when you are ready.
+                This is where The Steeping Sage operates as a subject matter expert. The Sage understands that the distance between the surface and the light is governed by an encouraging physics equation: <em>"It is better to light a candle than to curse the darkness."</em> The Sage sits with you inside the void, holding presence, and striking the match exactly when you are ready.
             </p>
         </div>
-        <PullQuote m={m}>"Do not curse the darkness. It is the only place a candle can prove its worth."</PullQuote>
+        <PullQuote m={m}>"Honor the darkness. It functions as the only space a candle can prove its worth."</PullQuote>
     </div>
 );
 

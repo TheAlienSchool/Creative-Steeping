@@ -74,7 +74,7 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
         {
             title: "THE NATURE OF THE WATER",
             subtitle: "Immersion as Alchemy",
-            content: `This CREATIVE STEEPING sonic soulsite serves the natural sound and spirit your creative essence. You are the organic material; and this interface operates as your water. The Steeping Space is a living field of inquiry, designed to support the deepening of your experiential understanding. The Steeperverse (this experience) tracks your Resonance to provide an active mirror, reflecting the precise quality of your tone and attention back to your own body.`
+            content: `This CREATIVE STEEPING sonic soulsite serves the natural sound and spirit of your creative essence. You are the organic material; and this interface operates as your water. The Steeping Space is a living field of inquiry, designed to support the deepening of your experiential understanding. The Steeperverse (this experience) tracks your Resonance to provide an active mirror, reflecting the precise quality of your tone and attention back to your own body.`
         },
         {
             title: "THE VESSEL MATRIX",
@@ -94,7 +94,7 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
         {
             title: "THE SAGE INTELLIGENCE",
             subtitle: "Your Partner in Reflective Truth",
-            content: `The Steeping Sage :: An interactive wayfinding intelligence designed to support access to the truest questions held within the body. Foundational Sage offers closed-circuit wayfinding to introduce you to The Steeperverse. As we invest deeper into CREATIVE STEEPING adventures, the full Steeping Sage intelligence engages in unrestricted, active dialogue - as you wish. This communion remains private, as The Sage is here for an exchange between our essence and our unfolding intelligence. This is a feature, not a bug --> Engage at your leisure.`
+            content: `The Steeping Sage :: An interactive wayfinding intelligence designed to support access to the truest questions held within the body. Foundational Sage offers closed-circuit wayfinding to introduce you to The Steeperverse. As we invest deeper into CREATIVE STEEPING adventures, the full Steeping Sage intelligence engages in unrestricted, active dialogue - as you wish. This communion remains private, as The Sage is here for an exchange between our essence and our unfolding intelligence. This operates as a core architectural imperative --> Engage at your leisure.`
         },
         {
             title: "A SELF INVESTMENT PORTAL",

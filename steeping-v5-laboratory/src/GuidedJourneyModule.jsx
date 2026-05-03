@@ -445,7 +445,7 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
                             [ EXTERNAL GUIDANCE ]
                         </h3>
                         <p style={{ fontFamily: 'var(--fBody)', fontSize: '1rem', color: m.text2, lineHeight: 1.5, marginBottom: 'var(--space-md)', fontStyle: 'italic', opacity: 0.8 }}>
-                            There are no minor questions here. The Sage awaits your inquiry.
+                            Every inquiry holds weight. The Sage awaits your exchange.
                         </p>
                         
                         {(isThinking || sageResponse) && (
