@@ -577,15 +577,17 @@ function AppInner() {
         <div onClick={() => setPhase(user ? 'portal' : 'entrance')} className="nav-brand" style={{ cursor: 'pointer', color: "var(--acc)", fontFamily: "var(--fSerif)", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.9rem", fontWeight: 600 }}>
           CREÅTIVE STEEPING
         </div>
-        <div className="mode-toggles" style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 'var(--space-md)' }}>
-          {Object.keys(MODES).map(k => (
-            <button key={k} onClick={() => setMode(k)}
-              className={mode === k ? "mode-btn active" : "mode-btn"}
-              style={{ color: mode === k ? "var(--acc)" : "var(--t2)", whiteSpace: 'nowrap' }}>
-              {MODES[k].name}
-            </button>
-          ))}
-        </div>
+        {phase === 'portal' && (
+          <div className="mode-toggles" style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 'var(--space-md)' }}>
+            {Object.keys(MODES).map(k => (
+              <button key={k} onClick={() => setMode(k)}
+                className={mode === k ? "mode-btn active" : "mode-btn"}
+                style={{ color: mode === k ? "var(--acc)" : "var(--t2)", whiteSpace: 'nowrap' }}>
+                {MODES[k].name}
+              </button>
+            ))}
+          </div>
+        )}
         <div className="nav-school"
           style={{ position: 'relative', fontFamily: "var(--fMono)", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", color: "var(--t2)", display: 'flex', flexDirection: 'column', alignItems: 'flex-end', zIndex: 1000 }}
           onMouseEnter={() => setNavMenuOpen(true)}

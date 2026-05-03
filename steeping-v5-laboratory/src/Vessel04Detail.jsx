@@ -18,8 +18,8 @@ export function Vessel04Detail({ modeString, playHarmonicChord, playStrikingBowl
             </h3>
 
             <div style={{
-                position: 'relative', padding: 'var(--space-xl)', background: 'rgba(0,0,0,0.5)', border: `1px solid ${m.text2}`,
-                display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: coherence === 100 ? 0.9 : 1
+                position: 'relative', padding: 'clamp(1rem, 5vw, var(--space-xl))', background: 'rgba(0,0,0,0.5)', border: `1px solid ${m.text2}`,
+                display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: coherence === 100 ? 0.9 : 1, boxSizing: 'border-box'
             }}>
                 <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.text1, marginBottom: '2rem', opacity: 0.8 }}>
                     Name the area of fragmentation:
@@ -46,8 +46,8 @@ export function Vessel04Detail({ modeString, playHarmonicChord, playStrikingBowl
                     }}
                     style={{
                         borderBottom: `2px solid ${m.accent}`,
-                        color: m.text1, fontFamily: 'var(--fSerif)', fontStyle: 'italic', fontSize: '1.4rem',
-                        textAlign: 'center', width: '80%', maxWidth: '400px', paddingBottom: '0.5rem',
+                        color: m.text1, fontFamily: 'var(--fSerif)', fontStyle: 'italic', fontSize: 'clamp(1.2rem, 4vw, 1.4rem)',
+                        textAlign: 'center', width: '100%', maxWidth: '400px', paddingBottom: '0.5rem',
                         marginBottom: '3rem'
                     }}
                 />

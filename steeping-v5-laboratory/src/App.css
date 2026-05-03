@@ -632,6 +632,31 @@ nav.top-nav {
     display: none !important;
   }
 
+  nav.top-nav {
+    flex-wrap: wrap !important;
+    height: auto !important;
+    padding-top: var(--space-md) !important;
+    padding-bottom: var(--space-md) !important;
+  }
+
+  .nav-brand {
+    order: 1;
+  }
+
+  .nav-school {
+    order: 2;
+  }
+
+  .mode-toggles {
+    position: static !important;
+    transform: none !important;
+    order: 3;
+    width: 100%;
+    margin-top: var(--space-lg);
+    flex-wrap: wrap;
+    justify-content: center !important;
+  }
+
   .guide-tier-grid {
     flex-direction: column !important;
     gap: var(--space-lg) !important;

@@ -26,11 +26,11 @@ export function Vessel08Detail({ modeString, playAlgoraveSynth, playStrikingBowl
             </h3>
 
             <div style={{
-                position: 'relative', padding: 'var(--space-xl)', background: 'transparent',
+                position: 'relative', padding: 'clamp(1rem, 4vw, var(--space-xl))', background: 'transparent',
                 borderBottom: `1px solid ${signed ? m.accent : m.text2}`,
                 display: 'flex', flexDirection: 'column', alignItems: 'center',
                 width: '100%', maxWidth: '600px', margin: '0 auto',
-                transition: 'all 2s cubic-bezier(0.16, 1, 0.3, 1)'
+                transition: 'all 2s cubic-bezier(0.16, 1, 0.3, 1)', boxSizing: 'border-box'
             }}>
 
                 <div style={{ fontFamily: 'var(--fSerif)', fontSize: '1.2rem', color: m.text1, fontStyle: 'italic', marginBottom: '2rem', opacity: signed ? 0.4 : 1 }}>
@@ -55,8 +55,8 @@ export function Vessel08Detail({ modeString, playAlgoraveSynth, playStrikingBowl
                             placeholder="[ SIGN YOUR RESONANCE ]"
                             style={{
                                 borderBottom: `2px solid ${m.text1}`,
-                                color: m.text1, fontFamily: 'var(--fSerif)', fontStyle: 'italic', fontSize: '2.5rem',
-                                textAlign: 'center', width: '90%', paddingBottom: '0.5rem',
+                                color: m.text1, fontFamily: 'var(--fSerif)', fontStyle: 'italic', fontSize: 'clamp(1.5rem, 5vw, 2.5rem)',
+                                textAlign: 'center', width: '100%', paddingBottom: '0.5rem',
                                 marginBottom: '2rem', textTransform: 'capitalize'
                             }}
                         />
@@ -74,7 +74,7 @@ export function Vessel08Detail({ modeString, playAlgoraveSynth, playStrikingBowl
                     </>
                 ) : (
                     <div style={{ animation: 'floatUp 1.8s cubic-bezier(0.16, 1, 0.3, 1)', position: 'relative' }}>
-                        <div style={{ fontFamily: 'var(--fSerif)', fontSize: '3rem', color: m.text1, fontStyle: 'italic', marginBottom: '1rem' }}>
+                        <div style={{ fontFamily: 'var(--fSerif)', fontSize: 'clamp(1.8rem, 6vw, 3rem)', color: m.text1, fontStyle: 'italic', marginBottom: '1rem', wordBreak: 'break-word' }}>
                             {signature}
                         </div>
                         <div style={{

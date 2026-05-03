@@ -23,9 +23,9 @@ export function Vessel05Detail({ modeString, playStrikingBowl }) {
             </h3>
 
             <div style={{
-                position: 'relative', padding: 'var(--space-xl)', background: 'rgba(0,0,0,0.5)',
+                position: 'relative', padding: 'clamp(1rem, 5vw, var(--space-xl))', background: 'rgba(0,0,0,0.5)',
                 borderLeft: `2px solid ${m.accent}`, display: 'flex', flexDirection: 'column', alignItems: 'flex-start',
-                width: '100%', maxWidth: '700px', margin: '0 auto'
+                width: '100%', maxWidth: '700px', margin: '0 auto', boxSizing: 'border-box'
             }}>
                 <div style={{ fontFamily: 'var(--fSerif)', fontSize: '1.4rem', color: m.text1, marginBottom: '2rem', fontStyle: 'italic', opacity: 0.9 }}>
                     Dear...
@@ -43,7 +43,7 @@ export function Vessel05Detail({ modeString, playStrikingBowl }) {
                     placeholder="[ BEGIN TRANSMISSION ]"
                     style={{
                         background: 'transparent', border: 'none', color: m.text1, fontFamily: 'var(--fBody)',
-                        fontSize: '1.2rem', lineHeight: 1.8, width: '100%', minHeight: '150px', outline: 'none',
+                        fontSize: 'clamp(1rem, 4vw, 1.2rem)', lineHeight: 1.8, width: '100%', minHeight: '150px', outline: 'none',
                         resize: 'none', overflow: 'hidden'
                     }}
                 />

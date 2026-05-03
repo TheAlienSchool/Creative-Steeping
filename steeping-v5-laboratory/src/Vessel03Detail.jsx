@@ -28,7 +28,7 @@ export function Vessel03Detail({ modeString, playStrikingBowl }) {
 
             <div style={{
                 position: 'relative',
-                padding: 'var(--space-xl)',
+                padding: 'clamp(1rem, 5vw, var(--space-xl))',
                 background: 'rgba(0,0,0,0.5)',
                 border: '1px solid rgba(255,255,255,0.1)',
                 display: 'flex',
@@ -58,7 +58,7 @@ export function Vessel03Detail({ modeString, playStrikingBowl }) {
                         placeholder="I have always believed..."
                         style={{
                             background: 'transparent', border: 'none', borderBottom: `1px solid ${crossedOut ? 'transparent' : m.text2}`,
-                            color: crossedOut ? m.text2 : m.text1, fontFamily: 'var(--fSerif)', fontStyle: 'italic', fontSize: '1.8rem',
+                            color: crossedOut ? m.text2 : m.text1, fontFamily: 'var(--fSerif)', fontStyle: 'italic', fontSize: 'clamp(1.4rem, 5vw, 1.8rem)',
                             textAlign: 'center', width: '100%', outline: 'none', paddingBottom: '0.5rem',
                             textDecoration: crossedOut ? 'line-through' : 'none',
                             textDecorationColor: m.accent, textDecorationThickness: '3px',

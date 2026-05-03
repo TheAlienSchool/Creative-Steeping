@@ -26,9 +26,9 @@ export function Vessel06Detail({ modeString, playHarmonicChord, playStrikingBowl
             </h3>
 
             <div style={{
-                position: 'relative', padding: 'var(--space-xl)', background: 'rgba(0,0,0,0.5)',
+                position: 'relative', padding: 'clamp(1rem, 4vw, var(--space-xl))', background: 'rgba(0,0,0,0.5)',
                 borderTop: `1px solid ${m.text2}`, borderBottom: `1px solid ${m.text2}`,
-                display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: '700px', margin: '0 auto'
+                display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: '700px', margin: '0 auto', boxSizing: 'border-box'
             }}>
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center', marginBottom: '2rem' }}>
@@ -72,8 +72,8 @@ export function Vessel06Detail({ modeString, playHarmonicChord, playStrikingBowl
                             placeholder="Their name..."
                             style={{
                                 borderBottom: `1px solid ${m.accent}`,
-                                color: m.text1, fontFamily: 'var(--fSerif)', fontStyle: 'italic', fontSize: '1.2rem',
-                                textAlign: 'center', width: '80%'
+                                color: m.text1, fontFamily: 'var(--fSerif)', fontStyle: 'italic', fontSize: 'clamp(1rem, 4vw, 1.2rem)',
+                                textAlign: 'center', width: '100%'
                             }}
                         />
                     </div>
@@ -97,8 +97,8 @@ export function Vessel06Detail({ modeString, playHarmonicChord, playStrikingBowl
                         placeholder="The question you wish to ask them..."
                         style={{
                             background: 'none', border: `1px dashed ${m.text2}`, color: m.text1,
-                            fontFamily: 'var(--fBody)', fontSize: '1.1rem', padding: '1rem', width: '100%', minHeight: '80px',
-                            opacity: connected ? 0.5 : 1
+                            fontFamily: 'var(--fBody)', fontSize: 'clamp(1rem, 4vw, 1.1rem)', padding: '1rem', width: '100%', minHeight: '80px',
+                            opacity: connected ? 0.5 : 1, boxSizing: 'border-box'
                         }}
                     />
                 </div>

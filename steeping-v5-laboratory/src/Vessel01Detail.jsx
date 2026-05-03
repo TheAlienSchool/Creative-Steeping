@@ -56,7 +56,7 @@ export function Vessel01Detail({ modeString, playStrikingBowl }) {
                             fontSize: '2rem',
                             fontStyle: 'italic',
                             textAlign: 'center',
-                            width: '80%',
+                            width: '100%',
                             maxWidth: '500px',
                             paddingBottom: '0.5rem'
                         }}
@@ -67,12 +67,13 @@ export function Vessel01Detail({ modeString, playStrikingBowl }) {
                 </div>
             ) : (
                 <div style={{
-                    padding: 'var(--space-xl)',
+                    padding: 'clamp(1rem, 4vw, var(--space-xl))',
                     border: `1px solid ${m.accent}`,
                     background: m.bg,
-                    animation: 'floatUp 1.2s ease-out'
+                    animation: 'floatUp 1.2s ease-out',
+                    boxSizing: 'border-box'
                 }}>
-                    <div style={{ fontFamily: 'var(--fSerif)', fontSize: '2.5rem', fontStyle: 'italic', color: m.text1, marginBottom: '1rem' }}>
+                    <div style={{ fontFamily: 'var(--fSerif)', fontSize: 'clamp(1.5rem, 6vw, 2.5rem)', fontStyle: 'italic', color: m.text1, marginBottom: '1rem', wordBreak: 'break-word' }}>
                         I am {iam}.
                     </div>
                     <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.accent, letterSpacing: '0.2em' }}>
