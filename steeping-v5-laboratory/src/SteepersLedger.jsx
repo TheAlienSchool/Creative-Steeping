@@ -313,7 +313,7 @@ export const SteepersLedger = ({ m, historicalScore = [], hasMoreHistory, loadMo
                     position: 'fixed', inset: 0, zIndex: 2000, background: '#000',
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'
                 }}>
-                    <video autoPlay loop muted playsInline style={{ position: 'absolute', width: '100vw', height: '100vh', objectFit: 'cover', opacity: 0.6, filter: 'contrast(1.2)' }}>
+                    <video autoPlay loop muted playsInline style={{ position: 'absolute', width: '100vw', height: '100dvh', objectFit: 'cover', opacity: 0.6, filter: 'contrast(1.2)' }}>
                         <source src="/rock_ocean_animated.mp4" type="video/mp4" />
                     </video>
                     <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, transparent 0%, #000 90%)' }}></div>
@@ -352,7 +352,7 @@ export const SteepersLedger = ({ m, historicalScore = [], hasMoreHistory, loadMo
             ) : (
             <div style={{
                 position: 'relative', width: '100%', maxWidth: '1200px',
-                minHeight: '100vh', backgroundColor: m.bg,
+                minHeight: '100dvh', backgroundColor: m.bg,
                 padding: 'var(--space-xxl) clamp(1.5rem, 6vw, 5rem)',
                 boxShadow: `0 0 100px ${m.accent}15`
             }}>
@@ -391,7 +391,7 @@ export const SteepersLedger = ({ m, historicalScore = [], hasMoreHistory, loadMo
                 />
 
                 {/* DYNAMIC EDITORIAL RENDER */}
-                <div ref={contentRef} style={{ scrollMarginTop: 'var(--space-lg)' }}>
+                <div ref={contentRef} className="registry-container" style={{ scrollMarginTop: 'var(--space-lg)' }}>
                     {getSteepingIssues(m, setTuraoMode, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl, historicalScore).find(iss => iss.id === activeIssue)?.render()}
                 </div>
 

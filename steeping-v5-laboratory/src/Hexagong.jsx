@@ -391,7 +391,7 @@ export function Hexagong({ vesselData, modeString, playAlgoraveSynth, onExit }) 
                 top: '50%', left: '50%',
                 x: '-50%', y: '-50%',
                 scale: crucScale,
-                width: '100vw', height: '100vh',
+                width: '100vw', height: '100dvh',
                 background: crucGrad,
                 boxShadow: `inset 0 0 100px rgba(0, 50, 80, 0.9)`,
                 zIndex: -1, pointerEvents: 'none',

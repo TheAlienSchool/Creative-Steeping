@@ -122,7 +122,7 @@ export const TheSteepingCompass = ({ m, onClose, playStrikingBowl, playAlgoraveS
             exit={{ opacity: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             style={{
-                position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+                position: 'fixed', top: 0, left: 0, width: '100vw', height: '100dvh',
                 backgroundColor: m.bg, zIndex: 99999, display: 'flex', flexDirection: 'column',
                 color: m.text1, overflowY: 'auto'
             }}
@@ -164,7 +164,7 @@ export const TheSteepingCompass = ({ m, onClose, playStrikingBowl, playAlgoraveS
             </div>
 
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: 'var(--space-xl)', alignItems: 'center', justifyContent: 'center' }}>
-                <div style={{ maxWidth: '900px', width: '100%', display: 'flex', gap: '4rem', alignItems: 'center' }}>
+                <div className="compass-layout" style={{ maxWidth: '900px', width: '100%', display: 'flex', gap: '4rem', alignItems: 'center' }}>
                     
                     {/* LEFT: 5D Radar/Compass Visceral HUD */}
                     <div style={{ flex: 1, position: 'relative', height: '400px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -243,7 +243,7 @@ export const TheSteepingCompass = ({ m, onClose, playStrikingBowl, playAlgoraveS
                                 {successMessage}
                             </motion.div>
                         ) : (
-                            <div style={{ display: 'flex', gap: 'var(--space-md)', marginTop: 'var(--space-xl)' }}>
+                            <div className="compass-buttons" style={{ display: 'flex', gap: 'var(--space-md)', marginTop: 'var(--space-xl)' }}>
                                 <button 
                                     onClick={handleLogDrift}
                                     disabled={submitting}
