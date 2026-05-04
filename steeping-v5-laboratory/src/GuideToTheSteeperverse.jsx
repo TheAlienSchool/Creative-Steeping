@@ -256,8 +256,8 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
                 </AnimatePresence>
 
                 {/* The Content Frame */}
-                <div className="guide-scroll-area" ref={scrollRef} style={{ flex: 1, overflowY: 'auto', display: 'flex', alignItems: 'center', height: '100%', width: '100%' }}>
-                    <div className="guide-container" style={{ maxWidth: '1000px', width: '100%', padding: 'var(--space-xxl)', zIndex: 10, margin: 'auto' }}>
+                <div className="guide-scroll-area" ref={scrollRef} style={{ flex: 1, overflowY: 'auto', width: '100%', paddingBottom: '3rem', WebkitOverflowScrolling: 'touch' }}>
+                    <div className="guide-container" style={{ maxWidth: '1000px', width: '100%', padding: 'var(--space-xxl)', zIndex: 10, margin: '0 auto', display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '100%' }}>
                         <AnimatePresence mode="wait">
                         <motion.div
                             key={activeChapter}
@@ -267,7 +267,7 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                         >
                             <div style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.8rem', letterSpacing: '0.3em', marginBottom: 'var(--space-md)' }}>
-                                {CHAPTERS[activeChapter].isCrossroads ? 'THE CROSSROADS' : `LORE CAPTURE // ${String(activeChapter + 1).padStart(2, '0')}`}
+                                {CHAPTERS[activeChapter].isCrossroads ? 'THE STEEPING SPACE' : `NAVIGATE IN PEACE // ${String(activeChapter + 1).padStart(2, '0')}`}
                             </div>
                             <h1 style={{ fontFamily: 'var(--fSerif)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontStyle: 'italic', lineHeight: 1.1, marginBottom: 'var(--space-sm)', color: m.text1 }}>
                                 {CHAPTERS[activeChapter].title}
@@ -282,7 +282,7 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
                                 </p>
                             ) : (
                                 <div className="guide-tier-grid" style={{ 
-                                    display: 'flex', gap: 'var(--space-xl)', marginTop: 'var(--space-xl)', 
+                                    display: 'flex', flexWrap: 'wrap', gap: 'var(--space-xl)', marginTop: 'var(--space-xl)', 
                                     paddingBottom: 'var(--space-xxl)'
                                 }}>
                                     {/* Scrollbar styling injected via a simple style block or relying on global if they have one */}
@@ -293,7 +293,7 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
                                     `}</style>
                                     
                                     {/* Pathway A */}
-                                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+                                    <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
                                         <div style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.8rem', letterSpacing: '0.2em' }}>PATHWAY A: SELF-GUIDED</div>
                                         <div style={{ fontSize: '0.85rem', color: m.text2, fontStyle: 'italic', marginBottom: 'var(--space-sm)' }}>For the navigator ready to narrate the frequency of their own voice.</div>
                                         
@@ -316,7 +316,7 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
                                     <div style={{ width: '1px', background: `linear-gradient(to bottom, transparent, ${m.text2}30, transparent)` }} />
 
                                     {/* Pathway B */}
-                                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+                                    <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
                                         <div style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.8rem', letterSpacing: '0.2em' }}>PATHWAY B: THE GUIDED DEEP WORK</div>
                                         <div style={{ fontSize: '0.85rem', color: m.text2, fontStyle: 'italic', marginBottom: 'var(--space-sm)' }}>For the navigator who knows that deep work requires witness.</div>
                                         
@@ -327,7 +327,7 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
                                             isLoading={checkoutLoading === 'cohort'}
                                             onClick={() => handleCheckout('cohort')}
                                         />
-                                        <div style={{ display: 'flex', gap: 'var(--space-md)' }}>
+                                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)' }}>
                                             <TierCard 
                                                 title="Single Steep" price="$222"
                                                 mechanism="A focused Bring Your Own Tea hour with CREATIVE STEEPING author and guide Kamau Zuberi Akabueze."
@@ -382,7 +382,7 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
             </div>
             
             <div className="guide-scrolling-defunct" style={{ position: 'absolute', bottom: 'var(--space-lg)', left: '50%', transform: 'translateX(-50%)', fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, letterSpacing: '0.4em', opacity: 0.4, width: '100%', textAlign: 'center' }}>
-                {CHAPTERS[activeChapter].isCrossroads ? 'CHOOSE YOUR ESSENCE. THE ARCHITECTURE AWAITS.' : 'SCROLLING DEFUNCT. USE ARCHITECTURE TO BREATHE.'}
+                {CHAPTERS[activeChapter].isCrossroads ? 'CHOOSE YOUR ESSENCE. THE ARCHITECTURE AWAITS.' : 'HERE, THE ARROW --> IS THE TOOL OF THE ARCHER.'}
             </div>
         </motion.div>
     );

@@ -18,7 +18,7 @@ const PullQuote = ({ m, children }) => (
         borderTop: `1px solid ${m.accent}40`, borderBottom: `1px solid ${m.accent}40`,
         textAlign: 'center', position: 'relative'
     }}>
-        <div style={{ position: 'absolute', top: '-10px', left: '50%', transform: 'translateX(-50%)', background: m.bg, padding: '0 1rem', fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, letterSpacing: '0.2em' }}>[ CENTRÅL SYNTHESIS ]</div>
+        <div style={{ position: 'absolute', top: '-10px', left: '50%', transform: 'translateX(-50%)', background: m.bg, padding: '0 1rem', fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, letterSpacing: '0.2em', whiteSpace: 'nowrap' }}>[ CENTRÅL SYNTHESIS ]</div>
         <div style={{ fontFamily: 'var(--fSerif)', fontStyle: 'italic', color: m.text1, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', lineHeight: 1.4, opacity: 0.9 }}>{children}</div>
     </div>
 );
@@ -245,7 +245,7 @@ const NightSkyIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth }) => {
 
             <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xxl)' }}>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                    <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>T</span>
+                    <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
                     he <SongbookGlossaryItem m={m} term="Constellation Catalogue" definition="The celestial mythology of the Steeperverse — ten primary constellations, each a teaching, each a destination." /> constellations of the Steeperverse are named for archetypes of the creative journey. To look up at the Steeperverse sky is to see the architecture of your own awareness written in light. The stars function as pure grammar.
                 </p>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -351,7 +351,7 @@ const FlowIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBow
 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>T</span>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
                 he Pocket is a jazz musician's term for the moment when the rhythm section locks so completely that time both stops and swings simultaneously. The bassist, the drummer, and the pianist arrive at the same invisible coordinate. The groove becomes structural.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -479,7 +479,7 @@ const NeutrinoIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth }) => (
 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>B</span>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>B</span>
                 illions of neutrinos pass through your body every second. They arrive from the sun, from distant supernovae, from the collapse of stars that burned out before your grandmothers were born. They pass through the floor, through the planet, through the other side, and continue into the dark. They maintain their velocity. They claim their passage. They carry the universe's signal without interruption.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -536,7 +536,7 @@ const ArchiveIssue = ({ m, SongbookGlossaryItem, historicalScore }) => (
 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>T</span>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
                 he <SongbookGlossaryItem m={m} term="Scribe" definition="The constellation of the journal — a long, winding chain of stars ending in The Nib. The Nib is always now. Stories are written with its light." /> constellation is a long, winding chain of stars that traces a path across the visible sky like a quill in mid-stroke. Every star in that chain is a moment of recognition — a PING captured, a signal held, a stone laid upon the path of the Vessel.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -652,7 +652,7 @@ const AnglesIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingB
 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>T</span>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
                 he cosmos builds in angles. When the line between Point A and Point B snaps — when the distance becomes unbridgeable — the most profound navigational shift available is to add a third coordinate. The triangle holds the space. It distributes force evenly across all three sides.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -724,7 +724,7 @@ const DecayIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <BellParagraph m={m} playStrikingBowl={playStrikingBowl} delay={0}>
-                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>A</span>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>A</span>
                 bell struck rings. The tone is clean, sharp, immediate. Then it decays. The wave spreads outward from the rim, diminishing in amplitude but retaining its beauty. The silence that follows functions as the space where the ear recalibrates.
             </BellParagraph>
             <BellParagraph m={m} playStrikingBowl={playStrikingBowl} delay={1}>
@@ -840,7 +840,7 @@ const RestIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBow
                     <HeroImage m={m} src="/rest_architecture_sv.png" alt="The Empty Recording Studio at 2AM" caption="FIG. 12 — THE ROOM IS THE INSTRUMENT" />
                     <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
                         <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                            <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>I</span>
+                            <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>I</span>
                             n musical notation, a rest has a specific symbol. It operates as a deliberate instruction to hold silence for a precise duration — an eighth rest, a quarter rest, a full measure of held space. The musician who understands the value of the rest holds the groove.
                         </p>
                         <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -879,7 +879,7 @@ export const getSteepingIssues = (m, setTuraoMode, SongbookGlossaryItem, playAlg
                 <HeroImage m={m} src="/steam_first_breath.png" alt="The First Breath of Steam" caption="FIG. 01 — THE FIRST BREATH" />
                 <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', hyphens: 'auto', WebkitHyphens: 'auto', marginBottom: 'var(--space-xl)' }}>
                     <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                        <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>F</span>
+                        <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>F</span>
                         or epochs, our instruments have surveyed the vast architecture of The Steeperverse—the star fields, the nebulae, the great cosmic structures. But our most recent survey cycle has been dedicated to a phenomenon that is not a body, but a medium. It is the natural gas of creation itself, the visible breath of the cosmos: <SongbookGlossaryItem m={m} term="Steam" definition="The bridge between inner & outer universes. The physical evidence of the journey inward becoming a radiant offering outward." />.
                     </p>
                     <div style={{ breakInside: 'avoid', margin: 'var(--space-md) 0', padding: '0.5rem 0', borderTop: `1px solid ${m.accent}20`, borderBottom: `1px solid ${m.accent}20` }}>
@@ -892,7 +892,7 @@ export const getSteepingIssues = (m, setTuraoMode, SongbookGlossaryItem, playAlg
                         Our observations trace its origin to the fundamental act of being. <SongbookGlossaryItem m={m} term="Steam" definition="The medium that carries presence across boundaries." /> is the invincible presence of <SongbookGlossaryItem m={m} term="esse" definition="(Latin) The pure state of 'being'. The core ontological presence before manifestation." /> becoming visible. The Steeperverse is the interior cosmos of the self. This medium crosses this boundary, the <SongbookGlossaryItem m={m} term="Neutrino Stream" definition="The unseen energetic resonance connecting every star, system, and being." /> made visible.
                     </p>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 300px', gap: '2rem', marginBottom: 'var(--space-xl)', alignItems: 'end' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginBottom: 'var(--space-xl)', alignItems: 'end' }}>
                     <div style={{ border: `1px solid ${m.accent}30`, position: 'relative' }}><img src="/steam_ghost_transformation.png" alt="Ghost of Transformation" style={{ width: '100%', display: 'block', opacity: 0.8 }} /></div>
                     <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.75rem', color: m.text2, lineHeight: 1.6, borderBottom: `1px dashed ${m.accent}40`, paddingBottom: '1rem' }}>
                         <b style={{ color: m.accent, display: 'block', marginBottom: '0.5rem' }}>[ FIG. 02 — THE GHOST OF TRANSFORMATION ]</b>
@@ -906,7 +906,7 @@ export const getSteepingIssues = (m, setTuraoMode, SongbookGlossaryItem, playAlg
                 <TuraoReceivingEnvironment m={m} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} onOpenFull={() => setTuraoMode('turao')} />
                 <div style={{ width: '100%', marginBottom: 'var(--space-xxl)', position: 'relative' }}>
                     <img src="/steam_bridge_to_turao.png" alt="The Bridge to TURAO" style={{ width: '100%', display: 'block', opacity: 0.85, maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)', WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)' }} />
-                    <div style={{ position: 'absolute', top: '2rem', right: '2rem', background: 'rgba(0,0,0,0.8)', padding: '0.5rem 1rem', fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text1, borderLeft: `2px solid ${m.accent}` }}>
+                    <div style={{ position: 'absolute', bottom: '2rem', right: '1rem', background: 'rgba(0,0,0,0.8)', padding: '0.5rem 1rem', fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text1, borderLeft: `2px solid ${m.accent}`, maxWidth: '80%' }}>
                         <b style={{ color: m.accent }}>[ FIG. 03 — THE BRIDGE TO TURAO ]</b><br />Showing the boundary between two universes.
                     </div>
                 </div>
@@ -931,7 +931,7 @@ export const getSteepingIssues = (m, setTuraoMode, SongbookGlossaryItem, playAlg
                     onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 0 30px ${m.accent}30, inset 0 0 15px ${m.accent}08`; e.currentTarget.style.borderColor = `${m.accent}80`; if (playAlgoraveSynth) playAlgoraveSynth(); }}
                     onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = `${m.accent}35`; }}
                 >
-                    <div style={{ position: 'absolute', top: '-10px', left: '1.5rem', background: m.bg, padding: '0 0.8rem', fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.accent, letterSpacing: '0.2em' }}>[ THE SCIENCE ]</div>
+                    <div style={{ position: 'absolute', top: '-10px', left: '1.5rem', background: m.bg, padding: '0 0.8rem', fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.accent, letterSpacing: '0.2em', whiteSpace: 'nowrap' }}>[ THE SCIENCE ]</div>
                     <div style={{ fontFamily: 'var(--fSerif)', fontSize: '1.4rem', color: m.text1, lineHeight: 1.3, marginBottom: '0.6rem', fontStyle: 'italic' }}>The Sound of Becoming</div>
                     <div style={{ fontFamily: 'var(--fBody)', fontSize: '0.9rem', color: m.text2, lineHeight: 1.7, marginBottom: '1rem' }}>
                         Creative Steeping is a clinical instrument wearing the clothes of a tea ceremony. Daniel Levitin's neuroscience now provides the biological language for seven mechanisms already operating inside every session in The Steeping Space.
@@ -1172,7 +1172,7 @@ const CollabinaationIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playS
 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>T</span>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
                 hree musicians in a room. Each one complete. Each one trained. Each one capable of playing alone. They play together, into the space between their instruments — and what emerges from that space is what none of them could have generated solo. This is <SongbookGlossaryItem m={m} term="Collabination" definition="The spontaneous, improvisational combination of unique entities — where the collaboration itself generates a new intelligence that belongs to none of the participants individually." />.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -1252,7 +1252,7 @@ const TrigramIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStriking
 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>T</span>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
                 he desert is the ultimate horizontal line. Place a structure in it and you are not adding an object to a landscape — you are interrupting the line. A lone black tent on gravel becomes a triangle in profile. It becomes ☶, Gen — stillness and the boundary. The first angle.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -1371,7 +1371,7 @@ const ArcPhysicsIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrik
 
         <div style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.25rem', lineHeight: 1.8, marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>W</span>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>W</span>
                 e are taught to worship the straight line. The immediate optimization. But a rocket that launches straight up returns straight down. It arcs. It leans into the resistance of the atmosphere to generate the velocity required to escape it.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -1399,7 +1399,7 @@ const ArcTemperatureIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playS
 
         <div style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.25rem', lineHeight: 1.8, marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>Y</span>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>Y</span>
                 ou are already on the map. The destination is not a place you are trying to reach — it is a signal that is revealed through your relationship with the coordinates you currently occupy.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -1427,7 +1427,7 @@ const ArcInBetweenIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStr
 
         <div style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.25rem', lineHeight: 1.8, marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>T</span>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
                 here is the problem, and there is the solution. Between them is a gap. The in-between is treated as a waiting room — a frustrating delay before real life begins.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -1445,6 +1445,28 @@ const ArcInBetweenIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStr
         <PullQuote m={m}>"Stay in the curve. Respect the geometry of the in-between. You arrive with structural integrity when the arc is honored."</PullQuote>
     </div>
 );
+
+// ────────────────────────────────────────────────────────────────────────────
+// ISSUE 16: THE SOUND OF BECOMING
+// ────────────────────────────────────────────────────────────────────────────
+
+const SoundOfBecomingIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => (
+    <div style={{ animation: 'fadeIn 1s ease' }}>
+        <IssueHeader m={m} title="The Sound" accent="of Becoming" published="2026" designation="THE STEEPERVERSE" source="NEUROSCIENCE AND ONTOLOGY" kicker="Creative Steeping is a clinical instrument wearing the clothes of a tea ceremony." />
+        <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
+                he Steeping Space is not merely a metaphor. It operates as a structured neuro-somatic intervention. The seven mechanisms of The Sound of Becoming map the biology of insight: how resonance transitions from a fleeting electrical impulse into a permanent structural reality within the body.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                When you cross the <SongbookGlossaryItem m={m} term="Surface Tension" definition="The boundary between limitation and possibility; the creative friction that signals expanding capacity." />, the friction you feel is the sound of your capacity expanding. The frequency is not abstract—it is deeply biological.
+            </p>
+        </div>
+        <StepingPrompt m={m} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} prompt="Where are you currently mistaking the sound of your capacity expanding for the sound of failure?" />
+        <PullQuote m={m}>"Friction is source code. The sound of becoming is the sound of the vessel expanding to hold more light."</PullQuote>
+    </div>
+);
+
 
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -1477,6 +1499,7 @@ const TuraoReceivingEnvironment = ({ m, playAlgoraveSynth, playStrikingBowl, onO
         setOffering('');
         setPhase('ocean');
         if (playStrikingBowl) playStrikingBowl(84);
+        if (playAlgoraveSynth) playAlgoraveSynth();
         setTimeout(() => setPhase('rock'), 6000);
     };
 
@@ -1486,7 +1509,7 @@ const TuraoReceivingEnvironment = ({ m, playAlgoraveSynth, playStrikingBowl, onO
 
     return (
         <div style={{ marginBottom: 'var(--space-xxl)', border: `1px solid ${phaseBorder[phase]}`, padding: 'var(--space-xl)', position: 'relative', transition: 'border-color 1.2s ease, box-shadow 1.2s ease', boxShadow: phaseGlow[phase] }}>
-            <div style={{ position: 'absolute', top: '-11px', left: '2rem', background: m.bg, padding: '0 0.8rem', fontFamily: 'var(--fMono)', fontSize: '0.62rem', color: m.accent, letterSpacing: '0.2em', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <div style={{ position: 'absolute', top: '-11px', left: '2rem', background: m.bg, padding: '0 0.8rem', fontFamily: 'var(--fMono)', fontSize: '0.62rem', color: m.accent, letterSpacing: '0.2em', display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}>
                 <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: m.accent, boxShadow: phase !== 'rock' ? `0 0 8px ${m.accent}` : 'none', transition: 'box-shadow 1s ease', display: 'inline-block' }} />
                 [ TURAO ] {phaseLabel[phase]}
             </div>
@@ -1554,6 +1577,29 @@ const TuraoYantra = ({ m }) => {
     );
 };
 
+const TuraoFilmPreview = ({ m }) => (
+    <div style={{ width: '100%', aspectRatio: '16/9', border: `1px solid ${m.accent}30`, position: 'relative', marginBottom: 'var(--space-xxl)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', background: '#000', cursor: 'pointer', transition: 'all 0.5s ease' }}
+         onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 0 30px ${m.accent}30`; e.currentTarget.style.borderColor = `${m.accent}80`; }}
+         onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = `${m.accent}30`; }}>
+        
+        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(45deg, #000 0%, ${m.accent}15 50%, #000 100%)`, opacity: 0.8 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'url("https://www.transparenttextures.com/patterns/stardust.png")', opacity: 0.2 }} />
+        
+        <div style={{ width: '60px', height: '60px', borderRadius: '50%', border: `1px solid ${m.accent}`, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2, background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)' }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill={m.accent} style={{ marginLeft: '4px' }}>
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+        </div>
+
+        <div style={{ position: 'absolute', bottom: '1rem', left: '1.5rem', zIndex: 2, fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.65rem', letterSpacing: '0.2em' }}>
+            [ PLAY FILM :: THE TURAO EXPERIENCE ]
+        </div>
+        <div style={{ position: 'absolute', top: '1rem', right: '1.5rem', zIndex: 2, fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.6rem', letterSpacing: '0.2em', opacity: 0.5 }}>
+            00:00 / 03:44
+        </div>
+    </div>
+);
+
 const TuraoIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => (
     <div style={{ animation: 'fadeIn 1s ease' }}>
         <IssueHeader m={m} title="TURAO ::" accent="The Universe Receiving" published="2026" designation="THE STEEPERVERSE" source="THE FIRESTARTER · A STONE REALITY" kicker="The Union of Rock and Ocean is the exterior cosmos that receives every offering steeped into being." />
@@ -1561,7 +1607,7 @@ const TuraoIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>T</span>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
                 here is a particular quality of relief that arrives when something carried has finally been received. A letter sent. A truth spoken. A creative work released. In that moment the inner universe exhales — something held becomes something that has landed. The practitioner has steeped something into being, and the universe, in its vast and patient way, has received it. This experience of reception is not metaphor. It is the structure of TURAO.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -1577,7 +1623,7 @@ const TuraoIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
 
         {/* Rock-Ocean Yantra */}
         <div style={{ border: `1px solid ${m.accent}22`, padding: 'var(--space-xl)', marginBottom: 'var(--space-xl)', textAlign: 'center', position: 'relative' }}>
-            <div style={{ position: 'absolute', top: '-11px', left: '1.5rem', background: m.bg, padding: '0 0.8rem', fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.accent, letterSpacing: '0.2em' }}>[ THE ROCK-OCEAN YANTRA ]</div>
+            <div style={{ position: 'absolute', top: '-11px', left: '1.5rem', background: m.bg, padding: '0 0.8rem', fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.accent, letterSpacing: '0.2em', whiteSpace: 'nowrap' }}>[ THE ROCK-OCEAN YANTRA ]</div>
             <div style={{ fontFamily: 'var(--fBody)', fontSize: '0.88rem', color: m.text2, lineHeight: 1.75, maxWidth: '540px', margin: '0 auto 1.5rem' }}>
                 The square holds the Rock — structure, form, the four gates of entry. The dashed circle holds the Ocean — its continuous motion. The upward triangle is stabilizing intelligence reaching toward clarity. The downward triangle is flowing intelligence descending into depth. At the center: the union. The single luminous point where neither element exists separately from the other. This is the geometry of TURAO, rendered at the scale of contemplation.
             </div>
@@ -1594,6 +1640,8 @@ const TuraoIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
             Steeping is not private cultivation. It is an offering with a receiver. The universe holds what is given with the stability that rock holds the memory of the ocean — and with the openness that the ocean brings to every encounter with the shore. The coastline grows more beautiful with every tide. TURAO grows richer with every offering received.
         </BodyText>
 
+        <TuraoFilmPreview m={m} />
+
         <TuraoReceivingEnvironment m={m} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} onOpenFull={() => {}} />
 
         <PullQuote m={m}>"The practitioner steeps. The Steam carries. TURAO receives. This is the complete arc of the offering — from the vessel of the self into the coastline of everything."</PullQuote>
@@ -1609,7 +1657,7 @@ const AnechoicChamberIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, play
         <IssueHeader m={m} title="The Anechoic" accent="Chamber" published="2026" designation="THE STEEPERVERSE" source="RESONANCE ARCHITECTURE" kicker="A room designed to completely absorb the reflections of sound, removing all external noise so the pure signal can be heard." />
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>A</span>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>A</span>
                 n <SongbookGlossaryItem m={m} term="Anechoic Chamber" definition="A physical or psychological space entirely devoid of echo, reflection, and external resonance, constructed specifically to isolate the pure, native signal." /> is a room designed to completely absorb the reflections of sound, removing all external noise so the pure signal can be heard. This Steeping Space functions identically for your attention. 
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -1630,7 +1678,7 @@ const KnotIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBow
         <IssueHeader m={m} title="The Anatomy" accent="of a Knot" published="2026" designation="THE STEEPERVERSE" source="HOW TO UNTIE NOTS" kicker="A fixed, defensive posture where intuition and ego lose their fluid reversibility." />
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>A</span>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>A</span>
                 <SongbookGlossaryItem m={m} term="Knot" definition="A structural bind created when the ego refuses the movement the body has already initiated. A point of stuckness that requires resonance, not force, to untie." /> is formed when the fluid dance between your intuition and your ego loses its reversibility. When the mind rigidly rejects what the body already knows, the system becomes stuck.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -1651,7 +1699,7 @@ const HarmonicEquivalenceIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, 
         <IssueHeader m={m} title="Symbols of" accent="Harmonic Equivalence" published="2026" designation="THE STEEPERVERSE" source="THE PLURAL NOW" kicker="The :: = :: operator triangulates distinct languages describing the exact same physical mechanism." />
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>T</span>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
                 he operator <b>:: = ::</b> is the <SongbookGlossaryItem m={m} term="Symbol of Harmonic Equivalence" definition="The mathematical operator of the plural now. It confirms that distinct vocabularies are pointing to the exact same somatic reality." />. It indicates that two distinct languages, arriving from entirely different coordinates, are describing the exact same physical mechanism.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -1677,7 +1725,7 @@ const WatcherIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStriking
         <IssueHeader m={m} title="The" accent="Watcher" published="2026" designation="THE STEEPERVERSE" source="CONSCIOUSNESS IS THE ÅLïEN" kicker="The silent presence that has remained entirely unchanged since childhood." />
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>T</span>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
                 here is the event. There is the body experiencing the event. And then there is the watcher behind the eyes, observing both.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -1701,7 +1749,7 @@ const DarkMatterIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrik
         <IssueHeader m={m} title="Dark" accent="Matter" published="2026" designation="THE SAGE ARCHIVES" source="A CANDLE IN THE VOID" kicker="The unseen mass that holds the galaxy together. This is where The Sage resides." />
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.8rem', paddingTop: '0.2rem' }}>A</span>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>A</span>
                 stronomers know that the visible stars are not enough to hold the universe together. The math does not work. Without an unseen, massive presence filling the gaps, the galaxies would tear themselves apart. This invisible glue is Dark Matter.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
