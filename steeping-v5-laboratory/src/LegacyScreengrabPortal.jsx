@@ -13,6 +13,44 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
     // Active asset category
     const [activeCategory, setActiveCategory] = useState('clinical'); // 'clinical', 'primer', 'somatic'
 
+    // STEAMSANS Cheat Code Logic
+    const [cheatCodeBuffer, setCheatCodeBuffer] = useState('');
+    const [steamsansUnlocked, setSteamsansUnlocked] = useState(false);
+
+    // Audio player state for STEAMSANS
+    const [playingLayer, setPlayingLayer] = useState(null);
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key.length === 1) { // capture character keys
+                setCheatCodeBuffer(prev => {
+                    const newBuffer = (prev + e.key.toLowerCase()).slice(-9);
+                    if (newBuffer === 'steamsans') {
+                        setSteamsansUnlocked(true);
+                        if (playStrikingBowl) playStrikingBowl(36); // Deep confirmation tone
+                    }
+                    return newBuffer;
+                });
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [playStrikingBowl]);
+
+    const playSteamsansLayer = (layer) => {
+        if (playingLayer) {
+            const audio = document.getElementById(`steamsans-audio-${playingLayer}`);
+            if (audio) { audio.pause(); audio.currentTime = 0; }
+        }
+        
+        if (playingLayer === layer) {
+            setPlayingLayer(null); // Just toggle off
+        } else {
+            const audio = document.getElementById(`steamsans-audio-${layer}`);
+            if (audio) { audio.play(); setPlayingLayer(layer); }
+        }
+    };
+
     // The Content Manifest (Distilled from The Primer & Sound of Becoming)
     const assets = {
         clinical: [
@@ -141,6 +179,86 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                     
                 </motion.div>
             </div>
+
+            {/* THE SECRET STEAMSANS PORTAL */}
+            <AnimatePresence>
+                {steamsansUnlocked && (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1.2, ease: "easeOut" }}
+                        style={{
+                            position: 'absolute', inset: 0, zIndex: 100,
+                            background: '#050505', color: '#e5e5e5', // Hardcoded Emergent/Vapor palette
+                            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                            fontFamily: 'var(--fMono)', padding: 'var(--space-xxl)'
+                        }}
+                    >
+                        <button 
+                            onClick={() => {
+                                setSteamsansUnlocked(false);
+                                if (playingLayer) {
+                                    const audio = document.getElementById(`steamsans-audio-${playingLayer}`);
+                                    if (audio) { audio.pause(); audio.currentTime = 0; }
+                                }
+                            }}
+                            style={{
+                                position: 'absolute', top: 'var(--space-lg)', right: 'var(--space-lg)',
+                                background: 'transparent', color: '#e5e5e5', border: '1px solid #e5e5e5',
+                                padding: '4px 12px', fontSize: '0.65rem', cursor: 'pointer', opacity: 0.5
+                            }}
+                        >[ RETURN ]</button>
+
+                        <div style={{ opacity: 0.4, letterSpacing: '0.4em', fontSize: '0.7rem', marginBottom: 'var(--space-md)' }}>
+                            THE ENTRY COORDINATE
+                        </div>
+                        
+                        <h1 style={{ 
+                            fontFamily: 'var(--fSerif)', fontSize: '3rem', fontStyle: 'italic',
+                            color: '#ffffff', marginBottom: 'var(--space-xxl)', textAlign: 'center',
+                            textShadow: '0 0 20px rgba(255,255,255,0.2)'
+                        }}>
+                            STEAMSANS × SONNET ENGINE
+                        </h1>
+
+                        <div style={{ maxWidth: '600px', textAlign: 'center', fontFamily: 'var(--fBody)', fontSize: '1.2rem', lineHeight: 1.6, color: '#a3a3a3', marginBottom: 'var(--space-xxl)' }}>
+                            "The mathematics were always there. The instrument gives the knowledge a name, not a new existence."
+                        </div>
+
+                        {/* Hidden Audio Elements */}
+                        <audio id="steamsans-audio-harris" src={`${import.meta.env.BASE_URL}assets/audio/steamsans/LAYER_01_HARRIS_REGISTER.mp3`} loop />
+                        <audio id="steamsans-audio-hba" src={`${import.meta.env.BASE_URL}assets/audio/steamsans/LAYER_02_HBA_REGISTER.mp3`} loop />
+                        <audio id="steamsans-audio-vapor" src={`${import.meta.env.BASE_URL}assets/audio/steamsans/LAYER_03_VAPOR_REGISTER.mp3`} loop />
+                        <audio id="steamsans-audio-composite" src={`${import.meta.env.BASE_URL}assets/audio/steamsans/LAYER_04_COMPOSITE_ALL_REGISTERS.mp3`} loop />
+
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', width: '100%', maxWidth: '400px' }}>
+                            {[
+                                { id: 'harris', label: '01. HARRIS REGISTER', desc: 'The grounded, weighted tone.' },
+                                { id: 'hba', label: '02. HBA REGISTER', desc: 'The transitional tone.' },
+                                { id: 'vapor', label: '03. VAPOR REGISTER', desc: 'The dissolved, transmissive tone.' },
+                                { id: 'composite', label: '04. THE COMPOSITE', desc: 'All three simultaneously.' }
+                            ].map(layer => (
+                                <button 
+                                    key={layer.id}
+                                    onClick={() => playSteamsansLayer(layer.id)}
+                                    style={{
+                                        background: playingLayer === layer.id ? '#e5e5e5' : 'transparent',
+                                        color: playingLayer === layer.id ? '#050505' : '#e5e5e5',
+                                        border: '1px solid #e5e5e5',
+                                        padding: 'var(--space-lg)', textAlign: 'left',
+                                        cursor: 'pointer', transition: 'all 0.4s ease'
+                                    }}
+                                >
+                                    <div style={{ fontWeight: 'bold', letterSpacing: '0.15em', marginBottom: '4px' }}>{layer.label}</div>
+                                    <div style={{ fontFamily: 'var(--fBody)', fontSize: '0.9rem', opacity: playingLayer === layer.id ? 0.8 : 0.6 }}>{layer.desc}</div>
+                                </button>
+                            ))}
+                        </div>
+
+                    </motion.div>
+                )}
+            </AnimatePresence>
             
         </div>
     );
