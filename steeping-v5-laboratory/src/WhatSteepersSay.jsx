@@ -111,7 +111,7 @@ export const WhatSteepersSay = ({ m }) => {
                             <div style={{
                                 fontFamily: isHero ? 'var(--fSerif)' : 'var(--fBody)',
                                 fontSize: isHero ? 'clamp(1.2rem, 5vw, 1.8rem)' : 'clamp(1rem, 4vw, 1.2rem)',
-                                fontStyle: 'italic', color: m.text1, lineHeight: isHero ? 1.4 : 1.7,
+                                color: m.text1, lineHeight: isHero ? 1.65 : 1.75,
                                 position: 'relative', wordBreak: 'break-word'
                             }}>
                                 {insight.insight_text}
@@ -138,7 +138,7 @@ export const WhatSteepersSay = ({ m }) => {
 
             <div style={{
                 textAlign: 'center', marginTop: 'var(--space-xxl)', fontFamily: 'var(--fBody)',
-                color: m.text2, fontStyle: 'italic', fontSize: '1.2rem', opacity: 0.8
+                color: m.text2, fontSize: '1.2rem', opacity: 0.8
             }}>
                 Your reflection belongs here too.
             </div>

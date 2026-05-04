@@ -309,7 +309,27 @@ nav button,
   color: inherit;
 }
 
-/* ── 13. ZOOM SAFETY ─────────────────────────────────────────
+/* ── 13. BASELINE ITALIC DISCIPLINE ─────────────────────────
+   Italic is reserved for display text: headings, single-line
+   captions, vessel invocations, and decorative accents.
+   Multi-sentence reading paragraphs always use normal weight.
+   This is NOT opt-in — it applies in the default state for all
+   practitioners, because legibility is not a special mode.
+
+   The reading-mode section (§5) then upgrades font family,
+   spacing, and size for deeper dyslexia support on top of this. */
+
+.vessel-body-text p,
+.steeping-note-body p,
+.vessel-detail-body p,
+.guide-chapter-content,
+.guide-chapter-content p,
+.registry-container p,
+.guided-body-text p {
+  font-style: normal;
+}
+
+/* ── 14. ZOOM SAFETY ─────────────────────────────────────────
    Prevent layouts from breaking at 200% browser zoom.
    Key container max-widths use ch / % rather than fixed px.
    Fonts use clamp() which already scales with zoom.
