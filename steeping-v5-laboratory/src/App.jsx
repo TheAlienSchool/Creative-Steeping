@@ -158,6 +158,13 @@ const GlobalSteepingTimer = ({ m, playStrikingBowl, playConsideringHarmonic, pla
     return () => clearInterval(interval);
   }, [activeTimer, timeLeft, playStrikingBowl, playConsideringHarmonic, playSandSonnet]);
 
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      '--bottom-bar-height',
+      activeTimer ? '150px' : '80px'
+    );
+  }, [activeTimer]);
+
   const toggleTimer = (minutes) => {
     if (activeTimer === minutes) {
       setActiveTimer(null);
@@ -335,6 +342,12 @@ function AppInner() {
       setPhase(isEngaged ? "dashboard" : "portal");
     }
   }, [user, phase, isEngaged]);
+
+  // Mode toggles: scroll active button into view on mobile when mode changes
+  const modeButtonRefs = useRef({});
+  useEffect(() => {
+    modeButtonRefs.current[mode]?.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+  }, [mode]);
 
   // Sonic Awareness State
   const [sonicVolume, setSonicVolumeState] = useState(0.5);
@@ -581,6 +594,7 @@ function AppInner() {
           <div className="mode-toggles" style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 'var(--space-md)' }}>
             {Object.keys(MODES).map(k => (
               <button key={k} onClick={() => setMode(k)}
+                ref={el => { modeButtonRefs.current[k] = el; }}
                 className={mode === k ? "mode-btn active" : "mode-btn"}
                 style={{ color: mode === k ? "var(--acc)" : "var(--t2)", whiteSpace: 'nowrap' }}>
                 {MODES[k].name}

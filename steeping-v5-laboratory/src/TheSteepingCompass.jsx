@@ -140,14 +140,14 @@ export const TheSteepingCompass = ({ m, onClose, playStrikingBowl, playAlgoraveS
                 )}
             </AnimatePresence>
             {/* Top Navigation Bar */}
-            <div style={{
+            <div className="compass-header" style={{
                 display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                 padding: 'var(--space-lg) var(--space-xl)', borderBottom: `1px solid ${m.text2}20`,
                 fontFamily: 'var(--fMono)', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '0.2em'
             }}>
-                <div style={{ display: 'flex', gap: 'var(--space-xl)', opacity: 0.8 }}>
-                    <span>CREÅTIVE STEEPING</span>
-                    <span style={{ color: m.accent }}>ME IN 5D / BIOMETRIC INFUSION</span>
+                <div style={{ display: 'flex', gap: 'var(--space-xl)', opacity: 0.8, overflow: 'hidden' }}>
+                    <span className="compass-brand-label">CREÅTIVE STEEPING</span>
+                    <span style={{ color: m.accent, whiteSpace: 'nowrap' }}>ME IN 5D / BIOMETRIC INFUSION</span>
                 </div>
                 <button 
                     onClick={() => { if(playStrikingBowl) playStrikingBowl(40); onClose(); }}

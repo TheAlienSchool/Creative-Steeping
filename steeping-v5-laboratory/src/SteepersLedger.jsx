@@ -4,10 +4,25 @@ import { getSteepingIssues } from './RegistrySteepingNotes';
 
 const SongbookGlossaryItem = ({ term, definition, m }) => {
     const [isHovered, setIsHovered] = useState(false);
+    const spanRef = useRef(null);
+
+    useEffect(() => {
+        if (!isHovered) return;
+        const close = (e) => {
+            if (spanRef.current && !spanRef.current.contains(e.target)) {
+                setIsHovered(false);
+            }
+        };
+        document.addEventListener('click', close);
+        return () => document.removeEventListener('click', close);
+    }, [isHovered]);
+
     return (
-        <span 
+        <span
+            ref={spanRef}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            onClick={(e) => { e.stopPropagation(); setIsHovered(h => !h); }}
             style={{
                 position: 'relative', cursor: 'help',
                 borderBottom: `1px dashed ${m.accent}80`,

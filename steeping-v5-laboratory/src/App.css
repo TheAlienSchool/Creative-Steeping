@@ -773,9 +773,9 @@ nav.top-nav {
     width: 100% !important;
   }
 
-  /* Sonic engine toggles (bottom drawer approach) */
+  /* Sonic engine toggles — sit above the timer bar via the universal bottom-bar-height variable */
   .sonic-controls {
-    bottom: env(safe-area-inset-bottom, 0) !important;
+    bottom: calc(var(--bottom-bar-height, 0px) + env(safe-area-inset-bottom, 0px)) !important;
     right: 0 !important;
     left: 0 !important;
     width: 100% !important;
@@ -827,10 +827,22 @@ nav.top-nav {
     display: none !important;
   }
 
-  /* Shrink the radar visual to leave room for sliders */
+  /* Shrink the radar visual to leave room for sliders.
+     Width must be explicit because all children are position:absolute
+     and the flex container would otherwise collapse to 0. */
   .compass-hud {
     height: 200px !important;
+    width: 200px !important;
     flex: 0 0 auto !important;
+  }
+
+  /* Compass header: tighten padding and drop the brand label on narrow screens */
+  .compass-header {
+    padding: var(--space-md) 20px !important;
+    gap: var(--space-sm) !important;
+  }
+  .compass-brand-label {
+    display: none !important;
   }
 
   /* Glossary tooltip: keep within viewport on small screens */
