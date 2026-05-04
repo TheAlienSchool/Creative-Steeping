@@ -59,33 +59,84 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                 kicker: 'THE SOUND OF BECOMING',
                 body: 'When you write and hear your writing as music simultaneously, you are engaging more neural territory than any other single human activity. This is not poetry. This is what fMRI shows.',
                 mechanism: 'MECHANISM 01 :: FULL-BRAIN ACTIVATION',
-                color: m.accent
+                color: m.accent,
+                coords: '[ STBL: 64 | PRSS: 88 | COHR: 72 | DRFT: 12 ]'
             },
             {
                 id: 'c2',
                 kicker: 'CREATIVE APHASIA',
                 body: 'For practitioners who feel creatively blocked, The Steeping Space offers a Swiss Army knife route — the music circuit opened when the writing circuit feels frozen. Sound before language. Hearing before knowing.',
                 mechanism: 'MECHANISM 05 :: NEURAL REDUNDANCY',
-                color: m.text1
+                color: m.text1,
+                coords: '[ STBL: 42 | PRSS: 95 | COHR: 50 | DRFT: 80 ]'
             }
         ],
         primer: [
             {
                 id: 'p1',
                 kicker: 'AFFIRMATIVE ARCHITECTURE',
-                body: 'Structure precedes visibility. Speak the architecture you wish the practitioner to inhabit.',
+                body: 'Structure precedes visibility. Speak the architecture you wish the practitioner to inhabit. Never use a "not just" construction to introduce a whole truth.',
                 mechanism: 'THE EDITORIAL PROTOCOL',
-                color: m.accent
+                color: m.accent,
+                coords: '[ STBL: 90 | PRSS: 30 | COHR: 85 | DRFT: 05 ]'
             },
             {
                 id: 'p2',
                 kicker: 'THE COUPLET',
                 body: 'The arc is the angle of change.\nÅ Discovery Worth Steeping In.',
                 mechanism: 'PHYSICS × PRESENCE',
-                color: m.text1
+                color: m.text1,
+                coords: '[ STBL: 80 | PRSS: 45 | COHR: 95 | DRFT: 10 ]'
             }
         ]
     };
+
+    const [activeAssetIndex, setActiveAssetIndex] = useState(0);
+    const currentAsset = assets[activeCategory][activeAssetIndex];
+
+    // KINETIC ENGINE STATE
+    const [kineticState, setKineticState] = useState('idle'); // 'idle', 'playing', 'done'
+    const [renderedText, setRenderedText] = useState({ kicker: currentAsset.kicker, body: currentAsset.body });
+
+    const triggerKineticMonument = () => {
+        if (kineticState === 'playing') return;
+        setKineticState('playing');
+        setRenderedText({ kicker: '', body: '' });
+
+        // Initial Grounding Strike
+        if (playStrikingBowl) playStrikingBowl(45);
+        if (playAlgoraveSynth) playAlgoraveSynth();
+
+        let kickerIdx = 0;
+        const kickerInterval = setInterval(() => {
+            if (kickerIdx <= currentAsset.kicker.length) {
+                setRenderedText(prev => ({ ...prev, kicker: currentAsset.kicker.slice(0, kickerIdx) }));
+                kickerIdx++;
+            } else {
+                clearInterval(kickerInterval);
+                // Subtle harmonic transition before body
+                if (playStrikingBowl) playStrikingBowl(72);
+                setTimeout(() => {
+                    let bodyIdx = 0;
+                    const bodyInterval = setInterval(() => {
+                        if (bodyIdx <= currentAsset.body.length) {
+                            setRenderedText(prev => ({ ...prev, body: currentAsset.body.slice(0, bodyIdx) }));
+                            bodyIdx++;
+                        } else {
+                            clearInterval(bodyInterval);
+                            setKineticState('done');
+                        }
+                    }, 20); // Fast, typewriter pace
+                }, 600);
+            }
+        }, 40);
+    };
+
+    // Reset when changing assets
+    useEffect(() => {
+        setKineticState('idle');
+        setRenderedText({ kicker: currentAsset.kicker, body: currentAsset.body });
+    }, [currentAsset]);
 
     return (
         <div style={{
@@ -135,7 +186,7 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                 <motion.div 
                     layout
                     style={{
-                        width: geometry === 'story' ? '390px' : '500px', // iPhone dimensions vs Grid
+                        width: geometry === 'story' ? '390px' : '500px', // Strict Mobile Spatial Geometry
                         height: geometry === 'story' ? '844px' : '500px',
                         background: m.bg,
                         border: `1px solid ${m.accent}20`,
@@ -146,38 +197,63 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                         overflow: 'hidden'
                     }}
                 >
-                    {/* The Built-in Watermark */}
+                    {/* The Built-in Watermark and Coordinate Diagnostics */}
                     <div style={{
-                        position: 'absolute', bottom: 'var(--space-lg)',
+                        position: 'absolute', bottom: 'var(--space-xl)', left: 0, right: 0,
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px',
                         fontFamily: 'var(--fMono)', fontSize: '0.55rem', letterSpacing: '0.25em',
                         color: m.accent, opacity: 0.6, textTransform: 'uppercase'
                     }}>
-                        CREÅTIVESTEEPING.COM
+                        <div>{currentAsset.coords}</div>
+                        <div style={{ opacity: 0.5 }}>CREÅTIVESTEEPING.COM</div>
                     </div>
 
-                    {/* Temporary Asset Display for architecture test */}
-                    <div style={{ textAlign: 'center', zIndex: 2 }}>
+                    {/* The Rendered Monument */}
+                    <div style={{ textAlign: 'center', zIndex: 2, width: '100%' }}>
                         <div style={{ 
                             fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, 
-                            letterSpacing: '0.2em', marginBottom: 'var(--space-lg)' 
+                            letterSpacing: '0.2em', marginBottom: 'var(--space-xl)',
+                            opacity: kineticState === 'idle' || renderedText.kicker.length > 0 ? 0.8 : 0
                         }}>
-                            {assets.clinical[0].mechanism}
+                            {currentAsset.mechanism}
                         </div>
                         <h2 style={{ 
                             fontFamily: 'var(--fSerif)', fontSize: geometry === 'story' ? '2.2rem' : '2.5rem', 
-                            lineHeight: 1.3, fontStyle: 'italic', color: m.text1,
-                            marginBottom: 'var(--space-xl)'
+                            lineHeight: 1.2, fontStyle: 'italic', color: m.text1,
+                            marginBottom: 'var(--space-xl)', minHeight: '3rem'
                         }}>
-                            {assets.clinical[0].kicker}
+                            {renderedText.kicker}
+                            {kineticState === 'playing' && renderedText.body.length === 0 && <span style={{ animation: 'event-flash 1s infinite', color: m.accent }}>|</span>}
                         </h2>
+                        {/* BASELINE ITALIC DISCIPLINE: Multi-sentence paragraphs MUST be font-style: normal */}
                         <div style={{ 
-                            fontFamily: 'var(--fBody)', fontSize: '1.2rem', lineHeight: 1.6, color: m.text2 
+                            fontFamily: 'var(--fBody)', fontSize: '1.15rem', lineHeight: 1.6, color: m.text2,
+                            fontStyle: 'normal', textAlign: 'left', padding: '0 1rem', minHeight: '6rem'
                         }}>
-                            {assets.clinical[0].body}
+                            {renderedText.body}
+                            {kineticState === 'playing' && renderedText.body.length > 0 && <span style={{ animation: 'event-flash 1s infinite', color: m.accent }}>|</span>}
                         </div>
                     </div>
                     
                 </motion.div>
+
+                {/* Director's Controls (Not captured in screenshot) */}
+                <div style={{ position: 'absolute', bottom: 'var(--space-md)', right: 'var(--space-md)', display: 'flex', gap: 'var(--space-sm)' }}>
+                    <button onClick={() => setActiveAssetIndex(prev => (prev + 1) % assets[activeCategory].length)} style={{
+                        background: m.surface, border: `1px solid ${m.text2}40`, color: m.text2,
+                        padding: '8px 16px', fontFamily: 'var(--fMono)', fontSize: '0.7rem', cursor: 'pointer',
+                        letterSpacing: '0.15em'
+                    }}>
+                        [ NEXT ASSET ]
+                    </button>
+                    <button onClick={triggerKineticMonument} style={{
+                        background: m.accent, border: 'none', color: m.bg,
+                        padding: '8px 16px', fontFamily: 'var(--fMono)', fontSize: '0.7rem', cursor: 'pointer',
+                        letterSpacing: '0.15em', fontWeight: 'bold'
+                    }}>
+                        {kineticState === 'playing' ? '[ RECORDING... ]' : '[ KINETIC PLAY ]'}
+                    </button>
+                </div>
             </div>
 
             {/* THE SECRET STEAMSANS PORTAL */}

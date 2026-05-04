@@ -454,35 +454,64 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
                             </div>
                         )}
 
-                        {sageResponse && (
-                            <div style={{
-                                fontFamily: 'var(--fSerif)', fontSize: '1.2rem', fontStyle: 'italic', 
-                                color: m.text1, lineHeight: 1.7, marginBottom: 'var(--space-md)',
-                                padding: 'var(--space-md) var(--space-xl)', paddingRight: 0,
-                                borderLeft: `2px solid ${m.accent}`, 
-                                background: `linear-gradient(90deg, ${m.accent}10 0%, transparent 100%)`,
-                                animation: 'sage-manifest 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards, sage-border-pulse 4s ease-in-out infinite alternate',
-                                '--fluid-accent-glow': m.accent,
-                                '--fluid-text-dim': m.accent + '40',
-                                position: 'relative'
-                            }}>
-                                <ReactMarkdown
-                                    components={{
-                                        p: ({node, ...props}) => <p style={{ margin: '0 0 var(--space-md) 0' }} {...props} />,
-                                        strong: ({node, ...props}) => <strong style={{ color: m.accent, fontWeight: 600, fontStyle: 'normal', letterSpacing: '0.05em' }} {...props} />,
-                                        em: ({node, ...props}) => <em style={{ opacity: 0.8 }} {...props} />,
-                                        ul: ({node, ...props}) => <ul style={{ margin: 'var(--space-md) 0', paddingLeft: '2rem', listStyleType: 'square', color: m.accent }} {...props} />,
-                                        li: ({node, ...props}) => <li style={{ margin: 'var(--space-sm) 0', color: m.text1 }} {...props} />,
-                                        blockquote: ({node, ...props}) => <blockquote style={{ borderLeft: `2px solid ${m.accent}`, paddingLeft: '1.5rem', margin: '1.5rem 0', fontStyle: 'italic', opacity: 0.9, color: m.accent }} {...props} />,
-                                        h1: ({node, ...props}) => <h1 style={{ fontFamily: 'var(--fMono)', fontSize: '1.2rem', color: m.accent, textTransform: 'uppercase', letterSpacing: '0.2em', marginTop: '2rem', marginBottom: '1rem' }} {...props} />,
-                                        h2: ({node, ...props}) => <h2 style={{ fontFamily: 'var(--fMono)', fontSize: '1rem', color: m.accent, textTransform: 'uppercase', letterSpacing: '0.15em', marginTop: '1.5rem', marginBottom: '0.8rem', opacity: 0.9 }} {...props} />,
-                                        h3: ({node, ...props}) => <h3 style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.accent, textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: '1rem', marginBottom: '0.5rem', opacity: 0.8 }} {...props} />
-                                    }}
-                                >
-                                    {sageResponse}
-                                </ReactMarkdown>
-                            </div>
-                        )}
+                        {sageResponse && (() => {
+                            let mainResponse = sageResponse;
+                            let sanscription = null;
+                            
+                            // Extract the 4-vector SANscription geometry
+                            const sansMatch = sageResponse.match(/\[\s*STBL:\s*\d+\s*\|\s*PRSS:\s*\d+\s*\|\s*COHR:\s*\d+\s*\|\s*DRFT:\s*\d+\s*\]/);
+                            if (sansMatch) {
+                                sanscription = sansMatch[0];
+                                mainResponse = sageResponse.replace(sansMatch[0], '').trim();
+                            }
+
+                            return (
+                                <div style={{
+                                    fontFamily: 'var(--fSerif)', fontSize: '1.2rem', fontStyle: 'italic', 
+                                    color: m.text1, lineHeight: 1.7, marginBottom: 'var(--space-md)',
+                                    padding: 'var(--space-md) var(--space-xl)', paddingRight: 0,
+                                    borderLeft: `2px solid ${m.accent}`, 
+                                    background: `linear-gradient(90deg, ${m.accent}10 0%, transparent 100%)`,
+                                    animation: 'sage-manifest 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards, sage-border-pulse 4s ease-in-out infinite alternate',
+                                    '--fluid-accent-glow': m.accent,
+                                    '--fluid-text-dim': m.accent + '40',
+                                    position: 'relative',
+                                    display: 'flex', flexDirection: 'column'
+                                }}>
+                                    <ReactMarkdown
+                                        components={{
+                                            p: ({node, ...props}) => <p style={{ margin: '0 0 var(--space-md) 0' }} {...props} />,
+                                            strong: ({node, ...props}) => <strong style={{ color: m.accent, fontWeight: 600, fontStyle: 'normal', letterSpacing: '0.05em' }} {...props} />,
+                                            em: ({node, ...props}) => <em style={{ opacity: 0.8 }} {...props} />,
+                                            ul: ({node, ...props}) => <ul style={{ margin: 'var(--space-md) 0', paddingLeft: '2rem', listStyleType: 'square', color: m.accent }} {...props} />,
+                                            li: ({node, ...props}) => <li style={{ margin: 'var(--space-sm) 0', color: m.text1 }} {...props} />,
+                                            blockquote: ({node, ...props}) => <blockquote style={{ borderLeft: `2px solid ${m.accent}`, paddingLeft: '1.5rem', margin: '1.5rem 0', fontStyle: 'italic', opacity: 0.9, color: m.accent }} {...props} />,
+                                            h1: ({node, ...props}) => <h1 style={{ fontFamily: 'var(--fMono)', fontSize: '1.2rem', color: m.accent, textTransform: 'uppercase', letterSpacing: '0.2em', marginTop: '2rem', marginBottom: '1rem' }} {...props} />,
+                                            h2: ({node, ...props}) => <h2 style={{ fontFamily: 'var(--fMono)', fontSize: '1rem', color: m.accent, textTransform: 'uppercase', letterSpacing: '0.15em', marginTop: '1.5rem', marginBottom: '0.8rem', opacity: 0.9 }} {...props} />,
+                                            h3: ({node, ...props}) => <h3 style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.accent, textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: '1rem', marginBottom: '0.5rem', opacity: 0.8 }} {...props} />
+                                        }}
+                                    >
+                                        {mainResponse}
+                                    </ReactMarkdown>
+
+                                    {/* The Social Geometric Badge */}
+                                    {sanscription && (
+                                        <div style={{
+                                            marginTop: 'var(--space-lg)', alignSelf: 'flex-start',
+                                            padding: '8px 16px', border: `1px solid ${m.accent}60`,
+                                            background: m.surface, color: m.accent,
+                                            fontFamily: 'var(--fMono)', fontSize: '0.75rem',
+                                            letterSpacing: '0.2em', textTransform: 'uppercase',
+                                            boxShadow: `0 0 15px ${m.accent}20`,
+                                            animation: 'sage-manifest 2s ease forwards'
+                                        }}>
+                                            <span style={{ opacity: 0.5, marginRight: '8px' }}>DIAGNOSTIC //</span>
+                                            <span style={{ fontWeight: 'bold' }}>{sanscription}</span>
+                                        </div>
+                                    )}
+                                </div>
+                            );
+                        })()}
 
                         <input 
                             type="text" 

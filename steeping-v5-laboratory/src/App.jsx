@@ -30,6 +30,7 @@ import { GuideToTheSteeperverse } from './GuideToTheSteeperverse';
 import { WhatSteepersSay } from './WhatSteepersSay';
 import { OntologicalObservatory } from './OntologicalObservatory';
 import { LegacyScreengrabPortal } from './LegacyScreengrabPortal';
+import { SteepingCalendar } from './SteepingCalendar';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import './App.css';
@@ -290,6 +291,7 @@ function AppInner() {
   const [showGuide, setShowGuide] = useState(false);
   const [showObservatory, setShowObservatory] = useState(false); // The Double-Secret Backend
   const [showLegacyPortal, setShowLegacyPortal] = useState(false); // The Social Geometry Generator
+  const [showCalendar, setShowCalendar] = useState(false); // The Echolocation Sonar Map
   const [activeVessel, setActiveVessel] = useState(null); // The currently open vessel
   const [instrumentMode, setInstrumentMode] = useState(false); // Secrets: The Hexagong
   const [sageExpanded, setSageExpanded] = useState(false); // Sage interaction visibility
@@ -301,6 +303,17 @@ function AppInner() {
 
   // Accessibility: Reading Lens Mode (dyslexia-supportive typography)
   const [readingMode, setReadingMode] = useState(() => localStorage.getItem('steeping_reading_mode') === 'true');
+
+  // Native URL Routing for independent portals
+  useEffect(() => {
+    const path = window.location.pathname.toLowerCase();
+    if (path.includes('/legacy')) {
+      setShowLegacyPortal(true);
+      // Clean up the URL cosmetically if needed, or leave it as the permanent anchor
+    } else if (path.includes('/calendar')) {
+      setShowCalendar(true);
+    }
+  }, []);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-reading-mode', readingMode ? 'open' : 'closed');
@@ -1480,6 +1493,7 @@ function AppInner() {
 
       {showObservatory && <OntologicalObservatory m={m} onClose={() => setShowObservatory(false)} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} />}
       {showLegacyPortal && <LegacyScreengrabPortal m={m} onClose={() => setShowLegacyPortal(false)} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} />}
+      {showCalendar && <SteepingCalendar m={m} onClose={() => setShowCalendar(false)} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} />}
       {/* RITUAL TIMERS (Phase 06 Container) */}
       <GlobalSteepingTimer
         m={m}
