@@ -29,6 +29,7 @@ import { useSteepingCircles } from './useSteepingCircles';
 import { GuideToTheSteeperverse } from './GuideToTheSteeperverse';
 import { WhatSteepersSay } from './WhatSteepersSay';
 import { OntologicalObservatory } from './OntologicalObservatory';
+import { LegacyScreengrabPortal } from './LegacyScreengrabPortal';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import './App.css';
@@ -288,6 +289,7 @@ function AppInner() {
   const [showCompass, setShowCompass] = useState(false);
   const [showGuide, setShowGuide] = useState(false);
   const [showObservatory, setShowObservatory] = useState(false); // The Double-Secret Backend
+  const [showLegacyPortal, setShowLegacyPortal] = useState(false); // The Social Geometry Generator
   const [activeVessel, setActiveVessel] = useState(null); // The currently open vessel
   const [instrumentMode, setInstrumentMode] = useState(false); // Secrets: The Hexagong
   const [sageExpanded, setSageExpanded] = useState(false); // Sage interaction visibility
@@ -707,6 +709,7 @@ function AppInner() {
                     <b>( DEPART )</b>
                   </button>
                   {user?.email === 'thealienscool@gmail.com' && (
+                    <>
                     <button onClick={() => { setShowObservatory(true); setNavMenuOpen(false); }} style={{
                       background: 'none', border: 'none',
                       color: 'var(--acc)', textDecoration: 'none', borderBottom: '1px solid transparent',
@@ -718,6 +721,18 @@ function AppInner() {
                       title="Double-Secret Backend">
                       <b>[ OBSERVATORY ]</b>
                     </button>
+                    <button onClick={() => { setShowLegacyPortal(true); setNavMenuOpen(false); }} style={{
+                      background: 'none', border: 'none',
+                      color: 'var(--acc)', textDecoration: 'none', borderBottom: '1px solid transparent',
+                      transition: 'border-bottom 1.2s ease, opacity 0.3s ease, filter 0.8s ease', cursor: 'pointer', fontFamily: 'var(--fMono)',
+                      fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap',
+                      opacity: 0.8
+                    }} onMouseEnter={e => { e.currentTarget.style.borderBottom = '1px solid var(--acc)'; e.currentTarget.style.opacity = 1; e.currentTarget.style.filter = 'drop-shadow(0 0 8px var(--acc))'; }}
+                      onMouseLeave={e => { e.currentTarget.style.borderBottom = '1px solid transparent'; e.currentTarget.style.opacity = 0.8; e.currentTarget.style.filter = 'none'; }}
+                      title="Legacy Assets Generator">
+                      <b>[ /LEGACY PORTAL ]</b>
+                    </button>
+                    </>
                   )}
                 </div>
               )}
@@ -1464,6 +1479,7 @@ function AppInner() {
       {authOpen && <AuthOverlay m={m} onClose={() => setAuthOpen(false)} />}
 
       {showObservatory && <OntologicalObservatory m={m} onClose={() => setShowObservatory(false)} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} />}
+      {showLegacyPortal && <LegacyScreengrabPortal m={m} onClose={() => setShowLegacyPortal(false)} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} />}
       {/* RITUAL TIMERS (Phase 06 Container) */}
       <GlobalSteepingTimer
         m={m}

@@ -758,28 +758,44 @@ const DecayIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
 
 // ─── ISSUE 12: REST AS ARCHITECTURE ──────────────────────────────────────────
 
-const RestGate = ({ m, onOpen }) => {
+const RestGate = ({ m, onOpen, playStrikingBowl }) => {
     const [timeLeft, setTimeLeft] = useState(90);
     const [begun, setBegun] = useState(false);
     const [complete, setComplete] = useState(false);
 
     useEffect(() => {
         if (!begun) return;
+        
+        // Initial strike when the rest begins
+        if (playStrikingBowl) playStrikingBowl(45);
+
         const interval = setInterval(() => {
             setTimeLeft(prev => {
-                if (prev <= 1) { clearInterval(interval); setComplete(true); onOpen(); return 0; }
-                return prev - 1;
+                const next = prev - 1;
+                
+                // Symphonic rest sonnet: chime every 15 seconds, deepening in pitch
+                if (next > 0 && next % 15 === 0 && playStrikingBowl) {
+                    playStrikingBowl(45 + (90 - next) / 2);
+                }
+
+                if (next <= 0) { 
+                    clearInterval(interval); 
+                    setComplete(true); 
+                    onOpen(); 
+                    return 0; 
+                }
+                return next;
             });
         }, 1000);
         return () => clearInterval(interval);
-    }, [begun]);
+    }, [begun, onOpen, playStrikingBowl]);
 
     const progress = (90 - timeLeft) / 90;
     const r = 36; const c = 2 * Math.PI * r;
 
     if (complete) return null;
     return (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)', zIndex: 2000, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '2rem' }}>
+        <div style={{ width: '100%', marginBottom: 'var(--space-xxl)', background: 'rgba(0,0,0,0.6)', border: `1px solid ${m.accent}30`, minHeight: '300px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '2rem', padding: '3rem' }}>
             <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.75rem', color: m.accent, letterSpacing: '0.3em' }}>[ REST AS ARCHITECTURE ]</div>
             {!begun ? (
                 <>
@@ -819,9 +835,9 @@ const RestIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBow
 
     return (
         <div style={{ animation: 'fadeIn 1s ease', position: 'relative' }}>
-            {gateOpen && !restComplete && <RestGate m={m} onOpen={handleRestComplete} />}
-
             <IssueHeader m={m} title="Rest As" accent="Architecture" published="2026" designation="THE STEEPERVERSE" source="JOHN CAGE · MILES DAVIS · THE ARCHITECTURE OF SILENCE" kicker="A rest is notated. It is a specific, held duration of silence. It is the load-bearing structure of what follows." />
+
+            {gateOpen && !restComplete && <RestGate m={m} onOpen={handleRestComplete} playStrikingBowl={playStrikingBowl} />}
 
             {!gateOpen && (
                 <div style={{ width: '100%', marginBottom: 'var(--space-xxl)', border: `1px solid ${m.accent}30`, background: 'rgba(0,0,0,0.6)', minHeight: '300px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', padding: '3rem', textAlign: 'center' }}>
