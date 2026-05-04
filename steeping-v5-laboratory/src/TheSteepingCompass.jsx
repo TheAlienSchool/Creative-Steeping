@@ -167,7 +167,7 @@ export const TheSteepingCompass = ({ m, onClose, playStrikingBowl, playAlgoraveS
                 <div className="compass-layout" style={{ maxWidth: '900px', width: '100%', display: 'flex', gap: '4rem', alignItems: 'center' }}>
                     
                     {/* LEFT: 5D Radar/Compass Visceral HUD */}
-                    <div style={{ flex: 1, position: 'relative', height: '400px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <div className="compass-hud" style={{ flex: 1, position: 'relative', height: '400px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <div style={{
                             position: 'absolute', inset: '10%', border: `1px solid ${m.text2}30`, borderRadius: '50%',
                             animation: 'spin 40s linear infinite'
@@ -192,11 +192,11 @@ export const TheSteepingCompass = ({ m, onClose, playStrikingBowl, playAlgoraveS
                             />
                         </svg>
 
-                        <div style={{ position: 'absolute', top: 0, fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, letterSpacing: '0.2em' }}>RESONANCE</div>
-                        <div style={{ position: 'absolute', right: 0, top: '35%', fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, letterSpacing: '0.2em' }}>STILLNESS</div>
-                        <div style={{ position: 'absolute', right: '15%', bottom: 0, fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, letterSpacing: '0.2em' }}>CLARITY</div>
-                        <div style={{ position: 'absolute', left: '15%', bottom: 0, fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, letterSpacing: '0.2em' }}>DEPTH</div>
-                        <div style={{ position: 'absolute', left: '-5%', top: '35%', fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, letterSpacing: '0.2em' }}>ALIGNMENT</div>
+                        <div className="compass-label" style={{ position: 'absolute', top: 0, fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, letterSpacing: '0.2em' }}>RESONANCE</div>
+                        <div className="compass-label" style={{ position: 'absolute', right: 0, top: '35%', fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, letterSpacing: '0.2em' }}>STILLNESS</div>
+                        <div className="compass-label" style={{ position: 'absolute', right: '15%', bottom: 0, fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, letterSpacing: '0.2em' }}>CLARITY</div>
+                        <div className="compass-label" style={{ position: 'absolute', left: '15%', bottom: 0, fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, letterSpacing: '0.2em' }}>DEPTH</div>
+                        <div className="compass-label" style={{ position: 'absolute', left: '-5%', top: '35%', fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, letterSpacing: '0.2em' }}>ALIGNMENT</div>
                     </div>
 
                     {/* RIGHT: Typography & Interaction */}

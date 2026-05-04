@@ -18,9 +18,9 @@ const SongbookGlossaryItem = ({ term, definition, m }) => {
         >
             {term}
             {isHovered && (
-                <span style={{
+                <span className="glossary-tooltip" style={{
                     position: 'absolute', bottom: '130%', left: '50%', transform: 'translateX(-50%)',
-                    width: 'max-content', maxWidth: '320px',
+                    width: 'max-content', maxWidth: 'min(300px, calc(100vw - 40px))',
                     backgroundColor: 'rgba(0,0,0,0.9)', border: `1px solid ${m.accent}60`,
                     padding: '0.8rem', zIndex: 1100,
                     fontFamily: 'var(--fMono)', fontSize: '0.7rem', color: m.accent,

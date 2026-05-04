@@ -817,6 +817,49 @@ nav.top-nav {
   padding: 4rem 1.5rem 2rem 5rem;
 }
 
+/* ==========================================
+   MOBILE RESPONSIVE FIXES
+   ========================================== */
+
+/* Compass radar: hide directional labels in column layout to prevent overlap */
+@media (max-width: 768px) {
+  .compass-label {
+    display: none !important;
+  }
+
+  /* Shrink the radar visual to leave room for sliders */
+  .compass-hud {
+    height: 200px !important;
+    flex: 0 0 auto !important;
+  }
+
+  /* Glossary tooltip: keep within viewport on small screens */
+  .glossary-tooltip {
+    left: 0 !important;
+    transform: none !important;
+    max-width: min(280px, calc(100vw - 40px)) !important;
+  }
+
+  /* Mode toggles: small left buffer so first character isn't clipped */
+  .mode-toggles {
+    padding-left: 3px !important;
+  }
+
+  /* Portal screen: extra bottom clearance for the Active Pause timer bar */
+  .portal-screen {
+    padding-bottom: 160px !important;
+  }
+
+  /* Guide next-chapter arrow: move out of text body to bottom-right */
+  .guide-next-btn {
+    top: auto !important;
+    bottom: 56px !important;
+    transform: none !important;
+    right: var(--space-md) !important;
+    opacity: 0.8 !important;
+  }
+}
+
 /* Landscape / iPad Tweaks */
 @media (max-width: 1024px) and (min-width: 769px) {
   .vessel-matrix {
