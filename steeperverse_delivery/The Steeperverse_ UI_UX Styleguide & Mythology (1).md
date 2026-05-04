@@ -36,6 +36,7 @@ Contrast is the primary tool for teaching structure. The relationship between th
 Text is used sparingly and with great intention. When it appears, it should feel like a natural part of the environment, not an overlay. Typography should have ample negative space, a gentle rhythm, and a sense of calm authority.
 
 - **Font:** A clean, geometric sans-serif for clarity, paired with a more expressive, serif font for moments of reflection or earned language.  
+- **Baseline Italic Discipline:** Italics are strictly reserved for display text (headings, single-line captions, vessel invocations, and decorative accents). **Multi-sentence reading paragraphs must always default to `font-style: normal`.** Legibility is not an "opt-in" feature; it is the fundamental state of the interface.
 - **Hierarchy:** Established through size and weight, not color. Invitations are large and clear; earned language is smaller and more intimate.  
 - **Animation:** Text fades in and out slowly, as if breathing. It never “pops” or demands attention.
 

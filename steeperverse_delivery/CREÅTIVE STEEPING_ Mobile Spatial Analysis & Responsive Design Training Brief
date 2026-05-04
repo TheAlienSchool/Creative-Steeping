@@ -246,6 +246,23 @@ The following table organizes all identified issues by priority, allowing the de
 
 ---
 
+## Section 8: Responsive Roulette Standards (Commits 13-15)
+
+The subsequent "Responsive Roulette" sprint (Commits 13, 14, and 15) successfully established critical baseline rules for tactile and typographic interaction on mobile viewports. These standards are permanently codified and must be respected in all future module development.
+
+### 8.1 Baseline Italic Discipline
+Legibility is not an opt-in feature. Italics are strictly reserved for **display text** (headings, single-line captions, vessel invocations, and decorative accents). **Multi-sentence reading paragraphs must always default to `font-style: normal`.** This rule ensures the organic pacing required for Steeping Notes does not degrade into visual fatigue on small screens.
+
+### 8.2 Tactile State and Viewport Preservation
+The Compass HUD requires absolute flex-preservation (`flex: 0 0 auto`, `height: 200px`, `width: 200px`) to prevent squishing when keyboard or text interactions consume vertical height. Furthermore, global architectural depth is dynamically preserved using the `--bottom-bar-height` variable. When a timer or Active Pause expands, this variable shifts (e.g., `80px` to `150px`), lifting the entire reading space to ensure crucial content is never obscured by the active environmental controls.
+
+### 8.3 Kinetic Mobile Wayfinding
+Elements designed for tactile engagement on mobile screens must respect the finger and the viewport:
+*   **Auto-Scroll Toggles:** Multi-tab interfaces (like the Flavor Modes) must utilize `scrollIntoView` upon activation. When a practitioner selects a mode, the environment must slide it to the center of the mobile viewport, preventing the user from feeling lost off-screen.
+*   **Click-Safe Tooltips:** The `SongbookGlossaryItem` and similar tooltips cannot rely on CSS `:hover` states (which fail on iOS). They must implement document-level click listeners that open on tap and close gracefully when the user clicks elsewhere.
+
+---
+
 ## Closing Note: The Arc Is the Angle of Change
 
 The arc is the angle of change. Å Discovery Worth Steeping In.
