@@ -28,7 +28,7 @@ const SongbookGlossaryItem = ({ term, definition, m }) => {
                 borderBottom: `1px dashed ${m.accent}80`,
                 color: isHovered ? m.accent : 'inherit',
                 transition: 'all 0.3s ease',
-                display: 'inline-block', lineHeight: 1
+                display: 'inline', lineHeight: 'inherit'
             }}
         >
             {term}

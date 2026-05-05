@@ -111,9 +111,9 @@ const AwarenessPlanningInteractive = ({ m, playAlgoraveSynth }) => {
                     </svg>
                 </div>
             </div>
-            <div className="ai-contemplation-grid" style={{ gap: '3rem', alignItems: 'center' }}>
-                <div style={{ fontFamily: 'var(--fSerif)', color: m.text1, lineHeight: 1.4 }}>"{current.instruction}"</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', borderLeft: `1px solid ${m.accent}20`, paddingLeft: '2rem' }}>
+            <div className="ai-contemplation-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '3rem', alignItems: 'flex-start', borderTop: `1px dashed ${m.accent}30`, borderBottom: `1px dashed ${m.accent}30`, padding: '2rem 0' }}>
+                <div style={{ flex: '1 1 250px', fontFamily: 'var(--fSerif)', color: m.text1, lineHeight: 1.4, fontSize: '1.4rem' }}>"{current.instruction}"</div>
+                <div style={{ flex: '1 1 200px', display: 'flex', flexDirection: 'column', gap: '1rem', borderLeft: `1px solid ${m.accent}20`, paddingLeft: '2rem' }}>
                     {phases.map((p, idx) => (
                         <div key={idx} style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: phase === idx ? m.accent : m.text2, opacity: phase === idx ? 1 : 0.4, letterSpacing: '0.15em', textTransform: 'uppercase', transition: 'all 0.3s ease', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                             {phase === idx && <span>›</span>}{p.name}
@@ -1305,7 +1305,7 @@ const TrigramExplorer = ({ m, playStrikingBowl }) => {
     return (
         <div style={{ marginBottom: 'var(--space-xxl)' }}>
             <SectionLabel m={m}>[ THE EIGHT TRIGRAMS :: THE MATHEMATICS OF CHANGE ]</SectionLabel>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1px', border: `1px solid ${m.accent}15` }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '1px', border: `1px solid ${m.accent}15` }}>
                 {trigrams.map((t, i) => (
                     <div key={i} onClick={() => { setActive(active === i ? null : i); if (playStrikingBowl) playStrikingBowl(60 + i * 3); }}
                         style={{ padding: 'var(--space-lg)', cursor: 'pointer', background: active === i ? `${m.accent}12` : 'transparent', transition: 'all 0.3s ease', borderBottom: `1px solid ${m.accent}10` }}
@@ -1329,7 +1329,7 @@ const TrigramExplorer = ({ m, playStrikingBowl }) => {
                     </div>
                 ))}
             </div>
-            <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, marginTop: '0.5rem', opacity: 0.6, textAlign: 'right', letterSpacing: '0.1em' }}>
+            <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, marginTop: '0.8rem', opacity: 0.6, textAlign: 'right', letterSpacing: '0.1em', wordWrap: 'break-word', lineHeight: 1.4 }}>
                 2³ = 8 POSSIBLE COMBINATIONS :: THE MATHEMATICS OF THE NECESSARY THIRD COORDINATE
             </div>
         </div>

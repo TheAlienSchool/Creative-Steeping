@@ -418,6 +418,8 @@ function AppInner() {
       // Clean up the URL cosmetically if needed, or leave it as the permanent anchor
     } else if (path.includes('/calendar')) {
       setShowCalendar(true);
+    } else if (path.includes('/dashboard')) {
+      setPhase('dashboard');
     }
   }, []);
 
