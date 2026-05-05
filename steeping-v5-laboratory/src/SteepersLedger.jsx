@@ -101,6 +101,7 @@ const SAGE_CONTEXT = {
     knot:              { series: 'PHYSICS', freq: 94, kicker: 'The Anatomy of a Knot', sage: 'A knot forms when the fluid dance between intuition and ego loses its reversibility. Untying it requires resonance, not computation. It restores the feedback loop so identity can evolve. Key concepts: The Knot, Resonance, Fluidity, Reversibility.' },
     harmonic:          { series: 'GEOMETRY', freq: 96, kicker: 'Symbols of Harmonic Equivalence', sage: 'The :: = :: operator triangulates distinct languages describing the exact same physical mechanism. The Goosebump :: = :: The Score. You triangulate your intellect and your body. Key concepts: Harmonic Equivalence, The Score, Plural Now.' },
     watcher:           { series: 'COSMOLOGY', freq: 98, kicker: 'Consciousness is the ÅLïEN', sage: 'The silent watcher behind the eyes is the ÅLïEN, unchanged since childhood. It is the ground of being. Winning is the moment the field recognizes its own nature through you. Key concepts: ÅLïEN, The Watcher, Field Recognition.' },
+    echosystem:        { series: 'ECOLOGY', freq: 100, kicker: 'An ECHO System for biodiversity', sage: 'An echosystem is an ECHO System for the biodiversity of opportunities life creates for Humanity. The echo is the sound of the future arriving to meet you. Key concepts: Echosystem, Biodiversity, Generative Feedback, TURAO.' },
 };
 
 // ── THE RESONANCE VAULT (Interactive Filtering Architecture) ───────────────

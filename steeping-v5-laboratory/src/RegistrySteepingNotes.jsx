@@ -877,10 +877,35 @@ const RestIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBow
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
+// ────────────────────────────────────────────────────────────────────────────
+// ISSUE 23: ECHOSYSTEM
+// ────────────────────────────────────────────────────────────────────────────
+
+const EchosystemIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => (
+    <div style={{ animation: 'fadeIn 1s ease' }}>
+        <IssueHeader m={m} title="The" accent="Echosystem" published="2026" designation="THE STEEPERVERSE" source="ECOLOGICAL RESONANCE" kicker="An echosystem is an ECHO System for the biodiversity of opportunities life creates for Humanity." />
+        <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>A</span>
+                n <SongbookGlossaryItem m={m} term="Echosystem" definition="An ECHO System for the biodiversity of opportunities life creates for Humanity." /> is not merely an environment—it is an acoustic chamber of existence. Every action, intention, and offering steeped into the Steeperverse reverberates outward, interacting with the resonant frequencies of others.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                This is the biodiversity of opportunities life creates. The echo is not a repetition of the past, but the sound of the future arriving to meet you. It is the generative feedback loop that sustains human potential, ensuring that no offering is ever truly lost, but continuously reshaped by the <SongbookGlossaryItem m={m} term="TURAO" definition="The Universe Receiving All Offerings." /> coastline.
+            </p>
+        </div>
+        <PullQuote m={m}>"The echo is not a repetition of the past, but the sound of the future arriving to meet you."</PullQuote>
+    </div>
+);
+
 // PRIMARY REGISTRY EXPORT
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const getSteepingIssues = (m, setTuraoMode, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl, historicalScore) => [
+    {
+        id: 'echosystem',
+        buttonLabel: '[ THE ECHOSYSTEM ]',
+        render: () => <EchosystemIssue m={m} SongbookGlossaryItem={SongbookGlossaryItem} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} />
+    },
     {
         id: 'dark-matter',
         buttonLabel: '[ DARK MATTER ]',

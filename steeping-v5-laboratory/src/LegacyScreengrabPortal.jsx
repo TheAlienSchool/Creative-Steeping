@@ -1,17 +1,285 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { generateAssets } from './assetsData';
 
 // ==========================================
 // THE LEGACY SCREENGRAB PORTAL
 // A private CMS for generating Social Media Geometry
 // ==========================================
 
+// Visceral Word-by-Word Animation Component
+const AnimatedText = ({ text, delayOffset = 0, speed = 0.05, className, style, kineticState, triggerKey }) => {
+    const [visibleCount, setVisibleCount] = useState(-1);
+    const words = text.split(' ');
+
+    useEffect(() => {
+        if (kineticState === 'idle') {
+            setVisibleCount(-1);
+            return;
+        }
+
+        if (kineticState === 'playing') {
+            setVisibleCount(0); // Start hidden
+            
+            let count = 0;
+            // Delay start based on delayOffset (which is in seconds, convert to ms)
+            const delayTimer = setTimeout(() => {
+                const interval = setInterval(() => {
+                    count++;
+                    setVisibleCount(count);
+                    if (count >= words.length) {
+                        clearInterval(interval);
+                    }
+                }, speed * 1000); // speed is in seconds, convert to ms
+                
+                return () => clearInterval(interval);
+            }, delayOffset * 1000);
+            
+            return () => clearTimeout(delayTimer);
+        }
+        
+        if (kineticState === 'done') {
+            setVisibleCount(words.length);
+        }
+    }, [kineticState, triggerKey, delayOffset, speed, words.length]);
+
+    return (
+        <div className={className} style={{ ...style, display: 'inline-block' }}>
+            {words.map((word, i) => {
+                const isVisible = kineticState === 'idle' || (visibleCount !== -1 && i < visibleCount);
+                return (
+                    <span 
+                        key={`${triggerKey}-${i}`} 
+                        style={{ 
+                            display: 'inline-block', 
+                            marginRight: '0.25em',
+                            opacity: isVisible ? 1 : 0,
+                            transform: isVisible ? 'translateY(0)' : 'translateY(5px)',
+                            filter: isVisible ? 'blur(0px)' : 'blur(4px)',
+                            transition: isVisible ? 'opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out' : 'none'
+                        }}
+                    >
+                        {word}
+                    </span>
+                );
+            })}
+        </div>
+    );
+};
+
+const VisceralRenderer = ({ asset, kineticState, m, playTriggerId }) => {
+    if (asset.graphicType === 'steamsans') {
+        return (
+            <div style={{ position: 'relative', width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                {['S', 'T', 'E', 'A', 'M', 'S', 'A', 'N', 'S'].map((char, i) => (
+                    <motion.div
+                        key={`${playTriggerId}-${i}`}
+                        initial={{ opacity: 0, y: 50, filter: 'blur(10px)', scale: 0.8 }}
+                        animate={kineticState === 'playing' || kineticState === 'done' ? { opacity: 0.8, y: 0, filter: 'blur(0px)', scale: 1 } : {}}
+                        transition={{ duration: 2, delay: i * 0.15, ease: "easeOut" }}
+                        style={{
+                            position: 'absolute', fontFamily: 'var(--fSerif)', fontSize: '5rem', fontStyle: 'italic',
+                            color: i % 2 === 0 ? m.text1 : m.accent,
+                            left: `${5 + (i * 10)}%`, zIndex: 10 - i, mixBlendMode: 'screen',
+                            textShadow: `0 0 20px ${m.accent}40`
+                        }}
+                    >
+                        {char}
+                    </motion.div>
+                ))}
+            </div>
+        );
+    }
+    
+    if (asset.graphicType === 'hexagong') {
+        return (
+            <div style={{ position: 'relative', width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                {[1, 2, 3, 4, 5].map((ring) => (
+                    <motion.div
+                        key={`${playTriggerId}-${ring}`}
+                        initial={{ opacity: 0, rotate: -45, scale: 0 }}
+                        animate={kineticState === 'playing' || kineticState === 'done' ? { opacity: 1 / ring, rotate: ring % 2 === 0 ? 360 : -360, scale: 1 + (ring * 0.2) } : {}}
+                        transition={{ duration: 5 + ring, ease: "easeOut", delay: ring * 0.2 }}
+                        style={{
+                            position: 'absolute',
+                            width: `${100 + (ring * 40)}px`, height: `${115 + (ring * 46)}px`,
+                            border: `1px solid ${ring % 2 === 0 ? m.text1 : m.accent}`,
+                            clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                            boxShadow: `inset 0 0 10px ${m.accent}20`
+                        }}
+                    />
+                ))}
+            </div>
+        );
+    }
+    
+    if (asset.graphicType === 'pulse') {
+        return (
+            <div style={{ position: 'relative', width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                {[...Array(6)].map((_, i) => (
+                    <motion.div
+                        key={`${playTriggerId}-${i}`}
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={kineticState === 'playing' || kineticState === 'done' ? { opacity: [0, 0.4, 0], scale: [0, 1.5, 3] } : {}}
+                        transition={{ duration: 4, repeat: Infinity, delay: i * 0.6, ease: "linear" }}
+                        style={{
+                            position: 'absolute', width: '100px', height: '100px',
+                            borderRadius: '50%', border: `2px solid ${m.text2}`
+                        }}
+                    />
+                ))}
+            </div>
+        );
+    }
+
+    if (asset.graphicType === 'oscilloscope') {
+        return (
+            <div style={{ position: 'relative', width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <svg width="100%" height="100%" viewBox="0 0 500 200" preserveAspectRatio="none">
+                    <motion.path
+                        key={`${playTriggerId}-path`}
+                        initial={{ d: "M 0 100 Q 125 100 250 100 T 500 100", stroke: m.text2, strokeWidth: 1 }}
+                        animate={kineticState === 'playing' || kineticState === 'done' ? {
+                            d: [
+                                "M 0 100 Q 125 100 250 100 T 500 100",
+                                "M 0 100 Q 50 10 125 100 T 250 100 T 375 100 T 500 100",
+                                "M 0 100 Q 40 10 100 100 T 200 100 T 300 100 T 400 100 T 500 100",
+                                "M 0 100 Q 20 10 60 100 T 140 100 T 220 100 T 300 100 T 380 100 T 460 100 T 500 100"
+                            ],
+                            stroke: m.accent,
+                            strokeWidth: 2,
+                            filter: "drop-shadow(0px 0px 8px rgba(230,170,100,0.6))"
+                        } : {}}
+                        transition={{ duration: 6, ease: "easeInOut" }}
+                        fill="transparent"
+                    />
+                </svg>
+            </div>
+        );
+    }
+
+    if (asset.graphicType === 'door') {
+        return (
+            <div style={{ position: 'relative', width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                {/* Glowing Interior */}
+                <motion.div
+                    key={`${playTriggerId}-glow`}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={kineticState === 'playing' || kineticState === 'done' ? { opacity: 1, scale: 1.2 } : {}}
+                    transition={{ duration: 3, delay: 2.5, ease: "easeOut" }}
+                    style={{
+                        position: 'absolute', width: '80px', height: '80px',
+                        background: m.accent, filter: 'blur(30px)', borderRadius: '50%', zIndex: 1
+                    }}
+                />
+                
+                {/* Left Door */}
+                <motion.div
+                    key={`${playTriggerId}-left`}
+                    initial={{ x: 0 }}
+                    animate={kineticState === 'playing' || kineticState === 'done' ? { x: -60 } : {}}
+                    transition={{ duration: 2, delay: 2, ease: "easeInOut" }}
+                    style={{
+                        position: 'absolute', width: '60px', height: '120px', background: m.surface,
+                        border: `1px solid ${m.text2}`, borderRight: `1px solid ${m.accent}`,
+                        clipPath: 'polygon(0% 25%, 100% 0%, 100% 100%, 0% 75%)',
+                        zIndex: 2, left: 'calc(50% - 60px)'
+                    }}
+                />
+
+                {/* Right Door */}
+                <motion.div
+                    key={`${playTriggerId}-right`}
+                    initial={{ x: 0 }}
+                    animate={kineticState === 'playing' || kineticState === 'done' ? { x: 60 } : {}}
+                    transition={{ duration: 2, delay: 2, ease: "easeInOut" }}
+                    style={{
+                        position: 'absolute', width: '60px', height: '120px', background: m.surface,
+                        border: `1px solid ${m.text2}`, borderLeft: `1px solid ${m.accent}`,
+                        clipPath: 'polygon(0% 0%, 100% 25%, 100% 75%, 0% 100%)',
+                        zIndex: 2, right: 'calc(50% - 60px)'
+                    }}
+                />
+
+                {/* Pulses on the closed door */}
+                {[...Array(2)].map((_, i) => (
+                    <motion.div
+                        key={`${playTriggerId}-pulse-${i}`}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={kineticState === 'playing' || kineticState === 'done' ? { opacity: [0, 0.5, 0], scale: 1.1 } : {}}
+                        transition={{ duration: 1, delay: i * 1, ease: "easeOut" }}
+                        style={{
+                            position: 'absolute', width: '120px', height: '135px',
+                            border: `2px solid ${m.accent}`, zIndex: 3,
+                            clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
+                        }}
+                    />
+                ))}
+            </div>
+        );
+    }
+    return null;
+};
+
 export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgoraveSynth }) => {
-    // Layout geometry state: 'story' (9:16) or 'grid' (1:1 / 4:5)
+    // Generate all 41 assets from the CSV data
+    const baseAssets = useMemo(() => generateAssets(m), [m]);
+    const assets = useMemo(() => ({
+        ...baseAssets,
+        visceral: [
+            {
+                id: 'v1',
+                mechanism: 'STEEPING GEOMETRY :: STEAMSANS',
+                isGraphic: true, graphicType: 'steamsans',
+                kicker: 'steamsans timeout fake', body: 'fake body',
+                coords: '[ STBL: 99 | PRSS: 99 | COHR: 99 | DRFT: 99 ]'
+            },
+            {
+                id: 'v2',
+                mechanism: 'STEEPING GEOMETRY :: HEX-KINTSUGI',
+                isGraphic: true, graphicType: 'hexagong',
+                kicker: 'hex timeout fake', body: 'fake body',
+                coords: '[ STBL: 50 | PRSS: 50 | COHR: 90 | DRFT: 10 ]'
+            },
+            {
+                id: 'v3',
+                mechanism: 'STEEPING GEOMETRY :: THE SONIC ENGINE',
+                isGraphic: true, graphicType: 'pulse',
+                kicker: 'pulse timeout fake', body: 'fake body',
+                coords: '[ STBL: 22 | PRSS: 88 | COHR: 77 | DRFT: 33 ]'
+            },
+            {
+                id: 'v4',
+                mechanism: 'STEEPING GEOMETRY :: RESONANCE TRACE',
+                isGraphic: true, graphicType: 'oscilloscope',
+                kicker: 'osc timeout fake', body: 'fake body',
+                coords: '[ STBL: 45 | PRSS: 95 | COHR: 85 | DRFT: 10 ]'
+            },
+            {
+                id: 'v5',
+                mechanism: 'STEEPING GEOMETRY :: THE THRESHOLD',
+                isGraphic: true, graphicType: 'door',
+                kicker: 'door timeout fake', body: 'fake body',
+                coords: '[ STBL: 80 | PRSS: 60 | COHR: 90 | DRFT: 05 ]'
+            }
+        ]
+    }), [baseAssets, m]);
+
+    // Layout geometry state: 'story' (9:16), 'grid' (1:1), 'portrait' (4:5), 'landscape' (16:9)
     const [geometry, setGeometry] = useState('story');
     
+    const geoSpecs = {
+        story: { width: '390px', height: '844px', fontKicker: '2.2rem', fontBody: '1.15rem' },
+        portrait: { width: '480px', height: '600px', fontKicker: '2.0rem', fontBody: '1.05rem' },
+        grid: { width: '500px', height: '500px', fontKicker: '1.8rem', fontBody: '0.95rem' },
+        landscape: { width: '800px', height: '450px', fontKicker: '2.2rem', fontBody: '1.10rem' }
+    };
+    const spec = geoSpecs[geometry];
+
     // Active asset category
-    const [activeCategory, setActiveCategory] = useState('clinical'); // 'clinical', 'primer', 'somatic'
+    const [activeCategory, setActiveCategory] = useState('note'); // 'note', 'inquiry', 'exercise', 'science'
+    const [activeAssetIndex, setActiveAssetIndex] = useState(0);
+    const currentAsset = assets[activeCategory][activeAssetIndex];
 
     // STEAMSANS Cheat Code Logic
     const [cheatCodeBuffer, setCheatCodeBuffer] = useState('');
@@ -51,92 +319,56 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
         }
     };
 
-    // The Content Manifest (Distilled from The Primer & Sound of Becoming)
-    const assets = {
-        clinical: [
-            {
-                id: 'c1',
-                kicker: 'THE SOUND OF BECOMING',
-                body: 'When you write and hear your writing as music simultaneously, you are engaging more neural territory than any other single human activity. This is not poetry. This is what fMRI shows.',
-                mechanism: 'MECHANISM 01 :: FULL-BRAIN ACTIVATION',
-                color: m.accent,
-                coords: '[ STBL: 64 | PRSS: 88 | COHR: 72 | DRFT: 12 ]'
-            },
-            {
-                id: 'c2',
-                kicker: 'CREATIVE APHASIA',
-                body: 'For practitioners who feel creatively blocked, The Steeping Space offers a Swiss Army knife route — the music circuit opened when the writing circuit feels frozen. Sound before language. Hearing before knowing.',
-                mechanism: 'MECHANISM 05 :: NEURAL REDUNDANCY',
-                color: m.text1,
-                coords: '[ STBL: 42 | PRSS: 95 | COHR: 50 | DRFT: 80 ]'
-            }
-        ],
-        primer: [
-            {
-                id: 'p1',
-                kicker: 'AFFIRMATIVE ARCHITECTURE',
-                body: 'Structure precedes visibility. Speak the architecture you wish the practitioner to inhabit. Never use a "not just" construction to introduce a whole truth.',
-                mechanism: 'THE EDITORIAL PROTOCOL',
-                color: m.accent,
-                coords: '[ STBL: 90 | PRSS: 30 | COHR: 85 | DRFT: 05 ]'
-            },
-            {
-                id: 'p2',
-                kicker: 'THE COUPLET',
-                body: 'The arc is the angle of change.\nÅ Discovery Worth Steeping In.',
-                mechanism: 'PHYSICS × PRESENCE',
-                color: m.text1,
-                coords: '[ STBL: 80 | PRSS: 45 | COHR: 95 | DRFT: 10 ]'
-            }
-        ]
-    };
-
-    const [activeAssetIndex, setActiveAssetIndex] = useState(0);
-    const currentAsset = assets[activeCategory][activeAssetIndex];
-
     // KINETIC ENGINE STATE
-    const [kineticState, setKineticState] = useState('idle'); // 'idle', 'playing', 'done'
-    const [renderedText, setRenderedText] = useState({ kicker: currentAsset.kicker, body: currentAsset.body });
+    const [kineticState, setKineticState] = useState('idle'); // 'idle', 'preroll', 'playing', 'done'
+    const [prerollCount, setPrerollCount] = useState(3);
+    const [playTriggerId, setPlayTriggerId] = useState(0); // Used to force framer-motion replay
 
     const triggerKineticMonument = () => {
-        if (kineticState === 'playing') return;
-        setKineticState('playing');
-        setRenderedText({ kicker: '', body: '' });
+        if (kineticState === 'playing' || kineticState === 'preroll') return;
+        
+        // 1. Start the Preroll Countdown for screen recording
+        setKineticState('preroll');
+        setPrerollCount(3);
+        
+        let count = 3;
+        const interval = setInterval(() => {
+            count--;
+            setPrerollCount(count);
+            if (count <= 0) {
+                clearInterval(interval);
+                startAnimation();
+            }
+        }, 1000);
+    };
 
+    const startAnimation = () => {
+        setKineticState('playing');
+        setPlayTriggerId(prev => prev + 1); // Increment to force a new animation cycle
+        
         // Initial Grounding Strike
         if (playStrikingBowl) playStrikingBowl(45);
         if (playAlgoraveSynth) playAlgoraveSynth();
 
-        let kickerIdx = 0;
-        const kickerInterval = setInterval(() => {
-            if (kickerIdx <= currentAsset.kicker.length) {
-                setRenderedText(prev => ({ ...prev, kicker: currentAsset.kicker.slice(0, kickerIdx) }));
-                kickerIdx++;
-            } else {
-                clearInterval(kickerInterval);
-                // Subtle harmonic transition before body
-                if (playStrikingBowl) playStrikingBowl(72);
-                setTimeout(() => {
-                    let bodyIdx = 0;
-                    const bodyInterval = setInterval(() => {
-                        if (bodyIdx <= currentAsset.body.length) {
-                            setRenderedText(prev => ({ ...prev, body: currentAsset.body.slice(0, bodyIdx) }));
-                            bodyIdx++;
-                        } else {
-                            clearInterval(bodyInterval);
-                            setKineticState('done');
-                        }
-                    }, 20); // Fast, typewriter pace
-                }, 600);
-            }
-        }, 40);
+        const totalTimeMs = currentAsset.isGraphic ? 
+            5000 : 
+            (currentAsset.kicker.split(' ').length * 100) + (currentAsset.body.split(' ').length * 60) + 1000;
+        
+        setTimeout(() => {
+            if (playStrikingBowl) playStrikingBowl(72);
+        }, currentAsset.isGraphic ? 1000 : (currentAsset.kicker.split(' ').length * 100) + 200);
+
+        setTimeout(() => {
+            setKineticState('done');
+        }, totalTimeMs);
     };
 
     // Reset when changing assets
     useEffect(() => {
         setKineticState('idle');
-        setRenderedText({ kicker: currentAsset.kicker, body: currentAsset.body });
-    }, [currentAsset]);
+    }, [currentAsset.id]);
+
+    // The AnimatedText component is defined outside to prevent React from unmounting it on every render
 
     return (
         <div style={{
@@ -155,20 +387,45 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                     [ /legacy :: SCREENGRAB PORTAL ]
                 </div>
                 
-                <div style={{ display: 'flex', gap: 'var(--space-md)' }}>
+                <div style={{ display: 'flex', gap: 'var(--space-md)', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+                    <div style={{ display: 'flex', gap: '8px', borderRight: `1px solid ${m.text2}40`, paddingRight: '16px', marginRight: '8px' }}>
+                        {Object.keys(assets).map(cat => (
+                            <button key={cat} onClick={() => { setActiveCategory(cat); setActiveAssetIndex(0); }} style={{
+                                background: activeCategory === cat ? m.text1 : 'transparent',
+                                color: activeCategory === cat ? m.bg : m.text2,
+                                border: `1px solid ${activeCategory === cat ? m.text1 : m.text2}`, padding: '4px 8px',
+                                fontFamily: 'var(--fMono)', fontSize: '0.65rem', cursor: 'pointer', textTransform: 'uppercase'
+                            }}>{cat}</button>
+                        ))}
+                    </div>
+
                     <button onClick={() => setGeometry('story')} style={{
                         background: geometry === 'story' ? m.accent : 'transparent',
                         color: geometry === 'story' ? m.bg : m.accent,
                         border: `1px solid ${m.accent}`, padding: '4px 12px',
                         fontFamily: 'var(--fMono)', fontSize: '0.65rem', cursor: 'pointer'
-                    }}>9:16 STORY</button>
+                    }}>9:16 TIKTOK</button>
                     
+                    <button onClick={() => setGeometry('portrait')} style={{
+                        background: geometry === 'portrait' ? m.accent : 'transparent',
+                        color: geometry === 'portrait' ? m.bg : m.accent,
+                        border: `1px solid ${m.accent}`, padding: '4px 12px',
+                        fontFamily: 'var(--fMono)', fontSize: '0.65rem', cursor: 'pointer'
+                    }}>4:5 IG FEED</button>
+
                     <button onClick={() => setGeometry('grid')} style={{
                         background: geometry === 'grid' ? m.accent : 'transparent',
                         color: geometry === 'grid' ? m.bg : m.accent,
                         border: `1px solid ${m.accent}`, padding: '4px 12px',
                         fontFamily: 'var(--fMono)', fontSize: '0.65rem', cursor: 'pointer'
-                    }}>1:1 GRID</button>
+                    }}>1:1 LINKEDIN</button>
+
+                    <button onClick={() => setGeometry('landscape')} style={{
+                        background: geometry === 'landscape' ? m.accent : 'transparent',
+                        color: geometry === 'landscape' ? m.bg : m.accent,
+                        border: `1px solid ${m.accent}`, padding: '4px 12px',
+                        fontFamily: 'var(--fMono)', fontSize: '0.65rem', cursor: 'pointer'
+                    }}>16:9 BLUESKY</button>
                     
                     <button onClick={onClose} style={{
                         background: 'transparent', color: m.text2, border: 'none',
@@ -186,53 +443,67 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                 <motion.div 
                     layout
                     style={{
-                        width: geometry === 'story' ? '390px' : '500px', // Strict Mobile Spatial Geometry
-                        height: geometry === 'story' ? '844px' : '500px',
+                        width: spec.width, // Strict Spatial Geometry per platform
+                        height: spec.height,
                         background: m.bg,
                         border: `1px solid ${m.accent}20`,
                         position: 'relative',
-                        display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
+                        display: 'flex', flexDirection: 'column', 
                         padding: 'var(--space-xl)',
                         boxShadow: `0 20px 40px rgba(0,0,0,0.5)`,
                         overflow: 'hidden'
                     }}
                 >
-                    {/* The Built-in Watermark and Coordinate Diagnostics */}
+                    {/* The Rendered Monument */}
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', zIndex: 2, width: '100%' }}>
+                        <div style={{ 
+                            fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, 
+                            letterSpacing: '0.2em', marginBottom: 'var(--space-xl)',
+                            opacity: kineticState === 'idle' || kineticState === 'done' || kineticState === 'preroll' ? 0.8 : 0,
+                            transition: 'opacity 1s ease'
+                        }}>
+                            {currentAsset.mechanism}
+                        </div>
+                        {currentAsset.isGraphic ? (
+                            <VisceralRenderer asset={currentAsset} kineticState={kineticState} m={m} playTriggerId={playTriggerId} />
+                        ) : (
+                            <>
+                                <AnimatedText 
+                                    text={currentAsset.kicker} 
+                                    speed={0.1}
+                                    kineticState={kineticState}
+                                    triggerKey={`kicker-${playTriggerId}`}
+                                    style={{ 
+                                        fontFamily: 'var(--fSerif)', fontSize: spec.fontKicker, 
+                                        lineHeight: 1.2, fontStyle: 'italic', color: m.text1,
+                                        marginBottom: 'var(--space-xl)', minHeight: '3rem'
+                                    }} 
+                                />
+                                {/* BASELINE ITALIC DISCIPLINE: Multi-sentence paragraphs MUST be font-style: normal */}
+                                <AnimatedText 
+                                    text={currentAsset.body}
+                                    delayOffset={(currentAsset.kicker.split(' ').length * 0.1) + 0.4}
+                                    speed={0.05}
+                                    kineticState={kineticState}
+                                    triggerKey={`body-${playTriggerId}`}
+                                    style={{ 
+                                        fontFamily: 'var(--fBody)', fontSize: spec.fontBody, lineHeight: 1.6, color: m.text2,
+                                        fontStyle: 'normal', textAlign: 'left', padding: '0 1rem', minHeight: '6rem'
+                                    }} 
+                                />
+                            </>
+                        )}
+                    </div>
+
+                    {/* The Built-in Watermark and Coordinate Diagnostics (Pushed to bottom) */}
                     <div style={{
-                        position: 'absolute', bottom: 'var(--space-xl)', left: 0, right: 0,
+                        marginTop: 'auto', paddingTop: 'var(--space-xl)',
                         display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px',
                         fontFamily: 'var(--fMono)', fontSize: '0.55rem', letterSpacing: '0.25em',
                         color: m.accent, opacity: 0.6, textTransform: 'uppercase'
                     }}>
                         <div>{currentAsset.coords}</div>
                         <div style={{ opacity: 0.5 }}>CREÅTIVESTEEPING.COM</div>
-                    </div>
-
-                    {/* The Rendered Monument */}
-                    <div style={{ textAlign: 'center', zIndex: 2, width: '100%' }}>
-                        <div style={{ 
-                            fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, 
-                            letterSpacing: '0.2em', marginBottom: 'var(--space-xl)',
-                            opacity: kineticState === 'idle' || renderedText.kicker.length > 0 ? 0.8 : 0
-                        }}>
-                            {currentAsset.mechanism}
-                        </div>
-                        <h2 style={{ 
-                            fontFamily: 'var(--fSerif)', fontSize: geometry === 'story' ? '2.2rem' : '2.5rem', 
-                            lineHeight: 1.2, fontStyle: 'italic', color: m.text1,
-                            marginBottom: 'var(--space-xl)', minHeight: '3rem'
-                        }}>
-                            {renderedText.kicker}
-                            {kineticState === 'playing' && renderedText.body.length === 0 && <span style={{ animation: 'event-flash 1s infinite', color: m.accent }}>|</span>}
-                        </h2>
-                        {/* BASELINE ITALIC DISCIPLINE: Multi-sentence paragraphs MUST be font-style: normal */}
-                        <div style={{ 
-                            fontFamily: 'var(--fBody)', fontSize: '1.15rem', lineHeight: 1.6, color: m.text2,
-                            fontStyle: 'normal', textAlign: 'left', padding: '0 1rem', minHeight: '6rem'
-                        }}>
-                            {renderedText.body}
-                            {kineticState === 'playing' && renderedText.body.length > 0 && <span style={{ animation: 'event-flash 1s infinite', color: m.accent }}>|</span>}
-                        </div>
                     </div>
                     
                 </motion.div>
@@ -247,11 +518,13 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                         [ NEXT ASSET ]
                     </button>
                     <button onClick={triggerKineticMonument} style={{
-                        background: m.accent, border: 'none', color: m.bg,
+                        background: kineticState === 'preroll' ? m.text1 : m.accent, border: 'none', 
+                        color: kineticState === 'preroll' ? m.bg : m.bg,
                         padding: '8px 16px', fontFamily: 'var(--fMono)', fontSize: '0.7rem', cursor: 'pointer',
                         letterSpacing: '0.15em', fontWeight: 'bold'
                     }}>
-                        {kineticState === 'playing' ? '[ RECORDING... ]' : '[ KINETIC PLAY ]'}
+                        {kineticState === 'preroll' ? `[ RECORDING IN ${prerollCount}... ]` : 
+                         kineticState === 'playing' ? '[ CAPTURING... ]' : '[ KINETIC PLAY ]'}
                     </button>
                 </div>
             </div>

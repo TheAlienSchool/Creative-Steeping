@@ -76,6 +76,24 @@ nav.top-nav {
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+.mode-toggles {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-md);
+}
+
+@media (max-width: 1150px) {
+  .mode-toggles {
+    position: static;
+    transform: none;
+    flex: 1;
+    justify-content: center;
+    margin: 0 var(--space-lg);
+  }
+}
+
 .mode-btn {
   background: none;
   border: none;

@@ -280,6 +280,61 @@ const GlobalSteepingTimer = ({ m, playStrikingBowl, playConsideringHarmonic, pla
 // ==========================================
 // MAIN APP COMPONENT
 // ==========================================
+// ==========================================
+// COMPONENT: LENTICULAR BRANDMARK
+// ==========================================
+const LenticularBrandmark = ({ onClick, user }) => {
+  const [phase, setPhase] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPhase(p => (p + 1) % 2);
+    }, 6000); // Shift every 6 seconds
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div onClick={onClick} className="nav-brand lenticular-brandmark" style={{
+      position: 'relative',
+      cursor: 'pointer',
+      color: "var(--acc)",
+      height: '1.4rem',
+      width: 'clamp(140px, 15vw, 180px)', // Fluid width for side-by-side scaling
+      flexShrink: 0,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden'
+    }}>
+      <AnimatePresence mode="wait">
+        {phase === 0 ? (
+          <motion.div
+            key="creative"
+            initial={{ opacity: 0, filter: 'blur(8px)', fontVariationSettings: '"wght" 100' }}
+            animate={{ opacity: 1, filter: 'blur(0px)', fontVariationSettings: '"wght" 600' }}
+            exit={{ opacity: 0, filter: 'blur(8px)', fontVariationSettings: '"wght" 100' }}
+            transition={{ duration: 2.5, ease: 'easeInOut' }}
+            style={{ position: 'absolute', fontFamily: "var(--fSerif)", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "clamp(0.7rem, 1.5vw, 0.9rem)", fontWeight: 600, whiteSpace: 'nowrap' }}
+          >
+            CREÅTIVE STEEPING
+          </motion.div>
+        ) : (
+          <motion.div
+            key="journey"
+            initial={{ opacity: 0, filter: 'blur(8px)', fontVariationSettings: '"wght" 100' }}
+            animate={{ opacity: 1, filter: 'blur(0px)', fontVariationSettings: '"wght" 600' }}
+            exit={{ opacity: 0, filter: 'blur(8px)', fontVariationSettings: '"wght" 100' }}
+            transition={{ duration: 2.5, ease: 'easeInOut' }}
+            style={{ position: 'absolute', fontFamily: "var(--fMono)", textTransform: "uppercase", letterSpacing: "0.02em", fontSize: "clamp(0.35rem, 0.75vw, 0.45rem)", whiteSpace: 'nowrap', opacity: 0.8 }}
+          >
+            A JOURNEY TO THE ESSENCE OF YOUR FLAVOR
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 function AppInner() {
   const [mode, setMode] = useState("incandescent");
   const [phase, setPhase] = useState("entrance"); // entrance, dashboard, portal
@@ -602,11 +657,9 @@ function AppInner() {
 
       {/* GLOBAL NAVIGATION */}
       <nav className="top-nav">
-        <div onClick={() => setPhase(user ? 'portal' : 'entrance')} className="nav-brand" style={{ cursor: 'pointer', color: "var(--acc)", fontFamily: "var(--fSerif)", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.9rem", fontWeight: 600 }}>
-          CREÅTIVE STEEPING
-        </div>
+        <LenticularBrandmark onClick={() => setPhase(user ? 'portal' : 'entrance')} user={user} />
         {phase === 'portal' && (
-          <div className="mode-toggles" style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 'var(--space-md)' }}>
+          <div className="mode-toggles">
             {Object.keys(MODES).map(k => (
               <button key={k} onClick={() => setMode(k)}
                 ref={el => { modeButtonRefs.current[k] = el; }}
@@ -750,13 +803,7 @@ function AppInner() {
                 </div>
               )}
 
-              <a href="https://discord.gg/creativesteeping" target="_blank" rel="noopener noreferrer" style={{
-                color: 'var(--acc)', textDecoration: 'none', borderBottom: '1px solid transparent',
-                transition: 'border-bottom 1.2s ease', cursor: 'pointer', whiteSpace: 'nowrap'
-              }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--acc)'}
-                onMouseLeave={e => e.currentTarget.style.borderBottom = '1px solid transparent'}>
-                <b>[ DISCORD PORTAL ]</b>
-              </a>
+
             </div>
           </div>
         </div>
@@ -801,7 +848,6 @@ function AppInner() {
           </div>
 
           <div className="entrance-content" style={{ position: 'relative', zIndex: 2 }}>
-            <div className="entrance-eyebrow">A JOURNEY TO THE ESSENCE OF YOUR FLAVOR</div>
             <div style={{ fontFamily: 'var(--fMono)', color: 'var(--acc)', opacity: 1, fontWeight: 'bold', letterSpacing: '0.15em', marginTop: '4px', marginBottom: 'clamp(1rem, 3vh, 2.5rem)', fontSize: '0.9rem', textAlign: 'center', textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
               PATIENCE × PROCRASTINATION = STEEPING
             </div>

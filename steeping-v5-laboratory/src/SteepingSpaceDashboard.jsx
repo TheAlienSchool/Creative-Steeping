@@ -4,6 +4,7 @@ import { supabase } from './supabaseClient';
 import { useSteepingCircles } from './useSteepingCircles';
 import { formatDistanceToNow } from 'date-fns';
 import { Activity, Clock, PenTool, Hash, BookOpen, Users, Radio } from 'lucide-react';
+import { SteamSansEngine } from './SteamSansEngine';
 
 export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
     const { user, profile } = useAuth();
@@ -150,6 +151,9 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
                     <StatBox title="TYPOGRAPHIC RESONANCE" value={`${stats.totalKeystrokes} Keys`} icon={<Hash size={16} />} m={m} />
                     <StatBox title="SOMATIC INK STROKES" value={stats.totalInk} icon={<PenTool size={16} />} m={m} />
                 </div>
+
+                {/* THE STEAM SANS BIOFEEDBACK INSTALLATION */}
+                <SteamSansEngine m={m} />
 
                 {/* THE COLLECTIVE RESONANCE (STEEPING CIRCLES UI) */}
                 <div style={{ width: '100%', textAlign: 'left', marginBottom: 'var(--space-xxl)', border: `1px solid ${m.accent}40`, padding: 'clamp(1rem, 5vw, var(--space-xl))', background: `linear-gradient(45deg, ${m.accent}05 0%, transparent 100%)`, boxSizing: 'border-box' }}>
