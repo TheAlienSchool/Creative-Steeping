@@ -61,22 +61,22 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
             paddingTop: 'calc(var(--navH) + var(--space-xl))', overflowX: 'hidden', overflowY: 'auto',
             animation: 'fadeIn 2s ease forwards'
         }}>
-            {/* Ambient Background Glow & Video matching the active Mode */}
+            {/* Ambient Background Glow (Replaced conflictive video with breathing gradient) */}
             <div style={{
-                position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
-                width: '120vw', height: '120vh',
-                background: `radial-gradient(circle at center, ${m.accent}08 0%, transparent 60%)`,
-                zIndex: 0, pointerEvents: 'none', overflow: 'hidden'
+                position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden'
             }}>
-                {m.name !== "Dark Matter" && (
-                    <video autoPlay loop muted playsInline style={{ 
-                        position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
-                        width: '100%', height: '100%', objectFit: 'cover', 
-                        opacity: 0.15, mixBlendMode: 'screen', filter: 'contrast(1.2)' 
-                    }}>
-                        <source src={`${import.meta.env.BASE_URL}assets/videos/rock_ocean.mp4`} type="video/mp4" />
-                    </video>
-                )}
+                <div style={{
+                    position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+                    width: '150vw', height: '150vh',
+                    background: `radial-gradient(circle at center, ${m.accent}15 0%, transparent 60%)`,
+                    animation: 'pulse 8s ease-in-out infinite alternate',
+                    opacity: m.name === "Dark Matter" ? 0 : 1
+                }} />
+                {/* Subtle structural grain overlay to keep it from looking flat */}
+                <div style={{
+                    position: 'absolute', inset: 0, opacity: 0.03,
+                    backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")'
+                }} />
             </div>
 
             {/* Top Navigation */}
