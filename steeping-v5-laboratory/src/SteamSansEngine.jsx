@@ -127,12 +127,17 @@ export const SteamSansEngine = ({ m }) => {
                     SIGNAL ∴ BREATH ∴ SILENCE
                 </motion.div>
 
-                {/* Register Indicator */}
+                {/* Register Indicator & OWL Inquiry */}
                 <div style={{
-                    marginTop: '2rem', fontFamily: 'var(--fMono)', fontSize: '0.7rem',
-                    color: m.accent, letterSpacing: '0.2em', opacity: 0.8
+                    marginTop: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', textAlign: 'center'
                 }}>
-                    CURRENT STATE: {registerName}
+                    <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.7rem', color: m.accent, letterSpacing: '0.2em', opacity: 0.8 }}>
+                        CURRENT STATE: {registerName}
+                    </div>
+                    <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.55rem', color: m.text2, letterSpacing: '0.15em', opacity: 0.6 }}>
+                        WHY ARE WORDS CHANGING STATES? <br/>
+                        <span style={{ fontStyle: 'italic', color: m.accent }}>// ÆQ·14: YOU ARE READING YOUR OWN COORDINATES.</span>
+                    </div>
                 </div>
             </div>
 

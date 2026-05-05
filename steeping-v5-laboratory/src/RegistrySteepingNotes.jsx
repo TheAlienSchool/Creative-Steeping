@@ -1344,7 +1344,7 @@ const TrigramIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStriking
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
-                he desert is the ultimate horizontal line. Place a structure in it and you are not adding an object to a landscape — you are interrupting the line. A lone black tent on gravel becomes a triangle in profile. It becomes ☶, Gen — stillness and the boundary. The first angle.
+                he desert is the ultimate horizontal line. Place a structure in it and you interrupt the line. A lone black tent on gravel becomes a triangle in profile. It becomes ☶, Gen — stillness and the boundary. The first angle.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 The <SongbookGlossaryItem m={m} term="Triangle" definition="The first closed geometry. Three points create a surface that holds force evenly across all nodes." /> maps space. The <SongbookGlossaryItem m={m} term="Trigram" definition="The foundational unit of the I Ching — three stacked lines, each solid (Yang) or broken (Yin). A three-bit binary code mapping the energetic state of a situation." /> maps time and change. Together, in the desert, they speak the exact same language: the mathematics of the necessary third coordinate.
@@ -1474,7 +1474,7 @@ const ArcPhysicsIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrik
         </div>
         <StepingPrompt m={m} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl}
             prompt="Where in your life are you exhausting yourself by trying to draw a straight line through an atmosphere that requires an arc?" />
-        <PullQuote m={m}>"The resistance is not the obstacle. The resistance is the atmosphere you are using to build velocity."</PullQuote>
+        <PullQuote m={m}>"The resistance functions as the atmosphere you use to build velocity."</PullQuote>
     </div>
 );
 
@@ -1491,10 +1491,10 @@ const ArcTemperatureIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playS
         <div style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.25rem', lineHeight: 1.8, marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>Y</span>
-                ou are already on the map. The destination is not a place you are trying to reach — it is a signal that is revealed through your relationship with the coordinates you currently occupy.
+                ou are already on the map. The destination functions as a signal revealed through your relationship with the coordinates you currently occupy.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <SongbookGlossaryItem m={m} term="Clarity" definition="The felt moment when something becomes clear without effort. It carries relief or ease. It arrives — it is not achieved." /> is not consumed. It is steeped. Time, temperature, and surrender. The water takes the color of the leaf at its own pace. The <SongbookGlossaryItem m={m} term="Immanent Horizon" definition="The 9th Dimension of Surface Tension — the destination revealed through the practitioner's relationship with their current coordinates, not a distant point." /> reveals itself through presence, not pursuit.
+                <SongbookGlossaryItem m={m} term="Clarity" definition="The felt moment when something becomes clear without effort. It carries relief or ease. It simply arrives." /> requires steeping. Time, temperature, and surrender. The water takes the color of the leaf at its own pace. The <SongbookGlossaryItem m={m} term="Immanent Horizon" definition="The 9th Dimension of Surface Tension — the destination revealed through the practitioner's relationship with their current coordinates." /> reveals itself through presence.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 In music, it is the dominant chord — the one that carries the tension of the unresolved, the note that makes the ear lean forward. The Temperature of Arrival is that chord resolving. It is audible only to those who stayed in the cup long enough to let the leaf open fully.
@@ -1528,7 +1528,7 @@ const ArcInBetweenIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStr
                 Jazz is the in-between. The notes are the problem and the solution. The music is what happens between them. The ascending run that stops one note before resolution — the room leans forward. The held silence. Then the release. The resolution arrives as something earned, not delivered.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <AwarenessPlanningInteractive m={m} playAlgoraveSynth={playAlgoraveSynth} /> lives precisely in this topology. The Pivot phase maps the in-between between insight and action. The Merge phase honors the geometry of that crossing. The change is not waiting at the end of the arc. The change is the arc.
+                <AwarenessPlanningInteractive m={m} playAlgoraveSynth={playAlgoraveSynth} /> lives precisely in this topology. The Pivot phase maps the in-between between insight and action. The Merge phase honors the geometry of that crossing. The change is the arc.
             </p>
         </div>
         <StepingPrompt m={m} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl}
@@ -1547,10 +1547,10 @@ const SoundOfBecomingIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, play
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
-                he Steeping Space is not merely a metaphor. It operates as a structured neuro-somatic intervention. The seven mechanisms of The Sound of Becoming map the biology of insight: how resonance transitions from a fleeting electrical impulse into a permanent structural reality within the body.
+                he Steeping Space operates as a structured neuro-somatic intervention. The seven mechanisms of The Sound of Becoming map the biology of insight: how resonance transitions from a fleeting electrical impulse into a permanent structural reality within the body.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                When you cross the <SongbookGlossaryItem m={m} term="Surface Tension" definition="The boundary between limitation and possibility; the creative friction that signals expanding capacity." />, the friction you feel is the sound of your capacity expanding. The frequency is not abstract—it is deeply biological.
+                When you cross the <SongbookGlossaryItem m={m} term="Surface Tension" definition="The boundary between limitation and possibility; the creative friction that signals expanding capacity." />, the friction you feel is the sound of your capacity expanding. The frequency is deeply biological.
             </p>
         </div>
         <StepingPrompt m={m} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} prompt="Where are you currently mistaking the sound of your capacity expanding for the sound of failure?" />
@@ -1699,7 +1699,7 @@ const TuraoIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
-                here is a particular quality of relief that arrives when something carried has finally been received. A letter sent. A truth spoken. A creative work released. In that moment the inner universe exhales — something held becomes something that has landed. The practitioner has steeped something into being, and the universe, in its vast and patient way, has received it. This experience of reception is not metaphor. It is the structure of TURAO.
+                here is a particular quality of relief that arrives when something carried has finally been received. A letter sent. A truth spoken. A creative work released. In that moment the inner universe exhales — something held becomes something that has landed. The practitioner has steeped something into being, and the universe, in its vast and patient way, has received it. This experience of reception constitutes the structure of TURAO.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <SongbookGlossaryItem m={m} term="TURAO" definition="The Universe Receiving All Offerings. Unified Nonidentical Intelligences Operating Naturally. The exterior cosmos that absorbs and holds every offering of the Steeperverse. The Union of Rock and Ocean operating at cosmic scale." /> — <em>The Universe Receiving All Offerings</em> — holds the paradox of existence in its name. Rock: the most stabilizing, form-holding intelligence. Memory, structure, the ancient authority of stone. Ocean: the most fluid, receiving, and generative intelligence. Feeling, change, the endless willingness to take new shape. Their union is the coastline. The coastline is where all creation happens.
@@ -1728,7 +1728,7 @@ const TuraoIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
 
             <br /><br />
 
-            Steeping is not private cultivation. It is an offering with a receiver. The universe holds what is given with the stability that rock holds the memory of the ocean — and with the openness that the ocean brings to every encounter with the shore. The coastline grows more beautiful with every tide. TURAO grows richer with every offering received.
+            Steeping functions as an offering with a receiver. The universe holds what is given with the stability that rock holds the memory of the ocean — and with the openness that the ocean brings to every encounter with the shore. The coastline grows more beautiful with every tide. TURAO grows richer with every offering received.
         </BodyText>
 
         <TuraoFilmPreview m={m} />
@@ -1841,7 +1841,7 @@ const DarkMatterIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrik
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>A</span>
-                stronomers know that the visible stars are not enough to hold the universe together. The math does not work. Without an unseen, massive presence filling the gaps, the galaxies would tear themselves apart. This invisible glue is Dark Matter.
+                stronomers know that the visible stars require an unseen, massive presence filling the gaps to hold the galaxies together. The math demands Dark Matter.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 In the Steeperverse, the Dark Matter modality functions as the deep space of integration. When you enter this mode, you strip away the imagery, the light, the form—leaving only the pure architecture of the void. 

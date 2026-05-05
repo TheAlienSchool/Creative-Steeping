@@ -157,8 +157,9 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
 
                 {/* THE COLLECTIVE RESONANCE (STEEPING CIRCLES UI) */}
                 <div style={{ width: '100%', textAlign: 'left', marginBottom: 'var(--space-xxl)', border: `1px solid ${m.accent}40`, padding: 'clamp(1rem, 5vw, var(--space-xl))', background: `linear-gradient(45deg, ${m.accent}05 0%, transparent 100%)`, boxSizing: 'border-box' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.accent, letterSpacing: '0.25em', marginBottom: '1.5rem', borderBottom: `1px dashed ${m.accent}40`, paddingBottom: '0.8rem'}}>
-                        <Users size={16} /> [ THE COLLECTIVE RESONANCE ]
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.accent, letterSpacing: '0.25em', marginBottom: '1.5rem', borderBottom: `1px dashed ${m.accent}40`, paddingBottom: '0.8rem', flexWrap: 'wrap' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Users size={16} /> [ THE COLLECTIVE ]</div>
+                        <div style={{ fontSize: '0.55rem', color: m.text2, opacity: 0.6, letterSpacing: '0.15em' }}>// ÆQ·06 THE INCOMPLETE PICTURE THEOREM: YOUR IMAGE + THEIR IMAGE = COMPLETE HISTORY</div>
                     </div>
                     
                     {myCircle ? (
@@ -203,10 +204,11 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
                     )}
                 </div>
 
-                {/* Ledger Roll */}
+                {/* Ledger Roll / The Writer's Room */}
                 <div style={{ width: '100%', textAlign: 'left', marginTop: 'var(--space-xl)' }}>
-                    <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.accent, letterSpacing: '0.25em', marginBottom: 'var(--space-lg)', borderBottom: `1px solid ${m.accent}40`, paddingBottom: 'var(--space-sm)'}}>
-                        [ SYNCHRONIZED ARCHIVES ]
+                    <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.accent, letterSpacing: '0.25em', marginBottom: 'var(--space-lg)', borderBottom: `1px solid ${m.accent}40`, paddingBottom: 'var(--space-sm)', display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap'}}>
+                        <span>[ THE WRITER'S ROOM ]</span>
+                        <span style={{ fontSize: '0.55rem', color: m.text2, opacity: 0.6, letterSpacing: '0.15em' }}>// ÆQ·16 THE PRESENT CREATION THEOREM: PRESENT → CREATES → PAST</span>
                     </div>
 
                     {loading ? (
