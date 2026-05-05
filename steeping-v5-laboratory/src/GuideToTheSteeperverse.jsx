@@ -92,6 +92,11 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
             content: `The Sonnet Engine operates as a neuro-somatic bridge. By sonifying the act of writing in 528Hz, the space engages the vagus nerve to anchor the autonomic nervous system. Your physical keystrokes function as bilateral stimulation, while the auditory feedback signals profound safety to the body. This architecture transforms the journaling imperative from a cognitive task into a physical resonance—expanding neuroplasticity and radically deepening your capacity to hold arriving insight.`
         },
         {
+            title: "STEEPING AIDS",
+            subtitle: "Global Timers & The Architecture of the Pause",
+            content: `The Steeping Space honors the pause as a load-bearing pillar. Across the ecosystem, you will encounter Active Pause intervals of 5, 15, and 22 minutes. These are not timers to beat, but practical Steeping Aids designed to support your immersion. When initiated, the global timing architecture synchronizes with the Sonnet Audio Engine, playing subtle acoustic cues—a deep resonant strike at the start, an echotastic sand sonnet passing the minutes, and a closing chime. This unifies your visual and auditory experience, gently holding your focus until your steep is complete.`
+        },
+        {
             title: "THE SAGE INTELLIGENCE",
             subtitle: "Your Partner in Reflective Truth",
             content: `The Steeping Sage :: An interactive wayfinding intelligence designed to support access to the truest questions held within the body. Foundational Sage offers closed-circuit wayfinding to introduce you to The Steeperverse. As we invest deeper into CREATIVE STEEPING adventures, the full Steeping Sage intelligence engages in unrestricted, active dialogue - as you wish. This communion remains private, as The Sage is here for an exchange between our essence and our unfolding intelligence. This operates as a core architectural imperative --> Engage at your leisure.`

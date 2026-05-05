@@ -141,7 +141,9 @@ const GlobalSteepingTimer = ({ m, playStrikingBowl, playConsideringHarmonic, pla
     if (activeTimer && timeLeft > 0) {
       interval = setInterval(() => {
         setTimeLeft(t => {
-          if (t === 1) {
+          const newTime = t - 1;
+          window.dispatchEvent(new CustomEvent('global-timer-state', { detail: { activeTimer, timeLeft: newTime } }));
+          if (newTime === 0) {
             setActiveTimer(null);
             if (playStrikingBowl) playStrikingBowl(60); // Deep bowl finish
             if (activeTimer === 15 && setSymphonyTuning) setSymphonyTuning(false);
@@ -150,15 +152,17 @@ const GlobalSteepingTimer = ({ m, playStrikingBowl, playConsideringHarmonic, pla
           }
           if (playSandSonnet) playSandSonnet(); // The echotastic sand flowing sonnet
 
-          if (t % 60 === 0 && playConsideringHarmonic && t !== 1) {
+          if (newTime % 60 === 0 && playConsideringHarmonic && newTime !== 0) {
             playConsideringHarmonic(); // Subtle prompt passing minutes
           }
-          return t - 1;
+          return newTime;
         });
       }, 1000);
+    } else {
+      window.dispatchEvent(new CustomEvent('global-timer-state', { detail: { activeTimer, timeLeft } }));
     }
     return () => clearInterval(interval);
-  }, [activeTimer, timeLeft, playStrikingBowl, playConsideringHarmonic, playSandSonnet]);
+  }, [activeTimer, timeLeft, playStrikingBowl, playConsideringHarmonic, playSandSonnet, setSonicVolumeState, setSymphonyTuning]);
 
   useEffect(() => {
     document.documentElement.style.setProperty(
@@ -167,10 +171,11 @@ const GlobalSteepingTimer = ({ m, playStrikingBowl, playConsideringHarmonic, pla
     );
   }, [activeTimer]);
 
-  const toggleTimer = (minutes) => {
+  const toggleTimer = useCallback((minutes) => {
     if (activeTimer === minutes) {
       setActiveTimer(null);
       setTimeLeft(0);
+      window.dispatchEvent(new CustomEvent('global-timer-state', { detail: { activeTimer: null, timeLeft: 0 } }));
       // Revert volume and tuning if leaving Time Symphony
       if (minutes === 15 && setSonicVolumeState) setSonicVolumeState(0.5);
       if (minutes === 15 && setSymphonyTuning) setSymphonyTuning(false);
@@ -178,6 +183,7 @@ const GlobalSteepingTimer = ({ m, playStrikingBowl, playConsideringHarmonic, pla
       if (playStrikingBowl) playStrikingBowl(72);
       setActiveTimer(minutes);
       setTimeLeft(minutes * 60);
+      window.dispatchEvent(new CustomEvent('global-timer-state', { detail: { activeTimer: minutes, timeLeft: minutes * 60 } }));
       // Time Symphony overdrive & tuning (Only applies aggressively in 15M mode if requested)
       if (minutes === 15 && instrumentMode) {
         if (setSonicVolumeState) setSonicVolumeState(3.3);
@@ -186,7 +192,13 @@ const GlobalSteepingTimer = ({ m, playStrikingBowl, playConsideringHarmonic, pla
         if (setSymphonyTuning) setSymphonyTuning(false);
       }
     }
-  };
+  }, [activeTimer, instrumentMode, playStrikingBowl, setSonicVolumeState, setSymphonyTuning]);
+
+  useEffect(() => {
+    const handleCommand = (e) => toggleTimer(e.detail);
+    window.addEventListener('start-global-timer', handleCommand);
+    return () => window.removeEventListener('start-global-timer', handleCommand);
+  }, [toggleTimer]);
 
   const formatTime = (seconds) => {
     const min = Math.floor(seconds / 60).toString().padStart(2, '0');
@@ -689,6 +701,12 @@ function AppInner() {
     // Play subtle chime on export confirming resonance captured
     playStrikingBowl(80);
   };
+
+  useEffect(() => {
+    const handler = (e) => generateSonicSketch(e.detail);
+    window.addEventListener('generate-emulsion-artifact', handler);
+    return () => window.removeEventListener('generate-emulsion-artifact', handler);
+  }, []);
 
 
   return (

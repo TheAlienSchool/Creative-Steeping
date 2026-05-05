@@ -1380,29 +1380,64 @@ const ArcCouplet = ({ m }) => (
     </div>
 );
 
+const SEEDS_OF_PROMISE = [
+    "The silence you are holding is structurally sound.",
+    "Do not rush to fill the void. The void is an architecture.",
+    "What you cannot articulate is currently steeping.",
+    "Friction is source code. Allow it to run.",
+    "The mind reaches; the body already knows.",
+    "Stillness is not the absence of action, but the gathering of capacity.",
+    "Let the sentence finish you."
+];
+
 const StepingPrompt = ({ m, prompt, playAlgoraveSynth, playStrikingBowl }) => {
     const [open, setOpen] = useState(false);
     const [timerActive, setTimerActive] = useState(false);
     const [timeLeft, setTimeLeft] = useState(300); // 5 min default steep
     const [complete, setComplete] = useState(false);
-    const [flowMode, setFlowMode] = useState(false);
     const [response, setResponse] = useState('');
+    const [activeSeed, setActiveSeed] = useState(null);
+    const stillnessTimerRef = useRef(null);
+    const [exportLabel] = useState(() => 
+        Math.random() > 0.5 
+            ? "[ DOWNLOAD THE ECHOSKETCH OF THIS STEEP ]" 
+            : "[ CAPTURE THE GEOMETRY OF THIS REFLECTION ]"
+    );
 
     useEffect(() => {
-        if (!timerActive || !flowMode) return;
-        const interval = setInterval(() => {
-            setTimeLeft(prev => {
-                if (prev <= 1) {
-                    clearInterval(interval);
-                    setComplete(true);
-                    if (playAlgoraveSynth) playAlgoraveSynth();
-                    return 0;
-                }
-                return prev - 1;
-            });
-        }, 1000);
-        return () => clearInterval(interval);
-    }, [timerActive, flowMode]);
+        const handleState = (e) => {
+            const { activeTimer, timeLeft: newTimeLeft } = e.detail;
+            if (activeTimer === 5) {
+                setTimerActive(true);
+                setTimeLeft(newTimeLeft);
+                if (newTimeLeft === 0) setComplete(true);
+            } else {
+                setTimerActive(false);
+                setTimeLeft(300);
+            }
+        };
+        window.addEventListener('global-timer-state', handleState);
+        return () => window.removeEventListener('global-timer-state', handleState);
+    }, []);
+
+    const handleInput = (e) => {
+        setResponse(e.target.value);
+        e.target.style.height = 'auto';
+        e.target.style.height = e.target.scrollHeight + 'px';
+        
+        // Seeds of Promise: Stillness Detection
+        setActiveSeed(null); // Clear active seed on movement
+        clearTimeout(stillnessTimerRef.current);
+        
+        if (e.target.value.trim() !== '') {
+            stillnessTimerRef.current = setTimeout(() => {
+                // Surface a profound seed of promise when the user rests in the pocket
+                const seed = SEEDS_OF_PROMISE[Math.floor(Math.random() * SEEDS_OF_PROMISE.length)];
+                setActiveSeed(seed);
+                if (playAlgoraveSynth) playAlgoraveSynth(); // Sonic cue of arrival
+            }, 16000); // 16 seconds of stillness
+        }
+    };
 
     const formatTime = (s) => `${Math.floor(s / 60).toString().padStart(2, '0')}:${(s % 60).toString().padStart(2, '0')}`;
 
@@ -1420,15 +1455,27 @@ const StepingPrompt = ({ m, prompt, playAlgoraveSynth, playStrikingBowl }) => {
                     <div style={{ fontFamily: 'var(--fSerif)', fontSize: '1.2rem', color: m.text1, lineHeight: 1.6, fontStyle: 'italic', marginBottom: '1.5rem' }}>
                         "{prompt}"
                     </div>
-                    <textarea value={response} onChange={e => setResponse(e.target.value)}
-                        placeholder="Steep here..."
-                        rows={3}
-                        onInput={e => { e.target.style.height = 'auto'; e.target.style.height = e.target.scrollHeight + 'px'; }}
-                        onKeyDown={e => { if (e.key.length === 1 && playStrikingBowl) playStrikingBowl(e.keyCode); }}
-                        style={{ width: '100%', background: 'transparent', border: `1px solid ${m.accent}30`, borderBottom: `2px solid ${m.accent}`, color: m.text1, padding: '1rem', fontFamily: 'var(--fBody)', fontSize: '1rem', fontStyle: 'italic', lineHeight: 1.7, resize: 'none', outline: 'none', boxSizing: 'border-box', marginBottom: '1.5rem' }} />
+                    <div style={{ position: 'relative' }}>
+                        <textarea value={response} onChange={handleInput}
+                            placeholder="Steep here..."
+                            rows={3}
+                            onKeyDown={e => { if (e.key.length === 1 && playStrikingBowl) playStrikingBowl(e.keyCode); }}
+                            style={{ width: '100%', background: 'transparent', border: `1px solid ${m.accent}30`, borderBottom: `2px solid ${m.accent}`, color: m.text1, padding: '1rem', fontFamily: 'var(--fBody)', fontSize: '1rem', fontStyle: 'italic', lineHeight: 1.7, resize: 'none', outline: 'none', boxSizing: 'border-box', marginBottom: '1.5rem', transition: 'border-color 0.8s ease' }} />
+                        
+                        {/* The Emulsion Artifact / Seed of Promise Surface */}
+                        <div style={{ 
+                            position: 'absolute', bottom: '2rem', right: '1rem', 
+                            opacity: activeSeed ? 1 : 0, transform: activeSeed ? 'translateY(0)' : 'translateY(10px)',
+                            pointerEvents: 'none', transition: 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                            fontFamily: 'var(--fSerif)', fontSize: '0.85rem', fontStyle: 'italic', color: m.accent,
+                            textShadow: `0 0 15px ${m.accent}80`, maxWidth: '60%', textAlign: 'right'
+                        }}>
+                            {activeSeed}
+                        </div>
+                    </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
                         {!timerActive ? (
-                            <button onClick={() => { setTimerActive(true); setTimeLeft(300); setComplete(false); if (playStrikingBowl) playStrikingBowl(60); }}
+                            <button onClick={() => window.dispatchEvent(new CustomEvent('start-global-timer', { detail: 5 }))}
                                 style={{ padding: '8px 18px', background: 'transparent', border: `1px solid ${m.accent}50`, color: m.accent, fontFamily: 'var(--fMono)', fontSize: '0.65rem', letterSpacing: '0.15em', cursor: 'pointer' }}>
                                 [ BEGIN 5-MINUTE STEEP ]
                             </button>
@@ -1437,10 +1484,22 @@ const StepingPrompt = ({ m, prompt, playAlgoraveSynth, playStrikingBowl }) => {
                                 <div style={{ fontFamily: 'var(--fMono)', fontSize: '1rem', color: complete ? m.accent : m.text1 }}>
                                     {complete ? '[ STEEP COMPLETE ]' : formatTime(timeLeft)}
                                 </div>
-                                <button onClick={() => setFlowMode(!flowMode)}
-                                    style={{ padding: '6px 12px', background: flowMode ? `${m.accent}15` : 'transparent', border: `1px solid ${flowMode ? m.accent : m.accent + '30'}`, color: flowMode ? m.accent : m.text2, fontFamily: 'var(--fMono)', fontSize: '0.6rem', letterSpacing: '0.1em', cursor: 'pointer', transition: 'all 0.3s ease' }}>
-                                    {flowMode ? '[ FLOW MODE: ON ]' : '[ FLOW MODE: OFF ]'}
-                                </button>
+                                {complete && (
+                                    <button onClick={() => {
+                                        window.dispatchEvent(new CustomEvent('generate-emulsion-artifact', {
+                                            detail: {
+                                                timestamp: new Date().toISOString(),
+                                                query: prompt,
+                                                response: response || "A silent steep.",
+                                                mode: "steeping-note"
+                                            }
+                                        }));
+                                        if (playStrikingBowl) playStrikingBowl(84); // High harmonic ping
+                                    }}
+                                        style={{ padding: '6px 12px', background: `${m.accent}15`, border: `1px solid ${m.accent}`, color: m.accent, fontFamily: 'var(--fMono)', fontSize: '0.6rem', letterSpacing: '0.1em', cursor: 'pointer', transition: 'all 0.3s ease' }}>
+                                        {exportLabel}
+                                    </button>
+                                )}
                             </>
                         )}
                     </div>

@@ -45,25 +45,22 @@ export function Vessel02Detail({ modeString, playStrikingBowl, playHarmonicChord
     const [timeLeft, setTimeLeft] = useState(22 * 60);
 
     useEffect(() => {
-        let interval = null;
-        if (timerActive && timeLeft > 0) {
-            interval = setInterval(() => {
-                setTimeLeft(time => time - 1);
-            }, 1000);
-        } else if (timeLeft === 0 && timerActive) {
-            setTimerActive(false);
-            if (playStrikingBowl) playStrikingBowl(60); // Deep resonant chime on finish
-        }
-        return () => clearInterval(interval);
-    }, [timerActive, timeLeft, playStrikingBowl]);
+        const handleState = (e) => {
+            const { activeTimer, timeLeft: newTimeLeft } = e.detail;
+            if (activeTimer === 22) {
+                setTimerActive(true);
+                setTimeLeft(newTimeLeft);
+            } else {
+                setTimerActive(false);
+                setTimeLeft(22 * 60);
+            }
+        };
+        window.addEventListener('global-timer-state', handleState);
+        return () => window.removeEventListener('global-timer-state', handleState);
+    }, []);
 
     const handleTimerClick = () => {
-        if (!timerActive && timeLeft === 22 * 60) {
-            if (playStrikingBowl) playStrikingBowl(72); // Start chime
-            setTimerActive(true);
-        } else {
-            setTimerActive(!timerActive); // Pause/Resume
-        }
+        window.dispatchEvent(new CustomEvent('start-global-timer', { detail: 22 }));
     };
 
     const formatTime = (seconds) => {
