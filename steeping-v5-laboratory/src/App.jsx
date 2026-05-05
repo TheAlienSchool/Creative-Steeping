@@ -1191,31 +1191,60 @@ function AppInner() {
                           }
                         }}
                         onMouseEnter={(e) => {
-                          if (isLocked) return;
+                          if (isLocked) {
+                            const tooltip = e.currentTarget.querySelector('.locked-tooltip');
+                            if (tooltip) {
+                              tooltip.style.opacity = '1';
+                              tooltip.style.transform = 'translate(-50%, 0)';
+                            }
+                            return;
+                          }
                           playStrikingBowl(vessel.num.charCodeAt(1));
                           const wrapper = e.currentTarget.parentElement.children[0];
                           if (wrapper) wrapper.style.opacity = '0.45';
                         }}
                         onMouseLeave={(e) => {
-                          if (isLocked) return;
+                          if (isLocked) {
+                            const tooltip = e.currentTarget.querySelector('.locked-tooltip');
+                            if (tooltip) {
+                              tooltip.style.opacity = '0';
+                              tooltip.style.transform = 'translate(-50%, 10px)';
+                            }
+                            return;
+                          }
                           const wrapper = e.currentTarget.parentElement.children[0];
                           if (wrapper) wrapper.style.opacity = '0';
                         }}
                       >
 
-                        {/* Locked Overlay Gamification */}
+                        {/* Softer Locked Overlay Gamification */}
                         {isLocked && (
-                          <div style={{
+                          <div className="locked-vessel-overlay" style={{
                             position: 'absolute', inset: 0, zIndex: 10,
-                            background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(2px)',
-                            display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'
+                            background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(1px)',
+                            display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
+                            opacity: 0.9, transition: 'all 0.5s ease', cursor: 'not-allowed'
                           }}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--acc)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '8px', opacity: 0.8 }}>
+                            {/* The Lock Icon */}
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.7, marginBottom: '8px' }}>
                               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                             </svg>
-                            <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: 'var(--acc)', letterSpacing: '0.2em', textTransform: 'uppercase', background: 'rgba(0,0,0,0.8)', padding: '4px 8px', border: '1px solid var(--acc)' }}>
-                              SYNTHESIS REQUIRED
+                            
+                            {/* The Unique Encouragement Tooltip */}
+                            <div className="locked-tooltip" style={{
+                              position: 'absolute', bottom: '-40px', left: '50%', transform: 'translate(-50%, 10px)',
+                              width: '240px', background: 'rgba(0,0,0,0.95)', border: '1px dashed var(--acc)',
+                              padding: '12px', fontFamily: 'var(--fBody)', fontSize: '0.75rem', color: 'var(--text1)',
+                              lineHeight: 1.5, textAlign: 'center', opacity: 0, pointerEvents: 'none',
+                              transition: 'all 0.4s ease', zIndex: 20, boxShadow: '0 10px 30px rgba(0,0,0,0.9)'
+                            }}>
+                              <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: 'var(--acc)', letterSpacing: '0.15em', marginBottom: '8px', borderBottom: '1px solid var(--acc)', paddingBottom: '4px' }}>
+                                THE WATER IS STEADYING
+                              </div>
+                              <div style={{ fontStyle: 'italic' }}>
+                                {vessel.lockedMessage || "Continue steeping to unlock this journey."}
+                              </div>
                             </div>
                           </div>
                         )}

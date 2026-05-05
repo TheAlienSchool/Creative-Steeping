@@ -64,6 +64,7 @@ export const VESSELS = [
             prompt: "Write down the deepest unacknowledged truth you see reflected in the water. Claim it.",
             placeholder: "I have always known..."
         },
+        lockedMessage: "The water must settle before it can reflect. Deepen your presence in the preceding vessels to unlock this mirror.",
         bgUrl: `${import.meta.env.BASE_URL}assets/steeperverse/02_pattern_garden_nebula.jpg`
     },
     {
@@ -79,6 +80,7 @@ export const VESSELS = [
             prompt: "Name one area of your life where you would like to cultivate greater coherence:",
             placeholder: "I seek coherence in..."
         },
+        lockedMessage: "Coherence requires an established rhythm. Continue steeping your reflections to gather the capacity for this vessel.",
         bgUrl: `${import.meta.env.BASE_URL}assets/steeperverse/07_dissonance_cloud.jpg`
     },
     {
@@ -94,6 +96,7 @@ export const VESSELS = [
             prompt: "Begin a letter to a part of yourself that you wish to understand better. You do not need to finish it.",
             placeholder: "Dear..."
         },
+        lockedMessage: "The fragments cannot be arranged until they are fully witnessed. Your steeping practice is slowly gathering the pieces.",
         bgUrl: `${import.meta.env.BASE_URL}assets/steeperverse/06_breath_path.jpg`
     },
     {
@@ -109,6 +112,7 @@ export const VESSELS = [
             prompt: "Write down the name of someone you wish to understand more deeply, and one question you want to ask them.",
             placeholder: "I want to ask..."
         },
+        lockedMessage: "The internal must be saturated before it can safely extend outward. Hold your current steep, the overflow will come naturally.",
         bgUrl: `${import.meta.env.BASE_URL}assets/steeperverse/16_the_steeping_space_planet.jpg`
     },
     {
@@ -124,6 +128,7 @@ export const VESSELS = [
             prompt: "Write a single sentence declaring your creative intention moving forward.",
             placeholder: "I am ready to..."
         },
+        lockedMessage: "Authority is earned through the completion of the cycle. Your voice is still gathering strength. Keep exploring the earlier vessels.",
         bgUrl: `${import.meta.env.BASE_URL}assets/steeperverse/13_the_neutrino_stream.jpg`
     },
     {
@@ -139,6 +144,7 @@ export const VESSELS = [
             prompt: "Sign your name as the author of this experience.",
             placeholder: "By..."
         },
+        lockedMessage: "The signature cannot precede the work. This final vessel awaits your arrival at the end of the arc. Return to your active steeps.",
         bgUrl: `${import.meta.env.BASE_URL}assets/steeperverse/15_the_human_as_star.jpg`
     }
 ];
