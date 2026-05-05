@@ -102,6 +102,7 @@ const SAGE_CONTEXT = {
     harmonic:          { series: 'GEOMETRY', freq: 96, kicker: 'Symbols of Harmonic Equivalence', sage: 'The :: = :: operator triangulates distinct languages describing the exact same physical mechanism. The Goosebump :: = :: The Score. You triangulate your intellect and your body. Key concepts: Harmonic Equivalence, The Score, Plural Now.' },
     watcher:           { series: 'COSMOLOGY', freq: 98, kicker: 'Consciousness is the ÅLïEN', sage: 'The silent watcher behind the eyes is the ÅLïEN, unchanged since childhood. It is the ground of being. Winning is the moment the field recognizes its own nature through you. Key concepts: ÅLïEN, The Watcher, Field Recognition.' },
     echosystem:        { series: 'ECOLOGY', freq: 100, kicker: 'An ECHO System for biodiversity', sage: 'An echosystem is an ECHO System for the biodiversity of opportunities life creates for Humanity. The echo is the sound of the future arriving to meet you. Key concepts: Echosystem, Biodiversity, Generative Feedback, TURAO.' },
+    'three-states':    { series: 'TYPOGRAPHY', freq: 102, kicker: 'Three States. One Word.', sage: 'Every word in the instrument holds three simultaneous states (HARRIS, HBA, VAPOR). The reader\'s coordinate determines the state. The word does not change; the state changes. This is the foundation of Spacetime Linguistics.' }
 };
 
 // ── THE RESONANCE VAULT (Interactive Filtering Architecture) ───────────────

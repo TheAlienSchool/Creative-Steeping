@@ -897,10 +897,60 @@ const EchosystemIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrik
     </div>
 );
 
+// ────────────────────────────────────────────────────────────────────────────
+// ISSUE 24: THREE STATES · ONE WORD
+// ────────────────────────────────────────────────────────────────────────────
+
+const ThreeStatesIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => (
+    <div style={{ animation: 'fadeIn 1s ease' }}>
+        <IssueHeader m={m} title="Three States" accent="One Word" published="2026" designation="THE STEEPERVERSE" source="SPACETIME LINGUISTICS" kicker="Taking a knowable notion and giving it relatable spacetime dimension." />
+        
+        <HeroImage m={m} src="/steam_ghost_transformation.png" alt="Typographic Phase Shift" caption="FIG. 03 — THE PHASE SHIFT OF MEANING" />
+
+        <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>E</span>
+                very word in the instrument holds three simultaneous states. The <SongbookGlossaryItem m={m} term="HARRIS" definition="Maximum contrast. Maximum presence. The word at full weight." /> state carries the dense, uncompromising physics of the present moment. The <SongbookGlossaryItem m={m} term="HBA" definition="The grey area. The transitional state between full weight and dissolution." /> state exists in the twilight of maximum information density. The <SongbookGlossaryItem m={m} term="VAPOR" definition="The word at its most transmissive. The form persisting after detail has released." /> state is the linguistic silhouette.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                Etymologically, a word is treated as a static container of meaning. But in a true <SongbookGlossaryItem m={m} term="Echosystem" definition="A generative feedback loop that sustains human potential." />, a word is a coordinate in spacetime. It breathes. The reader’s biometric position determines which state they encounter. The word itself does not change; the state changes. It is a linguistic phase shift, turning static ink into a volumetric architectural space.
+            </p>
+        </div>
+
+        <div style={{ margin: 'var(--space-xxl) 0', padding: 'var(--space-xl)', border: `1px solid ${m.accent}30`, background: `linear-gradient(180deg, ${m.accent}05 0%, transparent 100%)` }}>
+             <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.75rem', color: m.accent, textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '1.5rem' }}>[ SPACETIME INFOGRAPHIC ]</div>
+             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
+                 <div style={{ padding: '1rem', borderLeft: `2px solid ${m.text1}` }}>
+                     <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, marginBottom: '0.5rem' }}>STATE 01</div>
+                     <div style={{ fontFamily: 'var(--fMono)', fontSize: '1.5rem', fontWeight: 900, letterSpacing: '0.02em', color: m.text1, marginBottom: '1rem' }}>HARRIS</div>
+                     <div style={{ fontFamily: 'var(--fBody)', fontSize: '0.9rem', color: m.text2, lineHeight: 1.5 }}>Solid state. The candle lighter in the room. The absolute present.</div>
+                 </div>
+                 <div style={{ padding: '1rem', borderLeft: `2px dashed ${m.accent}` }}>
+                     <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, marginBottom: '0.5rem' }}>STATE 02</div>
+                     <div style={{ fontFamily: 'var(--fMono)', fontSize: '1.5rem', fontWeight: 600, letterSpacing: '0.08em', color: m.accent, opacity: 0.8, textShadow: `0 0 4px ${m.accent}`, marginBottom: '1rem' }}>HBA</div>
+                     <div style={{ fontFamily: 'var(--fBody)', fontSize: '0.9rem', color: m.text2, lineHeight: 1.5 }}>Transitional state. The grey area. The zone of maximum combustion.</div>
+                 </div>
+                 <div style={{ padding: '1rem', borderLeft: `1px dotted ${m.accent}`, opacity: 0.6 }}>
+                     <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, marginBottom: '0.5rem' }}>STATE 03</div>
+                     <div style={{ fontFamily: 'var(--fMono)', fontSize: '1.5rem', fontWeight: 100, letterSpacing: '0.15em', filter: 'blur(1.5px)', color: m.text2, marginBottom: '1rem' }}>VAPOR</div>
+                     <div style={{ fontFamily: 'var(--fBody)', fontSize: '0.9rem', color: m.text2, lineHeight: 1.5 }}>Transmissive state. The form that outlasts the detail. The silhouette.</div>
+                 </div>
+             </div>
+        </div>
+
+        <PullQuote m={m}>"The word does not change. The state changes. You are reading your own coordinates."</PullQuote>
+    </div>
+);
+
 // PRIMARY REGISTRY EXPORT
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const getSteepingIssues = (m, setTuraoMode, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl, historicalScore) => [
+    {
+        id: 'three-states',
+        buttonLabel: '[ THREE STATES ]',
+        render: () => <ThreeStatesIssue m={m} SongbookGlossaryItem={SongbookGlossaryItem} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} />
+    },
     {
         id: 'echosystem',
         buttonLabel: '[ THE ECHOSYSTEM ]',

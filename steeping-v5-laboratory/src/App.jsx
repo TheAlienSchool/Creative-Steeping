@@ -281,15 +281,15 @@ const GlobalSteepingTimer = ({ m, playStrikingBowl, playConsideringHarmonic, pla
 // MAIN APP COMPONENT
 // ==========================================
 // ==========================================
-// COMPONENT: LENTICULAR BRANDMARK
+// COMPONENT: LENTICULAR BRANDMARK (STEAM SANS SHOWCASE)
 // ==========================================
 const LenticularBrandmark = ({ onClick, user }) => {
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setPhase(p => (p + 1) % 2);
-    }, 6000); // Shift every 6 seconds
+      setPhase(p => (p + 1) % 4);
+    }, 5500); // 5.5 seconds per phase
     return () => clearInterval(interval);
   }, []);
 
@@ -299,33 +299,84 @@ const LenticularBrandmark = ({ onClick, user }) => {
       cursor: 'pointer',
       color: "var(--acc)",
       height: '1.4rem',
-      width: 'clamp(140px, 15vw, 180px)', // Fluid width for side-by-side scaling
+      width: 'clamp(200px, 22vw, 240px)', // Expanded to comfortably fit the wordmark without clipping
       flexShrink: 0,
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center',
-      overflow: 'hidden'
+      justifyContent: 'flex-start', // Anchored left so it doesn't wander or clip centrally
+      overflow: 'visible'
     }}>
       <AnimatePresence mode="wait">
-        {phase === 0 ? (
+        {phase === 0 && (
           <motion.div
             key="creative"
             initial={{ opacity: 0, filter: 'blur(8px)', fontVariationSettings: '"wght" 100' }}
             animate={{ opacity: 1, filter: 'blur(0px)', fontVariationSettings: '"wght" 600' }}
             exit={{ opacity: 0, filter: 'blur(8px)', fontVariationSettings: '"wght" 100' }}
-            transition={{ duration: 2.5, ease: 'easeInOut' }}
-            style={{ position: 'absolute', fontFamily: "var(--fSerif)", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "clamp(0.7rem, 1.5vw, 0.9rem)", fontWeight: 600, whiteSpace: 'nowrap' }}
+            transition={{ duration: 2.0, ease: 'easeInOut' }}
+            style={{ position: 'absolute', left: 0, fontFamily: "var(--fSerif)", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "clamp(0.7rem, 1.5vw, 0.9rem)", fontWeight: 600, whiteSpace: 'nowrap' }}
           >
             CREÅTIVE STEEPING
           </motion.div>
-        ) : (
+        )}
+
+        {/* Phase 1: HARRIS Rendition (Solid, High Contrast) */}
+        {phase === 1 && (
           <motion.div
-            key="journey"
-            initial={{ opacity: 0, filter: 'blur(8px)', fontVariationSettings: '"wght" 100' }}
-            animate={{ opacity: 1, filter: 'blur(0px)', fontVariationSettings: '"wght" 600' }}
-            exit={{ opacity: 0, filter: 'blur(8px)', fontVariationSettings: '"wght" 100' }}
-            transition={{ duration: 2.5, ease: 'easeInOut' }}
-            style={{ position: 'absolute', fontFamily: "var(--fMono)", textTransform: "uppercase", letterSpacing: "0.02em", fontSize: "clamp(0.35rem, 0.75vw, 0.45rem)", whiteSpace: 'nowrap', opacity: 0.8 }}
+            key="harris"
+            initial={{ opacity: 0, filter: 'blur(8px)', fontVariationSettings: '"wght" 100', letterSpacing: '0.15em' }}
+            animate={{ opacity: 1, filter: 'blur(0px)', fontVariationSettings: '"wght" 900', letterSpacing: '0.02em' }}
+            exit={{ opacity: 0, filter: 'blur(8px)', fontVariationSettings: '"wght" 100', letterSpacing: '0.15em' }}
+            transition={{ duration: 2.0, ease: 'easeInOut' }}
+            style={{ position: 'absolute', left: 0, fontFamily: "var(--fMono)", textTransform: "uppercase", fontSize: "clamp(0.35rem, 0.75vw, 0.45rem)", whiteSpace: 'nowrap', color: 'var(--t1)' }}
+          >
+            A JOURNEY TO THE ESSENCE OF YOUR FLAVOR
+          </motion.div>
+        )}
+
+        {/* Phase 2: HBA Stacking (The Echo Effect / Word Art) */}
+        {phase === 2 && (
+          <motion.div
+            key="stacking"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 2.0 }}
+            style={{ position: 'absolute', left: 0, width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}
+          >
+            {/* The VAPOR Base */}
+            <motion.div
+              animate={{ opacity: 0.3, filter: 'blur(2px)', fontVariationSettings: '"wght" 300', letterSpacing: '0.10em', y: 6 }}
+              style={{ position: 'absolute', left: 0, fontFamily: "var(--fMono)", textTransform: "uppercase", fontSize: "clamp(0.35rem, 0.75vw, 0.45rem)", whiteSpace: 'nowrap', color: 'var(--acc)' }}
+            >
+              A JOURNEY TO THE ESSENCE OF YOUR FLAVOR
+            </motion.div>
+            {/* The HBA Middle */}
+            <motion.div
+              animate={{ opacity: 0.6, filter: 'blur(0.5px)', fontVariationSettings: '"wght" 600', letterSpacing: '0.06em', y: 3 }}
+              style={{ position: 'absolute', left: 0, fontFamily: "var(--fMono)", textTransform: "uppercase", fontSize: "clamp(0.35rem, 0.75vw, 0.45rem)", whiteSpace: 'nowrap', color: 'var(--t2)' }}
+            >
+              A JOURNEY TO THE ESSENCE OF YOUR FLAVOR
+            </motion.div>
+            {/* The HARRIS Peak */}
+            <motion.div
+              animate={{ opacity: 1, filter: 'blur(0px)', fontVariationSettings: '"wght" 900', letterSpacing: '0.02em', y: 0 }}
+              style={{ position: 'absolute', left: 0, fontFamily: "var(--fMono)", textTransform: "uppercase", fontSize: "clamp(0.35rem, 0.75vw, 0.45rem)", whiteSpace: 'nowrap', color: 'var(--t1)' }}
+            >
+              A JOURNEY TO THE ESSENCE OF YOUR FLAVOR
+            </motion.div>
+          </motion.div>
+        )}
+
+        {/* Phase 3: VAPOR Rendition (Dissolving, Wide) */}
+        {phase === 3 && (
+          <motion.div
+            key="vapor"
+            initial={{ opacity: 0, filter: 'blur(0px)', fontVariationSettings: '"wght" 600', letterSpacing: '0.02em' }}
+            animate={{ opacity: 0.45, filter: 'blur(2px)', fontVariationSettings: '"wght" 100', letterSpacing: '0.15em' }}
+            exit={{ opacity: 0, filter: 'blur(10px)', fontVariationSettings: '"wght" 100', letterSpacing: '0.2em' }}
+            transition={{ duration: 3.0, ease: 'easeOut' }}
+            style={{ position: 'absolute', left: 0, fontFamily: "var(--fMono)", textTransform: "uppercase", fontSize: "clamp(0.3rem, 0.65vw, 0.4rem)", whiteSpace: 'nowrap', color: 'var(--acc)' }}
           >
             A JOURNEY TO THE ESSENCE OF YOUR FLAVOR
           </motion.div>
