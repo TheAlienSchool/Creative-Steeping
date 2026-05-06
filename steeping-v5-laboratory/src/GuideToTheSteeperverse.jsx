@@ -123,6 +123,12 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
             alert("Please log in with your email first to secure your coordinates.");
             return;
         }
+
+        if (tierId === 'cohort') {
+            setShowCohortForm(true);
+            return;
+        }
+
         setCheckoutLoading(tierId);
         
         try {
@@ -145,6 +151,51 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
             setCheckoutLoading(false);
         }
     };
+
+    // --- COHORT APPLICATION LOGIC ---
+    const [showCohortForm, setShowCohortForm] = useState(false);
+    const [inquiryResponse, setInquiryResponse] = useState('');
+    const [isSubmittingCohort, setIsSubmittingCohort] = useState(false);
+
+    const submitCohortApplication = async () => {
+        if (!inquiryResponse.trim()) {
+            alert("Please offer your reflection to the inquiry before proceeding.");
+            return;
+        }
+
+        setIsSubmittingCohort(true);
+        try {
+            // 1. Save Application to Supabase (Triggers Spreadsheet Arts Webhook)
+            const { error: dbError } = await supabase
+                .from('cohort_applications')
+                .insert({
+                    email: user.email,
+                    inquiry_response: inquiryResponse,
+                    target_cohort: "June 16, 2026"
+                });
+
+            if (dbError) throw dbError;
+
+            // 2. Redirect to Checkout
+            const { data, error: stripeError } = await supabase.functions.invoke('create-checkout-session', {
+                body: { 
+                    tier: 'cohort', 
+                    user_id: user.id, 
+                    return_url: window.location.href 
+                }
+            });
+            
+            if (stripeError) throw stripeError;
+            if (data?.url) {
+                window.location.href = data.url; 
+            }
+        } catch (err) {
+            console.error("Cohort application error:", err);
+            alert("There was an issue processing your application. Please try again.");
+            setIsSubmittingCohort(false);
+        }
+    };
+    // ---------------------------------
 
     const TierCard = ({ title, price, mechanism, buttonText, onClick, isLoading, compact }) => (
         <div style={{ 
@@ -389,6 +440,68 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
             <div className="guide-scrolling-defunct" style={{ position: 'absolute', bottom: 'var(--space-lg)', left: '50%', transform: 'translateX(-50%)', fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, letterSpacing: '0.4em', opacity: 0.4, width: '100%', textAlign: 'center' }}>
                 {CHAPTERS[activeChapter].isCrossroads ? 'CHOOSE YOUR ESSENCE. THE ARCHITECTURE AWAITS.' : 'HERE, THE ARROW --> IS THE TOOL OF THE ARCHER.'}
             </div>
+            {/* Application of Intent Modal */}
+            <AnimatePresence>
+                {showCohortForm && (
+                    <motion.div 
+                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                        style={{
+                            position: 'fixed', inset: 0, zIndex: 100000,
+                            background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)',
+                            display: 'flex', justifyContent: 'center', alignItems: 'center', padding: 'var(--space-md)'
+                        }}
+                    >
+                        <motion.div
+                            initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
+                            style={{
+                                background: `${m.bg}`, border: `1px solid ${m.accent}`,
+                                padding: 'var(--space-xl)', maxWidth: '500px', width: '100%',
+                                display: 'flex', flexDirection: 'column', gap: 'var(--space-md)'
+                            }}
+                        >
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <div style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.15em', fontSize: '0.8rem' }}>THE APPLICATION OF INTENT</div>
+                                <button 
+                                    onClick={() => setShowCohortForm(false)}
+                                    style={{ background: 'none', border: 'none', color: m.text2, cursor: 'pointer', fontSize: '1.2rem' }}
+                                >✕</button>
+                            </div>
+                            
+                            <div style={{ fontFamily: 'var(--fSerif)', fontSize: '1.2rem', color: m.text1, lineHeight: 1.4 }}>
+                                "Who do you think you are?"
+                            </div>
+                            <div style={{ fontFamily: 'var(--fBody)', fontSize: '0.85rem', color: m.text2, fontStyle: 'italic' }}>
+                                The Cohort requires an established rhythm and an open vessel. Before you secure your seat for June 16, 2026, please offer a brief reflection to this neutral, expansive inquiry. This is your first steep.
+                            </div>
+
+                            <textarea 
+                                value={inquiryResponse}
+                                onChange={(e) => setInquiryResponse(e.target.value)}
+                                placeholder="I am..."
+                                style={{
+                                    width: '100%', minHeight: '120px', background: `${m.surface}50`, border: `1px solid ${m.text2}40`,
+                                    color: m.text1, padding: 'var(--space-md)', fontFamily: 'var(--fBody)', fontSize: '0.9rem',
+                                    resize: 'none', outline: 'none'
+                                }}
+                                onFocus={e => e.target.style.borderColor = m.accent}
+                                onBlur={e => e.target.style.borderColor = `${m.text2}40`}
+                            />
+
+                            <button 
+                                onClick={submitCohortApplication}
+                                disabled={isSubmittingCohort}
+                                style={{
+                                    padding: '16px', background: m.accent, color: m.bg, border: 'none',
+                                    fontFamily: 'var(--fMono)', fontSize: '0.9rem', letterSpacing: '0.1em', cursor: 'pointer',
+                                    opacity: isSubmittingCohort ? 0.7 : 1, transition: 'all 0.3s ease', marginTop: 'var(--space-sm)'
+                                }}
+                            >
+                                {isSubmittingCohort ? '[ PREPARING THE VESSEL... ]' : '[ COMMIT AND SECURE SEAT ]'}
+                            </button>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.div>
     );
 };
