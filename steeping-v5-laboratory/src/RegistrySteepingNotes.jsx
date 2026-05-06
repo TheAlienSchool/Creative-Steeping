@@ -1136,6 +1136,11 @@ export const getSteepingIssues = (m, setTuraoMode, SongbookGlossaryItem, playAlg
         id: 'watcher',
         buttonLabel: '[ THE WATCHER ]',
         render: () => <WatcherIssue m={m} SongbookGlossaryItem={SongbookGlossaryItem} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} />
+    },
+    {
+        id: 'peace',
+        buttonLabel: '[ PEACE EXISTS ]',
+        render: () => <PeaceIssue m={m} SongbookGlossaryItem={SongbookGlossaryItem} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} />
     }
 ];
 
@@ -1910,6 +1915,157 @@ const DarkMatterIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrik
             </p>
         </div>
         <PullQuote m={m}>"Honor the darkness. It functions as the only space a candle can prove its worth."</PullQuote>
+    </div>
+);
+
+// ────────────────────────────────────────────────────────────────────────────
+// ISSUE 23: PEACE EXISTS
+// ────────────────────────────────────────────────────────────────────────────
+
+const PeaceIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => (
+    <div style={{ animation: 'fadeIn 1s ease' }}>
+        <IssueHeader m={m} title="Peace" accent="Exists" published="2026" designation="THE STEEPERVERSE" source="THE ANCHOR" kicker="Peace is a coordinate. It already occupies space in the field. The human task is orientation, not achievement." />
+        <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>W</span>
+                e begin with two words. They form a complete sentence. They require no conditions to be true. <b>Peace Exists.</b> This is the anchor.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                You have felt this. There is a moment—perhaps in the early morning before thought begins, perhaps in the second after a long exhale—when the body is simply present. No argument is running. The chest is loose. The eyes are soft.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                That moment is not the absence of your life. It is the presence of something that was there before your life’s noise began.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                Peace is a coordinate. It already occupies space in the field. The human task is orientation, not achievement. You do not build it. You locate it.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                When we look across the globe, we see how different lineages of the human family have mapped this coordinate. Each language offers a distinct alchemical potential. Each word is a Peacemark. And when these Peacemarks touch, new geometries of understanding emerge.
+            </p>
+
+            <div style={{ textAlign: 'center', margin: 'var(--space-xl) 0', color: m.accent, opacity: 0.5 }}>***</div>
+
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                Consider the Semitic root—<i>Shalom</i> in Hebrew, <i>Salām</i> in Arabic.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                We are trained to think of peace as the absence of conflict. This root defines peace by what is present. It means completeness. Soundness. Nothing missing. Peace is not an empty room. It is a fully assembled vessel.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                From this, the second Cinematic Æquation emerges: <b>Shalom is not an absence.</b>
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                When we treat peace as a treaty, we spend our energy negotiating boundaries. When we treat peace as structural integrity, we spend our energy assembling the vessel. You do not achieve Shalom by removing your enemies. You achieve Shalom by ensuring no part of your own structure is missing.
+            </p>
+
+            <div style={{ textAlign: 'center', margin: 'var(--space-xl) 0', color: m.accent, opacity: 0.5 }}>***</div>
+
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                Consider the Russian word—<i>Mir</i>.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                This word holds three meanings simultaneously. It means peace. It means world. It means community.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                From this, the third Cinematic Æquation emerges: <b>Mir is the world.</b>
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                The formula is direct: the world is already the peace, and the community is the world. Peace here is not an abstract concept; it is the lived reality of the collective. To have peace is to have a world. To break the peace is to break the world. You do not seek peace outside the community. The community itself, functioning in coherence, is the peace.
+            </p>
+
+            <div style={{ textAlign: 'center', margin: 'var(--space-xl) 0', color: m.accent, opacity: 0.5 }}>***</div>
+
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                Consider the Lakota word—<i>Wolakota</i>.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                In this lineage, peace is not a state the individual achieves. It is a relational field that precedes the individual.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                From this, the fourth Cinematic Æquation emerges: <b>Wolakota precedes the individual.</b>
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                You do not make peace. You enter it. You stand in the circle, and the living together is the peace. This is the dodecahedral model of peace—the field exists, the face turns toward it. The aetheric ground is already coherent. The individual’s task is to align with the geometry that is already holding them.
+            </p>
+
+            <div style={{ textAlign: 'center', margin: 'var(--space-xl) 0', color: m.accent, opacity: 0.5 }}>***</div>
+
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                Consider the Sanskrit root—<i>Śānti</i>.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                This is the cooling of a fire. It is the temperature of the nervous system dropping back to baseline. You do not negotiate this state. You inhabit it.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                Consider the Sinitic characters—<i>Hépíng</i>.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                Harmony and flatness. The level field. Peace is the dynamic equilibrium where all elements exist without disturbing the surface tension of the whole. It is the lake at dawn.
+            </p>
+
+            <div style={{ textAlign: 'center', margin: 'var(--space-xl) 0', color: m.accent, opacity: 0.5 }}>***</div>
+
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                These are not competing definitions. They are faces of the same dodecahedron. They are different doors into the same room.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                We invite you to run the Existence Audit.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                Right now, pause. Direct this question to your body, not your mind.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0', fontStyle: 'italic', color: m.accent }}>
+                Where in this moment is peace already present?
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                Wait for the body’s answer. It will be a sensation—a softening, a shift in breath. Stay inside that coordinate. Do not analyze it. Do not name it. Simply remain inside the location the body has just found.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                The cosmos holds the planet. The planet does not hold itself.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0', fontWeight: 'bold' }}>
+                Peace Exists.
+            </p>
+        </div>
+
+        <SectionLabel m={m}>THE CONTACT GLOSSÆRRY</SectionLabel>
+        
+        <div style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.1rem', lineHeight: 1.8, marginBottom: 'var(--space-xl)' }}>
+            <p style={{ fontStyle: 'italic', opacity: 0.8, borderLeft: `2px solid ${m.accent}`, paddingLeft: '1rem' }}>
+                (The narration shifts slightly here. The voice remains documentarian, but the cadence becomes instructional—like a cartographer handing over the map. The listener is being given the tools to navigate the field.)
+            </p>
+            <p>
+                The words we use to name a coordinate determine whether we can enter it. The following is a Contact GlossÆrry—a map of the Peacemarks, the emergent formulas, and the terminology of the field.
+            </p>
+        </div>
+
+        <div style={{ marginBottom: 'var(--space-xxl)' }}>
+            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '1.5rem', borderBottom: `1px dashed ${m.accent}40`, paddingBottom: '0.5rem' }}>THE TERMINOLOGY OF THE FIELD</h3>
+            <SongbookGlossaryItem m={m} term="Peacemark" definition="A specific linguistic coordinate for peace. A Peacemark is not a translation of a single English word; it is an independent alchemical mechanism. It names how a specific lineage of the human family enters the field of coherence." />
+            <SongbookGlossaryItem m={m} term="Coordinate" definition="A location that already occupies space in the field. To treat peace as a coordinate is to recognize that it does not need to be built, achieved, or negotiated—it only needs to be located and inhabited." />
+            <SongbookGlossaryItem m={m} term="The Existence Audit" definition={`A somatic inquiry. A thirty-second practice of directing a single question to the body: "Where in this moment is peace already present?" The audit bypasses the analytical mind, which requires the resolution of conflict, and accesses the nervous system, which remembers the baseline.`} />
+            <SongbookGlossaryItem m={m} term="Assembling the Vessel" definition="The act of securing structural integrity. When peace is understood as nothing missing, the human task shifts from fighting external enemies to ensuring internal wholeness. The vessel must be assembled before it can hold the water." />
+        </div>
+
+        <div style={{ marginBottom: 'var(--space-xxl)' }}>
+            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '1.5rem', borderBottom: `1px dashed ${m.accent}40`, paddingBottom: '0.5rem' }}>THE PEACEMARKS</h3>
+            <SongbookGlossaryItem m={m} term="Shalom / Salām (Semitic)" definition="The Alchemical Mechanism: Completeness. Peace as structural integrity. The state in which nothing is broken and nothing is missing." />
+            <SongbookGlossaryItem m={m} term="Mir (Slavic)" definition="The Alchemical Mechanism: The Collective Reality. Peace as the world itself. The state in which the community and the peace are the exact same entity." />
+            <SongbookGlossaryItem m={m} term="Wolakota (Lakota)" definition="The Alchemical Mechanism: The Pre-existing Field. Peace as the relational circle. The state that precedes the individual and waits to be entered." />
+            <SongbookGlossaryItem m={m} term="Śānti (Sanskrit)" definition="The Alchemical Mechanism: The Cooling. Peace as the dropping of temperature. The state of the nervous system returning to its undisturbed baseline." />
+            <SongbookGlossaryItem m={m} term="Hépíng (Sinitic)" definition="The Alchemical Mechanism: The Level Field. Peace as dynamic equilibrium. The state where all elements exist together without disturbing the surface tension of the whole." />
+        </div>
+
+        <div style={{ marginBottom: 'var(--space-xxl)' }}>
+            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '1.5rem', borderBottom: `1px dashed ${m.accent}40`, paddingBottom: '0.5rem' }}>THE CINEMATIC ÆQUATIONS</h3>
+            <SongbookGlossaryItem m={m} term="ÆQ·DB·01: Peace Exists." definition="The anchor formula. The recognition that peace is a present-tense ontological fact, not a future-tense aspiration." />
+            <SongbookGlossaryItem m={m} term="ÆQ·DB·02: Shalom is not an absence." definition="The recognition that peace is defined by what is present (wholeness), not by what has been removed (conflict)." />
+            <SongbookGlossaryItem m={m} term="ÆQ·DB·03: Mir is the world." definition="The recognition that you cannot seek peace outside the community, because the community functioning in coherence is the peace." />
+            <SongbookGlossaryItem m={m} term="ÆQ·DB·04: Wolakota precedes the individual." definition="The recognition that the field of peace is already active; the individual’s task is to align with the geometry that is holding them." />
+        </div>
+
+        <StepingPrompt m={m} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} prompt="Where in your body can you locate the coordinate of peace right now?" />
+        <PullQuote m={m}>"You do not build peace. You locate it."</PullQuote>
     </div>
 );
 

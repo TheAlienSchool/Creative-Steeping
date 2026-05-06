@@ -1217,33 +1217,33 @@ function AppInner() {
                         }}
                       >
 
-                        {/* Softer Locked Overlay Gamification */}
+                        {/* Microbotanical Dormant Overlay Gamification */}
                         {isLocked && (
                           <div className="locked-vessel-overlay" style={{
                             position: 'absolute', inset: 0, zIndex: 10,
-                            background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(1px)',
+                            background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(3px)',
                             display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
                             opacity: 0.9, transition: 'all 0.5s ease', cursor: 'not-allowed'
                           }}>
-                            {/* The Lock Icon */}
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.7, marginBottom: '8px' }}>
-                              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            {/* Microbotanical Seed/Leaf Icon */}
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--acc)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.85, marginBottom: '10px', filter: 'drop-shadow(0 0 8px var(--acc))' }}>
+                              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C19.2 15.6 15.5 20 11 20z"></path>
+                              <line x1="11" y1="20" x2="15" y2="10"></line>
                             </svg>
                             
                             {/* The Unique Encouragement Tooltip */}
                             <div className="locked-tooltip" style={{
                               position: 'absolute', bottom: '-40px', left: '50%', transform: 'translate(-50%, 10px)',
-                              width: '240px', background: 'rgba(0,0,0,0.95)', border: '1px dashed var(--acc)',
-                              padding: '12px', fontFamily: 'var(--fBody)', fontSize: '0.75rem', color: 'var(--text1)',
-                              lineHeight: 1.5, textAlign: 'center', opacity: 0, pointerEvents: 'none',
+                              width: '240px', background: 'rgba(0,0,0,0.95)', border: '1px solid var(--acc)',
+                              padding: '16px', fontFamily: 'var(--fBody)', fontSize: '0.8rem', color: 'var(--text1)',
+                              lineHeight: 1.6, textAlign: 'center', opacity: 0, pointerEvents: 'none',
                               transition: 'all 0.4s ease', zIndex: 20, boxShadow: '0 10px 30px rgba(0,0,0,0.9)'
                             }}>
-                              <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: 'var(--acc)', letterSpacing: '0.15em', marginBottom: '8px', borderBottom: '1px solid var(--acc)', paddingBottom: '4px' }}>
-                                THE WATER IS STEADYING
+                              <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: 'var(--acc)', letterSpacing: '0.2em', marginBottom: '10px', borderBottom: '1px solid var(--acc)', paddingBottom: '6px' }}>
+                                AWAITING BLOOM
                               </div>
-                              <div style={{ fontStyle: 'italic' }}>
-                                {vessel.lockedMessage || "Continue steeping to unlock this journey."}
+                              <div style={{ fontStyle: 'italic', color: 'var(--text2)' }}>
+                                {vessel.lockedMessage || "This seed requires more depth before it opens. Continue steeping."}
                               </div>
                             </div>
                           </div>
@@ -1409,14 +1409,16 @@ function AppInner() {
                                 fontFamily: 'var(--fMono)', fontSize: '0.65rem',
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                                 cursor: isLocked ? 'not-allowed' : (isActive ? 'default' : 'pointer'),
-                                opacity: isLocked ? 0.15 : (isActive ? 1 : 0.4),
+                                opacity: isLocked ? 0.25 : (isActive ? 1 : 0.4),
                                 transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
                               }}
                               onMouseEnter={e => { if (!isLocked && !isActive) e.currentTarget.style.opacity = '1'; }}
                               onMouseLeave={e => { if (!isLocked && !isActive) e.currentTarget.style.opacity = '0.4'; }}
-                              title={isLocked ? "Vessel Locked" : `Hop to Vessel ${v.num}`}
+                              title={isLocked ? "Awaiting Bloom" : `Hop to Vessel ${v.num}`}
                             >
-                              {parseInt(v.num)}
+                              {isLocked ? (
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C19.2 15.6 15.5 20 11 20z"></path></svg>
+                              ) : parseInt(v.num)}
                             </button>
                           );
                         })}

@@ -109,6 +109,16 @@ export const OntologicalObservatory = ({ m, onClose, playStrikingBowl, playAlgor
                 const isSelected = isSameDay(day, selectedDate);
                 const isPast = isBefore(day, startOfDay(new Date()));
 
+                // The 10-Day Buffer Rule
+                const bufferDate = addDays(startOfDay(new Date()), 10);
+                const isBuffer = isBefore(day, bufferDate) && !isPast;
+
+                // Cultural Holiday Sensitivity Blocks (Month-Day format)
+                const culturalHolidays = ["01-01", "07-04", "10-31", "11-28", "12-24", "12-25", "12-31", "06-19"];
+                const isHoliday = culturalHolidays.includes(format(day, 'MM-dd'));
+
+                const isBlocked = isPast || isBuffer || isHoliday;
+
                 // Find events for this specific day
                 const dayEvents = events.filter(e => isSameDay(new Date(e.start), cloneDay));
 
@@ -116,21 +126,25 @@ export const OntologicalObservatory = ({ m, onClose, playStrikingBowl, playAlgor
                     <div
                         key={day}
                         onClick={() => {
-                            if (!isCurrentMonth) return;
+                            if (!isCurrentMonth || isBlocked) {
+                                if (isBlocked && isCurrentMonth && playStrikingBowl) playStrikingBowl(40); // Dull blocked sound
+                                return;
+                            }
                             playStrikingBowl(60 + parseInt(formattedDate)); // Pitch rises with the date
                             setSelectedDate(cloneDay);
                             setIsScheduling(true);
                         }}
                         style={{
-                            padding: '1.5rem 0.5rem', textAlign: 'center', cursor: isCurrentMonth ? 'pointer' : 'default',
+                            padding: '1.5rem 0.5rem', textAlign: 'center', cursor: isCurrentMonth && !isBlocked ? 'pointer' : (isBlocked ? 'not-allowed' : 'default'),
                             fontFamily: 'var(--fSerif)', fontSize: '1.3rem', transition: 'all 0.3s', position: 'relative',
-                            color: isSelected ? m.bg : (isCurrentMonth ? m.text1 : m.text2),
+                            color: isSelected ? m.bg : (isCurrentMonth ? (isHoliday ? '#ff4d4d' : m.text1) : m.text2),
                             background: isSelected ? m.accent : 'transparent',
-                            opacity: isCurrentMonth ? (isPast ? 0.4 : 1) : 0.1,
-                            border: `1px solid ${isSelected ? m.accent : 'transparent'}`
+                            opacity: isCurrentMonth ? (isBlocked ? 0.3 : 1) : 0.1,
+                            border: `1px solid ${isSelected ? m.accent : 'transparent'}`,
+                            textDecoration: isBlocked && isCurrentMonth ? 'line-through' : 'none'
                         }}
                         onMouseEnter={e => {
-                            if (!isSelected && isCurrentMonth) {
+                            if (!isSelected && isCurrentMonth && !isBlocked) {
                                 e.currentTarget.style.border = `1px dashed ${m.accent}`;
                                 if(playAlgoraveSynth) playAlgoraveSynth(60, 0.05); // Subtle hover sonic
                             }
@@ -138,6 +152,7 @@ export const OntologicalObservatory = ({ m, onClose, playStrikingBowl, playAlgor
                         onMouseLeave={e => {
                             if (!isSelected) e.currentTarget.style.border = `1px solid transparent`;
                         }}
+                        title={isHoliday ? "Cultural Holiday Block" : (isBuffer ? "10-Day Buffer Rule Active" : "")}
                     >
                         <div>{formattedDate}</div>
                         {isCurrentMonth && dayEvents.length > 0 && (
