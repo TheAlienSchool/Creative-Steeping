@@ -1195,18 +1195,18 @@ function AppInner() {
                             wrapper.style.setProperty('--mouseY', `${y + 30}px`);
                           }
                         }}
-                        onMouseEnter={(e) => {
+                        onPointerEnter={(e) => {
                           if (isLocked) {
-                            setLockedTooltipOpen(vessel.num);
+                            if (e.pointerType === 'mouse') setLockedTooltipOpen(vessel.num);
                             return;
                           }
                           playStrikingBowl(vessel.num.charCodeAt(1));
                           const wrapper = e.currentTarget.parentElement.children[0];
                           if (wrapper) wrapper.style.opacity = '0.45';
                         }}
-                        onMouseLeave={(e) => {
+                        onPointerLeave={(e) => {
                           if (isLocked) {
-                            setLockedTooltipOpen(null);
+                            if (e.pointerType === 'mouse') setLockedTooltipOpen(null);
                             return;
                           }
                           const wrapper = e.currentTarget.parentElement.children[0];
@@ -1277,22 +1277,22 @@ function AppInner() {
                         </div>
                       </div>
 
-                      {/* Guidance note — outside hex-vessel so clip-path/overflow don't hide it */}
+                      {/* Guidance note — fixed to viewport so it's never clipped or off-screen */}
                       {isLocked && lockedTooltipOpen === vessel.num && (
                         <div style={{
-                          position: 'absolute', top: 'calc(100% + 16px)', left: '50%',
+                          position: 'fixed', bottom: 'clamp(20px, 8vh, 60px)', left: '50%',
                           transform: 'translateX(-50%)',
-                          width: '260px', background: 'rgba(0,0,0,0.97)',
-                          border: '1px solid var(--acc)', padding: '16px',
-                          fontFamily: 'var(--fBody)', fontSize: '0.8rem', color: 'var(--t1)',
-                          lineHeight: 1.6, textAlign: 'center', zIndex: 30,
-                          boxShadow: '0 10px 30px rgba(0,0,0,0.9)',
+                          width: 'min(320px, 90vw)', background: 'rgba(0,0,0,0.97)',
+                          border: '1px solid var(--acc)', padding: '20px 24px',
+                          fontFamily: 'var(--fBody)', fontSize: '0.95rem', color: 'var(--t1)',
+                          lineHeight: 1.7, textAlign: 'center', zIndex: 200,
+                          boxShadow: '0 10px 40px rgba(0,0,0,0.95)',
                           pointerEvents: 'none', animation: 'fadeIn 0.3s ease forwards'
                         }}>
-                          <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: 'var(--acc)', letterSpacing: '0.2em', marginBottom: '10px', borderBottom: '1px solid var(--acc)', paddingBottom: '6px' }}>
+                          <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: 'var(--acc)', letterSpacing: '0.2em', marginBottom: '12px', borderBottom: '1px solid var(--acc)', paddingBottom: '8px' }}>
                             AWAITING BLOOM
                           </div>
-                          <div style={{ fontStyle: 'italic', color: 'var(--t2)' }}>
+                          <div style={{ color: 'var(--t1)', fontWeight: 400 }}>
                             {vessel.lockedMessage || "This seed requires more depth before it opens. Continue steeping."}
                           </div>
                         </div>
