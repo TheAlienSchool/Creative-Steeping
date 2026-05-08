@@ -265,7 +265,8 @@ nav.top-nav {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--space-xl);
   justify-items: center;
-  align-items: center;
+  align-items: start;
+  overflow: visible;
 }
 
 @keyframes floatUp {
@@ -543,8 +544,9 @@ nav.top-nav {
 
   .vessel-matrix {
     grid-template-columns: 1fr;
-    gap: var(--space-xl);
+    gap: calc(var(--space-xl) + 80px);
     margin: 3vh auto 10vh auto;
+    overflow: visible;
   }
 
   .hex-vessel {

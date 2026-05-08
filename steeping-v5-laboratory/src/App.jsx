@@ -418,6 +418,8 @@ function AppInner() {
   const [navMenuOpen, setNavMenuOpen] = useState(false); // Hamburger menu state
   const [isClosingVessel, setIsClosingVessel] = useState(false);
   const [hasEngaged5D, setHasEngaged5D] = useState(() => localStorage.getItem('steeping_5d_engaged') === 'true');
+  const [lockedTooltipOpen, setLockedTooltipOpen] = useState(null); // vessel.num of locked tooltip showing
+  const urlDirectedPhase = useRef(false); // prevents tier-aware routing from overriding URL-set phase
 
   // Accessibility: Reading Lens Mode (dyslexia-supportive typography)
   const [readingMode, setReadingMode] = useState(() => localStorage.getItem('steeping_reading_mode') === 'true');
@@ -427,11 +429,13 @@ function AppInner() {
     const path = window.location.pathname.toLowerCase();
     if (path.includes('/legacy')) {
       setShowLegacyPortal(true);
-      // Clean up the URL cosmetically if needed, or leave it as the permanent anchor
     } else if (path.includes('/calendar')) {
       setShowCalendar(true);
     } else if (path.includes('/dashboard')) {
+      urlDirectedPhase.current = true;
       setPhase('dashboard');
+    } else if (path.includes('/vault')) {
+      setLedgerOpen(true);
     }
   }, []);
 
@@ -472,8 +476,9 @@ function AppInner() {
   // Tier-aware phase routing:
   // — Engaged / Inneractive practitioners → Space Dashboard
   // — Interactive (L1) practitioners → portal directly (no dashboard)
+  // — URL-directed phases (urlDirectedPhase.current) are never overridden
   useEffect(() => {
-    if (user && phase === "entrance") {
+    if (user && phase === "entrance" && !urlDirectedPhase.current) {
       setPhase(isEngaged ? "dashboard" : "portal");
     }
   }, [user, phase, isEngaged]);
@@ -1163,8 +1168,8 @@ function AppInner() {
                         }}
                         onClick={() => {
                           if (isLocked) {
-                            // Provide a dull "locked" feedback frequency
                             playStrikingBowl(40);
+                            setLockedTooltipOpen(prev => prev === vessel.num ? null : vessel.num);
                             return;
                           }
 
@@ -1192,11 +1197,7 @@ function AppInner() {
                         }}
                         onMouseEnter={(e) => {
                           if (isLocked) {
-                            const tooltip = e.currentTarget.querySelector('.locked-tooltip');
-                            if (tooltip) {
-                              tooltip.style.opacity = '1';
-                              tooltip.style.transform = 'translate(-50%, 0)';
-                            }
+                            setLockedTooltipOpen(vessel.num);
                             return;
                           }
                           playStrikingBowl(vessel.num.charCodeAt(1));
@@ -1205,11 +1206,7 @@ function AppInner() {
                         }}
                         onMouseLeave={(e) => {
                           if (isLocked) {
-                            const tooltip = e.currentTarget.querySelector('.locked-tooltip');
-                            if (tooltip) {
-                              tooltip.style.opacity = '0';
-                              tooltip.style.transform = 'translate(-50%, 10px)';
-                            }
+                            setLockedTooltipOpen(null);
                             return;
                           }
                           const wrapper = e.currentTarget.parentElement.children[0];
@@ -1230,22 +1227,6 @@ function AppInner() {
                               <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C19.2 15.6 15.5 20 11 20z"></path>
                               <line x1="11" y1="20" x2="15" y2="10"></line>
                             </svg>
-                            
-                            {/* The Unique Encouragement Tooltip */}
-                            <div className="locked-tooltip" style={{
-                              position: 'absolute', bottom: '-40px', left: '50%', transform: 'translate(-50%, 10px)',
-                              width: '240px', background: 'rgba(0,0,0,0.95)', border: '1px solid var(--acc)',
-                              padding: '16px', fontFamily: 'var(--fBody)', fontSize: '0.8rem', color: 'var(--text1)',
-                              lineHeight: 1.6, textAlign: 'center', opacity: 0, pointerEvents: 'none',
-                              transition: 'all 0.4s ease', zIndex: 20, boxShadow: '0 10px 30px rgba(0,0,0,0.9)'
-                            }}>
-                              <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: 'var(--acc)', letterSpacing: '0.2em', marginBottom: '10px', borderBottom: '1px solid var(--acc)', paddingBottom: '6px' }}>
-                                AWAITING BLOOM
-                              </div>
-                              <div style={{ fontStyle: 'italic', color: 'var(--text2)' }}>
-                                {vessel.lockedMessage || "This seed requires more depth before it opens. Continue steeping."}
-                              </div>
-                            </div>
                           </div>
                         )}
 
@@ -1295,6 +1276,27 @@ function AppInner() {
                           </div>
                         </div>
                       </div>
+
+                      {/* Guidance note — outside hex-vessel so clip-path/overflow don't hide it */}
+                      {isLocked && lockedTooltipOpen === vessel.num && (
+                        <div style={{
+                          position: 'absolute', top: 'calc(100% + 16px)', left: '50%',
+                          transform: 'translateX(-50%)',
+                          width: '260px', background: 'rgba(0,0,0,0.97)',
+                          border: '1px solid var(--acc)', padding: '16px',
+                          fontFamily: 'var(--fBody)', fontSize: '0.8rem', color: 'var(--t1)',
+                          lineHeight: 1.6, textAlign: 'center', zIndex: 30,
+                          boxShadow: '0 10px 30px rgba(0,0,0,0.9)',
+                          pointerEvents: 'none', animation: 'fadeIn 0.3s ease forwards'
+                        }}>
+                          <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: 'var(--acc)', letterSpacing: '0.2em', marginBottom: '10px', borderBottom: '1px solid var(--acc)', paddingBottom: '6px' }}>
+                            AWAITING BLOOM
+                          </div>
+                          <div style={{ fontStyle: 'italic', color: 'var(--t2)' }}>
+                            {vessel.lockedMessage || "This seed requires more depth before it opens. Continue steeping."}
+                          </div>
+                        </div>
+                      )}
                     </motion.div>
                   );
                 })}
