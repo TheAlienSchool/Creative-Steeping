@@ -435,7 +435,7 @@ function AppInner() {
       urlDirectedPhase.current = true;
       setPhase('dashboard');
     } else if (path.includes('/vault')) {
-      setLedgerOpen(true);
+      setShowLegacyPortal(true);
     }
   }, []);
 
@@ -1166,10 +1166,14 @@ function AppInner() {
                           cursor: isLocked ? 'not-allowed' : 'pointer',
                           filter: isLocked ? 'grayscale(100%) opacity(0.5)' : 'none'
                         }}
-                        onClick={() => {
+                        onClick={(e) => {
                           if (isLocked) {
                             playStrikingBowl(40);
                             setLockedTooltipOpen(prev => prev === vessel.num ? null : vessel.num);
+                            const targetEl = e.currentTarget;
+                            setTimeout(() => {
+                              targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }, 50);
                             return;
                           }
 
@@ -1197,7 +1201,9 @@ function AppInner() {
                         }}
                         onMouseEnter={(e) => {
                           if (isLocked) {
-                            setLockedTooltipOpen(vessel.num);
+                            if (window.matchMedia("(hover: hover)").matches) {
+                              setLockedTooltipOpen(vessel.num);
+                            }
                             return;
                           }
                           playStrikingBowl(vessel.num.charCodeAt(1));
@@ -1282,17 +1288,17 @@ function AppInner() {
                         <div style={{
                           position: 'absolute', top: 'calc(100% + 16px)', left: '50%',
                           transform: 'translateX(-50%)',
-                          width: '260px', background: 'rgba(0,0,0,0.97)',
-                          border: '1px solid var(--acc)', padding: '16px',
-                          fontFamily: 'var(--fBody)', fontSize: '0.8rem', color: 'var(--t1)',
+                          width: '300px', background: 'rgba(0,0,0,0.98)',
+                          border: `1px solid var(--acc)`, padding: '24px',
+                          fontFamily: 'var(--fBody)', fontSize: '1.05rem', color: 'var(--t1)',
                           lineHeight: 1.6, textAlign: 'center', zIndex: 30,
-                          boxShadow: '0 10px 30px rgba(0,0,0,0.9)',
+                          boxShadow: '0 15px 40px rgba(0,0,0,0.95)',
                           pointerEvents: 'none', animation: 'fadeIn 0.3s ease forwards'
                         }}>
-                          <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: 'var(--acc)', letterSpacing: '0.2em', marginBottom: '10px', borderBottom: '1px solid var(--acc)', paddingBottom: '6px' }}>
-                            AWAITING BLOOM
+                          <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.75rem', color: 'var(--acc)', letterSpacing: '0.25em', marginBottom: '14px', borderBottom: '1px dashed var(--acc)', paddingBottom: '10px' }}>
+                            <b>AWAITING BLOOM</b>
                           </div>
-                          <div style={{ fontStyle: 'italic', color: 'var(--t2)' }}>
+                          <div style={{ fontStyle: 'italic', color: 'var(--t1)', letterSpacing: '0.03em' }}>
                             {vessel.lockedMessage || "This seed requires more depth before it opens. Continue steeping."}
                           </div>
                         </div>
