@@ -57,3 +57,27 @@ textarea.steeping-textarea {
   width: 0px;
   background: transparent; 
 }
+
+/* 5. Mobile Adjustments for Vessel Hopper */
+@media (max-width: 768px) {
+  .vessel-hopper-container {
+    top: auto !important;
+    bottom: 2rem !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(8px) !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 2rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+  .vessel-hopper-actions {
+    flex-direction: row !important;
+  }
+  .vessel-hopper-nav {
+    gap: 12px !important;
+  }
+}

@@ -311,7 +311,8 @@ const LenticularBrandmark = ({ onClick, user }) => {
       cursor: 'pointer',
       color: "var(--acc)",
       height: '1.4rem',
-      width: 'clamp(200px, 22vw, 240px)', // Expanded to comfortably fit the wordmark without clipping
+      width: 'auto', // Removed hard constraint to prevent "ncandescent" clipping
+      minWidth: 'clamp(240px, 28vw, 300px)',
       flexShrink: 0,
       display: 'flex',
       alignItems: 'center',
@@ -436,6 +437,12 @@ function AppInner() {
       setPhase('dashboard');
     } else if (path.includes('/vault')) {
       setShowLegacyPortal(true);
+    } else if (path.includes('/nightlight')) {
+      urlDirectedPhase.current = true;
+      setPhase('portal');
+      const v08 = VESSELS.find(v => v.num === '08') || VESSELS[7] || null;
+      if (v08) setActiveVessel(v08);
+      setInstrumentMode(true);
     }
   }, []);
 
@@ -1357,20 +1364,9 @@ function AppInner() {
 
                   <Constellation seedString={activeVessel.num} />
 
-                  {/* The Secret Entry to the Algorave and Vessel Hopper */}
-                  <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 'var(--space-md)', zIndex: 30 }}>
-                    <div style={{ display: 'flex', gap: 'var(--space-md)' }}>
-                      <button
-                        onClick={() => setInstrumentMode(!instrumentMode)}
-                        style={{
-                          background: 'none', border: 'none', color: 'var(--acc)',
-                          fontFamily: 'var(--fMono)', fontSize: '0.85rem', letterSpacing: '0.15em',
-                          cursor: 'pointer', textTransform: 'uppercase', opacity: instrumentMode ? 1 : 0.6,
-                          transition: 'opacity 1.2s ease'
-                        }}
-                      >
-                        <b>{instrumentMode ? `[ EXHALE ${mode === 'l1' ? 'HEXAGONG' : 'VESSEL'} ]` : `[ INHALE ${mode === 'l1' ? 'HEXAGONG' : 'VESSEL'} ]`}</b>
-                      </button>
+                  {/* The Vessel Hopper */}
+                  <div className="vessel-hopper-container" style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 'var(--space-md)', zIndex: 30 }}>
+                    <div className="vessel-hopper-actions" style={{ display: 'flex', gap: 'var(--space-md)' }}>
                       <button
                         onClick={() => {
                           setIsClosingVessel(true);
