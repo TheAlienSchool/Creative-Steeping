@@ -174,6 +174,18 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         // Base presence (quiet, inviting)
         gain.gain.value = 0.08;
 
+        // THE QUIET STORM: Somatic Heartbeat/Breath Amplitude LFO
+        // A very slow, mellow pulse (0.2 Hz = 1 breath every 5 seconds) complementing the voice.
+        const ampLfo = ctx.createOscillator();
+        const ampLfoGain = ctx.createGain();
+        ampLfo.type = 'sine';
+        ampLfo.frequency.value = 0.2;
+        ampLfoGain.gain.value = 0.03; // Gentle, barely perceptible volume fluctuation
+        
+        ampLfo.connect(ampLfoGain);
+        ampLfoGain.connect(gain.gain);
+        ampLfo.start();
+
         // Signal chain: Osc -> Filter -> Panner -> Gain -> Master Gain -> Out
         osc.connect(filter);
         filter.connect(panner);
@@ -351,7 +363,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
 
     }, []);
 
-    const playHarmonicChord = useCallback((index) => {
+    const playHarmonicChord = useCallback((index, pitchMultiplier = 1, noteCount = 3) => {
         if (!audioCtxRef.current) return;
         const ctx = audioCtxRef.current;
 
@@ -366,12 +378,12 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
             base,
             (base + 2) % scale.length,
             (base + 4) % scale.length
-        ];
+        ].slice(0, noteCount);
 
         triadIndices.forEach((noteIndex, i) => {
             // If the note wrapped around, push it up an octave for clarity
             const isOctaveUp = noteIndex < base;
-            const freq = scale[noteIndex] * (isOctaveUp ? 2 : 1);
+            const freq = scale[noteIndex] * (isOctaveUp ? 2 : 1) * pitchMultiplier;
 
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();

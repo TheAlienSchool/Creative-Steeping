@@ -13,7 +13,7 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
     
     const [ledgers, setLedgers] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [stats, setStats] = useState({ totalTime: 0, totalKeystrokes: 0, totalInk: 0, completed: 0 });
+    const [stats, setStats] = useState({ totalTime: 0, totalKeystrokes: 0, totalInk: 0, completedL1: 0, completedL2: 0 });
 
     useEffect(() => {
         // ... (existing ledger code) ...
@@ -29,16 +29,23 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
                 if (!error && data) {
                     setLedgers(data);
                     
-                    let tTime = 0, tKeys = 0, tInk = 0, tComp = 0;
+                    let tTime = 0, tKeys = 0, tInk = 0, tCompL1 = 0, tCompL2 = 0;
                     data.forEach(l => {
-                        if (l.is_completed) tComp += 1;
+                        if (l.is_completed) {
+                            // Determine Tier based on hexagong_num prefix
+                            if (l.hexagong_num && (l.hexagong_num.startsWith('L2') || l.hexagong_num.startsWith('W'))) {
+                                tCompL2 += 1;
+                            } else {
+                                tCompL1 += 1;
+                            }
+                        }
                         if (l.interaction_metrics) {
                             tTime += l.interaction_metrics.time_spent_seconds || 0;
                             tKeys += l.interaction_metrics.keystrokes_played || 0;
                             tInk += l.interaction_metrics.ink_strokes || 0;
                         }
                     });
-                    setStats({ totalTime: tTime, totalKeystrokes: tKeys, totalInk: tInk, completed: tComp });
+                    setStats({ totalTime: tTime, totalKeystrokes: tKeys, totalInk: tInk, completedL1: tCompL1, completedL2: tCompL2 });
                 }
             } catch (e) {
                 console.error("Ledger retrieval fractured.", e);
@@ -96,7 +103,7 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
                             cursor: 'pointer', transition: 'all 0.4s ease', textTransform: 'uppercase'
                         }}
                     >
-                        [ RESUME JOURNEY ]
+                        [ CONTINUE CULTIVATION ]
                     </button>
                     <button
                         onClick={onSignOut}
@@ -120,7 +127,7 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
             }}>
                 
                 <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.accent, letterSpacing: '0.25em', marginBottom: 'var(--space-lg)', opacity: 0.8 }}>
-                    YOUR STEEP CONTINUES
+                    YOUR ROOTS DEEPEN
                 </div>
 
                 <h1 style={{
@@ -129,7 +136,7 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
                     letterSpacing: '-0.02em', fontStyle: 'italic'
                 }}>
                     The Architecture <br />
-                    <span style={{ color: m.accent, opacity: 0.9 }}>of the Pause.</span>
+                    <span style={{ color: m.accent, opacity: 0.9 }}>of the Root.</span>
                 </h1>
 
                 <div style={{
@@ -138,7 +145,7 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
                     borderLeft: `1px solid ${m.accent}40`, borderRight: `1px solid ${m.accent}40`,
                     padding: '0 clamp(1rem, 5vw, var(--space-lg))'
                 }}>
-                    You are back. The instrument is ready. Your reflection picks up where it left you.
+                    You have returned. The soil is prepared. Your cultivation resumes where you left off.
                 </div>
 
                 {/* Telemetry Dashboard Layer */}
@@ -147,18 +154,19 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
                     gap: 'var(--space-lg)', width: '100%', marginBottom: 'var(--space-xxl)'
                 }}>
                     <StatBox title="ACTIVE PAUSES" value={formatDuration(stats.totalTime)} icon={<Clock size={16} />} m={m} />
-                    <StatBox title="VESSELS DECODED" value={`${stats.completed} / 21`} icon={<BookOpen size={16} />} m={m} />
+                    <StatBox title="L1: THE GROUNDWORK" value={`${stats.completedL1} / 9`} icon={<BookOpen size={16} />} m={m} />
+                    <StatBox title="L2: THE CULTIVATION" value={`${stats.completedL2} / 19`} icon={<BookOpen size={16} />} m={m} />
                     <StatBox title="TYPOGRAPHIC RESONANCE" value={`${stats.totalKeystrokes} Keys`} icon={<Hash size={16} />} m={m} />
                     <StatBox title="SOMATIC INK STROKES" value={stats.totalInk} icon={<PenTool size={16} />} m={m} />
                 </div>
 
 
 
-                {/* THE COLLECTIVE RESONANCE (STEEPING CIRCLES UI) */}
+                {/* THE MYCORRHIZAL NETWORK (STEEPING CIRCLES UI) */}
                 <div style={{ width: '100%', textAlign: 'left', marginBottom: 'var(--space-xxl)', border: `1px solid ${m.accent}40`, padding: 'clamp(1rem, 5vw, var(--space-xl))', background: `linear-gradient(45deg, ${m.accent}05 0%, transparent 100%)`, boxSizing: 'border-box' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.accent, letterSpacing: '0.25em', marginBottom: '1.5rem', borderBottom: `1px dashed ${m.accent}40`, paddingBottom: '0.8rem', flexWrap: 'wrap' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Users size={16} /> [ THE COLLECTIVE ]</div>
-                        <div style={{ fontSize: '0.55rem', color: m.text2, opacity: 0.6, letterSpacing: '0.15em' }}>// ÆQ·06 THE INCOMPLETE PICTURE THEOREM: YOUR IMAGE + THEIR IMAGE = COMPLETE HISTORY</div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Users size={16} /> [ THE MYCORRHIZAL NETWORK ]</div>
+                        <div style={{ fontSize: '0.55rem', color: m.text2, opacity: 0.6, letterSpacing: '0.15em' }}>// UNDERGROUND ROOT SYSTEMS CONNECTING JOURNEYERS IN SILENT CULTIVATION</div>
                     </div>
                     
                     {myCircle ? (
@@ -168,7 +176,7 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
                             </div>
                             <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.7rem', color: m.text2, letterSpacing: '0.1em', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                 <Radio size={14} style={{ color: m.accent, animation: membranePings.length > 0 ? 'event-flash 2s infinite' : 'none' }} />
-                                MEMBRANE CONNECTION SECURED
+                                MYCORRHIZAL CONNECTION SECURED
                             </div>
                             {/* Live Membrane Pings Preview */}
                             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
@@ -196,7 +204,7 @@ export const SteepingSpaceDashboard = ({ m, onEnterPortal, onSignOut }) => {
                                 </div>
                             )) : (
                                 <div style={{ fontFamily: 'var(--fBody)', color: m.text2, fontStyle: 'italic' }}>
-                                    The waters are still. No public cohorts are currently gathering.
+                                    The soil is quiet. No public cohorts are currently gathering.
                                 </div>
                             )}
                          </div>

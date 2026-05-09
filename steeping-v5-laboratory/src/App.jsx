@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useResonanceCanvas } from './useResonanceCanvas';
 import { useSonnetEngine } from './useSonnetEngine';
 import { useSageIntelligence } from './useSageIntelligence';
@@ -32,6 +32,8 @@ import { OntologicalObservatory } from './OntologicalObservatory';
 import { LegacyScreengrabPortal } from './LegacyScreengrabPortal';
 import { SteepingCalendar } from './SteepingCalendar';
 import { motion, AnimatePresence } from 'framer-motion';
+import { VESSELS_L2 } from './VesselsL2';
+import { VesselL2Detail } from './VesselL2Detail';
 
 import './App.css';
 
@@ -466,6 +468,32 @@ function AppInner() {
 
   // Supabase Auth Integration
   const { user, profile, signOut } = useAuth();
+
+  // Spatial Seed Derivation (Numerology 1-9 based on ID)
+  const spatialSeed = useMemo(() => {
+    if (!user?.id) return 1;
+    let sum = 0;
+    for (let i = 0; i < user.id.length; i++) sum += user.id.charCodeAt(i);
+    return (sum % 9) + 1;
+  }, [user]);
+
+  // Apply Seed-Based Attunements
+  useEffect(() => {
+    if (spatialSeed <= 3) {
+        // Rooted: Heavier grain
+        document.documentElement.style.setProperty('--grain-opacity', '0.08');
+        document.documentElement.style.setProperty('--grain-blend', 'overlay');
+    } else if (spatialSeed <= 6) {
+        // Atmospheric: Lighter stardust
+        document.documentElement.style.setProperty('--grain-opacity', '0.04');
+        document.documentElement.style.setProperty('--grain-blend', 'color-dodge');
+    } else {
+        // Ascendant: Warmer copper tone
+        document.documentElement.style.setProperty('--grain-opacity', '0.05');
+        document.documentElement.style.setProperty('--grain-blend', 'overlay');
+        document.documentElement.style.setProperty('--acc', '#e69f35'); // Warmer Gold/Copper
+    }
+  }, [spatialSeed]);
   const { isEngaged, isInneractive, hasPersistentScore } = useTier();
 
   // Immersive Matrix Collective Resonance
@@ -493,6 +521,19 @@ function AppInner() {
   useEffect(() => {
     modeButtonRefs.current[mode]?.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
   }, [mode]);
+
+  // VISUAL REFINEMENT: Parallax Hexagong Matrix
+  // Captures normalized screen coordinates (-1 to 1) for UI parallax shifts.
+  useEffect(() => {
+    const handleGlobalMouseMove = (e) => {
+      const x = (e.clientX / window.innerWidth) * 2 - 1;
+      const y = (e.clientY / window.innerHeight) * 2 - 1;
+      document.documentElement.style.setProperty('--mouse-x', x);
+      document.documentElement.style.setProperty('--mouse-y', y);
+    };
+    window.addEventListener('mousemove', handleGlobalMouseMove);
+    return () => window.removeEventListener('mousemove', handleGlobalMouseMove);
+  }, []);
 
   // Sonic Awareness State
   const [sonicVolume, setSonicVolumeState] = useState(0.5);
@@ -1049,7 +1090,11 @@ function AppInner() {
                   </button>
                 ) : (
                   <div style={{ width: '100%', position: 'relative' }}>
+                    <div style={{ position: 'absolute', top: '-15px', right: '0', fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: 'var(--acc)', opacity: sageTestingBusy ? 0.8 : 0, transition: 'opacity 0.5s', letterSpacing: '0.1em' }}>
+                        [ STATE: GUIDANCE ]
+                    </div>
                     <textarea
+                      id="sage-textarea-input"
                       placeholder="Offer your resonance..."
                       onFocus={() => setSageTestingBusy(true)}
                       onBlur={() => setSageTestingBusy(false)}
@@ -1059,10 +1104,7 @@ function AppInner() {
                         }
                         if (e.key === 'Enter' && !e.shiftKey) {
                           e.preventDefault();
-                          const query = e.target.value.trim();
-                          if (query !== '') {
-                            handleAskSage(query, mode);
-                          }
+                          document.getElementById('sage-transmit-btn')?.click();
                         }
                       }}
                       style={{
@@ -1076,6 +1118,27 @@ function AppInner() {
                         transition: 'all 0.4s'
                       }}
                     />
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'var(--space-sm)' }}>
+                        <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: 'var(--t2)', opacity: sageTestingBusy ? 0.6 : 0, transition: 'opacity 0.5s' }}>
+                            Press ENTER to ask the Sage
+                        </span>
+                        <button 
+                            id="sage-transmit-btn"
+                            onClick={() => {
+                                const query = document.getElementById('sage-textarea-input').value.trim();
+                                if (query !== '') {
+                                    handleAskSage(query, mode);
+                                }
+                            }}
+                            style={{
+                                background: 'transparent', border: '1px solid var(--acc)', color: 'var(--acc)',
+                                fontFamily: 'var(--fMono)', fontSize: '0.7rem', padding: '6px 14px', cursor: 'pointer',
+                                opacity: sageTestingBusy ? 1 : 0.4, transition: 'all 0.5s', letterSpacing: '0.15em'
+                            }}
+                        >
+                            [ SEEK GUIDANCE ]
+                        </button>
+                    </div>
                     {sageResponse ? (
                       <div style={{
                         fontFamily: 'var(--fBody)', fontSize: '1.2rem', lineHeight: 1.6,
@@ -1137,17 +1200,20 @@ function AppInner() {
             {/* Hex-Kintsugi Grid OR Active Vessel Detail */}
             {!activeVessel ? (
               <div className="vessel-matrix">
-                {VESSELS.map((vessel, i) => {
+                {(['inneractive', 'journeyer', 'cohort', 'depth_semester'].includes(profile?.access_tier) ? VESSELS_L2 : VESSELS).map((vessel, i) => {
                   // Elegant gamification: Lock levels 3-8 until historical depth is achieved
                   let historicalDepth = 0;
                   try {
                     historicalDepth = JSON.parse(localStorage.getItem('steeping_historical_score') || '[]').length;
                   } catch (e) { }
 
-                  // Unlock logic: Need at least 1 historical entry to pass 02, then scaling up.
-                  // For the sake of the sanctuary, inneractive tier or enough history unlocks it.
-                  const requiredDepth = (parseInt(vessel.num) - 2) * 2;
-                  const isLocked = parseInt(vessel.num) >= 3 && historicalDepth < requiredDepth && !['inneractive', 'journeyer', 'cohort', 'depth_semester'].includes(profile?.access_tier);
+                  // The Cryo-Lock Protocol: W1-W4 and 01 are unlocked by default.
+                  // Vessels 02 and beyond are locked until the Steepee completes W1 - 01 (depth of 5).
+                  // We remove the access_tier bypass to ensure everyone is grounded by the Welcome Sequence.
+                  const vesselString = vessel.id?.split('.')[1] || "0";
+                  const vesselNumber = vesselString.startsWith('W') ? 0 : parseInt(vesselString, 10);
+                  const isLocked = vesselNumber >= 2 && historicalDepth < 5;
+                  const justUnlocked = vesselNumber >= 2 && historicalDepth === 5;
 
                   return (
                     <motion.div
@@ -1155,7 +1221,11 @@ function AppInner() {
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 1.2, delay: i * 0.1, ease: "easeOut" }}
-                      style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                      style={{
+                        position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center',
+                        transform: `translate3d(calc(var(--mouse-x, 0) * ${isLocked ? '10px' : '25px'}), calc(var(--mouse-y, 0) * ${isLocked ? '10px' : '25px'}), 0)`,
+                        transition: 'transform 0.4s ease-out, opacity 1.2s ease-out, top 1.2s ease-out' // Note y transition is handled by framer but we smooth out parallax
+                      }}
                     >
                       {/* Cinematic Eclipse Backlighting (Universe behind the vessel) */}
                       <div style={{
@@ -1169,7 +1239,8 @@ function AppInner() {
                         className="hex-vessel"
                         style={{
                           cursor: isLocked ? 'not-allowed' : 'pointer',
-                          filter: isLocked ? 'grayscale(100%) opacity(0.5)' : 'none'
+                          filter: isLocked ? 'grayscale(100%) opacity(0.5)' : 'none',
+                          animation: justUnlocked ? 'bioluminescent-bloom 4s ease-out forwards' : 'none'
                         }}
                         onClick={(e) => {
                           if (isLocked) {
@@ -1320,7 +1391,7 @@ function AppInner() {
                   title="Return to Center"
                 />
                 <motion.div
-                  key={activeVessel.num}
+                  key={`detail-${activeVessel.num}`}
                   className="vessel-detail-view"
                   initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
                   animate={{
@@ -1383,49 +1454,7 @@ function AppInner() {
                       </button>
                     </div>
 
-                    {/* V5 VESSEL HOPPER: Gentler Cognitive Load */}
-                    {!instrumentMode && (
-                      <div style={{ display: 'flex', gap: '6px', opacity: 0.8, marginTop: '4px' }}>
-                        {VESSELS.map((v, i) => {
-                          let histDepth = 0;
-                          try { histDepth = JSON.parse(localStorage.getItem('steeping_historical_score') || '[]').length; } catch (e) { }
-                          const requiredDepth = (parseInt(v.num) - 2) * 2;
-                          const isLocked = parseInt(v.num) >= 3 && histDepth < requiredDepth && profile?.access_tier !== 'inneractive';
-                          const isActive = activeVessel.num === v.num;
-                          return (
-                            <button
-                              key={v.num}
-                              onClick={() => {
-                                if (isLocked) { playStrikingBowl && playStrikingBowl(40); return; }
-                                if (!isActive) {
-                                  playHarmonicChord(i);
-                                  setActiveVessel(v);
-                                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                                }
-                              }}
-                              style={{
-                                width: '24px', height: '24px',
-                                borderRadius: '50%', border: `1px solid ${isActive ? 'var(--bg)' : 'var(--acc)'}`,
-                                background: isActive ? 'var(--acc)' : 'transparent',
-                                color: isActive ? 'var(--bg)' : 'var(--acc)',
-                                fontFamily: 'var(--fMono)', fontSize: '0.65rem',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                cursor: isLocked ? 'not-allowed' : (isActive ? 'default' : 'pointer'),
-                                opacity: isLocked ? 0.25 : (isActive ? 1 : 0.4),
-                                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
-                              }}
-                              onMouseEnter={e => { if (!isLocked && !isActive) e.currentTarget.style.opacity = '1'; }}
-                              onMouseLeave={e => { if (!isLocked && !isActive) e.currentTarget.style.opacity = '0.4'; }}
-                              title={isLocked ? "Awaiting Bloom" : `Hop to Vessel ${v.num}`}
-                            >
-                              {isLocked ? (
-                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1 8.3C19.2 15.6 15.5 20 11 20z"></path></svg>
-                              ) : parseInt(v.num)}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    )}
+                    {/* V5 VESSEL HOPPER: Eliminated to preserve spatial matrix navigation */}
                   </div>
 
                   <div style={{ position: 'relative', zIndex: 2 }}>
@@ -1439,6 +1468,10 @@ function AppInner() {
                       />
                     ) : (
                       <>
+                        {activeVessel.id?.startsWith('L2') ? (
+                          <VesselL2Detail vessel={activeVessel} modeString={mode} playStrikingBowl={playStrikingBowl} playHarmonicChord={playHarmonicChord} />
+                        ) : (
+                        <>
                         <div
                           style={{ cursor: activeVessel.num === '07' ? 'pointer' : 'default', userSelect: 'none' }}
                           onClick={() => {
@@ -1573,6 +1606,8 @@ function AppInner() {
                             </div>
                           )}
                         </>
+                        </>
+                        )}
                       </>
                     )}
                   </div>
