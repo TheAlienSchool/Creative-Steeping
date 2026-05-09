@@ -409,7 +409,7 @@ export const SteepersLedger = ({ m, historicalScore = [], hasMoreHistory, loadMo
 
                 {/* DYNAMIC EDITORIAL RENDER */}
                 <div ref={contentRef} className="registry-container" style={{ scrollMarginTop: 'var(--space-lg)' }}>
-                    {getSteepingIssues(m, setTuraoMode, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl, historicalScore).find(iss => iss.id === activeIssue)?.render()}
+                    {getSteepingIssues(m, setTuraoMode, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl, historicalScore, playRootForagingFrequency).find(iss => iss.id === activeIssue)?.render()}
                 </div>
 
                 {/* THEORETICAL ANCHORS & COLLABINATIVE CITATIONS (INFUSED WITH PING) */}
