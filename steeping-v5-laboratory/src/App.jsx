@@ -435,8 +435,6 @@ function AppInner() {
     } else if (path.includes('/dashboard')) {
       urlDirectedPhase.current = true;
       setPhase('dashboard');
-    } else if (path.includes('/vault')) {
-      setShowLegacyPortal(true);
     } else if (path.includes('/nightlight')) {
       urlDirectedPhase.current = true;
       setPhase('portal');

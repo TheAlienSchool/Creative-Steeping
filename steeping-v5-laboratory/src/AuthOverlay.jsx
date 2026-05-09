@@ -107,7 +107,7 @@ export const AuthOverlay = ({ m, onClose }) => {
                         <div style={{ padding: '1.5rem', border: `1px solid ${m.accent}20`, background: `${m.accent}05`, flexGrow: 1, borderRadius: 'var(--curve)' }}>
                             <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.1em', fontSize: '1.1rem', margin: '0 0 0.5rem 0' }}>THE FOUNDATION</h3>
                             <p style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '0.95rem', lineHeight: '1.6', margin: '0 0 1.5rem 0' }}>
-                                <b>Establish Presence.</b> Navigate freely, generate sound with your movements, and converse with The Sage. Set your first anchor by entering your email below to save your initial resonance.
+                                This is the free account, enhanced by providing an email which activates the ability to save your Steeping Notes (any typed reflection into The Steeping Space) locally to your profile so they aren't lost upon closing the browser. You also have access to the Steeping guidance in the Hexagongs, the full interactive bioacoustic soundscape, and basic conversation with The Sage (our interactive library of Steeping wisdom and intelligence).
                             </p>
                             
                             {user ? (
@@ -184,25 +184,25 @@ export const AuthOverlay = ({ m, onClose }) => {
                         <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: m.surface, border: `2px solid ${m.accent}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--fMono)', color: m.accent, fontWeight: 'bold', flexShrink: 0 }}>02</div>
                         <div style={{ padding: '1.5rem', border: `1px solid ${m.accent}40`, background: `${m.accent}10`, flexGrow: 1, borderRadius: 'var(--curve)' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-                                <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.1em', fontSize: '1.1rem', margin: 0 }}>THE VESSEL MATRIX</h3>
+                                <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.1em', fontSize: '1.1rem', margin: 0 }}>CREÅTIVE STEEPING :: THE JOURNEYER</h3>
                                 <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.text2, textTransform: 'uppercase' }}>$44</span>
                             </div>
                             <p style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '0.95rem', lineHeight: '1.6', margin: '0 0 1.5rem 0' }}>
-                                <b>Construct Your Insight.</b> Secure your coordinates to unlock the 9-part Guided Journey. Here you will track your biometric resonance, map your discoveries, and build your persistent Steeping Space.
+                                This annual subscription unlocks the core CREATIVE STEEPING curriculum designed from the <a href="https://www.thealienschool.com/theshoppe/p/cretive-steeping-journal-the-unfurling-of-your-essence" target="_blank" rel="noopener noreferrer" style={{ color: m.accent, textDecoration: 'underline' }}>original workbook</a> authored by Kamau Zuberi Akabueze. You gain full access to all 9 Hexagongs (as they become the full guided journey), allowing you to permanently map your progress, complete the full narrative arc, and use the entire Steeping Laboratory toolkit without restriction.
                             </p>
                             <button
-                                disabled={loading}
+                                disabled={loading || !user}
                                 onClick={() => handleCheckout('journeyer')}
                                 style={{
-                                    background: 'transparent', border: `1px solid ${m.accent}`, color: m.accent,
+                                    background: 'transparent', border: `1px solid ${!user ? m.accent + '40' : m.accent}`, color: !user ? m.text2 : m.accent,
                                     padding: '0.6rem 1.2rem', fontFamily: 'var(--fMono)', fontSize: '0.8rem',
-                                    letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.3s ease',
+                                    letterSpacing: '0.15em', cursor: !user ? 'not-allowed' : 'pointer', transition: 'all 0.3s ease',
                                     opacity: loading ? 0.5 : 1
                                 }}
-                                onMouseEnter={e => { e.currentTarget.style.backgroundColor = m.accent; e.currentTarget.style.color = m.bg; }}
-                                onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = m.accent; }}
+                                onMouseEnter={e => { if (user) { e.currentTarget.style.backgroundColor = m.accent; e.currentTarget.style.color = m.bg; } }}
+                                onMouseLeave={e => { if (user) { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = m.accent; } }}
                             >
-                                [ SECURE YOUR COORDINATES ]
+                                {!user ? '[ ESTABLISH PRESENCE FIRST ]' : '[ SECURE YOUR COORDINATES ]'}
                             </button>
                         </div>
                     </div>
@@ -212,41 +212,63 @@ export const AuthOverlay = ({ m, onClose }) => {
                         <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: m.surface, border: `2px solid ${m.accent}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--fMono)', color: m.accent, fontWeight: 'bold', flexShrink: 0, boxShadow: `0 0 15px ${m.accent}60` }}>03</div>
                         <div style={{ padding: '1.5rem', border: `1px solid ${m.accent}80`, background: `${m.accent}18`, flexGrow: 1, borderRadius: 'var(--curve)' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-                                <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.1em', fontSize: '1.1rem', margin: 0, textShadow: `0 0 10px ${m.accent}80` }}>THE INNERACTIVE COHORT</h3>
-                                <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.text2, textTransform: 'uppercase' }}>$777</span>
+                                <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, letterSpacing: '0.1em', fontSize: '1.1rem', margin: 0, textShadow: `0 0 10px ${m.accent}80` }}>THE INNERACTIVE MENTORSHIPS</h3>
                             </div>
                             <p style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '0.95rem', lineHeight: '1.6', margin: '0 0 1.5rem 0' }}>
-                                <b>Commune & Synthesize.</b> When you require the reflection of others, join the cohort. Direct one-on-one sessions, deep architectural work, and a shared environment with the architects of the practice.
+                                The Cohort Calendar gives you access to scheduling live human mentorship, including Cohorts, Single Steeps, and the Depth Semester. This is for the navigator ready for sustained company in the work.
                             </p>
-                            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                                <button
-                                    disabled={loading}
-                                    onClick={() => handleCheckout('cohort')}
-                                    style={{
-                                        background: m.accent, border: `1px solid ${m.accent}`, color: m.bg,
-                                        padding: '0.6rem 1.2rem', fontFamily: 'var(--fMono)', fontSize: '0.8rem',
-                                        letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.3s ease',
-                                        opacity: loading ? 0.5 : 1
-                                    }}
-                                    onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 0 20px ${m.accent}80`; }}
-                                    onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; }}
-                                >
-                                    [ COHORT SESSIONS ]
-                                </button>
-                                <button
-                                    disabled={loading}
-                                    onClick={() => handleCheckout('depth_semester')}
-                                    style={{
-                                        background: 'transparent', border: `1px solid ${m.accent}60`, color: m.accent,
-                                        padding: '0.6rem 1.2rem', fontFamily: 'var(--fMono)', fontSize: '0.8rem',
-                                        letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.3s ease',
-                                        opacity: loading ? 0.5 : 1
-                                    }}
-                                    onMouseEnter={e => { e.currentTarget.style.backgroundColor = `${m.accent}20`; }}
-                                    onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; }}
-                                >
-                                    [ DEPTH SEMESTER ]
-                                </button>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                                {/* Cohort Sessions */}
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', borderBottom: `1px dashed ${m.accent}30`, paddingBottom: '1.25rem' }}>
+                                    <div style={{ flex: '1 1 200px' }}>
+                                        <div style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.9rem', marginBottom: '0.25rem' }}>CREÅTIVE STEEPING :: Cohort Sessions</div>
+                                        <div style={{ fontFamily: 'var(--fBody)', color: m.text2, fontSize: '0.85rem' }}>The Seven Essential steeps over nine weeks. Individual or In community. A fully guided Steeping experience.</div>
+                                    </div>
+                                    <button
+                                        disabled={loading || !user}
+                                        onClick={() => handleCheckout('cohort')}
+                                        style={{ background: !user ? 'transparent' : m.accent, border: !user ? `1px solid ${m.accent}40` : 'none', color: !user ? m.text2 : m.bg, padding: '0.5rem 1rem', fontFamily: 'var(--fMono)', fontSize: '0.75rem', cursor: !user ? 'not-allowed' : 'pointer', whiteSpace: 'nowrap' }}
+                                    >
+                                        {!user ? '[ ESTABLISH FIRST ]' : '[ SECURE $777 ]'}
+                                    </button>
+                                </div>
+                                {/* Single Steeps */}
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', borderBottom: `1px dashed ${m.accent}30`, paddingBottom: '1.25rem' }}>
+                                    <div style={{ flex: '1 1 200px' }}>
+                                        <div style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.9rem', marginBottom: '0.25rem' }}>CREÅTIVE STEEPING :: Single Steeps</div>
+                                        <div style={{ fontFamily: 'var(--fBody)', color: m.text2, fontSize: '0.85rem' }}>One prompt chosen for you in a <i>Bring Your Own Tea</i> hour with author and guide Kamau Zuberi Akabueze.</div>
+                                    </div>
+                                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                        <button
+                                            disabled={loading || !user}
+                                            onClick={() => handleCheckout('single_steep_1')}
+                                            style={{ background: 'transparent', border: `1px solid ${!user ? m.accent + '40' : m.accent}`, color: !user ? m.text2 : m.accent, padding: '0.5rem 1rem', fontFamily: 'var(--fMono)', fontSize: '0.75rem', cursor: !user ? 'not-allowed' : 'pointer', whiteSpace: 'nowrap' }}
+                                        >
+                                            {!user ? '[ ESTABLISH FIRST ]' : '[ 1X $222 ]'}
+                                        </button>
+                                        <button
+                                            disabled={loading || !user}
+                                            onClick={() => handleCheckout('single_steep_3')}
+                                            style={{ background: 'transparent', border: `1px solid ${!user ? m.accent + '40' : m.accent}`, color: !user ? m.text2 : m.accent, padding: '0.5rem 1rem', fontFamily: 'var(--fMono)', fontSize: '0.75rem', cursor: !user ? 'not-allowed' : 'pointer', whiteSpace: 'nowrap' }}
+                                        >
+                                            {!user ? '[ ESTABLISH FIRST ]' : '[ 3X $600 ]'}
+                                        </button>
+                                    </div>
+                                </div>
+                                {/* Depth Semester */}
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+                                    <div style={{ flex: '1 1 200px' }}>
+                                        <div style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.9rem', marginBottom: '0.25rem' }}>CREÅTIVE STEEPING :: The Depth Semester</div>
+                                        <div style={{ fontFamily: 'var(--fBody)', color: m.text2, fontSize: '0.85rem' }}>A three month exploration into the essence of your being, closing with your Creative Brief.</div>
+                                    </div>
+                                    <button
+                                        disabled={loading || !user}
+                                        onClick={() => handleCheckout('depth_semester')}
+                                        style={{ background: 'transparent', border: `1px solid ${!user ? m.accent + '40' : m.accent}`, color: !user ? m.text2 : m.accent, padding: '0.5rem 1rem', fontFamily: 'var(--fMono)', fontSize: '0.75rem', cursor: !user ? 'not-allowed' : 'pointer', whiteSpace: 'nowrap' }}
+                                    >
+                                        {!user ? '[ ESTABLISH FIRST ]' : '[ SECURE $2,222 ]'}
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
