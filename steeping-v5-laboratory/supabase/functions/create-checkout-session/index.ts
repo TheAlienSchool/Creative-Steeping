@@ -14,20 +14,36 @@ const PRICE_IDS: Record<string, string | undefined> = {
 };
 // ───────────────────────────────────────────────────────────────────────────
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+};
+
 Deno.serve(async (req) => {
-  const { tier, user_id, return_url } = await req.json();
+  if (req.method === 'OPTIONS') {
+    return new Response('ok', { headers: corsHeaders });
+  }
 
-  const mode = tier === 'journeyer' ? 'subscription' : 'payment';
+  try {
+    const { tier, user_id, return_url } = await req.json();
 
-  const session = await stripe.checkout.sessions.create({
-    mode: mode,
-    line_items: [{ price: PRICE_IDS[tier], quantity: 1 }],
-    client_reference_id: user_id,
-    success_url: `${return_url}?tier=${tier}&success=1`,
-    cancel_url: return_url,
-  });
+    const mode = tier === 'journeyer' ? 'subscription' : 'payment';
 
-  return new Response(JSON.stringify({ url: session.url }), {
-    headers: { 'Content-Type': 'application/json' },
-  });
+    const session = await stripe.checkout.sessions.create({
+      mode: mode,
+      line_items: [{ price: PRICE_IDS[tier], quantity: 1 }],
+      client_reference_id: user_id,
+      success_url: `${return_url}?tier=${tier}&success=1`,
+      cancel_url: return_url,
+    });
+
+    return new Response(JSON.stringify({ url: session.url }), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: error.message }), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      status: 400,
+    });
+  }
 });

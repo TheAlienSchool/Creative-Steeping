@@ -5,6 +5,8 @@ import { supabase } from './supabaseClient';
 export const AuthOverlay = ({ m, onClose }) => {
     const { user, signInWithMagicLink } = useAuth();
     const [email, setEmail] = useState('');
+    const [confirmEmail, setConfirmEmail] = useState('');
+    const [showConfirm, setShowConfirm] = useState(false);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
 
@@ -42,12 +44,25 @@ export const AuthOverlay = ({ m, onClose }) => {
             return;
         }
 
+        if (!showConfirm) {
+            setShowConfirm(true);
+            setMessage("Please confirm your coordinates to ensure precise arrival.");
+            return;
+        }
+
+        if (email.trim().toLowerCase() !== confirmEmail.trim().toLowerCase()) {
+            setMessage("The coordinates do not match. Please verify.");
+            return;
+        }
+
         setLoading(true);
         setMessage('');
 
         try {
             await signInWithMagicLink(email);
             setMessage('A resonant link has been sent to your presence.');
+            setShowConfirm(false);
+            setConfirmEmail('');
         } catch (err) {
             console.error(err);
             setMessage('The connection wavered. Please try again.');
@@ -104,14 +119,41 @@ export const AuthOverlay = ({ m, onClose }) => {
                                     <input
                                         type="email"
                                         value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
+                                        onChange={(e) => { setEmail(e.target.value); if (showConfirm) setShowConfirm(false); }}
                                         placeholder="YOUR@EMAIL.COM"
+                                        disabled={showConfirm}
                                         style={{
                                             background: 'transparent', border: 'none', borderBottom: `1px solid ${m.accent}60`,
-                                            color: m.accent, fontFamily: 'var(--fMono)', fontSize: '0.9rem', padding: '0.5rem',
-                                            letterSpacing: '0.1em', outline: 'none', flexGrow: 1, minWidth: '200px'
+                                            color: showConfirm ? m.text2 : m.accent, fontFamily: 'var(--fMono)', fontSize: '0.9rem', padding: '0.5rem',
+                                            letterSpacing: '0.1em', outline: 'none', flexGrow: 1, minWidth: '200px',
+                                            opacity: showConfirm ? 0.5 : 1
                                         }}
                                     />
+                                    {showConfirm && (
+                                        <>
+                                            <input
+                                                type="email"
+                                                value={confirmEmail}
+                                                onChange={(e) => setConfirmEmail(e.target.value)}
+                                                placeholder="CONFIRM YOUR@EMAIL.COM"
+                                                style={{
+                                                    background: 'transparent', border: 'none', borderBottom: `1px solid ${m.accent}60`,
+                                                    color: m.accent, fontFamily: 'var(--fMono)', fontSize: '0.9rem', padding: '0.5rem',
+                                                    letterSpacing: '0.1em', outline: 'none', flexGrow: 1, minWidth: '200px'
+                                                }}
+                                            />
+                                            <button
+                                                type="button"
+                                                onClick={() => { setShowConfirm(false); setConfirmEmail(''); setMessage(''); }}
+                                                style={{
+                                                    background: 'transparent', border: 'none', color: m.text2, fontFamily: 'var(--fMono)', fontSize: '0.75rem',
+                                                    cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'underline'
+                                                }}
+                                            >
+                                                [ REVISE ]
+                                            </button>
+                                        </>
+                                    )}
                                     <button
                                         type="submit"
                                         disabled={loading}
@@ -125,7 +167,7 @@ export const AuthOverlay = ({ m, onClose }) => {
                                         onMouseEnter={e => e.currentTarget.style.backgroundColor = `${m.accent}15`}
                                         onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
                                     >
-                                        {loading ? '[ TRANSMITTING ]' : '[ ESTABLISH ]'}
+                                        {loading ? '[ TRANSMITTING ]' : (showConfirm ? '[ VERIFY ]' : '[ ESTABLISH ]')}
                                     </button>
                                 </form>
                             )}

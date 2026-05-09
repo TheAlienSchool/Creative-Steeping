@@ -1149,7 +1149,7 @@ function AppInner() {
                   // Unlock logic: Need at least 1 historical entry to pass 02, then scaling up.
                   // For the sake of the sanctuary, inneractive tier or enough history unlocks it.
                   const requiredDepth = (parseInt(vessel.num) - 2) * 2;
-                  const isLocked = parseInt(vessel.num) >= 3 && historicalDepth < requiredDepth && profile?.access_tier !== 'inneractive';
+                  const isLocked = parseInt(vessel.num) >= 3 && historicalDepth < requiredDepth && !['inneractive', 'journeyer', 'cohort', 'depth_semester'].includes(profile?.access_tier);
 
                   return (
                     <motion.div
