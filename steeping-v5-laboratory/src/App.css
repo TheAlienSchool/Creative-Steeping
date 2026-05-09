@@ -23,7 +23,7 @@ body {
 .app-container {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
   z-index: 1;
   transition: background-color 1.5s cubic-bezier(0.16, 1, 0.3, 1), color 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -111,7 +111,7 @@ nav.top-nav {
   ENTRANCE SCREEN 
 */
 .entrance-screen {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -160,7 +160,7 @@ export const WayfindingOverlay = ({ m, onClose, playStrikingBowl, activeVessel }
 
     return (
         <div style={{
-            position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+            position: 'fixed', top: 0, left: 0, width: '100vw', height: '100dvh',
             backgroundColor: m.bg, zIndex: 99999,
             display: 'flex', flexDirection: 'column',
             animation: 'fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards',

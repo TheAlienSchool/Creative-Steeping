@@ -202,11 +202,11 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
             border: `1px solid ${m.text2}30`, padding: compact ? 'var(--space-md)' : 'var(--space-lg)',
             background: `${m.bg}80`, backdropFilter: 'blur(10px)',
             display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)',
-            transition: 'all 0.4s ease', flex: compact ? 1 : 'none'
+            transition: 'all 0.4s ease', flex: compact ? '1 1 200px' : 'none'
         }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderBottom: `1px solid ${m.text2}20`, paddingBottom: 'var(--space-sm)' }}>
-                <div style={{ fontFamily: 'var(--fSerif)', fontSize: compact ? '1.2rem' : '1.5rem', color: m.text1 }}>{title}</div>
-                <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.accent }}>{price}</div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderBottom: `1px solid ${m.text2}20`, paddingBottom: 'var(--space-sm)', gap: '0.5rem', flexWrap: 'wrap' }}>
+                <div style={{ fontFamily: 'var(--fSerif)', fontSize: compact ? '1.2rem' : '1.5rem', color: m.text1, lineHeight: 1.2 }}>{title}</div>
+                <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.accent, flexShrink: 0 }}>{price}</div>
             </div>
             <div style={{ fontFamily: 'var(--fBody)', fontSize: compact ? '0.75rem' : '0.85rem', color: m.text2, lineHeight: 1.5, flex: 1, minHeight: compact ? 'auto' : '60px' }}>
                 {mechanism}
@@ -216,10 +216,10 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
                 disabled={isLoading}
                 className="guide-tier-btn"
                 style={{
-                    marginTop: 'var(--space-md)', padding: '12px', width: '100%', minHeight: '52px',
+                    marginTop: 'auto', paddingTop: '12px', paddingBottom: '12px', width: '100%', minHeight: '52px',
                     background: 'transparent', border: `1px solid ${m.accent}`, color: m.accent,
-                    fontFamily: 'var(--fMono)', fontSize: '1rem', letterSpacing: '0.1em', cursor: 'pointer',
-                    transition: 'all 0.3s ease', opacity: isLoading ? 0.5 : 1
+                    fontFamily: 'var(--fMono)', fontSize: compact ? '0.85rem' : '1rem', letterSpacing: '0.1em', cursor: 'pointer',
+                    transition: 'all 0.3s ease', opacity: isLoading ? 0.5 : 1, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden'
                 }}
                 onMouseEnter={e => { e.currentTarget.style.background = m.accent; e.currentTarget.style.color = m.bg; }}
                 onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = m.accent; }}
@@ -274,7 +274,7 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
             </div>
 
             {/* Core Editorial Landscape */}
-            <div style={{ flex: 1, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ flex: 1, position: 'relative', display: 'flex', alignItems: 'stretch', justifyContent: 'center', overflow: 'hidden' }}>
                 
                 {/* Hyper-Editorial Left Nav Indicator */}
                 <div className="guide-left-nav" style={{ position: 'absolute', left: 'var(--space-xl)', display: 'flex', flexDirection: 'column', gap: '2px', zIndex: 10 }}>
@@ -350,19 +350,19 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
                                     
                                     {/* Pathway A */}
                                     <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-                                        <div style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.8rem', letterSpacing: '0.2em' }}>PATHWAY A: SELF-GUIDED</div>
-                                        <div style={{ fontSize: '0.85rem', color: m.text2, fontStyle: 'italic', marginBottom: 'var(--space-sm)' }}>For the navigator ready to narrate the frequency of their own voice.</div>
+                                        <div style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.8rem', letterSpacing: '0.2em' }}>01 / 02 :: THE FOUNDATION & THE JOURNEYER</div>
+                                        <div style={{ fontSize: '0.85rem', color: m.text2, fontStyle: 'italic', marginBottom: 'var(--space-sm)' }}>Secure your coordinates to unlock the 9-part guided journey.</div>
                                         
                                         <TierCard 
-                                            title="The Interactive Threshold" price="Free" 
-                                            mechanism="Continued access to The Steeping Space. The Steeping Sage is here to offer wayfinding and CREATIVE STEEPING insights."
-                                            buttonText="[ Begin the Practice ]"
+                                            title="The Foundation" price="Free" 
+                                            mechanism="Establish presence by providing an email. Activates the ability to save your Steeping Notes locally. Grants access to the Steeping guidance in the Hexagongs, the bioacoustic soundscape, and basic conversation with The Sage."
+                                            buttonText="[ ESTABLISH PRESENCE ]"
                                             onClick={() => { if(playStrikingBowl) playStrikingBowl(40); onClose(); }}
                                         />
                                         <TierCard 
                                             title="The Journeyer" price="$44 / yr"
-                                            mechanism="The complete immersive CREATIVE STEEPING course. Unrestricted access to Steeping Space tools, intelligent memories, placekeeping. Your pace and Session Notes are fully preserved."
-                                            buttonText="[ Invest in the Arc ]"
+                                            mechanism="This annual subscription unlocks the core CREATIVE STEEPING curriculum designed from the original workbook. You gain full access to all 9 Hexagongs, allowing you to permanently map your progress and use the entire Steeping Laboratory toolkit without restriction."
+                                            buttonText="[ SECURE YOUR COORDINATES ]"
                                             isLoading={checkoutLoading === 'journeyer'}
                                             onClick={() => handleCheckout('journeyer')}
                                         />
@@ -373,29 +373,29 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
 
                                     {/* Pathway B */}
                                     <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-                                        <div style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.8rem', letterSpacing: '0.2em' }}>PATHWAY B: THE GUIDED DEEP WORK</div>
-                                        <div style={{ fontSize: '0.85rem', color: m.text2, fontStyle: 'italic', marginBottom: 'var(--space-sm)' }}>For the navigator who knows that deep work requires witness.</div>
+                                        <div style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.8rem', letterSpacing: '0.2em' }}>03 :: THE INNERACTIVE MENTORSHIPS</div>
+                                        <div style={{ fontSize: '0.85rem', color: m.text2, fontStyle: 'italic', marginBottom: 'var(--space-sm)' }}>The Cohort Calendar provides access to live human mentorship. For the navigator ready for sustained company.</div>
                                         
                                         <TierCard 
                                             title="Cohort Sessions" price="$777"
-                                            mechanism="Seven essential steeps over nine weeks in virtual and Live containers with calendar access for scheduling and reminders. One live session per steep with Kamau's guidance along with up to twelve navigators."
-                                            buttonText="[ Secure Your Seat ]"
+                                            mechanism="The Seven Essential steeps over nine weeks. Individual or in community. A fully guided Steeping experience."
+                                            buttonText="[ SECURE $777 ]"
                                             isLoading={checkoutLoading === 'cohort'}
                                             onClick={() => handleCheckout('cohort')}
                                         />
                                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)' }}>
                                             <TierCard 
                                                 title="Single Steep" price="$222"
-                                                mechanism="A focused Bring Your Own Tea hour with CREATIVE STEEPING author and guide Kamau Zuberi Akabueze."
-                                                buttonText="[ Schedule 1 ]"
+                                                mechanism="One prompt chosen for you in a Bring Your Own Tea hour with author and guide Kamau Zuberi Akabueze."
+                                                buttonText="[ 1X $222 ]"
                                                 isLoading={checkoutLoading === 'single_steep_1'}
                                                 onClick={() => handleCheckout('single_steep_1')}
                                                 compact
                                             />
                                             <TierCard 
                                                 title="Three-Part Arc" price="$600"
-                                                mechanism="Available as a three-part arc. A focused Bring Your Own Tea hour with CREATIVE STEEPING author."
-                                                buttonText="[ Schedule 3 ]"
+                                                mechanism="A three-part sequence of focused Bring Your Own Tea hours."
+                                                buttonText="[ 3X $600 ]"
                                                 isLoading={checkoutLoading === 'single_steep_3'}
                                                 onClick={() => handleCheckout('single_steep_3')}
                                                 compact
@@ -403,8 +403,8 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
                                         </div>
                                         <TierCard 
                                             title="The Depth Semester" price="$2,222"
-                                            mechanism="Full Steeping Space access and a three-month explorative Steeping Semester closing with your exclusive Creative Growth Brief :: a living document naming your essence, direction, and next move."
-                                            buttonText="[ Secure Your Semester ]"
+                                            mechanism="A three month exploration into the essence of your being, closing with your Creative Brief."
+                                            buttonText="[ SECURE $2,222 ]"
                                             isLoading={checkoutLoading === 'depth_semester'}
                                             onClick={() => handleCheckout('depth_semester')}
                                         />

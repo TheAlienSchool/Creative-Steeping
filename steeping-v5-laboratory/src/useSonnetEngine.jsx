@@ -773,10 +773,10 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         
         gain.gain.setValueAtTime(0, ctx.currentTime);
         gain.gain.linearRampToValueAtTime(0.12, ctx.currentTime + 3.0);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 15.0);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 65.0);
 
         panner.pan.setValueAtTime(-0.5, ctx.currentTime);
-        panner.pan.linearRampToValueAtTime(0.5, ctx.currentTime + 8.0);
+        panner.pan.linearRampToValueAtTime(0.5, ctx.currentTime + 60.0);
 
         osc.connect(filter);
         filter.connect(panner);
@@ -787,7 +787,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         if (delayNodeRef.current) gain.connect(delayNodeRef.current);
 
         osc.start(ctx.currentTime);
-        osc.stop(ctx.currentTime + 16.0);
+        osc.stop(ctx.currentTime + 66.0);
     }, []);
 
     const setMasterVolume = useCallback((val) => {

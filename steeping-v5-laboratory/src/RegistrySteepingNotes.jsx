@@ -122,9 +122,9 @@ const AwarenessPlanningInteractive = ({ m, playAlgoraveSynth }) => {
                 </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem', borderTop: `1px dashed ${m.accent}30`, paddingTop: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
                     <div style={{ fontFamily: 'var(--fMono)', fontSize: '1.2rem', color: m.accent, opacity: 0.9 }}>{formatTime(timeLeft)}</div>
-                    <button onClick={() => setFlowMode(!flowMode)} style={{ background: flowMode ? `${m.accent}20` : 'transparent', border: `1px solid ${flowMode ? m.accent : m.accent + '40'}`, color: flowMode ? m.accent : m.text2, padding: '6px 12px', fontFamily: 'var(--fMono)', fontSize: '0.65rem', letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.3s ease', boxShadow: flowMode ? `0 0 10px ${m.accent}40` : 'none' }}>
+                    <button onClick={() => setFlowMode(!flowMode)} style={{ background: flowMode ? `${m.accent}20` : 'transparent', border: `1px solid ${flowMode ? m.accent : m.accent + '40'}`, color: flowMode ? m.accent : m.text2, padding: '6px 12px', fontFamily: 'var(--fMono)', fontSize: '0.65rem', letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.3s ease', boxShadow: flowMode ? `0 0 10px ${m.accent}40` : 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
                         {flowMode ? '[ FLOW MODE: ON ]' : '[ FLOW MODE: OFF ]'}
                     </button>
                     <div style={{ fontFamily: 'var(--fBody)', fontSize: '0.85rem', color: m.text2, fontStyle: 'italic', opacity: 0.7 }}>
@@ -132,7 +132,7 @@ const AwarenessPlanningInteractive = ({ m, playAlgoraveSynth }) => {
                     </div>
                 </div>
                 <button onClick={() => { if (phase < phases.length - 1) { setPhase(phase + 1); } else { setActive(false); setPhase(0); } }}
-                    style={{ background: 'none', border: `1px solid ${m.accent}50`, color: m.accent, padding: '12px 24px', fontFamily: 'var(--fMono)', fontSize: '0.75rem', letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.4s ease', boxShadow: `0 0 15px ${m.accent}10` }}
+                    style={{ background: 'none', border: `1px solid ${m.accent}50`, color: m.accent, padding: '12px 24px', fontFamily: 'var(--fMono)', fontSize: '0.75rem', letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.4s ease', boxShadow: `0 0 15px ${m.accent}10`, whiteSpace: 'nowrap', flexShrink: 0 }}
                     onMouseEnter={e => { e.currentTarget.style.backgroundColor = m.accent; e.currentTarget.style.color = '#000'; }}
                     onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = m.accent; }}>
                     {current.button}
@@ -758,7 +758,7 @@ const DecayIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
 
 // ─── ISSUE 12: REST AS ARCHITECTURE ──────────────────────────────────────────
 
-const RestGate = ({ m, onOpen, playStrikingBowl }) => {
+const RestGate = ({ m, onOpen, playStrikingBowl, playRootForagingFrequency }) => {
     const [timeLeft, setTimeLeft] = useState(90);
     const [begun, setBegun] = useState(false);
     const [complete, setComplete] = useState(false);
@@ -768,6 +768,7 @@ const RestGate = ({ m, onOpen, playStrikingBowl }) => {
         
         // Initial strike when the rest begins
         if (playStrikingBowl) playStrikingBowl(45);
+        if (playRootForagingFrequency) playRootForagingFrequency();
 
         const interval = setInterval(() => {
             setTimeLeft(prev => {
@@ -827,7 +828,7 @@ const RestGate = ({ m, onOpen, playStrikingBowl }) => {
     );
 };
 
-const RestIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => {
+const RestIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl, playRootForagingFrequency }) => {
     const [gateOpen, setGateOpen] = useState(false);
     const [restComplete, setRestComplete] = useState(false);
 
@@ -837,7 +838,7 @@ const RestIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBow
         <div style={{ animation: 'fadeIn 1s ease', position: 'relative' }}>
             <IssueHeader m={m} title="Rest As" accent="Architecture" published="2026" designation="THE STEEPERVERSE" source="JOHN CAGE · MILES DAVIS · THE ARCHITECTURE OF SILENCE" kicker="A rest is notated. It is a specific, held duration of silence. It is the load-bearing structure of what follows." />
 
-            {gateOpen && !restComplete && <RestGate m={m} onOpen={handleRestComplete} playStrikingBowl={playStrikingBowl} />}
+            {gateOpen && !restComplete && <RestGate m={m} onOpen={handleRestComplete} playStrikingBowl={playStrikingBowl} playRootForagingFrequency={playRootForagingFrequency} />}
 
             {!gateOpen && (
                 <div style={{ width: '100%', marginBottom: 'var(--space-xxl)', border: `1px solid ${m.accent}30`, background: 'rgba(0,0,0,0.6)', minHeight: '300px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', padding: '3rem', textAlign: 'center' }}>
@@ -1080,7 +1081,7 @@ export const getSteepingIssues = (m, setTuraoMode, SongbookGlossaryItem, playAlg
     {
         id: 'rest',
         buttonLabel: '[ REST AS ARCHITECTURE ]',
-        render: () => <RestIssue m={m} SongbookGlossaryItem={SongbookGlossaryItem} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} />
+        render: () => <RestIssue m={m} SongbookGlossaryItem={SongbookGlossaryItem} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} playRootForagingFrequency={playRootForagingFrequency} />
     },
     {
         id: 'collabination',
@@ -1183,19 +1184,21 @@ const StemSequencer = ({ m, playAlgoraveSynth, playStrikingBowl }) => {
         if (playAlgoraveSynth) playAlgoraveSynth();
     };
 
-    const startPause = () => {
+    const handleAwarenessPlanning = () => {
+        if (pauseHeld) return;
         setPauseHeld(true);
-        setPauseSeconds(0);
-        pauseTimerRef.current = setInterval(() => setPauseSeconds(s => s + 1), 1000);
-    };
-
-    const endPause = () => {
-        clearInterval(pauseTimerRef.current);
-        setPauseHeld(false);
-        if (pauseSeconds >= 3) {
-            setReverbTail(true);
-            setCallMode(false);
-        }
+        setPauseSeconds(3);
+        let s = 3;
+        pauseTimerRef.current = setInterval(() => {
+            s -= 1;
+            setPauseSeconds(s);
+            if (s <= 0) {
+                clearInterval(pauseTimerRef.current);
+                setReverbTail(true);
+                setCallMode(false);
+                setPauseHeld(false);
+            }
+        }, 1000);
     };
 
     const activeCount = Object.values(stems).filter(Boolean).length;
@@ -1248,9 +1251,9 @@ const StemSequencer = ({ m, playAlgoraveSynth, playStrikingBowl }) => {
                                 style={{ padding: '10px 20px', background: responseHeld ? m.accent : 'transparent', border: `1px solid ${m.accent}`, color: responseHeld ? '#000' : m.accent, fontFamily: 'var(--fMono)', fontSize: '0.7rem', letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.2s ease' }}>
                                 [ RESPOND ]
                             </button>
-                            <button onMouseDown={startPause} onMouseUp={endPause} onMouseLeave={endPause} onTouchStart={startPause} onTouchEnd={endPause}
-                                style={{ padding: '10px 20px', background: pauseHeld ? `${m.accent}10` : 'transparent', border: `1px dashed ${m.accent}50`, color: m.text2, fontFamily: 'var(--fMono)', fontSize: '0.7rem', letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.3s ease' }}>
-                                {pauseHeld ? `[ HOLDING SPACE :: ${pauseSeconds}s ]` : '[ HOLD — PRACTICE AWARENESS PLANNING ]'}
+                            <button onClick={handleAwarenessPlanning}
+                                style={{ padding: '10px 20px', background: pauseHeld ? `${m.accent}10` : 'transparent', border: `1px dashed ${m.accent}50`, color: m.text2, fontFamily: 'var(--fMono)', fontSize: '0.7rem', letterSpacing: '0.15em', cursor: pauseHeld ? 'default' : 'pointer', transition: 'all 0.3s ease' }}>
+                                {pauseHeld ? `[ HOLDING SPACE :: ${pauseSeconds}s ]` : '[ ESTABLISH AWARENESS PLANNING ]'}
                             </button>
                         </>
                     )}
@@ -1315,7 +1318,7 @@ const TrigramExplorer = ({ m, playStrikingBowl }) => {
     return (
         <div style={{ marginBottom: 'var(--space-xxl)' }}>
             <SectionLabel m={m}>[ THE EIGHT TRIGRAMS :: THE MATHEMATICS OF CHANGE ]</SectionLabel>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '1px', border: `1px solid ${m.accent}15` }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: '1px', border: `1px solid ${m.accent}15` }}>
                 {trigrams.map((t, i) => (
                     <div key={i} onClick={() => { setActive(active === i ? null : i); if (playStrikingBowl) playStrikingBowl(60 + i * 3); }}
                         style={{ padding: 'var(--space-lg)', cursor: 'pointer', background: active === i ? `${m.accent}12` : 'transparent', transition: 'all 0.3s ease', borderBottom: `1px solid ${m.accent}10` }}
@@ -1737,28 +1740,50 @@ const TuraoYantra = ({ m }) => {
     );
 };
 
-const TuraoFilmPreview = ({ m }) => (
-    <div style={{ width: '100%', aspectRatio: '16/9', border: `1px solid ${m.accent}30`, position: 'relative', marginBottom: 'var(--space-xxl)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', background: '#000', cursor: 'pointer', transition: 'all 0.5s ease' }}
-         onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 0 30px ${m.accent}30`; e.currentTarget.style.borderColor = `${m.accent}80`; }}
-         onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = `${m.accent}30`; }}>
-        
-        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(45deg, #000 0%, ${m.accent}15 50%, #000 100%)`, opacity: 0.8 }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'url("https://www.transparenttextures.com/patterns/stardust.png")', opacity: 0.2 }} />
-        
-        <div style={{ width: '60px', height: '60px', borderRadius: '50%', border: `1px solid ${m.accent}`, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2, background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)' }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill={m.accent} style={{ marginLeft: '4px' }}>
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-        </div>
+const TuraoFilmPreview = ({ m, playAlgoraveSynth, playStrikingBowl }) => {
+    const [playing, setPlaying] = useState(false);
+    return (
+        <div style={{ width: '100%', aspectRatio: '16/9', border: `1px solid ${m.accent}30`, position: 'relative', marginBottom: 'var(--space-xxl)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', background: '#000', cursor: 'pointer', transition: 'all 0.5s ease' }}
+             onClick={() => { if(!playing && playStrikingBowl) playStrikingBowl(); setPlaying(true); }}
+             onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 0 30px ${m.accent}30`; e.currentTarget.style.borderColor = `${m.accent}80`; }}
+             onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = `${m.accent}30`; }}>
+            
+            <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(45deg, #000 0%, ${m.accent}15 50%, #000 100%)`, opacity: 0.8 }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'url("https://www.transparenttextures.com/patterns/stardust.png")', opacity: 0.2 }} />
+            
+            {!playing ? (
+                <>
+                    <div style={{ width: '60px', height: '60px', borderRadius: '50%', border: `1px solid ${m.accent}`, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2, background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)' }}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill={m.accent} style={{ marginLeft: '4px' }}>
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </div>
 
-        <div style={{ position: 'absolute', bottom: '1rem', left: '1.5rem', zIndex: 2, fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.65rem', letterSpacing: '0.2em' }}>
-            [ PLAY FILM :: THE TURAO EXPERIENCE ]
+                    <div style={{ position: 'absolute', bottom: '1rem', left: '1.5rem', zIndex: 2, fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.65rem', letterSpacing: '0.2em' }}>
+                        [ PLAY FILM :: THE TURAO EXPERIENCE ]
+                    </div>
+                    <div style={{ position: 'absolute', top: '1rem', right: '1.5rem', zIndex: 2, fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.6rem', letterSpacing: '0.2em', opacity: 0.5 }}>
+                        00:00 / 03:44
+                    </div>
+                </>
+            ) : (
+                <div style={{ position: 'absolute', inset: 0, zIndex: 3, background: '#000' }}>
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src="https://www.youtube.com/embed/TheZahRDRU4?si=a7x6I3uC8BUIq1sM&autoplay=1" 
+                        title="YouTube video player" 
+                        frameBorder="0" 
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowFullScreen
+                        style={{ border: 'none' }}>
+                    </iframe>
+                </div>
+            )}
         </div>
-        <div style={{ position: 'absolute', top: '1rem', right: '1.5rem', zIndex: 2, fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.6rem', letterSpacing: '0.2em', opacity: 0.5 }}>
-            00:00 / 03:44
-        </div>
-    </div>
-);
+    );
+};
 
 const TuraoIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => (
     <div style={{ animation: 'fadeIn 1s ease' }}>
@@ -1800,7 +1825,7 @@ const TuraoIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
             Steeping functions as an offering with a receiver. The universe holds what is given with the stability that rock holds the memory of the ocean — and with the openness that the ocean brings to every encounter with the shore. The coastline grows more beautiful with every tide. TURAO grows richer with every offering received.
         </BodyText>
 
-        <TuraoFilmPreview m={m} />
+        <TuraoFilmPreview m={m} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} />
 
         <TuraoReceivingEnvironment m={m} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} onOpenFull={() => {}} />
 

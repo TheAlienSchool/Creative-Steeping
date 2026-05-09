@@ -98,7 +98,7 @@ const BuoyantGrain = () => (
       </filter>
     </svg>
     <div style={{
-      position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+      position: 'fixed', top: 0, left: 0, width: '100vw', height: '100dvh',
       pointerEvents: 'none', zIndex: 9999,
       mixBlendMode: 'overlay',
       opacity: 0.4,
@@ -118,7 +118,7 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ color: 'red', padding: '2rem', background: '#222', zIndex: 99999, position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', whiteSpace: 'pre-wrap' }}>
+        <div style={{ color: 'red', padding: '2rem', background: '#222', zIndex: 99999, position: 'fixed', top: 0, left: 0, width: '100vw', height: '100dvh', whiteSpace: 'pre-wrap' }}>
           <h2>React Crash!</h2>
           <p>{this.state.errorMsg}</p>
           <pre>{this.state.errorStack}</pre>
@@ -525,7 +525,7 @@ function AppInner() {
     background: "var(--bg)",
     color: "var(--t1)",
     fontFamily: "var(--fBody)",
-    minHeight: "100vh",
+    minHeight: "100dvh",
     transition: "background 1.2s ease, color 1.2s ease"
   };
 
@@ -733,7 +733,7 @@ function AppInner() {
       {/* V5 Resonance Canvas */}
       <canvas
         ref={canvasRef}
-        style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' }}
+        style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100dvh', zIndex: 0, pointerEvents: 'none' }}
       />
 
       {/* GLOBAL NAVIGATION */}
