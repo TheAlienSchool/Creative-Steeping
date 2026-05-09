@@ -2074,3 +2074,58 @@ const PeaceIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
     </div>
 );
 
+// ────────────────────────────────────────────────────────────────────────────
+// ISSUE 24: 5D BIOPHILICS & ALCHEMICAL BOTANY
+// ────────────────────────────────────────────────────────────────────────────
+
+const BiophilicIssue = ({ m, SongbookGlossaryItem, playRootForagingFrequency, playAlgoraveSynth, playStrikingBowl }) => (
+    <div style={{ animation: 'fadeIn 1s ease' }}>
+        <IssueHeader m={m} title="5D" accent="Biophilics" published="2026" designation="THE ACOUSTIC BOTANY LAB" source="ALCHEMICAL SEEDING" kicker="The space you inhabit is alive. The system breathes as an acoustic root system." />
+        <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
+                he paradigm shifts the moment we build digital environments purely as living habitats. The Mathematics of Now requires structural integrity and biological fidelity. We explicitly water seeds.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                In 1966, Cleve Backster connected a polygraph to a Dracaena fragrans plant. What he observed—the erratic tracing resembling human anxiety when he merely <em>thought</em> of burning the leaf—was named <SongbookGlossaryItem m={m} term="Primary Perception" definition="The theory that plants and all cellular life possess a foundational, instantaneous biological awareness of intent, preceding all complex neurological processing." />.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                If intention translates to biological response, then our spatial design must carry an intention of absolute harmony. The Steeping Space operates on the <SongbookGlossaryItem m={m} term="Covenant of Spatial Attunement" definition="Our architectural vow: user metadata acts as a Spatial Seed. It calibrates the environment for individual flourishing. It remains entirely sovereign and locally held." />.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                The interface functions as a Mycorrhizal Network. Information travels as nutrients. The algorithms resonate directly with your current state.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                Consider the acoustic reality of a plant seeking water. Roots possess acoustic vision. They listen. They emit acoustic clicks (10-240Hz) and respond directly to the 220Hz frequency of flowing water. 
+            </p>
+
+            <div style={{ textAlign: 'center', margin: 'var(--space-xl) 0', color: m.accent, opacity: 0.5 }}>***</div>
+
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                The <SongbookGlossaryItem m={m} term="220Hz Root Foraging Tone" definition="The exact frequency at which flowing subterranean water resonates, guiding roots directly to sustenance." /> is built into the Sonnet Audio Engine. 
+            </p>
+
+            <div style={{ textAlign: 'center', margin: '2rem 0' }}>
+                <button 
+                    onClick={() => { if(playRootForagingFrequency) playRootForagingFrequency(); }}
+                    style={{ background: 'transparent', border: `1px solid ${m.accent}`, color: m.accent, padding: '1rem 2rem', fontFamily: 'var(--fMono)', fontSize: '0.85rem', letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.4s ease', boxShadow: `0 0 15px ${m.accent}20` }}
+                    onMouseEnter={e => { e.currentTarget.style.backgroundColor = m.accent; e.currentTarget.style.color = '#000'; }}
+                    onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = m.accent; }}
+                >
+                    [ INITIATE 220Hz WATER SEARCH ]
+                </button>
+            </div>
+            
+            <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                Press the button. Notice the deep, slow acoustic seeking that floods the stereo field. It begins invisibly and slowly gathers amplitude. This is the sound of biology locating what it needs to survive.
+            </p>
+            <p style={{ margin: '0 0 var(--space-md) 0', fontWeight: 'bold' }}>
+                You are the seed. The space is the soil.
+            </p>
+        </div>
+
+        <StepingPrompt m={m} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} prompt="What frequency are your roots currently seeking?" />
+        <PullQuote m={m}>"The interface breathes purely as an acoustic root system."</PullQuote>
+    </div>
+);
+
