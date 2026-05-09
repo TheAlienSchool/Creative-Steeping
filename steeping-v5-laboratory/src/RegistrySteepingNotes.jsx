@@ -945,7 +945,7 @@ const ThreeStatesIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStri
 // PRIMARY REGISTRY EXPORT
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const getSteepingIssues = (m, setTuraoMode, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl, historicalScore) => [
+export const getSteepingIssues = (m, setTuraoMode, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl, historicalScore, playRootForagingFrequency) => [
     {
         id: 'three-states',
         buttonLabel: '[ THREE STATES ]',
