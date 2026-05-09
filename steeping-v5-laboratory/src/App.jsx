@@ -543,7 +543,7 @@ function AppInner() {
   }, []);
 
   // Initialize the Sonnet Audio Engine
-  const { initEngine, updateBinauralTracking, playStrikingBowl, playHarmonicChord, playAlgoraveSynth, playConsideringHarmonic, playSandSonnet, playCompletionCue, setMasterVolume, setAmbientActive, setSymphonyTuning } = useSonnetEngine(mode, eqParams);
+  const { initEngine, updateBinauralTracking, playStrikingBowl, playHarmonicChord, playAlgoraveSynth, playConsideringHarmonic, playSandSonnet, playCompletionCue, playRootForagingFrequency, setMasterVolume, setAmbientActive, setSymphonyTuning } = useSonnetEngine(mode, eqParams);
 
   // Initialize The Steeping Sage Intelligence
   const { askSage, sageResponse, isThinking, historicalScore, hasMoreHistory, loadMoreHistory, setSageResponse } = useSageIntelligence(identity, playStrikingBowl);
@@ -1617,7 +1617,7 @@ function AppInner() {
         </div>
       )}
 
-      {ledgerOpen && <SteepersLedger m={m} historicalScore={historicalScore} hasMoreHistory={hasMoreHistory} loadMoreHistory={loadMoreHistory} generateSonicSketch={generateSonicSketch} onClose={() => setLedgerOpen(false)} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} askSage={handleAskSage} />}
+      {ledgerOpen && <SteepersLedger m={m} historicalScore={historicalScore} hasMoreHistory={hasMoreHistory} loadMoreHistory={loadMoreHistory} generateSonicSketch={generateSonicSketch} onClose={() => setLedgerOpen(false)} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} playRootForagingFrequency={playRootForagingFrequency} askSage={handleAskSage} />}
 
       {showCompass && (
         <TheSteepingCompass

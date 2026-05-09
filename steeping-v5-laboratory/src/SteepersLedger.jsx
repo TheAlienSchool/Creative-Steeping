@@ -235,7 +235,7 @@ const ResonanceVault = ({ m, issues, activeIssue, setActiveIssue, playStrikingBo
     );
 };
 
-export const SteepersLedger = ({ m, historicalScore = [], hasMoreHistory, loadMoreHistory, generateSonicSketch, onClose, playStrikingBowl, playAlgoraveSynth, askSage }) => {
+export const SteepersLedger = ({ m, historicalScore = [], hasMoreHistory, loadMoreHistory, generateSonicSketch, onClose, playStrikingBowl, playAlgoraveSynth, playRootForagingFrequency, askSage }) => {
     const [activeIssue, setActiveIssue] = useState('steam');
 
     // EH-04: Build a Sage context string from the active note
@@ -399,7 +399,7 @@ export const SteepersLedger = ({ m, historicalScore = [], hasMoreHistory, loadMo
                 {/* ── THE RESONANCE VAULT (Interactive Filtering Architecture) ─────────────────────────────── */}
                 <ResonanceVault
                     m={m}
-                    issues={getSteepingIssues(m, setTuraoMode, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl, historicalScore)}
+                    issues={getSteepingIssues(m, setTuraoMode, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl, historicalScore, playRootForagingFrequency)}
                     activeIssue={activeIssue}
                     setActiveIssue={setActiveIssue}
                     playStrikingBowl={playStrikingBowl}

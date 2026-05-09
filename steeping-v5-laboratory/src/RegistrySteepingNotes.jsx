@@ -1141,6 +1141,11 @@ export const getSteepingIssues = (m, setTuraoMode, SongbookGlossaryItem, playAlg
         id: 'peace',
         buttonLabel: '[ PEACE EXISTS ]',
         render: () => <PeaceIssue m={m} SongbookGlossaryItem={SongbookGlossaryItem} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} />
+    },
+    {
+        id: 'biophilic',
+        buttonLabel: '[ 5D BIOPHILICS ]',
+        render: () => <BiophilicIssue m={m} SongbookGlossaryItem={SongbookGlossaryItem} playRootForagingFrequency={playRootForagingFrequency} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} />
     }
 ];
 
