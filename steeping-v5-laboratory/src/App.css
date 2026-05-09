@@ -872,9 +872,9 @@ nav.top-nav {
     max-width: min(280px, calc(100vw - 40px)) !important;
   }
 
-  /* Mode toggles: small left buffer so first character isn't clipped */
+  /* Mode toggles: safe buffer so first character isn't clipped */
   .mode-toggles {
-    padding-left: 3px !important;
+    padding-left: 20px !important;
   }
 
   /* Portal screen: extra bottom clearance for the Active Pause timer bar */

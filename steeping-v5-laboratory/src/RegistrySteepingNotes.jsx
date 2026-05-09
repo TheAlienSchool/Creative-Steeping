@@ -2039,16 +2039,16 @@ const PeaceIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
             </p>
         </div>
 
-        <div style={{ marginBottom: 'var(--space-xxl)' }}>
-            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '1.5rem', borderBottom: `1px dashed ${m.accent}40`, paddingBottom: '0.5rem' }}>THE TERMINOLOGY OF THE FIELD</h3>
+        <div style={{ marginBottom: 'var(--space-xxl)', display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'flex-start' }}>
+            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', width: '100%', marginBottom: '0.5rem', borderBottom: `1px dashed ${m.accent}40`, paddingBottom: '0.5rem' }}>THE TERMINOLOGY OF THE FIELD</h3>
             <SongbookGlossaryItem m={m} term="Peacemark" definition="A specific linguistic coordinate for peace. A Peacemark operates as an independent alchemical mechanism, transcending simple translation. It names how a specific lineage of the human family enters the field of coherence." />
             <SongbookGlossaryItem m={m} term="Coordinate" definition="A location that already occupies space in the field. To treat peace as a coordinate is to recognize that it stands fully formed, transcending achievement or negotiation—it only needs to be located and inhabited." />
             <SongbookGlossaryItem m={m} term="The Existence Audit" definition={`A somatic inquiry. A thirty-second practice of directing a single question to the body: "Where in this moment is peace already present?" The audit bypasses the analytical mind, which requires the resolution of conflict, and accesses the nervous system, which remembers the baseline.`} />
             <SongbookGlossaryItem m={m} term="Assembling the Vessel" definition="The act of securing structural integrity. When peace is understood as total structural presence, the human task shifts from fighting external enemies to ensuring internal wholeness. Assemble the vessel fully, and it will draw the water." />
         </div>
 
-        <div style={{ marginBottom: 'var(--space-xxl)' }}>
-            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '1.5rem', borderBottom: `1px dashed ${m.accent}40`, paddingBottom: '0.5rem' }}>THE PEACEMARKS</h3>
+        <div style={{ marginBottom: 'var(--space-xxl)', display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'flex-start' }}>
+            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', width: '100%', marginBottom: '0.5rem', borderBottom: `1px dashed ${m.accent}40`, paddingBottom: '0.5rem' }}>THE PEACEMARKS</h3>
             <SongbookGlossaryItem m={m} term="Shalom / Salām (Semitic)" definition="The Alchemical Mechanism: Completeness. Peace as structural integrity. The state of absolute structural integrity and total presence." />
             <SongbookGlossaryItem m={m} term="Mir (Slavic)" definition="The Alchemical Mechanism: The Collective Reality. Peace as the world itself. The state in which the community and the peace are the exact same entity." />
             <SongbookGlossaryItem m={m} term="Wolakota (Lakota)" definition="The Alchemical Mechanism: The Pre-existing Field. Peace as the relational circle. The state that precedes the individual and waits to be entered." />
@@ -2056,8 +2056,8 @@ const PeaceIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
             <SongbookGlossaryItem m={m} term="Hépíng (Sinitic)" definition="The Alchemical Mechanism: The Level Field. Peace as dynamic equilibrium. The state where all elements exist together without disturbing the surface tension of the whole." />
         </div>
 
-        <div style={{ marginBottom: 'var(--space-xxl)' }}>
-            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '1.5rem', borderBottom: `1px dashed ${m.accent}40`, paddingBottom: '0.5rem' }}>THE CINEMATIC ÆQUATIONS</h3>
+        <div style={{ marginBottom: 'var(--space-xxl)', display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'flex-start' }}>
+            <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', width: '100%', marginBottom: '0.5rem', borderBottom: `1px dashed ${m.accent}40`, paddingBottom: '0.5rem' }}>THE CINEMATIC ÆQUATIONS</h3>
             <SongbookGlossaryItem m={m} term="ÆQ·DB·01: Peace Exists." definition="The anchor formula. The recognition that peace is a present-tense ontological fact, transcending future-tense aspiration." />
             <SongbookGlossaryItem m={m} term="ÆQ·DB·02: Shalom is not an absence." definition="The recognition that peace is defined purely by what is present (wholeness), rather than what has been removed (conflict)." />
             <SongbookGlossaryItem m={m} term="ÆQ·DB·03: Mir is the world." definition="The recognition that you cannot seek peace outside the community, because the community functioning in coherence is the peace." />

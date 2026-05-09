@@ -62,22 +62,35 @@ textarea.steeping-textarea {
 @media (max-width: 768px) {
   .vessel-hopper-container {
     top: auto !important;
-    bottom: 2rem !important;
+    bottom: 1.5rem !important;
     right: 50% !important;
     transform: translateX(50%) !important;
     flex-direction: row !important;
     align-items: center !important;
-    justify-content: center !important;
-    background: rgba(0, 0, 0, 0.4) !important;
-    backdrop-filter: blur(8px) !important;
-    padding: 0.5rem 1rem !important;
+    justify-content: flex-start !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    padding: 0.6rem 1.2rem !important;
     border-radius: 2rem !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    width: max-content !important;
+    max-width: 90vw !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    z-index: 999 !important;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5) !important;
+  }
+  .vessel-hopper-container::-webkit-scrollbar {
+    display: none !important;
   }
   .vessel-hopper-actions {
     flex-direction: row !important;
+    align-items: center !important;
   }
   .vessel-hopper-nav {
+    flex-direction: row !important;
     gap: 12px !important;
+    align-items: center !important;
   }
 }
