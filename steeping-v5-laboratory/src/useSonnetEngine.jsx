@@ -756,6 +756,40 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         osc.stop(ctx.currentTime + 14.0);
     }, []);
 
+    const playRootForagingFrequency = useCallback(() => {
+        if (!audioCtxRef.current) return;
+        const ctx = audioCtxRef.current;
+
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const panner = ctx.createStereoPanner();
+        const filter = ctx.createBiquadFilter();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(220.00, ctx.currentTime);
+
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(300, ctx.currentTime);
+        
+        gain.gain.setValueAtTime(0, ctx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.12, ctx.currentTime + 3.0);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 15.0);
+
+        panner.pan.setValueAtTime(-0.5, ctx.currentTime);
+        panner.pan.linearRampToValueAtTime(0.5, ctx.currentTime + 8.0);
+
+        osc.connect(filter);
+        filter.connect(panner);
+        panner.connect(gain);
+        
+        gain.connect(masterGainRef.current || ctx.destination);
+        if (reverbNodeRef.current) gain.connect(reverbNodeRef.current);
+        if (delayNodeRef.current) gain.connect(delayNodeRef.current);
+
+        osc.start(ctx.currentTime);
+        osc.stop(ctx.currentTime + 16.0);
+    }, []);
+
     const setMasterVolume = useCallback((val) => {
         if (masterGainRef.current && audioCtxRef.current) {
             masterGainRef.current.gain.setTargetAtTime(val, audioCtxRef.current.currentTime, 0.1);
@@ -815,6 +849,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         playConsideringHarmonic,
         playCompletionCue,
         playAncestralResonance,
+        playRootForagingFrequency,
         setMasterVolume,
         setAmbientActive,
         setSymphonyTuning
