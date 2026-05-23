@@ -1067,9 +1067,7 @@ function AppInner() {
                 </h2>
 
                 <div style={{ fontFamily: 'var(--fBody)', fontSize: '1.2rem', color: 'var(--t2)', marginBottom: 'var(--space-xl)' }}>
-                  {mode === 'incandescent' && "What is ready to be transmuted within me?"}
-                  {mode === 'oceanic' && "In the quiet, what wisdom whispers?"}
-                  {mode === 'emergent' && "What truth is shimmering just beneath the surface?"}
+                  Where Do You Find Your Self?
                 </div>
 
                 {!sageExpanded ? (
@@ -1086,7 +1084,7 @@ function AppInner() {
                     onMouseEnter={e => { e.currentTarget.style.opacity = 1; e.currentTarget.style.borderBottom = '1px solid var(--acc)' }}
                     onMouseLeave={e => { e.currentTarget.style.opacity = 0.8; e.currentTarget.style.borderBottom = '1px solid transparent' }}
                   >
-                    <b>[ OFFER AN INQUIRY ]</b>
+                    <b>[ LOCATE YOUR SELF ]</b>
                   </button>
                 ) : (
                   <div style={{ width: '100%', position: 'relative' }}>
@@ -1095,7 +1093,7 @@ function AppInner() {
                     </div>
                     <textarea
                       id="sage-textarea-input"
-                      placeholder="Offer your resonance..."
+                      placeholder="Locate your self here..."
                       onFocus={() => setSageTestingBusy(true)}
                       onBlur={() => setSageTestingBusy(false)}
                       onKeyDown={(e) => {
