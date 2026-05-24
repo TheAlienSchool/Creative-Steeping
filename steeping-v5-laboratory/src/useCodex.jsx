@@ -80,7 +80,7 @@ export function searchBySteepAndTerms(codex, steep, query, limit = 5) {
       }
     }
     const steepAffinity = fragment.steepAffinity[steep] ?? 0;
-    const combined = termScore * 0.6 + steepAffinity * 0.4;
+    const combined = termScore * 0.75 + steepAffinity * 0.25;
     if (combined > 0) results.push({ fragment, score: combined, matchedTerms: matched });
   }
 

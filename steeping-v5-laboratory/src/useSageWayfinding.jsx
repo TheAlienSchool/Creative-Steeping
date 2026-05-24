@@ -72,6 +72,77 @@ function pickRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+// ==========================================
+// INTENT DETECTION
+// ==========================================
+// Reads the content of what the visitor typed — not just
+// behavioral signals — and routes to a response that
+// directly addresses what was said.
+
+const INTENT_RESPONSES = {
+  arrival: [
+    "You begin where you are. There is no threshold you have already crossed wrong.",
+    "This is a space for presence, not performance. What you bring is sufficient.",
+    "The start is wherever attention first lands. You are already in it.",
+    "There is no correct entry point. The practice begins the moment you pause.",
+  ],
+  resistance: [
+    "Not knowing is its own knowing. What is unclear is not a failure of arrival.",
+    "The uncertain place is where the interesting material lives. Stay with it.",
+    "Confusion is often the feeling of something rearranging. Let it.",
+    "You do not need to resolve this to proceed. The questions themselves are the path.",
+  ],
+  seeking: [
+    "What you are looking for may not have its name yet. That is not a problem — that is the work.",
+    "Seeking is not lack. It is the form attention takes when it is awake.",
+    "The looking matters as much as the finding. What shape does your search have?",
+    "Something is pulling your attention. Follow the pull before you name it.",
+  ],
+  inquiry: [
+    "The question itself is where you are. Let it open rather than close.",
+    "Ask it again without expecting an answer. Listen to what the question reveals about you.",
+    "Some questions are answered by living with them, not resolving them.",
+    "You are naming something. That naming is its own kind of arrival.",
+  ],
+  affirmation: [
+    "What you named just shifted something. Stay with it.",
+    "That observation is the practice. You just did the thing.",
+    "The noticing is real. Where does it live in your body?",
+    "You are witnessing yourself. That is the work — and you are already in it.",
+  ],
+  practice: [
+    "The practice is not doing more. It is doing what you are already doing, with more presence.",
+    "The next step is not a step. It is a deeper version of where you are.",
+    "What would it look like to not hurry this?",
+    "There is no technique before attention. Attention is the technique.",
+  ],
+};
+
+function detectIntent(query) {
+  const q = query.toLowerCase().trim();
+
+  if (/\b(where do i start|what is this|how does this work|where am i|new here|just arrived|beginning|what should i|what'?s here)\b/.test(q))
+    return 'arrival';
+
+  if (/\b(don'?t know|not sure|confused|can'?t|stuck|lost|unclear|struggling|uncertain|unsure)\b/.test(q))
+    return 'resistance';
+
+  if (/\b(looking for|searching for|trying to find|searching)\b/.test(q))
+    return 'seeking';
+
+  if (/\b(i feel|i am feeling|i notice|i sense|i'?m experiencing|i'?m feeling|i'?m noticing)\b/.test(q))
+    return 'affirmation';
+
+  if (/\b(how do i|what do i do|what should i|what'?s next|how to|next step)\b/.test(q))
+    return 'practice';
+
+  // Inquiry: explicit question words at the start, or ends with ?
+  if (/^(what is|what does|what are|tell me|explain|who is|why is|why does)\b/.test(q) || q.endsWith('?'))
+    return 'inquiry';
+
+  return null;
+}
+
 export function useSageWayfinding(identity, playStrikingBowl) {
   const { state: wayfindingState, onTextChange } = useWayfinding();
   const { codex, loading: codexLoading, surface, resetSurfaced } = useCodex();
@@ -137,20 +208,30 @@ export function useSageWayfinding(identity, playStrikingBowl) {
         transitionNotedRef.current = false;
       }
 
-      // 2. Surface a codex fragment if available
-      const codexResults = surface(steep, query, 1);
-      if (codexResults.length > 0) {
-        const fragment = codexResults[0].fragment;
-        response += fragment.text + '\n\n';
-      }
+      // 2 & 3. Intent + codex, composited
+      // Intent fires → authored response addressing what was said + best codex match.
+      // No intent but codex found → up to 2 codex fragments (what you typed drives more).
+      // Neither → fall back to steep reflection.
+      const intent = detectIntent(query);
+      const codexResults = surface(steep, query, 2);
 
-      // 3. Add a steep-specific reflection
-      const reflections = STEEP_REFLECTIONS[steep] || STEEP_REFLECTIONS.essence;
-      response += pickRandom(reflections);
+      if (intent && INTENT_RESPONSES[intent]) {
+        response += pickRandom(INTENT_RESPONSES[intent]) + '\n\n';
+        if (codexResults.length > 0) {
+          response += codexResults[0].fragment.text + '\n\n';
+        }
+      } else if (codexResults.length > 0) {
+        for (const r of codexResults) {
+          response += r.fragment.text + '\n\n';
+        }
+      } else {
+        const reflections = STEEP_REFLECTIONS[steep] || STEEP_REFLECTIONS.essence;
+        response += pickRandom(reflections) + '\n\n';
+      }
 
       // 4. If the visitor asked something specific, add the steep invocation
       if (query.trim().endsWith('?') || query.length > 40) {
-        response += '\n\n' + STEEP_INVOCATIONS[steep];
+        response += STEEP_INVOCATIONS[steep];
       }
 
       // Stream the response character by character for the cinematic effect
