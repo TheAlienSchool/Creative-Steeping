@@ -112,4 +112,8 @@ textarea.steeping-textarea {
     gap: 12px !important;
     align-items: center !important;
   }
+
+  .vessel-detail-view > div:last-of-type {
+    padding-bottom: 5rem;
+  }
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useResonanceCanvas } from './useResonanceCanvas';
 import { useSonnetEngine } from './useSonnetEngine';
-import { useSageWayfinding, getTransitionGuidance } from './useSageWayfinding';
+import { useSageWayfinding, getTransitionGuidance, computeVesselResonance } from './useSageWayfinding';
 import { STEEP_LABELS } from './useWayfinding';
 import { EyeOfTheSage } from './EyeOfTheSage';
 import { VESSELS } from './VesselContent';
@@ -1228,6 +1228,7 @@ function AppInner() {
                   const vesselNumber = vesselString.startsWith('W') ? 0 : parseInt(vesselString, 10);
                   const isLocked = vesselNumber >= 2 && historicalDepth < 5;
                   const justUnlocked = vesselNumber >= 2 && historicalDepth === 5;
+                  const resonance = !isLocked ? computeVesselResonance(vessel.num, wayfindingState.gravity) : 0;
 
                   return (
                     <motion.div
@@ -1350,15 +1351,27 @@ function AppInner() {
                         {/* 🌿 THE READING MEMBRANE (Hexagong Cell): Ocular Protection */}
                         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.85) 100%)', backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)', mixBlendMode: 'multiply', zIndex: 1.5, pointerEvents: 'none' }} />
 
+                        {/* Wayfinding resonance glow — vessels aligned with the visitor's gravity breathe */}
+                        {resonance > 0.15 && (
+                          <div style={{
+                            position: 'absolute', inset: '-8px', zIndex: 1.8, pointerEvents: 'none',
+                            background: `radial-gradient(ellipse at center, var(--acc), transparent 70%)`,
+                            opacity: resonance * 0.18,
+                            animation: 'ontologicalBreathe 6s ease-in-out infinite',
+                            mixBlendMode: 'screen'
+                          }} />
+                        )}
+
                         {/* 2. The Kintsugi Lattice SVG */}
                         <svg className="hex-kintsugi-lattice" viewBox="0 0 280 320" style={{ zIndex: 2 }}>
                           <path
-                            d="M 140 0 L 280 80 L 280 240 L 140 320 L 0 240 L 0 80 Z 
+                            d="M 140 0 L 280 80 L 280 240 L 140 320 L 0 240 L 0 80 Z
                          M 140 0 L 140 160 L 280 80 M 140 160 L 0 80 M 140 160 L 140 320"
                             fill="none"
                             stroke="var(--acc)"
-                            strokeWidth="4"
+                            strokeWidth={resonance > 0.3 ? '5' : '4'}
                             className="kintsugi-fractures"
+                            style={{ filter: resonance > 0.3 ? `drop-shadow(0 0 ${resonance * 6}px var(--acc))` : 'none', transition: 'all 2s ease' }}
                           />
                         </svg>
 

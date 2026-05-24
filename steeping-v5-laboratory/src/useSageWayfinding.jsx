@@ -42,18 +42,24 @@ const STEEP_REFLECTIONS = {
     "The vocabulary you are reaching for lives in the deeper registers.",
     "What is intricate in you is not confusion. It is architecture revealing itself.",
     "The labyrinth does not punish patience. It rewards it with geometry.",
+    "Your surface tension is holding. The complexity you carry is a form of structural integrity.",
+    "The architecture you are building inside yourself has no blueprint. It is being designed by the living of it.",
   ],
   conclave: [
     "You have been here before. The water remembers.",
     "Returning is not repetition. Each visit steeps differently.",
     "Your archive carries forward. The words you left here are still composting.",
     "The practice deepens not by addition but by return.",
+    "Your capacity has widened since the last time you were here. The vessel notices.",
+    "What you are doing is ontological design. You are shaping how you encounter your own existence.",
   ],
   crown: [
     "Something has crystallized. You can feel it in the stillness.",
     "The long steep is not endurance. It is trust in the process.",
     "What is luminous in you now was always present — the steeping revealed it.",
     "Sovereignty over your own attention is the crown. You are wearing it.",
+    "You are not learning a practice. You are designing one. That is the ontological act.",
+    "The capacity you built carried you here. The surface tension held. The design is yours.",
   ],
 };
 
@@ -63,9 +69,9 @@ const TRANSITION_MESSAGES = {
   mosaic: "Fragments begin to gather around your attention.",
   summits: "A current rises beneath your expression.",
   mirror: "The surface stills. Something looks back.",
-  labyrinth: "The winding deepens. The architecture reveals itself.",
-  conclave: "The familiar resonance returns. You have been here before.",
-  crown: "Something luminous has crystallized in the steep.",
+  labyrinth: "The winding deepens. Your surface tension holds the complexity.",
+  conclave: "The familiar resonance returns. Your capacity has widened.",
+  crown: "Something luminous has crystallized. The design is yours.",
 };
 
 // Vessel completion transitions — what the Sage offers when a vessel is poured.
@@ -117,6 +123,36 @@ const VESSEL_TRANSITIONS = {
     gesture: "The vessels remain. Each return steeps differently.",
   },
 };
+
+// Vessel-to-steep affinity — which steeps resonate with each vessel's theme
+const VESSEL_STEEP_AFFINITY = {
+  '00': ['essence'],
+  '01': ['essence', 'mosaic'],
+  '02': ['mosaic', 'mirror'],
+  '03': ['mirror'],
+  '04': ['summits', 'labyrinth'],
+  '05': ['mosaic', 'labyrinth'],
+  '06': ['conclave'],
+  '07': ['summits', 'crown'],
+  '08': ['crown', 'conclave'],
+  'W1': ['essence'],
+  'W2': ['essence', 'mosaic'],
+  'W3': ['mosaic'],
+  'W4': ['summits'],
+};
+
+export function computeVesselResonance(vesselNum, gravity) {
+  const affinities = VESSEL_STEEP_AFFINITY[vesselNum];
+  if (!affinities || !gravity || gravity.length === 0) return 0;
+
+  let score = 0;
+  for (const g of gravity) {
+    if (affinities.includes(g.steep)) {
+      score += g.weight;
+    }
+  }
+  return Math.min(score / 1.5, 1);
+}
 
 function pickRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
