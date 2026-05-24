@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useResonanceCanvas } from './useResonanceCanvas';
 import { useSonnetEngine } from './useSonnetEngine';
-import { useSageIntelligence } from './useSageIntelligence';
+import { useSageWayfinding } from './useSageWayfinding';
+import { STEEP_LABELS } from './useWayfinding';
 import { EyeOfTheSage } from './EyeOfTheSage';
 import { VESSELS } from './VesselContent';
 import { Vessel00Detail } from './Vessel00Detail';
@@ -584,8 +585,8 @@ function AppInner() {
   // Initialize the Sonnet Audio Engine
   const { initEngine, updateBinauralTracking, playStrikingBowl, playHarmonicChord, playAlgoraveSynth, playConsideringHarmonic, playSandSonnet, playCompletionCue, playRootForagingFrequency, setMasterVolume, setAmbientActive, setSymphonyTuning } = useSonnetEngine(mode, eqParams);
 
-  // Initialize The Steeping Sage Intelligence
-  const { askSage, sageResponse, isThinking, historicalScore, hasMoreHistory, loadMoreHistory, setSageResponse } = useSageIntelligence(identity, playStrikingBowl);
+  // Initialize The Steeping Sage — Innerverse Wayfinding Engine
+  const { askSage, sageResponse, isThinking, historicalScore, hasMoreHistory, loadMoreHistory, setSageResponse, wayfindingState, onTextChange: wayfindingTextChange, codexReady, surface } = useSageWayfinding(identity, playStrikingBowl);
 
   // Phase 05 Bugfix: Ensure Sage context resets when crossing vessel boundaries
   useEffect(() => {
@@ -1096,6 +1097,7 @@ function AppInner() {
                       placeholder="Locate your self here..."
                       onFocus={() => setSageTestingBusy(true)}
                       onBlur={() => setSageTestingBusy(false)}
+                      onInput={(e) => wayfindingTextChange(e.target.value)}
                       onKeyDown={(e) => {
                         if (e.key.length === 1 || e.key === 'Enter' || e.key === 'Backspace') {
                           playStrikingBowl(e.keyCode || 50);
@@ -1190,6 +1192,19 @@ function AppInner() {
                         Awaiting Resonance...
                       </div>
                     )}
+                  </div>
+                )}
+
+                {/* Wayfinding position — reveals after the visitor settles */}
+                {wayfindingState.signals.sessionAge !== 'arriving' && (
+                  <div style={{
+                    marginTop: 'var(--space-lg)',
+                    fontFamily: 'var(--fMono)', fontSize: '0.6rem',
+                    letterSpacing: '0.35em', textTransform: 'uppercase',
+                    color: 'var(--acc)', opacity: 0.3,
+                    transition: 'opacity 3s ease'
+                  }}>
+                    {STEEP_LABELS[wayfindingState.currentSteep]}
                   </div>
                 )}
               </div>
@@ -1693,7 +1708,7 @@ function AppInner() {
 
 
       {/* DYNAMIC STILLNESS CATALYSTS (Phase 07) */}
-      <StillnessCatalyst m={m} />
+      <StillnessCatalyst m={m} wayfindingState={wayfindingState} codexSurface={codexReady && surface ? surface : null} />
 
       {/* SONIC AWARENESS CONTROLS */}
       <div

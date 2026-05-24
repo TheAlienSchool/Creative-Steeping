@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "build:codex": "node scripts/build-codex.mjs",
+    "prebuild": "node scripts/build-codex.mjs",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",

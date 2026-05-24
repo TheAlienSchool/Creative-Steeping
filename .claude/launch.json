@@ -2,6 +2,13 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "portal",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vite", "--port", "5173"],
+      "port": 5173,
+      "cwd": "steeping-v5-laboratory"
+    },
+    {
       "name": "steeping-space",
       "runtimeExecutable": "npx",
       "runtimeArgs": ["next", "dev", "--port", "3099"],

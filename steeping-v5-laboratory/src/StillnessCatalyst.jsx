@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const CATALYSTS = [
     "Efficiency accelerates fatigue. Steeping cultivates resonance.",
@@ -12,16 +12,17 @@ const CATALYSTS = [
     "Safety through the speed of our output."
 ];
 
-export const StillnessCatalyst = ({ m }) => {
+export const StillnessCatalyst = ({ m, wayfindingState, codexSurface }) => {
     const [idleTime, setIdleTime] = useState(0);
     const [activeNote, setActiveNote] = useState(null);
+    const [noteSource, setNoteSource] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
+    const surfaceCountRef = useRef(0);
 
     useEffect(() => {
-        // Reset idle timer on any movement or key press
         const resetIdle = () => {
             setIdleTime(0);
-            setIsVisible(false); // Fade out the note if they move
+            setIsVisible(false);
         };
 
         window.addEventListener('mousemove', resetIdle);
@@ -31,10 +32,29 @@ export const StillnessCatalyst = ({ m }) => {
         const interval = setInterval(() => {
             setIdleTime(prev => {
                 const nextTime = prev + 1;
-                // Trigger a note after exactly 75 seconds of stillness
                 if (nextTime === 75) {
+                    surfaceCountRef.current += 1;
+
+                    // Every 3rd stillness event, try the codex
+                    if (codexSurface && wayfindingState && surfaceCountRef.current % 3 === 0) {
+                        const steep = wayfindingState.currentSteep;
+                        const results = codexSurface(steep, '', 1);
+                        if (results.length > 0) {
+                            const fragment = results[0].fragment;
+                            const text = fragment.text.length > 200
+                                ? fragment.text.slice(0, 200).replace(/\s+\S*$/, '') + '...'
+                                : fragment.text;
+                            setActiveNote(text);
+                            setNoteSource(fragment.section);
+                            setIsVisible(true);
+                            return nextTime;
+                        }
+                    }
+
+                    // Default: authored catalyst
                     const randomIndex = Math.floor(Math.random() * CATALYSTS.length);
                     setActiveNote(CATALYSTS[randomIndex]);
+                    setNoteSource(null);
                     setIsVisible(true);
                 }
                 return nextTime;
@@ -47,7 +67,7 @@ export const StillnessCatalyst = ({ m }) => {
             window.removeEventListener('click', resetIdle);
             clearInterval(interval);
         };
-    }, []);
+    }, [codexSurface, wayfindingState]);
 
     return (
         <div style={{
@@ -92,6 +112,19 @@ export const StillnessCatalyst = ({ m }) => {
                 animation: isVisible ? 'float-catalyst 6s ease-in-out infinite alternate' : 'none',
             }}>
                 {activeNote}
+            {noteSource && (
+                <div style={{
+                    marginTop: '8px',
+                    fontFamily: 'var(--fMono)',
+                    fontSize: '0.55rem',
+                    letterSpacing: '0.15em',
+                    opacity: 0.4,
+                    fontStyle: 'normal',
+                    textTransform: 'uppercase',
+                }}>
+                    — {noteSource}
+                </div>
+            )}
             </div>
 
             <style>{`

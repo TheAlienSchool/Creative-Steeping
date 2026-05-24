@@ -1,0 +1,4 @@
+[submodule "the-steeping-space"]
+	path = the-steeping-space
+	url = https://github.com/TheAlienSchool/the-steeping-space.git
+	branch = QWP
