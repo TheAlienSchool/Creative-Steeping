@@ -105,6 +105,24 @@ export const TheSteepingCompass = ({ m, onClose, playStrikingBowl, playAlgoraveS
         }
     };
 
+    const read5DShape = (m) => {
+        const entries = Object.entries(m);
+        const highest = entries.reduce((a, b) => b[1] > a[1] ? b : a);
+        const lowest = entries.reduce((a, b) => b[1] < a[1] ? b : a);
+        const avg = entries.reduce((sum, [, v]) => sum + v, 0) / entries.length;
+
+        const names = {
+            resonance: 'Resonance', stillness: 'Stillness',
+            clarity: 'Clarity', depth: 'Depth', alignment: 'Alignment'
+        };
+
+        if (avg > 75) return `Your shape runs expansive. ${names[highest[0]]} leads at ${highest[1]}. Trust the fullness.`;
+        if (avg < 30) return `You are holding close today. That is its own form of honesty. ${names[highest[0]]} is where the opening lives.`;
+        if (highest[1] - lowest[1] > 50) return `${names[highest[0]]} runs high while ${names[lowest[0]]} rests quiet. The architecture sees both.`;
+        if (Math.abs(highest[1] - lowest[1]) < 15) return `Your dimensions are balanced. Evenness has its own intelligence.`;
+        return `${names[highest[0]]} is leading today. The other dimensions are listening.`;
+    };
+
     const handleSkipToCurriculum = () => {
         setIsAnchored(true);
         setIsTransitioning(true);
@@ -233,15 +251,28 @@ export const TheSteepingCompass = ({ m, onClose, playStrikingBowl, playAlgoraveS
                         </div>
 
                         {successMessage ? (
-                            <motion.div 
-                                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                                style={{
-                                    marginTop: 'var(--space-xl)', padding: 'var(--space-md)',
-                                    borderLeft: `2px solid ${m.accent}`, color: m.accent,
-                                    fontFamily: 'var(--fSerif)', fontStyle: 'italic', fontSize: '1.2rem'
-                                }}>
-                                {successMessage}
-                            </motion.div>
+                            <div style={{ marginTop: 'var(--space-xl)' }}>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                                    style={{
+                                        padding: 'var(--space-md)',
+                                        borderLeft: `2px solid ${m.accent}`, color: m.accent,
+                                        fontFamily: 'var(--fSerif)', fontStyle: 'italic', fontSize: '1.2rem'
+                                    }}>
+                                    {successMessage}
+                                </motion.div>
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 1.5, duration: 1.5 }}
+                                    style={{
+                                        marginTop: 'var(--space-lg)', padding: 'var(--space-md)',
+                                        fontFamily: 'var(--fBody)', fontSize: '1rem',
+                                        color: m.text2, lineHeight: 1.7
+                                    }}>
+                                    {read5DShape(metrics)}
+                                </motion.div>
+                            </div>
                         ) : (
                             <div className="compass-buttons" style={{ display: 'flex', gap: 'var(--space-md)', marginTop: 'var(--space-xl)' }}>
                                 <button 

@@ -68,8 +68,74 @@ const TRANSITION_MESSAGES = {
   crown: "Something luminous has crystallized in the steep.",
 };
 
+// Vessel completion transitions — what the Sage offers when a vessel is poured.
+// Each entry: a reflection on what was just experienced, and a gesture toward what follows.
+const VESSEL_TRANSITIONS = {
+  '00': {
+    reflection: "You arrived. That is the first honest act of any practice.",
+    next: null,
+    gesture: "The vessels are waiting. Each one holds a different question.",
+  },
+  '01': {
+    reflection: "You named your essence. That name now travels with you.",
+    next: '02',
+    gesture: "Vessel 02 asks what happens when you pay attention to the attention itself.",
+  },
+  '02': {
+    reflection: "You found the quiet between the thoughts. The mechanism remembers.",
+    next: '03',
+    gesture: "Vessel 03 holds a mirror. It asks who is looking.",
+  },
+  '03': {
+    reflection: "You looked. What looked back is yours to carry.",
+    next: '04',
+    gesture: "Vessel 04 asks where your inside matches your outside.",
+  },
+  '04': {
+    reflection: "You found where you are whole. Coherence is not a destination — it is a practice.",
+    next: '05',
+    gesture: "Vessel 05 holds the fragments. Not to fix them — to witness their pattern.",
+  },
+  '05': {
+    reflection: "The mosaic is yours. Every piece earned its place.",
+    next: '06',
+    gesture: "Vessel 06 turns your gaze outward. Your steep is ready to meet the world.",
+  },
+  '06': {
+    reflection: "You extended your awareness toward another. Connection is a flavor.",
+    next: '07',
+    gesture: "Vessel 07 is where the voice awakens. What you have steeped is ready to pour.",
+  },
+  '07': {
+    reflection: "You declared your creative intention. The authority is yours now.",
+    next: '08',
+    gesture: "Vessel 08 asks for your signature. The author signs last.",
+  },
+  '08': {
+    reflection: "You signed your name. The practice carries your signature now.",
+    next: null,
+    gesture: "The vessels remain. Each return steeps differently.",
+  },
+};
+
 function pickRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
+}
+
+export function getTransitionGuidance(vesselNum, wayfindingState) {
+  const transition = VESSEL_TRANSITIONS[vesselNum];
+  if (!transition) return null;
+
+  const steep = wayfindingState?.currentSteep || 'essence';
+  const steepLabel = STEEP_LABELS[steep];
+
+  return {
+    reflection: transition.reflection,
+    gesture: transition.gesture,
+    nextVessel: transition.next,
+    currentSteep: steep,
+    steepLabel,
+  };
 }
 
 export function useSageWayfinding(identity, playStrikingBowl) {

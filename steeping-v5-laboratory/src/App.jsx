@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useResonanceCanvas } from './useResonanceCanvas';
 import { useSonnetEngine } from './useSonnetEngine';
-import { useSageWayfinding } from './useSageWayfinding';
+import { useSageWayfinding, getTransitionGuidance } from './useSageWayfinding';
 import { STEEP_LABELS } from './useWayfinding';
 import { EyeOfTheSage } from './EyeOfTheSage';
 import { VESSELS } from './VesselContent';
@@ -503,6 +503,7 @@ function AppInner() {
   // EH-01: Vessel completion ceremony state
   const [vesselCompletionActive, setVesselCompletionActive] = useState(false);
   const [completedVesselName, setCompletedVesselName] = useState('');
+  const [vesselTransition, setVesselTransition] = useState(null);
 
   // EH-02: L1 → L2 contextual upgrade invitation
   const [showUpgradeInvite, setShowUpgradeInvite] = useState(false);
@@ -1574,17 +1575,53 @@ function AppInner() {
                             </div>
                           )}
 
+                          {/* Vessel 00: Soft completion — the welcoming needs a gentle closure */}
+                          {activeVessel.num === "00" && (
+                            <div style={{
+                              marginTop: 'var(--space-xxl)', display: 'flex', flexDirection: 'column',
+                              alignItems: 'center', width: '100%',
+                              borderTop: '1px dashed var(--acc)', paddingTop: 'var(--space-xl)'
+                            }}>
+                              <div style={{
+                                fontFamily: 'var(--fSerif)', fontStyle: 'italic',
+                                fontSize: '1.1rem', color: m.text2, lineHeight: 1.7,
+                                textAlign: 'center', maxWidth: '440px', marginBottom: 'var(--space-xl)'
+                              }}>
+                                You arrived. That is the first honest act of any practice.
+                              </div>
+                              <button onClick={() => {
+                                if (playStrikingBowl) playStrikingBowl(55);
+                                setIsClosingVessel(true);
+                                setTimeout(() => {
+                                  setActiveVessel(null);
+                                  setIsClosingVessel(false);
+                                }, 800);
+                              }} style={{
+                                background: 'transparent', border: `1px solid ${m.accent}`,
+                                color: m.accent, padding: '14px 28px',
+                                fontFamily: 'var(--fMono)', fontSize: '0.8rem',
+                                letterSpacing: '0.2em', textTransform: 'uppercase',
+                                cursor: 'pointer', transition: 'all 0.5s ease'
+                              }}
+                                onMouseEnter={e => { e.currentTarget.style.background = m.accent; e.currentTarget.style.color = m.bg; }}
+                                onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = m.accent; }}
+                              >
+                                [ The Vessels Are Waiting ]
+                              </button>
+                            </div>
+                          )}
+
                           {parseInt(activeVessel.num) >= 1 && parseInt(activeVessel.num) <= 8 && (
                             <div style={{ marginTop: 'var(--space-xxl)', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', borderTop: '1px dashed var(--acc)', paddingTop: 'var(--space-xl)' }}>
                               <button onClick={() => {
                                 if (playCompletionCue) playCompletionCue();
                                 setCompletedVesselName(activeVessel.name);
                                 setVesselCompletionActive(true);
-                                // L1 practitioners see the upgrade invitation after their first completion
                                 if (!isEngaged) setShowUpgradeInvite(true);
+                                const guidance = getTransitionGuidance(activeVessel.num, wayfindingState);
                                 setTimeout(() => {
                                   setVesselCompletionActive(false);
-                                  setShowCompass(true);
+                                  setVesselTransition(guidance);
                                 }, 3200);
                               }} style={{
                                 background: 'var(--acc)', color: 'var(--bg)', border: 'none', padding: '16px 32px',
@@ -1659,6 +1696,131 @@ function AppInner() {
             color: m.text2, textTransform: 'uppercase', opacity: 0.7
           }}>
             The flavor is yours.
+          </div>
+        </div>
+      )}
+
+      {/* VESSEL TRANSITION — The Sage's hand between completion and what's next */}
+      {vesselTransition && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 2000,
+          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+          background: `rgba(0,0,0,0.92)`, backdropFilter: 'blur(24px)',
+          animation: 'fadeIn 0.8s ease forwards',
+          padding: 'var(--space-xl)'
+        }}>
+          <div style={{ maxWidth: '520px', textAlign: 'center' }}>
+            {/* The Sage's reflection on what was just completed */}
+            <div style={{
+              fontFamily: 'var(--fSerif)', fontStyle: 'italic',
+              fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', color: m.text1,
+              lineHeight: 1.8, marginBottom: 'var(--space-xxl)',
+              animation: 'fadeIn 1.5s ease forwards'
+            }}>
+              {vesselTransition.reflection}
+            </div>
+
+            {/* The gesture toward what follows */}
+            <div style={{
+              fontFamily: 'var(--fBody)', fontSize: '1.05rem',
+              color: m.text2, lineHeight: 1.7,
+              marginBottom: 'var(--space-xxl)',
+              animation: 'fadeIn 2.5s ease forwards'
+            }}>
+              {vesselTransition.gesture}
+            </div>
+
+            {/* Navigation options — stunningly simple */}
+            <div style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center',
+              gap: 'var(--space-lg)', animation: 'fadeIn 3.5s ease forwards'
+            }}>
+              {vesselTransition.nextVessel && (
+                <button
+                  onClick={() => {
+                    if (playStrikingBowl) playStrikingBowl(60);
+                    const nextNum = vesselTransition.nextVessel;
+                    setVesselTransition(null);
+                    const allVessels = ['inneractive', 'journeyer', 'cohort', 'depth_semester'].includes(profile?.access_tier) ? VESSELS_L2 : VESSELS;
+                    const next = allVessels.find(v => v.num === nextNum);
+                    if (next) {
+                      setIsClosingVessel(true);
+                      setTimeout(() => {
+                        setActiveVessel(next);
+                        setIsClosingVessel(false);
+                      }, 400);
+                    }
+                  }}
+                  style={{
+                    background: 'transparent', border: `1px solid ${m.accent}`,
+                    color: m.accent, padding: '14px 28px',
+                    fontFamily: 'var(--fMono)', fontSize: '0.8rem',
+                    letterSpacing: '0.2em', textTransform: 'uppercase',
+                    cursor: 'pointer', transition: 'all 0.5s ease'
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.background = m.accent; e.currentTarget.style.color = m.bg; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = m.accent; }}
+                >
+                  [ Continue to Vessel {vesselTransition.nextVessel} ]
+                </button>
+              )}
+
+              <button
+                onClick={() => {
+                  if (playStrikingBowl) playStrikingBowl(45);
+                  setVesselTransition(null);
+                  setShowCompass(true);
+                }}
+                style={{
+                  background: 'transparent', border: `1px solid ${m.text2}40`,
+                  color: m.text2, padding: '12px 24px',
+                  fontFamily: 'var(--fMono)', fontSize: '0.75rem',
+                  letterSpacing: '0.15em', textTransform: 'uppercase',
+                  cursor: 'pointer', opacity: 0.7,
+                  transition: 'all 0.5s ease'
+                }}
+                onMouseEnter={e => { e.currentTarget.style.opacity = '1'; }}
+                onMouseLeave={e => { e.currentTarget.style.opacity = '0.7'; }}
+              >
+                [ Me in 5D ]
+              </button>
+
+              <button
+                onClick={() => {
+                  if (playStrikingBowl) playStrikingBowl(35);
+                  setVesselTransition(null);
+                  setIsClosingVessel(true);
+                  setTimeout(() => {
+                    setActiveVessel(null);
+                    setIsClosingVessel(false);
+                  }, 400);
+                }}
+                style={{
+                  background: 'none', border: 'none',
+                  color: m.text2, padding: '8px',
+                  fontFamily: 'var(--fMono)', fontSize: '0.7rem',
+                  letterSpacing: '0.15em', textTransform: 'uppercase',
+                  cursor: 'pointer', opacity: 0.4,
+                  transition: 'opacity 0.5s ease'
+                }}
+                onMouseEnter={e => { e.currentTarget.style.opacity = '0.8'; }}
+                onMouseLeave={e => { e.currentTarget.style.opacity = '0.4'; }}
+              >
+                Return to the Matrix
+              </button>
+            </div>
+
+            {/* Current steep position — whispered */}
+            {vesselTransition.steepLabel && (
+              <div style={{
+                marginTop: 'var(--space-xxl)',
+                fontFamily: 'var(--fMono)', fontSize: '0.55rem',
+                letterSpacing: '0.4em', textTransform: 'uppercase',
+                color: m.accent, opacity: 0.2
+              }}>
+                {vesselTransition.steepLabel}
+              </div>
+            )}
           </div>
         </div>
       )}
