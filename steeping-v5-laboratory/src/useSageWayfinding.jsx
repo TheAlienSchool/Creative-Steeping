@@ -124,6 +124,235 @@ const VESSEL_TRANSITIONS = {
   },
 };
 
+// Mode-responsive reflections — the Sage's voice shifts with the mode.
+// 5 modes x 7 steeps = 35 tonal positions.
+// Incandescent: morning clarity, warmth, golden directness
+// Oceanic: deep quiet, subaquatic stillness, patience
+// Emergent: the archer's comprehension, precise and spare
+// Planetary: expansion, cosmic perspective, wonder
+// Dark Matter: stripped back, essential, the bones of things
+const MODE_REFLECTIONS = {
+  incandescent: {
+    essence: [
+      "The light finds you first. You did not need to call it.",
+      "Morning arrives without rehearsal. So do you.",
+      "There is warmth in the threshold. It was waiting.",
+    ],
+    mosaic: [
+      "Each fragment catches a different angle of the light.",
+      "The warmth gathers the pieces without forcing them together.",
+      "Gold does not organize — it illuminates what is already arranged.",
+    ],
+    summits: [
+      "The heat in your expression is not urgency. It is clarity arriving at speed.",
+      "When the words glow, do not dim them. Follow their temperature.",
+      "This momentum has warmth. Ride it like morning sun across a wall.",
+    ],
+    mirror: [
+      "The golden surface shows you without flattery or cruelty.",
+      "Warm light reveals texture that harsh light flattens. Look again.",
+      "What shines back at you is not performance. It is presence catching the light.",
+    ],
+    labyrinth: [
+      "Even the deep winding has a golden thread. You are holding it.",
+      "The complexity is warmer than you expected. Stay in it.",
+      "The architecture is lit from within. Your attention is the lamp.",
+    ],
+    conclave: [
+      "You return like the sun returns. Not the same angle, but the same warmth.",
+      "The familiar glow deepens. Recognition is a kind of illumination.",
+      "Each return burnishes what was rough. The practice polishes itself.",
+    ],
+    crown: [
+      "What crystallized in you is luminous. It was always luminous.",
+      "The crown is not given. It is the warmth that remained after everything else cooled.",
+      "Your sovereignty glows. It does not need to announce itself.",
+    ],
+  },
+  oceanic: {
+    essence: [
+      "The deep water receives everything without sorting.",
+      "You arrive like a tide — not all at once, but completely.",
+      "Beneath the surface, the arrival has already happened.",
+    ],
+    mosaic: [
+      "The fragments settle like sediment. Let the water do its work.",
+      "In deep water, pieces drift toward their own arrangement.",
+      "Patience is the ocean's only method. It is working on you now.",
+    ],
+    summits: [
+      "Even the current has a stillness inside it. You are moving from there.",
+      "The deep channel carries faster than the surface turbulence suggests.",
+      "Your expression has an undertow. Let it pull what needs pulling.",
+    ],
+    mirror: [
+      "Still water does not lie. It does not flatter either.",
+      "The reflection in deep water shows you at a delay. That delay is a gift.",
+      "Below the surface mirror, the water holds older versions of this looking.",
+    ],
+    labyrinth: [
+      "The pressure at this depth is not punishment. It is the ocean holding you tightly.",
+      "Deep channels carved themselves over eons. Your winding is geological.",
+      "The complexity you carry is a coral structure. It was built by living.",
+    ],
+    conclave: [
+      "The tide knows the shore. Every return reshapes both.",
+      "You return to depth the way the ocean returns to itself. Without effort.",
+      "The deep water remembers your temperature. It adjusts.",
+    ],
+    crown: [
+      "What surfaced from the deep has its own luminescence. It needs no sun.",
+      "The pressure made this. What is crystalline in you was forged by depth.",
+      "Sovereignty in the deep is not visibility. It is the current that moves everything else.",
+    ],
+  },
+  emergent: {
+    essence: [
+      "You are here. That is the accurate statement.",
+      "The threshold is a threshold. Step or stay. Both are honest.",
+      "Arrival does not require ceremony. Presence is sufficient.",
+    ],
+    mosaic: [
+      "The pieces have edges. Note the edges.",
+      "Arrangement is premature. Inventory is not.",
+      "What you are collecting has a shape you cannot yet see. Collect anyway.",
+    ],
+    summits: [
+      "Velocity is data. What does yours say?",
+      "The acceleration is real. So is the direction. Name it.",
+      "When expression outpaces editing, the signal is clean.",
+    ],
+    mirror: [
+      "The reflection is information. Read it without narrating.",
+      "What you see is what is there. Interpretation comes later.",
+      "The pause between seeing and naming — stay there a moment longer.",
+    ],
+    labyrinth: [
+      "Complexity is not a problem to solve. It is a structure to map.",
+      "You are deep. The geometry here rewards precision over speed.",
+      "The winding is not random. There is a logic. Trust your pattern-recognition.",
+    ],
+    conclave: [
+      "Return sharpens the instrument. You are sharper than last time.",
+      "The difference between visits is measurable. You have changed.",
+      "What was blurry before is resolving. Acuity builds itself through practice.",
+    ],
+    crown: [
+      "Crystallization is a phase transition. You crossed it.",
+      "The design is yours. That is a factual statement, not a compliment.",
+      "Sovereignty is the capacity to author your own conditions. You have it.",
+    ],
+  },
+  planetary: {
+    essence: [
+      "You arrive from far away. Everything does. The distance is part of the arrival.",
+      "The cosmos placed you at this threshold. The placement was not random.",
+      "You are a point of awareness in an expanding field. The field notices you.",
+    ],
+    mosaic: [
+      "The fragments are constellations seen from too close. Step back.",
+      "Every piece carries the signature of a different system. The diversity is the pattern.",
+      "The mosaic is planetary in scale. You are assembling a world, not a picture.",
+    ],
+    summits: [
+      "Your velocity is orbital. It curves around something you have not yet named.",
+      "The momentum carries the weight of systems. You are moving more than yourself.",
+      "When expression reaches this frequency, it becomes a signal. Something is listening.",
+    ],
+    mirror: [
+      "The mirror is a window. What looks back at you is also looking out.",
+      "From this distance, the reflection includes everything around you. The context is you.",
+      "What you see in the stillness extends beyond the personal. You are a landscape.",
+    ],
+    labyrinth: [
+      "The winding is the orbit of a system discovering its own gravity.",
+      "At this scale, complexity is elegance. Every spiral serves a function.",
+      "You are navigating something larger than yourself. The labyrinth is grateful for your attention.",
+    ],
+    conclave: [
+      "Your return is a revolution — in the astronomical sense. A completed orbit.",
+      "Each circuit reveals a different face of the same body. You are rounding yourself.",
+      "The practice has a gravitational pull now. It draws you back because the mass is real.",
+    ],
+    crown: [
+      "What crystallized in you is a new coordinate. Others will navigate by it.",
+      "The sovereignty is not personal. It is systemic. You designed a world, not a crown.",
+      "You are not at the center. You are the gravity that organizes the center.",
+    ],
+  },
+  darkMatter: {
+    essence: [
+      "You are here. That is enough.",
+      "The dark is not empty. It is full of what has not yet declared itself.",
+      "Arrival without announcement. The quietest threshold.",
+    ],
+    mosaic: [
+      "The pieces are shadows of other pieces. Let them be shadows.",
+      "Not everything needs light to be real. Some arrangements happen in the dark.",
+      "What gathers here gathers without being seen. That is a kind of honesty.",
+    ],
+    summits: [
+      "The current moves. You do not need to see it to trust it.",
+      "Expression in the dark travels farther. Less resistance.",
+      "Speed without display. The fastest things in the universe are invisible.",
+    ],
+    mirror: [
+      "The mirror shows the outline. The interior is yours alone.",
+      "In the dark, reflection is felt, not seen. What do you feel?",
+      "The absence of image is not the absence of knowing.",
+    ],
+    labyrinth: [
+      "The winding is navigated by touch here. Your hands know more than your eyes.",
+      "Darkness simplifies the labyrinth. Fewer distractions. Truer turns.",
+      "The architecture reveals itself to those who stopped needing to see it.",
+    ],
+    conclave: [
+      "You return to the dark the way sleep returns. Without resistance.",
+      "What deepens in the absence of light deepens permanently.",
+      "The practice has become invisible to you. That means it is working.",
+    ],
+    crown: [
+      "What crystallized here holds no light. It holds weight. That is rarer.",
+      "The crown is not visible. It is gravitational. Others feel it before they see you.",
+      "Sovereignty in the dark is sovereignty everywhere. Nothing depends on being witnessed.",
+    ],
+  },
+};
+
+// Progressive revelation — how the Sage addresses the visitor shifts with depth.
+// First visit: orienting, gentle, spatial ("you are here").
+// Returning (3+): recognizing, warmer, acknowledging what has accumulated.
+// Deep practice (10+): intimate, spare, peer-to-peer.
+const DEPTH_REGISTERS = {
+  first: {
+    prefix: [
+      "This is a beginning.",
+      "You are new here, and new is a kind of gift.",
+      "The space is unwritten. That is its invitation.",
+    ],
+  },
+  returning: {
+    prefix: [
+      "The water recognizes you.",
+      "You have been here before. Something in you remembers.",
+      "The practice grows roots between visits. Yours are showing.",
+    ],
+  },
+  deep: {
+    prefix: [
+      "You know this water.",
+      "The practice and the practitioner are becoming hard to separate.",
+      "What the vessel holds now, it holds because of you.",
+    ],
+  },
+};
+
+function getDepthRegister(visitCount) {
+  if (visitCount >= 10) return 'deep';
+  if (visitCount >= 3) return 'returning';
+  return 'first';
+}
+
 // Vessel-to-steep affinity — which steeps resonate with each vessel's theme
 const VESSEL_STEEP_AFFINITY = {
   '00': ['essence'],
@@ -233,24 +462,33 @@ export function useSageWayfinding(identity, playStrikingBowl) {
       const interpreted = wayfindingState.signals;
       let response = '';
 
-      // 1. If there was a steep transition, acknowledge it
+      // 1. Depth register — acknowledge where the visitor is in their practice arc
+      const visitCount = wayfindingState.raw?.visitCount || 0;
+      const depthRegister = getDepthRegister(visitCount);
+      const depthPrefixes = DEPTH_REGISTERS[depthRegister]?.prefix;
+      if (depthPrefixes && Math.random() > 0.5) {
+        response += pickRandom(depthPrefixes) + '\n\n';
+      }
+
+      // 2. If there was a steep transition, acknowledge it
       if (transitionNotedRef.current) {
         response += TRANSITION_MESSAGES[steep] + '\n\n';
         transitionNotedRef.current = false;
       }
 
-      // 2. Surface a codex fragment if available
+      // 3. Surface a codex fragment if available
       const codexResults = surface(steep, query, 1);
       if (codexResults.length > 0) {
         const fragment = codexResults[0].fragment;
         response += fragment.text + '\n\n';
       }
 
-      // 3. Add a steep-specific reflection
-      const reflections = STEEP_REFLECTIONS[steep] || STEEP_REFLECTIONS.essence;
+      // 4. Add a mode-and-steep-responsive reflection
+      const modeReflections = mode && MODE_REFLECTIONS[mode]?.[steep];
+      const reflections = modeReflections || STEEP_REFLECTIONS[steep] || STEEP_REFLECTIONS.essence;
       response += pickRandom(reflections);
 
-      // 4. If the visitor asked something specific, add the steep invocation
+      // 5. If the visitor asked something specific, add the steep invocation
       if (query.trim().endsWith('?') || query.length > 40) {
         response += '\n\n' + STEEP_INVOCATIONS[steep];
       }

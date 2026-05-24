@@ -1221,14 +1221,14 @@ function AppInner() {
                     historicalDepth = JSON.parse(localStorage.getItem('steeping_historical_score') || '[]').length;
                   } catch (e) { }
 
-                  // The Cryo-Lock Protocol: W1-W4 and 01 are unlocked by default.
-                  // Vessels 02 and beyond are locked until the Steepee completes W1 - 01 (depth of 5).
-                  // We remove the access_tier bypass to ensure everyone is grounded by the Welcome Sequence.
                   const vesselString = vessel.id?.split('.')[1] || "0";
                   const vesselNumber = vesselString.startsWith('W') ? 0 : parseInt(vesselString, 10);
-                  const isLocked = vesselNumber >= 2 && historicalDepth < 5;
-                  const justUnlocked = vesselNumber >= 2 && historicalDepth === 5;
-                  const resonance = !isLocked ? computeVesselResonance(vessel.num, wayfindingState.gravity) : 0;
+                  const gravityResonance = computeVesselResonance(vessel.num, wayfindingState.gravity);
+                  const behaviorallyReady = gravityResonance >= 0.6;
+                  const archiveReady = historicalDepth >= 5;
+                  const isLocked = vesselNumber >= 2 && !archiveReady && !behaviorallyReady;
+                  const justUnlocked = vesselNumber >= 2 && (historicalDepth === 5 || (behaviorallyReady && !archiveReady));
+                  const resonance = !isLocked ? gravityResonance : 0;
 
                   return (
                     <motion.div
