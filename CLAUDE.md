@@ -23,6 +23,9 @@ Creative Steeping is a contemplative digital practice built by Kamau Zuberi Akab
 - Master copy book, constellation catalogue, field notes, vessel documentation
 - Indexed by the codex build pipeline into searchable fragments
 
+### `docs/` — Technical Documentation
+- `SAGE-INTELLIGENCE-BRIEF.md` — Complete reference for the Sage engine: five response layers, vessel systems, wayfinding, file map
+
 ### Root-Level Content
 - `VESSELVERSE SESSION PRIMER` — The editorial codex. Defines anti-patterns, registers, and the de-encabulation filter. The standard for all practitioner-facing language.
 - `PING/` — Steeping Notes and short-form content
@@ -33,9 +36,42 @@ Creative Steeping is a contemplative digital practice built by Kamau Zuberi Akab
 
 - **Seven Steeps**: Essence, Mosaic, Summits, Mirror, Labyrinth, Conclave, Crown Jewels — the journey framework
 - **Five Sage Modes**: Incandescent (gold), Oceanic (cyan), Emergent (grey), Planetary (magenta), Dark Matter (muted) — each with distinct visual identity
-- **Wayfinding Engine**: Reads behavioral signals (stillness, typing rhythm, text depth, visit history) and maps the visitor to their current steep via a gravity model. No external API calls.
-- **Codex**: Build-time TF-IDF index over curated practitioner-facing documents. Surfaces contextually relevant content at runtime based on steep affinity and visitor text.
+- **Wayfinding Engine** (`src/useWayfinding.jsx`): Reads behavioral signals (stillness, typing rhythm, text depth, visit history) and maps the visitor to their current steep via a gravity model. No external API calls.
+- **Codex** (`src/useCodex.jsx` + `scripts/build-codex.mjs`): Build-time TF-IDF index over curated practitioner-facing documents. Surfaces contextually relevant content at runtime based on steep affinity and visitor text.
 - **Hexagong**: A six-sided, interactive sonic vessel. The core navigational unit.
+
+## Sage Intelligence
+
+> Full brief: `docs/SAGE-INTELLIGENCE-BRIEF.md`
+
+The Sage (`src/useSageWayfinding.jsx`) is the local behavioral intelligence. It assembles responses from five layers:
+
+1. **Depth Register** — visit-count prefix (first / returning / deep practice). Thresholds: 0, 3, 10.
+2. **Transition Message** — fires once when the visitor crosses steeps.
+3. **Codex Fragment** — TF-IDF surfaced content from the practitioner archive.
+4. **Mode x Steep Reflection** — 35 tonal positions (5 modes x 7 steeps), with universal fallback.
+5. **Steep Invocation** — closing question keyed to the current steep.
+6. **Temporal Attunement** — time-of-day whisper (predawn/morning/afternoon/evening/night).
+
+### Vessel Systems
+
+- **Vessel Transitions**: Per-vessel completion reflections and directional gestures (`VESSEL_TRANSITIONS`)
+- **Vessel-Steep Affinity**: Maps each vessel to resonant steeps (`VESSEL_STEEP_AFFINITY`)
+- **Resonance Score**: `computeVesselResonance()` returns 0-1 affinity. Powers matrix glow and vessel unlocking.
+- **Dual-Path Unlocking**: Vessels 02+ unlock via archive depth (5+ entries) OR behavioral readiness (resonance >= 0.6)
+
+### Sonic Wayfinding
+- **Steep signatures** (`src/useSonnetEngine.jsx`): Each steep modulates the striking bowl's waveform, decay, filter, pitch, and stereo width
+- The sonic engine receives `currentSteep` from wayfinding state via a bridge pattern in App.jsx
+
+### Codex as Living Curriculum
+- Vessels pre-surface 1-2 codex fragments as ambient "From the Archive" notes
+- Uses `VESSEL_STEEP_AFFINITY` to determine which steep to surface for each vessel
+
+### Observer Pattern
+- **File**: `src/OntologicalObservatory.jsx` — `computeObserverPatterns()`
+- Analytics without extraction. Reads localStorage aggregates: steep gravity, mode affinity, word count, active days
+- All data stays local. No individual visitor data transmitted.
 
 ## Editorial Standard
 

@@ -43,9 +43,23 @@ const PENTATONIC_SCALE_176 = [
     528.00  // P5 Miracle Hz directly included
 ];
 
-export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, crackle: 0, drone: 0 }) {
+// SONIC WAYFINDING — steep-specific harmonic signatures.
+// Each steep modulates the striking bowl's timbre, decay, and pitch offset.
+// The sonic palette shifts as the visitor's wayfinding position changes.
+const STEEP_SONIC_SIGNATURES = {
+    essence:   { waveform: 'sine',     decay: 3.5, filterMult: 3.0, pitchShift: 1.0,   panWidth: 0.3 },
+    mosaic:    { waveform: 'sine',     decay: 2.0, filterMult: 4.0, pitchShift: 1.0,   panWidth: 0.6 },
+    summits:   { waveform: 'sine',     decay: 2.5, filterMult: 5.0, pitchShift: 1.25,  panWidth: 0.4 },
+    mirror:    { waveform: 'sine',     decay: 5.0, filterMult: 2.0, pitchShift: 1.0,   panWidth: 0.2 },
+    labyrinth: { waveform: 'triangle', decay: 4.0, filterMult: 2.5, pitchShift: 0.75,  panWidth: 0.5 },
+    conclave:  { waveform: 'sine',     decay: 4.0, filterMult: 3.5, pitchShift: 1.0,   panWidth: 0.35 },
+    crown:     { waveform: 'sine',     decay: 6.0, filterMult: 6.0, pitchShift: 2.0,   panWidth: 0.15 },
+};
+
+export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, crackle: 0, drone: 0 }, currentSteep = 'essence') {
     const audioCtxRef = useRef(null);
     const activeScaleRef = useRef(PENTATONIC_SCALE);
+    const steepSignatureRef = useRef(STEEP_SONIC_SIGNATURES.essence);
 
     // Ambient Drone Nodes
     const ambientOscRef = useRef(null);
@@ -246,6 +260,11 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         ambientOscRef.current.frequency.setTargetAtTime(targetHz, audioCtxRef.current.currentTime, 1.5); // Slow elegant glide to new resonance
     }, [modeString]);
 
+    // SONIC WAYFINDING: Update steep signature when wayfinding position changes
+    useEffect(() => {
+        steepSignatureRef.current = STEEP_SONIC_SIGNATURES[currentSteep] || STEEP_SONIC_SIGNATURES.essence;
+    }, [currentSteep]);
+
     // Update physical parameters based on cursor movement (The 70mm Theremin)
     const updateBinauralTracking = useCallback((clientX, clientY, audioEngineMode = 'soul_sonnet') => {
         if (!audioCtxRef.current || !ambientPannerRef.current || !ambientFilterRef.current || !ambientOscRef.current) return;
@@ -311,10 +330,11 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
     // Performant Serenity Voice Limiter
     const lastStrikeTimeRef = useRef(0);
 
-    // Play a harmonic "bell" for keystrokes
+    // Play a harmonic "bell" for keystrokes — modulated by Sonic Wayfinding
     const playStrikingBowl = useCallback((keyCode) => {
         if (!audioCtxRef.current) return;
         const ctx = audioCtxRef.current;
+        const sig = steepSignatureRef.current;
 
         // Performant Serenity: Limit polyphony explosion on rapid typing
         const now = ctx.currentTime;
@@ -322,30 +342,29 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         lastStrikeTimeRef.current = now;
 
         // Determine pitch deterministically from the keyCode character
-        // A simple hash to map key to one of our pentatonic notes
         const safeCode = (typeof keyCode === 'number' && !isNaN(keyCode)) ? keyCode : 50;
         const noteIndex = safeCode % activeScaleRef.current.length;
-        const freq = activeScaleRef.current[noteIndex];
+        const freq = activeScaleRef.current[noteIndex] * sig.pitchShift;
 
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         const panner = ctx.createStereoPanner();
         const filter = ctx.createBiquadFilter();
 
-        // "Struck Bowl" character
-        osc.type = 'sine';
+        // Waveform shifts with the steep (sine for most, triangle for labyrinth)
+        osc.type = sig.waveform;
         osc.frequency.value = freq;
 
         filter.type = 'lowpass';
-        filter.frequency.value = freq * 3; // Let some harmonics through initially
+        filter.frequency.value = freq * sig.filterMult;
 
-        // Envelope Generator (Fast attack, very long slow release)
+        // Envelope — decay stretches/contracts with the steep's character
         gain.gain.setValueAtTime(0, ctx.currentTime);
-        gain.gain.linearRampToValueAtTime(0.15, ctx.currentTime + 0.02); // Attack
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 3.5); // 3.5s Release
+        gain.gain.linearRampToValueAtTime(0.15, ctx.currentTime + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + sig.decay);
 
-        // Random slight panning for each note to create a wide stereo field
-        panner.pan.value = (Math.random() * 0.6) - 0.3;
+        // Stereo width shaped by steep — Mirror is narrow, Mosaic is wide
+        panner.pan.value = (Math.random() * sig.panWidth * 2) - sig.panWidth;
 
         osc.connect(filter);
         filter.connect(panner);
@@ -359,7 +378,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         if (delayNodeRef.current) gain.connect(delayNodeRef.current);
 
         osc.start(ctx.currentTime);
-        osc.stop(ctx.currentTime + 4.0);
+        osc.stop(ctx.currentTime + sig.decay + 0.5);
 
     }, []);
 

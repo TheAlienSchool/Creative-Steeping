@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useResonanceCanvas } from './useResonanceCanvas';
 import { useSonnetEngine } from './useSonnetEngine';
-import { useSageWayfinding, getTransitionGuidance, computeVesselResonance } from './useSageWayfinding';
+import { useSageWayfinding, getTransitionGuidance, computeVesselResonance, VESSEL_STEEP_AFFINITY } from './useSageWayfinding';
 import { STEEP_LABELS } from './useWayfinding';
 import { EyeOfTheSage } from './EyeOfTheSage';
 import { VESSELS } from './VesselContent';
@@ -583,11 +583,22 @@ function AppInner() {
     MODES.planetary.accentRGB = [255, 0, 255];
   }, []);
 
-  // Initialize the Sonnet Audio Engine
-  const { initEngine, updateBinauralTracking, playStrikingBowl, playHarmonicChord, playAlgoraveSynth, playConsideringHarmonic, playSandSonnet, playCompletionCue, playRootForagingFrequency, setMasterVolume, setAmbientActive, setSymphonyTuning } = useSonnetEngine(mode, eqParams);
+  // Sonic Wayfinding bridge: steep state feeds into the sonic engine, updated
+  // from wayfindingState after both hooks have initialized. See useSonnetEngine.jsx.
+  const [steepForSonic, setSteepForSonic] = useState('essence');
+
+  // Initialize the Sonnet Audio Engine (receives steep for harmonic modulation)
+  const { initEngine, updateBinauralTracking, playStrikingBowl, playHarmonicChord, playAlgoraveSynth, playConsideringHarmonic, playSandSonnet, playCompletionCue, playRootForagingFrequency, setMasterVolume, setAmbientActive, setSymphonyTuning } = useSonnetEngine(mode, eqParams, steepForSonic);
 
   // Initialize The Steeping Sage — Innerverse Wayfinding Engine
   const { askSage, sageResponse, isThinking, historicalScore, hasMoreHistory, loadMoreHistory, setSageResponse, wayfindingState, onTextChange: wayfindingTextChange, codexReady, surface } = useSageWayfinding(identity, playStrikingBowl);
+
+  // Bridge: pipe wayfinding steep to the sonic engine on each position change
+  useEffect(() => {
+    if (wayfindingState?.currentSteep && wayfindingState.currentSteep !== steepForSonic) {
+      setSteepForSonic(wayfindingState.currentSteep);
+    }
+  }, [wayfindingState?.currentSteep, steepForSonic]);
 
   // Phase 05 Bugfix: Ensure Sage context resets when crossing vessel boundaries
   useEffect(() => {
@@ -1215,7 +1226,12 @@ function AppInner() {
             {!activeVessel ? (
               <div className="vessel-matrix">
                 {(['inneractive', 'journeyer', 'cohort', 'depth_semester'].includes(profile?.access_tier) ? VESSELS_L2 : VESSELS).map((vessel, i) => {
-                  // Elegant gamification: Lock levels 3-8 until historical depth is achieved
+                  // VESSEL UNLOCKING — Dual-path: archive depth OR behavioral readiness.
+                  // Path 1 (archiveReady): 5+ historical score entries (the original Cryo-Lock).
+                  // Path 2 (behaviorallyReady): gravity resonance >= 0.6 from the wayfinding engine.
+                  // W1-W4 and 01 always unlocked. Vessels 02+ require at least one path.
+                  // justUnlocked triggers the bioluminescent-bloom CSS animation.
+                  // See VESSEL_STEEP_AFFINITY + computeVesselResonance() in useSageWayfinding.jsx.
                   let historicalDepth = 0;
                   try {
                     historicalDepth = JSON.parse(localStorage.getItem('steeping_historical_score') || '[]').length;
@@ -1537,6 +1553,40 @@ function AppInner() {
                           </div>
 
                           {activeVessel.num === "02" && <Vessel02Detail modeString={mode} playStrikingBowl={playStrikingBowl} playHarmonicChord={playHarmonicChord} />}
+
+                          {/* CODEX AS LIVING CURRICULUM — ambient fragments from the practitioner archive.
+                              Surfaces 1-2 codex entries matched to the vessel's steep affinity.
+                              See VESSEL_STEEP_AFFINITY in useSageWayfinding.jsx. */}
+                          {codexReady && (() => {
+                            const affinities = VESSEL_STEEP_AFFINITY[activeVessel.num] || ['essence'];
+                            const primarySteep = affinities[0];
+                            const fragments = surface(primarySteep, activeVessel.name, 2);
+                            if (fragments.length === 0) return null;
+                            return (
+                              <div style={{
+                                marginBottom: 'var(--space-xl)', padding: 'var(--space-lg)',
+                                borderLeft: `2px solid var(--acc)`, opacity: 0.7,
+                                background: 'rgba(255,255,255,0.02)'
+                              }}>
+                                <div style={{
+                                  fontFamily: 'var(--fMono)', fontSize: '0.7rem',
+                                  letterSpacing: '0.2em', color: 'var(--acc)', opacity: 0.6,
+                                  marginBottom: 'var(--space-sm)', textTransform: 'uppercase'
+                                }}>
+                                  From the Archive
+                                </div>
+                                {fragments.map((r, idx) => (
+                                  <div key={idx} style={{
+                                    fontFamily: 'var(--fSerif)', fontStyle: 'italic',
+                                    fontSize: '0.95rem', lineHeight: 1.7, color: 'var(--t2)',
+                                    marginBottom: idx < fragments.length - 1 ? 'var(--space-md)' : 0
+                                  }}>
+                                    {r.fragment.text}
+                                  </div>
+                                ))}
+                              </div>
+                            );
+                          })()}
 
                           <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 'var(--space-lg)', marginBottom: 'var(--space-xl)' }}>
                             <h3 style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', letterSpacing: '0.15em', color: 'var(--acc)', opacity: 0.8, marginBottom: 'var(--space-md)', textTransform: 'uppercase' }}>
@@ -1864,7 +1914,7 @@ function AppInner() {
       )}
       {authOpen && <AuthOverlay m={m} onClose={() => setAuthOpen(false)} />}
 
-      {showObservatory && <OntologicalObservatory m={m} onClose={() => setShowObservatory(false)} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} />}
+      {showObservatory && <OntologicalObservatory m={m} onClose={() => setShowObservatory(false)} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} wayfindingState={wayfindingState} />}
       {showLegacyPortal && <LegacyScreengrabPortal m={m} onClose={() => setShowLegacyPortal(false)} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} />}
       {showCalendar && <SteepingCalendar m={m} onClose={() => setShowCalendar(false)} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} />}
       {/* RITUAL TIMERS (Phase 06 Container) */}

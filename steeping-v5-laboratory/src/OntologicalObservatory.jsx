@@ -3,16 +3,78 @@ import { format, addMonths, subMonths, startOfMonth, endOfMonth, startOfWeek, en
 import { supabase } from './supabaseClient';
 import { Sparkles, Activity, Plus, Shield } from 'lucide-react';
 
-export const OntologicalObservatory = ({ m, onClose, playStrikingBowl, playAlgoraveSynth }) => {
+// THE OBSERVER PATTERN — Analytics Without Extraction.
+// All data stays in the visitor's localStorage. The Observatory reads
+// aggregate patterns from the archive without ever transmitting individual data.
+// See docs/SAGE-INTELLIGENCE-BRIEF.md for the full architecture.
+function computeObserverPatterns() {
+    try {
+        const archive = JSON.parse(localStorage.getItem('steeping_historical_score') || '[]');
+        const visitCount = parseInt(localStorage.getItem('steeping-space:visits') || '0', 10);
+
+        // Steep distribution — which steeps appear most in the archive
+        const steepCounts = {};
+        const modeCounts = {};
+        let totalWords = 0;
+        const sessionsByDay = {};
+
+        for (const entry of archive) {
+            if (entry.steep) steepCounts[entry.steep] = (steepCounts[entry.steep] || 0) + 1;
+            if (entry.mode) modeCounts[entry.mode] = (modeCounts[entry.mode] || 0) + 1;
+            if (entry.query) totalWords += entry.query.split(/\s+/).filter(Boolean).length;
+            if (entry.timestamp) {
+                const day = entry.timestamp.split('T')[0];
+                sessionsByDay[day] = (sessionsByDay[day] || 0) + 1;
+            }
+        }
+
+        // Sort steeps by frequency
+        const steepRanking = Object.entries(steepCounts)
+            .sort((a, b) => b[1] - a[1])
+            .map(([steep, count]) => ({ steep, count, pct: archive.length > 0 ? Math.round((count / archive.length) * 100) : 0 }));
+
+        const modeRanking = Object.entries(modeCounts)
+            .sort((a, b) => b[1] - a[1])
+            .map(([mode, count]) => ({ mode, count }));
+
+        const activeDays = Object.keys(sessionsByDay).length;
+        const avgPerDay = activeDays > 0 ? (archive.length / activeDays).toFixed(1) : 0;
+
+        return {
+            totalEntries: archive.length,
+            visitCount,
+            totalWords,
+            steepRanking,
+            modeRanking,
+            activeDays,
+            avgPerDay,
+        };
+    } catch {
+        return { totalEntries: 0, visitCount: 0, totalWords: 0, steepRanking: [], modeRanking: [], activeDays: 0, avgPerDay: 0 };
+    }
+}
+
+const STEEP_LABELS_OBS = {
+    essence: 'Essence', mosaic: 'Mosaic', summits: 'Summits',
+    mirror: 'Mirror', labyrinth: 'Labyrinth', conclave: 'Conclave', crown: 'Crown Jewels'
+};
+
+export const OntologicalObservatory = ({ m, onClose, playStrikingBowl, playAlgoraveSynth, wayfindingState }) => {
     const [currentMonth, setCurrentMonth] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [isScheduling, setIsScheduling] = useState(false);
-    
+    const [patterns, setPatterns] = useState(null);
+
     // Cohort Form State
     const [cohortTitle, setCohortTitle] = useState('');
     const [cohortTime, setCohortTime] = useState('19:00'); // 7:00 PM Default
     const [isPublishing, setIsPublishing] = useState(false);
     const [successMsg, setSuccessMsg] = useState('');
+
+    // Compute Observer Patterns on mount
+    useEffect(() => {
+        setPatterns(computeObserverPatterns());
+    }, []);
 
     // Calendar Events State
     const [events, setEvents] = useState([]);
@@ -255,21 +317,75 @@ export const OntologicalObservatory = ({ m, onClose, playStrikingBowl, playAlgor
                             Orchestrating<br/>the <span style={{ color: m.accent }}>Sanctuary.</span>
                         </div>
 
-                        {/* LIVE TELEMETRY MOCKUP */}
+                        {/* THE OBSERVER PATTERN — Behavioral Telemetry */}
                         <div style={{ border: `1px solid ${m.accent}30`, padding: 'var(--space-xl)', background: `linear-gradient(135deg, ${m.accent}05 0%, transparent 100%)`, marginBottom: '2rem' }}>
                             <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.75rem', letterSpacing: '0.2em', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                <Activity size={16} /> LIVE RESONANCE
+                                <Activity size={16} /> OBSERVER PATTERN
                             </h3>
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                                <div>
-                                    <div style={{ fontFamily: 'var(--fSerif)', fontSize: '2.5rem', color: m.text1 }}>03</div>
-                                    <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, letterSpacing: '0.1em' }}>ACTIVE CIRCLES</div>
+                            {patterns && (
+                                <>
+                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+                                    <div>
+                                        <div style={{ fontFamily: 'var(--fSerif)', fontSize: '2.5rem', color: m.text1 }}>{patterns.visitCount}</div>
+                                        <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, letterSpacing: '0.1em' }}>VISITS</div>
+                                    </div>
+                                    <div>
+                                        <div style={{ fontFamily: 'var(--fSerif)', fontSize: '2.5rem', color: m.text1 }}>{patterns.totalEntries}</div>
+                                        <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, letterSpacing: '0.1em' }}>ARCHIVE ENTRIES</div>
+                                    </div>
+                                    <div>
+                                        <div style={{ fontFamily: 'var(--fSerif)', fontSize: '2.5rem', color: m.text1 }}>{patterns.totalWords.toLocaleString()}</div>
+                                        <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, letterSpacing: '0.1em' }}>WORDS STEEPED</div>
+                                    </div>
+                                    <div>
+                                        <div style={{ fontFamily: 'var(--fSerif)', fontSize: '2.5rem', color: m.text1 }}>{patterns.activeDays}</div>
+                                        <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, letterSpacing: '0.1em' }}>ACTIVE DAYS</div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <div style={{ fontFamily: 'var(--fSerif)', fontSize: '2.5rem', color: m.text1 }}>42</div>
-                                    <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, letterSpacing: '0.1em' }}>MEMBRANE PINGS (24H)</div>
-                                </div>
-                            </div>
+
+                                {/* Current Wayfinding Position */}
+                                {wayfindingState && (
+                                    <div style={{ padding: '0.75rem', borderTop: `1px solid ${m.accent}20`, marginBottom: '1rem' }}>
+                                        <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.accent, letterSpacing: '0.15em', marginBottom: '0.5rem' }}>CURRENT POSITION</div>
+                                        <div style={{ fontFamily: 'var(--fSerif)', fontSize: '1.4rem', color: m.text1, fontStyle: 'italic' }}>
+                                            {STEEP_LABELS_OBS[wayfindingState.currentSteep] || wayfindingState.currentSteep}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Steep Gravity Distribution */}
+                                {patterns.steepRanking.length > 0 && (
+                                    <div style={{ borderTop: `1px solid ${m.accent}20`, paddingTop: '1rem' }}>
+                                        <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.accent, letterSpacing: '0.15em', marginBottom: '0.75rem' }}>STEEP GRAVITY</div>
+                                        {patterns.steepRanking.map(({ steep, count, pct }) => (
+                                            <div key={steep} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
+                                                <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, width: '70px', letterSpacing: '0.1em' }}>
+                                                    {(STEEP_LABELS_OBS[steep] || steep).toUpperCase()}
+                                                </div>
+                                                <div style={{ flex: 1, height: '4px', background: `${m.accent}15`, borderRadius: '2px', overflow: 'hidden' }}>
+                                                    <div style={{ height: '100%', width: `${pct}%`, background: m.accent, borderRadius: '2px', transition: 'width 1s ease' }} />
+                                                </div>
+                                                <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, width: '30px', textAlign: 'right' }}>{count}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+
+                                {/* Mode Usage */}
+                                {patterns.modeRanking.length > 0 && (
+                                    <div style={{ borderTop: `1px solid ${m.accent}20`, paddingTop: '1rem', marginTop: '1rem' }}>
+                                        <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.accent, letterSpacing: '0.15em', marginBottom: '0.75rem' }}>MODE AFFINITY</div>
+                                        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                                            {patterns.modeRanking.map(({ mode, count }) => (
+                                                <div key={mode} style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, letterSpacing: '0.1em' }}>
+                                                    {mode.toUpperCase()} <span style={{ color: m.accent }}>{count}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                                </>
+                            )}
                         </div>
 
                         {/* SCHEDULING FORM */}

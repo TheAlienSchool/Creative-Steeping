@@ -5,13 +5,34 @@ import { useCodex } from './useCodex';
 // ==========================================
 // THE SAGE WAYFINDING ENGINE
 // ==========================================
-// Replaces external API calls (Anthropic/Gemini)
-// with local behavioral intelligence. The Sage reads
-// the visitor's signals and surfaces relevant content
-// from the codex based on their current steep.
+//
+// Architecture Brief: see /docs/SAGE-INTELLIGENCE-BRIEF.md
+// Wayfinding Engine: see ./useWayfinding.jsx
+// Codex RAG Pipeline: see ./useCodex.jsx + ../scripts/build-codex.mjs
+// Editorial Standard: see /VESSELVERSE SESSION PRIMER
+//
+// The Sage is Creative Steeping's local behavioral intelligence.
+// No external API calls. It reads behavioral signals from the
+// wayfinding engine and assembles a response from five layers:
+//
+//   1. DEPTH REGISTER — visit-count-aware prefix (first / returning / deep)
+//   2. TRANSITION MESSAGE — fires once when the visitor crosses steeps
+//   3. CODEX FRAGMENT — TF-IDF surfaced content from the practitioner archive
+//   4. MODE × STEEP REFLECTION — 35 tonal positions (5 modes × 7 steeps)
+//   5. STEEP INVOCATION — closing question keyed to the current steep
+//
+// The response is character-streamed at ~25ms per character with
+// stochastic sonic punctuation via the striking bowl.
+//
+// Key exports:
+//   useSageWayfinding(identity, playStrikingBowl) — React hook, the main interface
+//   computeVesselResonance(vesselNum, gravity) — 0-1 score for vessel-steep affinity
+//   getTransitionGuidance(vesselNum, wayfindingState) — vessel completion data
+//
+// ==========================================
 
-// Wayfinding responses — authored, mode-aware reflections
-// that the Sage offers based on the visitor's position.
+// LAYER 4a: Universal steep reflections (mode-agnostic fallback).
+// Used when no mode is active or mode has no entry for the current steep.
 const STEEP_REFLECTIONS = {
   essence: [
     "You are arriving. That is the first and most honest act.",
@@ -63,7 +84,8 @@ const STEEP_REFLECTIONS = {
   ],
 };
 
-// Transition messages — when the visitor crosses from one steep to another
+// LAYER 2: Transition messages — fires once when the visitor crosses steeps.
+// Detected by the useEffect at line ~446 comparing prevSteepRef to current.
 const TRANSITION_MESSAGES = {
   essence: "The waters receive your arrival.",
   mosaic: "Fragments begin to gather around your attention.",
@@ -74,7 +96,8 @@ const TRANSITION_MESSAGES = {
   crown: "Something luminous has crystallized. The design is yours.",
 };
 
-// Vessel completion transitions — what the Sage offers when a vessel is poured.
+// VESSEL TRANSITIONS — what the Sage offers when a vessel is poured.
+// Called by getTransitionGuidance() from App.jsx's POUR button handler.
 // Each entry: a reflection on what was just experienced, and a gesture toward what follows.
 const VESSEL_TRANSITIONS = {
   '00': {
@@ -124,13 +147,16 @@ const VESSEL_TRANSITIONS = {
   },
 };
 
-// Mode-responsive reflections — the Sage's voice shifts with the mode.
-// 5 modes x 7 steeps = 35 tonal positions.
-// Incandescent: morning clarity, warmth, golden directness
-// Oceanic: deep quiet, subaquatic stillness, patience
-// Emergent: the archer's comprehension, precise and spare
-// Planetary: expansion, cosmic perspective, wonder
-// Dark Matter: stripped back, essential, the bones of things
+// LAYER 4b: Mode-responsive reflections — the Sage's voice shifts with the mode.
+// 5 modes × 7 steeps = 35 tonal positions. Takes precedence over STEEP_REFLECTIONS
+// when a mode is active. Falls back to STEEP_REFLECTIONS if mode has no entry.
+//
+// Mode tonal identities:
+//   Incandescent — morning clarity, warmth, golden directness
+//   Oceanic      — deep quiet, subaquatic stillness, patience
+//   Emergent     — the archer's comprehension, precise and spare
+//   Planetary    — expansion, cosmic perspective, wonder
+//   Dark Matter  — stripped back, essential, the bones of things
 const MODE_REFLECTIONS = {
   incandescent: {
     essence: [
@@ -319,10 +345,10 @@ const MODE_REFLECTIONS = {
   },
 };
 
-// Progressive revelation — how the Sage addresses the visitor shifts with depth.
-// First visit: orienting, gentle, spatial ("you are here").
-// Returning (3+): recognizing, warmer, acknowledging what has accumulated.
-// Deep practice (10+): intimate, spare, peer-to-peer.
+// LAYER 1: Progressive revelation — the Sage's register shifts with visit depth.
+// Fires as a prefix ~50% of the time (avoids formulaic repetition).
+// Thresholds: first (0-2 visits), returning (3-9), deep (10+).
+// See getDepthRegister() below. Visit count from useWayfinding → raw.visitCount.
 const DEPTH_REGISTERS = {
   first: {
     prefix: [
@@ -353,8 +379,41 @@ function getDepthRegister(visitCount) {
   return 'first';
 }
 
-// Vessel-to-steep affinity — which steeps resonate with each vessel's theme
-const VESSEL_STEEP_AFFINITY = {
+// TEMPORAL ATTUNEMENT — the Sage's tone shifts with the clock.
+// Appended as a closing whisper ~40% of the time.
+// Time-of-day from useWayfinding → raw.timeOfDay (predawn/morning/afternoon/evening/night).
+const TEMPORAL_WHISPERS = {
+  predawn: [
+    "The hours before dawn are the body's hours. Let the thinking rest.",
+    "Something in you is awake before the reasons arrive.",
+    "Predawn practice moves by feel. The light will come later.",
+  ],
+  morning: [
+    "Morning steeping carries well into the day.",
+    "The clarity you find now has the whole day to work in.",
+    "Fresh attention is its own resource. Use it gently.",
+  ],
+  afternoon: [
+    "The afternoon is where practice meets the day already lived.",
+    "What you bring here now has the weight of hours behind it.",
+    "Afternoon attention is seasoned. Trust what it notices.",
+  ],
+  evening: [
+    "Evening steeping is composting. The day's material is decomposing into something useful.",
+    "The day is settling. Let what rises now rise slowly.",
+    "What the evening offers is review without the urgency of revision.",
+  ],
+  night: [
+    "Night practice is the quietest register. The world has fewer claims on you here.",
+    "The dark holds the practice differently. Less visual. More felt.",
+    "What you steep in the night hours steeps longest.",
+  ],
+};
+
+// VESSEL-STEEP AFFINITY — maps each vessel to the steeps that resonate with its theme.
+// Used by computeVesselResonance() for matrix glow intensity AND by the
+// gravity-informed vessel unlocking system in App.jsx (resonance >= 0.6 unlocks).
+export const VESSEL_STEEP_AFFINITY = {
   '00': ['essence'],
   '01': ['essence', 'mosaic'],
   '02': ['mosaic', 'mirror'],
@@ -491,6 +550,13 @@ export function useSageWayfinding(identity, playStrikingBowl) {
       // 5. If the visitor asked something specific, add the steep invocation
       if (query.trim().endsWith('?') || query.length > 40) {
         response += '\n\n' + STEEP_INVOCATIONS[steep];
+      }
+
+      // 6. Temporal attunement — a closing whisper keyed to time of day (~40%)
+      const timeOfDay = wayfindingState.raw?.timeOfDay;
+      const temporalWhispers = timeOfDay && TEMPORAL_WHISPERS[timeOfDay];
+      if (temporalWhispers && Math.random() > 0.6) {
+        response += '\n\n' + pickRandom(temporalWhispers);
       }
 
       // Stream the response character by character for the cinematic effect
