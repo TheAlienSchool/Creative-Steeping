@@ -513,8 +513,16 @@ export function useSageWayfinding(identity, playStrikingBowl) {
     setIsThinking(true);
     setSageResponse('');
 
-    // Simulate the contemplative pause — the Sage considers
-    const thinkDuration = 1200 + Math.random() * 1800;
+    // Rhythm mirroring — the Sage breathes at the visitor's tempo.
+    // typingVelocity is keystrokes/sec from the last 20 keystrokes.
+    // Fast typists (summits energy) get quicker acknowledgment and stream.
+    // Slow/contemplative typists (mirror/labyrinth energy) get a more deliberate pace.
+    const velocity = wayfindingState.signals?.typingVelocity || 0;
+    const rhythmFactor = velocity > 0
+      ? Math.max(0.4, Math.min(1.6, velocity / 5))
+      : 1;
+
+    const thinkDuration = (1800 - rhythmFactor * 500) + Math.random() * (1200 / rhythmFactor);
 
     setTimeout(() => {
       const steep = wayfindingState.currentSteep;
@@ -559,10 +567,15 @@ export function useSageWayfinding(identity, playStrikingBowl) {
         response += '\n\n' + pickRandom(temporalWhispers);
       }
 
-      // Stream the response character by character for the cinematic effect
+      // Stream the response character by character — tempo mirrors the visitor's rhythm.
+      // Fast typist → shorter tick interval, more chars per tick (the Sage keeps pace).
+      // Slow typist → longer tick, single char (the Sage breathes with them).
+      const streamTick = Math.round(25 / rhythmFactor);
+      const charsPerTick = rhythmFactor >= 1.2 ? 2 + Math.floor(Math.random() * 2) : 1 + Math.floor(Math.random() * 2);
+
       let charIndex = 0;
       const streamInterval = setInterval(() => {
-        charIndex += 1 + Math.floor(Math.random() * 2);
+        charIndex += charsPerTick;
         if (charIndex >= response.length) {
           charIndex = response.length;
           clearInterval(streamInterval);
@@ -593,7 +606,7 @@ export function useSageWayfinding(identity, playStrikingBowl) {
         if (playStrikingBowl && Math.random() > 0.8) {
           playStrikingBowl(45 + Math.floor(Math.random() * 25));
         }
-      }, 25);
+      }, streamTick);
     }, thinkDuration);
   }, [wayfindingState, surface, playStrikingBowl]);
 
