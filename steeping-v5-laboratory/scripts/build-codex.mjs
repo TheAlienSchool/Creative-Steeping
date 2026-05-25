@@ -19,7 +19,7 @@ const OUTPUT = join(__dirname, "..", "public", "codex.json");
 // Directories to skip entirely
 const SKIP_DIRS = new Set([
   "node_modules", ".git", ".next", "dist", "chrome", "For Amtrak",
-  "supabase", "scripts", ".claude",
+  "supabase", "scripts", ".claude", "TheBackstory", "docs",
 ]);
 
 // Only index these extensions
@@ -66,6 +66,17 @@ const EXCLUDE_FILES = new Set([
   "AUDIO_ARCHITECTURE_ROADMAP.md",
   "PHASE_07_SPATIAL_RESONANCE.md",
   "research_notes.md",
+  "THE_SUCCESSION_BRIEF.md",
+  "VESSELVERSE_EDITORIAL_PROTOCOL.md",
+  "VESSELVERSE_EDITORIAL_PROTOCOL3.1.md",
+  "VESSELVERSE SESSION PRIMER",
+  "The Steeperverse_ UI_UX Styleguide & Mythology (1).md",
+  "SANCTUARY_VISION.md",
+  "EXPERIENTIAL_GUIDEBOOK.md",
+  "DM-RR_Design_Guidebook_Notes.md",
+  "CONTEMPLATIVE_ADVISOR.md",
+  "SITE_COPY_DOCUMENT.md",
+  "Welcome to Creative Steeping.md",
 ]);
 
 // --- Steep vocabulary for affinity scoring ---

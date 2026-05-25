@@ -9,10 +9,10 @@ export const VESSELS = [
     {
         num: "00",
         name: "Welcome to\nCREÅTIVE STEEPING",
-        invocation: "A sanctuary for your becoming,\nA quiet act of remembering,\nThe flavor is you.",
+        invocation: "A quiet act of becoming,\nA remembered returning,\nThe flavor is you.",
         body: "You are here to claim your native rhythm. Creative Steeping functions as a devotion to self-narration; a cellular-level invitation to feel your intelligence beyond thought and directly into knowing. As a solo Steeper, this portal operates as your private tea space. You are encouraged to brew your blend, bring your journal, and witness your own unfolding with creative trust. We are made of water. Tea teaches us this truth: the leaf (external) enters the water (internal) and transforms the whole.",
         reflection: [
-            "What brought you to this quiet sanctuary today?",
+            "What brought you to this quiet pause today?",
             "What is the flavor of your curiosity in this exact moment?"
         ],
         interaction: {

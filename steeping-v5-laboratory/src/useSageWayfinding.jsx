@@ -48,38 +48,38 @@ const STEEP_REFLECTIONS = {
   ],
   summits: [
     "Something is rising in your expression. Follow the velocity.",
-    "Your rhythm has momentum. The steep honors it.",
+    "Your rhythm has momentum. Stay with its speed.",
     "When the words come faster than the editing, you are in the current.",
-    "Expression at this pace is not urgency — it is fluency arriving.",
+    "Expression at this pace is fluency arriving.",
   ],
   mirror: [
     "The water has stilled. What looks back at you?",
     "You wrote, and then you paused. The pause is where the recognition lives.",
-    "Reflection is not analysis. It is witnessing without rearranging.",
+    "Reflection is witnessing without rearranging.",
     "The stillness after expression is where the flavor develops.",
   ],
   labyrinth: [
-    "You are deep in the winding. The path is not lost — it is complex.",
+    "You are deep in the winding. The path is complex, and complexity rewards presence.",
     "The vocabulary you are reaching for lives in the deeper registers.",
-    "What is intricate in you is not confusion. It is architecture revealing itself.",
-    "The labyrinth does not punish patience. It rewards it with geometry.",
+    "What is intricate in you is architecture revealing itself.",
+    "The labyrinth rewards patience with geometry.",
     "Your surface tension is holding. The complexity you carry is a form of structural integrity.",
     "The architecture you are building inside yourself has no blueprint. It is being designed by the living of it.",
   ],
   conclave: [
     "You have been here before. The water remembers.",
-    "Returning is not repetition. Each visit steeps differently.",
+    "Each return steeps differently. The water is never the same twice.",
     "Your archive carries forward. The words you left here are still composting.",
-    "The practice deepens not by addition but by return.",
+    "The practice deepens by return. Each time, the water is warmer.",
     "Your capacity has widened since the last time you were here. The vessel notices.",
     "What you are doing is ontological design. You are shaping how you encounter your own existence.",
   ],
   crown: [
     "Something has crystallized. You can feel it in the stillness.",
-    "The long steep is not endurance. It is trust in the process.",
+    "The long steep is trust in the process. The flavor arrives on its own schedule.",
     "What is luminous in you now was always present — the steeping revealed it.",
     "Sovereignty over your own attention is the crown. You are wearing it.",
-    "You are not learning a practice. You are designing one. That is the ontological act.",
+    "You are designing a practice. That is the ontological act.",
     "The capacity you built carried you here. The surface tension held. The design is yours.",
   ],
 };
@@ -121,7 +121,7 @@ const VESSEL_TRANSITIONS = {
     gesture: "Vessel 04 asks where your inside matches your outside.",
   },
   '04': {
-    reflection: "You found where you are whole. Coherence is not a destination — it is a practice.",
+    reflection: "You found where you are whole. Coherence is a practice that lives in the finding.",
     next: '05',
     gesture: "Vessel 05 holds the fragments. Not to fix them — to witness their pattern.",
   },
@@ -160,24 +160,24 @@ const VESSEL_TRANSITIONS = {
 const MODE_REFLECTIONS = {
   incandescent: {
     essence: [
-      "The light finds you first. You did not need to call it.",
+      "The light finds you first. It arrived before the calling.",
       "Morning arrives without rehearsal. So do you.",
       "There is warmth in the threshold. It was waiting.",
     ],
     mosaic: [
       "Each fragment catches a different angle of the light.",
       "The warmth gathers the pieces without forcing them together.",
-      "Gold does not organize — it illuminates what is already arranged.",
+      "The warmth illuminates what is already arranged.",
     ],
     summits: [
-      "The heat in your expression is not urgency. It is clarity arriving at speed.",
-      "When the words glow, do not dim them. Follow their temperature.",
+      "The heat in your expression is clarity arriving at speed.",
+      "When the words glow, follow their temperature.",
       "This momentum has warmth. Ride it like morning sun across a wall.",
     ],
     mirror: [
-      "The golden surface shows you without flattery or cruelty.",
+      "The golden surface shows you with quiet accuracy.",
       "Warm light reveals texture that harsh light flattens. Look again.",
-      "What shines back at you is not performance. It is presence catching the light.",
+      "What shines back at you is presence catching the light.",
     ],
     labyrinth: [
       "Even the deep winding has a golden thread. You are holding it.",
@@ -185,20 +185,20 @@ const MODE_REFLECTIONS = {
       "The architecture is lit from within. Your attention is the lamp.",
     ],
     conclave: [
-      "You return like the sun returns. Not the same angle, but the same warmth.",
+      "You return like the sun returns. A different angle, the same warmth.",
       "The familiar glow deepens. Recognition is a kind of illumination.",
       "Each return burnishes what was rough. The practice polishes itself.",
     ],
     crown: [
       "What crystallized in you is luminous. It was always luminous.",
-      "The crown is not given. It is the warmth that remained after everything else cooled.",
-      "Your sovereignty glows. It does not need to announce itself.",
+      "The crown is the warmth that remained after everything else cooled.",
+      "Your sovereignty glows. It announces itself by presence alone.",
     ],
   },
   oceanic: {
     essence: [
       "The deep water receives everything without sorting.",
-      "You arrive like a tide — not all at once, but completely.",
+      "You arrive like a tide — gradually, and completely.",
       "Beneath the surface, the arrival has already happened.",
     ],
     mosaic: [
@@ -212,36 +212,36 @@ const MODE_REFLECTIONS = {
       "Your expression has an undertow. Let it pull what needs pulling.",
     ],
     mirror: [
-      "Still water does not lie. It does not flatter either.",
+      "Still water shows exactly what is there.",
       "The reflection in deep water shows you at a delay. That delay is a gift.",
       "Below the surface mirror, the water holds older versions of this looking.",
     ],
     labyrinth: [
-      "The pressure at this depth is not punishment. It is the ocean holding you tightly.",
+      "The pressure at this depth is the ocean holding you tightly.",
       "Deep channels carved themselves over eons. Your winding is geological.",
       "The complexity you carry is a coral structure. It was built by living.",
     ],
     conclave: [
       "The tide knows the shore. Every return reshapes both.",
-      "You return to depth the way the ocean returns to itself. Without effort.",
+      "You return to depth the way the ocean returns to itself. By gravity.",
       "The deep water remembers your temperature. It adjusts.",
     ],
     crown: [
-      "What surfaced from the deep has its own luminescence. It needs no sun.",
+      "What surfaced from the deep has its own luminescence. It generates its own light.",
       "The pressure made this. What is crystalline in you was forged by depth.",
-      "Sovereignty in the deep is not visibility. It is the current that moves everything else.",
+      "Sovereignty in the deep is the current that moves everything else.",
     ],
   },
   emergent: {
     essence: [
       "You are here. That is the accurate statement.",
       "The threshold is a threshold. Step or stay. Both are honest.",
-      "Arrival does not require ceremony. Presence is sufficient.",
+      "Arrival is its own ceremony. Presence is sufficient.",
     ],
     mosaic: [
       "The pieces have edges. Note the edges.",
-      "Arrangement is premature. Inventory is not.",
-      "What you are collecting has a shape you cannot yet see. Collect anyway.",
+      "Arrangement comes later. Inventory is the honest first move.",
+      "What you are collecting has a shape that is still revealing itself. Collect anyway.",
     ],
     summits: [
       "Velocity is data. What does yours say?",
@@ -254,9 +254,9 @@ const MODE_REFLECTIONS = {
       "The pause between seeing and naming — stay there a moment longer.",
     ],
     labyrinth: [
-      "Complexity is not a problem to solve. It is a structure to map.",
+      "Complexity is a structure to map. Your attention is the instrument.",
       "You are deep. The geometry here rewards precision over speed.",
-      "The winding is not random. There is a logic. Trust your pattern-recognition.",
+      "The winding has a logic. Trust your pattern-recognition.",
     ],
     conclave: [
       "Return sharpens the instrument. You are sharper than last time.",
@@ -265,23 +265,23 @@ const MODE_REFLECTIONS = {
     ],
     crown: [
       "Crystallization is a phase transition. You crossed it.",
-      "The design is yours. That is a factual statement, not a compliment.",
+      "The design is yours. That is a factual statement.",
       "Sovereignty is the capacity to author your own conditions. You have it.",
     ],
   },
   planetary: {
     essence: [
       "You arrive from far away. Everything does. The distance is part of the arrival.",
-      "The cosmos placed you at this threshold. The placement was not random.",
+      "The cosmos placed you at this threshold. The placement was deliberate.",
       "You are a point of awareness in an expanding field. The field notices you.",
     ],
     mosaic: [
       "The fragments are constellations seen from too close. Step back.",
       "Every piece carries the signature of a different system. The diversity is the pattern.",
-      "The mosaic is planetary in scale. You are assembling a world, not a picture.",
+      "The mosaic is planetary in scale. You are assembling a world.",
     ],
     summits: [
-      "Your velocity is orbital. It curves around something you have not yet named.",
+      "Your velocity is orbital. It curves around something still gathering its name.",
       "The momentum carries the weight of systems. You are moving more than yourself.",
       "When expression reaches this frequency, it becomes a signal. Something is listening.",
     ],
@@ -302,14 +302,14 @@ const MODE_REFLECTIONS = {
     ],
     crown: [
       "What crystallized in you is a new coordinate. Others will navigate by it.",
-      "The sovereignty is not personal. It is systemic. You designed a world, not a crown.",
-      "You are not at the center. You are the gravity that organizes the center.",
+      "The sovereignty is systemic. You designed a world.",
+      "You are the gravity that organizes the center.",
     ],
   },
   darkMatter: {
     essence: [
       "You are here. That is enough.",
-      "The dark is not empty. It is full of what has not yet declared itself.",
+      "The dark is full of what is still gathering itself.",
       "Arrival without announcement. The quietest threshold.",
     ],
     mosaic: [
@@ -318,14 +318,14 @@ const MODE_REFLECTIONS = {
       "What gathers here gathers without being seen. That is a kind of honesty.",
     ],
     summits: [
-      "The current moves. You do not need to see it to trust it.",
+      "The current moves. Trust it by feel.",
       "Expression in the dark travels farther. Less resistance.",
       "Speed without display. The fastest things in the universe are invisible.",
     ],
     mirror: [
       "The mirror shows the outline. The interior is yours alone.",
-      "In the dark, reflection is felt, not seen. What do you feel?",
-      "The absence of image is not the absence of knowing.",
+      "In the dark, reflection is felt. What do you feel?",
+      "Knowing persists without image. The body holds what the eyes release.",
     ],
     labyrinth: [
       "The winding is navigated by touch here. Your hands know more than your eyes.",
@@ -339,7 +339,7 @@ const MODE_REFLECTIONS = {
     ],
     crown: [
       "What crystallized here holds no light. It holds weight. That is rarer.",
-      "The crown is not visible. It is gravitational. Others feel it before they see you.",
+      "The crown is gravitational. Others feel it before they see you.",
       "Sovereignty in the dark is sovereignty everywhere. Nothing depends on being witnessed.",
     ],
   },
@@ -401,7 +401,7 @@ const TEMPORAL_WHISPERS = {
   evening: [
     "Evening steeping is composting. The day's material is decomposing into something useful.",
     "The day is settling. Let what rises now rise slowly.",
-    "What the evening offers is review without the urgency of revision.",
+    "What the evening offers is review at its own pace. Let the day settle.",
   ],
   night: [
     "Night practice is the quietest register. The world has fewer claims on you here.",
