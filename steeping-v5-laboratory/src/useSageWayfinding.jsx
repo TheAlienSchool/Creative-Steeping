@@ -446,6 +446,29 @@ function pickRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+// FREE WRITING MODE — interim acknowledgement pool.
+// The full six-layer Sage response assembly is preserved in the functions below
+// and will be restored when the Sage Evolution Plan (docs/SAGE-EVOLUTION-PLAN.md)
+// is implemented. Until then, askSage() draws from this pool so every visitor
+// receives a clean, warm receipt of their writing rather than a partial response.
+const FREE_WRITING_ACKNOWLEDGEMENTS = [
+  "What moved in you, moved here. Your Steeping Notes carry it forward.",
+  "That's in your record now. The practice holds it.",
+  "Held. Return to this in your Steeping Notes whenever it calls.",
+  "What you brought through is part of your archive — it steeps.",
+  "The practice received that. The space stays open for more.",
+  "What you poured is real. Your Steeping Notes carry it.",
+  "That arrived. The journey carries it.",
+  "You named what was present. Your archive keeps the name.",
+  "What you held and then released — it's here now, steeping.",
+  "Held with care. Your Steeping Notes are where this lives.",
+  "The practice catches everything you pour. That's in there now.",
+  "What came through you came here. The record grows.",
+  "Your reflection has landed. The archive holds it.",
+  "That took presence. What you expressed is in your Steeping Notes.",
+  "What arrived here is kept. Your practice deepens with every pour.",
+];
+
 export function getTransitionGuidance(vesselNum, wayfindingState) {
   const transition = VESSEL_TRANSITIONS[vesselNum];
   if (!transition) return null;
@@ -526,46 +549,12 @@ export function useSageWayfinding(identity, playStrikingBowl) {
 
     setTimeout(() => {
       const steep = wayfindingState.currentSteep;
-      const interpreted = wayfindingState.signals;
-      let response = '';
+      // Keep transition tracking current for when the full Sage returns
+      if (transitionNotedRef.current) transitionNotedRef.current = false;
 
-      // 1. Depth register — acknowledge where the visitor is in their practice arc
-      const visitCount = wayfindingState.raw?.visitCount || 0;
-      const depthRegister = getDepthRegister(visitCount);
-      const depthPrefixes = DEPTH_REGISTERS[depthRegister]?.prefix;
-      if (depthPrefixes && Math.random() > 0.5) {
-        response += pickRandom(depthPrefixes) + '\n\n';
-      }
-
-      // 2. If there was a steep transition, acknowledge it
-      if (transitionNotedRef.current) {
-        response += TRANSITION_MESSAGES[steep] + '\n\n';
-        transitionNotedRef.current = false;
-      }
-
-      // 3. Surface a codex fragment if available
-      const codexResults = surface(steep, query, 1);
-      if (codexResults.length > 0) {
-        const fragment = codexResults[0].fragment;
-        response += fragment.text + '\n\n';
-      }
-
-      // 4. Add a mode-and-steep-responsive reflection
-      const modeReflections = mode && MODE_REFLECTIONS[mode]?.[steep];
-      const reflections = modeReflections || STEEP_REFLECTIONS[steep] || STEEP_REFLECTIONS.essence;
-      response += pickRandom(reflections);
-
-      // 5. If the visitor asked something specific, add the steep invocation
-      if (query.trim().endsWith('?') || query.length > 40) {
-        response += '\n\n' + STEEP_INVOCATIONS[steep];
-      }
-
-      // 6. Temporal attunement — a closing whisper keyed to time of day (~40%)
-      const timeOfDay = wayfindingState.raw?.timeOfDay;
-      const temporalWhispers = timeOfDay && TEMPORAL_WHISPERS[timeOfDay];
-      if (temporalWhispers && Math.random() > 0.6) {
-        response += '\n\n' + pickRandom(temporalWhispers);
-      }
+      // Free Writing mode: simple acknowledgement receipt.
+      // Full six-layer assembly resumes after Sage Evolution Plan implementation.
+      const response = pickRandom(FREE_WRITING_ACKNOWLEDGEMENTS);
 
       // Stream the response character by character — tempo mirrors the visitor's rhythm.
       // Fast typist → shorter tick interval, more chars per tick (the Sage keeps pace).
