@@ -452,21 +452,21 @@ function pickRandom(arr) {
 // is implemented. Until then, askSage() draws from this pool so every visitor
 // receives a clean, warm receipt of their writing rather than a partial response.
 const FREE_WRITING_ACKNOWLEDGEMENTS = [
-  "Received. What you poured here steeps in your practice now.",
-  "Your reflection has landed. It is waiting in your Steeping Notes.",
-  "This is held. The practice carries it forward.",
-  "What you brought here is part of your record. It steeps.",
-  "Received and cataloged. Your archive grows with what you pour.",
-  "The writing has been held. Your Steeping Notes are its home.",
-  "What you expressed is now part of your Creative Steeping journey.",
-  "Received. The ripple continues with your practice.",
-  "Poured and held. Your Steeping Notes carry this forward.",
-  "Your reflection is in the record now. It steeps alongside your whole practice.",
-  "This has been received. The water holds what you bring to it.",
-  "Your words have landed in the archive. They steep.",
-  "Received. What you pour here stays with your practice.",
-  "This reflection is held. Your Steeping Notes carry it.",
-  "What you wrote has been cataloged into your journey. The steeping continues.",
+  "What moved in you, moved here. Your Steeping Notes carry it forward.",
+  "That's in your record now. The practice holds it.",
+  "Held. Return to this in your Steeping Notes whenever it calls.",
+  "What you brought through is part of your archive — it steeps.",
+  "The practice received that. The space stays open for more.",
+  "What you poured is real. Your Steeping Notes carry it.",
+  "That arrived. The journey carries it.",
+  "You named what was present. Your archive keeps the name.",
+  "What you held and then released — it's here now, steeping.",
+  "Held with care. Your Steeping Notes are where this lives.",
+  "The practice catches everything you pour. That's in there now.",
+  "What came through you came here. The record grows.",
+  "Your reflection has landed. The archive holds it.",
+  "That took presence. What you expressed is in your Steeping Notes.",
+  "What arrived here is kept. Your practice deepens with every pour.",
 ];
 
 export function getTransitionGuidance(vesselNum, wayfindingState) {

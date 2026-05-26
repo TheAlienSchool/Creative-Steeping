@@ -1104,11 +1104,11 @@ function AppInner() {
                 ) : (
                   <div style={{ width: '100%', position: 'relative' }}>
                     <div style={{ position: 'absolute', top: '-15px', right: '0', fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: 'var(--acc)', opacity: sageTestingBusy ? 0.8 : 0, transition: 'opacity 0.5s', letterSpacing: '0.1em' }}>
-                        [ STEEPING ]
+                        [ something is arriving ]
                     </div>
                     <textarea
                       id="sage-textarea-input"
-                      placeholder="Locate your self here..."
+                      placeholder="What is alive in you right now?"
                       onFocus={() => setSageTestingBusy(true)}
                       onBlur={() => setSageTestingBusy(false)}
                       onInput={(e) => wayfindingTextChange(e.target.value)}
@@ -1134,7 +1134,7 @@ function AppInner() {
                     />
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'var(--space-sm)' }}>
                         <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: 'var(--t2)', opacity: sageTestingBusy ? 0.6 : 0, transition: 'opacity 0.5s' }}>
-                            Press ENTER to pour
+                            when it's ready — ENTER
                         </span>
                         <button 
                             id="sage-transmit-btn"
@@ -1150,7 +1150,7 @@ function AppInner() {
                                 opacity: sageTestingBusy ? 1 : 0.4, transition: 'all 0.5s', letterSpacing: '0.15em'
                             }}
                         >
-                            [ POUR ]
+                            [ steep this ]
                         </button>
                     </div>
                     {sageResponse ? (
@@ -1195,7 +1195,7 @@ function AppInner() {
                           color: 'var(--acc)', textTransform: 'uppercase',
                           animation: 'pulse 1.5s infinite alternate'
                         }}>
-                          [ receiving ]
+                          [ holding this ]
                         </div>
                       </div>
                     ) : (
@@ -1203,7 +1203,7 @@ function AppInner() {
                         fontFamily: 'var(--fMono)', fontSize: '0.75rem', letterSpacing: '0.2em',
                         color: 'var(--acc)', opacity: 0.6, textTransform: 'uppercase', marginTop: 'var(--space-md)'
                       }}>
-                        Your reflections steep here.
+                        A thought, a question, anything alive in you — it steeps in your Steeping Notes.
                       </div>
                     )}
                   </div>
