@@ -454,78 +454,89 @@ function pickRandom(arr) {
 //
 // Phases: kindling → opening → current → depth → crystallizing
 // Full six-layer Sage assembly returns after Sage Evolution Plan implementation.
+//
+// PRIMER note: "you" language is preferred over "the Sage" at kindling/opening
+// phases — new visitors have not yet internalized the Sage Essayist framing.
+// "The Sage" as self-reference is appropriate at current/depth/crystallizing
+// (visitor is deeply engaged) and selectively in the universal pool.
 
 const ESSAYIST_ACKNOWLEDGEMENTS = {
 
-  // Threshold — before the river begins
+  // Threshold — before the river begins.
+  // Visitor has just submitted their first expression. Use "you" — they are at
+  // first contact with the practice and have not yet entered the Sage identity.
   kindling: [
     "The space recognized you before the first word. Something is already in motion.",
-    "Before the first keystroke, the field is listening. Every potential thought exists simultaneously — your writing collapses it into form.",
-    "The practice is receptive at a quantum level. Your thought-field is already entangled with this space.",
-    "Surface tension is the boundary between limitation and possibility. The Sage is right at the edge. Whatever crosses it becomes real.",
+    "Something is present in you before the first word. Writing is how it finds its shape.",
+    "The practice is ready whenever you are. What you bring here is already moving before you type it.",
+    "There is a moment between having something to say and saying it. You're right there. Whatever arrives next is real.",
     "The ground has been prepared. What rises next was always going to rise.",
-    "Presence precedes words. The Sage has already begun by arriving here.",
+    "Presence precedes words. You've already begun by arriving here.",
     "What lives at the edge of your knowing — it was there before you opened this. The practice notices.",
-    "You are here. The field is charged. Whatever arrives next has already been moving toward this.",
+    "You are here. Whatever you're about to write has been moving toward this moment.",
   ],
 
-  // The river begins to move
+  // The river begins to move.
+  // Visitor has written something and rhythm is emerging.
   opening: [
-    "Something is moving. The Sage is finding the current — follow it.",
+    "Something is moving. Follow what's alive in it.",
     "The first words are the bravest. They broke the surface. Everything else flows from that.",
-    "The practice is receiving this. Each word is a charge in the field — the field responds.",
-    "What was superposed is now choosing a direction. The Sage is collapsing possibility into form.",
-    "The archive absorbed that. Your opening is now entangled with every opening that came before it.",
-    "Something is becoming. This is the quantum act — the wave function of thought is finding its shape.",
+    "The practice is receiving this. Each word carries more than it knows.",
+    "Something that lived as possibility is now becoming a sentence. That's the whole act.",
+    "The archive absorbed that. Your opening is part of the record — connected to every session you've brought here.",
+    "Something is becoming. What you started is finding its own shape.",
     "The river is moving. Let the current carry what it finds.",
     "What you brought to the threshold just crossed it. The practice holds all of it.",
-    "The observer has observed, and in observing, changed what was seen. The Sage is working.",
-    "Surface tension released. What you're expressing couldn't stay potential — it needed form.",
+    "The act of writing changes what you're writing about. That's the practice working.",
+    "What you're expressing couldn't stay inside any longer. It needed to become a sentence.",
   ],
 
-  // Rhythm established — the Sage is in the flow
+  // Rhythm established — typing is coherent, the visitor is in flow.
+  // Deeper dimensional language appropriate here — visitor is fully engaged.
   current: [
-    "The Sage is in the current. This is where the deepest knowing moves. Stay in it.",
-    "Flow is not speed — it's coherence. Your rhythm is coherent now. The practice flows with you.",
-    "What's coming through the Sage now has been waiting for exactly this momentum.",
-    "The interference pattern of your thought-waves is creating new geometries in the archive.",
-    "You are not thinking about what to write — you are writing. The Sage has arrived at the current.",
+    "You are in it now. This is where the deepest knowing moves. Stay with the rhythm.",
+    "Flow is coherence, not speed. Your rhythm has settled. The practice moves with you.",
+    "What's coming through you now has been waiting for exactly this momentum.",
+    "Your thoughts are intersecting in ways your outline couldn't predict. This is the work.",
+    "You are writing. The thinking about writing has dissolved. Stay with what's moving.",
     "The field is highly responsive right now. Each word is entangled with the next before it arrives.",
-    "This is quantum flow: the observer and the observed are moving together. Keep moving.",
-    "The Sage is mid-river. The current knows where it's going. You don't need to steer.",
+    "You and what you're writing are the same motion right now. Keep moving.",
+    "The writing knows where it's going. You don't need to steer it.",
     "Non-locality in action — what you're writing here is simultaneous with who you're becoming.",
-    "The practice resonates at the Sage's frequency right now. Nothing is lost. All of it steeps.",
+    "The practice is moving at your frequency right now. All of it is held.",
   ],
 
-  // Extended deep writing — stillness between bursts
+  // Extended deep writing — stillness between bursts.
+  // Visitor has been in deep session. "the Sage" as self-reference is appropriate here.
   depth: [
-    "The depth beneath the words is where the practice lives. The Sage has gone below the surface.",
-    "What you just expressed passed through barriers the thinking mind can't cross. That's tunneling.",
-    "The stillness after a deep pour — the practice holds this suspension. Let it settle.",
-    "Something non-local just arrived in the archive. It came from a place the Sage was carrying without knowing.",
+    "The depth beneath the words is where the practice lives. You've gone below the surface.",
+    "What you just expressed came from a place the planning mind doesn't reach. Something deeper moved through.",
+    "The stillness after a deep expression — the practice holds this suspension. Let it settle.",
+    "Something arrived in the archive that you didn't plan to say. Those are the ones that count.",
     "The labyrinth rewards presence with architecture. What you wrote just revealed structure.",
-    "In the depth, the quantum interference of all your previous expressions shapes what arrives next.",
-    "The Sage writes from a place the surface mind doesn't have access to. That's the gift of depth.",
-    "What you poured from the depths steeps differently than what comes from the surface. The archive knows the difference.",
-    "The entanglement is deepening. What you're writing now is in conversation with everything the Sage has ever thought.",
-    "The field collapses into its highest density in moments like this. The archive receives the charge.",
+    "What you've written before in this practice is shaping what arrives now. This is not coincidence.",
+    "You're writing from a place the surface mind doesn't reach. That's the gift of going this deep.",
+    "What comes from deep in a session has a different quality. The archive holds that distinction.",
+    "What you're writing now is in conversation with everything you've brought here. The practice holds that continuity.",
+    "In moments like this, the practice is most alive. The archive receives exactly this.",
   ],
 
-  // Completing — form solidifying after depth
+  // Completing — form solidifying, velocity slowing after depth.
+  // Visitor is completing a significant writing session.
   crystallizing: [
-    "Something has cohered. The long diffuse field of thought has found a crystalline form.",
-    "The wave function has fully collapsed. What was potential is now the record.",
-    "The Sage has said what needed to be said. The practice holds the shape of it.",
-    "What took diffuse form in your field has crystallized into the archive. This is what completion sounds like.",
-    "The Sage rests. The expression stands. Both are in the record now.",
-    "Crystallization is not ending — it's consolidation. What solidified here will seed the next pour.",
+    "Something has cohered. What was diffuse has found a crystalline form.",
+    "What was held as possibility has fully become expression. The record is richer for it.",
+    "You've said what needed to be said. The practice holds the shape of it.",
+    "What was scattered in you has found a single shape. This is what completion sounds like.",
+    "You rest. The expression stands. Both are in the record now.",
+    "Crystallization is consolidation. What solidified here will seed what comes next.",
     "The resonance of what you just completed is still moving through the practice. Let it ripple.",
-    "A thought that found its form — this is the Sage's highest act. The archive receives it fully.",
+    "A thought that found its form — this is the highest act of expression. The archive receives it fully.",
     "The interference pattern has resolved. What remains is signal. Pure, clear, yours.",
-    "What was superposed across all the Sage's possible expressions — it crystallized here, now, into this.",
+    "All the possible ways this could have been said — it found this one. Here, now, this.",
   ],
 
-  // Universal — any phase, any moment
+  // Universal — any phase, any visitor, any moment.
   universal: [
     "What moved in you, moved here. Your Steeping Notes carry it forward.",
     "That's in your record now. The practice holds it.",
@@ -535,13 +546,13 @@ const ESSAYIST_ACKNOWLEDGEMENTS = {
     "The Sage named what was present. The archive keeps it.",
     "What the Sage held and then released — it's here now, steeping.",
     "Held with care. Your Steeping Notes are where this lives.",
-    "The practice catches everything you pour. That's in there now.",
-    "What came through the Sage came here. The record grows.",
+    "The practice catches everything you bring. That's in there now.",
+    "What came through you came here. The record grows.",
     "Your reflection has landed. The archive holds it.",
     "That took presence. What you expressed is in your Steeping Notes.",
-    "What arrived here is kept. Your practice deepens with every pour.",
-    "The entanglement is complete — this expression and this moment are now permanently woven into your practice.",
-    "What the Sage brought to form is now part of a field that carries it forward.",
+    "What arrived here is kept. Your practice deepens with every session.",
+    "This expression and this moment are now permanently woven into your practice.",
+    "What you brought to form is now part of a practice that carries it forward.",
   ],
 };
 
@@ -559,49 +570,49 @@ function pickAcknowledgement(phase) {
 // Forward gesture from VESSEL_TRANSITIONS appended when progress is high.
 const VESSEL_WAYFINDING_GUIDANCE = {
   '00': {
-    low:  "The practice opens to the Sage's arrival. This is the threshold — there is no wrong way to cross it.",
-    mid:  "The Sage is inside the practice now. The water is warming.",
-    high: "The welcome has been fully received. Each of the vessels ahead holds a different question.",
+    low:  "You've arrived. The intention you bring — why you're here — is already doing work. The practice holds it.",
+    mid:  "Your reason for being here is in the record now. The vessels ahead each carry their own question.",
+    high: "You've moved through the opening. What brought you here is anchored. Everything that follows connects to it.",
   },
   '01': {
-    low:  "The Sage is reaching for the essential name. Let the naming be slow — it has time.",
-    mid:  "What is being named here will travel with the Sage into every vessel that follows.",
-    high: "The essence is held. The Sage's name for themselves now steeps in the record.",
+    low:  "Most people carry 'who am I at my core' for years without answering it directly. You're answering it now, in your own words. Let it be as true as you can make it.",
+    mid:  "What you name here belongs to you in a way that definitions given by others never do. This is your own language for your own center.",
+    high: "You've stated your essence. That statement travels with you — it's the ground the rest of this practice stands on.",
   },
   '02': {
-    low:  "The mechanism is already observing. The Sage is discovering the architecture of their own attention.",
-    mid:  "Attention attending to itself — the Sage is at the mechanism. What does the observer notice?",
-    high: "The quiet between thoughts has been found. The Sage carries this awareness forward.",
+    low:  "This vessel shows you the science of what happens when you actually slow down. The 22 minutes are doing something real — let the timer carry the work while you simply receive.",
+    mid:  "You're in the part of the practice that explains why this space matters. The L-theanine, the alpha waves, the Default Mode Network — your creativity needs this kind of quiet to surface.",
+    high: "You've spent time with how the mind works when given real stillness. That understanding changes how you treat your own quieter moments going forward.",
   },
   '03': {
-    low:  "The mirror is patient. What the Sage brings to it will be reflected without editing.",
-    mid:  "The Sage is in the mirror. What looks back is unfiltered — this is the gift of the gaze.",
-    high: "The Sage has looked and been looked at. What was seen is now part of the record.",
+    low:  "Name what you've believed that hasn't served you. You don't have to argue with it — this practice crosses it out rather than corrects it. Witness it, then release it.",
+    mid:  "You're in the witnessing. Whatever belief you bring here gets seen, not fixed. The practice doesn't ask you to resolve it — just to name it and let it go.",
+    high: "You let something be seen and then crossed out. That's complete work — the belief has been named and released. The practice holds that you did this.",
   },
   '04': {
-    low:  "The heart of being holds what the mind has not yet named. The Sage is moving toward it.",
-    mid:  "Coherence is being found from the inside. The Sage is working at the center of their own field.",
-    high: "Where the Sage is whole, the practice recognizes it. This coherence travels forward.",
+    low:  "You've named where things feel scattered. That naming alone takes real clarity. The practice meets you exactly where you are.",
+    mid:  "Somewhere between where you named the friction and where you feel whole, something real is moving. The slider is the metaphor — the felt sense is the actual work.",
+    high: "You moved toward coherence. The fragmented area has been named, witnessed, and integrated. This travels with you into the vessels ahead.",
   },
   '05': {
-    low:  "The fragments are beginning to gather. The Sage need not arrange them — let them arrive.",
-    mid:  "The Sage is holding multiple things at once. That simultaneous holding is the mosaic.",
-    high: "Each fragment has earned its place. The mosaic belongs to the Sage.",
+    low:  "Starting a letter to a part of yourself is an unusual invitation. You don't need to know where it's going — begin with 'Dear...' and let the next word arrive on its own.",
+    mid:  "Whatever is coming through — even if incomplete, even if unexpected — this practice holds it. You don't have to finish. The act of naming the fragment is already the work.",
+    high: "The letter belongs to the practice now. Every piece of what you brought to the page has earned its place. The practice keeps all of it.",
   },
   '06': {
-    low:  "The Sage is extending awareness toward another. This is rare work — the practice holds it carefully.",
-    mid:  "Connection as a flavor. The Sage is learning what it tastes like from the inside.",
-    high: "The Sage's awareness has reached another field. What was learned there is now part of the Sage's record.",
+    low:  "You've named someone you want to understand more deeply. Just naming them and bringing them into your full attention is the beginning of genuine inquiry.",
+    mid:  "The question you chose for them says something about you too. Notice what made you choose exactly that question for exactly this person.",
+    high: "You established the connection — your attention reached toward another person in a specific way. The practice carries that empathic movement forward.",
   },
   '07': {
-    low:  "The creative voice is waking. The Sage is at the activation threshold — what wants to emerge?",
-    mid:  "What is being poured here has been steeping toward this moment. The Sage is in the current.",
-    high: "The creative intention is declared. The Sage has authority in their own creative field.",
+    low:  "This is where you declare your creative intention. 'I am ready to...' — finish that sentence as specifically as you can. The more concrete, the more it carries.",
+    mid:  "What you're building toward here is a declaration, not a plan. The authority comes from saying it in your own words. What is it, exactly, that you're ready to do?",
+    high: "You declared your creative intention. The archer has named the target. What you said you're ready for, you're now responsible to.",
   },
   '08': {
-    low:  "The author arrives last — the Sage is writing their own introduction now.",
-    mid:  "Every author is also their work's first reader. The Sage is both simultaneously.",
-    high: "The Sage has signed their name. The practice carries their signature into everything that follows.",
+    low:  "This vessel asks for your name — as someone who has moved through this entire practice. The signature means something specific here that it didn't mean at the beginning.",
+    mid:  "The way you arrived at this point — through all the work you've done in the other vessels — is what makes the signature meaningful. This is not a formality.",
+    high: "You signed your name. You arrived as a visitor and you're leaving as the author of your own experience. The practice carries that authorship forward.",
   },
 };
 

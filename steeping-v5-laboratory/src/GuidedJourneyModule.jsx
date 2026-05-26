@@ -445,7 +445,7 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
                             [ sage essayist ]
                         </h3>
                         <p style={{ fontFamily: 'var(--fBody)', fontSize: '1rem', color: m.text2, lineHeight: 1.5, marginBottom: 'var(--space-md)', fontStyle: 'italic', opacity: 0.8 }}>
-                            What is alive for the Sage in this vessel? The practice listens and points forward.
+                            What is moving in you as you work with this vessel? Write into it — the practice points forward.
                         </p>
                         
                         {(isThinking || sageResponse) && (
@@ -517,7 +517,7 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
                             type="text" 
                             value={sageQuery}
                             onChange={(e) => setSageQuery(e.target.value)}
-                            placeholder="What is the Sage discovering here?"
+                            placeholder="What are you discovering here?"
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter' && sageQuery.trim()) {
                                     if(askSage) askSage(sageQuery, undefined, { progress: progressPercent, num: activeVessel.num, name: activeVessel.name });
