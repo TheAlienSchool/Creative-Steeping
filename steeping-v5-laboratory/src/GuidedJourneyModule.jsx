@@ -436,16 +436,16 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
                         </div>
                     </div>
 
-                    {/* The Steeping Sage Accessibility (Macrobiotic Guidance) */}
+                    {/* Sage Essayist — vessel compass. The visitor is the Sage. */}
                     <div style={{
                         marginTop: 'var(--space-xxl)',
                         display: 'flex', flexDirection: 'column', alignItems: 'flex-start'
                     }}>
                         <h3 style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', letterSpacing: '0.25em', color: m.accent, opacity: 0.8, marginBottom: 'var(--space-sm)', textTransform: 'uppercase' }}>
-                            [ EXTERNAL GUIDANCE ]
+                            [ sage essayist ]
                         </h3>
                         <p style={{ fontFamily: 'var(--fBody)', fontSize: '1rem', color: m.text2, lineHeight: 1.5, marginBottom: 'var(--space-md)', fontStyle: 'italic', opacity: 0.8 }}>
-                            Every inquiry holds weight. The Sage awaits your exchange.
+                            What is alive for the Sage in this vessel? The practice listens and points forward.
                         </p>
                         
                         {(isThinking || sageResponse) && (
@@ -517,7 +517,7 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
                             type="text" 
                             value={sageQuery}
                             onChange={(e) => setSageQuery(e.target.value)}
-                            placeholder="Consult the Steeping Sage..." 
+                            placeholder="What is the Sage discovering here?"
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter' && sageQuery.trim()) {
                                     if(askSage) askSage(sageQuery, undefined, { progress: progressPercent, num: activeVessel.num, name: activeVessel.name });

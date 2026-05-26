@@ -238,19 +238,13 @@ const ResonanceVault = ({ m, issues, activeIssue, setActiveIssue, playStrikingBo
 export const SteepersLedger = ({ m, historicalScore = [], hasMoreHistory, loadMoreHistory, generateSonicSketch, onClose, playStrikingBowl, playAlgoraveSynth, playRootForagingFrequency, askSage }) => {
     const [activeIssue, setActiveIssue] = useState('steam');
 
-    // EH-04: Build a Sage context string from the active note
-    // so any Sage inquiry from within the Ledger is note-aware
-    const buildNoteContext = (issueId) => {
-        const ctx = SAGE_CONTEXT[issueId];
-        if (!ctx) return '';
-        return `[STEEPING NOTE CONTEXT — ${ctx.series}: "${ctx.kicker}"] ${ctx.sage} Respond in full awareness of this note's themes.`;
-    };
-
+    // Sage Essayist entry point from within the Ledger.
+    // Passes note context as a structured object so askSage can route appropriately.
     const handleLedgerSage = (query, mode) => {
         if (!askSage) return;
-        const notePrefix = buildNoteContext(activeIssue);
-        const contextualQuery = notePrefix ? `${notePrefix}\n\nPractitioner inquiry: ${query}` : query;
-        askSage(contextualQuery, mode);
+        const noteCtx = SAGE_CONTEXT[activeIssue];
+        const context = noteCtx ? { type: 'ledger', series: noteCtx.series, kicker: noteCtx.kicker } : null;
+        askSage(query, mode, context);
     };
 
     const [selectionRect, setSelectionRect] = useState(null);

@@ -553,6 +553,72 @@ function pickAcknowledgement(phase) {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
+// VESSEL WAYFINDING GUIDANCE — the Sage's compass role between vessels.
+// Three progress tiers (low <30%, mid 30-65%, high >65%) per vessel.
+// Used when askSage is called from within a vessel context.
+// Forward gesture from VESSEL_TRANSITIONS appended when progress is high.
+const VESSEL_WAYFINDING_GUIDANCE = {
+  '00': {
+    low:  "The practice opens to the Sage's arrival. This is the threshold — there is no wrong way to cross it.",
+    mid:  "The Sage is inside the practice now. The water is warming.",
+    high: "The welcome has been fully received. Each of the vessels ahead holds a different question.",
+  },
+  '01': {
+    low:  "The Sage is reaching for the essential name. Let the naming be slow — it has time.",
+    mid:  "What is being named here will travel with the Sage into every vessel that follows.",
+    high: "The essence is held. The Sage's name for themselves now steeps in the record.",
+  },
+  '02': {
+    low:  "The mechanism is already observing. The Sage is discovering the architecture of their own attention.",
+    mid:  "Attention attending to itself — the Sage is at the mechanism. What does the observer notice?",
+    high: "The quiet between thoughts has been found. The Sage carries this awareness forward.",
+  },
+  '03': {
+    low:  "The mirror is patient. What the Sage brings to it will be reflected without editing.",
+    mid:  "The Sage is in the mirror. What looks back is unfiltered — this is the gift of the gaze.",
+    high: "The Sage has looked and been looked at. What was seen is now part of the record.",
+  },
+  '04': {
+    low:  "The heart of being holds what the mind has not yet named. The Sage is moving toward it.",
+    mid:  "Coherence is being found from the inside. The Sage is working at the center of their own field.",
+    high: "Where the Sage is whole, the practice recognizes it. This coherence travels forward.",
+  },
+  '05': {
+    low:  "The fragments are beginning to gather. The Sage need not arrange them — let them arrive.",
+    mid:  "The Sage is holding multiple things at once. That simultaneous holding is the mosaic.",
+    high: "Each fragment has earned its place. The mosaic belongs to the Sage.",
+  },
+  '06': {
+    low:  "The Sage is extending awareness toward another. This is rare work — the practice holds it carefully.",
+    mid:  "Connection as a flavor. The Sage is learning what it tastes like from the inside.",
+    high: "The Sage's awareness has reached another field. What was learned there is now part of the Sage's record.",
+  },
+  '07': {
+    low:  "The creative voice is waking. The Sage is at the activation threshold — what wants to emerge?",
+    mid:  "What is being poured here has been steeping toward this moment. The Sage is in the current.",
+    high: "The creative intention is declared. The Sage has authority in their own creative field.",
+  },
+  '08': {
+    low:  "The author arrives last — the Sage is writing their own introduction now.",
+    mid:  "Every author is also their work's first reader. The Sage is both simultaneously.",
+    high: "The Sage has signed their name. The practice carries their signature into everything that follows.",
+  },
+};
+
+function buildVesselResponse(context, flowPhase) {
+  const { num, progress } = context;
+  const progressNum = typeof progress === 'number' ? progress : 0;
+  const tier = progressNum < 30 ? 'low' : progressNum > 65 ? 'high' : 'mid';
+  const vesselGuidance = VESSEL_WAYFINDING_GUIDANCE[num]?.[tier];
+  const forwardGesture = tier === 'high' && VESSEL_TRANSITIONS[num]?.gesture
+    ? `\n\n${VESSEL_TRANSITIONS[num].gesture}`
+    : '';
+  // Fall back to phase-aware acknowledgement if vessel has no specific guidance
+  return vesselGuidance
+    ? `${vesselGuidance}${forwardGesture}`
+    : `${pickAcknowledgement(flowPhase)}${forwardGesture}`;
+}
+
 export function getTransitionGuidance(vesselNum, wayfindingState) {
   const transition = VESSEL_TRANSITIONS[vesselNum];
   if (!transition) return null;
@@ -616,7 +682,7 @@ export function useSageWayfinding(identity, playStrikingBowl) {
     }
   }, [wayfindingState.currentSteep]);
 
-  const askSage = useCallback((query, mode) => {
+  const askSage = useCallback((query, mode, context = null) => {
     setIsThinking(true);
     setSageResponse('');
 
@@ -637,9 +703,12 @@ export function useSageWayfinding(identity, playStrikingBowl) {
       if (transitionNotedRef.current) transitionNotedRef.current = false;
 
       // Sage Essayist mode: phase-aware acknowledgement from the quantum wellspring.
+      // Vessel context routes to vessel-specific wayfinding guidance.
       // Full six-layer assembly resumes after Sage Evolution Plan implementation.
       const flowPhase = computeFlowPhase(wayfindingState.signals, wayfindingState.signals?.wordCount ?? 0);
-      const response = pickAcknowledgement(flowPhase);
+      const response = context?.num
+        ? buildVesselResponse(context, flowPhase)
+        : pickAcknowledgement(flowPhase);
 
       // Stream the response character by character — tempo mirrors the visitor's rhythm.
       // Fast typist → shorter tick interval, more chars per tick (the Sage keeps pace).
