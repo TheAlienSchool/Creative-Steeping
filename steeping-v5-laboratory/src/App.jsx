@@ -608,6 +608,8 @@ function AppInner() {
   const handleAskSage = (query, sageMode) => {
     if (broadcastPing) broadcastPing('SAGE_INQUIRY');
     askSage(query, sageMode);
+    const textarea = document.getElementById('sage-textarea-input');
+    if (textarea) textarea.value = '';
   };
 
   // Sync React State to Audio Engine
@@ -1102,7 +1104,7 @@ function AppInner() {
                 ) : (
                   <div style={{ width: '100%', position: 'relative' }}>
                     <div style={{ position: 'absolute', top: '-15px', right: '0', fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: 'var(--acc)', opacity: sageTestingBusy ? 0.8 : 0, transition: 'opacity 0.5s', letterSpacing: '0.1em' }}>
-                        [ STATE: GUIDANCE ]
+                        [ STEEPING ]
                     </div>
                     <textarea
                       id="sage-textarea-input"
@@ -1132,7 +1134,7 @@ function AppInner() {
                     />
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'var(--space-sm)' }}>
                         <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: 'var(--t2)', opacity: sageTestingBusy ? 0.6 : 0, transition: 'opacity 0.5s' }}>
-                            Press ENTER to ask the Sage
+                            Press ENTER to pour
                         </span>
                         <button 
                             id="sage-transmit-btn"
@@ -1148,7 +1150,7 @@ function AppInner() {
                                 opacity: sageTestingBusy ? 1 : 0.4, transition: 'all 0.5s', letterSpacing: '0.15em'
                             }}
                         >
-                            [ SEEK GUIDANCE ]
+                            [ POUR ]
                         </button>
                     </div>
                     {sageResponse ? (
@@ -1193,7 +1195,7 @@ function AppInner() {
                           color: 'var(--acc)', textTransform: 'uppercase',
                           animation: 'pulse 1.5s infinite alternate'
                         }}>
-                          [ The Sage Considers ]
+                          [ receiving ]
                         </div>
                       </div>
                     ) : (
@@ -1201,7 +1203,7 @@ function AppInner() {
                         fontFamily: 'var(--fMono)', fontSize: '0.75rem', letterSpacing: '0.2em',
                         color: 'var(--acc)', opacity: 0.6, textTransform: 'uppercase', marginTop: 'var(--space-md)'
                       }}>
-                        Awaiting Resonance...
+                        Your reflections steep here.
                       </div>
                     )}
                   </div>

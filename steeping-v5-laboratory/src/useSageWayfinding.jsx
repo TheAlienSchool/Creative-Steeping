@@ -446,6 +446,29 @@ function pickRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+// FREE WRITING MODE — interim acknowledgement pool.
+// The full six-layer Sage response assembly is preserved in the functions below
+// and will be restored when the Sage Evolution Plan (docs/SAGE-EVOLUTION-PLAN.md)
+// is implemented. Until then, askSage() draws from this pool so every visitor
+// receives a clean, warm receipt of their writing rather than a partial response.
+const FREE_WRITING_ACKNOWLEDGEMENTS = [
+  "Received. What you poured here steeps in your practice now.",
+  "Your reflection has landed. It is waiting in your Steeping Notes.",
+  "This is held. The practice carries it forward.",
+  "What you brought here is part of your record. It steeps.",
+  "Received and cataloged. Your archive grows with what you pour.",
+  "The writing has been held. Your Steeping Notes are its home.",
+  "What you expressed is now part of your Creative Steeping journey.",
+  "Received. The ripple continues with your practice.",
+  "Poured and held. Your Steeping Notes carry this forward.",
+  "Your reflection is in the record now. It steeps alongside your whole practice.",
+  "This has been received. The water holds what you bring to it.",
+  "Your words have landed in the archive. They steep.",
+  "Received. What you pour here stays with your practice.",
+  "This reflection is held. Your Steeping Notes carry it.",
+  "What you wrote has been cataloged into your journey. The steeping continues.",
+];
+
 export function getTransitionGuidance(vesselNum, wayfindingState) {
   const transition = VESSEL_TRANSITIONS[vesselNum];
   if (!transition) return null;
@@ -526,46 +549,12 @@ export function useSageWayfinding(identity, playStrikingBowl) {
 
     setTimeout(() => {
       const steep = wayfindingState.currentSteep;
-      const interpreted = wayfindingState.signals;
-      let response = '';
+      // Keep transition tracking current for when the full Sage returns
+      if (transitionNotedRef.current) transitionNotedRef.current = false;
 
-      // 1. Depth register — acknowledge where the visitor is in their practice arc
-      const visitCount = wayfindingState.raw?.visitCount || 0;
-      const depthRegister = getDepthRegister(visitCount);
-      const depthPrefixes = DEPTH_REGISTERS[depthRegister]?.prefix;
-      if (depthPrefixes && Math.random() > 0.5) {
-        response += pickRandom(depthPrefixes) + '\n\n';
-      }
-
-      // 2. If there was a steep transition, acknowledge it
-      if (transitionNotedRef.current) {
-        response += TRANSITION_MESSAGES[steep] + '\n\n';
-        transitionNotedRef.current = false;
-      }
-
-      // 3. Surface a codex fragment if available
-      const codexResults = surface(steep, query, 1);
-      if (codexResults.length > 0) {
-        const fragment = codexResults[0].fragment;
-        response += fragment.text + '\n\n';
-      }
-
-      // 4. Add a mode-and-steep-responsive reflection
-      const modeReflections = mode && MODE_REFLECTIONS[mode]?.[steep];
-      const reflections = modeReflections || STEEP_REFLECTIONS[steep] || STEEP_REFLECTIONS.essence;
-      response += pickRandom(reflections);
-
-      // 5. If the visitor asked something specific, add the steep invocation
-      if (query.trim().endsWith('?') || query.length > 40) {
-        response += '\n\n' + STEEP_INVOCATIONS[steep];
-      }
-
-      // 6. Temporal attunement — a closing whisper keyed to time of day (~40%)
-      const timeOfDay = wayfindingState.raw?.timeOfDay;
-      const temporalWhispers = timeOfDay && TEMPORAL_WHISPERS[timeOfDay];
-      if (temporalWhispers && Math.random() > 0.6) {
-        response += '\n\n' + pickRandom(temporalWhispers);
-      }
+      // Free Writing mode: simple acknowledgement receipt.
+      // Full six-layer assembly resumes after Sage Evolution Plan implementation.
+      const response = pickRandom(FREE_WRITING_ACKNOWLEDGEMENTS);
 
       // Stream the response character by character — tempo mirrors the visitor's rhythm.
       // Fast typist → shorter tick interval, more chars per tick (the Sage keeps pace).
