@@ -446,7 +446,8 @@ function pickRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-// FREE WRITING MODE — interim acknowledgement pool.
+// SAGE ESSAYIST MODE — interim acknowledgement pool.
+// The visitor is the Sage. The practice receives what the Sage pours.
 // The full six-layer Sage response assembly is preserved in the functions below
 // and will be restored when the Sage Evolution Plan (docs/SAGE-EVOLUTION-PLAN.md)
 // is implemented. Until then, askSage() draws from this pool so every visitor
@@ -459,11 +460,11 @@ const FREE_WRITING_ACKNOWLEDGEMENTS = [
   "The practice received that. The space stays open for more.",
   "What you poured is real. Your Steeping Notes carry it.",
   "That arrived. The journey carries it.",
-  "You named what was present. Your archive keeps the name.",
-  "What you held and then released — it's here now, steeping.",
+  "The Sage named what was present. The archive keeps it.",
+  "What the Sage held and then released — it's here now, steeping.",
   "Held with care. Your Steeping Notes are where this lives.",
   "The practice catches everything you pour. That's in there now.",
-  "What came through you came here. The record grows.",
+  "What came through the Sage came here. The record grows.",
   "Your reflection has landed. The archive holds it.",
   "That took presence. What you expressed is in your Steeping Notes.",
   "What arrived here is kept. Your practice deepens with every pour.",

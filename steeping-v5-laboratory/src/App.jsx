@@ -1081,8 +1081,12 @@ function AppInner() {
                   <span style={{ color: 'var(--acc)' }}>{identity || "Traveler"}</span>.
                 </h2>
 
-                <div style={{ fontFamily: 'var(--fBody)', fontSize: '1.2rem', color: 'var(--t2)', marginBottom: 'var(--space-xl)' }}>
+                <div style={{ fontFamily: 'var(--fBody)', fontSize: '1.2rem', color: 'var(--t2)', marginBottom: 'var(--space-md)' }}>
                   Where Do You Find Your Self?
+                </div>
+
+                <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', letterSpacing: '0.2em', color: 'var(--acc)', opacity: 0.5, marginBottom: 'var(--space-xl)', textTransform: 'uppercase' }}>
+                  [ sage essayist ]
                 </div>
 
                 {!sageExpanded ? (
@@ -1203,7 +1207,7 @@ function AppInner() {
                         fontFamily: 'var(--fMono)', fontSize: '0.75rem', letterSpacing: '0.2em',
                         color: 'var(--acc)', opacity: 0.6, textTransform: 'uppercase', marginTop: 'var(--space-md)'
                       }}>
-                        A thought, a question, anything alive in you — it steeps in your Steeping Notes.
+                        Anything alive in the Sage — a thought, a question, a fragment — steeps in your Steeping Notes.
                       </div>
                     )}
                   </div>
