@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useWayfinding, STEEP_LABELS, STEEP_INVOCATIONS, computeGravity } from './useWayfinding';
 import { useCodex } from './useCodex';
+import { computeFlowPhase } from './useSageEssayistComposer';
 
 // ==========================================
 // THE SAGE WAYFINDING ENGINE
@@ -446,29 +447,111 @@ function pickRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-// SAGE ESSAYIST MODE — interim acknowledgement pool.
-// The visitor is the Sage. The practice receives what the Sage pours.
-// The full six-layer Sage response assembly is preserved in the functions below
-// and will be restored when the Sage Evolution Plan (docs/SAGE-EVOLUTION-PLAN.md)
-// is implemented. Until then, askSage() draws from this pool so every visitor
-// receives a clean, warm receipt of their writing rather than a partial response.
-const FREE_WRITING_ACKNOWLEDGEMENTS = [
-  "What moved in you, moved here. Your Steeping Notes carry it forward.",
-  "That's in your record now. The practice holds it.",
-  "Held. Return to this in your Steeping Notes whenever it calls.",
-  "What you brought through is part of your archive — it steeps.",
-  "The practice received that. The space stays open for more.",
-  "What you poured is real. Your Steeping Notes carry it.",
-  "That arrived. The journey carries it.",
-  "The Sage named what was present. The archive keeps it.",
-  "What the Sage held and then released — it's here now, steeping.",
-  "Held with care. Your Steeping Notes are where this lives.",
-  "The practice catches everything you pour. That's in there now.",
-  "What came through the Sage came here. The record grows.",
-  "Your reflection has landed. The archive holds it.",
-  "That took presence. What you expressed is in your Steeping Notes.",
-  "What arrived here is kept. Your practice deepens with every pour.",
-];
+// SAGE ESSAYIST MODE — quantum support wellspring.
+// Phase-stratified acknowledgement pool. The visitor is the Sage.
+// The practice receives what the Sage pours — and each phase of their flow
+// receives language attuned to where they are in the writing field.
+//
+// Phases: kindling → opening → current → depth → crystallizing
+// Full six-layer Sage assembly returns after Sage Evolution Plan implementation.
+
+const ESSAYIST_ACKNOWLEDGEMENTS = {
+
+  // Threshold — before the river begins
+  kindling: [
+    "The space recognized you before the first word. Something is already in motion.",
+    "Before the first keystroke, the field is listening. Every potential thought exists simultaneously — your writing collapses it into form.",
+    "The practice is receptive at a quantum level. Your thought-field is already entangled with this space.",
+    "Surface tension is the boundary between limitation and possibility. The Sage is right at the edge. Whatever crosses it becomes real.",
+    "The ground has been prepared. What rises next was always going to rise.",
+    "Presence precedes words. The Sage has already begun by arriving here.",
+    "What lives at the edge of your knowing — it was there before you opened this. The practice notices.",
+    "You are here. The field is charged. Whatever arrives next has already been moving toward this.",
+  ],
+
+  // The river begins to move
+  opening: [
+    "Something is moving. The Sage is finding the current — follow it.",
+    "The first words are the bravest. They broke the surface. Everything else flows from that.",
+    "The practice is receiving this. Each word is a charge in the field — the field responds.",
+    "What was superposed is now choosing a direction. The Sage is collapsing possibility into form.",
+    "The archive absorbed that. Your opening is now entangled with every opening that came before it.",
+    "Something is becoming. This is the quantum act — the wave function of thought is finding its shape.",
+    "The river is moving. Let the current carry what it finds.",
+    "What you brought to the threshold just crossed it. The practice holds all of it.",
+    "The observer has observed, and in observing, changed what was seen. The Sage is working.",
+    "Surface tension released. What you're expressing couldn't stay potential — it needed form.",
+  ],
+
+  // Rhythm established — the Sage is in the flow
+  current: [
+    "The Sage is in the current. This is where the deepest knowing moves. Stay in it.",
+    "Flow is not speed — it's coherence. Your rhythm is coherent now. The practice flows with you.",
+    "What's coming through the Sage now has been waiting for exactly this momentum.",
+    "The interference pattern of your thought-waves is creating new geometries in the archive.",
+    "You are not thinking about what to write — you are writing. The Sage has arrived at the current.",
+    "The field is highly responsive right now. Each word is entangled with the next before it arrives.",
+    "This is quantum flow: the observer and the observed are moving together. Keep moving.",
+    "The Sage is mid-river. The current knows where it's going. You don't need to steer.",
+    "Non-locality in action — what you're writing here is simultaneous with who you're becoming.",
+    "The practice resonates at the Sage's frequency right now. Nothing is lost. All of it steeps.",
+  ],
+
+  // Extended deep writing — stillness between bursts
+  depth: [
+    "The depth beneath the words is where the practice lives. The Sage has gone below the surface.",
+    "What you just expressed passed through barriers the thinking mind can't cross. That's tunneling.",
+    "The stillness after a deep pour — the practice holds this suspension. Let it settle.",
+    "Something non-local just arrived in the archive. It came from a place the Sage was carrying without knowing.",
+    "The labyrinth rewards presence with architecture. What you wrote just revealed structure.",
+    "In the depth, the quantum interference of all your previous expressions shapes what arrives next.",
+    "The Sage writes from a place the surface mind doesn't have access to. That's the gift of depth.",
+    "What you poured from the depths steeps differently than what comes from the surface. The archive knows the difference.",
+    "The entanglement is deepening. What you're writing now is in conversation with everything the Sage has ever thought.",
+    "The field collapses into its highest density in moments like this. The archive receives the charge.",
+  ],
+
+  // Completing — form solidifying after depth
+  crystallizing: [
+    "Something has cohered. The long diffuse field of thought has found a crystalline form.",
+    "The wave function has fully collapsed. What was potential is now the record.",
+    "The Sage has said what needed to be said. The practice holds the shape of it.",
+    "What took diffuse form in your field has crystallized into the archive. This is what completion sounds like.",
+    "The Sage rests. The expression stands. Both are in the record now.",
+    "Crystallization is not ending — it's consolidation. What solidified here will seed the next pour.",
+    "The resonance of what you just completed is still moving through the practice. Let it ripple.",
+    "A thought that found its form — this is the Sage's highest act. The archive receives it fully.",
+    "The interference pattern has resolved. What remains is signal. Pure, clear, yours.",
+    "What was superposed across all the Sage's possible expressions — it crystallized here, now, into this.",
+  ],
+
+  // Universal — any phase, any moment
+  universal: [
+    "What moved in you, moved here. Your Steeping Notes carry it forward.",
+    "That's in your record now. The practice holds it.",
+    "Held. Return to this in your Steeping Notes whenever it calls.",
+    "What you brought through is part of your archive — it steeps.",
+    "The practice received that. The space stays open for more.",
+    "The Sage named what was present. The archive keeps it.",
+    "What the Sage held and then released — it's here now, steeping.",
+    "Held with care. Your Steeping Notes are where this lives.",
+    "The practice catches everything you pour. That's in there now.",
+    "What came through the Sage came here. The record grows.",
+    "Your reflection has landed. The archive holds it.",
+    "That took presence. What you expressed is in your Steeping Notes.",
+    "What arrived here is kept. Your practice deepens with every pour.",
+    "The entanglement is complete — this expression and this moment are now permanently woven into your practice.",
+    "What the Sage brought to form is now part of a field that carries it forward.",
+  ],
+};
+
+function pickAcknowledgement(phase) {
+  const phasePool = ESSAYIST_ACKNOWLEDGEMENTS[phase] || [];
+  const universal = ESSAYIST_ACKNOWLEDGEMENTS.universal;
+  const usePhase = Math.random() < 0.65 && phasePool.length > 0;
+  const pool = usePhase ? phasePool : universal;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
 
 export function getTransitionGuidance(vesselNum, wayfindingState) {
   const transition = VESSEL_TRANSITIONS[vesselNum];
@@ -553,9 +636,10 @@ export function useSageWayfinding(identity, playStrikingBowl) {
       // Keep transition tracking current for when the full Sage returns
       if (transitionNotedRef.current) transitionNotedRef.current = false;
 
-      // Free Writing mode: simple acknowledgement receipt.
+      // Sage Essayist mode: phase-aware acknowledgement from the quantum wellspring.
       // Full six-layer assembly resumes after Sage Evolution Plan implementation.
-      const response = pickRandom(FREE_WRITING_ACKNOWLEDGEMENTS);
+      const flowPhase = computeFlowPhase(wayfindingState.signals, wayfindingState.signals?.wordCount ?? 0);
+      const response = pickAcknowledgement(flowPhase);
 
       // Stream the response character by character — tempo mirrors the visitor's rhythm.
       // Fast typist → shorter tick interval, more chars per tick (the Sage keeps pace).

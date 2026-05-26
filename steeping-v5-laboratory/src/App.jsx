@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useResonanceCanvas } from './useResonanceCanvas';
 import { useSonnetEngine } from './useSonnetEngine';
 import { useSageWayfinding, getTransitionGuidance, computeVesselResonance, VESSEL_STEEP_AFFINITY } from './useSageWayfinding';
+import { useSageEssayistComposer } from './useSageEssayistComposer';
 import { STEEP_LABELS } from './useWayfinding';
 import { EyeOfTheSage } from './EyeOfTheSage';
 import { VESSELS } from './VesselContent';
@@ -588,7 +589,7 @@ function AppInner() {
   const [steepForSonic, setSteepForSonic] = useState('essence');
 
   // Initialize the Sonnet Audio Engine (receives steep for harmonic modulation)
-  const { initEngine, updateBinauralTracking, playStrikingBowl, playHarmonicChord, playAlgoraveSynth, playConsideringHarmonic, playSandSonnet, playCompletionCue, playRootForagingFrequency, setMasterVolume, setAmbientActive, setSymphonyTuning } = useSonnetEngine(mode, eqParams, steepForSonic);
+  const { initEngine, updateBinauralTracking, playStrikingBowl, playHarmonicChord, playAlgoraveSynth, playConsideringHarmonic, playSandSonnet, playCompletionCue, playRootForagingFrequency, setMasterVolume, setAmbientActive, setSymphonyTuning, setEssayistAmbient, playEssayistTransition } = useSonnetEngine(mode, eqParams, steepForSonic);
 
   // Initialize The Steeping Sage — Innerverse Wayfinding Engine
   const { askSage, sageResponse, isThinking, historicalScore, hasMoreHistory, loadMoreHistory, setSageResponse, wayfindingState, onTextChange: wayfindingTextChange, codexReady, surface } = useSageWayfinding(identity, playStrikingBowl);
@@ -599,6 +600,16 @@ function AppInner() {
       setSteepForSonic(wayfindingState.currentSteep);
     }
   }, [wayfindingState?.currentSteep, steepForSonic]);
+
+  // Sage Essayist Composer — drives sonic environment through flow phases
+  useSageEssayistComposer({
+    signals: wayfindingState?.signals,
+    wordCount: wayfindingState?.signals?.wordCount ?? 0,
+    mode,
+    sageExpanded,
+    setEssayistAmbient,
+    playEssayistTransition,
+  });
 
   // Phase 05 Bugfix: Ensure Sage context resets when crossing vessel boundaries
   useEffect(() => {

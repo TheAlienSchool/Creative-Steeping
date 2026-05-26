@@ -80,6 +80,12 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
     // Oracle Booth Melodic Sequence Tracker
     const synthIndexRef = useRef(0);
 
+    // Sage Essayist Composer — LFO refs for live ambient modulation
+    const lfoRef = useRef(null);
+    const lfoGainRef = useRef(null);
+    const ampLfoRef = useRef(null);
+    const ampLfoGainRef = useRef(null);
+
     // Initialize Audio Context on first interaction
     const initEngine = useCallback(() => {
         if (audioCtxRef.current) {
@@ -179,6 +185,8 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         lfo.connect(lfoGain);
         lfoGain.connect(osc.frequency);
         lfo.start();
+        lfoRef.current = lfo;
+        lfoGainRef.current = lfoGain;
 
         // Filter out extreme high end but leave room for movement
         filter.type = 'lowpass';
@@ -199,6 +207,8 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         ampLfo.connect(ampLfoGain);
         ampLfoGain.connect(gain.gain);
         ampLfo.start();
+        ampLfoRef.current = ampLfo;
+        ampLfoGainRef.current = ampLfoGain;
 
         // Signal chain: Osc -> Filter -> Panner -> Gain -> Master Gain -> Out
         osc.connect(filter);
@@ -838,11 +848,154 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
     // Time Symphony Mode Override (174Hz Foundation Resonance)
     const setSymphonyTuning = useCallback((isSymphony) => {
         activeScaleRef.current = isSymphony ? PENTATONIC_SCALE_174 : PENTATONIC_SCALE;
-        
+
         // Glide the Theremin drone to match the foundation frequency
         if (ambientOscRef.current && audioCtxRef.current) {
             const targetHz = isSymphony ? 174 : 264;
             ambientOscRef.current.frequency.setTargetAtTime(targetHz, audioCtxRef.current.currentTime, 1.0); // 1-second smooth glide
+        }
+    }, []);
+
+    // ==========================================
+    // SAGE ESSAYIST COMPOSER
+    // ==========================================
+    // Each mode × flow phase has a sonic personality. The composer
+    // glides the ambient drone through these states as the Essayist
+    // moves from threshold → opening → current → depth → crystallizing.
+
+    const MODE_ESSAYIST_PERSONALITIES = {
+        incandescent: {
+            kindling:      { droneFreq: 264, lfoRate: 0.12, lfoDepth: 4,  filterCutoff: 320, breathRate: 0.18 },
+            opening:       { droneFreq: 264, lfoRate: 0.22, lfoDepth: 8,  filterCutoff: 480, breathRate: 0.22 },
+            current:       { droneFreq: 396, lfoRate: 0.35, lfoDepth: 14, filterCutoff: 700, breathRate: 0.28 },
+            depth:         { droneFreq: 264, lfoRate: 0.18, lfoDepth: 7,  filterCutoff: 420, breathRate: 0.16 },
+            crystallizing: { droneFreq: 528, lfoRate: 0.10, lfoDepth: 3,  filterCutoff: 900, breathRate: 0.14 },
+        },
+        oceanic: {
+            // Sub-harmonic pressure → sonar ping resonance → surface light
+            kindling:      { droneFreq: 88,  lfoRate: 0.07, lfoDepth: 2,  filterCutoff: 180, breathRate: 0.10 },
+            opening:       { droneFreq: 110, lfoRate: 0.12, lfoDepth: 4,  filterCutoff: 280, breathRate: 0.13 },
+            current:       { droneFreq: 132, lfoRate: 0.15, lfoDepth: 6,  filterCutoff: 440, breathRate: 0.17 },
+            depth:         { droneFreq: 88,  lfoRate: 0.06, lfoDepth: 8,  filterCutoff: 200, breathRate: 0.08 },
+            crystallizing: { droneFreq: 220, lfoRate: 0.18, lfoDepth: 3,  filterCutoff: 600, breathRate: 0.14 },
+        },
+        emergent: {
+            // Deep space mirror: absolute quiet → cascading reflections → singular overtone
+            kindling:      { droneFreq: 132, lfoRate: 0.04, lfoDepth: 1,  filterCutoff: 200, breathRate: 0.12 },
+            opening:       { droneFreq: 132, lfoRate: 0.07, lfoDepth: 2,  filterCutoff: 280, breathRate: 0.15 },
+            current:       { droneFreq: 264, lfoRate: 0.09, lfoDepth: 3,  filterCutoff: 500, breathRate: 0.18 },
+            depth:         { droneFreq: 176, lfoRate: 0.05, lfoDepth: 2,  filterCutoff: 250, breathRate: 0.10 },
+            crystallizing: { droneFreq: 528, lfoRate: 0.06, lfoDepth: 2,  filterCutoff: 800, breathRate: 0.12 },
+        },
+        planetary: {
+            // 176Hz celestial foundation → night sky choir → dawn light
+            kindling:      { droneFreq: 176, lfoRate: 0.09, lfoDepth: 3,  filterCutoff: 240, breathRate: 0.15 },
+            opening:       { droneFreq: 176, lfoRate: 0.13, lfoDepth: 5,  filterCutoff: 340, breathRate: 0.18 },
+            current:       { droneFreq: 220, lfoRate: 0.16, lfoDepth: 7,  filterCutoff: 460, breathRate: 0.22 },
+            depth:         { droneFreq: 176, lfoRate: 0.07, lfoDepth: 4,  filterCutoff: 290, breathRate: 0.14 },
+            crystallizing: { droneFreq: 352, lfoRate: 0.11, lfoDepth: 3,  filterCutoff: 580, breathRate: 0.16 },
+        },
+        darkMatter: {
+            // Pre-silence → gravitational density → single point of light
+            kindling:      { droneFreq: 88,  lfoRate: 0.03, lfoDepth: 1,  filterCutoff: 140, breathRate: 0.08 },
+            opening:       { droneFreq: 110, lfoRate: 0.05, lfoDepth: 2,  filterCutoff: 190, breathRate: 0.10 },
+            current:       { droneFreq: 132, lfoRate: 0.09, lfoDepth: 3,  filterCutoff: 280, breathRate: 0.13 },
+            depth:         { droneFreq: 88,  lfoRate: 0.04, lfoDepth: 2,  filterCutoff: 160, breathRate: 0.08 },
+            crystallizing: { droneFreq: 264, lfoRate: 0.07, lfoDepth: 2,  filterCutoff: 380, breathRate: 0.11 },
+        },
+    };
+
+    // Morph the ambient drone to match the Essayist's current mode × flow phase.
+    // All transitions use long time constants so shifts feel like weather, not switches.
+    const setEssayistAmbient = useCallback((phase, modeStr) => {
+        if (!audioCtxRef.current || !ambientOscRef.current || !lfoRef.current) return;
+        const ctx = audioCtxRef.current;
+        const modeKey = MODE_ESSAYIST_PERSONALITIES[modeStr] ? modeStr : 'incandescent';
+        const p = MODE_ESSAYIST_PERSONALITIES[modeKey][phase] ?? MODE_ESSAYIST_PERSONALITIES[modeKey].kindling;
+        const t = ctx.currentTime;
+        ambientOscRef.current.frequency.setTargetAtTime(p.droneFreq, t, 2.5);
+        lfoRef.current.frequency.setTargetAtTime(p.lfoRate, t, 3.0);
+        lfoGainRef.current.gain.setTargetAtTime(p.lfoDepth, t, 3.0);
+        ambientFilterRef.current.frequency.setTargetAtTime(p.filterCutoff, t, 2.5);
+        if (ampLfoRef.current) {
+            ampLfoRef.current.frequency.setTargetAtTime(p.breathRate, t, 4.0);
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    // Brief musical accent when the Essayist crosses a flow phase threshold.
+    // Each phase has its own gestural signature — like punctuation in the sonic field.
+    const playEssayistTransition = useCallback((phase) => {
+        if (!audioCtxRef.current) return;
+        const ctx = audioCtxRef.current;
+        const scale = activeScaleRef.current;
+        const t = ctx.currentTime;
+
+        if (phase === 'opening') {
+            // Two-note ascending gesture — "a door has opened"
+            [0, 2].forEach((step, i) => {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                const freq = scale[step % scale.length] * 2;
+                osc.type = 'sine';
+                osc.frequency.value = freq;
+                const start = t + i * 0.45;
+                gain.gain.setValueAtTime(0, start);
+                gain.gain.linearRampToValueAtTime(0.035, start + 0.18);
+                gain.gain.exponentialRampToValueAtTime(0.001, start + 3.0);
+                osc.connect(gain);
+                gain.connect(masterGainRef.current || ctx.destination);
+                if (reverbNodeRef.current) gain.connect(reverbNodeRef.current);
+                osc.start(start); osc.stop(start + 4.0);
+            });
+        } else if (phase === 'current') {
+            // Three-note ascending phrase — "the current is found"
+            [0, 2, 4].forEach((step, i) => {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                const freq = scale[step % scale.length] * 2;
+                osc.type = 'sine';
+                osc.frequency.value = freq;
+                const start = t + i * 0.16;
+                gain.gain.setValueAtTime(0, start);
+                gain.gain.linearRampToValueAtTime(0.055, start + 0.05);
+                gain.gain.exponentialRampToValueAtTime(0.001, start + 2.2);
+                osc.connect(gain);
+                gain.connect(masterGainRef.current || ctx.destination);
+                if (reverbNodeRef.current) gain.connect(reverbNodeRef.current);
+                if (delayNodeRef.current) gain.connect(delayNodeRef.current);
+                osc.start(start); osc.stop(start + 3.0);
+            });
+        } else if (phase === 'depth') {
+            // Single sub-octave tone — "dropping into still water"
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.value = scale[0] * 0.5;
+            gain.gain.setValueAtTime(0, t);
+            gain.gain.linearRampToValueAtTime(0.09, t + 1.4);
+            gain.gain.exponentialRampToValueAtTime(0.001, t + 8.0);
+            osc.connect(gain);
+            gain.connect(masterGainRef.current || ctx.destination);
+            if (reverbNodeRef.current) gain.connect(reverbNodeRef.current);
+            osc.start(t); osc.stop(t + 9.0);
+        } else if (phase === 'crystallizing') {
+            // Descending → resolving two-step gesture — "form finding its final shape"
+            [4, 2, 3].forEach((step, i) => {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                const freq = scale[step % scale.length] * 2;
+                osc.type = 'sine';
+                osc.frequency.value = freq;
+                const start = t + i * 0.38;
+                gain.gain.setValueAtTime(0, start);
+                gain.gain.linearRampToValueAtTime(0.032, start + 0.12);
+                gain.gain.exponentialRampToValueAtTime(0.001, start + 4.0);
+                osc.connect(gain);
+                gain.connect(masterGainRef.current || ctx.destination);
+                if (reverbNodeRef.current) gain.connect(reverbNodeRef.current);
+                osc.start(start); osc.stop(start + 5.5);
+            });
         }
     }, []);
 
@@ -883,7 +1036,9 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         playRootForagingFrequency,
         setMasterVolume,
         setAmbientActive,
-        setSymphonyTuning
+        setSymphonyTuning,
+        setEssayistAmbient,
+        playEssayistTransition,
     };
 }
 
