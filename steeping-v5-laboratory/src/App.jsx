@@ -1949,8 +1949,8 @@ function AppInner() {
 
 
 
-      {/* DYNAMIC STILLNESS CATALYSTS (Phase 07) */}
-      <StillnessCatalyst m={m} wayfindingState={wayfindingState} codexSurface={codexReady && surface ? surface : null} />
+      {/* DYNAMIC STILLNESS CATALYSTS (Phase 07) — portal only */}
+      {phase === 'portal' && <StillnessCatalyst m={m} wayfindingState={wayfindingState} codexSurface={codexReady && surface ? surface : null} />}
 
       {/* SONIC AWARENESS CONTROLS */}
       <div
