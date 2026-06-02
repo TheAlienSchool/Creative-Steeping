@@ -1,146 +1,360 @@
 export const generateAssets = (m) => ({
-    note: [
+    notes: [
         {
             "id": "n1",
-            "kicker": "RENAME YOUR DELAY AS INCUBATION",
-            "body": "Procrastination is often the nervous system demanding a necessary pause before extraction. Deliberate rest is a structural requirement for creative integration, a structural reset. Accept the delay. Steep in it. Return to the work when the water is at the right temperature.",
-            "mechanism": "STEEPING NOTE :: CONCEPT",
+            "kicker": "AN IDEA IS AN OBJECTIVE",
+            "body": "An idea is an objective; an object in motion with your momentum. Carry it well as you pour your self into the world.",
+            "mechanism": "STEEPING NOTE :: MOMENTUM",
             "color": m.accent,
-            "coords": "[ STBL: 62 | PRSS: 75 | COHR: 58 | DRFT: 35 ]"
+            "coords": "[ STBL: 72 | PRSS: 45 | COHR: 88 | DRFT: 15 ]"
         },
         {
             "id": "n2",
-            "kicker": "BUILD THE ARCHITECTURE BEFORE YOU REQUIRE IT",
-            "body": "Structure precedes visibility. The Vessel Matrix operates as a structural invitation for your own knowing. You must build the container before the insight has a place to land. Speak the geometry you wish to inhabit. The growth will match the architecture you provide.",
-            "mechanism": "STEEPING NOTE :: OBSERVATION",
+            "kicker": "CLARITY IS THE ESSENCE OF CONSCIOUSNESS",
+            "body": "Otherwise we would not be chasing its meaning with such collective curiosity.",
+            "mechanism": "STEEPING NOTE :: CONSCIOUSNESS",
             "color": m.accent,
-            "coords": "[ STBL: 65 | PRSS: 52 | COHR: 77 | DRFT: 18 ]"
+            "coords": "[ STBL: 90 | PRSS: 20 | COHR: 95 | DRFT: 05 ]"
         },
         {
             "id": "n3",
-            "kicker": "USE THE PAUSE AS A STRUCTURAL INSTRUMENT",
-            "body": "Silence functions as an active event within your creative rhythm. The Steeping Space provides specific temporal containers—5, 15, and 22 minutes. Select your time. Remove your hands from the keyboard. Let the Sonnet Engine hold the space while your nervous system integrates what you just wrote.",
-            "mechanism": "STEEPING NOTE :: REFLECTION",
+            "kicker": "TRANSFORM EVERY 'I SHOULD...' INTO 'I WILL...'",
+            "body": "And your will knows what to do from there. The map is written in every sip of your soul's truth.",
+            "mechanism": "STEEPING NOTE :: WILLPOWER",
             "color": m.accent,
-            "coords": "[ STBL: 38 | PRSS: 67 | COHR: 97 | DRFT: 16 ]"
+            "coords": "[ STBL: 65 | PRSS: 80 | COHR: 72 | DRFT: 28 ]"
         },
         {
             "id": "n4",
-            "kicker": "IMMERSION IS A PHYSICAL REQUIREMENT",
-            "body": "The leaf releases its compounds only under specific physical conditions: temperature, time, and contact. You are the organic material. This interface operates as your water. Immersion operates as the literal physical chemistry of transformation. Provide the conditions, and the extraction is inevitable.",
-            "mechanism": "STEEPING NOTE :: IDEA",
+            "kicker": "HELP THEM SEE HOW YOU SEE",
+            "body": "No one can see what you see... until you help them see HOW you see through the nature of your being.",
+            "mechanism": "STEEPING NOTE :: PERCEPTION",
             "color": m.accent,
-            "coords": "[ STBL: 47 | PRSS: 89 | COHR: 69 | DRFT: 42 ]"
+            "coords": "[ STBL: 83 | PRSS: 35 | COHR: 89 | DRFT: 11 ]"
         },
         {
             "id": "n5",
-            "kicker": "THE FREQUENCY BENEATH THE FREQUENCY",
-            "body": "Dark Matter Mode exists for the inquiry that has yet to find its name. It is the architectural space for thoughts that live below language and below habit. This visual register requires the most stillness to become visible. Use it when the bright lights of traditional interfaces force you to perform rather than reflect.",
-            "mechanism": "STEEPING NOTE :: CONCEPT",
+            "kicker": "UNDERSTANDING LOVE IS THE KEY",
+            "body": "Love generates Curiosity.\nCuriosity generates Understanding.\nUnderstanding Love is the Key.",
+            "mechanism": "STEEPING NOTE :: TRINITY",
             "color": m.accent,
-            "coords": "[ STBL: 41 | PRSS: 66 | COHR: 82 | DRFT: 39 ]"
+            "coords": "[ STBL: 98 | PRSS: 10 | COHR: 99 | DRFT: 01 ]"
         },
         {
             "id": "n6",
-            "kicker": "YOUR PACING IS A BIOMETRIC SIGNATURE",
-            "body": "The system receives your output purely to mirror your cadence. When your typing accelerates in anxiety, the engine responds. When you slow into contemplation, the harmony shifts. Use the Steeping Space as an external temporal mirror. Adjust your physical speed, and watch the environment regulate with you.",
-            "mechanism": "STEEPING NOTE :: OBSERVATION",
+            "kicker": "ACTIVATE YOUR INNOCENCE",
+            "body": "Narrate the intentions that will unfurl with your becoming.",
+            "mechanism": "STEEPING NOTE :: INTENTION",
             "color": m.accent,
-            "coords": "[ STBL: 22 | PRSS: 63 | COHR: 67 | DRFT: 19 ]"
+            "coords": "[ STBL: 75 | PRSS: 25 | COHR: 80 | DRFT: 20 ]"
         },
         {
             "id": "n7",
-            "kicker": "SOUND BEFORE LANGUAGE. HEARING BEFORE KNOWING.",
-            "body": "When your vocabulary fails, your physical rhythm remains. The Sonnet Engine allows you to express your state acoustically before you can articulate it linguistically. You experience yourself as real before you have full confidence in the words. Play the instrument of your keyboard. The meaning will follow the sound.",
-            "mechanism": "STEEPING NOTE :: CONCEPT",
+            "kicker": "YOUR POTENTIAL IS GENERATIVE",
+            "body": "Your potential is far more generative than the ignorance in our surroundings. Take note and make notes of your flavorful potency.",
+            "mechanism": "STEEPING NOTE :: POTENCY",
             "color": m.accent,
-            "coords": "[ STBL: 84 | PRSS: 58 | COHR: 93 | DRFT: 36 ]"
+            "coords": "[ STBL: 60 | PRSS: 70 | COHR: 65 | DRFT: 35 ]"
         },
         {
             "id": "n8",
-            "kicker": "THE ENVIRONMENT SUSTAINS WHAT THE WILL RELEASES",
-            "body": "Burnout is a structural reset; it is the result of an extractive environment. The Steeping Space operates as a restorative counter-architecture. It is a living field designed to change your creative behavior by inviting effortless participation. Step into the water. Let the architecture hold your weight.",
-            "mechanism": "STEEPING NOTE :: MEME",
+            "kicker": "THE TRINITY OF TRUTHS",
+            "body": "Simplicity, Clarity, and Purity are the Trinity of Truths that your words can learn to be, when sung from your essence.",
+            "mechanism": "STEEPING NOTE :: ESSENCE",
             "color": m.accent,
-            "coords": "[ STBL: 84 | PRSS: 94 | COHR: 67 | DRFT: 32 ]"
+            "coords": "[ STBL: 92 | PRSS: 15 | COHR: 97 | DRFT: 03 ]"
+        },
+        {
+            "id": "n9",
+            "kicker": "IF YOU WANT TO FEEL BETTER...",
+            "body": "Do the things that will contribute to your betterment. Your goosebumps will know what good feels like.",
+            "mechanism": "STEEPING NOTE :: RESONANCE",
+            "color": m.accent,
+            "coords": "[ STBL: 80 | PRSS: 40 | COHR: 85 | DRFT: 15 ]"
+        },
+        {
+            "id": "n10",
+            "kicker": "DECHAMELEONIZE YOUR SELF",
+            "body": "Dechameleonize your self and your selves with CREÅTIVE STEEPING... the experience of being in full color.",
+            "mechanism": "STEEPING NOTE :: INTEGRATION",
+            "color": m.accent,
+            "coords": "[ STBL: 70 | PRSS: 60 | COHR: 75 | DRFT: 25 ]"
+        },
+        {
+            "id": "n11",
+            "kicker": "WHAT ARE YOU DOING WITH LOVE?",
+            "body": "What am I doing **with** Love?\nWhat am I doing **to** Love?\nWhat am I doing **in** Love?",
+            "mechanism": "STEEPING NOTE :: ENQUIRY",
+            "color": m.accent,
+            "coords": "[ STBL: 88 | PRSS: 30 | COHR: 92 | DRFT: 08 ]"
+        },
+        {
+            "id": "n12",
+            "kicker": "WHAT IS LOVE DOING WITH YOU?",
+            "body": "What am I creating **in** Love?\nWhat am I choosing **to** Love?\nWhat is Love doing **with** me?",
+            "mechanism": "STEEPING NOTE :: ENQUIRY",
+            "color": m.accent,
+            "coords": "[ STBL: 94 | PRSS: 20 | COHR: 96 | DRFT: 04 ]"
+        },
+        {
+            "id": "n13",
+            "kicker": "SCHEDULE YOUR SELF IN",
+            "body": "\"I do not want to schedule my self out of my own calendar\" is a new thought worth steeping in.",
+            "mechanism": "STEEPING NOTE :: BOUNDARIES",
+            "color": m.accent,
+            "coords": "[ STBL: 85 | PRSS: 50 | COHR: 78 | DRFT: 22 ]"
         }
     ],
-    inquiry: [
+    offering: [
         {
-            "id": "i1",
-            "kicker": "REMOVE WHAT BLOCKS THE ARRIVAL",
-            "body": "The brain constantly generates rigid models of reality. True insight arrives exactly when the old obstruction dissolves. What structural belief about your creative practice is currently blocking your own arrival? Name it in the Steeping Space, then leave it there.",
-            "mechanism": "STEEPING INQUIRY :: QUOTE",
+            "id": "o1",
+            "kicker": "TO SIP IS TO HONOR THE SPEED",
+            "body": "To sip is to honor the speed of your own metabolism. Sip consciously of life.",
+            "mechanism": "STEEPING OFFERING :: REFLECTION",
             "color": m.text1,
-            "coords": "[ STBL: 93 | PRSS: 89 | COHR: 98 | DRFT: 40 ]"
+            "coords": "[ STBL: 82 | PRSS: 35 | COHR: 88 | DRFT: 12 ]"
         },
         {
-            "id": "i2",
-            "kicker": "WHO IS AUTHORING YOUR FREQUENCY?",
-            "body": "This is the ultimate architectural question: are you inhabiting a structure you inherited, or a structure you authored? The Vessel Matrix provides the grid, but you must define the coordinates. Take five minutes. Write down the exact frequency you intend to broadcast today.",
-            "mechanism": "STEEPING INQUIRY :: OPPORTUNITY",
+            "id": "o2",
+            "kicker": "THE BEING & THE PRACTICE",
+            "body": "The being and the practice are inseparable.",
+            "mechanism": "STEEPING OFFERING :: CORE",
             "color": m.text1,
-            "coords": "[ STBL: 26 | PRSS: 97 | COHR: 94 | DRFT: 35 ]"
+            "coords": "[ STBL: 99 | PRSS: 01 | COHR: 99 | DRFT: 00 ]"
         },
         {
-            "id": "i3",
-            "kicker": "THE CROSSROADS: CHOOSE WITH PRECISION",
-            "body": "A crossroads functions strictly as an equation of potential. You are the only architect who knows the true economics of your energy. When faced with the next trajectory, choose the path that maximizes your resonance. Choose what maximizes your resonance. Document your choice before you execute it.",
-            "mechanism": "STEEPING INQUIRY :: OPPORTUNITY",
+            "id": "o3",
+            "kicker": "THE POTENTIAL OF A LIFETIME",
+            "body": "Integration occurs at a different speed than consumption, and is the potential of a lifetime.",
+            "mechanism": "STEEPING OFFERING :: INTEGRATION",
             "color": m.text1,
-            "coords": "[ STBL: 29 | PRSS: 66 | COHR: 74 | DRFT: 36 ]"
+            "coords": "[ STBL: 77 | PRSS: 55 | COHR: 84 | DRFT: 16 ]"
+        },
+        {
+            "id": "o4",
+            "kicker": "THE HEALING PROCESS OF A WOUND",
+            "body": "Intention :: The Healing Process of a Wound. A literal definition in progress, when well defined by those responsible for the flow of their living.",
+            "mechanism": "STEEPING OFFERING :: INTENTION",
+            "color": m.text1,
+            "coords": "[ STBL: 68 | PRSS: 78 | COHR: 70 | DRFT: 30 ]"
+        },
+        {
+            "id": "o5",
+            "kicker": "THE THINKER THAT YOU BE",
+            "body": "Wait until we know the thinker that you be.",
+            "mechanism": "STEEPING OFFERING :: PRESENCE",
+            "color": m.text1,
+            "coords": "[ STBL: 95 | PRSS: 05 | COHR: 98 | DRFT: 02 ]"
+        },
+        {
+            "id": "o6",
+            "kicker": "AN INNERVERSAL VIEW",
+            "body": "The life of an artist is an innerversal view unknown until we are inside of the presence of our ideas.",
+            "mechanism": "STEEPING OFFERING :: ARTIST",
+            "color": m.text1,
+            "coords": "[ STBL: 73 | PRSS: 48 | COHR: 81 | DRFT: 19 ]"
+        },
+        {
+            "id": "o7",
+            "kicker": "IT WAS WRITTEN, AND WILL BE SONG",
+            "body": "It was written, and will be song.",
+            "mechanism": "STEEPING OFFERING :: EXPRESSION",
+            "color": m.text1,
+            "coords": "[ STBL: 85 | PRSS: 15 | COHR: 90 | DRFT: 10 ]"
+        },
+        {
+            "id": "o8",
+            "kicker": "LUCID CREATION",
+            "body": "I am living a lucid creation\nThat knows that I Am aware,\nAnd appreciates my care\nfor my creations.",
+            "mechanism": "STEEPING OFFERING :: AWARENESS",
+            "color": m.text1,
+            "coords": "[ STBL: 96 | PRSS: 12 | COHR: 97 | DRFT: 03 ]"
+        },
+        {
+            "id": "o9",
+            "kicker": "THE WAY OF MY POTENTIAL",
+            "body": "My interest in disbelief is the way of my potential.",
+            "mechanism": "STEEPING OFFERING :: POTENTIAL",
+            "color": m.text1,
+            "coords": "[ STBL: 88 | PRSS: 22 | COHR: 91 | DRFT: 09 ]"
+        },
+        {
+            "id": "o10",
+            "kicker": "THE MEASURE OF MY SUCCESS",
+            "body": "The measure of my success is by being I AM as much as I AM as much as I can.",
+            "mechanism": "STEEPING OFFERING :: SUCCESS",
+            "color": m.text1,
+            "coords": "[ STBL: 93 | PRSS: 18 | COHR: 96 | DRFT: 04 ]"
+        },
+        {
+            "id": "o11",
+            "kicker": "HOW TO FIND COMMON GROUND...",
+            "body": "How to find common ground when we are already standing, leaping, investing, loving, learning, creating, and warring on the same surface material.",
+            "mechanism": "STEEPING OFFERING :: COMMON GROUND",
+            "color": m.text1,
+            "coords": "[ STBL: 65 | PRSS: 85 | COHR: 62 | DRFT: 38 ]"
+        },
+        {
+            "id": "o12",
+            "kicker": "NO LONGER WELCOMED OR INVITED",
+            "body": "Your intentions\nto overwrite my experience\nwith your lack of acknowledgement of my experience\nis no longer welcomed\nor invited.",
+            "mechanism": "STEEPING OFFERING :: INTENTIONS",
+            "color": m.text1,
+            "coords": "[ STBL: 78 | PRSS: 72 | COHR: 84 | DRFT: 16 ]"
+        },
+        {
+            "id": "o13",
+            "kicker": "FEAR AND FINITY",
+            "body": "Your fear is exclusively beneficial to the fear monger. A.K.A. The fear creator.\n\nConsidering our simultaneous oneness, the fear creator may just be your creativity.\n\nThat is Creative Thinking in a land of creative possibility in the byproduct of infinity.\n\n**Be In Finity.**\nFear is an ancient idea.\nThere IS a new F-word.\n\n— Kamau on Fear and Finity",
+            "mechanism": "STEEPING OFFERING :: WISDOM",
+            "color": m.text1,
+            "coords": "[ STBL: 84 | PRSS: 66 | COHR: 89 | DRFT: 11 ]"
+        },
+        {
+            "id": "o14",
+            "kicker": "WHY ARE YOU WATCHING?",
+            "body": "Why are you watching?",
+            "mechanism": "STEEPING OFFERING :: OBSERVATION",
+            "color": m.text1,
+            "coords": "[ STBL: 50 | PRSS: 95 | COHR: 40 | DRFT: 60 ]"
+        },
+        {
+            "id": "o15",
+            "kicker": "THE STATE OF OUR PRESENCE",
+            "body": "The Future\nMeets us\nIn the state\nOf our presence.\n\nThe state of our presence\nInforms The Future\nOf our present intentions.\n\nOur presence\nTo the Future's potential\nInforms tomorrow\nAbout creation's plan.",
+            "mechanism": "STEEPING OFFERING :: PRESENCE",
+            "color": m.text1,
+            "coords": "[ STBL: 91 | PRSS: 28 | COHR: 94 | DRFT: 06 ]"
+        },
+        {
+            "id": "o16",
+            "kicker": "TIME AND TIMELESSNESS",
+            "body": "Time does heal all wounds\nYet the awareness of the body\nIs infinitely involved in timelessness.",
+            "mechanism": "STEEPING OFFERING :: TIMELESSNESS",
+            "color": m.text1,
+            "coords": "[ STBL: 89 | PRSS: 42 | COHR: 83 | DRFT: 17 ]"
+        },
+        {
+            "id": "o17",
+            "kicker": "A LONG CONVERSATION WITH MY SELF",
+            "body": "\"The Human experience is a long conversation with my self... I need to go deep and find that voice.\"\n\n— Kaelo Lentsoe on CREÅTIVE STEEPING",
+            "mechanism": "STEEPING OFFERING :: INSIGHT",
+            "color": m.text1,
+            "coords": "[ STBL: 86 | PRSS: 54 | COHR: 90 | DRFT: 10 ]"
+        },
+        {
+            "id": "o18",
+            "kicker": "CONNECT THE DOTS",
+            "body": "Consciousness has already done its best work.\nNow it is time for Awareness to connect the dots.",
+            "mechanism": "STEEPING OFFERING :: AWARENESS",
+            "color": m.text1,
+            "coords": "[ STBL: 97 | PRSS: 14 | COHR: 98 | DRFT: 02 ]"
+        },
+        {
+            "id": "o19",
+            "kicker": "CHOOSE YOUR DRAMA",
+            "body": "Choose your drama.",
+            "mechanism": "STEEPING OFFERING :: CORE",
+            "color": m.text1,
+            "coords": "[ STBL: 99 | PRSS: 01 | COHR: 99 | DRFT: 00 ]"
+        },
+        {
+            "id": "o20",
+            "kicker": "WHERE COURAGE LIVES",
+            "body": "The quiet is where courage lives.\nWhat are we if not for our thoughts.",
+            "mechanism": "STEEPING OFFERING :: COURAGE",
+            "color": m.text1,
+            "coords": "[ STBL: 87 | PRSS: 33 | COHR: 91 | DRFT: 09 ]"
+        },
+        {
+            "id": "o21",
+            "kicker": "SOUND IS A HEALING ART",
+            "body": "Sound is a healing art.\nYour healing is exclusively in your attention\nto that sound which is your resistance to a multi-human truth.",
+            "mechanism": "STEEPING OFFERING :: BIOACOUSTICS",
+            "color": m.text1,
+            "coords": "[ STBL: 74 | PRSS: 58 | COHR: 85 | DRFT: 15 ]"
+        },
+        {
+            "id": "o22",
+            "kicker": "PROPELLED :: QUANTUM LEAPED",
+            "body": "What violent force does not comprehend\nIs that the victim is being propelled ::\nQuantum Leaped ::\nInto the same divinity\nThat the violence tends to believe itself to be.",
+            "mechanism": "STEEPING OFFERING :: DYNAMICS",
+            "color": m.text1,
+            "coords": "[ STBL: 60 | PRSS: 90 | COHR: 55 | DRFT: 45 ]"
+        },
+        {
+            "id": "o23",
+            "kicker": "I AM WHOLE & PERFECT",
+            "body": "I AM\nWhole\nPerfect\nStrong\nPowerful\nLoving\nSoulful\nHarmonious\nAND Happy.\n\nAn idea worth steeping in.",
+            "mechanism": "STEEPING OFFERING :: AFFIRMATION",
+            "color": m.text1,
+            "coords": "[ STBL: 99 | PRSS: 00 | COHR: 99 | DRFT: 01 ]"
         }
     ],
-    exercise: [
+    reviews: [
         {
-            "id": "e1",
-            "kicker": "THE 22-MINUTE ARCHITECTURAL RESET",
-            "body": "The brain's Default Mode Network (DMN) requires exactly 22 minutes of undirected presence to fully integrate complex problem-solving. This functions as active cognitive compiling. Set the 22-minute timer. Fast from content. Fast from planning. Let the neural architecture rebuild itself.",
-            "mechanism": "STEEPING EXERCISE :: PRACTICE",
-            "color": m.accent,
-            "coords": "[ STBL: 49 | PRSS: 77 | COHR: 73 | DRFT: 44 ]"
-        },
-        {
-            "id": "e2",
-            "kicker": "THE PRE-CREATIVE CEREMONY",
-            "body": "The most productive action you take happens before you begin working. Preparing the instrument, setting the temperature of your attention, and clearing the desk physically alters your neural readiness. Establish a strict 3-minute physical ceremony before you open your software. The steep begins before the water pours.",
-            "mechanism": "STEEPING EXERCISE :: PRACTICE",
-            "color": m.accent,
-            "coords": "[ STBL: 69 | PRSS: 75 | COHR: 82 | DRFT: 16 ]"
-        },
-        {
-            "id": "e3",
-            "kicker": "TRACK THE BIOMETRIC TONE",
-            "body": "Begin typing your current frustrations into the Steeping Space. Let the words flow uncensored. Instead, listen strictly to the audio engine. Notice how the chaotic input creates a specific sonic density. Now, intentionally slow your keystrokes by 50%. Listen to the bioacoustic feedback soften. You have just manually down-regulated your nervous system.",
-            "mechanism": "STEEPING EXERCISE :: PRACTICE",
-            "color": m.accent,
-            "coords": "[ STBL: 44 | PRSS: 55 | COHR: 99 | DRFT: 30 ]"
-        }
-    ],
-    science: [
-        {
-            "id": "s1",
-            "kicker": "PROGRESSIVE DISCLOSURE PROMOTES NEURAL SAFETY",
-            "body": "The Hexagons in your matrix unlock only when the record of your presence grows deep enough. This is by architectural design. Growth happens at the edge of actual capacity, always within your current stability. Being presented with the entire curriculum at once triggers cognitive overwhelm. The Steeping Space paces the revelation to match your nervous system.",
-            "mechanism": "SCIENCE OF THE STEEPING SPACE :: ARCHITECTURE",
+            "id": "r1",
+            "kicker": "COMMUNE WITH MY WORTH",
+            "body": "\"As a life-long journaler, I valued the invitation to sip tea and commune with my worth.\"",
+            "mechanism": "PRACTITIONER REVIEW",
             "color": m.text1,
-            "coords": "[ STBL: 67 | PRSS: 59 | COHR: 64 | DRFT: 11 ]"
+            "coords": "[ STBL: 85 | PRSS: 45 | COHR: 92 | DRFT: 08 ]"
         },
         {
-            "id": "s2",
-            "kicker": "DOUBLING THE NEURAL SURFACE AREA",
-            "body": "Journaling activates language networks. Music activates spatial and emotional networks. By translating your keystrokes directly into a bioacoustic soundscape, The Steeping Space fires both networks simultaneously. This dual-activation builds thicker, more resilient neural pathways. It is preventative cognitive care functioning as an interface.",
-            "mechanism": "SCIENCE OF THE STEEPING SPACE :: BIOACOUSTICS",
+            "id": "r2",
+            "kicker": "MIRROR OF SELF-PERCEPTION",
+            "body": "\"I experienced myself as a reliable source for wisdom and observed myself in the mirror of self-perception.\"",
+            "mechanism": "PRACTITIONER REVIEW",
             "color": m.text1,
-            "coords": "[ STBL: 60 | PRSS: 43 | COHR: 76 | DRFT: 31 ]"
+            "coords": "[ STBL: 90 | PRSS: 35 | COHR: 95 | DRFT: 05 ]"
         },
         {
-            "id": "s3",
-            "kicker": "THE CLOSED DOPAMINERGIC LOOP",
-            "body": "When a musical sequence resolves pleasantly, the brain releases dopamine. In standard interfaces, algorithms farm your dopamine by providing external stimuli. In The Steeping Space, your own typing generates the resolution. You are the composer and the listener. You are farming your own neurochemistry for your own benefit.",
-            "mechanism": "SCIENCE OF THE STEEPING SPACE :: CHEMISTRY",
+            "id": "r3",
+            "kicker": "THE MYTHIC NARRATIVE OF MY GENIUS",
+            "body": "\"Epiphanies unfolded, and the mythic narrative of my own genius brought me to tears.\"",
+            "mechanism": "PRACTITIONER REVIEW",
             "color": m.text1,
-            "coords": "[ STBL: 55 | PRSS: 51 | COHR: 67 | DRFT: 12 ]"
+            "coords": "[ STBL: 78 | PRSS: 65 | COHR: 84 | DRFT: 16 ]"
+        },
+        {
+            "id": "r4",
+            "kicker": "EMPHASIS ON SUSTAINED GROWTH",
+            "body": "\"What sets CREÅTIVE STEEPING apart is its emphasis on self-discovery and sustained growth.\"",
+            "mechanism": "PRACTITIONER REVIEW",
+            "color": m.text1,
+            "coords": "[ STBL: 88 | PRSS: 38 | COHR: 91 | DRFT: 09 ]"
+        },
+        {
+            "id": "r5",
+            "kicker": "TAKE CHARGE OF YOUR JOURNEY",
+            "body": "\"The process empowers you to take charge of your journey.\"",
+            "mechanism": "PRACTITIONER REVIEW",
+            "color": m.text1,
+            "coords": "[ STBL: 80 | PRSS: 50 | COHR: 83 | DRFT: 17 ]"
+        },
+        {
+            "id": "r6",
+            "kicker": "ORIENTED TOWARDS LOVE & DEVELOPMENT",
+            "body": "\"These insights continue to inspire me day to day as I orient myself towards growth, development, and love.\"",
+            "mechanism": "PRACTITIONER REVIEW",
+            "color": m.text1,
+            "coords": "[ STBL: 92 | PRSS: 25 | COHR: 96 | DRFT: 04 ]"
+        },
+        {
+            "id": "r7",
+            "kicker": "UNLOCKED THE MEDICINE WITHIN ME",
+            "body": "\"The conscious pause with my words and my favorite flavors unlocked the medicine within me for good.\"",
+            "mechanism": "PRACTITIONER REVIEW",
+            "color": m.text1,
+            "coords": "[ STBL: 95 | PRSS: 30 | COHR: 98 | DRFT: 02 ]"
+        },
+        {
+            "id": "r8",
+            "kicker": "GUIDING TO THE HEART OF BEING",
+            "body": "\"CREÅTIVE STEEPING most certainly does guide folks to the 'heart of being'. This is really well written and easy to follow.\"",
+            "mechanism": "PRACTITIONER REVIEW",
+            "color": m.text1,
+            "coords": "[ STBL: 89 | PRSS: 41 | COHR: 87 | DRFT: 13 ]"
         }
     ]
 });

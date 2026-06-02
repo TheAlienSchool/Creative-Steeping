@@ -7,10 +7,42 @@ import { generateAssets } from './assetsData';
 // A private CMS for generating Social Media Geometry
 // ==========================================
 
-// Visceral Word-by-Word Animation Component
-const AnimatedText = ({ text, delayOffset = 0, speed = 0.05, className, style, kineticState, triggerKey }) => {
+// Helper to parse bold markdown-like syntax (**word**) and trailing punctuation
+const parseBoldWord = (word) => {
+    const match = word.match(/^(\*\*)(.+?)(\*\*)(\.|,|;|!|\?)*$/);
+    if (match) {
+        const clean = match[2];
+        const punctuation = match[4] || '';
+        return { clean, isBold: true, punctuation };
+    }
+    return { clean: word, isBold: false, punctuation: '' };
+};
+
+// Visceral Word-by-Word/Line-by-Line Animation Component
+const AnimatedText = ({ text, delayOffset = 0, speed = 0.05, className, style, kineticState, triggerKey, m }) => {
     const [visibleCount, setVisibleCount] = useState(-1);
-    const words = text.split(' ');
+    
+    // Parse lines to respect carriage returns and apply artful de-orphaning per line
+    const lines = useMemo(() => {
+        if (!text) return [];
+        return text.split('\n').map(line => {
+            const trimmed = line.trim();
+            if (!trimmed) return "";
+            const words = trimmed.split(' ');
+            if (words.length > 1) {
+                const last = words.pop();
+                const secondLast = words.pop();
+                // Keep the last two words bound together on the same line to prevent orphans
+                return [...words, `${secondLast}\u00A0${last}`].join(' ');
+            }
+            return trimmed;
+        });
+    }, [text]);
+
+    // Flat list of words to animate sequentially
+    const allWords = useMemo(() => {
+        return lines.flatMap(line => line ? line.split(' ') : []).filter(Boolean);
+    }, [lines]);
 
     useEffect(() => {
         if (kineticState === 'idle') {
@@ -22,15 +54,15 @@ const AnimatedText = ({ text, delayOffset = 0, speed = 0.05, className, style, k
             setVisibleCount(0); // Start hidden
             
             let count = 0;
-            // Delay start based on delayOffset (which is in seconds, convert to ms)
+            // Delay start based on delayOffset
             const delayTimer = setTimeout(() => {
                 const interval = setInterval(() => {
                     count++;
                     setVisibleCount(count);
-                    if (count >= words.length) {
+                    if (count >= allWords.length) {
                         clearInterval(interval);
                     }
-                }, speed * 1000); // speed is in seconds, convert to ms
+                }, speed * 1000);
                 
                 return () => clearInterval(interval);
             }, delayOffset * 1000);
@@ -39,29 +71,58 @@ const AnimatedText = ({ text, delayOffset = 0, speed = 0.05, className, style, k
         }
         
         if (kineticState === 'done') {
-            setVisibleCount(words.length);
+            setVisibleCount(allWords.length);
         }
-    }, [kineticState, triggerKey, delayOffset, speed, words.length]);
+    }, [kineticState, triggerKey, delayOffset, speed, allWords.length]);
+
+    let wordIndexOffset = 0;
 
     return (
-        <div className={className} style={{ ...style, display: 'inline-block' }}>
-            {words.map((word, i) => {
-                const isVisible = kineticState === 'idle' || (visibleCount !== -1 && i < visibleCount);
-                return (
-                    <span 
-                        key={`${triggerKey}-${i}`} 
+        <div className={className} style={{ ...style, display: 'block', textAlign: style.textAlign || 'center' }}>
+            {lines.map((line, lineIdx) => {
+                if (!line) {
+                    // Render empty line spacing
+                    return <div key={`${triggerKey}-empty-${lineIdx}`} style={{ height: '0.8em' }} />;
+                }
+                
+                const lineWords = line.split(' ').filter(Boolean);
+                const lineRender = (
+                    <div 
+                        key={`${triggerKey}-line-${lineIdx}`} 
                         style={{ 
-                            display: 'inline-block', 
-                            marginRight: '0.25em',
-                            opacity: isVisible ? 1 : 0,
-                            transform: isVisible ? 'translateY(0)' : 'translateY(5px)',
-                            filter: isVisible ? 'blur(0px)' : 'blur(4px)',
-                            transition: isVisible ? 'opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out' : 'none'
+                            marginBottom: lineIdx < lines.length - 1 ? '0.35em' : 0,
+                            display: 'block'
                         }}
                     >
-                        {word}
-                    </span>
+                        {lineWords.map((word, wordIdx) => {
+                            const overallIdx = wordIndexOffset + wordIdx;
+                            const isVisible = kineticState === 'idle' || (visibleCount !== -1 && overallIdx < visibleCount);
+                            const { clean, isBold, punctuation } = parseBoldWord(word);
+                            
+                            return (
+                                <span 
+                                    key={`${triggerKey}-w-${overallIdx}`} 
+                                    style={{ 
+                                        display: 'inline-block', 
+                                        marginRight: '0.25em',
+                                        opacity: isVisible ? 1 : 0,
+                                        transform: isVisible ? 'translateY(0)' : 'translateY(5px)',
+                                        filter: isVisible ? 'blur(0px)' : 'blur(4px)',
+                                        transition: isVisible ? 'opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out' : 'none',
+                                        fontWeight: isBold ? 'bold' : style.fontWeight || 'inherit',
+                                        color: isBold ? (m?.accent || '#d4922a') : style.color,
+                                        fontStyle: isBold ? 'normal' : style.fontStyle || 'inherit'
+                                    }}
+                                >
+                                    {clean}{punctuation}
+                                </span>
+                            );
+                        })}
+                    </div>
                 );
+                
+                wordIndexOffset += lineWords.length;
+                return lineRender;
             })}
         </div>
     );
@@ -69,24 +130,27 @@ const AnimatedText = ({ text, delayOffset = 0, speed = 0.05, className, style, k
 
 const VisceralRenderer = ({ asset, kineticState, m, playTriggerId, mc = 0 }) => {
     if (asset.graphicType === 'steamsans') {
+        const text = asset.kicker || "CREÅTIVE STEEPING";
+        const chars = [...text];
         const currentWeight = 900 - (mc * 600);
         const vaporGlow = mc > 0.5 ? `0 0 ${mc * 40}px ${m.accent}40` : 'none';
         return (
             <div style={{ position: 'relative', width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                {['S', 'T', 'E', 'A', 'M', 'S', 'A', 'N', 'S'].map((char, i) => (
+                {chars.map((char, i) => (
                     <motion.div
                         key={`${playTriggerId}-${i}`}
                         initial={{ opacity: 0, y: 50, filter: 'blur(10px)', scale: 0.8 }}
                         animate={kineticState === 'playing' || kineticState === 'done' ? { opacity: 0.8, y: 0, filter: 'blur(0px)', scale: 1 } : {}}
-                        transition={{ duration: 2, delay: i * 0.15, ease: "easeOut" }}
+                        transition={{ duration: 2, delay: i * 0.08, ease: "easeOut" }}
                         style={{
-                            position: 'absolute', fontFamily: 'var(--fSerif)', fontSize: '5rem', fontStyle: 'italic',
+                            position: 'absolute', fontFamily: 'var(--fSerif)', fontSize: chars.length > 12 ? '2.4rem' : '4rem', fontStyle: 'italic',
                             color: i % 2 === 0 ? m.text1 : m.accent,
-                            left: `${5 + (i * 10)}%`, zIndex: 10 - i, mixBlendMode: 'screen',
+                            left: `${10 + (i * (80 / chars.length))}%`, zIndex: 10 - i, mixBlendMode: 'screen',
                             fontWeight: currentWeight,
                             textShadow: vaporGlow,
                             transform: `translateY(${mc * 20 * (i % 2 === 0 ? 1 : -1)}px) scale(${1 + (mc * 0.2)})`,
-                            filter: `blur(${mc * 4}px)`
+                            filter: `blur(${mc * 4}px)`,
+                            whiteSpace: 'pre'
                         }}
                     >
                         {char}
@@ -234,38 +298,52 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
         visceral: [
             {
                 id: 'v1',
-                mechanism: 'STEEPING GEOMETRY :: STEAMSANS',
+                mechanism: 'STEEPING GEOMETRY :: WORD ART I',
                 isGraphic: true, graphicType: 'steamsans',
-                kicker: 'steamsans timeout fake', body: 'fake body',
+                kicker: 'CREÅTIVE STEEPING', body: '',
                 coords: '[ STBL: 99 | PRSS: 99 | COHR: 99 | DRFT: 99 ]'
             },
             {
                 id: 'v2',
-                mechanism: 'STEEPING GEOMETRY :: HEX-KINTSUGI',
+                mechanism: 'STEEPING GEOMETRY :: WORD ART II',
                 isGraphic: true, graphicType: 'hexagong',
-                kicker: 'hex timeout fake', body: 'fake body',
+                kicker: 'CREÅTIVE STEEPING', body: '',
                 coords: '[ STBL: 50 | PRSS: 50 | COHR: 90 | DRFT: 10 ]'
             },
             {
                 id: 'v3',
-                mechanism: 'STEEPING GEOMETRY :: THE SONIC ENGINE',
+                mechanism: 'STEEPING GEOMETRY :: WORD ART III',
                 isGraphic: true, graphicType: 'pulse',
-                kicker: 'pulse timeout fake', body: 'fake body',
+                kicker: 'CREÅTIVE STEEPING', body: '',
                 coords: '[ STBL: 22 | PRSS: 88 | COHR: 77 | DRFT: 33 ]'
             },
             {
                 id: 'v4',
-                mechanism: 'STEEPING GEOMETRY :: RESONANCE TRACE',
+                mechanism: 'STEEPING GEOMETRY :: THE FLAVOR PATH',
                 isGraphic: true, graphicType: 'oscilloscope',
-                kicker: 'osc timeout fake', body: 'fake body',
-                coords: '[ STBL: 45 | PRSS: 95 | COHR: 85 | DRFT: 10 ]'
+                kicker: 'CREÅTIVE STEEPING', body: 'A Journey To The Essence of Your Flavor',
+                coords: '[ STBL: 95 | PRSS: 10 | COHR: 98 | DRFT: 02 ]'
             },
             {
                 id: 'v5',
-                mechanism: 'STEEPING GEOMETRY :: THE THRESHOLD',
+                mechanism: 'STEEPING GEOMETRY :: SOUND OF THE SOUL',
                 isGraphic: true, graphicType: 'door',
-                kicker: 'door timeout fake', body: 'fake body',
+                kicker: 'CREÅTIVE STEEPING', body: 'Journaling To The Sound of Your Soul',
                 coords: '[ STBL: 80 | PRSS: 60 | COHR: 90 | DRFT: 05 ]'
+            },
+            {
+                id: 'v6',
+                mechanism: 'STEEPING GEOMETRY :: SONIC CEREMONY',
+                isGraphic: true, graphicType: 'oscilloscope',
+                kicker: 'CREÅTIVE STEEPING', body: 'A Sonic Ceremony For Your Thoughts',
+                coords: '[ STBL: 77 | PRSS: 33 | COHR: 88 | DRFT: 12 ]'
+            },
+            {
+                id: 'v7',
+                mechanism: 'STEEPING GEOMETRY :: MELODY OF MOMENTUM',
+                isGraphic: true, graphicType: 'pulse',
+                kicker: 'CREÅTIVE STEEPING', body: 'An Invitation To The Melody of Momentum',
+                coords: '[ STBL: 90 | PRSS: 40 | COHR: 95 | DRFT: 05 ]'
             }
         ]
     }), [baseAssets, m]);
@@ -284,7 +362,7 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
 
     // Active asset category
     const categories = Object.keys(assets);
-    const [activeCategory, setActiveCategory] = useState('note'); // 'note', 'inquiry', 'exercise', 'science'
+    const [activeCategory, setActiveCategory] = useState('notes'); // 'notes', 'offering', 'reviews', 'visceral'
     const [activeAssetIndex, setActiveAssetIndex] = useState(0);
     const currentAsset = assets[activeCategory][activeAssetIndex];
 
@@ -327,6 +405,19 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
     const harrisRef = useRef(null);
     const hbaRef = useRef(null);
     const vaporRef = useRef(null);
+    const fadeIntervalRef = useRef(null); // Ref to hold fade-out interval ID
+    const fadeInIntervalRef = useRef(null); // Ref to hold fade-in interval ID
+    const fadeInScaleRef = useRef(1); // Ref for soft fade-in scaling
+    const [loopMode, setLoopMode] = useState(false); // Toggle to play+loop recording assets
+    const [isMuted, setIsMuted] = useState(false); // Toggle to mute spatial audio registers
+
+    // Cleanup fade intervals on unmount
+    useEffect(() => {
+        return () => {
+            if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
+            if (fadeInIntervalRef.current) clearInterval(fadeInIntervalRef.current);
+        };
+    }, []);
 
     useEffect(() => {
         const handleInteraction = (e) => {
@@ -357,23 +448,6 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
 
     // Audio player state for STEAMSANS
     const [playingLayer, setPlayingLayer] = useState(null);
-
-    useEffect(() => {
-        const handleKeyDown = (e) => {
-            if (e.key.length === 1) { // capture character keys
-                setCheatCodeBuffer(prev => {
-                    const newBuffer = (prev + e.key.toLowerCase()).slice(-9);
-                    if (newBuffer === 'steamsans') {
-                        setSteamsansUnlocked(true);
-                        if (playStrikingBowl) playStrikingBowl(36); // Deep confirmation tone
-                    }
-                    return newBuffer;
-                });
-            }
-        };
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [playStrikingBowl]);
 
     // Touch Unlock Logic (5 taps on the header)
     const [touchCount, setTouchCount] = useState(0);
@@ -409,28 +483,103 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
     const [prerollCount, setPrerollCount] = useState(3);
     const [playTriggerId, setPlayTriggerId] = useState(0); // Used to force framer-motion replay
 
-    // Live Audio Spatial Mixing during playback
+    // Live Audio Spatial Mixing and Fade-Out during playback transitions
     useEffect(() => {
         if (!harrisRef.current || !hbaRef.current || !vaporRef.current) return;
-        const harrisVol = Math.max(0, 1 - (mc * 2));
-        const hbaVol = Math.max(0, 1 - Math.abs(mc - 0.5) * 2);
-        const vaporVol = Math.max(0, (mc - 0.5) * 2);
         
-        const isPlaying = kineticState === 'playing';
-        harrisRef.current.volume = isPlaying ? harrisVol : 0;
-        hbaRef.current.volume = isPlaying ? hbaVol : 0;
-        vaporRef.current.volume = isPlaying ? vaporVol : 0;
+        const harris = harrisRef.current;
+        const hba = hbaRef.current;
+        const vapor = vaporRef.current;
         
-        if (isPlaying) {
-            harrisRef.current.play().catch(e=>e);
-            hbaRef.current.play().catch(e=>e);
-            vaporRef.current.play().catch(e=>e);
+        if (kineticState === 'playing') {
+            // Cancel any active fade-out intervals
+            if (fadeIntervalRef.current) {
+                clearInterval(fadeIntervalRef.current);
+                fadeIntervalRef.current = null;
+            }
+            
+            // Set up soft fade-in over 250ms
+            if (!fadeInIntervalRef.current) {
+                fadeInScaleRef.current = 0;
+                const fadeInDuration = 250;
+                const stepTime = 20;
+                let elapsed = 0;
+                
+                fadeInIntervalRef.current = setInterval(() => {
+                    elapsed += stepTime;
+                    fadeInScaleRef.current = Math.min(1, elapsed / fadeInDuration);
+                    
+                    if (harrisRef.current && hbaRef.current && vaporRef.current) {
+                        const mm = isMuted ? 0 : 1;
+                        harrisRef.current.volume = Math.max(0, Math.pow(Math.cos(mc * Math.PI / 2), 3)) * mm * fadeInScaleRef.current;
+                        hbaRef.current.volume = Math.max(0, Math.pow(Math.sin(mc * Math.PI), 3)) * mm * fadeInScaleRef.current;
+                        vaporRef.current.volume = Math.max(0, Math.pow(Math.sin(mc * Math.PI / 2), 3)) * mm * fadeInScaleRef.current;
+                    }
+                    
+                    if (elapsed >= fadeInDuration) {
+                        clearInterval(fadeInIntervalRef.current);
+                        fadeInIntervalRef.current = null;
+                    }
+                }, stepTime);
+            }
+            
+            const mm = isMuted ? 0 : 1;
+            const harrisVol = Math.max(0, Math.pow(Math.cos(mc * Math.PI / 2), 3)) * mm * fadeInScaleRef.current;
+            const hbaVol = Math.max(0, Math.pow(Math.sin(mc * Math.PI), 3)) * mm * fadeInScaleRef.current;
+            const vaporVol = Math.max(0, Math.pow(Math.sin(mc * Math.PI / 2), 3)) * mm * fadeInScaleRef.current;
+            
+            harris.volume = harrisVol;
+            hba.volume = hbaVol;
+            vapor.volume = vaporVol;
+            
+            harris.play().catch(e=>e);
+            hba.play().catch(e=>e);
+            vapor.play().catch(e=>e);
+        } else if (kineticState === 'done' || kineticState === 'idle') {
+            // Cancel active fade-in
+            if (fadeInIntervalRef.current) {
+                clearInterval(fadeInIntervalRef.current);
+                fadeInIntervalRef.current = null;
+            }
+            
+            // Fade out smoothly if they were playing
+            if (fadeIntervalRef.current) {
+                clearInterval(fadeIntervalRef.current);
+            }
+            
+            const startHarris = harris.volume;
+            const startHba = hba.volume;
+            const startVapor = vapor.volume;
+            const duration = 1500; // 1.5 seconds fade
+            const intervalTime = 30; // 30ms steps
+            let elapsed = 0;
+            
+            fadeIntervalRef.current = setInterval(() => {
+                elapsed += intervalTime;
+                const ratio = Math.max(0, 1 - (elapsed / duration));
+                
+                harris.volume = startHarris * ratio;
+                hba.volume = startHba * ratio;
+                vapor.volume = startVapor * ratio;
+                
+                if (elapsed >= duration) {
+                    clearInterval(fadeIntervalRef.current);
+                    fadeIntervalRef.current = null;
+                    harris.pause();
+                    hba.pause();
+                    vapor.pause();
+                    harris.volume = 0;
+                    hba.volume = 0;
+                    vapor.volume = 0;
+                }
+            }, intervalTime);
         } else {
-            harrisRef.current.pause();
-            hbaRef.current.pause();
-            vaporRef.current.pause();
+            // preroll
+            harris.pause();
+            hba.pause();
+            vapor.pause();
         }
-    }, [mc, kineticState]);
+    }, [mc, kineticState, isMuted]);
 
     const triggerKineticMonument = () => {
         if (kineticState === 'playing' || kineticState === 'preroll') return;
@@ -459,22 +608,81 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
         if (playAlgoraveSynth) playAlgoraveSynth();
 
         const totalTimeMs = currentAsset.isGraphic ? 
-            5000 : 
-            (currentAsset.kicker.split(' ').length * 100) + (currentAsset.body.split(' ').length * 60) + 1000;
+            8000 : // Extended from 5000 to 8000 to give the graphic more time to express itself
+            (currentAsset.kicker.split(' ').length * 100) + (currentAsset.body.split(' ').length * 60) + 3000; // Increased padding from 1000 to 3000
         
         setTimeout(() => {
             if (playStrikingBowl) playStrikingBowl(72);
         }, currentAsset.isGraphic ? 1000 : (currentAsset.kicker.split(' ').length * 100) + 200);
 
-        setTimeout(() => {
-            setKineticState('done');
-        }, totalTimeMs);
+        if (!loopMode) {
+            setTimeout(() => {
+                setKineticState(prev => prev === 'playing' ? 'done' : prev); // Prevents overriding if manually stopped
+            }, totalTimeMs);
+        }
     };
 
     // Reset when changing assets
     useEffect(() => {
         setKineticState('idle');
     }, [currentAsset.id]);
+
+    // Unified Keyboard Shortcuts & Steamsans Cheat Code Listener
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            const key = e.key.toLowerCase();
+            
+            // Steamsans Cheat Code
+            if (e.key.length === 1) {
+                setCheatCodeBuffer(prev => {
+                    const newBuffer = (prev + key).slice(-9);
+                    if (newBuffer === 'steamsans') {
+                        setSteamsansUnlocked(true);
+                        if (playStrikingBowl) playStrikingBowl(36);
+                    }
+                    return newBuffer;
+                });
+            }
+
+            // Prevent shortcut triggers in input fields
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+            if (e.key === ' ') {
+                e.preventDefault();
+                if (kineticState === 'playing') {
+                    setKineticState('done');
+                } else if (kineticState === 'idle' || kineticState === 'done') {
+                    triggerKineticMonument();
+                }
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                setActiveAssetIndex(prev => (prev + 1) % assets[activeCategory].length);
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                setActiveAssetIndex(prev => (prev - 1 + assets[activeCategory].length) % assets[activeCategory].length);
+            } else if (key === 'l') {
+                setLoopMode(prev => !prev);
+            } else if (key === 'g') {
+                cycleGeometry();
+            } else if (key === 'c') {
+                cycleCategory();
+            } else if (key === 'm') {
+                setIsMuted(prev => !prev);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [
+        kineticState,
+        loopMode,
+        isMuted,
+        activeCategory,
+        activeAssetIndex,
+        geometry,
+        assets,
+        playStrikingBowl
+    ]);
 
     // The AnimatedText component is defined outside to prevent React from unmounting it on every render
 
@@ -516,8 +724,53 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                     </div>
                 </div>
 
+                {/* Glassmorphic Keyboard Hotkeys Legend Panel */}
+                <div style={{
+                    position: 'absolute', top: '70px', left: 'var(--space-md)',
+                    background: `${m.bg}dd`, border: `1px solid ${m.accent}30`,
+                    padding: '12px var(--space-lg)', borderRadius: '6px',
+                    backdropFilter: 'blur(8px)', width: '220px',
+                    fontFamily: 'var(--fMono)', fontSize: '0.6rem',
+                    lineHeight: '1.6', color: m.text2,
+                    pointerEvents: 'auto', boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+                    display: 'flex', flexDirection: 'column', gap: '4px',
+                    zIndex: 60
+                }}>
+                    <div style={{ color: m.accent, fontWeight: 'bold', letterSpacing: '0.15em', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span style={{ fontSize: '0.8rem' }}>⌨</span> KEYBOARD HOTKEYS
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span style={{ color: m.text1, fontWeight: 'bold' }}>[Space]</span>
+                        <span>Play / Stop</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span style={{ color: m.text1, fontWeight: 'bold' }}>[→]</span>
+                        <span>Next Asset</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span style={{ color: m.text1, fontWeight: 'bold' }}>[←]</span>
+                        <span>Prev Asset</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span style={{ color: m.text1, fontWeight: 'bold' }}>[L]</span>
+                        <span>Toggle Loop</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span style={{ color: m.text1, fontWeight: 'bold' }}>[G]</span>
+                        <span>Geometry</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span style={{ color: m.text1, fontWeight: 'bold' }}>[C]</span>
+                        <span>Category</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span style={{ color: m.text1, fontWeight: 'bold' }}>[M]</span>
+                        <span>Toggle Mute</span>
+                    </div>
+                </div>
+
                 {/* Bottom Bar */}
-                <div style={{ position: 'absolute', bottom: 'var(--space-md)', left: 'var(--space-md)', right: 'var(--space-md)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                <div style={{ position: 'absolute', bottom: 'var(--space-md)', left: 'var(--space-md)', right: 'var(--space-md)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
                     <div onClick={cycleCategory} style={{ 
                         fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, 
                         letterSpacing: '0.1em', cursor: 'pointer', pointerEvents: 'auto',
@@ -526,11 +779,31 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                         [ CAT: {activeCategory.toUpperCase()} ]
                     </div>
 
+                    <div onClick={() => setLoopMode(prev => !prev)} style={{ 
+                        fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: loopMode ? m.accent : m.text2, 
+                        border: `1px dashed ${loopMode ? m.accent : 'transparent'}`,
+                        letterSpacing: '0.1em', cursor: 'pointer', pointerEvents: 'auto',
+                        background: `${m.bg}dd`, padding: '6px 10px', borderRadius: '4px', backdropFilter: 'blur(4px)',
+                        transition: 'all 0.3s ease'
+                    }}>
+                        [ LOOP: {loopMode ? 'ON' : 'OFF'} ]
+                    </div>
+
+                    <div onClick={() => setIsMuted(prev => !prev)} style={{ 
+                        fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: isMuted ? m.accent : m.text2, 
+                        border: `1px dashed ${isMuted ? m.accent : 'transparent'}`,
+                        letterSpacing: '0.1em', cursor: 'pointer', pointerEvents: 'auto',
+                        background: `${m.bg}dd`, padding: '6px 10px', borderRadius: '4px', backdropFilter: 'blur(4px)',
+                        transition: 'all 0.3s ease'
+                    }}>
+                        [ MUTE: {isMuted ? 'ON' : 'OFF'} ]
+                    </div>
+
                     <div onClick={triggerKineticMonument} style={{ 
                         fontFamily: 'var(--fMono)', fontSize: '0.9rem', color: m.bg, fontWeight: 'bold',
                         letterSpacing: '0.1em', cursor: 'pointer', pointerEvents: 'auto',
                         background: m.accent, padding: '12px 24px', borderRadius: '4px',
-                        boxShadow: `0 0 20px ${m.accent}40`, transform: 'translateX(-25%)'
+                        boxShadow: `0 0 20px ${m.accent}40`
                     }}>
                         {kineticState === 'preroll' ? `[ ${prerollCount} ]` : '[ PLAY ]'}
                     </div>
@@ -545,11 +818,20 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                 </div>
             </div>
 
-            {/* PREVIEW CANVAS CONTAINER */}
-            <div ref={containerRef} style={{
-                flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center',
-                background: m.surface, overflow: 'hidden', position: 'relative'
-            }}>
+            {/* PREVIEW CANVAS CONTAINER (Click anywhere during playing to stop & fade out) */}
+            <div 
+                ref={containerRef} 
+                onClick={() => {
+                    if (kineticState === 'playing') {
+                        setKineticState('done');
+                    }
+                }}
+                style={{
+                    flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center',
+                    background: m.surface, overflow: 'hidden', position: 'relative',
+                    cursor: kineticState === 'playing' ? 'pointer' : 'default'
+                }}
+            >
                 {/* The Dynamic Canvas Frame */}
                 <motion.div 
                     layout
@@ -567,6 +849,23 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                         transformOrigin: 'center center'
                     }}
                 >
+                    {/* Loop Mode Stop Overlay */}
+                    {kineticState === 'playing' && loopMode && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.4 }}
+                            transition={{ delay: 2, duration: 1.5 }}
+                            style={{
+                                position: 'absolute', bottom: 'var(--space-md)', left: 0, right: 0,
+                                textAlign: 'center', fontFamily: 'var(--fMono)', fontSize: '0.5rem',
+                                letterSpacing: '0.2em', color: m.accent, textTransform: 'uppercase',
+                                pointerEvents: 'none', textShadow: `0 0 8px ${m.accent}40`, zIndex: 10
+                            }}
+                        >
+                            Loop Active • Tap screen to transition
+                        </motion.div>
+                    )}
+
                     {/* The Rendered Monument */}
                     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', zIndex: 2, width: '100%' }}>
                         <div style={{ 
@@ -578,8 +877,78 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                             {currentAsset.mechanism}
                         </div>
                         {currentAsset.isGraphic ? (
-                            <div style={{ marginBottom: '2rem' }}>
+                            <div style={{ marginBottom: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
                                 <VisceralRenderer asset={currentAsset} kineticState={kineticState} m={m} playTriggerId={playTriggerId} mc={mc} />
+                                {/* Artful Overlay Text for Graphic Assets (except Word Art) */}
+                                {currentAsset.graphicType !== 'steamsans' && (
+                                    <div style={{ marginTop: '1.5rem', zIndex: 10, width: '100%' }}>
+                                        <AnimatedText 
+                                            text={currentAsset.kicker} 
+                                            speed={0.1}
+                                            kineticState={kineticState}
+                                            triggerKey={`kicker-${playTriggerId}`}
+                                            m={m}
+                                            style={{ 
+                                                fontFamily: 'var(--fSerif)', fontSize: spec.fontKicker, 
+                                                lineHeight: 1.2, fontStyle: 'italic', color: m.text1,
+                                                marginBottom: 'var(--space-md)'
+                                            }} 
+                                        />
+                                        {currentAsset.body && (
+                                            <AnimatedText 
+                                                text={currentAsset.body}
+                                                delayOffset={(currentAsset.kicker.split(' ').length * 0.1) + 0.4}
+                                                speed={0.05}
+                                                kineticState={kineticState}
+                                                triggerKey={`body-${playTriggerId}`}
+                                                m={m}
+                                                style={{ 
+                                                    fontFamily: 'var(--fBody)', fontSize: spec.fontBody, lineHeight: 1.4, color: m.text2,
+                                                    fontStyle: 'normal', textAlign: 'center', padding: '0 1rem'
+                                                }} 
+                                            />
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        ) : activeCategory === 'reviews' ? (
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0 1.5rem', width: '100%' }}>
+                                {/* Big glowing gold quote mark */}
+                                <div style={{ 
+                                    fontFamily: 'var(--fSerif)', fontSize: '5.5rem', lineHeight: '1', color: m.accent, 
+                                    opacity: 0.25, height: '2rem', marginBottom: '1rem',
+                                    textShadow: `0 0 15px ${m.accent}40`
+                                }}>“</div>
+                                
+                                {/* Testimonial Body Quote */}
+                                <AnimatedText 
+                                    text={currentAsset.body}
+                                    speed={0.04}
+                                    kineticState={kineticState}
+                                    triggerKey={`review-${playTriggerId}`}
+                                    m={m}
+                                    style={{ 
+                                        fontFamily: 'var(--fBody)', fontSize: spec.fontBody, lineHeight: 1.6, color: m.text1,
+                                        fontStyle: 'italic', textAlign: 'center', minHeight: '6rem', marginBottom: '1.5rem'
+                                    }} 
+                                />
+                                
+                                {/* Five-Star Constellation */}
+                                <div style={{ 
+                                    fontFamily: 'var(--fMono)', fontSize: '0.75rem', letterSpacing: '0.4em', 
+                                    color: m.accent, opacity: 0.85, marginBottom: '0.5rem',
+                                    textShadow: `0 0 8px ${m.accent}30`
+                                }}>
+                                    ★ ★ ★ ★ ★
+                                </div>
+                                
+                                {/* Elegant Kicker Attribution */}
+                                <div style={{ 
+                                    fontFamily: 'var(--fMono)', fontSize: '0.6rem', letterSpacing: '0.2em', 
+                                    color: m.text2, textTransform: 'uppercase', opacity: 0.75
+                                }}>
+                                    — {currentAsset.kicker}
+                                </div>
                             </div>
                         ) : (
                             <>
@@ -588,39 +957,81 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                                     speed={0.1}
                                     kineticState={kineticState}
                                     triggerKey={`kicker-${playTriggerId}`}
+                                    m={m}
                                     style={{ 
                                         fontFamily: 'var(--fSerif)', fontSize: spec.fontKicker, 
                                         lineHeight: 1.2, fontStyle: 'italic', color: m.text1,
-                                        marginBottom: 'var(--space-xl)', minHeight: '3rem'
+                                        marginBottom: currentAsset.body ? 'var(--space-xl)' : '0px', minHeight: '3rem'
                                     }} 
                                 />
                                 {/* BASELINE ITALIC DISCIPLINE: Multi-sentence paragraphs MUST be font-style: normal */}
-                                <AnimatedText 
-                                    text={currentAsset.body}
-                                    delayOffset={(currentAsset.kicker.split(' ').length * 0.1) + 0.4}
-                                    speed={0.05}
-                                    kineticState={kineticState}
-                                    triggerKey={`body-${playTriggerId}`}
-                                    style={{ 
-                                        fontFamily: 'var(--fBody)', fontSize: spec.fontBody, lineHeight: 1.6, color: m.text2,
-                                        fontStyle: 'normal', textAlign: 'left', padding: '0 1rem', minHeight: '6rem'
-                                    }} 
-                                />
+                                {currentAsset.body && (
+                                    <AnimatedText 
+                                        text={currentAsset.body}
+                                        delayOffset={(currentAsset.kicker.split(' ').length * 0.1) + 0.4}
+                                        speed={0.05}
+                                        kineticState={kineticState}
+                                        triggerKey={`body-${playTriggerId}`}
+                                        m={m}
+                                        style={{ 
+                                            fontFamily: 'var(--fBody)', fontSize: spec.fontBody, lineHeight: 1.6, color: m.text2,
+                                            fontStyle: 'normal', textAlign: 'left', padding: '0 1rem', minHeight: '6rem'
+                                        }} 
+                                    />
+                                )}
                             </>
                         )}
                     </div>
 
-                    {/* The Built-in Watermark and Coordinate Diagnostics (Pushed to bottom) */}
+                    {/* Artful Elevated Branding Footer (High-Prominence URL Priority) */}
                     <div style={{
                         marginTop: 'auto', paddingTop: 'var(--space-xl)',
-                        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px',
-                        fontFamily: 'var(--fMono)', fontSize: '0.55rem', letterSpacing: '0.25em',
-                        color: m.accent, opacity: 0.6, textTransform: 'uppercase'
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px',
+                        width: '100%', zIndex: 5
                     }}>
-                        <div>{coordsText}</div>
-                        <div style={{ opacity: 0.5 }}>CREÅTIVESTEEPING.COM</div>
+                        {/* Elegant Geometric/Organic Divider */}
+                        <div style={{ display: 'flex', alignItems: 'center', width: '70%', gap: '12px', opacity: 0.75 }}>
+                            <div style={{ flex: 1, height: '1px', background: `linear-gradient(to right, transparent, ${m.accent}, transparent)` }} />
+                            <svg width="18" height="18" viewBox="0 0 100 100" style={{ fill: 'none', stroke: m.accent, strokeWidth: 8 }}>
+                                <path d="M 50 85 C 20 70, 20 40, 60 20 C 80 40, 80 70, 50 85 Z" fill={`${m.accent}15`} stroke={m.accent} strokeWidth="6" />
+                                <path d="M 50 80 Q 48 55 58 25" stroke={m.accent} strokeWidth="3" />
+                            </svg>
+                            <div style={{ flex: 1, height: '1px', background: `linear-gradient(to right, transparent, ${m.accent}, transparent)` }} />
+                        </div>
+                        
+                        {/* High-Visibility Brand URL */}
+                        <a 
+                            href="https://creativesteeping.com" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            style={{
+                                fontFamily: 'var(--fMono)', fontSize: '0.75rem', letterSpacing: '0.35em',
+                                color: '#ffffff', textDecoration: 'none', textTransform: 'uppercase',
+                                textShadow: `0 0 12px ${m.accent}60`, transition: 'all 0.4s ease',
+                                opacity: 0.95, fontWeight: 'bold'
+                            }}
+                            onMouseEnter={(e) => e.target.style.color = m.accent}
+                            onMouseLeave={(e) => e.target.style.color = '#ffffff'}
+                        >
+                            CREATIVESTEEPING.COM
+                        </a>
+                        
+                        {/* Subtle Diagnostic Coordinates & Audio Telemetry Overlay */}
+                        <div style={{
+                            fontFamily: 'var(--fMono)', fontSize: '0.45rem', letterSpacing: '0.15em',
+                            color: m.accent, opacity: 0.45, textTransform: 'uppercase', marginTop: '2px',
+                            display: 'flex', flexDirection: 'column', gap: '3px', alignItems: 'center'
+                        }}>
+                            <div>{coordsText}</div>
+                            {kineticState === 'playing' && (
+                                <div style={{ display: 'flex', gap: '8px', opacity: 0.8, fontSize: '0.4rem', letterSpacing: '0.1em' }}>
+                                    <span>HARS: {Math.round(Math.max(0, Math.pow(Math.cos(mc * Math.PI / 2), 3)) * 100)}%</span>
+                                    <span>HBA: {Math.round(Math.max(0, Math.pow(Math.sin(mc * Math.PI), 3)) * 100)}%</span>
+                                    <span>VAPR: {Math.round(Math.max(0, Math.pow(Math.sin(mc * Math.PI / 2), 3)) * 100)}%</span>
+                                </div>
+                            )}
+                        </div>
                     </div>
-                    
                 </motion.div>
             </div>
 
