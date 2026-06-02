@@ -353,10 +353,10 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
     const geometries = ['story', 'portrait', 'grid', 'landscape'];
     
     const geoSpecs = {
-        story: { width: '390px', height: '844px', fontKicker: '2.2rem', fontBody: '1.15rem' },
-        portrait: { width: '480px', height: '600px', fontKicker: '2.0rem', fontBody: '1.05rem' },
-        grid: { width: '500px', height: '500px', fontKicker: '1.8rem', fontBody: '0.95rem' },
-        landscape: { width: '800px', height: '450px', fontKicker: '2.2rem', fontBody: '1.10rem' }
+        story:     { width: '390px',  height: '844px', fontKicker: '2.2rem',  fontBody: '1.15rem', cardPad: '32px 28px' },
+        portrait:  { width: '480px',  height: '600px', fontKicker: '2.0rem',  fontBody: '1.05rem', cardPad: '40px 36px' },
+        grid:      { width: '500px',  height: '500px', fontKicker: '1.75rem', fontBody: '0.95rem', cardPad: '36px 32px' },
+        landscape: { width: '800px',  height: '450px', fontKicker: '2.2rem',  fontBody: '1.10rem', cardPad: '40px 48px' }
     };
     const spec = geoSpecs[geometry];
 
@@ -383,11 +383,15 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                 const containerH = containerRef.current.clientHeight;
                 const cw = parseInt(spec.width);
                 const ch = parseInt(spec.height);
-                
-                // Allow a tiny bit of padding (20px) so it doesn't touch the edges completely
-                const scaleW = (containerW - 20) / cw; 
-                const scaleH = (containerH - 40) / ch;
-                setScale(Math.min(scaleW, scaleH, 1)); // Scale down if needed, but don't scale up past 1x
+
+                // Account for the floating top bar (~48px) and bottom control bar (~72px) + gaps
+                const TOP_CHROME = 64;
+                const BOTTOM_CHROME = 80;
+                const HORIZ_PAD = 40;
+
+                const scaleW = (containerW - HORIZ_PAD) / cw;
+                const scaleH = (containerH - TOP_CHROME - BOTTOM_CHROME) / ch;
+                setScale(Math.min(scaleW, scaleH, 1));
             }
         };
         handleResize();
@@ -477,6 +481,9 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
             if (audio) { audio.play(); setPlayingLayer(layer); }
         }
     };
+
+    // UI panel state
+    const [hotkeysOpen, setHotkeysOpen] = useState(false);
 
     // KINETIC ENGINE STATE
     const [kineticState, setKineticState] = useState('idle'); // 'idle', 'preroll', 'playing', 'done'
@@ -706,16 +713,80 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                 opacity: uiVisible ? 1 : 0, transition: 'opacity 0.4s ease'
             }}>
                 {/* Top Bar */}
-                <div style={{ position: 'absolute', top: 'var(--space-md)', left: 'var(--space-md)', right: 'var(--space-md)', display: 'flex', justifyContent: 'space-between' }}>
-                    <div onClick={handleTouchUnlock} style={{ 
-                        fontFamily: 'var(--fMono)', fontSize: '0.7rem', color: m.accent, 
-                        letterSpacing: '0.15em', cursor: 'pointer', pointerEvents: 'auto',
-                        background: `${m.bg}dd`, padding: '6px 10px', borderRadius: '4px', backdropFilter: 'blur(4px)'
-                    }}>
-                        [ /legacy ]
+                <div style={{ position: 'absolute', top: 'var(--space-md)', left: 'var(--space-md)', right: 'var(--space-md)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center', position: 'relative' }}>
+                        <div onClick={handleTouchUnlock} style={{
+                            fontFamily: 'var(--fMono)', fontSize: '0.7rem', color: m.accent,
+                            letterSpacing: '0.15em', cursor: 'pointer', pointerEvents: 'auto',
+                            background: `${m.bg}dd`, padding: '6px 10px', borderRadius: '4px', backdropFilter: 'blur(4px)'
+                        }}>
+                            [ /legacy ]
+                        </div>
+
+                        {/* Collapsible Hotkeys Toggle */}
+                        <div
+                            onClick={() => setHotkeysOpen(prev => !prev)}
+                            style={{
+                                fontFamily: 'var(--fMono)', fontSize: '0.7rem',
+                                color: hotkeysOpen ? m.accent : m.text2,
+                                border: `1px solid ${hotkeysOpen ? m.accent : m.text2 + '60'}`,
+                                letterSpacing: '0.1em', cursor: 'pointer', pointerEvents: 'auto',
+                                background: `${m.bg}dd`, padding: '6px 10px', borderRadius: '4px', backdropFilter: 'blur(4px)',
+                                transition: 'color 0.2s ease, border-color 0.2s ease'
+                            }}
+                        >
+                            [ ⌨ ]
+                        </div>
+
+                        {/* Glassmorphic Keyboard Hotkeys Panel — anchored below the top bar */}
+                        {hotkeysOpen && (
+                            <div style={{
+                                position: 'absolute', top: 'calc(100% + 8px)', left: 0,
+                                background: `${m.bg}ee`, border: `1px solid ${m.accent}40`,
+                                padding: '12px var(--space-lg)', borderRadius: '6px',
+                                backdropFilter: 'blur(10px)', width: '220px',
+                                fontFamily: 'var(--fMono)', fontSize: '0.6rem',
+                                lineHeight: '1.6', color: m.text2,
+                                pointerEvents: 'auto', boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+                                display: 'flex', flexDirection: 'column', gap: '4px',
+                                zIndex: 70
+                            }}>
+                                <div style={{ color: m.accent, fontWeight: 'bold', letterSpacing: '0.15em', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                    <span style={{ fontSize: '0.8rem' }}>⌨</span> KEYBOARD HOTKEYS
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <span style={{ color: m.text1, fontWeight: 'bold' }}>[Space]</span>
+                                    <span>Play / Stop</span>
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <span style={{ color: m.text1, fontWeight: 'bold' }}>[→]</span>
+                                    <span>Next Asset</span>
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <span style={{ color: m.text1, fontWeight: 'bold' }}>[←]</span>
+                                    <span>Prev Asset</span>
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <span style={{ color: m.text1, fontWeight: 'bold' }}>[L]</span>
+                                    <span>Toggle Loop</span>
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <span style={{ color: m.text1, fontWeight: 'bold' }}>[G]</span>
+                                    <span>Geometry</span>
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <span style={{ color: m.text1, fontWeight: 'bold' }}>[C]</span>
+                                    <span>Category</span>
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <span style={{ color: m.text1, fontWeight: 'bold' }}>[M]</span>
+                                    <span>Toggle Mute</span>
+                                </div>
+                            </div>
+                        )}
                     </div>
-                    
-                    <div onClick={cycleGeometry} style={{ 
+
+                    <div onClick={cycleGeometry} style={{
                         fontFamily: 'var(--fMono)', fontSize: '0.7rem', color: m.text1, border: `1px solid ${m.text1}`,
                         letterSpacing: '0.1em', cursor: 'pointer', pointerEvents: 'auto',
                         background: `${m.bg}dd`, padding: '6px 10px', borderRadius: '4px', backdropFilter: 'blur(4px)'
@@ -724,94 +795,55 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                     </div>
                 </div>
 
-                {/* Glassmorphic Keyboard Hotkeys Legend Panel */}
-                <div style={{
-                    position: 'absolute', top: '70px', left: 'var(--space-md)',
-                    background: `${m.bg}dd`, border: `1px solid ${m.accent}30`,
-                    padding: '12px var(--space-lg)', borderRadius: '6px',
-                    backdropFilter: 'blur(8px)', width: '220px',
-                    fontFamily: 'var(--fMono)', fontSize: '0.6rem',
-                    lineHeight: '1.6', color: m.text2,
-                    pointerEvents: 'auto', boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
-                    display: 'flex', flexDirection: 'column', gap: '4px',
-                    zIndex: 60
-                }}>
-                    <div style={{ color: m.accent, fontWeight: 'bold', letterSpacing: '0.15em', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <span style={{ fontSize: '0.8rem' }}>⌨</span> KEYBOARD HOTKEYS
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ color: m.text1, fontWeight: 'bold' }}>[Space]</span>
-                        <span>Play / Stop</span>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ color: m.text1, fontWeight: 'bold' }}>[→]</span>
-                        <span>Next Asset</span>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ color: m.text1, fontWeight: 'bold' }}>[←]</span>
-                        <span>Prev Asset</span>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ color: m.text1, fontWeight: 'bold' }}>[L]</span>
-                        <span>Toggle Loop</span>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ color: m.text1, fontWeight: 'bold' }}>[G]</span>
-                        <span>Geometry</span>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ color: m.text1, fontWeight: 'bold' }}>[C]</span>
-                        <span>Category</span>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ color: m.text1, fontWeight: 'bold' }}>[M]</span>
-                        <span>Toggle Mute</span>
-                    </div>
-                </div>
-
                 {/* Bottom Bar */}
-                <div style={{ position: 'absolute', bottom: 'var(--space-md)', left: 'var(--space-md)', right: 'var(--space-md)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
-                    <div onClick={cycleCategory} style={{ 
-                        fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, 
-                        letterSpacing: '0.1em', cursor: 'pointer', pointerEvents: 'auto',
-                        background: `${m.bg}dd`, padding: '6px 10px', borderRadius: '4px', backdropFilter: 'blur(4px)'
+                <div style={{
+                    position: 'absolute', bottom: 'var(--space-md)', left: 'var(--space-md)', right: 'var(--space-md)',
+                    display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '6px',
+                    flexWrap: 'nowrap'
+                }}>
+                    <div onClick={cycleCategory} style={{
+                        fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2,
+                        letterSpacing: '0.08em', cursor: 'pointer', pointerEvents: 'auto',
+                        background: `${m.bg}dd`, padding: '6px 8px', borderRadius: '4px', backdropFilter: 'blur(4px)',
+                        whiteSpace: 'nowrap', flexShrink: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis'
                     }}>
                         [ CAT: {activeCategory.toUpperCase()} ]
                     </div>
 
-                    <div onClick={() => setLoopMode(prev => !prev)} style={{ 
-                        fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: loopMode ? m.accent : m.text2, 
+                    <div onClick={() => setLoopMode(prev => !prev)} style={{
+                        fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: loopMode ? m.accent : m.text2,
                         border: `1px dashed ${loopMode ? m.accent : 'transparent'}`,
-                        letterSpacing: '0.1em', cursor: 'pointer', pointerEvents: 'auto',
-                        background: `${m.bg}dd`, padding: '6px 10px', borderRadius: '4px', backdropFilter: 'blur(4px)',
-                        transition: 'all 0.3s ease'
+                        letterSpacing: '0.08em', cursor: 'pointer', pointerEvents: 'auto',
+                        background: `${m.bg}dd`, padding: '6px 8px', borderRadius: '4px', backdropFilter: 'blur(4px)',
+                        transition: 'all 0.3s ease', whiteSpace: 'nowrap', flexShrink: 0
                     }}>
                         [ LOOP: {loopMode ? 'ON' : 'OFF'} ]
                     </div>
 
-                    <div onClick={() => setIsMuted(prev => !prev)} style={{ 
-                        fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: isMuted ? m.accent : m.text2, 
+                    <div onClick={() => setIsMuted(prev => !prev)} style={{
+                        fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: isMuted ? m.accent : m.text2,
                         border: `1px dashed ${isMuted ? m.accent : 'transparent'}`,
-                        letterSpacing: '0.1em', cursor: 'pointer', pointerEvents: 'auto',
-                        background: `${m.bg}dd`, padding: '6px 10px', borderRadius: '4px', backdropFilter: 'blur(4px)',
-                        transition: 'all 0.3s ease'
+                        letterSpacing: '0.08em', cursor: 'pointer', pointerEvents: 'auto',
+                        background: `${m.bg}dd`, padding: '6px 8px', borderRadius: '4px', backdropFilter: 'blur(4px)',
+                        transition: 'all 0.3s ease', whiteSpace: 'nowrap', flexShrink: 0
                     }}>
                         [ MUTE: {isMuted ? 'ON' : 'OFF'} ]
                     </div>
 
-                    <div onClick={triggerKineticMonument} style={{ 
+                    <div onClick={triggerKineticMonument} style={{
                         fontFamily: 'var(--fMono)', fontSize: '0.9rem', color: m.bg, fontWeight: 'bold',
                         letterSpacing: '0.1em', cursor: 'pointer', pointerEvents: 'auto',
-                        background: m.accent, padding: '12px 24px', borderRadius: '4px',
-                        boxShadow: `0 0 20px ${m.accent}40`
+                        background: m.accent, padding: '12px 20px', borderRadius: '4px',
+                        boxShadow: `0 0 20px ${m.accent}40`, whiteSpace: 'nowrap', flexShrink: 0
                     }}>
                         {kineticState === 'preroll' ? `[ ${prerollCount} ]` : '[ PLAY ]'}
                     </div>
 
-                    <div onClick={() => setActiveAssetIndex(prev => (prev + 1) % assets[activeCategory].length)} style={{ 
-                        fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, 
-                        letterSpacing: '0.1em', cursor: 'pointer', pointerEvents: 'auto',
-                        background: `${m.bg}dd`, padding: '6px 10px', borderRadius: '4px', backdropFilter: 'blur(4px)'
+                    <div onClick={() => setActiveAssetIndex(prev => (prev + 1) % assets[activeCategory].length)} style={{
+                        fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2,
+                        letterSpacing: '0.08em', cursor: 'pointer', pointerEvents: 'auto',
+                        background: `${m.bg}dd`, padding: '6px 8px', borderRadius: '4px', backdropFilter: 'blur(4px)',
+                        whiteSpace: 'nowrap', flexShrink: 0
                     }}>
                         [ NEXT ]
                     </div>
@@ -833,19 +865,19 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                 }}
             >
                 {/* The Dynamic Canvas Frame */}
-                <motion.div 
+                <motion.div
                     layout
                     style={{
-                        width: spec.width, // Strict Spatial Geometry per platform
+                        width: spec.width,
                         height: spec.height,
                         background: m.bg,
                         border: `1px solid ${m.accent}20`,
                         position: 'relative',
-                        display: 'flex', flexDirection: 'column', 
-                        padding: 'var(--space-xl)',
+                        display: 'flex', flexDirection: 'column',
+                        padding: spec.cardPad,
                         boxShadow: `0 20px 40px rgba(0,0,0,0.5)`,
                         overflow: 'hidden',
-                        transform: `scale(${scale})`, // CSS Scale to fit the viewport perfectly
+                        transform: `scale(${scale})`,
                         transformOrigin: 'center center'
                     }}
                 >
