@@ -128,14 +128,14 @@ const AnimatedText = ({ text, delayOffset = 0, speed = 0.05, className, style, k
     );
 };
 
-const VisceralRenderer = ({ asset, kineticState, m, playTriggerId, mc = 0 }) => {
+const VisceralRenderer = ({ asset, kineticState, m, playTriggerId, mc = 0, graphicH = '280px' }) => {
     if (asset.graphicType === 'steamsans') {
         const text = asset.kicker || "CREÅTIVE STEEPING";
         const chars = [...text];
         const currentWeight = 900 - (mc * 600);
         const vaporGlow = mc > 0.5 ? `0 0 ${mc * 40}px ${m.accent}40` : 'none';
         return (
-            <div style={{ position: 'relative', width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ position: 'relative', width: '100%', height: graphicH, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 {chars.map((char, i) => (
                     <motion.div
                         key={`${playTriggerId}-${i}`}
@@ -162,7 +162,7 @@ const VisceralRenderer = ({ asset, kineticState, m, playTriggerId, mc = 0 }) => 
     
     if (asset.graphicType === 'hexagong') {
         return (
-            <div style={{ position: 'relative', width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ position: 'relative', width: '100%', height: graphicH, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 {[1, 2, 3, 4, 5].map((ring) => (
                     <motion.div
                         key={`${playTriggerId}-${ring}`}
@@ -184,7 +184,7 @@ const VisceralRenderer = ({ asset, kineticState, m, playTriggerId, mc = 0 }) => 
     
     if (asset.graphicType === 'pulse') {
         return (
-            <div style={{ position: 'relative', width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ position: 'relative', width: '100%', height: graphicH, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 {[...Array(6)].map((_, i) => (
                     <motion.div
                         key={`${playTriggerId}-${i}`}
@@ -203,7 +203,7 @@ const VisceralRenderer = ({ asset, kineticState, m, playTriggerId, mc = 0 }) => 
 
     if (asset.graphicType === 'oscilloscope') {
         return (
-            <div style={{ position: 'relative', width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ position: 'relative', width: '100%', height: graphicH, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <svg width="100%" height="100%" viewBox="0 0 500 200" preserveAspectRatio="none">
                     <motion.path
                         key={`${playTriggerId}-path`}
@@ -229,7 +229,7 @@ const VisceralRenderer = ({ asset, kineticState, m, playTriggerId, mc = 0 }) => 
 
     if (asset.graphicType === 'door') {
         return (
-            <div style={{ position: 'relative', width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ position: 'relative', width: '100%', height: graphicH, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 {/* Glowing Interior */}
                 <motion.div
                     key={`${playTriggerId}-glow`}
@@ -353,10 +353,10 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
     const geometries = ['story', 'portrait', 'grid', 'landscape'];
     
     const geoSpecs = {
-        story:     { width: '390px',  height: '844px', fontKicker: '2.2rem',  fontBody: '1.15rem', cardPad: '32px 28px' },
-        portrait:  { width: '480px',  height: '600px', fontKicker: '2.0rem',  fontBody: '1.05rem', cardPad: '40px 36px' },
-        grid:      { width: '500px',  height: '500px', fontKicker: '1.75rem', fontBody: '0.95rem', cardPad: '36px 32px' },
-        landscape: { width: '800px',  height: '450px', fontKicker: '2.2rem',  fontBody: '1.10rem', cardPad: '40px 48px' }
+        story:     { width: '390px',  height: '844px', fontKicker: '2.2rem',  fontBody: '1.15rem', cardPad: '32px 28px', graphicH: '260px', mechMargin: 'var(--space-xl)' },
+        portrait:  { width: '480px',  height: '600px', fontKicker: '2.0rem',  fontBody: '1.1rem',  cardPad: '40px 36px', graphicH: '210px', mechMargin: 'var(--space-lg)' },
+        grid:      { width: '500px',  height: '500px', fontKicker: '1.75rem', fontBody: '1.0rem',  cardPad: '28px 32px', graphicH: '175px', mechMargin: 'var(--space-md)' },
+        landscape: { width: '800px',  height: '450px', fontKicker: '2.2rem',  fontBody: '1.1rem',  cardPad: '28px 48px', graphicH: '155px', mechMargin: 'var(--space-md)' }
     };
     const spec = geoSpecs[geometry];
 
@@ -694,6 +694,7 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
     // The AnimatedText component is defined outside to prevent React from unmounting it on every render
 
     const uiVisible = kineticState === 'idle' || kineticState === 'done';
+    const isPoem = !!(currentAsset.body && currentAsset.body.includes('\n'));
 
     return (
         <div style={{
@@ -899,18 +900,24 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                     )}
 
                     {/* The Rendered Monument */}
-                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', zIndex: 2, width: '100%' }}>
-                        <div style={{ 
-                            fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, 
-                            letterSpacing: '0.2em', marginBottom: 'var(--space-xl)',
+                    <div style={{
+                        flex: 1, minHeight: 0, overflow: 'hidden',
+                        display: 'flex', flexDirection: 'column',
+                        justifyContent: isPoem ? 'flex-start' : 'center',
+                        textAlign: 'center', zIndex: 2, width: '100%',
+                        paddingTop: isPoem ? 'var(--space-sm)' : 0
+                    }}>
+                        <div style={{
+                            fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent,
+                            letterSpacing: '0.2em', marginBottom: spec.mechMargin,
                             opacity: kineticState === 'idle' || kineticState === 'done' || kineticState === 'preroll' ? 0.8 : 0,
-                            transition: 'opacity 1s ease'
+                            transition: 'opacity 1s ease', flexShrink: 0
                         }}>
                             {currentAsset.mechanism}
                         </div>
                         {currentAsset.isGraphic ? (
                             <div style={{ marginBottom: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-                                <VisceralRenderer asset={currentAsset} kineticState={kineticState} m={m} playTriggerId={playTriggerId} mc={mc} />
+                                <VisceralRenderer asset={currentAsset} kineticState={kineticState} m={m} playTriggerId={playTriggerId} mc={mc} graphicH={spec.graphicH} />
                                 {/* Artful Overlay Text for Graphic Assets (except Word Art) */}
                                 {currentAsset.graphicType !== 'steamsans' && (
                                     <div style={{ marginTop: '1.5rem', zIndex: 10, width: '100%' }}>
@@ -953,16 +960,17 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                                 }}>“</div>
                                 
                                 {/* Testimonial Body Quote */}
-                                <AnimatedText 
+                                <AnimatedText
                                     text={currentAsset.body}
                                     speed={0.04}
                                     kineticState={kineticState}
                                     triggerKey={`review-${playTriggerId}`}
                                     m={m}
-                                    style={{ 
-                                        fontFamily: 'var(--fBody)', fontSize: spec.fontBody, lineHeight: 1.6, color: m.text1,
-                                        fontStyle: 'italic', textAlign: 'center', minHeight: '6rem', marginBottom: '1.5rem'
-                                    }} 
+                                    style={{
+                                        fontFamily: 'var(--fBody)', fontSize: spec.fontBody, lineHeight: 1.85, color: m.text1,
+                                        fontStyle: 'normal', textAlign: 'center', marginBottom: '1.5rem',
+                                        letterSpacing: '0.01em'
+                                    }}
                                 />
                                 
                                 {/* Five-Star Constellation */}
@@ -984,31 +992,34 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                             </div>
                         ) : (
                             <>
-                                <AnimatedText 
-                                    text={currentAsset.kicker} 
+                                <AnimatedText
+                                    text={currentAsset.kicker}
                                     speed={0.1}
                                     kineticState={kineticState}
                                     triggerKey={`kicker-${playTriggerId}`}
                                     m={m}
-                                    style={{ 
-                                        fontFamily: 'var(--fSerif)', fontSize: spec.fontKicker, 
+                                    style={{
+                                        fontFamily: 'var(--fSerif)', fontSize: spec.fontKicker,
                                         lineHeight: 1.2, fontStyle: 'italic', color: m.text1,
-                                        marginBottom: currentAsset.body ? 'var(--space-xl)' : '0px', minHeight: '3rem'
-                                    }} 
+                                        marginBottom: currentAsset.body ? 'var(--space-lg)' : '0px'
+                                    }}
                                 />
-                                {/* BASELINE ITALIC DISCIPLINE: Multi-sentence paragraphs MUST be font-style: normal */}
                                 {currentAsset.body && (
-                                    <AnimatedText 
+                                    <AnimatedText
                                         text={currentAsset.body}
                                         delayOffset={(currentAsset.kicker.split(' ').length * 0.1) + 0.4}
                                         speed={0.05}
                                         kineticState={kineticState}
                                         triggerKey={`body-${playTriggerId}`}
                                         m={m}
-                                        style={{ 
-                                            fontFamily: 'var(--fBody)', fontSize: spec.fontBody, lineHeight: 1.6, color: m.text2,
-                                            fontStyle: 'normal', textAlign: 'left', padding: '0 1rem', minHeight: '6rem'
-                                        }} 
+                                        style={{
+                                            fontFamily: 'var(--fBody)', fontSize: spec.fontBody,
+                                            lineHeight: isPoem ? 1.9 : 1.75,
+                                            color: m.text2, fontStyle: 'normal',
+                                            textAlign: isPoem ? 'left' : 'center',
+                                            padding: isPoem ? '0 0.5rem' : '0 1rem',
+                                            letterSpacing: '0.01em'
+                                        }}
                                     />
                                 )}
                             </>
@@ -1017,8 +1028,8 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
 
                     {/* Artful Elevated Branding Footer (High-Prominence URL Priority) */}
                     <div style={{
-                        marginTop: 'auto', paddingTop: 'var(--space-xl)',
-                        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px',
+                        flexShrink: 0, paddingTop: spec.mechMargin,
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px',
                         width: '100%', zIndex: 5
                     }}>
                         {/* Elegant Geometric/Organic Divider */}
