@@ -911,7 +911,8 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                             fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent,
                             letterSpacing: '0.2em', marginBottom: spec.mechMargin,
                             opacity: kineticState === 'idle' || kineticState === 'done' || kineticState === 'preroll' ? 0.8 : 0,
-                            transition: 'opacity 1s ease', flexShrink: 0
+                            transition: 'opacity 1s ease, font-weight 0.4s ease', flexShrink: 0,
+                            fontWeight: Math.round(300 + (mc * 200))
                         }}>
                             {currentAsset.mechanism}
                         </div>
@@ -927,24 +928,28 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                                             kineticState={kineticState}
                                             triggerKey={`kicker-${playTriggerId}`}
                                             m={m}
-                                            style={{ 
-                                                fontFamily: 'var(--fSerif)', fontSize: spec.fontKicker, 
+                                            style={{
+                                                fontFamily: 'var(--fSerif)', fontSize: spec.fontKicker,
                                                 lineHeight: 1.2, fontStyle: 'italic', color: m.text1,
+                                                fontWeight: Math.max(400, Math.round(900 - (mc * 500))),
+                                                transition: 'font-weight 0.3s ease',
                                                 marginBottom: 'var(--space-md)'
-                                            }} 
+                                            }}
                                         />
                                         {currentAsset.body && (
-                                            <AnimatedText 
+                                            <AnimatedText
                                                 text={currentAsset.body}
                                                 delayOffset={(currentAsset.kicker.split(' ').length * 0.1) + 0.4}
                                                 speed={0.05}
                                                 kineticState={kineticState}
                                                 triggerKey={`body-${playTriggerId}`}
                                                 m={m}
-                                                style={{ 
-                                                    fontFamily: 'var(--fBody)', fontSize: spec.fontBody, lineHeight: 1.4, color: m.text2,
-                                                    fontStyle: 'normal', textAlign: 'center', padding: '0 1rem'
-                                                }} 
+                                                style={{
+                                                    fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                                                    fontSize: spec.fontBody, lineHeight: 1.7, color: m.text2,
+                                                    fontStyle: 'normal', textAlign: 'center',
+                                                    padding: '0 1rem', letterSpacing: '0.01em'
+                                                }}
                                             />
                                         )}
                                     </div>
@@ -967,7 +972,8 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                                     triggerKey={`review-${playTriggerId}`}
                                     m={m}
                                     style={{
-                                        fontFamily: 'var(--fBody)', fontSize: spec.fontBody, lineHeight: 1.85, color: m.text1,
+                                        fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                                        fontSize: spec.fontBody, lineHeight: 1.85, color: m.text1,
                                         fontStyle: 'normal', textAlign: 'center', marginBottom: '1.5rem',
                                         letterSpacing: '0.01em'
                                     }}
@@ -1001,6 +1007,8 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                                     style={{
                                         fontFamily: 'var(--fSerif)', fontSize: spec.fontKicker,
                                         lineHeight: 1.2, fontStyle: 'italic', color: m.text1,
+                                        fontWeight: Math.max(400, Math.round(900 - (mc * 500))),
+                                        transition: 'font-weight 0.3s ease',
                                         marginBottom: currentAsset.body ? 'var(--space-lg)' : '0px'
                                     }}
                                 />
@@ -1013,12 +1021,13 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                                         triggerKey={`body-${playTriggerId}`}
                                         m={m}
                                         style={{
-                                            fontFamily: 'var(--fBody)', fontSize: spec.fontBody,
+                                            fontFamily: "'Atkinson Hyperlegible', sans-serif",
+                                            fontSize: spec.fontBody,
                                             lineHeight: isPoem ? 1.9 : 1.75,
                                             color: m.text2, fontStyle: 'normal',
                                             textAlign: isPoem ? 'left' : 'center',
                                             padding: isPoem ? '0 0.5rem' : '0 1rem',
-                                            letterSpacing: '0.01em'
+                                            letterSpacing: '0.015em'
                                         }}
                                     />
                                 )}
