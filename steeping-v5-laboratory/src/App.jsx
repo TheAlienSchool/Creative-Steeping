@@ -422,6 +422,8 @@ function AppInner() {
   const [authOpen, setAuthOpen] = useState(false); // Authentication popup state
   const [navMenuOpen, setNavMenuOpen] = useState(false); // Hamburger menu state
   const [aboutOpen, setAboutOpen] = useState(false); // About Creative Steeping panel
+  const [privacyOpen, setPrivacyOpen] = useState(false); // Privacy Policy panel
+  const [pressOpen, setPressOpen] = useState(false); // Press panel
   const [isClosingVessel, setIsClosingVessel] = useState(false);
   const [hasEngaged5D, setHasEngaged5D] = useState(() => localStorage.getItem('steeping_5d_engaged') === 'true');
   const [lockedTooltipOpen, setLockedTooltipOpen] = useState(null); // vessel.num of locked tooltip showing
@@ -1097,8 +1099,8 @@ function AppInner() {
             fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, letterSpacing: '0.15em',
             zIndex: 10, opacity: 0.6
           }}>
-            <span style={{ cursor: 'pointer', transition: 'color 0.3s' }} onMouseEnter={e => e.currentTarget.style.color = m.accent} onMouseLeave={e => e.currentTarget.style.color = m.text2}>[ PRIVACY POLICY ]</span>
-            <span style={{ cursor: 'pointer', transition: 'color 0.3s' }} onMouseEnter={e => e.currentTarget.style.color = m.accent} onMouseLeave={e => e.currentTarget.style.color = m.text2}>[ PRESS ]</span>
+            <span style={{ cursor: 'pointer', transition: 'color 0.3s' }} onClick={() => setPrivacyOpen(true)} onMouseEnter={e => e.currentTarget.style.color = m.accent} onMouseLeave={e => e.currentTarget.style.color = m.text2}>[ PRIVACY POLICY ]</span>
+            <span style={{ cursor: 'pointer', transition: 'color 0.3s' }} onClick={() => setPressOpen(true)} onMouseEnter={e => e.currentTarget.style.color = m.accent} onMouseLeave={e => e.currentTarget.style.color = m.text2}>[ PRESS ]</span>
             <span style={{ cursor: 'pointer', transition: 'color 0.3s' }} onClick={() => setAboutOpen(true)} onMouseEnter={e => e.currentTarget.style.color = m.accent} onMouseLeave={e => e.currentTarget.style.color = m.text2}>[ ABOUT ]</span>
             <span>CREÅTIVE STEEPING © {new Date().getFullYear()}</span>
           </div>
@@ -2266,6 +2268,174 @@ function AppInner() {
           </div>
         </div>
       )}
+
+      {/* PRIVACY POLICY */}
+      {privacyOpen && (() => {
+        const Section = ({ label }) => (
+          <div style={{ fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: m.accent, marginBottom: '14px', opacity: 0.8 }}>{label}</div>
+        );
+        const Body = ({ children, last }) => (
+          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.8, color: m.text2, marginBottom: last ? '0' : '28px' }}>{children}</p>
+        );
+        const Rule = () => <div style={{ width: '100%', height: '1px', background: `${m.accent}20`, marginBottom: '28px' }} />;
+        return (
+          <div onClick={() => setPrivacyOpen(false)} style={{
+            position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.88)',
+            backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+            zIndex: 9000, display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
+            padding: '20px', overflowY: 'auto'
+          }}>
+            <div onClick={e => e.stopPropagation()} style={{
+              background: m.bg, border: `1px solid ${m.accent}50`,
+              maxWidth: '640px', width: '100%', margin: '20px 0',
+              padding: 'clamp(32px, 6vw, 56px) clamp(24px, 5vw, 48px)',
+              boxShadow: `0 20px 80px rgba(0,0,0,0.9)`,
+              position: 'relative', fontFamily: 'var(--fMono)', color: m.text2, letterSpacing: '0.04em'
+            }}>
+              <button onClick={() => setPrivacyOpen(false)} style={{
+                position: 'absolute', top: '20px', right: '20px', background: 'none', border: 'none',
+                color: m.text2, cursor: 'pointer', fontSize: '0.9rem', opacity: 0.5,
+                fontFamily: 'var(--fMono)', transition: 'opacity 0.3s'
+              }} onMouseEnter={e => e.currentTarget.style.opacity = 1} onMouseLeave={e => e.currentTarget.style.opacity = 0.5}>[ ✕ ]</button>
+
+              <div style={{ fontFamily: 'var(--fSerif)', fontSize: 'clamp(1.3rem, 4vw, 1.6rem)', fontStyle: 'italic', color: m.text1, marginBottom: '6px' }}>Privacy Policy</div>
+              <div style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: m.accent, marginBottom: '8px', opacity: 0.7 }}>Effective: January 2025 · creativesteeping.com</div>
+              <div style={{ width: '40px', height: '1px', background: m.accent, opacity: 0.4, marginBottom: '32px' }} />
+
+              <Section label="The Practice Stays With You" />
+              <Body>The Steeping Space is designed around a foundational principle: your practice belongs to you. The reflections you write, the scores your sessions generate, and the patterns of your creative movement are stored on your own device — in your browser's local storage — and are never transmitted to our servers, sold, or shared with third parties.</Body>
+
+              <Rule />
+              <Section label="What We Collect" />
+              <Body>If you create an account, we collect your email address and a secure password hash through Supabase, our authentication provider. This is the only information that leaves your device. We do not collect your name, location, payment information, or any other personal identifiers. We do not run advertising. We do not use tracking pixels or third-party analytics.</Body>
+
+              <Rule />
+              <Section label="What Lives on Your Device" />
+              <Body>Your browser's local storage holds: your visit count, practice archive and steep scores, ink drawings made within vessels, reading lens preference, and 5D compass engagement state. This data is yours. It does not leave your browser. Clearing your browser's local storage removes it entirely.</Body>
+
+              <Rule />
+              <Section label="Authentication" />
+              <Body>Account creation and sign-in are handled by Supabase (supabase.com), a third-party infrastructure provider. When you create an account, your email and encrypted password are stored on Supabase's servers subject to their privacy policy. We use this data solely to authenticate your session — we do not use it for marketing, profiling, or any other purpose.</Body>
+
+              <Rule />
+              <Section label="Hosting" />
+              <Body>The Steeping Space is hosted on Vercel (vercel.com). Vercel may collect standard server logs (IP address, browser type, request timestamps) as part of normal infrastructure operations. These logs are governed by Vercel's privacy policy and are not accessible to or used by THE ÅLIËN SCÖÕL.</Body>
+
+              <Rule />
+              <Section label="Your Rights" />
+              <Body>You may request deletion of your account and any associated authentication data at any time by contacting us at the address below. Local practice data can be cleared directly through your browser settings. We will respond to all data requests within 30 days.</Body>
+
+              <Rule />
+              <Section label="Contact" />
+              <Body last>For privacy-related requests or questions: <a href="mailto:thealienscool@gmail.com" style={{ color: m.accent, textDecoration: 'none', borderBottom: `1px solid ${m.accent}40` }}>thealienscool@gmail.com</a><br />THE ÅLIËN SCÖÕL for Creative Thinking</Body>
+            </div>
+          </div>
+        );
+      })()}
+
+      {/* PRESS */}
+      {pressOpen && (() => {
+        const Section = ({ label }) => (
+          <div style={{ fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: m.accent, marginBottom: '14px', opacity: 0.8 }}>{label}</div>
+        );
+        const Body = ({ children, last }) => (
+          <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.8, color: m.text2, marginBottom: last ? '0' : '28px' }}>{children}</p>
+        );
+        const Rule = () => <div style={{ width: '100%', height: '1px', background: `${m.accent}20`, marginBottom: '28px' }} />;
+        return (
+          <div onClick={() => setPressOpen(false)} style={{
+            position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.88)',
+            backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+            zIndex: 9000, display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
+            padding: '20px', overflowY: 'auto'
+          }}>
+            <div onClick={e => e.stopPropagation()} style={{
+              background: m.bg, border: `1px solid ${m.accent}50`,
+              maxWidth: '640px', width: '100%', margin: '20px 0',
+              padding: 'clamp(32px, 6vw, 56px) clamp(24px, 5vw, 48px)',
+              boxShadow: `0 20px 80px rgba(0,0,0,0.9)`,
+              position: 'relative', fontFamily: 'var(--fMono)', color: m.text2, letterSpacing: '0.04em'
+            }}>
+              <button onClick={() => setPressOpen(false)} style={{
+                position: 'absolute', top: '20px', right: '20px', background: 'none', border: 'none',
+                color: m.text2, cursor: 'pointer', fontSize: '0.9rem', opacity: 0.5,
+                fontFamily: 'var(--fMono)', transition: 'opacity 0.3s'
+              }} onMouseEnter={e => e.currentTarget.style.opacity = 1} onMouseLeave={e => e.currentTarget.style.opacity = 0.5}>[ ✕ ]</button>
+
+              <div style={{ fontFamily: 'var(--fSerif)', fontSize: 'clamp(1.3rem, 4vw, 1.6rem)', fontStyle: 'italic', color: m.text1, marginBottom: '6px' }}>Press</div>
+              <div style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: m.accent, marginBottom: '8px', opacity: 0.7 }}>THE ÅLIËN SCÖÕL for Creative Thinking</div>
+              <div style={{ width: '40px', height: '1px', background: m.accent, opacity: 0.4, marginBottom: '32px' }} />
+
+              <Section label="About Creative Steeping" />
+              <Body>Creative Steeping is an immersive digital practice for creative self-inquiry — a seven-day guided journaling ritual that fuses introspection, tea ceremony, and a generative sonic layer into a single contemplative experience. Visitors engage The Steeping Space through text, sound, and behavioral intelligence to move through seven dimensions of creative identity: Essence, Mosaic, Summits, Mirror, Labyrinth, Conclave, and Crown Jewels.</Body>
+
+              <Rule />
+              <Section label="The Science" />
+              <div style={{ borderLeft: `2px solid ${m.accent}50`, paddingLeft: '16px', marginBottom: '24px' }}>
+                <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.9rem', lineHeight: 1.85, color: m.text1, margin: 0, fontStyle: 'italic' }}>
+                  "The Steeping Space may be the most sophisticated non-clinical implementation of music-medicine principles currently available to general audiences — not because it was designed with neuroscience in mind, but because it was designed from a deep understanding of what the human creative system actually needs."
+                </p>
+                <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', letterSpacing: '0.12em', color: m.accent, opacity: 0.7, marginTop: '10px', textTransform: 'uppercase' }}>The Sound of Becoming — Research Report, 2026</div>
+              </div>
+              <Body>The Steeping Space's sonic layer — the Sonnet Engine — generates music in real time from the practitioner's own keystrokes, tuned to their current position in the practice. Research mapping the portal's architecture to Daniel Levitin's <em>Music as Medicine</em> (W.W. Norton, 2025) identifies it as a first-of-its-kind preventative music-medicine intervention: full-brain activation through simultaneous writing and musical creation, bidirectional rhythmic entrainment, and an individual-preference music mechanism that may trigger the brain's natural opioid response.</Body>
+
+              <Rule />
+              <Section label="About the Founder" />
+              <Body>Kamau Zuberi Akabueze (KzA) is the founder of THE ÅLIËN SCÖÕL for Creative Thinking — a creative education practice spanning 25 years of work at the intersection of creativity, strategy, and human development. Creative Steeping is the living distillation of that practice: a methodology, a guidebook, and now a digital portal.</Body>
+
+              <Rule />
+              <Section label="Key Facts" />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '28px' }}>
+                {[
+                  ['Practice', 'Seven-steep creative journaling ritual'],
+                  ['Format', 'Digital portal · creativesteeping.com'],
+                  ['Sonic Layer', 'The Sonnet Engine — generative music from keystroke behavior'],
+                  ['Intelligence', 'The Sage — behavioral wayfinding, fully local'],
+                  ['Data', 'Practice data stays on the visitor\'s device. No tracking.'],
+                  ['Guidebook', 'Creative Steeping: A Journey to the Essence of Your Flavor'],
+                  ['Founded', 'THE ÅLIËN SCÖÕL · thealienschool.com'],
+                ].map(([k, v]) => (
+                  <div key={k} style={{ display: 'flex', gap: '16px' }}>
+                    <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.7rem', letterSpacing: '0.1em', color: m.accent, textTransform: 'uppercase', flexShrink: 0, minWidth: '90px', opacity: 0.7 }}>{k}</span>
+                    <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.82rem', color: m.text2, lineHeight: 1.5 }}>{v}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Rule />
+              <Section label="Media Contact" />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <a href="mailto:thealienscool@gmail.com" style={{
+                  fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.text1, textDecoration: 'none',
+                  letterSpacing: '0.1em', borderBottom: `1px solid ${m.accent}40`, paddingBottom: '4px',
+                  transition: 'border-color 0.3s', display: 'inline-block'
+                }} onMouseEnter={e => e.currentTarget.style.borderColor = m.accent}
+                  onMouseLeave={e => e.currentTarget.style.borderColor = `${m.accent}40`}>
+                  thealienscool@gmail.com
+                </a>
+                <a href="https://calendly.com/bethecandle/1-1-w-kza" target="_blank" rel="noopener noreferrer" style={{
+                  fontFamily: 'var(--fMono)', fontSize: '0.75rem', color: m.text2, textDecoration: 'none',
+                  letterSpacing: '0.1em', textTransform: 'uppercase', opacity: 0.7,
+                  borderBottom: `1px solid ${m.accent}20`, paddingBottom: '4px',
+                  transition: 'all 0.3s', display: 'inline-block'
+                }} onMouseEnter={e => { e.currentTarget.style.opacity = 1; e.currentTarget.style.borderColor = `${m.accent}60`; }}
+                  onMouseLeave={e => { e.currentTarget.style.opacity = 0.7; e.currentTarget.style.borderColor = `${m.accent}20`; }}>
+                  Schedule a media conversation with Kamau ↗
+                </a>
+                <a href="https://thealienschool.com" target="_blank" rel="noopener noreferrer" style={{
+                  fontFamily: 'var(--fMono)', fontSize: '0.75rem', color: m.text2, textDecoration: 'none',
+                  letterSpacing: '0.1em', textTransform: 'uppercase', opacity: 0.7,
+                  borderBottom: `1px solid ${m.accent}20`, paddingBottom: '4px',
+                  transition: 'all 0.3s', display: 'inline-block'
+                }} onMouseEnter={e => { e.currentTarget.style.opacity = 1; e.currentTarget.style.borderColor = `${m.accent}60`; }}
+                  onMouseLeave={e => { e.currentTarget.style.opacity = 0.7; e.currentTarget.style.borderColor = `${m.accent}20`; }}>
+                  THE ÅLIËN SCÖÕL ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
     </div >
   );
 }
