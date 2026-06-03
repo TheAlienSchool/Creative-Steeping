@@ -860,7 +860,7 @@ function AppInner() {
               boxShadow: `0 10px 40px rgba(0,0,0,0.8)`, minWidth: '220px'
             }}>
 
-              {/* ① BEGIN YOUR STEEP — top position, elevated glow */}
+              {/* ① BEGIN YOUR STEEP — top position, subtle hierarchical glow */}
               {!user ? (
                 <button onClick={() => { setAuthOpen(true); setNavMenuOpen(false); }} style={{
                   background: 'none', border: 'none',
@@ -868,9 +868,9 @@ function AppInner() {
                   transition: 'border-bottom 1.2s ease, text-shadow 0.6s ease', cursor: 'pointer',
                   fontFamily: 'var(--fMono)', fontSize: '0.85rem', letterSpacing: '0.15em',
                   textTransform: 'uppercase', whiteSpace: 'nowrap',
-                  textShadow: `0 0 18px var(--acc), 0 0 6px var(--acc)`
-                }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--acc)'}
-                  onMouseLeave={e => e.currentTarget.style.borderBottom = '1px solid transparent'}>
+                  textShadow: `0 0 8px var(--acc)`
+                }} onMouseEnter={e => { e.currentTarget.style.borderBottom = '1px solid var(--acc)'; e.currentTarget.style.textShadow = '0 0 14px var(--acc)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderBottom = '1px solid transparent'; e.currentTarget.style.textShadow = '0 0 8px var(--acc)'; }}>
                   <b>[ BEGIN YOUR STEEP ]</b>
                 </button>
               ) : (
@@ -881,9 +881,9 @@ function AppInner() {
                     transition: 'border-bottom 1.2s ease, text-shadow 0.6s ease', cursor: 'pointer',
                     fontFamily: 'var(--fMono)', fontSize: '0.85rem', letterSpacing: '0.15em',
                     textTransform: 'uppercase', whiteSpace: 'nowrap',
-                    textShadow: `0 0 18px var(--t1), 0 0 6px var(--t1)`
-                  }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--t1)'}
-                    onMouseLeave={e => e.currentTarget.style.borderBottom = '1px solid transparent'}
+                    textShadow: `0 0 8px var(--t1)`
+                  }} onMouseEnter={e => { e.currentTarget.style.borderBottom = '1px solid var(--t1)'; e.currentTarget.style.textShadow = '0 0 14px var(--t1)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.borderBottom = '1px solid transparent'; e.currentTarget.style.textShadow = '0 0 8px var(--t1)'; }}
                     title="Return to your Space">
                     <b>[ MY SANCTUARY ]</b>
                   </button>
@@ -2075,19 +2075,19 @@ function AppInner() {
         <SubterraneanBay onClose={() => setShowSubterraneanBay(false)} eqParams={eqParams} setEqParams={setEqParams} />
       )}
 
-      {/* ABOUT CREÅTIVE STEEPING */}
+      {/* ABOUT CREÅTIVE STEEPING — full orientation panel */}
       {aboutOpen && (
         <div onClick={() => setAboutOpen(false)} style={{
-          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)',
-          backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)',
-          zIndex: 9000, display: 'flex', alignItems: 'center', justifyContent: 'center',
-          padding: '20px'
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.88)',
+          backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+          zIndex: 9000, display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
+          padding: '20px', overflowY: 'auto'
         }}>
           <div onClick={e => e.stopPropagation()} style={{
-            background: m.bg, border: `1px solid ${m.accent}`,
-            maxWidth: '600px', width: '100%', maxHeight: '85vh',
-            overflowY: 'auto', padding: '48px 40px',
-            boxShadow: `0 20px 80px rgba(0,0,0,0.9), 0 0 60px ${m.accent}15`,
+            background: m.bg, border: `1px solid ${m.accent}50`,
+            maxWidth: '640px', width: '100%', margin: '20px 0',
+            padding: 'clamp(32px, 6vw, 56px) clamp(24px, 5vw, 48px)',
+            boxShadow: `0 20px 80px rgba(0,0,0,0.9), 0 0 40px ${m.accent}10`,
             position: 'relative', fontFamily: 'var(--fMono)',
             color: m.text2, letterSpacing: '0.04em'
           }}>
@@ -2095,28 +2095,31 @@ function AppInner() {
             <button onClick={() => setAboutOpen(false)} style={{
               position: 'absolute', top: '20px', right: '20px',
               background: 'none', border: 'none', color: m.text2,
-              cursor: 'pointer', fontSize: '1.1rem', opacity: 0.6,
-              fontFamily: 'var(--fMono)', letterSpacing: '0.1em'
-            }}>[ ✕ ]</button>
+              cursor: 'pointer', fontSize: '0.9rem', opacity: 0.5,
+              fontFamily: 'var(--fMono)', letterSpacing: '0.1em',
+              transition: 'opacity 0.3s'
+            }} onMouseEnter={e => e.currentTarget.style.opacity = 1}
+              onMouseLeave={e => e.currentTarget.style.opacity = 0.5}>[ ✕ ]</button>
 
-            {/* Title */}
-            <div style={{ fontFamily: 'var(--fSerif)', fontSize: '1.5rem', fontStyle: 'italic', color: m.text1, marginBottom: '8px', lineHeight: 1.2 }}>
+            {/* ─── Header ─── */}
+            <div style={{ fontFamily: 'var(--fSerif)', fontSize: 'clamp(1.4rem, 5vw, 1.8rem)', fontStyle: 'italic', color: m.text1, marginBottom: '6px', lineHeight: 1.1 }}>
               CREÅTIVE STEEPING
             </div>
-            <div style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: m.accent, marginBottom: '36px', opacity: 0.8 }}>
+            <div style={{ fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: m.accent, marginBottom: '8px', opacity: 0.8 }}>
               A Journey to the Essence of Your Flavor
             </div>
+            <div style={{ width: '40px', height: '1px', background: m.accent, opacity: 0.4, marginBottom: '32px' }} />
 
-            {/* Foreword excerpt */}
-            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.9rem', lineHeight: 1.8, color: m.text2, marginBottom: '32px', fontStyle: 'normal' }}>
-              Creative Steeping is an immersive and experiential in-venture — a hyper-connective journaling practice to, and for, the fierce creative nature within you. It is a ritual and a journey. A veneration of your human spirit in pursuit of self-awareness, creative expression, identity — and by extension, personal brand.
+            {/* ─── The Practice ─── */}
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.95rem', lineHeight: 1.85, color: m.text1, marginBottom: '32px' }}>
+              Creative Steeping is an immersive, experiential in-venture — a hyper-connective journaling practice designed for the fierce creative nature within you. It is a ritual, a journey, and a veneration of your human spirit in pursuit of self-awareness, creative expression, and identity.
             </p>
 
-            {/* The 7 Steeps */}
-            <div style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: m.accent, marginBottom: '16px', opacity: 0.8 }}>
+            {/* ─── The Seven Steeps ─── */}
+            <div style={{ fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: m.accent, marginBottom: '14px', opacity: 0.8 }}>
               The Seven Steeps
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '36px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '9px', marginBottom: '36px' }}>
               {[
                 ['01', 'Essence of My Being', 'Your Core Essence'],
                 ['02', 'Mosaic of Experience', 'Your Creative Journey to Now'],
@@ -2127,38 +2130,125 @@ function AppInner() {
                 ['07', 'Crown Jewels of Individuality', 'Your Unique Offerings to The World'],
               ].map(([num, title, sub]) => (
                 <div key={num} style={{ display: 'flex', alignItems: 'baseline', gap: '12px' }}>
-                  <span style={{ color: m.accent, fontSize: '0.7rem', flexShrink: 0, opacity: 0.7 }}>{num}</span>
+                  <span style={{ color: m.accent, fontSize: '0.65rem', flexShrink: 0, opacity: 0.6, minWidth: '20px' }}>{num}</span>
                   <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', color: m.text1, lineHeight: 1.4 }}>
-                    {title}
-                    <span style={{ color: m.text2, opacity: 0.6, fontSize: '0.75rem' }}> — {sub}</span>
+                    {title}<span style={{ color: m.text2, opacity: 0.55, fontSize: '0.75rem' }}> — {sub}</span>
                   </span>
                 </div>
               ))}
             </div>
 
-            {/* Practice guidance */}
-            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.8, color: m.text2, marginBottom: '36px', fontStyle: 'normal' }}>
-              We recommend daily practice over the course of a seven-day recurring investment in self. In this way, your reflections connect fluidly with the movements and moments of your waking hours — along with the memories that fill your dreams.
+            {/* ─── How the Portal Works ─── */}
+            <div style={{ width: '100%', height: '1px', background: `${m.accent}25`, marginBottom: '32px' }} />
+            <div style={{ fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: m.accent, marginBottom: '20px', opacity: 0.8 }}>
+              How the Portal Works
+            </div>
+
+            {[
+              {
+                name: 'The Hexagong',
+                icon: '⬡',
+                body: 'The six-sided vessel at the center of the experience. Each face of the Hexagong is a Steep — a day, a dimension, a door. As you steep, it illuminates. Vessels unlock through depth of practice, not passage of time.'
+              },
+              {
+                name: 'The Sage',
+                icon: '◈',
+                body: 'The portal\'s behavioral intelligence. The Sage reads stillness, typing rhythm, and the depth of what you write — then reflects back a response tuned to exactly where you are in your journey. Not a chatbot. A witness.'
+              },
+              {
+                name: 'The Sonnet Engine',
+                icon: '♪',
+                body: 'As you type, your words become music. Every keystroke generates a harmonic tone tuned to your current Steep. The music does not play at you — it arises from you, a real-time acoustic portrait of your creative state.'
+              },
+            ].map(({ name, icon, body }) => (
+              <div key={name} style={{ display: 'flex', gap: '16px', marginBottom: '22px', alignItems: 'flex-start' }}>
+                <span style={{ color: m.accent, fontSize: '1rem', flexShrink: 0, opacity: 0.7, marginTop: '1px' }}>{icon}</span>
+                <div>
+                  <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: m.text1, marginBottom: '6px' }}>{name}</div>
+                  <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.75, color: m.text2, margin: 0 }}>{body}</p>
+                </div>
+              </div>
+            ))}
+
+            {/* ─── The Sonic Layer (Science) ─── */}
+            <div style={{ width: '100%', height: '1px', background: `${m.accent}25`, marginBottom: '32px', marginTop: '10px' }} />
+            <div style={{ fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: m.accent, marginBottom: '14px', opacity: 0.8 }}>
+              The Sound of Becoming
+            </div>
+            <div style={{
+              borderLeft: `2px solid ${m.accent}50`, paddingLeft: '16px', marginBottom: '24px'
+            }}>
+              <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.9rem', lineHeight: 1.85, color: m.text1, margin: 0, fontStyle: 'italic' }}>
+                "When you write and hear your writing as music simultaneously, you are engaging more neural territory than any other single human activity."
+              </p>
+            </div>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.8, color: m.text2, marginBottom: '16px' }}>
+              The Sonnet Engine generates music <em>from</em> you, not for you. Research in music neuroscience confirms that when the music is yours — generated from your own behavioral and emotional signature — the brain releases its own natural opioids and the immune system responds. There is no closer relationship to individual musical preference than music that emerges from your own creative state, in real time.
+            </p>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.8, color: m.text2, marginBottom: '32px' }}>
+              For practitioners who feel creatively blocked, the portal offers a Swiss Army knife route: when the writing circuit feels frozen, the music circuit is open. Sound before language. Hearing before knowing. The practice creates the conditions its own content requires.
             </p>
 
-            {/* KzA bio */}
-            <div style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: m.accent, marginBottom: '16px', opacity: 0.8 }}>
-              The Author
+            {/* ─── Community Steeping ─── */}
+            <div style={{ width: '100%', height: '1px', background: `${m.accent}25`, marginBottom: '32px' }} />
+            <div style={{ fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: m.accent, marginBottom: '14px', opacity: 0.8 }}>
+              The Steeperverse
             </div>
-            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.8, color: m.text2, marginBottom: '36px', fontStyle: 'normal' }}>
-              Kamau Z. Akabueze (KzA) — visionary thinker, mentor, and architect of creative agitation. He navigated a 25-year career spanning the seamless fusion of creativity and strategy, and has dedicated his life to uplifting the creative spirit in everyone he encounters.
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.8, color: m.text2, marginBottom: '16px' }}>
+              Creative Steeping is a solo practice that becomes richer in community. The Steeperverse is the gathering place — where Steepers share reflections, hold space for each other's unfolding, and witness the mythic narratives of their peers.
+            </p>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.8, color: m.text2, marginBottom: '32px' }}>
+              Community Steeping unlocks something the solo practice cannot — the recognition that your inner landscape, when shared, resonates. What you thought was yours alone turns out to be the room's. This is the deepest offer of the Conclave of Voices: not that your audience finds you, but that you find each other.
             </p>
 
-            {/* Links */}
-            <div style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: m.accent, marginBottom: '16px', opacity: 0.8 }}>
-              Continue the Journey
+            {/* ─── Voices from the Practice ─── */}
+            <div style={{ width: '100%', height: '1px', background: `${m.accent}25`, marginBottom: '32px' }} />
+            <div style={{ fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: m.accent, marginBottom: '20px', opacity: 0.8 }}>
+              Voices from the Practice
             </div>
+            {[
+              {
+                text: "Epiphanies unfolded, and the mythic narrative of my own genius brought me to tears. I experienced myself as a reliable source for wisdom.",
+                name: "Sallomé Hralima",
+                role: "Writer, Filmmaker"
+              },
+              {
+                text: "The only thing standing between you and your next big idea is the courage to do the deep work. Creative Steeping gives you a framework for that courage.",
+                name: "Lisa Heinsdale",
+                role: "Creative Synthesizer"
+              },
+              {
+                text: "What sets you apart does not set you apart from others — it magnetizes others to the unique fragrance of your song.",
+                name: "Sylvia Baffour",
+                role: "Emotional Intelligence Expert"
+              },
+            ].map(({ text, name, role }, i) => (
+              <div key={i} style={{
+                borderLeft: `1px solid ${m.accent}40`, paddingLeft: '16px', marginBottom: '20px'
+              }}>
+                <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.75, color: m.text2, margin: '0 0 8px 0', fontStyle: 'italic' }}>
+                  "{text}"
+                </p>
+                <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: m.accent, opacity: 0.8 }}>
+                  {name} <span style={{ opacity: 0.5 }}>— {role}</span>
+                </div>
+              </div>
+            ))}
+
+            {/* ─── KzA + Links ─── */}
+            <div style={{ width: '100%', height: '1px', background: `${m.accent}25`, marginBottom: '32px' }} />
+            <div style={{ fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: m.accent, marginBottom: '14px', opacity: 0.8 }}>
+              The Architect
+            </div>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.8, color: m.text2, marginBottom: '32px' }}>
+              Kamau Zuberi Akabueze (KzA) — founder of THE ÅLIËN SCÖÕL for Creative Thinking. Over 25 years fusing creativity and strategy, he has dedicated his life to uplifting the creative spirit in everyone he encounters. Creative Steeping is the living distillation of that practice.
+            </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <a href="https://thealienschool.com" target="_blank" rel="noopener noreferrer" style={{
                 fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.text1, textDecoration: 'none',
                 letterSpacing: '0.12em', textTransform: 'uppercase',
                 borderBottom: `1px solid ${m.accent}40`, paddingBottom: '4px',
-                transition: 'border-color 0.3s ease'
+                transition: 'border-color 0.3s ease', display: 'inline-block'
               }} onMouseEnter={e => e.currentTarget.style.borderColor = m.accent}
                 onMouseLeave={e => e.currentTarget.style.borderColor = `${m.accent}40`}>
                 THE ÅLIËN SCÖÕL for Creative Thinking ↗
@@ -2167,7 +2257,7 @@ function AppInner() {
                 fontFamily: 'var(--fMono)', fontSize: '0.75rem', color: m.text2, textDecoration: 'none',
                 letterSpacing: '0.1em', textTransform: 'uppercase', opacity: 0.7,
                 borderBottom: `1px solid ${m.accent}20`, paddingBottom: '4px',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.3s ease', display: 'inline-block'
               }} onMouseEnter={e => { e.currentTarget.style.opacity = 1; e.currentTarget.style.borderColor = `${m.accent}60`; }}
                 onMouseLeave={e => { e.currentTarget.style.opacity = 0.7; e.currentTarget.style.borderColor = `${m.accent}20`; }}>
                 Schedule a Steeping with Kamau ↗
