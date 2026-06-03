@@ -2153,12 +2153,12 @@ function AppInner() {
               {
                 name: 'The Sage',
                 icon: '◈',
-                body: 'The portal\'s behavioral intelligence. The Sage reads stillness, typing rhythm, and the depth of what you write — then reflects back a response tuned to exactly where you are in your journey. Not a chatbot. A witness.'
+                body: 'The portal\'s behavioral intelligence. The Sage reads stillness, typing rhythm, and the depth of what you write — then reflects back a response tuned to exactly where you are in your journey. A practicing witness to your unfolding.'
               },
               {
                 name: 'The Sonnet Engine',
                 icon: '♪',
-                body: 'As you type, your words become music. Every keystroke generates a harmonic tone tuned to your current Steep. The music does not play at you — it arises from you, a real-time acoustic portrait of your creative state.'
+                body: 'As you write, each keystroke finds its frequency — a tone tuned to your current Steep. Every tone arises from your writing and returns to you as vibration. In acoustics, a vibration only matters when it transfers energy to something else. This one transfers yours back.'
               },
             ].map(({ name, icon, body }) => (
               <div key={name} style={{ display: 'flex', gap: '16px', marginBottom: '22px', alignItems: 'flex-start' }}>
@@ -2186,7 +2186,7 @@ function AppInner() {
               The Sonnet Engine generates music <em>from</em> you, not for you. Research in music neuroscience confirms that when the music is yours — generated from your own behavioral and emotional signature — the brain releases its own natural opioids and the immune system responds. There is no closer relationship to individual musical preference than music that emerges from your own creative state, in real time.
             </p>
             <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.8, color: m.text2, marginBottom: '32px' }}>
-              For practitioners who feel creatively blocked, the portal offers a Swiss Army knife route: when the writing circuit feels frozen, the music circuit is open. Sound before language. Hearing before knowing. The practice creates the conditions its own content requires.
+              For practitioners who feel creatively blocked, the portal holds another entrance: when the written word stills, the sonic current moves. Sound before language. Hearing before knowing. The practice creates the conditions its own content requires.
             </p>
 
             {/* ─── Community Steeping ─── */}
