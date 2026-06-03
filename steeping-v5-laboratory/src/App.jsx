@@ -2253,7 +2253,7 @@ function AppInner() {
                 onMouseLeave={e => e.currentTarget.style.borderColor = `${m.accent}40`}>
                 THE ÅLIËN SCÖÕL for Creative Thinking ↗
               </a>
-              <a href="https://calendly.com/bethecandle/an-overview" target="_blank" rel="noopener noreferrer" style={{
+              <a href="https://calendly.com/bethecandle/1-1-w-kza" target="_blank" rel="noopener noreferrer" style={{
                 fontFamily: 'var(--fMono)', fontSize: '0.75rem', color: m.text2, textDecoration: 'none',
                 letterSpacing: '0.1em', textTransform: 'uppercase', opacity: 0.7,
                 borderBottom: `1px solid ${m.accent}20`, paddingBottom: '4px',
