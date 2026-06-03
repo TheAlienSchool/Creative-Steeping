@@ -36,6 +36,7 @@ import { SteepingCalendar } from './SteepingCalendar';
 import { motion, AnimatePresence } from 'framer-motion';
 import { VESSELS_L2 } from './VesselsL2';
 import { VesselL2Detail } from './VesselL2Detail';
+import { AboutPage } from './AboutPage';
 
 import './App.css';
 
@@ -2327,7 +2328,7 @@ function AppInner() {
 
               <Rule />
               <Section label="Contact" />
-              <Body last>For privacy-related requests or questions: <a href="mailto:thealienscool@gmail.com" style={{ color: m.accent, textDecoration: 'none', borderBottom: `1px solid ${m.accent}40` }}>thealienscool@gmail.com</a><br />THE ÅLIËN SCÖÕL for Creative Thinking</Body>
+              <Body last>For privacy-related requests or questions: <a href="mailto:thoughts@thealienschool.com" style={{ color: m.accent, textDecoration: 'none', borderBottom: `1px solid ${m.accent}40` }}>thoughts@thealienschool.com</a><br />THE ÅLIËN SCÖÕL for Creative Thinking</Body>
             </div>
           </div>
         );
@@ -2405,13 +2406,13 @@ function AppInner() {
               <Rule />
               <Section label="Media Contact" />
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <a href="mailto:thealienscool@gmail.com" style={{
+                <a href="mailto:kza@thealienschool.com" style={{
                   fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.text1, textDecoration: 'none',
                   letterSpacing: '0.1em', borderBottom: `1px solid ${m.accent}40`, paddingBottom: '4px',
                   transition: 'border-color 0.3s', display: 'inline-block'
                 }} onMouseEnter={e => e.currentTarget.style.borderColor = m.accent}
                   onMouseLeave={e => e.currentTarget.style.borderColor = `${m.accent}40`}>
-                  thealienscool@gmail.com
+                  kza@thealienschool.com
                 </a>
                 <a href="https://calendly.com/bethecandle/1-1-w-kza" target="_blank" rel="noopener noreferrer" style={{
                   fontFamily: 'var(--fMono)', fontSize: '0.75rem', color: m.text2, textDecoration: 'none',
@@ -2441,6 +2442,8 @@ function AppInner() {
 }
 
 export default function App() {
+  const path = window.location.pathname.toLowerCase();
+  if (path.includes('/about')) return <AboutPage />;
   return (
     <ErrorBoundary>
       <AppInner />
