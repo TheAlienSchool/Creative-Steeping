@@ -154,6 +154,35 @@ export function AboutPage() {
 
         <Rule />
 
+        {/* ─── The Nature of Steeping ─── */}
+        <Section label="The Nature of Steeping" />
+        <Body large>
+          Every variety of tea — white, green, oolong, black, the pu-erh aged for twenty years — comes from a single plant: <em>Camellia sinensis</em>. The differences between a delicate white and a dark, fermented pu-erh are entirely in the process: how the leaf is dried, how long it is allowed to oxidize, whether it ferments over seasons. Same origin. Six entirely different expressions.
+        </Body>
+        <Body>
+          The word <em>steep</em> carries the transformation inside it — from the Old Norse <em>steypa</em>, "to pour, to cast down, to plunge." Steeping is not passive waiting. It is a precipitation of one state into another through immersion and time.
+        </Body>
+        <Body>
+          When hot water meets a dried tea leaf, five elements convene: the leaf (wood), the water, the heat (fire), the vessel (earth and metal), and the aromatic compounds that rise as the steep opens. Chinese tea ceremony maps this deliberately — in Wuxing philosophy, a well-arranged steep holds all five elements in active relationship. The process is a complete ecology.
+        </Body>
+        <Body>
+          What happens in the water is precise. L-theanine — an amino acid found almost exclusively in <em>Camellia sinensis</em> among all plants — releases first, at lower temperatures (70–80°C). L-theanine increases alpha-band oscillatory brain activity (8–14 Hz): the state associated with calm alertness, relaxed attention, and creative cognition. Push the temperature higher and the catechins follow — brightness, astringency, the fuller body of the leaf. The art of steeping is knowing what to call forward, and when.
+        </Body>
+        <Body>
+          The dried leaf does not disappear into the water. It opens. It releases what it has been carrying in compressed form. And it can be re-steeped — each infusion a different layer of the same source, lighter and more luminous with each pass.
+        </Body>
+        <Body>
+          The traditional Yixing clay teapot of Chinese practice carries this further. Unglazed and micro-porous, it absorbs tea oils over months and years of use. The clay seasons — it becomes a record of every steep it has held. A well-tended Yixing pot, after years of practice, will scent plain water. The vessel does not remain neutral. It participates. It returns something.
+        </Body>
+        <Body>
+          Sen no Rikyū, the 16th-century Japanese tea master, named the practice's destination simply: <em>wa, kei, sei, jaku</em> — harmony, respect, purity, tranquility. <em>Jaku</em>, tranquility, he described as the result of practicing the first three: a dynamic, profound stillness — a state in which the ego is dissolved. The tea does not make this happen. The practice does.
+        </Body>
+        <Body last>
+          Creative Steeping draws from this same understanding. Each of the Seven Steeps is a temperature — a particular depth of engagement that calls forward something specific from you that the previous steep could not reach. The sequence is the practice. You are both the leaf and the water.
+        </Body>
+
+        <Rule />
+
         {/* ─── The Seven Steeps ─── */}
         <Section label="The Seven Steeps" />
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '12px' }}>
@@ -191,7 +220,7 @@ export function AboutPage() {
           {
             name: 'The Hexagong',
             icon: '⬡',
-            body: 'The six-sided vessel at the center of the experience. Each face of the Hexagong is a Steep — a day, a dimension, a door. As you steep, it illuminates. Vessels unlock through depth of practice, not passage of time.'
+            body: 'The six-sided vessel at the center of the experience. Each face of the Hexagong is a Steep — a day, a dimension, a door. As you steep, it illuminates. Vessels unlock through depth of practice, not passage of time. Like the Yixing clay teapot that seasons with each use, the Hexagong is shaped by your returning.'
           },
           {
             name: 'The Sage',
@@ -228,7 +257,7 @@ export function AboutPage() {
         <Section label="The Sound of Becoming" />
         <Quote>"When you write and hear your writing as music simultaneously, you are engaging more neural territory than any other single human activity."</Quote>
         <Body>
-          The Sonnet Engine generates music <em>from</em> you, not for you. Research in music neuroscience confirms that when the music is yours — generated from your own behavioral and emotional signature — the brain releases its own natural opioids and the immune system responds. There is no closer relationship to individual musical preference than music that emerges from your own creative state, in real time.
+          The Sonnet Engine generates music <em>from</em> you, not for you. Research in music neuroscience confirms that when the music is yours — generated from your own behavioral and emotional signature — the brain releases its own natural opioids and the immune system responds. There is no closer relationship to individual musical preference than music that emerges from your own creative state, in real time. And if you are holding tea as you practice: L-theanine, the amino acid unique to <em>Camellia sinensis</em>, raises alpha-band brain activity (8–14Hz) — the same state the Sonnet Engine is tuned to meet. The leaf and the engine work in the same register.
         </Body>
         <Body>
           The engine operates across three harmonic systems: a C Major Pentatonic in A=444Hz tuning (where C5 lands at 528Hz, the Miracle Tone), a 174Hz Solfeggio Foundation scale (the frequency associated with pain relief and grounding), and a 176Hz Deep Desert scale (KzA's own tuning framework). Your steep determines which system holds you.
