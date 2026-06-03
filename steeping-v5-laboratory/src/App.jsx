@@ -421,6 +421,7 @@ function AppInner() {
   const [ledgerOpen, setLedgerOpen] = useState(false); // Sub-overlay for editorial deep dives
   const [authOpen, setAuthOpen] = useState(false); // Authentication popup state
   const [navMenuOpen, setNavMenuOpen] = useState(false); // Hamburger menu state
+  const [aboutOpen, setAboutOpen] = useState(false); // About Creative Steeping panel
   const [isClosingVessel, setIsClosingVessel] = useState(false);
   const [hasEngaged5D, setHasEngaged5D] = useState(() => localStorage.getItem('steeping_5d_engaged') === 'true');
   const [lockedTooltipOpen, setLockedTooltipOpen] = useState(null); // vessel.num of locked tooltip showing
@@ -818,25 +819,37 @@ function AppInner() {
             ))}
           </div>
         )}
-        <div className="nav-school"
-          style={{ position: 'relative', fontFamily: "var(--fMono)", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", color: "var(--t2)", display: 'flex', flexDirection: 'column', alignItems: 'flex-end', zIndex: 1000 }}
-          onMouseEnter={() => setNavMenuOpen(true)}
-          onMouseLeave={() => setNavMenuOpen(false)}>
+        {/* Click-outside handler to close nav menu */}
+        {navMenuOpen && (
+          <div onClick={() => setNavMenuOpen(false)} style={{
+            position: 'fixed', inset: 0, zIndex: 999
+          }} aria-hidden="true" />
+        )}
 
-          <a href="https://thealienschool.com" target="_blank" rel="noopener noreferrer"
+        <div className="nav-school"
+          style={{ position: 'relative', fontFamily: "var(--fMono)", textTransform: "uppercase", letterSpacing: "0.15em", fontSize: "0.8rem", color: "var(--t2)", display: 'flex', flexDirection: 'column', alignItems: 'flex-end', zIndex: 1000 }}>
+
+          {/* Trigger: click-to-toggle, no hover navigation */}
+          <button
+            onClick={() => setNavMenuOpen(prev => !prev)}
+            aria-expanded={navMenuOpen}
+            aria-label="Toggle navigation menu"
             style={{
-              color: 'var(--t2)', textDecoration: 'none', opacity: navMenuOpen ? 1 : 0.6,
-              whiteSpace: 'nowrap', cursor: 'pointer', borderBottom: '1px solid transparent',
-              transition: 'all 0.3s ease', display: 'flex', alignItems: 'center', gap: '8px'
-            }}
-            onMouseEnter={e => { e.currentTarget.style.opacity = 1; e.currentTarget.style.borderBottom = '1px solid var(--t2)'; }}
-            onMouseLeave={e => { e.currentTarget.style.opacity = navMenuOpen ? 1 : 0.6; e.currentTarget.style.borderBottom = '1px solid transparent'; }}>
-            THE ÅLÏEN SCÖÕL
-            <span style={{ fontSize: '1rem', lineHeight: 1 }}>☰</span>
-          </a>
+              background: 'none', border: 'none', padding: 0,
+              color: navMenuOpen ? 'var(--t1)' : 'var(--t2)',
+              opacity: navMenuOpen ? 1 : 0.7,
+              whiteSpace: 'nowrap', cursor: 'pointer',
+              fontFamily: 'var(--fMono)', fontSize: '0.8rem',
+              letterSpacing: '0.15em', textTransform: 'uppercase',
+              display: 'flex', alignItems: 'center', gap: '8px',
+              transition: 'all 0.3s ease'
+            }}>
+            BEGIN YOUR STEEP
+            <span style={{ fontSize: '1rem', lineHeight: 1 }}>{navMenuOpen ? '✕' : '☰'}</span>
+          </button>
 
           <div className="nav-dropdown-container" style={{
-            position: 'absolute', top: '100%', right: 0, paddingTop: '20px',
+            position: 'absolute', top: '100%', right: 0, paddingTop: '12px',
             opacity: navMenuOpen ? 1 : 0,
             visibility: navMenuOpen ? 'visible' : 'hidden', transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
             transform: navMenuOpen ? 'translateY(0)' : 'translateY(-10px)'
@@ -844,11 +857,93 @@ function AppInner() {
             <div className="nav-dropdown-inner" style={{
               display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 'var(--space-md)',
               background: 'var(--bg)', border: `1px solid var(--acc)`, padding: 'var(--space-lg)',
-              boxShadow: `0 10px 40px rgba(0,0,0,0.8)`
+              boxShadow: `0 10px 40px rgba(0,0,0,0.8)`, minWidth: '220px'
             }}>
+
+              {/* ① BEGIN YOUR STEEP — top position, elevated glow */}
+              {!user ? (
+                <button onClick={() => { setAuthOpen(true); setNavMenuOpen(false); }} style={{
+                  background: 'none', border: 'none',
+                  color: 'var(--acc)', borderBottom: '1px solid transparent',
+                  transition: 'border-bottom 1.2s ease, text-shadow 0.6s ease', cursor: 'pointer',
+                  fontFamily: 'var(--fMono)', fontSize: '0.85rem', letterSpacing: '0.15em',
+                  textTransform: 'uppercase', whiteSpace: 'nowrap',
+                  textShadow: `0 0 18px var(--acc), 0 0 6px var(--acc)`
+                }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--acc)'}
+                  onMouseLeave={e => e.currentTarget.style.borderBottom = '1px solid transparent'}>
+                  <b>[ BEGIN YOUR STEEP ]</b>
+                </button>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px' }}>
+                  <button onClick={() => { setPhase('dashboard'); setNavMenuOpen(false); }} style={{
+                    background: 'none', border: 'none',
+                    color: 'var(--t1)', borderBottom: '1px solid transparent',
+                    transition: 'border-bottom 1.2s ease, text-shadow 0.6s ease', cursor: 'pointer',
+                    fontFamily: 'var(--fMono)', fontSize: '0.85rem', letterSpacing: '0.15em',
+                    textTransform: 'uppercase', whiteSpace: 'nowrap',
+                    textShadow: `0 0 18px var(--t1), 0 0 6px var(--t1)`
+                  }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--t1)'}
+                    onMouseLeave={e => e.currentTarget.style.borderBottom = '1px solid transparent'}
+                    title="Return to your Space">
+                    <b>[ MY SANCTUARY ]</b>
+                  </button>
+                  <button onClick={() => { setAuthOpen(true); setNavMenuOpen(false); }} style={{
+                    background: 'none', border: 'none',
+                    color: 'var(--acc)', borderBottom: '1px solid transparent',
+                    transition: 'border-bottom 1.2s ease', cursor: 'pointer', fontFamily: 'var(--fMono)',
+                    fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap'
+                  }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--acc)'}
+                    onMouseLeave={e => e.currentTarget.style.borderBottom = '1px solid transparent'}
+                    title="View Steeperverse Layers">
+                    <b>[ YOUR LAYERS ]</b>
+                  </button>
+                  <button onClick={() => signOut()} style={{
+                    background: 'none', border: 'none',
+                    color: 'var(--t2)', borderBottom: '1px solid transparent',
+                    transition: 'border-bottom 1.2s ease, opacity 0.3s ease', cursor: 'pointer',
+                    fontFamily: 'var(--fMono)', fontSize: '0.7rem', letterSpacing: '0.15em',
+                    textTransform: 'uppercase', whiteSpace: 'nowrap', opacity: 0.6
+                  }} onMouseEnter={e => { e.currentTarget.style.borderBottom = '1px solid var(--t2)'; e.currentTarget.style.opacity = 0.9; }}
+                    onMouseLeave={e => { e.currentTarget.style.borderBottom = '1px solid transparent'; e.currentTarget.style.opacity = 0.6; }}
+                    title={`Departing presence: ${user.email}`}>
+                    <b>( DEPART )</b>
+                  </button>
+                  {user?.email === 'thealienscool@gmail.com' && (
+                    <>
+                    <button onClick={() => { setShowObservatory(true); setNavMenuOpen(false); }} style={{
+                      background: 'none', border: 'none',
+                      color: 'var(--acc)', borderBottom: '1px solid transparent',
+                      transition: 'border-bottom 1.2s ease, opacity 0.3s ease, filter 0.8s ease', cursor: 'pointer',
+                      fontFamily: 'var(--fMono)', fontSize: '0.7rem', letterSpacing: '0.15em',
+                      textTransform: 'uppercase', whiteSpace: 'nowrap', opacity: 0.8
+                    }} onMouseEnter={e => { e.currentTarget.style.borderBottom = '1px solid var(--acc)'; e.currentTarget.style.opacity = 1; e.currentTarget.style.filter = 'drop-shadow(0 0 8px var(--acc))'; }}
+                      onMouseLeave={e => { e.currentTarget.style.borderBottom = '1px solid transparent'; e.currentTarget.style.opacity = 0.8; e.currentTarget.style.filter = 'none'; }}
+                      title="Double-Secret Backend">
+                      <b>[ OBSERVATORY ]</b>
+                    </button>
+                    <button onClick={() => { setShowLegacyPortal(true); setNavMenuOpen(false); }} style={{
+                      background: 'none', border: 'none',
+                      color: 'var(--acc)', borderBottom: '1px solid transparent',
+                      transition: 'border-bottom 1.2s ease, opacity 0.3s ease, filter 0.8s ease', cursor: 'pointer',
+                      fontFamily: 'var(--fMono)', fontSize: '0.7rem', letterSpacing: '0.15em',
+                      textTransform: 'uppercase', whiteSpace: 'nowrap', opacity: 0.8
+                    }} onMouseEnter={e => { e.currentTarget.style.borderBottom = '1px solid var(--acc)'; e.currentTarget.style.opacity = 1; e.currentTarget.style.filter = 'drop-shadow(0 0 8px var(--acc))'; }}
+                      onMouseLeave={e => { e.currentTarget.style.borderBottom = '1px solid transparent'; e.currentTarget.style.opacity = 0.8; e.currentTarget.style.filter = 'none'; }}
+                      title="Legacy Assets Generator">
+                      <b>[ /LEGACY PORTAL ]</b>
+                    </button>
+                    </>
+                  )}
+                </div>
+              )}
+
+              {/* Divider */}
+              <div style={{ width: '100%', height: '1px', background: `var(--acc)`, opacity: 0.2 }} />
+
+              {/* ② Secondary navigation items */}
               <button onClick={() => { setLedgerOpen(true); setNavMenuOpen(false); }} style={{
                 background: 'none', border: 'none',
-                color: 'var(--acc)', textDecoration: 'none', borderBottom: '1px solid transparent',
+                color: 'var(--acc)', borderBottom: '1px solid transparent',
                 transition: 'border-bottom 1.2s ease', cursor: 'pointer', fontFamily: 'var(--fMono)',
                 fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap'
               }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--acc)'}
@@ -856,9 +951,9 @@ function AppInner() {
                 <b>[ STEEPING NOTES ]</b>
               </button>
 
-                <button onClick={() => { setShowGuide(true); setNavMenuOpen(false); }} style={{
+              <button onClick={() => { setShowGuide(true); setNavMenuOpen(false); }} style={{
                 background: 'none', border: 'none',
-                color: 'var(--acc)', textDecoration: 'none', borderBottom: '1px solid transparent',
+                color: 'var(--acc)', borderBottom: '1px solid transparent',
                 transition: 'border-bottom 1.2s ease', cursor: 'pointer', fontFamily: 'var(--fMono)',
                 fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap',
                 textAlign: 'right'
@@ -870,7 +965,7 @@ function AppInner() {
 
               <button onClick={() => { setShowCompass(true); setNavMenuOpen(false); }} style={{
                 background: 'none', border: 'none',
-                color: 'var(--acc)', textDecoration: 'none', borderBottom: '1px solid transparent',
+                color: 'var(--acc)', borderBottom: '1px solid transparent',
                 transition: 'border-bottom 1.2s ease', cursor: 'pointer', fontFamily: 'var(--fMono)',
                 fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap'
               }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--acc)'}
@@ -879,78 +974,20 @@ function AppInner() {
                 <b>[ ME IN 5D ]</b>
               </button>
 
-              {!user ? (
-                <button onClick={() => setAuthOpen(true)} style={{
-                  background: 'none', border: 'none',
-                  color: 'var(--acc)', textDecoration: 'none', borderBottom: '1px solid transparent',
-                  transition: 'border-bottom 1.2s ease', cursor: 'pointer', fontFamily: 'var(--fMono)',
-                  fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap'
-                }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--acc)'}
-                  onMouseLeave={e => e.currentTarget.style.borderBottom = '1px solid transparent'}>
-                  <b>[ BEGIN YOUR STEEP ]</b>
-                </button>
-              ) : (
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px' }}>
-                  <button onClick={() => setPhase('dashboard')} style={{
-                    background: 'none', border: 'none',
-                    color: 'var(--t1)', textDecoration: 'none', borderBottom: '1px solid transparent',
-                    transition: 'border-bottom 1.2s ease', cursor: 'pointer', fontFamily: 'var(--fMono)',
-                    fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap'
-                  }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--t1)'}
-                    onMouseLeave={e => e.currentTarget.style.borderBottom = '1px solid transparent'}
-                    title="Return to your Space">
-                    <b>[ MY SANCTUARY ]</b>
-                  </button>
-                  <button onClick={() => setAuthOpen(true)} style={{
-                    background: 'none', border: 'none',
-                    color: 'var(--acc)', textDecoration: 'none', borderBottom: '1px solid transparent',
-                    transition: 'border-bottom 1.2s ease', cursor: 'pointer', fontFamily: 'var(--fMono)',
-                    fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap'
-                  }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--acc)'}
-                    onMouseLeave={e => e.currentTarget.style.borderBottom = '1px solid transparent'}
-                    title="View Steeperverse Layers">
-                    <b>[ YOUR LAYERS ]</b>
-                  </button>
-                  <button onClick={() => signOut()} style={{
-                    background: 'none', border: 'none',
-                    color: 'var(--t2)', textDecoration: 'none', borderBottom: '1px solid transparent',
-                    transition: 'border-bottom 1.2s ease, opacity 0.3s ease', cursor: 'pointer', fontFamily: 'var(--fMono)',
-                    fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap',
-                    opacity: 0.6
-                  }} onMouseEnter={e => { e.currentTarget.style.borderBottom = '1px solid var(--t2)'; e.currentTarget.style.opacity = 0.9; }}
-                    onMouseLeave={e => { e.currentTarget.style.borderBottom = '1px solid transparent'; e.currentTarget.style.opacity = 0.6; }}
-                    title={`Departing presence: ${user.email}`}>
-                    <b>( DEPART )</b>
-                  </button>
-                  {user?.email === 'thealienscool@gmail.com' && (
-                    <>
-                    <button onClick={() => { setShowObservatory(true); setNavMenuOpen(false); }} style={{
-                      background: 'none', border: 'none',
-                      color: 'var(--acc)', textDecoration: 'none', borderBottom: '1px solid transparent',
-                      transition: 'border-bottom 1.2s ease, opacity 0.3s ease, filter 0.8s ease', cursor: 'pointer', fontFamily: 'var(--fMono)',
-                      fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap',
-                      opacity: 0.8
-                    }} onMouseEnter={e => { e.currentTarget.style.borderBottom = '1px solid var(--acc)'; e.currentTarget.style.opacity = 1; e.currentTarget.style.filter = 'drop-shadow(0 0 8px var(--acc))'; }}
-                      onMouseLeave={e => { e.currentTarget.style.borderBottom = '1px solid transparent'; e.currentTarget.style.opacity = 0.8; e.currentTarget.style.filter = 'none'; }}
-                      title="Double-Secret Backend">
-                      <b>[ OBSERVATORY ]</b>
-                    </button>
-                    <button onClick={() => { setShowLegacyPortal(true); setNavMenuOpen(false); }} style={{
-                      background: 'none', border: 'none',
-                      color: 'var(--acc)', textDecoration: 'none', borderBottom: '1px solid transparent',
-                      transition: 'border-bottom 1.2s ease, opacity 0.3s ease, filter 0.8s ease', cursor: 'pointer', fontFamily: 'var(--fMono)',
-                      fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap',
-                      opacity: 0.8
-                    }} onMouseEnter={e => { e.currentTarget.style.borderBottom = '1px solid var(--acc)'; e.currentTarget.style.opacity = 1; e.currentTarget.style.filter = 'drop-shadow(0 0 8px var(--acc))'; }}
-                      onMouseLeave={e => { e.currentTarget.style.borderBottom = '1px solid transparent'; e.currentTarget.style.opacity = 0.8; e.currentTarget.style.filter = 'none'; }}
-                      title="Legacy Assets Generator">
-                      <b>[ /LEGACY PORTAL ]</b>
-                    </button>
-                    </>
-                  )}
-                </div>
-              )}
+              {/* Divider before About */}
+              <div style={{ width: '100%', height: '1px', background: `var(--acc)`, opacity: 0.2 }} />
 
+              {/* ③ ABOUT CREÅTIVE STEEPING — bottom of menu */}
+              <button onClick={() => { setAboutOpen(true); setNavMenuOpen(false); }} style={{
+                background: 'none', border: 'none',
+                color: 'var(--t2)', borderBottom: '1px solid transparent',
+                transition: 'border-bottom 1.2s ease, color 0.3s ease', cursor: 'pointer', fontFamily: 'var(--fMono)',
+                fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap',
+                opacity: 0.8
+              }} onMouseEnter={e => { e.currentTarget.style.borderBottom = '1px solid var(--t2)'; e.currentTarget.style.opacity = 1; }}
+                onMouseLeave={e => { e.currentTarget.style.borderBottom = '1px solid transparent'; e.currentTarget.style.opacity = 0.8; }}>
+                [ ABOUT CREÅTIVE STEEPING ]
+              </button>
 
             </div>
           </div>
@@ -1062,6 +1099,7 @@ function AppInner() {
           }}>
             <span style={{ cursor: 'pointer', transition: 'color 0.3s' }} onMouseEnter={e => e.currentTarget.style.color = m.accent} onMouseLeave={e => e.currentTarget.style.color = m.text2}>[ PRIVACY POLICY ]</span>
             <span style={{ cursor: 'pointer', transition: 'color 0.3s' }} onMouseEnter={e => e.currentTarget.style.color = m.accent} onMouseLeave={e => e.currentTarget.style.color = m.text2}>[ PRESS ]</span>
+            <span style={{ cursor: 'pointer', transition: 'color 0.3s' }} onClick={() => setAboutOpen(true)} onMouseEnter={e => e.currentTarget.style.color = m.accent} onMouseLeave={e => e.currentTarget.style.color = m.text2}>[ ABOUT ]</span>
             <span>CREÅTIVE STEEPING © {new Date().getFullYear()}</span>
           </div>
         </div>
@@ -1985,10 +2023,10 @@ function AppInner() {
             </div>
 
             <div className="sonic-row">
-              <span style={{ opacity: 0.7 }}>THEREMIN</span>
+              <span style={{ opacity: 0.7 }}>AMBIANCE</span>
               <button
                 className={`sonic-toggle ${sonicAmbient ? 'active' : ''}`}
-                aria-label={`Theremin ambient sound: ${sonicAmbient ? 'On' : 'Off'}. Click to toggle.`}
+                aria-label={`Ambient soundscape: ${sonicAmbient ? 'On' : 'Off'}. Click to toggle ocean and wind.`}
                 aria-pressed={sonicAmbient}
                 onClick={(e) => { e.stopPropagation(); setSonicAmbient(!sonicAmbient); }}
                 style={{
@@ -2035,6 +2073,108 @@ function AppInner() {
       {/* The Underworld UI Layer */}
       {showSubterraneanBay && (
         <SubterraneanBay onClose={() => setShowSubterraneanBay(false)} eqParams={eqParams} setEqParams={setEqParams} />
+      )}
+
+      {/* ABOUT CREÅTIVE STEEPING */}
+      {aboutOpen && (
+        <div onClick={() => setAboutOpen(false)} style={{
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)',
+          backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)',
+          zIndex: 9000, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: '20px'
+        }}>
+          <div onClick={e => e.stopPropagation()} style={{
+            background: m.bg, border: `1px solid ${m.accent}`,
+            maxWidth: '600px', width: '100%', maxHeight: '85vh',
+            overflowY: 'auto', padding: '48px 40px',
+            boxShadow: `0 20px 80px rgba(0,0,0,0.9), 0 0 60px ${m.accent}15`,
+            position: 'relative', fontFamily: 'var(--fMono)',
+            color: m.text2, letterSpacing: '0.04em'
+          }}>
+            {/* Close */}
+            <button onClick={() => setAboutOpen(false)} style={{
+              position: 'absolute', top: '20px', right: '20px',
+              background: 'none', border: 'none', color: m.text2,
+              cursor: 'pointer', fontSize: '1.1rem', opacity: 0.6,
+              fontFamily: 'var(--fMono)', letterSpacing: '0.1em'
+            }}>[ ✕ ]</button>
+
+            {/* Title */}
+            <div style={{ fontFamily: 'var(--fSerif)', fontSize: '1.5rem', fontStyle: 'italic', color: m.text1, marginBottom: '8px', lineHeight: 1.2 }}>
+              CREÅTIVE STEEPING
+            </div>
+            <div style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: m.accent, marginBottom: '36px', opacity: 0.8 }}>
+              A Journey to the Essence of Your Flavor
+            </div>
+
+            {/* Foreword excerpt */}
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.9rem', lineHeight: 1.8, color: m.text2, marginBottom: '32px', fontStyle: 'normal' }}>
+              Creative Steeping is an immersive and experiential in-venture — a hyper-connective journaling practice to, and for, the fierce creative nature within you. It is a ritual and a journey. A veneration of your human spirit in pursuit of self-awareness, creative expression, identity — and by extension, personal brand.
+            </p>
+
+            {/* The 7 Steeps */}
+            <div style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: m.accent, marginBottom: '16px', opacity: 0.8 }}>
+              The Seven Steeps
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '36px' }}>
+              {[
+                ['01', 'Essence of My Being', 'Your Core Essence'],
+                ['02', 'Mosaic of Experience', 'Your Creative Journey to Now'],
+                ['03', 'Summits of Aspiration', 'Your Goals and Aspirations'],
+                ['04', 'Mirror of Self-Perception', 'Your Perception of Self'],
+                ['05', 'Labyrinth of Challenges', 'Your Current Challenges'],
+                ['06', 'Conclave of Voices', 'Your Audience and Your Echo'],
+                ['07', 'Crown Jewels of Individuality', 'Your Unique Offerings to The World'],
+              ].map(([num, title, sub]) => (
+                <div key={num} style={{ display: 'flex', alignItems: 'baseline', gap: '12px' }}>
+                  <span style={{ color: m.accent, fontSize: '0.7rem', flexShrink: 0, opacity: 0.7 }}>{num}</span>
+                  <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', color: m.text1, lineHeight: 1.4 }}>
+                    {title}
+                    <span style={{ color: m.text2, opacity: 0.6, fontSize: '0.75rem' }}> — {sub}</span>
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* Practice guidance */}
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.8, color: m.text2, marginBottom: '36px', fontStyle: 'normal' }}>
+              We recommend daily practice over the course of a seven-day recurring investment in self. In this way, your reflections connect fluidly with the movements and moments of your waking hours — along with the memories that fill your dreams.
+            </p>
+
+            {/* KzA bio */}
+            <div style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: m.accent, marginBottom: '16px', opacity: 0.8 }}>
+              The Author
+            </div>
+            <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.8, color: m.text2, marginBottom: '36px', fontStyle: 'normal' }}>
+              Kamau Z. Akabueze (KzA) — visionary thinker, mentor, and architect of creative agitation. He navigated a 25-year career spanning the seamless fusion of creativity and strategy, and has dedicated his life to uplifting the creative spirit in everyone he encounters.
+            </p>
+
+            {/* Links */}
+            <div style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: m.accent, marginBottom: '16px', opacity: 0.8 }}>
+              Continue the Journey
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <a href="https://thealienschool.com" target="_blank" rel="noopener noreferrer" style={{
+                fontFamily: 'var(--fMono)', fontSize: '0.8rem', color: m.text1, textDecoration: 'none',
+                letterSpacing: '0.12em', textTransform: 'uppercase',
+                borderBottom: `1px solid ${m.accent}40`, paddingBottom: '4px',
+                transition: 'border-color 0.3s ease'
+              }} onMouseEnter={e => e.currentTarget.style.borderColor = m.accent}
+                onMouseLeave={e => e.currentTarget.style.borderColor = `${m.accent}40`}>
+                THE ÅLIËN SCÖÕL for Creative Thinking ↗
+              </a>
+              <a href="https://calendly.com/bethecandle/an-overview" target="_blank" rel="noopener noreferrer" style={{
+                fontFamily: 'var(--fMono)', fontSize: '0.75rem', color: m.text2, textDecoration: 'none',
+                letterSpacing: '0.1em', textTransform: 'uppercase', opacity: 0.7,
+                borderBottom: `1px solid ${m.accent}20`, paddingBottom: '4px',
+                transition: 'all 0.3s ease'
+              }} onMouseEnter={e => { e.currentTarget.style.opacity = 1; e.currentTarget.style.borderColor = `${m.accent}60`; }}
+                onMouseLeave={e => { e.currentTarget.style.opacity = 0.7; e.currentTarget.style.borderColor = `${m.accent}20`; }}>
+                Schedule a Steeping with Kamau ↗
+              </a>
+            </div>
+          </div>
+        </div>
       )}
     </div >
   );
