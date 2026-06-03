@@ -86,6 +86,13 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
     const ampLfoRef = useRef(null);
     const ampLfoGainRef = useRef(null);
 
+    // Natural Soundscape Layer Refs (Ocean Edge + Wind)
+    const oceanGainRef = useRef(null);
+    const oceanFilterRef = useRef(null);
+    const windGainRef = useRef(null);
+    const windPannerRef = useRef(null);
+    const windFilterRef = useRef(null);
+
     // Initialize Audio Context on first interaction
     const initEngine = useCallback(() => {
         if (audioCtxRef.current) {
@@ -193,8 +200,8 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         filter.frequency.value = 400;
         filter.Q.value = 1.0; // Lower resonance, softer edges
 
-        // Base presence (quiet, inviting)
-        gain.gain.value = 0.08;
+        // Sine oscillator is now silent — replaced by natural soundscape
+        gain.gain.value = 0;
 
         // THE QUIET STORM: Somatic Heartbeat/Breath Amplitude LFO
         // A very slow, mellow pulse (0.2 Hz = 1 breath every 5 seconds) complementing the voice.
@@ -248,6 +255,88 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         frictionFilterRef.current = frictionFilter;
         frictionGainRef.current = frictionGain;
 
+        // OCEAN EDGE LAYER — brown noise shaped to simulate breaking waves
+        const oceanSource = ctx.createBufferSource();
+        const oceanBufSize = ctx.sampleRate * 4;
+        const oceanBuf = ctx.createBuffer(1, oceanBufSize, ctx.sampleRate);
+        const oceanData = oceanBuf.getChannelData(0);
+        let oceanOut = 0;
+        for (let i = 0; i < oceanBufSize; i++) {
+            const wn = Math.random() * 2 - 1;
+            oceanData[i] = (oceanOut + (0.02 * wn)) / 1.02;
+            oceanOut = oceanData[i];
+            oceanData[i] *= 3.5;
+        }
+        oceanSource.buffer = oceanBuf;
+        oceanSource.loop = true;
+        const oceanFilter = ctx.createBiquadFilter();
+        oceanFilter.type = 'bandpass';
+        oceanFilter.frequency.value = 320;
+        oceanFilter.Q.value = 0.7;
+        // Slow swell LFO — 0.1 Hz ≈ 10-second wave cycle
+        const waveLFO = ctx.createOscillator();
+        waveLFO.type = 'sine';
+        waveLFO.frequency.value = 0.1;
+        const waveLFOGain = ctx.createGain();
+        waveLFOGain.gain.value = 0.018;
+        waveLFO.connect(waveLFOGain);
+        const oceanGain = ctx.createGain();
+        oceanGain.gain.value = 0.015; // Silent until ambient activated
+        waveLFOGain.connect(oceanGain.gain);
+        waveLFO.start();
+        oceanSource.connect(oceanFilter);
+        oceanFilter.connect(oceanGain);
+        oceanGain.connect(masterGain);
+        oceanGain.connect(convolver); // Send some ocean into the reverb space
+        oceanSource.start();
+        oceanGainRef.current = oceanGain;
+        oceanFilterRef.current = oceanFilter;
+
+        // GENTLE WIND LAYER — pink noise approximation for a soft coastal breeze
+        const windSource = ctx.createBufferSource();
+        const windBufSize = ctx.sampleRate * 3;
+        const windBuf = ctx.createBuffer(1, windBufSize, ctx.sampleRate);
+        const windData = windBuf.getChannelData(0);
+        let wb0=0, wb1=0, wb2=0, wb3=0, wb4=0, wb5=0, wb6=0;
+        for (let i = 0; i < windBufSize; i++) {
+            const wn = Math.random() * 2 - 1;
+            wb0 = 0.99886 * wb0 + wn * 0.0555179;
+            wb1 = 0.99332 * wb1 + wn * 0.0750759;
+            wb2 = 0.96900 * wb2 + wn * 0.1538520;
+            wb3 = 0.86650 * wb3 + wn * 0.3104856;
+            wb4 = 0.55000 * wb4 + wn * 0.5329522;
+            wb5 = -0.7616 * wb5 - wn * 0.0168980;
+            windData[i] = (wb0 + wb1 + wb2 + wb3 + wb4 + wb5 + wb6 + wn * 0.5362) * 0.11;
+            wb6 = wn * 0.115926;
+        }
+        windSource.buffer = windBuf;
+        windSource.loop = true;
+        const windFilter = ctx.createBiquadFilter();
+        windFilter.type = 'bandpass';
+        windFilter.frequency.value = 1200;
+        windFilter.Q.value = 1.0;
+        // Slow gust LFO — 0.06 Hz ≈ 16-second gust cycle
+        const gustLFO = ctx.createOscillator();
+        gustLFO.type = 'sine';
+        gustLFO.frequency.value = 0.06;
+        const gustLFOGain = ctx.createGain();
+        gustLFOGain.gain.value = 0.008;
+        gustLFO.connect(gustLFOGain);
+        const windPanner = ctx.createStereoPanner();
+        windPanner.pan.value = 0;
+        const windGain = ctx.createGain();
+        windGain.gain.value = 0.01; // Silent until ambient activated
+        gustLFOGain.connect(windGain.gain);
+        gustLFO.start();
+        windSource.connect(windFilter);
+        windFilter.connect(windPanner);
+        windPanner.connect(windGain);
+        windGain.connect(masterGain);
+        windSource.start();
+        windGainRef.current = windGain;
+        windPannerRef.current = windPanner;
+        windFilterRef.current = windFilter;
+
         ambientOscRef.current = osc;
         ambientGainRef.current = gain;
         ambientPannerRef.current = panner;
@@ -285,39 +374,26 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         const normX = clientX / innerWidth;
         const normY = clientY / innerHeight;
 
-        // 1. X-Axis: Panning (Left Ear to Right Ear)
+        // 1. X-Axis: Wind panning follows cursor left-right (gentle breeze direction)
         const panTarget = (normX * 2) - 1;
-        ambientPannerRef.current.pan.setTargetAtTime(panTarget, audioCtxRef.current.currentTime, 0.1);
-
-        const centerDist = Math.abs(normX - 0.5) * 2; // 0 at center, 1 at edge
-        
-        // 2 & 3. Different Shapes for Theremin based on audio mode
-        if (audioEngineMode === 'immersive') {
-            ambientOscRef.current.type = 'triangle'; // Richer, more complex overtones
-            
-            // Fuller, lower range for immersive
-            const pitchTarget = 132 + ((1 - normY) * 396); 
-            ambientOscRef.current.frequency.setTargetAtTime(pitchTarget, audioCtxRef.current.currentTime, 0.4);
-
-            // Vastly wider open filter for a more immersive swell
-            const cutoffTarget = 800 + ((1 - normY) * 2000) + (centerDist * 1000);
-            ambientFilterRef.current.frequency.setTargetAtTime(cutoffTarget, audioCtxRef.current.currentTime, 0.5);
-        } else {
-            ambientOscRef.current.type = 'sine'; // Classic pure tone
-
-            // Original Soul Sonnet range
-            const pitchTarget = 264 + ((1 - normY) * 264);
-            ambientOscRef.current.frequency.setTargetAtTime(pitchTarget, audioCtxRef.current.currentTime, 0.15);
-
-            // Smoother, darker filter for intimacy
-            const cutoffTarget = 400 + ((1 - normY) * 800) + (centerDist * 400);
-            ambientFilterRef.current.frequency.setTargetAtTime(cutoffTarget, audioCtxRef.current.currentTime, 0.1);
+        if (windPannerRef.current) {
+            windPannerRef.current.pan.setTargetAtTime(panTarget * 0.65, audioCtxRef.current.currentTime, 1.2);
         }
 
-        // 4. Center-Gravity Volume (Gets slightly louder as cursor nears center)
-        let gainTarget = 0.10 - (centerDist * 0.04);
-        if (!isAmbientActiveRef.current) gainTarget = 0; // Mute if theremin is turned off
-        ambientGainRef.current.gain.setTargetAtTime(gainTarget, audioCtxRef.current.currentTime, 0.5);
+        // 2. Y-Axis: Wind intensity — higher cursor = stronger wind aloft
+        if (windGainRef.current && isAmbientActiveRef.current) {
+            const windIntensity = 0.025 + ((1 - normY) * 0.045);
+            windGainRef.current.gain.setTargetAtTime(windIntensity, audioCtxRef.current.currentTime, 1.5);
+        }
+
+        // 3. Ocean gain — cursor lower on screen = closer to the shore
+        if (oceanGainRef.current && isAmbientActiveRef.current) {
+            const oceanIntensity = 0.03 + (normY * 0.035);
+            oceanGainRef.current.gain.setTargetAtTime(oceanIntensity, audioCtxRef.current.currentTime, 2.5);
+        }
+
+        // Sine oscillator is replaced by the soundscape — keep gain at 0
+        ambientGainRef.current.gain.setTargetAtTime(0, audioCtxRef.current.currentTime, 0.5);
 
     }, []);
 
@@ -839,9 +915,18 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
 
     const setAmbientActive = useCallback((isActive) => {
         isAmbientActiveRef.current = isActive;
-        if (ambientGainRef.current && audioCtxRef.current) {
-            const target = isActive ? 0.08 : 0;
-            ambientGainRef.current.gain.setTargetAtTime(target, audioCtxRef.current.currentTime, 0.5);
+        if (!audioCtxRef.current) return;
+        // Sine oscillator stays silent — natural soundscape takes over
+        if (ambientGainRef.current) {
+            ambientGainRef.current.gain.setTargetAtTime(0, audioCtxRef.current.currentTime, 0.5);
+        }
+        // Ocean: fade in to 0.05 when active, retreat to near-silence when off
+        if (oceanGainRef.current) {
+            oceanGainRef.current.gain.setTargetAtTime(isActive ? 0.05 : 0.008, audioCtxRef.current.currentTime, 2.0);
+        }
+        // Wind: fade in to 0.03 when active, retreat to near-silence when off
+        if (windGainRef.current) {
+            windGainRef.current.gain.setTargetAtTime(isActive ? 0.03 : 0.006, audioCtxRef.current.currentTime, 2.0);
         }
     }, []);
 
