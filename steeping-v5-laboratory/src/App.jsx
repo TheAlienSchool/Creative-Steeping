@@ -420,6 +420,7 @@ function AppInner() {
   const [instrumentMode, setInstrumentMode] = useState(false); // Secrets: The Hexagong
   const [sageExpanded, setSageExpanded] = useState(false); // Sage interaction visibility
   const [ledgerOpen, setLedgerOpen] = useState(false); // Sub-overlay for editorial deep dives
+  const [initialNote, setInitialNote] = useState(null); // Deep-link target note ID
   const [authOpen, setAuthOpen] = useState(false); // Authentication popup state
   const [navMenuOpen, setNavMenuOpen] = useState(false); // Hamburger menu state
   const [aboutOpen, setAboutOpen] = useState(false); // About Creative Steeping panel
@@ -449,6 +450,20 @@ function AppInner() {
       const v08 = VESSELS.find(v => v.num === '08') || VESSELS[7] || null;
       if (v08) setActiveVessel(v08);
       setInstrumentMode(true);
+    } else if (path.startsWith('/notes/')) {
+      const noteId = path.replace('/notes/', '').replace(/\/$/, '');
+      const VALID_NOTE_IDS = [
+        'steam','dod','pause','night-sky','flow','neutrino','archive','angles',
+        'decay','rest','collabination','trigram','arc-physics','arc-temperature',
+        'arc-inbetween','sound-of-becoming','turao','anechoic','knot','harmonic',
+        'watcher','echosystem','three-states','dark-matter','peace','biophilic',
+        'leaf-archive','temperature-calling','steypa','seventh-infusion','jaku','yixing',
+      ];
+      if (VALID_NOTE_IDS.includes(noteId)) {
+        setLedgerOpen(true);
+        setInitialNote(noteId);
+        window.history.replaceState(null, '', `/notes/${noteId}`);
+      }
     }
   }, []);
 
@@ -1946,7 +1961,7 @@ function AppInner() {
         </div>
       )}
 
-      {ledgerOpen && <SteepersLedger m={m} historicalScore={historicalScore} hasMoreHistory={hasMoreHistory} loadMoreHistory={loadMoreHistory} generateSonicSketch={generateSonicSketch} onClose={() => setLedgerOpen(false)} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} playRootForagingFrequency={playRootForagingFrequency} askSage={handleAskSage} />}
+      {ledgerOpen && <SteepersLedger m={m} initialIssue={initialNote} onIssueChange={(id) => { window.history.pushState(null, '', `/notes/${id}`); }} historicalScore={historicalScore} hasMoreHistory={hasMoreHistory} loadMoreHistory={loadMoreHistory} generateSonicSketch={generateSonicSketch} onClose={() => { setLedgerOpen(false); setInitialNote(null); window.history.pushState(null, '', '/'); }} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} playRootForagingFrequency={playRootForagingFrequency} askSage={handleAskSage} />}
 
       {showCompass && (
         <TheSteepingCompass

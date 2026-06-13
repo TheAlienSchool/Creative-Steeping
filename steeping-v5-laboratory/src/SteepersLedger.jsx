@@ -235,8 +235,63 @@ const ResonanceVault = ({ m, issues, activeIssue, setActiveIssue, playStrikingBo
     );
 };
 
-export const SteepersLedger = ({ m, historicalScore = [], hasMoreHistory, loadMoreHistory, generateSonicSketch, onClose, playStrikingBowl, playAlgoraveSynth, playRootForagingFrequency, askSage }) => {
-    const [activeIssue, setActiveIssue] = useState('steam');
+const NOTE_TITLES = {
+    steam: 'The Cosmology of Steam',
+    dod: 'Ontological Design',
+    pause: 'The Architecture of the Pause',
+    'night-sky': 'The Grammar of the Night Sky',
+    flow: 'Flow :: The Pocket',
+    neutrino: 'The Neutrino Stream',
+    archive: 'The Archive of Presence',
+    angles: 'Three Is the Magic Number',
+    decay: 'The Decay of Interpretation',
+    rest: 'Rest as Architecture',
+    collabination: 'The Collabination Principle',
+    trigram: 'A Triangle and a Trigram',
+    'arc-physics': 'The Arc :: Physics of the Long Way Around',
+    'arc-temperature': 'The Arc :: The Temperature of Arrival',
+    'arc-inbetween': 'The Arc :: The Geometry of the In-Between',
+    'sound-of-becoming': 'The Sound of Becoming',
+    turao: 'TURAO :: The Universe Receiving',
+    anechoic: 'The Anechoic Chamber',
+    knot: 'Anatomy of a Knot',
+    harmonic: 'Harmonic Equivalence',
+    watcher: 'The Watcher',
+    echosystem: 'The Echosystem',
+    'three-states': 'Three States',
+    'dark-matter': 'Dark Matter',
+    peace: 'Peace Exists',
+    biophilic: '5D Biophilics',
+    'leaf-archive': 'The Leaf as Archive',
+    'temperature-calling': 'The Temperature of What You Call Forward',
+    steypa: 'Steypa :: The Descent',
+    'seventh-infusion': 'The Seventh Infusion',
+    jaku: 'Jaku :: The Tranquility You Cannot Aim At',
+    yixing: 'The Yixing Principle',
+};
+
+function updateNoteMetaTags(issueId) {
+    const name = NOTE_TITLES[issueId] || issueId;
+    const title = `${name} — Steeping Notes | CREÅTIVE STEEPING`;
+    const url = `https://creativesteeping.com/notes/${issueId}`;
+    const desc = `A Steeping Note on "${name}" from the CREÅTIVE STEEPING Steeperverse :: a contemplative portal for creative practitioners.`;
+    document.title = title;
+    const set = (sel, attr, val) => { const el = document.querySelector(sel); if (el) el.setAttribute(attr, val); };
+    set('meta[property="og:title"]', 'content', title);
+    set('meta[property="og:description"]', 'content', desc);
+    set('meta[property="og:url"]', 'content', url);
+    set('meta[name="twitter:title"]', 'content', title);
+    set('meta[name="twitter:description"]', 'content', desc);
+    set('link[rel="canonical"]', 'href', url);
+}
+
+export const SteepersLedger = ({ m, historicalScore = [], hasMoreHistory, loadMoreHistory, generateSonicSketch, onClose, playStrikingBowl, playAlgoraveSynth, playRootForagingFrequency, askSage, initialIssue, onIssueChange }) => {
+    const [activeIssue, setActiveIssue] = useState(initialIssue || 'steam');
+
+    const handleSetActiveIssue = (id) => {
+        setActiveIssue(id);
+        if (onIssueChange) onIssueChange(id);
+    };
 
     // Sage Essayist entry point from within the Ledger.
     // Passes note context as a structured object so askSage can route appropriately.
@@ -309,6 +364,32 @@ export const SteepersLedger = ({ m, historicalScore = [], hasMoreHistory, loadMo
             contentRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }, [activeIssue]);
+
+    // ── Sync page title + OG meta with active note ────────────────────────────
+    useEffect(() => {
+        updateNoteMetaTags(activeIssue);
+        return () => {
+            const HOMEPAGE_TITLE = 'CREÅTIVE STEEPING — A Journey to the Essence of Your Flavor';
+            document.title = HOMEPAGE_TITLE;
+            const set = (sel, attr, val) => { const el = document.querySelector(sel); if (el) el.setAttribute(attr, val); };
+            set('meta[property="og:title"]', 'content', HOMEPAGE_TITLE);
+            set('meta[property="og:url"]', 'content', 'https://creativesteeping.com/');
+            set('link[rel="canonical"]', 'href', 'https://creativesteeping.com/');
+        };
+    }, [activeIssue]);
+
+    // ── Browser back/forward restores correct note ────────────────────────────
+    useEffect(() => {
+        const handlePop = () => {
+            const path = window.location.pathname.toLowerCase();
+            if (path.startsWith('/notes/')) {
+                const id = path.replace('/notes/', '').replace(/\/$/, '');
+                setActiveIssue(id);
+            }
+        };
+        window.addEventListener('popstate', handlePop);
+        return () => window.removeEventListener('popstate', handlePop);
+    }, []);
 
     return (
         <div style={{
@@ -395,7 +476,7 @@ export const SteepersLedger = ({ m, historicalScore = [], hasMoreHistory, loadMo
                     m={m}
                     issues={getSteepingIssues(m, setTuraoMode, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl, historicalScore, playRootForagingFrequency)}
                     activeIssue={activeIssue}
-                    setActiveIssue={setActiveIssue}
+                    setActiveIssue={handleSetActiveIssue}
                     playStrikingBowl={playStrikingBowl}
                     playAlgoraveSynth={playAlgoraveSynth}
                     onClose={onClose}

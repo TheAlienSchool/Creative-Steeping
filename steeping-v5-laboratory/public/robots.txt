@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Allow: /notes/
+
+Disallow: /dashboard
+Disallow: /legacy
+Disallow: /nightlight
+
+Sitemap: https://creativesteeping.com/sitemap.xml
