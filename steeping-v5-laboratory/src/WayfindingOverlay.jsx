@@ -27,7 +27,7 @@ const SLIDES = [
         layer: "LAYER 02",
         title: "Engaging the Hexagong",
         subtitle: "The Two-Column Architecture",
-        description: "When you open a vessel, the screen opens into two spaces. On the left: The Compass — context, coordinates, and The Sage. On the right: your Reflection Field. Read the inquiry. Let the questions land. Write in the space below. When something is ready to be held, it finds its way in.",
+        description: "When you open a vessel, the screen opens into two spaces. On the left: The Compass :: context, coordinates, and The Sage. On the right: your Reflection Field. Read the inquiry. Let the questions land. Write in the space below. When something is ready to be held, it finds its way in.",
         diagram: (m) => (
             <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '10%' }}>
                 <div style={{ display: 'flex', width: '100%', height: '100%', gap: '16px' }}>
@@ -65,7 +65,7 @@ const SLIDES = [
         layer: "LAYER 03",
         title: "Sonic Awareness",
         subtitle: "Using Sound & Time",
-        description: "The space responds to you. Sound and cursor move together — a scored, biometric field. The striking bowl marks recognition, not completion. The global timers (5m, 15m, 22m) open an Active Pause whenever you need one. The Sage's eye opens when it's calculating. You'll feel the difference.",
+        description: "The space responds to you. Sound and cursor move together :: a scored, biometric field. The striking bowl marks recognition, not completion. The global timers (5m, 15m, 22m) open an Active Pause whenever you need one. The Sage's eye opens when it's calculating. You'll feel the difference.",
         diagram: (m) => (
             <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
@@ -95,7 +95,7 @@ export const WayfindingOverlay = ({ m, onClose, playStrikingBowl, activeVessel }
         title: "Here is Where You Are",
         subtitle: activeVessel ? `Inside Hexagong ${activeVessel.num}` : "The Matrix Overview",
         description: activeVessel 
-            ? `You are inside ${activeVessel.name}. The Steeping Sage on the left holds full context for this vessel. Your reflection field is on the right. Take your time here — the space is patient.`
+            ? `You are inside ${activeVessel.name}. The Steeping Sage on the left holds full context for this vessel. Your reflection field is on the right. Take your time here :: the space is patient.`
             : `The Hexagong Matrix. Eight vessels, each a distinct steep. You have held ${historicalDepth} moments so far. The practice builds where you bring your attention.`,
         diagram: (m) => (
             <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

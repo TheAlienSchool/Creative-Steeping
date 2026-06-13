@@ -3,14 +3,14 @@
 \<head\>  
   \<meta charset="UTF-8" /\>  
   \<meta name="viewport" content="width=device-width, initial-scale=1.0" /\>  
-  \<title\>Steam Sans ∴ Atlas — Live Simulation\</title\>  
+  \<title\>Steam Sans ∴ Atlas :: Live Simulation\</title\>  
   \<link rel="preconnect" href="https://fonts.googleapis.com" /\>  
   \<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /\>  
   \<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500\&family=DM+Sans:wght@200;300;400;500\&display=swap" rel="stylesheet" /\>
 
   \<style\>  
     /\* ─── RESET & BASE ─────────────────────────────────────────── \*/  
-    \*, \*::before, \*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    \*, \* :: before, \* :: after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {  
       \--sanctuary-cream: \#F5F1E8;  
@@ -32,7 +32,7 @@
     }
 
     /\* ─── GRAIN OVERLAY ─────────────────────────────────────────── \*/  
-    body::before {  
+    body :: before {  
       content: '';  
       position: fixed;  
       inset: 0;  
@@ -333,7 +333,7 @@
       filter: blur(0.2px);  
     }
 
-    /\* Row 100: Vapor — canvas inline \*/  
+    /\* Row 100: Vapor :: canvas inline \*/  
     .axis-vapor-canvas {  
       height: 80px;  
       flex: 1;  
@@ -419,7 +419,7 @@
   \<header class="page-header"\>  
     \<p class="eyebrow"\>Steeperverse ∴ Typographic System\</p\>  
     \<h1\>Steam Sans ∴ Atlas\</h1\>  
-    \<p class="subtitle"\>A Living Typographic Instrument — Simulation Demo\</p\>  
+    \<p class="subtitle"\>A Living Typographic Instrument :: Simulation Demo\</p\>  
   \</header\>
 
   \<div class="sections-wrapper"\>
@@ -427,7 +427,7 @@
     \<\!-- ─── REGISTER 1: HARRIS ─────────────────────────────────── \--\>  
     \<section class="register-section" id="harris-section"\>  
       \<p class="register-label"\>Register 01\</p\>  
-      \<p class="register-name"\>Steam Sans ∴ Harris — Instrumental\</p\>
+      \<p class="register-name"\>Steam Sans ∴ Harris :: Instrumental\</p\>
 
       \<div style="position: relative; overflow: hidden; padding: 2rem 0;"\>  
         \<div class="harris-grid"\>\</div\>  
@@ -446,13 +446,13 @@
       \</div\>
 
       \<div class="code-annotation"\>  
-        \<pre\>\<span class="comment"\>/\* Steam Sans Harris — Instrumental Register \*/\</span\>  
+        \<pre\>\<span class="comment"\>/\* Steam Sans Harris :: Instrumental Register \*/\</span\>  
 \<span class="selector"\>.steam-sans-harris\</span\> {  
   \<span class="property"\>font-family\</span\>: \<span class="value"\>'DM Sans', sans-serif\</span\>;  
   \<span class="property"\>font-weight\</span\>: \<span class="value"\>300\</span\>;  
   \<span class="property"\>letter-spacing\</span\>: \<span class="value"\>0.12em\</span\>;   \<span class="comment"\>/\* expanded tracking \*/\</span\>  
   \<span class="property"\>text-transform\</span\>: \<span class="value"\>uppercase\</span\>;  
-  \<span class="property"\>opacity\</span\>: \<span class="value"\>1\</span\>;             \<span class="comment"\>/\* fully resolved — no deformation \*/\</span\>  
+  \<span class="property"\>opacity\</span\>: \<span class="value"\>1\</span\>;             \<span class="comment"\>/\* fully resolved :: no deformation \*/\</span\>  
   \<span class="property"\>transition\</span\>: \<span class="value"\>opacity 0.5s ease-in-out\</span\>;  
 }\</pre\>  
       \</div\>  
@@ -461,7 +461,7 @@
     \<\!-- ─── REGISTER 2: HBA ────────────────────────────────────── \--\>  
     \<section class="register-section" id="hba-section"\>  
       \<p class="register-label"\>Register 02\</p\>  
-      \<p class="register-name"\>Steam Sans ∴ HBA — Witness\</p\>
+      \<p class="register-name"\>Steam Sans ∴ HBA :: Witness\</p\>
 
       \<div class="hba-display" id="hba-text" aria-label="WITNESSED"\>\</div\>
 
@@ -471,7 +471,7 @@
       \</div\>
 
       \<div class="code-annotation"\>  
-        \<pre\>\<span class="comment"\>/\* Steam Sans HBA — Witness Register  
+        \<pre\>\<span class="comment"\>/\* Steam Sans HBA :: Witness Register  
    Each character is wrapped in a span and animated  
    independently with staggered delays \*/\</span\>
 
@@ -498,7 +498,7 @@ chars.forEach((char, i) \=\> {
     \<\!-- ─── REGISTER 3: VAPOR ──────────────────────────────────── \--\>  
     \<section class="register-section" id="vapor-section"\>  
       \<p class="register-label"\>Register 03\</p\>  
-      \<p class="register-name"\>Steam Sans ∴ Vapor — Transmission\</p\>
+      \<p class="register-name"\>Steam Sans ∴ Vapor :: Transmission\</p\>
 
       \<div class="vapor-wrapper"\>  
         \<canvas id="vapor-canvas"\>\</canvas\>  
@@ -511,7 +511,7 @@ chars.forEach((char, i) \=\> {
       \</div\>
 
       \<div class="code-annotation"\>  
-        \<pre\>\<span class="comment"\>/\* Steam Sans Vapor — Transmission Register  
+        \<pre\>\<span class="comment"\>/\* Steam Sans Vapor :: Transmission Register  
    Text is rendered to a hidden canvas, pixels are  
    extracted and converted to particle objects \*/\</span\>
 
@@ -542,7 +542,7 @@ offCtx.fillText(text, 0, 120);
     \<\!-- ─── STABILITY AXIS ─────────────────────────────────────── \--\>  
     \<section class="register-section" id="axis-section"\>  
       \<p class="register-label"\>Variable Axis\</p\>  
-      \<p class="register-name"\>Stability Axis — 0 (Rigid) → 50 (Drift) → 100 (Dissolve)\</p\>
+      \<p class="register-name"\>Stability Axis :: 0 (Rigid) → 50 (Drift) → 100 (Dissolve)\</p\>
 
       \<div class="axis-demo"\>  
         \<div class="axis-row"\>  
@@ -578,7 +578,7 @@ offCtx.fillText(text, 0, 120);
     \<\!-- ─── SPECIAL GLYPHS ────────────────────────────────────── \--\>  
     \<section class="register-section" id="glyphs-section"\>  
       \<p class="register-label"\>Steeperverse Glyph Set\</p\>  
-      \<p class="register-name"\>Special Marks — The Sacred Alphabet\</p\>
+      \<p class="register-name"\>Special Marks :: The Sacred Alphabet\</p\>
 
       \<div class="glyphs-grid"\>  
         \<div class="glyph-card"\>  
@@ -594,7 +594,7 @@ offCtx.fillText(text, 0, 120);
         \<div class="glyph-card"\>  
           \<div class="glyph-symbol" style="letter-spacing: 0.4em; opacity: 0.7;"\>…\</div\>  
           \<div class="glyph-name"\>Extended Ellipsis\</div\>  
-          \<div class="glyph-use"\>Extended hold — longer than standard.\</div\>  
+          \<div class="glyph-use"\>Extended hold :: longer than standard.\</div\>  
         \</div\>  
         \<div class="glyph-card"\>  
           \<div class="glyph-symbol" style="font-size: 2.5rem;"\>⟂\</div\>  

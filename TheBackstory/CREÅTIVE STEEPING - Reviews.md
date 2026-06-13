@@ -24,22 +24,22 @@ Five months ago, I was laid off. It was a tough blow filled with anger, loss, be
 That’s when I stumbled across a post by  Kamau Z. Akabueze and THE ÅLÏEN SCõÖL, a program designed to help people unlock their next creative journey through a process called Creative Steeping. This single post from Kamau struck a deep chord:  
 "I have tossed, and I have turned.  
 I have lost sleep, and I have lost jobs.  
-Tossing and turning at 3 A.M. isn’t just restlessness—  
+Tossing and turning at 3 A.M. isn’t just restlessness::  
 It’s your untapped creative genius demanding attention."
 
-After exploring THE ÅLÏEN SCõÖL website, I reached out to Kamau—someone I already admired as a mentor (or “Yoda,” as I like to call him) from a program I once directed. I shared my situation, including my financial limitations, and Kamau graciously offered me the chance to audit his Creative Steeping program and embark on the journey on my own.
+After exploring THE ÅLÏEN SCõÖL website, I reached out to Kamau :: someone I already admired as a mentor (or “Yoda,” as I like to call him) from a program I once directed. I shared my situation, including my financial limitations, and Kamau graciously offered me the chance to audit his Creative Steeping program and embark on the journey on my own.
 
 What is Creative Steeping you ask? It’s a powerful process rooted in introspection, designed to help you uncover your unique strengths, tackle obstacles, and ignite your creative potential. For me, it was transformative. It pushed me to confront the challenges in my life, embrace the darkness, and celebrate small victories along the way.
 
 My Experience:  
-As I began my steeping journey, life threw some heavy challenges my way. Yet, it was in those moments that I realized I needed to become my own light. Initially, I struggled with narrowing my focus—was this new idea a hobby or something more? I chose to embrace uncertainty, jump in, and let the process guide me. If it works, great. If not, it might lead to something else. What did I have to lose?
+As I began my steeping journey, life threw some heavy challenges my way. Yet, it was in those moments that I realized I needed to become my own light. Initially, I struggled with narrowing my focus :: was this new idea a hobby or something more? I chose to embrace uncertainty, jump in, and let the process guide me. If it works, great. If not, it might lead to something else. What did I have to lose?
 
 The result? Creative Steeping lit a fire under a$$, helping me broaden my perspective and discover what may very well be my next career journey. It reminded me that transformation requires courage, commitment, continuous self-reflection, and introspection.
 
 Why I Recommend THE ÅLÏEN SCõÖL:  
 What sets THE ÅLÏEN SCõÖL and Creative Steeping apart is its emphasis on self-discovery and sustained growth. Kamau’s guidance is invaluable, and the process empowers you to take charge of your journey. If you’re ready to do the hard work and unlock your creative genius, I can’t recommend it enough.
 
-Kamau is generously offering this program for free—but remember, the journey is yours to own. The only thing standing between you and your next big idea is the courage to do the deep work. If you’re looking for a way forward, don’t hesitate to contact him through THE ÅLÏEN SCõÖL website and make it happen.  
+Kamau is generously offering this program for free :: but remember, the journey is yours to own. The only thing standing between you and your next big idea is the courage to do the deep work. If you’re looking for a way forward, don’t hesitate to contact him through THE ÅLÏEN SCõÖL website and make it happen.  
 https://lnkd.in/e6TmFjBz
 
 Lisa Heinsdale (She/Her)

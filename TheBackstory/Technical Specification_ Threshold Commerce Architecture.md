@@ -13,7 +13,7 @@ This document provides the detailed technical specification for the **Threshold 
 
 The guiding principle is **respectful authentication**. The process must feel like a natural deepening of the practice, not a transactional interruption. We will achieve this through a passwordless "magic link" flow that preserves the portal's "no sign-up" ethos while establishing the secure, persistent identity required for commerce and continued engagement.
 
-This architecture is a direct application of the **Triakis Protocol**. The anonymous experience is the stable **Base Tetrahedron**. The act of purchasing is a **Stellated Peak**—an elevation of engagement. This architecture ensures the path to that peak is stable, secure, and geometrically sound.
+This architecture is a direct application of the **Triakis Protocol**. The anonymous experience is the stable **Base Tetrahedron**. The act of purchasing is a **Stellated Peak** :: an elevation of engagement. This architecture ensures the path to that peak is stable, secure, and geometrically sound.
 
 ---
 

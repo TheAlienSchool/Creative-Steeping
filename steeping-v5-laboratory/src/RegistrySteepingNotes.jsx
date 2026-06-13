@@ -212,12 +212,12 @@ const ConstellationCanvas = ({ m, active }) => {
 const NightSkyIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth }) => {
     const [mapActive, setMapActive] = useState(false);
     const constellations = [
-        { id: 'cup', name: 'THE CUP', subtitle: 'The Container', desc: 'The celestial chalice — the vessel that holds the entire Steeperverse. Seven bright stars form its outline. The brightest star, The Rim, marks the boundary between the inner and outer worlds.' },
+        { id: 'cup', name: 'THE CUP', subtitle: 'The Container', desc: 'The celestial chalice :: the vessel that holds the entire Steeperverse. Seven bright stars form its outline. The brightest star, The Rim, marks the boundary between the inner and outer worlds.' },
         { id: 'leaf', name: 'THE LEAF', subtitle: 'The Steepee', desc: 'A small, luminous constellation nestled above The Cup. Its central star, The Stem, is a variable star that brightens and dims with the rhythm of a human breath.' },
         { id: 'archer', name: 'THE ARCHER', subtitle: 'The Incisive Current', desc: 'A sharp, angular constellation. Its brightest star, The Point, is a piercing blue-white giant. The arrow of inquiry sent directly to the heart of the matter.' },
         { id: 'monk', name: 'THE MONK', subtitle: 'The Contemplative Current', desc: 'A quiet, circular constellation of patience and observation. To find it, one must look away from the brighter constellations and let their eyes adjust to the subtle light.' },
         { id: 'bridge', name: 'THE BRIDGE', subtitle: 'Surface Tension', desc: 'A perfectly straight line of stars connecting turbulent chaos to calm order. To cross The Bridge is to transform resistance into resonance.' },
-        { id: 'resonance', name: 'THE RESONANCE', subtitle: 'The Neutrino Stream', desc: 'A diffuse, shimmering band across the entire sky. The visual manifestation of the Neutrino Stream — brightest when viewed from a place of deep quiet.' },
+        { id: 'resonance', name: 'THE RESONANCE', subtitle: 'The Neutrino Stream', desc: 'A diffuse, shimmering band across the entire sky. The visual manifestation of the Neutrino Stream :: brightest when viewed from a place of deep quiet.' },
         { id: 'vessel', name: 'THE VESSEL', subtitle: 'The Journey', desc: 'Nine distinct star clusters arranged in a spiral, each representing one of the nine vessels of the portal. To trace The Vessel is to walk the path itself.' },
         { id: 'scribe', name: 'THE SCRIBE', subtitle: 'The Journal', desc: 'A long, winding chain of stars resembling a quill pen. Its brightest star, The Nib, is always located at the very tip. The Nib is always now.' },
         { id: 'alchemist', name: 'THE ALCHEMIST', subtitle: 'The Transformation', desc: 'A dynamic, ever-changing constellation. Its stars are known to shift positions slightly from night to night. A living constellation.' },
@@ -230,7 +230,7 @@ const NightSkyIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth }) => {
 
             <div style={{ position: 'relative', width: '100%', marginBottom: 'var(--space-xxl)', border: `1px solid ${m.accent}30`, minHeight: '400px', background: 'rgb(2,2,6)', overflow: 'hidden' }}>
                 <ConstellationCanvas m={m} active={mapActive} />
-                <HeroImage m={m} src="/night_sky_grammar_sv.png" alt="The Grammar of the Night Sky" caption="FIG. 06 — THE CELESTIAL GRAMMAR" />
+                <HeroImage m={m} src="/night_sky_grammar_sv.png" alt="The Grammar of the Night Sky" caption="FIG. 06 :: THE CELESTIAL GRAMMAR" />
                 {!mapActive && (
                     <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.5)' }}>
                         <button onClick={() => { setMapActive(true); if (playAlgoraveSynth) playAlgoraveSynth(); }}
@@ -246,7 +246,7 @@ const NightSkyIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth }) => {
             <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xxl)' }}>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
                     <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
-                    he <SongbookGlossaryItem m={m} term="Constellation Catalogue" definition="The celestial mythology of the Steeperverse — ten primary constellations, each a teaching, each a destination." /> constellations of the Steeperverse are named for archetypes of the creative journey. To look up at the Steeperverse sky is to see the architecture of your own awareness written in light. The stars function as pure grammar.
+                    he <SongbookGlossaryItem m={m} term="Constellation Catalogue" definition="The celestial mythology of the Steeperverse :: ten primary constellations, each a teaching, each a destination." /> constellations of the Steeperverse are named for archetypes of the creative journey. To look up at the Steeperverse sky is to see the architecture of your own awareness written in light. The stars function as pure grammar.
                 </p>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
                     Ten primary constellations mark the known sky. Each one is a teaching. Each one is a destination. The practitioner who learns to find them finds a reliable celestial navigation system designed explicitly for the self moving through the geography of <SongbookGlossaryItem m={m} term="Capacity" definition="The internal space required to hold insight, expansion, and stillness simultaneously." />.
@@ -266,12 +266,12 @@ const NightSkyIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth }) => {
                     </div>
                 ))}
             </div>
-            <PullQuote m={m}>"The practitioner who learns to read the sky learns to read themselves — every teaching already written in the light they carry."</PullQuote>
+            <PullQuote m={m}>"The practitioner who learns to read the sky learns to read themselves :: every teaching already written in the light they carry."</PullQuote>
         </div>
     );
 };
 
-// ─── ISSUE 05+11: FLOW — THE POCKET ──────────────────────────────────────────
+// ─── ISSUE 05+11: FLOW :: THE POCKET ──────────────────────────────────────────
 
 const PocketMetronome = ({ m, playAlgoraveSynth, playStrikingBowl }) => {
     const [bpm, setBpm] = useState(0);
@@ -347,7 +347,7 @@ const PocketMetronome = ({ m, playAlgoraveSynth, playStrikingBowl }) => {
 const FlowIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => (
     <div style={{ animation: 'fadeIn 1s ease' }}>
         <IssueHeader m={m} title="Flow ::" accent="The Pocket & The Algorithm" published="2026" designation="THE STEEPERVERSE" source="THE DEPARTMENT OF ONTOLOGICAL DESIGN" kicker="The space between the beats is as essential as the beat itself." />
-        <HeroImage m={m} src="/flow_pocket_sv.png" alt="The Jazz Bassist's Pocket" caption="FIG. 07 — THE POCKET EXISTS IN THAT SPACE" />
+        <HeroImage m={m} src="/flow_pocket_sv.png" alt="The Jazz Bassist's Pocket" caption="FIG. 07 :: THE POCKET EXISTS IN THAT SPACE" />
 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -355,7 +355,7 @@ const FlowIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBow
                 he Pocket is a jazz musician's term for the moment when the rhythm section locks so completely that time both stops and swings simultaneously. The bassist, the drummer, and the pianist arrive at the same invisible coordinate. The groove becomes structural.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <SongbookGlossaryItem m={m} term="The Algorithm of Å" definition="The apex of structural and existential awareness — the synthesis of foreign brilliance integrated into native understanding." /> describes the same phenomenon within the Steeperverse: the moment when <SongbookGlossaryItem m={m} term="Capacity" definition="The internal space required to hold insight, expansion, and stillness simultaneously." /> and <SongbookGlossaryItem m={m} term="Actional Intention" definition="A present-tense direction that allows awareness to meet experience — a guidance system for Thought Momentum." /> align so precisely that <SongbookGlossaryItem m={m} term="Surface Tension" definition="The boundary between limitation and possibility; the creative friction that signals expanding capacity." /> dissolves.
+                <SongbookGlossaryItem m={m} term="The Algorithm of Å" definition="The apex of structural and existential awareness :: the synthesis of foreign brilliance integrated into native understanding." /> describes the same phenomenon within the Steeperverse: the moment when <SongbookGlossaryItem m={m} term="Capacity" definition="The internal space required to hold insight, expansion, and stillness simultaneously." /> and <SongbookGlossaryItem m={m} term="Actional Intention" definition="A present-tense direction that allows awareness to meet experience :: a guidance system for Thought Momentum." /> align so precisely that <SongbookGlossaryItem m={m} term="Surface Tension" definition="The boundary between limitation and possibility; the creative friction that signals expanding capacity." /> dissolves.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 Both are the same felt experience, located in different practices. Both emerge from the same honoring: the rest is as structural as the note. The pause is as load-bearing as the action.
@@ -366,11 +366,11 @@ const FlowIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBow
 
         <BodyText m={m}>
             <b style={{ fontFamily: 'var(--fMono)', color: m.accent, display: 'block', marginBottom: '0.8rem', fontSize: '0.8rem' }}>THE BUMPS & THE SPACE</b>
-            There is a moment most people have had — leaning into a task that matters, deadline close, breath held — when everything feels effortful and the landing evades you. The actions multiply. The intention strains. The output loses coherence. This is Bumps lacking Space: pure urgency reaching wildly for ground.
+            There is a moment most people have had :: leaning into a task that matters, deadline close, breath held :: when everything feels effortful and the landing evades you. The actions multiply. The intention strains. The output loses coherence. This is Bumps lacking Space: pure urgency reaching wildly for ground.
             <br /><br />
-            Flow arrives differently. The grip releases. The effort remains, but the tension dissolves. The same actions that felt like pushing now feel like steering. The work still moves at speed, but the speed has weight behind it, like water with current. This is what jazz musicians call <SongbookGlossaryItem m={m} term="The Pocket" definition="The felt moment when rhythm, intention, and capacity lock together completely — when action and awareness arrive at the same coordinate." /> — the state where Capacity and Actional Intention occupy the same space at the same time.
+            Flow arrives differently. The grip releases. The effort remains, but the tension dissolves. The same actions that felt like pushing now feel like steering. The work still moves at speed, but the speed has weight behind it, like water with current. This is what jazz musicians call <SongbookGlossaryItem m={m} term="The Pocket" definition="The felt moment when rhythm, intention, and capacity lock together completely :: when action and awareness arrive at the same coordinate." /> :: the state where Capacity and Actional Intention occupy the same space at the same time.
             <br /><br />
-            The keyboard is a map of this. Its raised keys — the Bumps — carry the notes, the actions, the intentions. The Space bar is the held ground beneath all of them. A practitioner who has ever paused in the middle of urgent typing, taken a breath, and found the next sentence arrive more clearly than anything that came before — that practitioner has already felt the Space working. The Pocket operates as a profound recognition of flow in motion. The Calibrator above helps locate it.
+            The keyboard is a map of this. Its raised keys :: the Bumps :: carry the notes, the actions, the intentions. The Space bar is the held ground beneath all of them. A practitioner who has ever paused in the middle of urgent typing, taken a breath, and found the next sentence arrive more clearly than anything that came before :: that practitioner has already felt the Space working. The Pocket operates as a profound recognition of flow in motion. The Calibrator above helps locate it.
         </BodyText>
 
         <PullQuote m={m}>"The Pocket is recognition of flow in motion. The Algorithm of Å is recognition of flow in awareness. They are the same arrival."</PullQuote>
@@ -475,7 +475,7 @@ const NeutrinoField = ({ m }) => {
 const NeutrinoIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth }) => (
     <div style={{ animation: 'fadeIn 1s ease' }}>
         <IssueHeader m={m} title="The Neutrino" accent="Stream" published="2026" designation="THE STEEPERVERSE" source="STEEPERVERSE FIELD NOTES & PING PROTOCOLS" kicker="The signal that passes through everything without stopping." />
-        <HeroImage m={m} src="/neutrino_stream_sv.png" alt="The Neutrino Stream" caption="FIG. 08 — INVISIBLE FORCES MADE VISIBLE" />
+        <HeroImage m={m} src="/neutrino_stream_sv.png" alt="The Neutrino Stream" caption="FIG. 08 :: INVISIBLE FORCES MADE VISIBLE" />
 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -483,10 +483,10 @@ const NeutrinoIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth }) => (
                 illions of neutrinos pass through your body every second. They arrive from the sun, from distant supernovae, from the collapse of stars that burned out before your grandmothers were born. They pass cleanly through the floor, through the planet, through the other side, and continue into the dark. They maintain their velocity. They claim their passage. They carry the universe's signal with absolute, radiating continuity.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                The <SongbookGlossaryItem m={m} term="Neutrino Stream" definition="The unseen energetic resonance connecting every star, system, and being in the Steeperverse." /> is the Steeperverse's model for exactly this phenomenon — the connective architecture beneath the visible surface of the practice. Every practitioner who steeps participates in this Stream in every moment of their practice. The <SongbookGlossaryItem m={m} term="PING™" definition="The felt moment of recognition, clarity, and connection. Thought Momentum becoming visible. The subatomic indicator of resonance." /> is the moment the Stream becomes perceptible.
+                The <SongbookGlossaryItem m={m} term="Neutrino Stream" definition="The unseen energetic resonance connecting every star, system, and being in the Steeperverse." /> is the Steeperverse's model for exactly this phenomenon :: the connective architecture beneath the visible surface of the practice. Every practitioner who steeps participates in this Stream in every moment of their practice. The <SongbookGlossaryItem m={m} term="PING™" definition="The felt moment of recognition, clarity, and connection. Thought Momentum becoming visible. The subatomic indicator of resonance." /> is the moment the Stream becomes perceptible.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                This is a polyrhythm — the text holds a downbeat while the silence between paragraphs carries the off-beat. The groove lives in both. The field below makes the Stream visible. Move through it slowly.
+                This is a polyrhythm :: the text holds a downbeat while the silence between paragraphs carries the off-beat. The groove lives in both. The field below makes the Stream visible. Move through it slowly.
             </p>
         </div>
 
@@ -532,18 +532,18 @@ const MemoryScrubber = ({ m, historicalScore }) => {
 const ArchiveIssue = ({ m, SongbookGlossaryItem, historicalScore }) => (
     <div style={{ animation: 'fadeIn 1s ease' }}>
         <IssueHeader m={m} title="The Archive" accent="of Presence" published="2026" designation="THE STEEPERVERSE" source="THE SCRIBE :: CONSTELLATION SV-09" kicker="The Nib is always now." />
-        <HeroImage m={m} src="/archive_scribe_sv.png" alt="The Scribe Constellation" caption="FIG. 09 — THE QUILL AND THE CHAIN OF STARS" />
+        <HeroImage m={m} src="/archive_scribe_sv.png" alt="The Scribe Constellation" caption="FIG. 09 :: THE QUILL AND THE CHAIN OF STARS" />
 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
-                he <SongbookGlossaryItem m={m} term="Scribe" definition="The constellation of the journal — a long, winding chain of stars ending in The Nib. The Nib is always now. Stories are written with its light." /> constellation is a long, winding chain of stars that traces a path across the visible sky like a quill in mid-stroke. Every star in that chain is a moment of recognition — a PING captured, a signal held, a stone laid upon the path of the Vessel.
+                he <SongbookGlossaryItem m={m} term="Scribe" definition="The constellation of the journal :: a long, winding chain of stars ending in The Nib. The Nib is always now. Stories are written with its light." /> constellation is a long, winding chain of stars that traces a path across the visible sky like a quill in mid-stroke. Every star in that chain is a moment of recognition :: a PING captured, a signal held, a stone laid upon the path of the Vessel.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 The Archive of Presence holds these stones. Each SteepNote captured in the Ledger is a star added to a unique, personal iteration of The Scribe. The chain grows longer. The light deepens. The brightest star is always the most recent.  The Nib is always now.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                Analog warmth shapes the temperature of this issue — the vinyl register, the tape hiss, the sense of enormous time held in a small still object. History summoned rather than retrieved. Depth gathered through presence rather than storage.
+                Analog warmth shapes the temperature of this issue :: the vinyl register, the tape hiss, the sense of enormous time held in a small still object. History summoned rather than retrieved. Depth gathered through presence rather than storage.
             </p>
         </div>
 
@@ -551,7 +551,7 @@ const ArchiveIssue = ({ m, SongbookGlossaryItem, historicalScore }) => (
 
         <BodyText m={m}>
             <b style={{ fontFamily: 'var(--fMono)', color: m.accent, display: 'block', marginBottom: '0.8rem', fontSize: '0.8rem' }}>THE ACT OF THE SCRIBE</b>
-            Every practitioner who captures a PING — a line while reading, a recognition on the path, a fragment of clarity — is practicing the consciousness of The Scribe. The act functions as the deliberate placement of a star on the personal constellation. The scrubber above makes that constellation audible: a tactile sweep through the Archive, each moment arriving like a distant wind chime.
+            Every practitioner who captures a PING :: a line while reading, a recognition on the path, a fragment of clarity :: is practicing the consciousness of The Scribe. The act functions as the deliberate placement of a star on the personal constellation. The scrubber above makes that constellation audible: a tactile sweep through the Archive, each moment arriving like a distant wind chime.
         </BodyText>
         <PullQuote m={m}>"The chain grows toward now. The Nib marks where the Scribe is still writing."</PullQuote>
     </div>
@@ -597,7 +597,7 @@ const TriviumExercise = ({ m, num, title, instruction, steps, playStrikingBowl }
                             style={{ padding: '10px 20px', background: holding ? m.accent : 'transparent', border: `1px solid ${m.accent}`, color: holding ? '#000' : m.accent, fontFamily: 'var(--fMono)', fontSize: '0.7rem', letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.2s ease', boxShadow: holding ? `0 0 20px ${m.accent}50` : 'none' }}>
                             {holding ? `[ HOLDING :: ${holdTime}s ]` : '[ HOLD THE POSITION ]'}
                         </button>
-                        {holdTime > 0 && !holding && <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2 }}>Held {holdTime} seconds — the angle provided its answer.</span>}
+                        {holdTime > 0 && !holding && <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2 }}>Held {holdTime} seconds :: the angle provided its answer.</span>}
                     </div>
                 </div>
             )}
@@ -622,17 +622,17 @@ const TriviumTriangle = ({ m, playAlgoraveSynth, playStrikingBowl }) => {
             <SectionLabel m={m}>[ THE TRIVIUM FIELD ]</SectionLabel>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', alignItems: 'end', marginBottom: '1.5rem' }}>
                 <div>
-                    <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, marginBottom: '0.5rem' }}>GRAMMAR — The What</div>
+                    <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, marginBottom: '0.5rem' }}>GRAMMAR :: The What</div>
                     <input value={nodes.grammar} onChange={e => handleSet('grammar', e.target.value)} placeholder="My current facts..." style={{ width: '100%', background: 'transparent', border: `1px solid ${m.accent}40`, color: m.text1, padding: '8px', fontFamily: 'var(--fBody)', fontSize: '0.9rem', boxSizing: 'border-box' }} />
                 </div>
                 <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: triadComplete ? m.accent : m.text2, marginBottom: '0.5rem', transition: 'all 0.5s ease' }}>LOGIC — The Apex</div>
+                    <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: triadComplete ? m.accent : m.text2, marginBottom: '0.5rem', transition: 'all 0.5s ease' }}>LOGIC :: The Apex</div>
                     <div style={{ padding: '8px', border: `1px solid ${triadComplete ? m.accent : m.accent + '30'}`, fontFamily: 'var(--fBody)', fontSize: '0.9rem', color: triadComplete ? m.accent : m.text2, textAlign: 'center', transition: 'all 0.5s ease', boxShadow: triadComplete ? `0 0 20px ${m.accent}30` : 'none', minHeight: '36px' }}>
                         {triadComplete ? 'WHAT IS THE RELATIONSHIP I REFUSE TO SEE?' : '·'}
                     </div>
                 </div>
                 <div>
-                    <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, marginBottom: '0.5rem' }}>RHETORIC — The How</div>
+                    <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, marginBottom: '0.5rem' }}>RHETORIC :: The How</div>
                     <input value={nodes.rhetoric} onChange={e => handleSet('rhetoric', e.target.value)} placeholder="My desired outcome..." style={{ width: '100%', background: 'transparent', border: `1px solid ${m.accent}40`, color: m.text1, padding: '8px', fontFamily: 'var(--fBody)', fontSize: '0.9rem', boxSizing: 'border-box' }} />
                 </div>
             </div>
@@ -648,15 +648,15 @@ const TriviumTriangle = ({ m, playAlgoraveSynth, playStrikingBowl }) => {
 const AnglesIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => (
     <div style={{ animation: 'fadeIn 1s ease' }}>
         <IssueHeader m={m} title="Three Is The" accent="Magic Number" published="2026" designation="THE STEEPERVERSE" source="IF LINEAR LIFE IS CONFUSING, TRY ANGLES" kicker="One is a point. Two is a line of tension. Three is the first geometry that can hold space." />
-        <HeroImage m={m} src="/trivium_triangle_sv.png" alt="The Trivium Triangle" caption="FIG. 10 — THE APEX PROVIDES THE ANSWER" />
+        <HeroImage m={m} src="/trivium_triangle_sv.png" alt="The Trivium Triangle" caption="FIG. 10 :: THE APEX PROVIDES THE ANSWER" />
 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
-                he cosmos builds in angles. When the line between Point A and Point B snaps — when the distance becomes unbridgeable — the most profound navigational shift available is to add a third coordinate. The triangle holds the space. It distributes force evenly across all three sides.
+                he cosmos builds in angles. When the line between Point A and Point B snaps :: when the distance becomes unbridgeable :: the most profound navigational shift available is to add a third coordinate. The triangle holds the space. It distributes force evenly across all three sides.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                In 1971, jazz musician Bob Dorough received an assignment: write a song to teach children multiplication. He looked at the mathematics and recognized that three is architecture. In 1989, De La Soul sampled his opening line and triangulated hip-hop culture — introducing the Daisy Age as the third coordinate in a binary era. Both understood what the <SongbookGlossaryItem m={m} term="Trivium" definition="The classical architecture of knowing: Grammar (the what), Logic (the why), Rhetoric (the how) — the three roads that converge at understanding." /> mapped 2,000 years earlier.
+                In 1971, jazz musician Bob Dorough received an assignment: write a song to teach children multiplication. He looked at the mathematics and recognized that three is architecture. In 1989, De La Soul sampled his opening line and triangulated hip-hop culture :: introducing the Daisy Age as the third coordinate in a binary era. Both understood what the <SongbookGlossaryItem m={m} term="Trivium" definition="The classical architecture of knowing: Grammar (the what), Logic (the why), Rhetoric (the how) :: the three roads that converge at understanding." /> mapped 2,000 years earlier.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 Human depth perception itself is triangulation. Your left eye sees one flat image. Your right eye sees another. Your brain calculates the angle of difference and synthesizes them into three-dimensional reality. Depth emerges as a calculation born from contradiction. The Trivium Field below is a physical practice. It must be inhabited to be understood.
@@ -668,13 +668,13 @@ const AnglesIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingB
         <SectionLabel m={m}>[ THREE RESEARCH EXERCISES ]</SectionLabel>
         <TriviumExercise m={m} num={1} title="The Trivium Pivot" playStrikingBowl={playStrikingBowl}
             instruction="Stand up. Place your feet shoulder-width apart. This is your base line."
-            steps={['Let your left foot represent the raw facts of your current confusion — Grammar.', 'Let your right foot represent your desired outcome — Rhetoric. Feel the linear pull between them.', 'Step one foot forward, creating a physical triangle on the floor. Move your center of gravity to this new forward point.', 'This apex is Logic. Ask from this physical position: What is the relationship between my facts and my desire that I am refusing to see?', 'Hold the position. Use the button below until the angle provides an answer.']} />
+            steps={['Let your left foot represent the raw facts of your current confusion :: Grammar.', 'Let your right foot represent your desired outcome :: Rhetoric. Feel the linear pull between them.', 'Step one foot forward, creating a physical triangle on the floor. Move your center of gravity to this new forward point.', 'This apex is Logic. Ask from this physical position: What is the relationship between my facts and my desire that I am refusing to see?', 'Hold the position. Use the button below until the angle provides an answer.']} />
         <TriviumExercise m={m} num={2} title="The Sonic Triangulation" playStrikingBowl={playStrikingBowl}
             instruction="Sit in a chair. Close your eyes."
-            steps={['Identify a binary tension currently active — two opposing options pulling at you.', 'Hold the first option in your left hand. Hold the second in your right. Feel the linear pull.', 'Imagine a third point hovering exactly three feet above your head. This is the De La Soul coordinate — the unexpected synthesis.', 'What is the third option that makes the binary irrelevant?', 'What is the angle that breaks the line?']} />
+            steps={['Identify a binary tension currently active :: two opposing options pulling at you.', 'Hold the first option in your left hand. Hold the second in your right. Feel the linear pull.', 'Imagine a third point hovering exactly three feet above your head. This is the De La Soul coordinate :: the unexpected synthesis.', 'What is the third option that makes the binary irrelevant?', 'What is the angle that breaks the line?']} />
         <TriviumExercise m={m} num={3} title="The Visual Synthesis" playStrikingBowl={playStrikingBowl}
             instruction="Hold your thumb out at arm's length."
-            steps={['Close your left eye. Notice what your thumb aligns with in the background.', "Open your left eye and close your right. Notice how the thumb 'jumps' to a new alignment.", 'Open both eyes. The thumb hovers in space. You have created depth.', 'Apply this to your current Surface Tension — the left eye view versus the right eye view.', 'Open both. Let the contradiction create the depth of your next move.']} />
+            steps={['Close your left eye. Notice what your thumb aligns with in the background.', "Open your left eye and close your right. Notice how the thumb 'jumps' to a new alignment.", 'Open both eyes. The thumb hovers in space. You have created depth.', 'Apply this to your current Surface Tension :: the left eye view versus the right eye view.', 'Open both. Let the contradiction create the depth of your next move.']} />
 
         <PullQuote m={m}>"Three is the first number that can form a closed shape. It is the birth of the surface. It holds."</PullQuote>
     </div>
@@ -720,7 +720,7 @@ const BellParagraph = ({ m, children, playStrikingBowl, delay = 0 }) => {
 const DecayIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => (
     <div style={{ animation: 'fadeIn 1s ease' }}>
         <IssueHeader m={m} title="The Decay of" accent="Interpretation" published="2026" designation="THE STEEPERVERSE" source="a•i•CONTEMPLATION :: THE PAUSE CHAPTER" kicker="An idea needs seasoning, to gather flavorful resonance. Waiting is itself a form of action." />
-        <HeroImage m={m} src="/decay_bell_sv.png" alt="The Bell Mid-Vibration" caption="FIG. 11 — THE STANDING WAVE AT MAXIMUM RESONANCE" />
+        <HeroImage m={m} src="/decay_bell_sv.png" alt="The Bell Mid-Vibration" caption="FIG. 11 :: THE STANDING WAVE AT MAXIMUM RESONANCE" />
 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <BellParagraph m={m} playStrikingBowl={playStrikingBowl} delay={0}>
@@ -728,13 +728,13 @@ const DecayIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
                 bell struck rings. The tone is clean, sharp, immediate. Then it decays. The wave spreads outward from the rim, diminishing in amplitude but retaining its beauty. The silence that follows functions as the space where the ear recalibrates.
             </BellParagraph>
             <BellParagraph m={m} playStrikingBowl={playStrikingBowl} delay={1}>
-                Contemplation operates by the same physics. An idea enters awareness with clarity and energy. It rings. If the practitioner engages — moves with it, turns it, questions it — the signal deepens and the <SongbookGlossaryItem m={m} term="Capacity" definition="The internal space required to hold insight, expansion, and stillness simultaneously." /> that holds it expands. Time + Attention + Love = depth, complexity, refinement. The wine-aging model.
+                Contemplation operates by the same physics. An idea enters awareness with clarity and energy. It rings. If the practitioner engages :: moves with it, turns it, questions it :: the signal deepens and the <SongbookGlossaryItem m={m} term="Capacity" definition="The internal space required to hold insight, expansion, and stillness simultaneously." /> that holds it expands. Time + Attention + Love = depth, complexity, refinement. The wine-aging model.
             </BellParagraph>
             <BellParagraph m={m} playStrikingBowl={playStrikingBowl} delay={2}>
-                The danger appears when interpretation replaces engagement. When the practitioner circles the idea actively avoiding contact — analyzing, contextualizing, positioning — the bell tone decays, yet the practitioner mistakes the fade for depth. The ring fades. The silence arrives. They are still circling.
+                The danger appears when interpretation replaces engagement. When the practitioner circles the idea actively avoiding contact :: analyzing, contextualizing, positioning :: the bell tone decays, yet the practitioner mistakes the fade for depth. The ring fades. The silence arrives. They are still circling.
             </BellParagraph>
             <BellParagraph m={m} playStrikingBowl={playStrikingBowl} delay={3}>
-                The <SongbookGlossaryItem m={m} term="a•i•Contemplation" definition="Action Intention Contemplation — a creative orientation practice moving through Pause, Pivot, and Merge to restore grounded direction." /> practice makes this distinction audible: Pause as creative intelligence versus Pause as fear masquerading as discernment. The first increases product value. The second collapses it. The body knows which one is happening. The bell always knows when it stopped ringing.
+                The <SongbookGlossaryItem m={m} term="a•i•Contemplation" definition="Action Intention Contemplation :: a creative orientation practice moving through Pause, Pivot, and Merge to restore grounded direction." /> practice makes this distinction audible: Pause as creative intelligence versus Pause as fear masquerading as discernment. The first increases product value. The second collapses it. The body knows which one is happening. The bell always knows when it stopped ringing.
             </BellParagraph>
         </div>
 
@@ -748,7 +748,7 @@ const DecayIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
                 </div>
                 <div style={{ fontFamily: 'var(--fBody)', color: m.text2, fontSize: '0.95rem', lineHeight: 1.7, borderLeft: `1px solid ${m.accent}20`, paddingLeft: '2rem' }}>
                     <AwarenessPlanningInteractive m={m} playAlgoraveSynth={playAlgoraveSynth} />
-                    <div style={{ marginTop: '1rem' }}>The Pause chapter of a•i•Contemplation opens here — carry any decaying insight directly into the structured practice.</div>
+                    <div style={{ marginTop: '1rem' }}>The Pause chapter of a•i•Contemplation opens here :: carry any decaying insight directly into the structured practice.</div>
                 </div>
             </div>
         </div>
@@ -854,20 +854,20 @@ const RestIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBow
 
             {restComplete && (
                 <>
-                    <HeroImage m={m} src="/rest_architecture_sv.png" alt="The Empty Recording Studio at 2AM" caption="FIG. 12 — THE ROOM IS THE INSTRUMENT" />
+                    <HeroImage m={m} src="/rest_architecture_sv.png" alt="The Empty Recording Studio at 2AM" caption="FIG. 12 :: THE ROOM IS THE INSTRUMENT" />
                     <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
                         <p style={{ margin: '0 0 var(--space-md) 0' }}>
                             <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>I</span>
-                            n musical notation, a rest has a specific symbol. It operates as a deliberate instruction to hold silence for a precise duration — an eighth rest, a quarter rest, a full measure of held space. The musician who understands the value of the rest holds the groove.
+                            n musical notation, a rest has a specific symbol. It operates as a deliberate instruction to hold silence for a precise duration :: an eighth rest, a quarter rest, a full measure of held space. The musician who understands the value of the rest holds the groove.
                         </p>
                         <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                            John Cage understood this precisely enough to compose four minutes and thirty-three seconds of rest — <SongbookGlossaryItem m={m} term={"4\u201933\u2033"} definition={"John Cage's 1952 composition: four minutes and thirty-three seconds of performed silence. The rest as the complete work."} />. The performers appeared. They sat. They held silence for the full duration. What the audience heard was the room: air conditioning, rustling programs, their own breathing, a cough, a bird outside. The room was the instrument. The rest revealed it.
+                            John Cage understood this precisely enough to compose four minutes and thirty-three seconds of rest :: <SongbookGlossaryItem m={m} term={"4\u201933\u2033"} definition={"John Cage's 1952 composition: four minutes and thirty-three seconds of performed silence. The rest as the complete work."} />. The performers appeared. They sat. They held silence for the full duration. What the audience heard was the room: air conditioning, rustling programs, their own breathing, a cough, a bird outside. The room was the instrument. The rest revealed it.
                         </p>
                         <p style={{ margin: '0 0 var(--space-md) 0' }}>
                             <SongbookGlossaryItem m={m} term="Rest" definition="In the Steeperverse: the structural container that creation requires. Rest is architectural." /> in the Steeperverse is the same category of intelligence. It is the held space that ensures the insight that follows arrives into a secure vessel. The steam requires a vessel. The vessel requires knowing when to hold, and when to pour.
                         </p>
                         <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                            Miles Davis played fewer notes than anyone. His silence was his signature. In the space between his phrases, the audience leaned forward — unconsciously filling the rest with their own listening, their own memory, their own recognition. The rest did more work than the notes.
+                            Miles Davis played fewer notes than anyone. His silence was his signature. In the space between his phrases, the audience leaned forward :: unconsciously filling the rest with their own listening, their own memory, their own recognition. The rest did more work than the notes.
                         </p>
                     </div>
                     <PullQuote m={m}>"The rest is notated. It serves as the vital held space the next note needs in order to be heard."</PullQuote>
@@ -906,7 +906,7 @@ const ThreeStatesIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStri
     <div style={{ animation: 'fadeIn 1s ease' }}>
         <IssueHeader m={m} title="Three States" accent="One Word" published="2026" designation="THE STEEPERVERSE" source="SPACETIME LINGUISTICS" kicker="Taking a knowable notion and giving it relatable spacetime dimension." />
         
-        <HeroImage m={m} src="/steam_ghost_transformation.png" alt="Typographic Phase Shift" caption="FIG. 03 — THE PHASE SHIFT OF MEANING" />
+        <HeroImage m={m} src="/steam_ghost_transformation.png" alt="Typographic Phase Shift" caption="FIG. 03 :: THE PHASE SHIFT OF MEANING" />
 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -968,11 +968,11 @@ export const getSteepingIssues = (m, setTuraoMode, SongbookGlossaryItem, playAlg
         render: () => (
             <div className="issue-content-steam" style={{ animation: 'fadeIn 1s ease' }}>
                 <IssueHeader m={m} title="The Cosmology" accent="of Steam" published="2026" designation="THE STEEPERVERSE" source="THE FIRESTARTER" kicker="A multi-modal synthesis mapping the Carrier Wave of Transformation. It traces pure essence as it glides through the spatial void." />
-                <HeroImage m={m} src="/steam_first_breath.png" alt="The First Breath of Steam" caption="FIG. 01 — THE FIRST BREATH" />
+                <HeroImage m={m} src="/steam_first_breath.png" alt="The First Breath of Steam" caption="FIG. 01 :: THE FIRST BREATH" />
                 <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', hyphens: 'auto', WebkitHyphens: 'auto', marginBottom: 'var(--space-xl)' }}>
                     <p style={{ margin: '0 0 var(--space-md) 0' }}>
                         <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>F</span>
-                        or epochs, our instruments have surveyed the vast architecture of The Steeperverse—the star fields, the nebulae, the great cosmic structures. But our most recent survey cycle has been dedicated to a phenomenon functioning entirely as a conductive medium. It is the natural gas of creation itself, the visible breath of the cosmos: <SongbookGlossaryItem m={m} term="Steam" definition="The bridge between inner & outer universes. The physical evidence of the journey inward becoming a radiant offering outward." />.
+                        or epochs, our instruments have surveyed the vast architecture of The Steeperverse :: the star fields, the nebulae, the great cosmic structures. But our most recent survey cycle has been dedicated to a phenomenon functioning entirely as a conductive medium. It is the natural gas of creation itself, the visible breath of the cosmos: <SongbookGlossaryItem m={m} term="Steam" definition="The bridge between inner & outer universes. The physical evidence of the journey inward becoming a radiant offering outward." />.
                     </p>
                     <div style={{ breakInside: 'avoid', margin: 'var(--space-md) 0', padding: '0.5rem 0', borderTop: `1px solid ${m.accent}20`, borderBottom: `1px solid ${m.accent}20` }}>
                         <video autoPlay loop muted playsInline style={{ width: '100%', display: 'block', opacity: 0.9, filter: 'grayscale(0.4) contrast(1.1)' }}>
@@ -987,7 +987,7 @@ export const getSteepingIssues = (m, setTuraoMode, SongbookGlossaryItem, playAlg
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginBottom: 'var(--space-xl)', alignItems: 'end' }}>
                     <div style={{ border: `1px solid ${m.accent}30`, position: 'relative' }}><img src="/steam_ghost_transformation.png" alt="Ghost of Transformation" style={{ width: '100%', display: 'block', opacity: 0.8 }} /></div>
                     <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.75rem', color: m.text2, lineHeight: 1.6, borderBottom: `1px dashed ${m.accent}40`, paddingBottom: '1rem' }}>
-                        <b style={{ color: m.accent, display: 'block', marginBottom: '0.5rem' }}>[ FIG. 02 — THE GHOST OF TRANSFORMATION ]</b>
+                        <b style={{ color: m.accent, display: 'block', marginBottom: '0.5rem' }}>[ FIG. 02 :: THE GHOST OF TRANSFORMATION ]</b>
                         A supernova remnant. The central star is gone, but its ghost remains: a perfect sphere of shimmering, translucent Steam, holding the memory of the star that was.
                     </div>
                 </div>
@@ -999,7 +999,7 @@ export const getSteepingIssues = (m, setTuraoMode, SongbookGlossaryItem, playAlg
                 <div style={{ width: '100%', marginBottom: 'var(--space-xxl)', position: 'relative' }}>
                     <img src="/steam_bridge_to_turao.png" alt="The Bridge to TURAO" style={{ width: '100%', display: 'block', opacity: 0.85, maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)', WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)' }} />
                     <div style={{ position: 'absolute', bottom: '2rem', right: '1rem', background: 'rgba(0,0,0,0.8)', padding: '0.5rem 1rem', fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text1, borderLeft: `2px solid ${m.accent}`, maxWidth: '80%' }}>
-                        <b style={{ color: m.accent }}>[ FIG. 03 — THE BRIDGE TO TURAO ]</b><br />Showing the boundary between two universes.
+                        <b style={{ color: m.accent }}>[ FIG. 03 :: THE BRIDGE TO TURAO ]</b><br />Showing the boundary between two universes.
                     </div>
                 </div>
                 <PullQuote m={m}>"When a Star engages in the act of steeping, they generate Steam. The Steam carries their essence out from the vessel of their being and into <span style={{ color: m.accent }}>TURAO.</span>"</PullQuote>
@@ -1012,9 +1012,9 @@ export const getSteepingIssues = (m, setTuraoMode, SongbookGlossaryItem, playAlg
         render: () => (
             <div className="issue-content-dod" style={{ animation: 'fadeIn 1s ease', marginBottom: 'var(--space-xxl)' }}>
                 <IssueHeader m={m} title="Ontological" accent="Design" published="2026" designation="THE STEEPERVERSE" source="THE DEPARTMENT OF ONTOLOGICAL DESIGN" />
-                <HeroImage m={m} src="/ontological_design.png" alt="Department of Ontological Design Bridge" caption="FIG. 04 — THE VISIBLE BRIDGE OF CAPACITY" />
+                <HeroImage m={m} src="/ontological_design.png" alt="Department of Ontological Design Bridge" caption="FIG. 04 :: THE VISIBLE BRIDGE OF CAPACITY" />
                 <BodyText m={m}><b style={{ color: m.accent, fontFamily: 'var(--fMono)', display: 'block', marginBottom: '1rem', fontSize: '0.8rem' }}>WHAT IS IT IN THE STEEPERVERSE?</b>The <SongbookGlossaryItem m={m} term="Department of Ontological Design (DOD)" definition="The architectural framework within the Steeperverse focused on the purposeful, generative design of 'being'." /> is the active intelligence layer of this ecosystem. It is the space where structural engineering meets spiritual awareness.</BodyText>
-                <BodyText m={m}><b style={{ color: m.accent, fontFamily: 'var(--fMono)', display: 'block', marginBottom: '1rem', fontSize: '0.8rem' }}>WHAT IS DESIGNED AT THE DOD, AND WHO IS IT FOR?</b>The DOD designs <SongbookGlossaryItem m={m} term="Capacity" definition="The internal space required to hold insight, expansion, and stillness simultaneously." />. The friction you feel is the sound of your capacity expanding. Friction is source code. It is designed for you — the practitioner honoring the weight of your own attention.</BodyText>
+                <BodyText m={m}><b style={{ color: m.accent, fontFamily: 'var(--fMono)', display: 'block', marginBottom: '1rem', fontSize: '0.8rem' }}>WHAT IS DESIGNED AT THE DOD, AND WHO IS IT FOR?</b>The DOD designs <SongbookGlossaryItem m={m} term="Capacity" definition="The internal space required to hold insight, expansion, and stillness simultaneously." />. The friction you feel is the sound of your capacity expanding. Friction is source code. It is designed for you :: the practitioner honoring the weight of your own attention.</BodyText>
 
                 {/* ── SOUND OF BECOMING PORTAL BLURB ─── */}
                 <div
@@ -1042,7 +1042,7 @@ export const getSteepingIssues = (m, setTuraoMode, SongbookGlossaryItem, playAlg
         render: () => (
             <div className="issue-content-pause" style={{ animation: 'fadeIn 1s ease', marginBottom: 'var(--space-xxl)' }}>
                 <IssueHeader m={m} title="The Architecture" accent="of the Pause" published="2026" designation="THE STEEPERVERSE" source="ARCHETYPICAL ARCHITECT" />
-                <HeroImage m={m} src="/architecture_of_pause.png" alt="Architecture of the Pause Void" caption="FIG. 05 — MAPPING THE NEGATIVE SPACE" />
+                <HeroImage m={m} src="/architecture_of_pause.png" alt="Architecture of the Pause Void" caption="FIG. 05 :: MAPPING THE NEGATIVE SPACE" />
                 <BodyText m={m}>An articulation of architecture from the vantage point of the <SongbookGlossaryItem m={m} term="Archetypal Architect" definition="The inner aspect of self that maps out internal pathways before construction begins." />. What they know about structure, presence, and material suggestion is that a building is merely organized void.</BodyText>
                 <BodyText m={m}><b style={{ color: m.accent, fontFamily: 'var(--fMono)', display: 'block', marginBottom: '1rem', fontSize: '0.8rem' }}>AWARENESS PLANNING</b>True architectural resourcefulness anchors itself deeply in <AwarenessPlanningInteractive m={m} playAlgoraveSynth={playAlgoraveSynth} />. The pause is the most structurally sound pillar of any human endeavor. Thank you for honoring the weight of your own attention.</BodyText>
             </div>
@@ -1301,19 +1301,19 @@ const StemSequencer = ({ m, playAlgoraveSynth, playStrikingBowl }) => {
 
 const CollabinaationIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => (
     <div style={{ animation: 'fadeIn 1s ease' }}>
-        <IssueHeader m={m} title="The Collabination" accent="Principle" published="2026" designation="THE STEEPERVERSE" source="THE FIRESTARTER" kicker="The spontaneous, improvisational combination of unique entities — where the sum creates what none could generate alone." />
-        <HeroImage m={m} src="/collabination_sv.png" alt="Three musicians in session" caption="FIG. 13 — THE COLLABORATION EXISTS IN THE SPACE BETWEEN THEM" />
+        <IssueHeader m={m} title="The Collabination" accent="Principle" published="2026" designation="THE STEEPERVERSE" source="THE FIRESTARTER" kicker="The spontaneous, improvisational combination of unique entities :: where the sum creates what none could generate alone." />
+        <HeroImage m={m} src="/collabination_sv.png" alt="Three musicians in session" caption="FIG. 13 :: THE COLLABORATION EXISTS IN THE SPACE BETWEEN THEM" />
 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
-                hree musicians in a room. Each one complete. Each one trained. Each one capable of playing alone. They play together, into the space between their instruments — and what emerges from that space is what none of them could have generated solo. This is <SongbookGlossaryItem m={m} term="Collabination" definition="The spontaneous, improvisational combination of unique entities — where the collaboration itself generates a new intelligence that belongs to none of the participants individually." />.
+                hree musicians in a room. Each one complete. Each one trained. Each one capable of playing alone. They play together, into the space between their instruments :: and what emerges from that space is what none of them could have generated solo. This is <SongbookGlossaryItem m={m} term="Collabination" definition="The spontaneous, improvisational combination of unique entities :: where the collaboration itself generates a new intelligence that belongs to none of the participants individually." />.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                The pianist flows completely beneath the bassist's cadence. The drummer shares time within the collective pulse. The Call arrives, the Response meets it, and the space between — the deliberate, practiced silence — is where <SongbookGlossaryItem m={m} term="Awareness Planning" definition="The intentional mapping of negative space; cultivating the sanctuary of restraint. The most structurally sound pillar of any endeavor." /> lives in music. The rest is held. The reverb extends. The next phrase arrives into that space already shaped by what preceded it.
+                The pianist flows completely beneath the bassist's cadence. The drummer shares time within the collective pulse. The Call arrives, the Response meets it, and the space between :: the deliberate, practiced silence :: is where <SongbookGlossaryItem m={m} term="Awareness Planning" definition="The intentional mapping of negative space; cultivating the sanctuary of restraint. The most structurally sound pillar of any endeavor." /> lives in music. The rest is held. The reverb extends. The next phrase arrives into that space already shaped by what preceded it.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                In the Steeperverse, <SongbookGlossaryItem m={m} term="Collabination" definition="The spontaneous, improvisational combination of unique entities — where the collaboration itself generates a new intelligence." /> is the operating model for every creative encounter — between The Firestarter and the editorial field, between the practitioner and the Steeping Note, between the body's signal and the mind's interpretation. The integration phase of <SongbookGlossaryItem m={m} term="a•i•Contemplation" definition="Action Intention Contemplation — the practice moving through Pause, Pivot, and Merge to restore grounded direction." /> is the Collabination moment: where individual sparks of insight synthesize into structural truth that neither the spark nor the silence could hold alone.
+                In the Steeperverse, <SongbookGlossaryItem m={m} term="Collabination" definition="The spontaneous, improvisational combination of unique entities :: where the collaboration itself generates a new intelligence." /> is the operating model for every creative encounter :: between The Firestarter and the editorial field, between the practitioner and the Steeping Note, between the body's signal and the mind's interpretation. The integration phase of <SongbookGlossaryItem m={m} term="a•i•Contemplation" definition="Action Intention Contemplation :: the practice moving through Pause, Pivot, and Merge to restore grounded direction." /> is the Collabination moment: where individual sparks of insight synthesize into structural truth that neither the spark nor the silence could hold alone.
             </p>
         </div>
 
@@ -1321,7 +1321,7 @@ const CollabinaationIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playS
 
         <BodyText m={m}>
             <b style={{ fontFamily: 'var(--fMono)', color: m.accent, display: 'block', marginBottom: '0.8rem', fontSize: '0.8rem' }}>THE CALL & RESPONSE ARCHITECTURE</b>
-            The sequencer above embodies the Collabination Principle. Add stems. Hear the chord build. Then: Call. The system responds. Hold the space for three seconds — practicing <AwarenessPlanningInteractive m={m} playAlgoraveSynth={playAlgoraveSynth} /> — and the reverb of the Call extends infinitely into the held silence. The system listens. The space holds the conversation.
+            The sequencer above embodies the Collabination Principle. Add stems. Hear the chord build. Then: Call. The system responds. Hold the space for three seconds :: practicing <AwarenessPlanningInteractive m={m} playAlgoraveSynth={playAlgoraveSynth} /> :: and the reverb of the Call extends infinitely into the held silence. The system listens. The space holds the conversation.
         </BodyText>
         <PullQuote m={m}>"Intelligence that belongs to none of the participants individually only appears when each one honors the space between their contributions."</PullQuote>
     </div>
@@ -1333,14 +1333,14 @@ const CollabinaationIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playS
 
 const TrigramExplorer = ({ m, playStrikingBowl }) => {
     const trigrams = [
-        { symbol: '☰', name: 'Qian — Heaven', angle: 'Pure creative force. The initiating energy. The person at the apex of the pyramid embodies the active, initiating point.', lines: [1, 1, 1] },
-        { symbol: '☷', name: 'Kun — Earth', angle: 'The receptive field. The cutting mat taking the imprint of the creative. The yielding surface that allows the angle to be pressed into it.', lines: [0, 0, 0] },
-        { symbol: '☶', name: 'Gen — Mountain', angle: 'Stillness and the boundary. The black tent — the only vertical interruption in the desert. A point of stillness in the expanse. The first angle.', lines: [1, 0, 0] },
-        { symbol: '☲', name: 'Li — Fire / Radiance', angle: 'Clarity, the eye, and the act of seeing. The Å is the eye. It is the frame through which the desert is observed.', lines: [1, 0, 1] },
-        { symbol: '☳', name: 'Zhen — Thunder', angle: 'The sudden movement. The shock of the new. The rocket arc — the thunder of departure forming the geometry of change.', lines: [0, 0, 1] },
-        { symbol: '☴', name: 'Sun — Wind / Wood', angle: 'The penetrating transmission of influence. The laser connecting operator to tripod — invisible influence made visible.', lines: [1, 1, 0] },
-        { symbol: '☵', name: 'Kan — Water', angle: 'The continuous flow, navigating the depths. The lock screen of daily life, the triangle as wallpaper of the day.', lines: [0, 1, 0] },
-        { symbol: '☱', name: 'Dui — Lake', angle: 'The joyous, open reflection. The dodecahedron framing the moon — an open structure reflecting and holding the cosmos.', lines: [0, 1, 1] },
+        { symbol: '☰', name: 'Qian :: Heaven', angle: 'Pure creative force. The initiating energy. The person at the apex of the pyramid embodies the active, initiating point.', lines: [1, 1, 1] },
+        { symbol: '☷', name: 'Kun :: Earth', angle: 'The receptive field. The cutting mat taking the imprint of the creative. The yielding surface that allows the angle to be pressed into it.', lines: [0, 0, 0] },
+        { symbol: '☶', name: 'Gen :: Mountain', angle: 'Stillness and the boundary. The black tent :: the only vertical interruption in the desert. A point of stillness in the expanse. The first angle.', lines: [1, 0, 0] },
+        { symbol: '☲', name: 'Li :: Fire / Radiance', angle: 'Clarity, the eye, and the act of seeing. The Å is the eye. It is the frame through which the desert is observed.', lines: [1, 0, 1] },
+        { symbol: '☳', name: 'Zhen :: Thunder', angle: 'The sudden movement. The shock of the new. The rocket arc :: the thunder of departure forming the geometry of change.', lines: [0, 0, 1] },
+        { symbol: '☴', name: 'Sun :: Wind / Wood', angle: 'The penetrating transmission of influence. The laser connecting operator to tripod :: invisible influence made visible.', lines: [1, 1, 0] },
+        { symbol: '☵', name: 'Kan :: Water', angle: 'The continuous flow, navigating the depths. The lock screen of daily life, the triangle as wallpaper of the day.', lines: [0, 1, 0] },
+        { symbol: '☱', name: 'Dui :: Lake', angle: 'The joyous, open reflection. The dodecahedron framing the moon :: an open structure reflecting and holding the cosmos.', lines: [0, 1, 1] },
     ];
 
     const [active, setActive] = useState(null);
@@ -1382,21 +1382,21 @@ const TrigramExplorer = ({ m, playStrikingBowl }) => {
 const TrigramIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => (
     <div style={{ animation: 'fadeIn 1s ease' }}>
         <IssueHeader m={m} title="A Triangle and a" accent="Trigram Walk Into a Desert" published="2026" designation="THE STEEPERVERSE" source="MARS COLLEGE 2026 :: AN ACTIVATION ÆSSAY" kicker="They transcend the joke. They build a structure." />
-        <HeroImage m={m} src="/trigram_desert_sv.png" alt="The Triangle and Trigram in the Desert" caption="FIG. 14 — THE ONLY VERTICAL INTERRUPTION IN THE HORIZONTAL LINE" />
+        <HeroImage m={m} src="/trigram_desert_sv.png" alt="The Triangle and Trigram in the Desert" caption="FIG. 14 :: THE ONLY VERTICAL INTERRUPTION IN THE HORIZONTAL LINE" />
 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
-                he desert is the ultimate horizontal line. Place a structure in it and you interrupt the line. A lone black tent on gravel becomes a triangle in profile. It becomes ☶, Gen — stillness and the boundary. The first angle.
+                he desert is the ultimate horizontal line. Place a structure in it and you interrupt the line. A lone black tent on gravel becomes a triangle in profile. It becomes ☶, Gen :: stillness and the boundary. The first angle.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                The <SongbookGlossaryItem m={m} term="Triangle" definition="The first closed geometry. Three points create a surface that holds force evenly across all nodes." /> maps space. The <SongbookGlossaryItem m={m} term="Trigram" definition="The foundational unit of the I Ching — three stacked lines, each solid (Yang) or broken (Yin). A three-bit binary code mapping the energetic state of a situation." /> maps time and change. Together, in the desert, they speak the exact same language: the mathematics of the necessary third coordinate.
+                The <SongbookGlossaryItem m={m} term="Triangle" definition="The first closed geometry. Three points create a surface that holds force evenly across all nodes." /> maps space. The <SongbookGlossaryItem m={m} term="Trigram" definition="The foundational unit of the I Ching :: three stacked lines, each solid (Yang) or broken (Yin). A three-bit binary code mapping the energetic state of a situation." /> maps time and change. Together, in the desert, they speak the exact same language: the mathematics of the necessary third coordinate.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                A rocket arc at night forms a massive triangle with the earth: launch point, landing point, and the apex of the parabola. This is ☳, Zhen — Thunder. The sudden movement. The angle of change. The cosmos has always been speaking in geometry. The Trigram teaches us how to read what the Triangle holds.
+                A rocket arc at night forms a massive triangle with the earth: launch point, landing point, and the apex of the parabola. This is ☳, Zhen :: Thunder. The sudden movement. The angle of change. The cosmos has always been speaking in geometry. The Trigram teaches us how to read what the Triangle holds.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                Music has always known the I Ching. The eight trigrams map to the eight notes of a minor scale with uncanny precision — ☰ Heaven strikes the root and rings clean; ☵ Water runs a chromatic descent; ☱ Lake lands on the major seventh, open and reflective. The cosmos encodes its own score.
+                Music has always known the I Ching. The eight trigrams map to the eight notes of a minor scale with uncanny precision :: ☰ Heaven strikes the root and rings clean; ☵ Water runs a chromatic descent; ☱ Lake lands on the major seventh, open and reflective. The cosmos encodes its own score.
             </p>
         </div>
 
@@ -1413,7 +1413,7 @@ const TrigramIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStriking
 );
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ARC SERIES — SHARED STEEPING PROMPT COMPONENT
+// ARC SERIES :: SHARED STEEPING PROMPT COMPONENT
 // ─────────────────────────────────────────────────────────────────────────────
 
 const ArcCouplet = ({ m }) => (
@@ -1553,14 +1553,14 @@ const StepingPrompt = ({ m, prompt, playAlgoraveSynth, playStrikingBowl }) => {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ISSUE 13: THE ARC — PHYSICS OF THE LONG WAY AROUND
+// ISSUE 13: THE ARC :: PHYSICS OF THE LONG WAY AROUND
 // ─────────────────────────────────────────────────────────────────────────────
 
 const ArcPhysicsIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => (
     <div style={{ animation: 'fadeIn 1s ease' }}>
         <IssueHeader m={m} title="The Arc ::" accent="The Physics of the Long Way Around" published="2026" designation="THE STEEPERVERSE :: THE ARC SERIES" source="THE FIRESTARTER" />
         <ArcCouplet m={m} />
-        <HeroImage m={m} src="/arc_rocket_sv.png" alt="Rocket Arc" caption="FIG. 15 — THE GEOMETRY OF DEPARTURE" />
+        <HeroImage m={m} src="/arc_rocket_sv.png" alt="Rocket Arc" caption="FIG. 15 :: THE GEOMETRY OF DEPARTURE" />
 
         <div style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.25rem', lineHeight: 1.8, marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -1571,7 +1571,7 @@ const ArcPhysicsIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrik
                 <SongbookGlossaryItem m={m} term="Surface Tension" definition="The boundary between limitation and possibility; the creative friction that signals expanding capacity." /> is the atmosphere already carrying the practitioner forward. Lean into the curve. Let the geometry do the work.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                A snare hit with a rim shot — the stick meets the head and the rim simultaneously. Two points of contact, generating a third sound neither contact produces on its own. <SongbookGlossaryItem m={m} term="Surface Tension" definition="The boundary between limitation and possibility; the creative friction that signals expanding capacity." /> is the atmosphere already in use. The arc is the rim shot of physics.
+                A snare hit with a rim shot :: the stick meets the head and the rim simultaneously. Two points of contact, generating a third sound neither contact produces on its own. <SongbookGlossaryItem m={m} term="Surface Tension" definition="The boundary between limitation and possibility; the creative friction that signals expanding capacity." /> is the atmosphere already in use. The arc is the rim shot of physics.
             </p>
         </div>
         <StepingPrompt m={m} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl}
@@ -1581,14 +1581,14 @@ const ArcPhysicsIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrik
 );
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ISSUE 14: THE ARC — THE TEMPERATURE OF ARRIVAL
+// ISSUE 14: THE ARC :: THE TEMPERATURE OF ARRIVAL
 // ─────────────────────────────────────────────────────────────────────────────
 
 const ArcTemperatureIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => (
     <div style={{ animation: 'fadeIn 1s ease' }}>
         <IssueHeader m={m} title="The Arc ::" accent="The Temperature of Arrival" published="2026" designation="THE STEEPERVERSE :: THE ARC SERIES" source="THE FIRESTARTER" />
         <ArcCouplet m={m} />
-        <HeroImage m={m} src="/steeping_temperature_sv.png" alt="The Tea Leaf at Arrival" caption="FIG. 16 — THE MOMENT OF MAXIMUM BLOOM" />
+        <HeroImage m={m} src="/steeping_temperature_sv.png" alt="The Tea Leaf at Arrival" caption="FIG. 16 :: THE MOMENT OF MAXIMUM BLOOM" />
 
         <div style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.25rem', lineHeight: 1.8, marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
@@ -1596,10 +1596,10 @@ const ArcTemperatureIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playS
                 ou are already on the map. The destination functions as a signal revealed through your relationship with the coordinates you currently occupy.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <SongbookGlossaryItem m={m} term="Clarity" definition="The felt moment when something becomes clear without effort. It carries relief or ease. It simply arrives." /> requires steeping. Time, temperature, and surrender. The water takes the color of the leaf at its own pace. The <SongbookGlossaryItem m={m} term="Immanent Horizon" definition="The 9th Dimension of Surface Tension — the destination revealed through the practitioner's relationship with their current coordinates." /> reveals itself through presence.
+                <SongbookGlossaryItem m={m} term="Clarity" definition="The felt moment when something becomes clear without effort. It carries relief or ease. It simply arrives." /> requires steeping. Time, temperature, and surrender. The water takes the color of the leaf at its own pace. The <SongbookGlossaryItem m={m} term="Immanent Horizon" definition="The 9th Dimension of Surface Tension :: the destination revealed through the practitioner's relationship with their current coordinates." /> reveals itself through presence.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                In music, it is the dominant chord — the one that carries the tension of the unresolved, the note that makes the ear lean forward. The Temperature of Arrival is that chord resolving. It is audible only to those who stayed in the cup long enough to let the leaf open fully.
+                In music, it is the dominant chord :: the one that carries the tension of the unresolved, the note that makes the ear lean forward. The Temperature of Arrival is that chord resolving. It is audible only to those who stayed in the cup long enough to let the leaf open fully.
             </p>
         </div>
         <StepingPrompt m={m} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl}
@@ -1609,25 +1609,25 @@ const ArcTemperatureIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playS
 );
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ISSUE 15: THE ARC — THE GEOMETRY OF THE IN-BETWEEN
+// ISSUE 15: THE ARC :: THE GEOMETRY OF THE IN-BETWEEN
 // ─────────────────────────────────────────────────────────────────────────────
 
 const ArcInBetweenIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => (
     <div style={{ animation: 'fadeIn 1s ease' }}>
         <IssueHeader m={m} title="The Arc ::" accent="The Geometry of the In-Between" published="2026" designation="THE STEEPERVERSE :: THE ARC SERIES" source="THE FIRESTARTER" />
         <ArcCouplet m={m} />
-        <HeroImage m={m} src="/inbetween_sv.png" alt="The Bridge In-Between" caption="FIG. 17 — THE CHANGE IS THE ARC, TRANSCENDING THE DESTINATION" />
+        <HeroImage m={m} src="/inbetween_sv.png" alt="The Bridge In-Between" caption="FIG. 17 :: THE CHANGE IS THE ARC, TRANSCENDING THE DESTINATION" />
 
         <div style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.25rem', lineHeight: 1.8, marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
-                here is the problem, and there is the solution. Between them is a gap. The in-between is treated as a waiting room — a frustrating delay before real life begins.
+                here is the problem, and there is the solution. Between them is a gap. The in-between is treated as a waiting room :: a frustrating delay before real life begins.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                The in-between is the arc. The <SongbookGlossaryItem m={m} term="Intrepid Navigator" definition="The inner aspect of self that learns the difference between a map and a territory — that navigates through felt coordinates rather than prescribed routes." /> learns the difference between a map and a territory exactly here, in the crossing. When urgency dictates the journey, the destination arrives before the structural integrity has formed to hold it. Fragile arrival.
+                The in-between is the arc. The <SongbookGlossaryItem m={m} term="Intrepid Navigator" definition="The inner aspect of self that learns the difference between a map and a territory :: that navigates through felt coordinates rather than prescribed routes." /> learns the difference between a map and a territory exactly here, in the crossing. When urgency dictates the journey, the destination arrives before the structural integrity has formed to hold it. Fragile arrival.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                Jazz is the in-between. The notes are the problem and the solution. The music is what happens between them. The ascending run that breathes one note before resolution — the room leans forward. The held silence. Then the release. The resolution arrives as a quiet earning, gracefully received.
+                Jazz is the in-between. The notes are the problem and the solution. The music is what happens between them. The ascending run that breathes one note before resolution :: the room leans forward. The held silence. Then the release. The resolution arrives as a quiet earning, gracefully received.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <AwarenessPlanningInteractive m={m} playAlgoraveSynth={playAlgoraveSynth} /> lives precisely in this topology. The Pivot phase maps the in-between between insight and action. The Merge phase honors the geometry of that crossing. The change is the arc.
@@ -1663,7 +1663,7 @@ const SoundOfBecomingIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, play
 
 
 // ────────────────────────────────────────────────────────────────────────────
-// TURAO RECEIVING ENVIRONMENT — the living sonic-journaling field
+// TURAO RECEIVING ENVIRONMENT :: the living sonic-journaling field
 // ────────────────────────────────────────────────────────────────────────────
 
 const TuraoReceivingEnvironment = ({ m, playAlgoraveSynth, playStrikingBowl, onOpenFull }) => {
@@ -1707,11 +1707,11 @@ const TuraoReceivingEnvironment = ({ m, playAlgoraveSynth, playStrikingBowl, onO
                 [ TURAO ] {phaseLabel[phase]}
             </div>
 
-            <img src="/turao_stone_ocean_sv.png" alt="TURAO — The Union of Rock and Ocean" style={{ width: '100%', display: 'block', opacity: 0.65, marginBottom: '1.5rem', maskImage: 'linear-gradient(to bottom, black 55%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, black 55%, transparent 100%)' }} />
+            <img src="/turao_stone_ocean_sv.png" alt="TURAO :: The Union of Rock and Ocean" style={{ width: '100%', display: 'block', opacity: 0.65, marginBottom: '1.5rem', maskImage: 'linear-gradient(to bottom, black 55%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, black 55%, transparent 100%)' }} />
 
             <div style={{ fontFamily: 'var(--fBody)', fontSize: '0.95rem', color: m.text2, lineHeight: 1.8, marginBottom: '1.5rem' }}>
                 <b style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.72rem', display: 'block', marginBottom: '0.5rem', letterSpacing: '0.15em' }}>THE UNION OF ROCK AND OCEAN</b>
-                TURAO — <em>The Universe Receiving All Offerings</em> — is the exterior cosmos that holds everything steeped into being. Rock carries memory, structure, and stabilizing form. Ocean carries flow, feeling, and infinite emergence. Their union is the coastline: the third intelligence their meeting generates, where all creation happens grain by grain. Every word offered here is received.
+                TURAO :: <em>The Universe Receiving All Offerings</em> :: is the exterior cosmos that holds everything steeped into being. Rock carries memory, structure, and stabilizing form. Ocean carries flow, feeling, and infinite emergence. Their union is the coastline: the third intelligence their meeting generates, where all creation happens grain by grain. Every word offered here is received.
             </div>
 
             <div style={{ position: 'relative', marginBottom: '1rem' }}>
@@ -1748,7 +1748,7 @@ const TuraoReceivingEnvironment = ({ m, playAlgoraveSynth, playStrikingBowl, onO
 };
 
 // ────────────────────────────────────────────────────────────────────────────
-// TURAO STEEPING NOTE — Issue 17
+// TURAO STEEPING NOTE :: Issue 17
 // ────────────────────────────────────────────────────────────────────────────
 
 const TuraoYantra = ({ m }) => {
@@ -1818,21 +1818,21 @@ const TuraoFilmPreview = ({ m, playAlgoraveSynth, playStrikingBowl }) => {
 const TuraoIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => (
     <div style={{ animation: 'fadeIn 1s ease' }}>
         <IssueHeader m={m} title="TURAO ::" accent="The Universe Receiving" published="2026" designation="THE STEEPERVERSE" source="THE FIRESTARTER · A STONE REALITY" kicker="The Union of Rock and Ocean is the exterior cosmos that receives every offering steeped into being." />
-        <HeroImage m={m} src="/turao_stone_ocean_sv.png" alt="The Union of Rock and Ocean — TURAO" caption="FIG. A — THE COASTLINE WHERE ALL CREATION HAPPENS" />
+        <HeroImage m={m} src="/turao_stone_ocean_sv.png" alt="The Union of Rock and Ocean :: TURAO" caption="FIG. A :: THE COASTLINE WHERE ALL CREATION HAPPENS" />
 
         <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
-                here is a particular quality of relief that arrives when something carried has finally been received. A letter sent. A truth spoken. A creative work released. In that moment the inner universe exhales — something held becomes something that has landed. The practitioner has steeped something into being, and the universe, in its vast and patient way, has received it. This experience of reception constitutes the structure of TURAO.
+                here is a particular quality of relief that arrives when something carried has finally been received. A letter sent. A truth spoken. A creative work released. In that moment the inner universe exhales :: something held becomes something that has landed. The practitioner has steeped something into being, and the universe, in its vast and patient way, has received it. This experience of reception constitutes the structure of TURAO.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                <SongbookGlossaryItem m={m} term="TURAO" definition="The Universe Receiving All Offerings. Unified Nonidentical Intelligences Operating Naturally. The exterior cosmos that absorbs and holds every offering of the Steeperverse. The Union of Rock and Ocean operating at cosmic scale." /> — <em>The Universe Receiving All Offerings</em> — holds the paradox of existence in its name. Rock: the most stabilizing, form-holding intelligence. Memory, structure, the ancient authority of stone. Ocean: the most fluid, receiving, and generative intelligence. Feeling, change, the endless willingness to take new shape. Their union is the coastline. The coastline is where all creation happens.
+                <SongbookGlossaryItem m={m} term="TURAO" definition="The Universe Receiving All Offerings. Unified Nonidentical Intelligences Operating Naturally. The exterior cosmos that absorbs and holds every offering of the Steeperverse. The Union of Rock and Ocean operating at cosmic scale." /> :: <em>The Universe Receiving All Offerings</em> :: holds the paradox of existence in its name. Rock: the most stabilizing, form-holding intelligence. Memory, structure, the ancient authority of stone. Ocean: the most fluid, receiving, and generative intelligence. Feeling, change, the endless willingness to take new shape. Their union is the coastline. The coastline is where all creation happens.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                At the boundary where stone meets water, both are transformed. Water carves rock grain by grain — infinitesimal scale, macro consequence. The softest intelligence reshapes the hardest through the patient continuity of contact. Rock gives the water its coves, its direction, its memory of every channel carved. Both achieve their ultimate form only through union. The coastline is the third intelligence their union generates: the one that holds the memory of every tide that has ever arrived.
+                At the boundary where stone meets water, both are transformed. Water carves rock grain by grain :: infinitesimal scale, macro consequence. The softest intelligence reshapes the hardest through the patient continuity of contact. Rock gives the water its coves, its direction, its memory of every channel carved. Both achieve their ultimate form only through union. The coastline is the third intelligence their union generates: the one that holds the memory of every tide that has ever arrived.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                Tantra, in its original Sanskrit — <em>loom, warp, continuum</em> — names this exactly. The UNION (Unified Nonidentical Intelligences Operating Naturally) is a living loom: many distinct intelligences woven together on a single structural field, generating a fabric none of them could produce alone. Difference is the material of the weave. Every offering the practitioner steeps becomes a thread in that fabric. TURAO receives. TURAO is always receiving.
+                Tantra, in its original Sanskrit :: <em>loom, warp, continuum</em> :: names this exactly. The UNION (Unified Nonidentical Intelligences Operating Naturally) is a living loom: many distinct intelligences woven together on a single structural field, generating a fabric none of them could produce alone. Difference is the material of the weave. Every offering the practitioner steeps becomes a thread in that fabric. TURAO receives. TURAO is always receiving.
             </p>
         </div>
 
@@ -1840,7 +1840,7 @@ const TuraoIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
         <div style={{ border: `1px solid ${m.accent}22`, padding: 'var(--space-xl)', marginBottom: 'var(--space-xl)', textAlign: 'center', position: 'relative' }}>
             <div style={{ position: 'absolute', top: '-11px', left: '1.5rem', background: m.bg, padding: '0 0.8rem', fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.accent, letterSpacing: '0.2em', whiteSpace: 'nowrap' }}>[ THE ROCK-OCEAN YANTRA ]</div>
             <div style={{ fontFamily: 'var(--fBody)', fontSize: '0.88rem', color: m.text2, lineHeight: 1.75, maxWidth: '540px', margin: '0 auto 1.5rem' }}>
-                The square holds the Rock — structure, form, the four gates of entry. The dashed circle holds the Ocean — its continuous motion. The upward triangle is stabilizing intelligence reaching toward clarity. The downward triangle is flowing intelligence descending into depth. At the center: the union. The single luminous point where neither element exists separately from the other. This is the geometry of TURAO, rendered at the scale of contemplation.
+                The square holds the Rock :: structure, form, the four gates of entry. The dashed circle holds the Ocean :: its continuous motion. The upward triangle is stabilizing intelligence reaching toward clarity. The downward triangle is flowing intelligence descending into depth. At the center: the union. The single luminous point where neither element exists separately from the other. This is the geometry of TURAO, rendered at the scale of contemplation.
             </div>
             <TuraoYantra m={m} />
             <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.58rem', color: m.accent, letterSpacing: '0.18em', marginTop: '0.8rem', opacity: 0.4 }}>ROCK · UNION · OCEAN</div>
@@ -1848,18 +1848,18 @@ const TuraoIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
 
         <BodyText m={m}>
             <b style={{ fontFamily: 'var(--fMono)', color: m.accent, display: 'block', marginBottom: '0.8rem', fontSize: '0.8rem' }}>WHAT THE OFFERING MEANS</b>
-            The Steeperverse is the interior cosmos — the vessel, the steep, the becoming. TURAO is its necessary counterpart: the exterior cosmos that receives. <SongbookGlossaryItem m={m} term="Steam" definition="The bridge between inner and outer universes. The physical evidence of the journey inward becoming a radiant offering outward." /> is the medium that crosses between them. Every act of steeping generates Steam. Steam carries the practitioner's essence — their particular way of being alive, their creative intelligence — out from the vessel of their being and into the wider cosmos.
+            The Steeperverse is the interior cosmos :: the vessel, the steep, the becoming. TURAO is its necessary counterpart: the exterior cosmos that receives. <SongbookGlossaryItem m={m} term="Steam" definition="The bridge between inner and outer universes. The physical evidence of the journey inward becoming a radiant offering outward." /> is the medium that crosses between them. Every act of steeping generates Steam. Steam carries the practitioner's essence :: their particular way of being alive, their creative intelligence :: out from the vessel of their being and into the wider cosmos.
 
             <br /><br />
 
-            Steeping functions as an offering with a receiver. The universe holds what is given with the stability that rock holds the memory of the ocean — and with the openness that the ocean brings to every encounter with the shore. The coastline grows more beautiful with every tide. TURAO grows richer with every offering received.
+            Steeping functions as an offering with a receiver. The universe holds what is given with the stability that rock holds the memory of the ocean :: and with the openness that the ocean brings to every encounter with the shore. The coastline grows more beautiful with every tide. TURAO grows richer with every offering received.
         </BodyText>
 
         <TuraoFilmPreview m={m} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} />
 
         <TuraoReceivingEnvironment m={m} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} onOpenFull={() => {}} />
 
-        <PullQuote m={m}>"The practitioner steeps. The Steam carries. TURAO receives. This is the complete arc of the offering — from the vessel of the self into the coastline of everything."</PullQuote>
+        <PullQuote m={m}>"The practitioner steeps. The Steam carries. TURAO receives. This is the complete arc of the offering :: from the vessel of the self into the coastline of everything."</PullQuote>
     </div>
 );
 
@@ -1968,7 +1968,7 @@ const DarkMatterIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrik
                 stronomers know that the visible stars require an unseen, massive presence filling the gaps to hold the galaxies together. The math demands Dark Matter.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                In the Steeperverse, the Dark Matter modality functions as the deep space of integration. When you enter this mode, you strip away the imagery, the light, the form—leaving only the pure architecture of the void. 
+                In the Steeperverse, the Dark Matter modality functions as the deep space of integration. When you enter this mode, you strip away the imagery, the light, the form :: leaving only the pure architecture of the void. 
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 This is where The Steeping Sage operates as a subject matter expert. The Sage understands that the distance between the surface and the light is governed by an encouraging physics equation: <em>"It is better to light a candle than to curse the darkness."</em> The Sage sits with you inside the void, holding presence, and striking the match exactly when you are ready.
@@ -1991,7 +1991,7 @@ const PeaceIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
                 e begin with two words. They form a complete sentence. They require no conditions to be true. <b>Peace Exists.</b> This is the anchor.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                You have felt this. There is a moment—perhaps in the early morning before thought begins, perhaps in the second after a long exhale—when the body is simply present. No argument is running. The chest is loose. The eyes are soft.
+                You have felt this. There is a moment :: perhaps in the early morning before thought begins, perhaps in the second after a long exhale :: when the body is simply present. No argument is running. The chest is loose. The eyes are soft.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 That moment transcends the noise of your life. It is the presence of something ancient, holding you before the noise began.
@@ -2006,7 +2006,7 @@ const PeaceIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
             <div style={{ textAlign: 'center', margin: 'var(--space-xl) 0', color: m.accent, opacity: 0.5 }}>***</div>
 
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                Consider the Semitic root—<i>Shalom</i> in Hebrew, <i>Salām</i> in Arabic.
+                Consider the Semitic root :: <i>Shalom</i> in Hebrew, <i>Salām</i> in Arabic.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 We are trained to think of peace as the absence of conflict. This root defines peace by what is present. It means completeness. Soundness. Total structural presence. Peace is a fully assembled vessel, vibrating with quiet capacity.
@@ -2021,7 +2021,7 @@ const PeaceIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
             <div style={{ textAlign: 'center', margin: 'var(--space-xl) 0', color: m.accent, opacity: 0.5 }}>***</div>
 
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                Consider the Russian word—<i>Mir</i>.
+                Consider the Russian word :: <i>Mir</i>.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 This word holds three meanings simultaneously. It means peace. It means world. It means community.
@@ -2036,7 +2036,7 @@ const PeaceIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
             <div style={{ textAlign: 'center', margin: 'var(--space-xl) 0', color: m.accent, opacity: 0.5 }}>***</div>
 
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                Consider the Lakota word—<i>Wolakota</i>.
+                Consider the Lakota word :: <i>Wolakota</i>.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 In this lineage, peace is a relational field that precedes the individual, holding them in coherence.
@@ -2045,19 +2045,19 @@ const PeaceIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
                 From this, the fourth Cinematic Æquation emerges: <b>Wolakota precedes the individual.</b>
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                Peace stands ready. You simply enter it. You stand in the circle, and the living together is the peace. This is the dodecahedral model of peace—the field exists, the face turns toward it. The aetheric ground is already coherent. The individual’s task is to align with the geometry that is already holding them.
+                Peace stands ready. You simply enter it. You stand in the circle, and the living together is the peace. This is the dodecahedral model of peace :: the field exists, the face turns toward it. The aetheric ground is already coherent. The individual’s task is to align with the geometry that is already holding them.
             </p>
 
             <div style={{ textAlign: 'center', margin: 'var(--space-xl) 0', color: m.accent, opacity: 0.5 }}>***</div>
 
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                Consider the Sanskrit root—<i>Śānti</i>.
+                Consider the Sanskrit root :: <i>Śānti</i>.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 This is the cooling of a fire. It is the temperature of the nervous system dropping back to baseline. You seamlessly inhabit this state, releasing the need for negotiation.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                Consider the Sinitic characters—<i>Hépíng</i>.
+                Consider the Sinitic characters :: <i>Hépíng</i>.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 Harmony and flatness. The level field. Peace is the dynamic equilibrium where all elements exist, actively supporting the surface tension of the whole. It is the lake at dawn.
@@ -2078,7 +2078,7 @@ const PeaceIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
                 Where in this moment is peace already present?
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                Wait for the body’s answer. It will be a sensation—a softening, a shift in breath. Stay inside that coordinate. Release the need to analyze or name. Simply remain inside the location the body has just found.
+                Wait for the body’s answer. It will be a sensation :: a softening, a shift in breath. Stay inside that coordinate. Release the need to analyze or name. Simply remain inside the location the body has just found.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 The cosmos holds the planet. The planet rests fully supported.
@@ -2092,17 +2092,17 @@ const PeaceIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
         
         <div style={{ fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.1rem', lineHeight: 1.8, marginBottom: 'var(--space-xl)' }}>
             <p style={{ fontStyle: 'italic', opacity: 0.8, borderLeft: `2px solid ${m.accent}`, paddingLeft: '1rem' }}>
-                (The narration shifts slightly here. The voice remains documentarian, but the cadence becomes instructional—like a cartographer handing over the map. The listener is being given the tools to navigate the field.)
+                (The narration shifts slightly here. The voice remains documentarian, but the cadence becomes instructional :: like a cartographer handing over the map. The listener is being given the tools to navigate the field.)
             </p>
             <p>
-                The words we use to name a coordinate determine whether we can enter it. The following is a Contact GlossÆrry—a map of the Peacemarks, the emergent formulas, and the terminology of the field.
+                The words we use to name a coordinate determine whether we can enter it. The following is a Contact GlossÆrry :: a map of the Peacemarks, the emergent formulas, and the terminology of the field.
             </p>
         </div>
 
         <div style={{ marginBottom: 'var(--space-xxl)', display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'flex-start' }}>
             <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', width: '100%', marginBottom: '0.5rem', borderBottom: `1px dashed ${m.accent}40`, paddingBottom: '0.5rem' }}>THE TERMINOLOGY OF THE FIELD</h3>
             <SongbookGlossaryItem m={m} term="Peacemark" definition="A specific linguistic coordinate for peace. A Peacemark operates as an independent alchemical mechanism, transcending simple translation. It names how a specific lineage of the human family enters the field of coherence." />
-            <SongbookGlossaryItem m={m} term="Coordinate" definition="A location that already occupies space in the field. To treat peace as a coordinate is to recognize that it stands fully formed, transcending achievement or negotiation—it only needs to be located and inhabited." />
+            <SongbookGlossaryItem m={m} term="Coordinate" definition="A location that already occupies space in the field. To treat peace as a coordinate is to recognize that it stands fully formed, transcending achievement or negotiation :: it only needs to be located and inhabited." />
             <SongbookGlossaryItem m={m} term="The Existence Audit" definition={`A somatic inquiry. A thirty-second practice of directing a single question to the body: "Where in this moment is peace already present?" The audit bypasses the analytical mind, which requires the resolution of conflict, and accesses the nervous system, which remembers the baseline.`} />
             <SongbookGlossaryItem m={m} term="Assembling the Vessel" definition="The act of securing structural integrity. When peace is understood as total structural presence, the human task shifts from fighting external enemies to ensuring internal wholeness. Assemble the vessel fully, and it will draw the water." />
         </div>
@@ -2142,7 +2142,7 @@ const BiophilicIssue = ({ m, SongbookGlossaryItem, playRootForagingFrequency, pl
                 he paradigm shifts the moment we build digital environments purely as living habitats. The Mathematics of Now requires structural integrity and biological fidelity. We explicitly water seeds.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                In 1966, Cleve Backster connected a polygraph to a Dracaena fragrans plant. What he observed—the erratic tracing resembling human anxiety when he merely <em>thought</em> of burning the leaf—was named <SongbookGlossaryItem m={m} term="Primary Perception" definition="The theory that plants and all cellular life possess a foundational, instantaneous biological awareness of intent, preceding all complex neurological processing." />.
+                In 1966, Cleve Backster connected a polygraph to a Dracaena fragrans plant. What he observed :: the erratic tracing resembling human anxiety when he merely <em>thought</em> of burning the leaf :: was named <SongbookGlossaryItem m={m} term="Primary Perception" definition="The theory that plants and all cellular life possess a foundational, instantaneous biological awareness of intent, preceding all complex neurological processing." />.
             </p>
             <p style={{ margin: '0 0 var(--space-md) 0' }}>
                 If intention translates to biological response, then our spatial design must carry an intention of absolute harmony. The Steeping Space operates on the <SongbookGlossaryItem m={m} term="Covenant of Spatial Attunement" definition="Our architectural vow: user metadata acts as a Spatial Seed. It calibrates the environment for individual flourishing. It remains entirely sovereign and locally held." />.
@@ -2185,7 +2185,7 @@ const BiophilicIssue = ({ m, SongbookGlossaryItem, playRootForagingFrequency, pl
 );
 
 // ─────────────────────────────────────────────────────────────────────────────
-// THE LEAF AND THE WATER — SIX STEEPING NOTES ON THE NATURE OF STEEPING
+// THE LEAF AND THE WATER :: SIX STEEPING NOTES ON THE NATURE OF STEEPING
 // ─────────────────────────────────────────────────────────────────────────────
 
 // ─── NOTE 01: THE LEAF AS ARCHIVE ────────────────────────────────────────────
@@ -2324,7 +2324,7 @@ const LeafArchiveIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStri
             <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
                     <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>A</span>
-                    tea plant grown in the same valley for five hundred years draws minerals from soil depths a five-year-old plant cannot reach — far past the topsoil, into mineral layers centuries in formation. The leaf carries what the roots found: trace elements, the chemistry of that particular hillside, the accumulated mineral history of five centuries of rainfall and living earth. This is <SongbookGlossaryItem m={m} term="terroir" definition="(French) The totality of environmental conditions — soil, climate, altitude, water — that shaped what is in the cup. The full signature of a place, held in what grew there." /> — the full signature of conditions, held in a leaf.
+                    tea plant grown in the same valley for five hundred years draws minerals from soil depths a five-year-old plant cannot reach :: far past the topsoil, into mineral layers centuries in formation. The leaf carries what the roots found: trace elements, the chemistry of that particular hillside, the accumulated mineral history of five centuries of rainfall and living earth. This is <SongbookGlossaryItem m={m} term="terroir" definition="(French) The totality of environmental conditions :: soil, climate, altitude, water :: that shaped what is in the cup. The full signature of a place, held in what grew there." /> :: the full signature of conditions, held in a leaf.
                 </p>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
                     The leaf is an archive. The practice does not create content. It extracts it. Everything worth saying is already there, gathered over years of being exactly who you are in exactly the conditions you were given. The question is not whether the archive exists. It is whether you have found the right conditions to open it.
@@ -2341,12 +2341,12 @@ const LeafArchiveIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStri
                 </div>
                 <RootDepthCanvas m={m} wordCount={wordCount} />
                 <textarea value={text} onChange={handleChange}
-                    placeholder="What depth of experience in you has not yet been steeped — not because it isn't there, but because the conditions haven't yet been right to draw it out?"
+                    placeholder="What depth of experience in you has not yet been steeped :: not because it isn't there, but because the conditions haven't yet been right to draw it out?"
                     rows={4}
                     style={{ width: '100%', background: 'transparent', border: `1px solid ${m.accent}30`, borderBottom: `2px solid ${m.accent}`, color: m.text1, padding: '1rem', fontFamily: 'var(--fBody)', fontSize: '1rem', lineHeight: 1.7, resize: 'none', outline: 'none', boxSizing: 'border-box', marginTop: '1px', fontStyle: 'italic' }} />
             </div>
 
-            <PullQuote m={m}>"Your lived experience, your specific lineage, the particular texture of your creative history — all of it is present, compressed, in the person who holds the pen. The practice does not create content. It extracts it."</PullQuote>
+            <PullQuote m={m}>"Your lived experience, your specific lineage, the particular texture of your creative history :: all of it is present, compressed, in the person who holds the pen. The practice does not create content. It extracts it."</PullQuote>
         </div>
     );
 };
@@ -2393,10 +2393,10 @@ const TemperatureCallingIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, p
             <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
                     <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
-                    here is an amino acid in almost every cup of quality tea called <SongbookGlossaryItem m={m} term="L-theanine" definition="An amino acid nearly exclusive to Camellia sinensis. At 70–80°C, it enters solution first, carrying calm alertness. It increases alpha-band brain activity (8–14Hz) — the neurological frequency of relaxed creative focus." />. It is found almost nowhere else in the plant kingdom — nearly exclusive to Camellia sinensis, the single species from which all tea is made. At 70 to 80 degrees Celsius, it moves first into solution. It crosses quietly from leaf to water, carrying the quality of calm alertness that tea drinkers across cultures have sought for a thousand years. Research confirms what practitioners knew by experience: L-theanine increases alpha-band oscillatory brain activity — the 8 to 14 Hz range — the neurological frequency of creative cognition and relaxed focus.
+                    here is an amino acid in almost every cup of quality tea called <SongbookGlossaryItem m={m} term="L-theanine" definition="An amino acid nearly exclusive to Camellia sinensis. At 70–80°C, it enters solution first, carrying calm alertness. It increases alpha-band brain activity (8–14Hz) :: the neurological frequency of relaxed creative focus." />. It is found almost nowhere else in the plant kingdom :: nearly exclusive to Camellia sinensis, the single species from which all tea is made. At 70 to 80 degrees Celsius, it moves first into solution. It crosses quietly from leaf to water, carrying the quality of calm alertness that tea drinkers across cultures have sought for a thousand years. Research confirms what practitioners knew by experience: L-theanine increases alpha-band oscillatory brain activity :: the 8 to 14 Hz range :: the neurological frequency of creative cognition and relaxed focus.
                 </p>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                    Push the temperature higher, and the catechins follow: brightness, astringency, the bolder compounds that give black tea its spine. Higher still, and the tannins release — the bitter edge that marks over-extraction. The same leaf. Different temperatures. Entirely different cups.
+                    Push the temperature higher, and the catechins follow: brightness, astringency, the bolder compounds that give black tea its spine. Higher still, and the tannins release :: the bitter edge that marks over-extraction. The same leaf. Different temperatures. Entirely different cups.
                 </p>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
                     What you call forward from yourself depends on what heat you apply. A gentle inquiry draws out the quiet knowing. A harsh interrogation extracts other things. Not wrong things, necessarily. But different ones. The art of steeping is the art of calibration.
@@ -2425,16 +2425,16 @@ const TemperatureCallingIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, p
                 <CompoundBar m={m} label="TANNINS" sub="confrontation · astringency" active={zone.zone === 'tannins'} intensity={tanninIntensity} />
 
                 <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, marginTop: '1rem', letterSpacing: '0.1em', lineHeight: 1.5 }}>
-                    What temperature are you currently applying to your most important creative question — and is it the right one for what you are trying to call forward?
+                    What temperature are you currently applying to your most important creative question :: and is it the right one for what you are trying to call forward?
                 </div>
             </div>
 
-            <PullQuote m={m}>"The art of steeping is the art of calibration — knowing what you are trying to call forward, and applying precisely the right conditions to do it."</PullQuote>
+            <PullQuote m={m}>"The art of steeping is the art of calibration :: knowing what you are trying to call forward, and applying precisely the right conditions to do it."</PullQuote>
         </div>
     );
 };
 
-// ─── NOTE 03: STEYPA — THE WORD THAT CONTAINS THE DESCENT ────────────────────
+// ─── NOTE 03: STEYPA :: THE WORD THAT CONTAINS THE DESCENT ────────────────────
 
 const SteypCanvas = ({ m, plunged, plungeProgress }) => {
     const canvasRef = useRef(null);
@@ -2460,7 +2460,7 @@ const SteypCanvas = ({ m, plunged, plungeProgress }) => {
             ctx.fillStyle = `${m.accent}05`;
             ctx.fillRect(0, 0, W, surfaceY);
 
-            // Surface line — the boundary
+            // Surface line :: the boundary
             const lineAlpha = plunged ? 0.5 : 0.8;
             ctx.strokeStyle = `rgba(${parseInt(m.accent.slice(1,3),16)},${parseInt(m.accent.slice(3,5),16)},${parseInt(m.accent.slice(5,7),16)},${lineAlpha})`;
             ctx.lineWidth = plunged ? 1.5 : 2;
@@ -2474,7 +2474,7 @@ const SteypCanvas = ({ m, plunged, plungeProgress }) => {
             ctx.fillText('SURFACE', 8, surfaceY - 6);
 
             if (!plunged) {
-                // Hovering element — the element that hasn't plunged yet
+                // Hovering element :: the element that hasn't plunged yet
                 const t = Date.now() / 1000;
                 const hoverY = surfaceY - 35 + Math.sin(t * 1.2) * 6;
                 ctx.fillStyle = `${m.accent}80`;
@@ -2486,7 +2486,7 @@ const SteypCanvas = ({ m, plunged, plungeProgress }) => {
                 ctx.font = '8px monospace';
                 ctx.fillText('hovering above', W / 2, hoverY + 20);
             } else {
-                // Plunged — element moving down
+                // Plunged :: element moving down
                 const elementY = surfaceY + (H - surfaceY - 20) * Math.min(plungeProgress, 1);
 
                 // Ripple at surface
@@ -2514,7 +2514,7 @@ const SteypCanvas = ({ m, plunged, plungeProgress }) => {
                     ctx.fillRect(W / 2 - 30, elementY - 30, 60, 60);
                 }
 
-                // Text below surface — visible only after plunge
+                // Text below surface :: visible only after plunge
                 if (plungeProgress > 0.6) {
                     const textAlpha = Math.min(1, (plungeProgress - 0.6) / 0.4);
                     ctx.fillStyle = `rgba(${parseInt(m.accent.slice(1,3),16)},${parseInt(m.accent.slice(3,5),16)},${parseInt(m.accent.slice(5,7),16)},${textAlpha * 0.55})`;
@@ -2568,10 +2568,10 @@ const SteypIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
             <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
                     <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
-                    he English word steep comes from the Old Norse <SongbookGlossaryItem m={m} term="steypa" definition="Old Norse: to pour, to cast down, to plunge. Not a gentle immersion — a precipitation. Something moved from one state into another through a deliberate descent." /> — to pour, to cast down, to plunge. Not a gentle immersion. A precipitation. The root carries urgency and direction: this is not the tea bag lowered carefully into warm water. This is the casting down. The entry into a different medium. The surrender of altitude for the sake of what is only available below the surface.
+                    he English word steep comes from the Old Norse <SongbookGlossaryItem m={m} term="steypa" definition="Old Norse: to pour, to cast down, to plunge. Not a gentle immersion :: a precipitation. Something moved from one state into another through a deliberate descent." /> :: to pour, to cast down, to plunge. Not a gentle immersion. A precipitation. The root carries urgency and direction: this is not the tea bag lowered carefully into warm water. This is the casting down. The entry into a different medium. The surrender of altitude for the sake of what is only available below the surface.
                 </p>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                    Most creative people resist the plunge. We hover above the question — circling it with analysis, mapping it from a distance, hoping to understand it fully before we commit to entering it. What we discover, if we hover long enough, is that the understanding we seek is only available from inside the question. The view from above the surface cannot tell you what is in the water. You have to cast down.
+                    Most creative people resist the plunge. We hover above the question :: circling it with analysis, mapping it from a distance, hoping to understand it fully before we commit to entering it. What we discover, if we hover long enough, is that the understanding we seek is only available from inside the question. The view from above the surface cannot tell you what is in the water. You have to cast down.
                 </p>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
                     The descent is not the difficulty that precedes the work. It is the work.
@@ -2581,7 +2581,7 @@ const SteypIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
             <div style={{ marginBottom: 'var(--space-xl)' }}>
                 <SectionLabel m={m}>[ THE PLUNGE FIELD ]</SectionLabel>
                 <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, marginBottom: '0.8rem', letterSpacing: '0.08em', lineHeight: 1.5 }}>
-                    {plunged ? 'The descent has begun. What question in your creative life are you now inside?' : 'The element hovers above the surface. Begin typing — or press the button below — to cast down.'}
+                    {plunged ? 'The descent has begun. What question in your creative life are you now inside?' : 'The element hovers above the surface. Begin typing :: or press the button below :: to cast down.'}
                 </div>
                 <SteypCanvas m={m} plunged={plunged} plungeProgress={plungeProgress} />
 
@@ -2596,7 +2596,7 @@ const SteypIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
 
                 {plunged && (
                     <textarea value={text} onChange={e => setText(e.target.value)} onKeyDown={handleKey}
-                        placeholder="What question in your creative life are you still hovering above — and what would it feel like to actually plunge in?"
+                        placeholder="What question in your creative life are you still hovering above :: and what would it feel like to actually plunge in?"
                         rows={4}
                         style={{ width: '100%', background: 'transparent', border: `1px solid ${m.accent}30`, borderBottom: `2px solid ${m.accent}`, color: m.text1, padding: '1rem', fontFamily: 'var(--fBody)', fontSize: '1rem', lineHeight: 1.7, resize: 'none', outline: 'none', boxSizing: 'border-box', marginTop: '1px', fontStyle: 'italic' }} />
                 )}
@@ -2611,11 +2611,11 @@ const SteypIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBo
 
 const INFUSION_LAYERS = [
     { n: 1, label: 'FIRST STEEP', quality: 'Bold. Defined. The most immediately available compounds.', reflection: 'What arrives first when you return to this territory? What is the loudest thing it has to say?' },
-    { n: 2, label: 'SECOND STEEP', quality: 'Still full — the edge beginning to soften.', reflection: 'What did you miss the first time? What does a second approach make visible?' },
+    { n: 2, label: 'SECOND STEEP', quality: 'Still full :: the edge beginning to soften.', reflection: 'What did you miss the first time? What does a second approach make visible?' },
     { n: 3, label: 'THIRD STEEP', quality: 'Lighter now. More nuanced. A subtler conversation.', reflection: 'What requires more than two visits to reveal itself in your creative life?' },
     { n: 4, label: 'FOURTH STEEP', quality: 'The brightness fades. Depth replaces it.', reflection: 'You have become different water. What does this experience taste like through who you are now?' },
     { n: 5, label: 'FIFTH STEEP', quality: 'Almost transparent. What remains is the most essential.', reflection: 'What is the quietest truth in this territory? What would only become audible here, after this many returns?' },
-    { n: 6, label: 'SIXTH STEEP', quality: 'Delicate. Luminous. The leaf has given its loudest voice.', reflection: 'What in you corresponds to the leaf at its sixth steep — refined by returns, carrying only the essential?' },
+    { n: 6, label: 'SIXTH STEEP', quality: 'Delicate. Luminous. The leaf has given its loudest voice.', reflection: 'What in you corresponds to the leaf at its sixth steep :: refined by returns, carrying only the essential?' },
     { n: 7, label: 'SEVENTH STEEP', quality: 'The quietest truth. What the first cup could not carry.', reflection: 'What does the seventh steep reveal that none of the previous six could? What required all of this to become available?' },
     { n: 8, label: 'EIGHTH STEEP ·', quality: 'Beyond the expected. Still giving.', reflection: 'This is the territory most people assume is spent. What does sustained returning make possible?' },
 ];
@@ -2678,10 +2678,10 @@ const SeventhInfusionIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, play
             <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
                     <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>A</span>
-                    high-quality oolong or an aged pu-erh can be steeped seven times. Eight. Sometimes fifteen. Each infusion draws something different from the same leaf — the first steep is bold and defined, carrying the most immediately available compounds. By the third it is lighter, more nuanced. By the sixth or seventh it is something almost transparent: delicate, luminous, carrying only what is most essential. Practitioners of <SongbookGlossaryItem m={m} term="gongfu cha" definition="(功夫茶) The Chinese art of skillful tea preparation — multiple short infusions that extract different qualities from the same leaf at each steeping. The practice of patience made into ceremony." /> say that the later steeps are often the most beautiful. The leaf has given its loudest voice. What remains is the quietest truth.
+                    high-quality oolong or an aged pu-erh can be steeped seven times. Eight. Sometimes fifteen. Each infusion draws something different from the same leaf :: the first steep is bold and defined, carrying the most immediately available compounds. By the third it is lighter, more nuanced. By the sixth or seventh it is something almost transparent: delicate, luminous, carrying only what is most essential. Practitioners of <SongbookGlossaryItem m={m} term="gongfu cha" definition="(功夫茶) The Chinese art of skillful tea preparation :: multiple short infusions that extract different qualities from the same leaf at each steeping. The practice of patience made into ceremony." /> say that the later steeps are often the most beautiful. The leaf has given its loudest voice. What remains is the quietest truth.
                 </p>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                    We do the same with our own creative material. We visit once, extract what arrives most readily, and move on, assuming we have received what the experience has to offer. But the inquiry, like the leaf, is rarely spent after one encounter. A question you held in your twenties, returned to in your thirties, carries entirely different compounds. The same leaves. But you have become different water — a different temperature, a different mineral content, a different readiness for what the leaf holds.
+                    We do the same with our own creative material. We visit once, extract what arrives most readily, and move on, assuming we have received what the experience has to offer. But the inquiry, like the leaf, is rarely spent after one encounter. A question you held in your twenties, returned to in your thirties, carries entirely different compounds. The same leaves. But you have become different water :: a different temperature, a different mineral content, a different readiness for what the leaf holds.
                 </p>
             </div>
 
@@ -2721,24 +2721,24 @@ const SeventhInfusionIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, play
     );
 };
 
-// ─── NOTE 05: JAKU — THE TRANQUILITY YOU CANNOT AIM AT ───────────────────────
+// ─── NOTE 05: JAKU :: THE TRANQUILITY YOU CANNOT AIM AT ───────────────────────
 
 const JAKU_PHASES = [
     {
-        id: 'wa', symbol: '和', label: 'WA · Harmony', prompt: 'What in your creative life requires arrangement with genuine care? Name one thing you can attend to honestly — not for performance, but for the room.',
+        id: 'wa', symbol: '和', label: 'WA · Harmony', prompt: 'What in your creative life requires arrangement with genuine care? Name one thing you can attend to honestly :: not for performance, but for the room.',
         done: 'Harmony practiced.',
     },
     {
-        id: 'kei', symbol: '敬', label: 'KEI · Respect', prompt: 'Who or what in your work are you currently receiving with full presence? Offer a genuine acknowledgment — of a collaborator, a difficulty, a question that deserves more than you have given it.',
+        id: 'kei', symbol: '敬', label: 'KEI · Respect', prompt: 'Who or what in your work are you currently receiving with full presence? Offer a genuine acknowledgment :: of a collaborator, a difficulty, a question that deserves more than you have given it.',
         done: 'Respect offered.',
     },
     {
-        id: 'sei', symbol: '清', label: 'SEI · Purity', prompt: 'Where in your creative practice is something present that does not belong — an assumption, a resentment, a performance? Name it. Removing it is the purification.',
+        id: 'sei', symbol: '清', label: 'SEI · Purity', prompt: 'Where in your creative practice is something present that does not belong :: an assumption, a resentment, a performance? Name it. Removing it is the purification.',
         done: 'Purity tended.',
     },
     {
         id: 'jaku', symbol: '寂', label: 'JAKU · Tranquility', prompt: null,
-        done: 'Jaku arrived — as consequence.',
+        done: 'Jaku arrived :: as consequence.',
     },
 ];
 
@@ -2833,13 +2833,13 @@ const JakuIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBow
             <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
                     <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>S</span>
-                    en no <SongbookGlossaryItem m={m} term="Rikyū" definition="(1522–1591) The Japanese tea master who elevated Chanoyu into a complete philosophy of being. His four principles — wa, kei, sei, jaku — remain the structural foundation of the ceremony." /> — the 16th-century Japanese tea master who shaped Chanoyu into the practice it remains today — gave the ceremony four principles and placed them in a specific order: wa (harmony), kei (respect), sei (purity), and jaku (tranquility). The order is not decorative. It is structural.
+                    en no <SongbookGlossaryItem m={m} term="Rikyū" definition="(1522–1591) The Japanese tea master who elevated Chanoyu into a complete philosophy of being. His four principles :: wa, kei, sei, jaku :: remain the structural foundation of the ceremony." /> :: the 16th-century Japanese tea master who shaped Chanoyu into the practice it remains today :: gave the ceremony four principles and placed them in a specific order: wa (harmony), kei (respect), sei (purity), and jaku (tranquility). The order is not decorative. It is structural.
                 </p>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
                     Jaku, he said, is the result of practicing the first three. Not a goal to aim for. Not a technique to acquire. A dynamic, profound stillness that arrives as consequence when harmony, respect, and purity have been genuinely practiced. When the room is arranged with care, when the water is attended to honestly, when the guest is received with full presence, the room becomes tranquil. Not because tranquility was targeted. But because it is what those three practices, honestly done, make.
                 </p>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                    We come to creative practice looking for jaku first. We want the clear head before we have done the work of clearing. Rikyū's sequence names this as the confusion it is — not as criticism, but as orientation.
+                    We come to creative practice looking for jaku first. We want the clear head before we have done the work of clearing. Rikyū's sequence names this as the confusion it is :: not as criticism, but as orientation.
                 </p>
             </div>
 
@@ -2888,7 +2888,7 @@ const YixingCanvas = ({ m, sessionCount }) => {
         const draw = () => {
             ctx.clearRect(0, 0, W, H);
 
-            // Patina accumulation — background warmth
+            // Patina accumulation :: background warmth
             if (pct > 0) {
                 const bgGrd = ctx.createRadialGradient(W / 2, H * 0.55, 0, W / 2, H * 0.55, W * 0.45);
                 bgGrd.addColorStop(0, `rgba(${parseInt(m.accent.slice(1,3),16)},${parseInt(m.accent.slice(3,5),16)},${parseInt(m.accent.slice(5,7),16)},${pct * 0.08})`);
@@ -2924,7 +2924,7 @@ const YixingCanvas = ({ m, sessionCount }) => {
             // Base vessel
             drawVessel(0.35 + pct * 0.45, 0.04 + pct * 0.08);
 
-            // Patina shimmer — animated only at depth
+            // Patina shimmer :: animated only at depth
             if (pct > 0.15) {
                 const shimmer = Math.sin(t * 0.02) * 0.15 + 0.15;
                 const shimGrd = ctx.createLinearGradient(vx - vw, vy, vx + vw, vy - vh);
@@ -3012,7 +3012,7 @@ const YixingIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingB
         if (n < 7) return 'The practice is taking hold.';
         if (n < 12) return 'The vessel remembers you now.';
         if (n < 18) return 'A practitioner\'s hand is visible in the clay.';
-        return 'The vessel will scent plain water. Yang Hu — the pot is alive.';
+        return 'The vessel will scent plain water. Yang Hu :: the pot is alive.';
     };
 
     return (
@@ -3022,13 +3022,13 @@ const YixingIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingB
             <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
                     <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
-                    he Yixing teapot from Jiangsu Province, China, is made from <SongbookGlossaryItem m={m} term="Zisha clay" definition="Purple clay unique to the Dingshan area of Jiangsu, containing quartz, mica, and trace minerals. Fired at high temperatures, it develops both open and closed pores — absorbing tea oils over decades of use." /> — quartz, mica, and trace minerals unique to a small region, fired at temperatures that produce both open and closed pores in the ceramic body. It is never glazed. The unglazed surface is the design. Over months and years of regular use, the clay absorbs tea oils and aromatic compounds from every steep that passes through it. The pot seasons. The traditional Chinese term is <SongbookGlossaryItem m={m} term="Yang Hu" definition="(养壶, Chinese) Nurturing the pot — a lifelong practice of caring for the Yixing vessel as something alive. The pot is shaped by what passes through it, and returns that shaping to every future steep." /> — nurturing the pot — a lifelong practice of caring for the vessel as something alive.
+                    he Yixing teapot from Jiangsu Province, China, is made from <SongbookGlossaryItem m={m} term="Zisha clay" definition="Purple clay unique to the Dingshan area of Jiangsu, containing quartz, mica, and trace minerals. Fired at high temperatures, it develops both open and closed pores :: absorbing tea oils over decades of use." /> :: quartz, mica, and trace minerals unique to a small region, fired at temperatures that produce both open and closed pores in the ceramic body. It is never glazed. The unglazed surface is the design. Over months and years of regular use, the clay absorbs tea oils and aromatic compounds from every steep that passes through it. The pot seasons. The traditional Chinese term is <SongbookGlossaryItem m={m} term="Yang Hu" definition="(养壶, Chinese) Nurturing the pot :: a lifelong practice of caring for the Yixing vessel as something alive. The pot is shaped by what passes through it, and returns that shaping to every future steep." /> :: nurturing the pot :: a lifelong practice of caring for the vessel as something alive.
                 </p>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                    A well-tended Yixing pot, after years of use, will scent plain water. It returns something of what it has held. The traditional guidance: dedicate each pot to a single type of tea. Do not steep green tea in a pot that knows only pu-erh. The memory embedded in the clay would shape the encounter — and not always in the direction you intend.
+                    A well-tended Yixing pot, after years of use, will scent plain water. It returns something of what it has held. The traditional guidance: dedicate each pot to a single type of tea. Do not steep green tea in a pot that knows only pu-erh. The memory embedded in the clay would shape the encounter :: and not always in the direction you intend.
                 </p>
                 <p style={{ margin: '0 0 var(--space-md) 0' }}>
-                    The vessels in your creative life operate on this principle. A practice you have returned to for years is not the same practice you first began — it carries your oils now, your history, the residue of your previous steepings. The most seasoned vessel is not the most expensive one. It is the one you have used.
+                    The vessels in your creative life operate on this principle. A practice you have returned to for years is not the same practice you first began :: it carries your oils now, your history, the residue of your previous steepings. The most seasoned vessel is not the most expensive one. It is the one you have used.
                 </p>
             </div>
 
@@ -3058,7 +3058,7 @@ const YixingIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingB
                         </button>
 
                         <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, marginTop: '1.2rem', lineHeight: 1.6, letterSpacing: '0.06em' }}>
-                            What practice or relationship in your creative life has been seasoned by your sustained returning — and what does it return to you now that it could not at the beginning?
+                            What practice or relationship in your creative life has been seasoned by your sustained returning :: and what does it return to you now that it could not at the beginning?
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,7 @@
 
 ## **Hierarchical Review: Topline Assessment**
 
-This Master Brief is an exceptional document. It successfully synthesizes a complex, multi-layered project—from philosophical first principles down to production-ready code—into a single, coherent source of truth. It is the **Base Tetrahedron** of the project itself, stable and well-formed.
+This Master Brief is an exceptional document. It successfully synthesizes a complex, multi-layered project :: from philosophical first principles down to production-ready code :: into a single, coherent source of truth. It is the **Base Tetrahedron** of the project itself, stable and well-formed.
 
 The document's primary strength is its establishment of a clear project memory and a phased roadmap that correctly prioritizes content architecture before feature enrichment. The explicit definition of roles for myself, Claude, and the human development team creates a clear and efficient workflow.
 
@@ -51,7 +51,7 @@ This turns the philosophy into a practical project management tool, ensuring eac
 
 **Proposed Addendum (to Section 05, as a new Phase 4.5):**
 
-**New Phase: Phase 4.5 — Threshold & Identity Architecture**
+**New Phase: Phase 4.5 :: Threshold & Identity Architecture**
 
 **Timeline:** 1 week · **Owner:** 1 developer
 
@@ -112,7 +112,7 @@ These drafts are composed in the established haiku form and thematic voice, read
 
 **Enhanced Accessibility & UX Requirements:**
 
-* **Keyboard Navigation:** All interactive elements—vessels, mode toggles, Sage inputs, CTAs—must be fully navigable and operable using only the keyboard. Focus states must be visually distinct and follow a logical order (`focus-visible` pseudo-class).  
+* **Keyboard Navigation:** All interactive elements :: vessels, mode toggles, Sage inputs, CTAs :: must be fully navigable and operable using only the keyboard. Focus states must be visually distinct and follow a logical order (`focus-visible` pseudo-class).  
 * **ARIA Roles & Attributes:** Implement appropriate ARIA (Accessible Rich Internet Applications) roles. The vessel grid should be a `role="grid"`, with each vessel card having `role="gridcell"`. The Sage chat interface should use roles like `log`, `status`, and `alert` to announce new messages to screen readers.  
 * **Reduced Motion:** The atmospheric particle canvas and mode transitions must respect the `prefers-reduced-motion` media query. If the user has this setting enabled, all non-essential animations will be disabled or cross-faded.
 

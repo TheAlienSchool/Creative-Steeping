@@ -122,7 +122,7 @@ export const StillnessCatalyst = ({ m, wayfindingState, codexSurface }) => {
                     fontStyle: 'normal',
                     textTransform: 'uppercase',
                 }}>
-                    — {noteSource}
+                    :: {noteSource}
                 </div>
             )}
             </div>

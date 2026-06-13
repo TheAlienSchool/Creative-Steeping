@@ -2,7 +2,7 @@
 
 ## Context & Timing
 
-The 1000 Ways to Sit community has just experienced Chapter 7 (Crown Jewels of Individuality) on 11/11/2025. With approximately 3 weeks remaining in the exhibition, this is the threshold moment—participants have completed the 7-day arc and are discovering their unique gifts. The question becomes: **What comes after awakening?**
+The 1000 Ways to Sit community has just experienced Chapter 7 (Crown Jewels of Individuality) on 11/11/2025. With approximately 3 weeks remaining in the exhibition, this is the threshold moment :: participants have completed the 7-day arc and are discovering their unique gifts. The question becomes: **What comes after awakening?**
 
 ---
 
@@ -20,7 +20,7 @@ After completing the 7-day Creative Steeping journey, participants receive an in
 
 ### The Magic
 
-Participants experience the uncanny feeling of being **truly seen**—not by algorithm alone, but by an AI trained in Kamau's Creative Steeping framework, analyzing their words through the lens of consciousness work. It feels like having a personal creative guide who has read every word they've written and can reflect back the essence they may not yet see themselves.
+Participants experience the uncanny feeling of being **truly seen** :: not by algorithm alone, but by an AI trained in Kamau's Creative Steeping framework, analyzing their words through the lens of consciousness work. It feels like having a personal creative guide who has read every word they've written and can reflect back the essence they may not yet see themselves.
 
 ### Revenue Model
 
@@ -67,7 +67,7 @@ A beautiful, password-protected web portal that serves as the digital extension 
 
 ### The Magic
 
-The physical sanctuary at Heron Arts may close on December 4th, but **the practice continues**. Participants who found their anchor on Tuesday evenings now have a digital home where the stillness, community, and creative awakening persist. The portal becomes a living extension of the Gamelatron experience—a place where resonance continues to build.
+The physical sanctuary at Heron Arts may close on December 4th, but **the practice continues**. Participants who found their anchor on Tuesday evenings now have a digital home where the stillness, community, and creative awakening persist. The portal becomes a living extension of the Gamelatron experience :: a place where resonance continues to build.
 
 ### Revenue Model
 
@@ -102,7 +102,7 @@ A special **closing ceremony experience** for the 1000 Ways to Sit community, sc
 **During the Event (In-Person at Heron Arts):**
 - Kamau facilitates a closing tea ceremony
 - Manus presents the Community Constellation (projected or printed)
-- Each participant receives their personalized "Crown Jewel Card"—a beautiful artifact naming their unique gift and its place in the community
+- Each participant receives their personalized "Crown Jewel Card" :: a beautiful artifact naming their unique gift and its place in the community
 - Group reflection on collective wisdom gathered over 10 weeks
 
 **After the Event (Digital):**
@@ -117,7 +117,7 @@ A special **closing ceremony experience** for the 1000 Ways to Sit community, sc
 
 This experience transforms individual awakening into **collective recognition**. Participants see not only their own gifts but how they fit into a larger ecosystem of creative beings. The AI synthesis reveals patterns that would be impossible to see manually, while Kamau's facilitation ensures the technology serves the consciousness work rather than replacing it.
 
-The Crown Jewel Cards become **physical artifacts** of the 1000 Ways to Sit experience—something participants can carry with them as a reminder of who they discovered themselves to be.
+The Crown Jewel Cards become **physical artifacts** of the 1000 Ways to Sit experience :: something participants can carry with them as a reminder of who they discovered themselves to be.
 
 ### Revenue Model
 
@@ -143,7 +143,7 @@ The Crown Jewel Cards become **physical artifacts** of the 1000 Ways to Sit expe
 
 ### The Experience
 
-Kamau has been creating Steeping Notes throughout the 1000 Ways to Sit journey—poetic reflections, insights, and transmissions. This concept transforms those notes into a **living digital archive and generative wisdom source**.
+Kamau has been creating Steeping Notes throughout the 1000 Ways to Sit journey :: poetic reflections, insights, and transmissions. This concept transforms those notes into a **living digital archive and generative wisdom source**.
 
 **The Archive:**
 - Beautifully designed website showcasing all Steeping Notes
@@ -219,7 +219,7 @@ A beautifully packaged physical kit that allows people anywhere to experience Cr
 
 This brings the 1000 Ways to Sit experience to **anyone, anywhere**. People who couldn't attend in San Francisco can still steep with Kamau's guidance. The physical elements create ritual and presence, while the digital elements provide personalization and community connection.
 
-The kit becomes a **gift-able product**—something participants can share with friends, or that organizations can purchase for teams.
+The kit becomes a **gift-able product** :: something participants can share with friends, or that organizations can purchase for teams.
 
 ### Revenue Model
 
@@ -267,7 +267,7 @@ Kamau facilitates small-group Creative Steeping journeys (8-12 people) over 7 we
 
 ### The Magic
 
-This is the **full immersion** experience—intimate, guided, and transformative. Participants don't just read the guidebook; they steep with Kamau and a cohort of fellow travelers. The AI support between sessions ensures continuity and personalization, while the group dynamic creates accountability and collective wisdom.
+This is the **full immersion** experience :: intimate, guided, and transformative. Participants don't just read the guidebook; they steep with Kamau and a cohort of fellow travelers. The AI support between sessions ensures continuity and personalization, while the group dynamic creates accountability and collective wisdom.
 
 ### Revenue Model
 
@@ -366,4 +366,4 @@ This is the marriage of **soul and system**, **ceremony and code**, **steeping a
 3. **What would you like to launch first?**
 4. **How can we refine these concepts to match your vision?**
 
-I'm ready to build whatever you choose—we can have something live within days.
+I'm ready to build whatever you choose :: we can have something live within days.

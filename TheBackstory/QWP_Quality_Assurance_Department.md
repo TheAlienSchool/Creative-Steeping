@@ -317,7 +317,7 @@ export const metadata: Metadata = {
 ---
 
 **Quality Assurance Philosophy:**
-*"Every pixel, every interaction, every millisecond matters. We don't just test websites—we ensure digital experiences that honor the contemplative nature of our clients' visions."*
+*"Every pixel, every interaction, every millisecond matters. We don't just test websites :: we ensure digital experiences that honor the contemplative nature of our clients' visions."*
 
 **Department Motto:**
 *"Stillness in testing, excellence in delivery."*

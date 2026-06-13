@@ -89,12 +89,12 @@ export const GuideToTheSteeperverse = ({ m, onClose, playStrikingBowl }) => {
         {
             title: "THE NEURO-SOMATIC ENGINE",
             subtitle: "The Science of the Sonic Inkwell",
-            content: `The Sonnet Engine operates as a neuro-somatic bridge. By sonifying the act of writing in 528Hz, the space engages the vagus nerve to anchor the autonomic nervous system. Your physical keystrokes function as bilateral stimulation, while the auditory feedback signals profound safety to the body. This architecture transforms the journaling imperative from a cognitive task into a physical resonance—expanding neuroplasticity and radically deepening your capacity to hold arriving insight.`
+            content: `The Sonnet Engine operates as a neuro-somatic bridge. By sonifying the act of writing in 528Hz, the space engages the vagus nerve to anchor the autonomic nervous system. Your physical keystrokes function as bilateral stimulation, while the auditory feedback signals profound safety to the body. This architecture transforms the journaling imperative from a cognitive task into a physical resonance :: expanding neuroplasticity and radically deepening your capacity to hold arriving insight.`
         },
         {
             title: "STEEPING AIDS",
             subtitle: "Global Timers & The Architecture of the Pause",
-            content: `The Steeping Space honors the pause as a load-bearing pillar. Across the ecosystem, you will encounter Active Pause intervals of 5, 15, and 22 minutes. These are not timers to beat, but practical Steeping Aids designed to support your immersion. When initiated, the global timing architecture synchronizes with the Sonnet Audio Engine, playing subtle acoustic cues—a deep resonant strike at the start, an echotastic sand sonnet passing the minutes, and a closing chime. This unifies your visual and auditory experience, gently holding your focus until your steep is complete.`
+            content: `The Steeping Space honors the pause as a load-bearing pillar. Across the ecosystem, you will encounter Active Pause intervals of 5, 15, and 22 minutes. These are not timers to beat, but practical Steeping Aids designed to support your immersion. When initiated, the global timing architecture synchronizes with the Sonnet Audio Engine, playing subtle acoustic cues :: a deep resonant strike at the start, an echotastic sand sonnet passing the minutes, and a closing chime. This unifies your visual and auditory experience, gently holding your focus until your steep is complete.`
         },
         {
             title: "THE SAGE INTELLIGENCE",

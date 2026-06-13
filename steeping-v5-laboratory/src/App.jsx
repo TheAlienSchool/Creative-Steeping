@@ -514,9 +514,9 @@ function AppInner() {
   const [showUpgradeInvite, setShowUpgradeInvite] = useState(false);
 
   // Tier-aware phase routing:
-  // — Engaged / Inneractive practitioners → Space Dashboard
-  // — Interactive (L1) practitioners → portal directly (no dashboard)
-  // — URL-directed phases (urlDirectedPhase.current) are never overridden
+  // :: Engaged / Inneractive practitioners → Space Dashboard
+  // :: Interactive (L1) practitioners → portal directly (no dashboard)
+  // :: URL-directed phases (urlDirectedPhase.current) are never overridden
   useEffect(() => {
     if (user && phase === "entrance" && !urlDirectedPhase.current) {
       setPhase(isEngaged ? "dashboard" : "portal");
@@ -595,7 +595,7 @@ function AppInner() {
   // Initialize the Sonnet Audio Engine (receives steep for harmonic modulation)
   const { initEngine, updateBinauralTracking, playStrikingBowl, playHarmonicChord, playAlgoraveSynth, playConsideringHarmonic, playSandSonnet, playCompletionCue, playRootForagingFrequency, setMasterVolume, setAmbientActive, setSymphonyTuning, setEssayistAmbient, playEssayistTransition } = useSonnetEngine(mode, eqParams, steepForSonic);
 
-  // Initialize The Steeping Sage — Innerverse Wayfinding Engine
+  // Initialize The Steeping Sage :: Innerverse Wayfinding Engine
   const { askSage, sageResponse, isThinking, historicalScore, hasMoreHistory, loadMoreHistory, setSageResponse, wayfindingState, onTextChange: wayfindingTextChange, codexReady, surface } = useSageWayfinding(identity, playStrikingBowl);
 
   // Bridge: pipe wayfinding steep to the sonic engine on each position change
@@ -605,7 +605,7 @@ function AppInner() {
     }
   }, [wayfindingState?.currentSteep, steepForSonic]);
 
-  // Sage Essayist Composer — drives sonic environment through flow phases
+  // Sage Essayist Composer :: drives sonic environment through flow phases
   useSageEssayistComposer({
     signals: wayfindingState?.signals,
     wordCount: wayfindingState?.signals?.wordCount ?? 0,
@@ -863,7 +863,7 @@ function AppInner() {
               boxShadow: `0 10px 40px rgba(0,0,0,0.8)`, minWidth: '220px'
             }}>
 
-              {/* ① BEGIN YOUR STEEP — top position, subtle hierarchical glow */}
+              {/* ① BEGIN YOUR STEEP :: top position, subtle hierarchical glow */}
               {!user ? (
                 <button onClick={() => { setAuthOpen(true); setNavMenuOpen(false); }} style={{
                   background: 'none', border: 'none',
@@ -980,7 +980,7 @@ function AppInner() {
               {/* Divider before About */}
               <div style={{ width: '100%', height: '1px', background: `var(--acc)`, opacity: 0.2 }} />
 
-              {/* ③ ABOUT CREÅTIVE STEEPING — bottom of menu */}
+              {/* ③ ABOUT CREÅTIVE STEEPING :: bottom of menu */}
               <button onClick={() => { setAboutOpen(true); setNavMenuOpen(false); }} style={{
                 background: 'none', border: 'none',
                 color: 'var(--t2)', borderBottom: '1px solid transparent',
@@ -1077,7 +1077,7 @@ function AppInner() {
               />
               <button
                 className="enter-button"
-                aria-label="Commence Steeping — begin your journey"
+                aria-label="Commence Steeping :: begin your journey"
                 onClick={() => {
                   if (identity.trim().length > 2) setPhase("portal");
                 }}
@@ -1190,7 +1190,7 @@ function AppInner() {
                     />
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'var(--space-sm)' }}>
                         <span style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: 'var(--t2)', opacity: sageTestingBusy ? 0.6 : 0, transition: 'opacity 0.5s' }}>
-                            when it's ready — ENTER
+                            when it's ready :: ENTER
                         </span>
                         <button 
                             id="sage-transmit-btn"
@@ -1259,13 +1259,13 @@ function AppInner() {
                         fontFamily: 'var(--fMono)', fontSize: '0.75rem', letterSpacing: '0.2em',
                         color: 'var(--acc)', opacity: 0.6, textTransform: 'uppercase', marginTop: 'var(--space-md)'
                       }}>
-                        Anything alive in the Sage — a thought, a question, a fragment — steeps in your Steeping Notes.
+                        Anything alive in the Sage :: a thought, a question, a fragment :: steeps in your Steeping Notes.
                       </div>
                     )}
                   </div>
                 )}
 
-                {/* Wayfinding position — reveals after the visitor settles */}
+                {/* Wayfinding position :: reveals after the visitor settles */}
                 {wayfindingState.signals.sessionAge !== 'arriving' && (
                   <div style={{
                     marginTop: 'var(--space-lg)',
@@ -1284,7 +1284,7 @@ function AppInner() {
             {!activeVessel ? (
               <div className="vessel-matrix">
                 {(['inneractive', 'journeyer', 'cohort', 'depth_semester'].includes(profile?.access_tier) ? VESSELS_L2 : VESSELS).map((vessel, i) => {
-                  // VESSEL UNLOCKING — Dual-path: archive depth OR behavioral readiness.
+                  // VESSEL UNLOCKING :: Dual-path: archive depth OR behavioral readiness.
                   // Path 1 (archiveReady): 5+ historical score entries (the original Cryo-Lock).
                   // Path 2 (behaviorallyReady): gravity resonance >= 0.6 from the wayfinding engine.
                   // W1-W4 and 01 always unlocked. Vessels 02+ require at least one path.
@@ -1425,7 +1425,7 @@ function AppInner() {
                         {/* 🌿 THE READING MEMBRANE (Hexagong Cell): Ocular Protection */}
                         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.85) 100%)', backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)', mixBlendMode: 'multiply', zIndex: 1.5, pointerEvents: 'none' }} />
 
-                        {/* Wayfinding resonance glow — vessels aligned with the visitor's gravity breathe */}
+                        {/* Wayfinding resonance glow :: vessels aligned with the visitor's gravity breathe */}
                         {resonance > 0.15 && (
                           <div style={{
                             position: 'absolute', inset: '-8px', zIndex: 1.8, pointerEvents: 'none',
@@ -1460,7 +1460,7 @@ function AppInner() {
                         </div>
                       </div>
 
-                      {/* Guidance note — outside hex-vessel so clip-path/overflow don't hide it */}
+                      {/* Guidance note :: outside hex-vessel so clip-path/overflow don't hide it */}
                       {isLocked && lockedTooltipOpen === vessel.num && (
                         <div style={{
                           position: 'absolute', top: 'calc(100% + 16px)', left: '50%',
@@ -1612,7 +1612,7 @@ function AppInner() {
 
                           {activeVessel.num === "02" && <Vessel02Detail modeString={mode} playStrikingBowl={playStrikingBowl} playHarmonicChord={playHarmonicChord} />}
 
-                          {/* CODEX AS LIVING CURRICULUM — ambient fragments from the practitioner archive.
+                          {/* CODEX AS LIVING CURRICULUM :: ambient fragments from the practitioner archive.
                               Surfaces 1-2 codex entries matched to the vessel's steep affinity.
                               See VESSEL_STEEP_AFFINITY in useSageWayfinding.jsx. */}
                           {codexReady && (() => {
@@ -1696,7 +1696,7 @@ function AppInner() {
                             </div>
                           )}
 
-                          {/* Vessel 00: Soft completion — the welcoming needs a gentle closure */}
+                          {/* Vessel 00: Soft completion :: the welcoming needs a gentle closure */}
                           {activeVessel.num === "00" && (
                             <div style={{
                               marginTop: 'var(--space-xxl)', display: 'flex', flexDirection: 'column',
@@ -1752,7 +1752,7 @@ function AppInner() {
                               }}
                                 onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.02)'; }}
                                 onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}>
-                                [ POUR — COMPLETE THIS STEEP ]
+                                [ POUR :: COMPLETE THIS STEEP ]
                               </button>
 
                               {/* EH-02: L1 Contextual Upgrade Invitation */}
@@ -1821,7 +1821,7 @@ function AppInner() {
         </div>
       )}
 
-      {/* VESSEL TRANSITION — The Sage's hand between completion and what's next */}
+      {/* VESSEL TRANSITION :: The Sage's hand between completion and what's next */}
       {vesselTransition && (
         <div style={{
           position: 'fixed', inset: 0, zIndex: 2000,
@@ -1851,7 +1851,7 @@ function AppInner() {
               {vesselTransition.gesture}
             </div>
 
-            {/* Navigation options — stunningly simple */}
+            {/* Navigation options :: stunningly simple */}
             <div style={{
               display: 'flex', flexDirection: 'column', alignItems: 'center',
               gap: 'var(--space-lg)', animation: 'fadeIn 3.5s ease forwards'
@@ -1931,7 +1931,7 @@ function AppInner() {
               </button>
             </div>
 
-            {/* Current steep position — whispered */}
+            {/* Current steep position :: whispered */}
             {vesselTransition.steepLabel && (
               <div style={{
                 marginTop: 'var(--space-xxl)',
@@ -1990,7 +1990,7 @@ function AppInner() {
 
 
 
-      {/* DYNAMIC STILLNESS CATALYSTS (Phase 07) — portal only */}
+      {/* DYNAMIC STILLNESS CATALYSTS (Phase 07) :: portal only */}
       {phase === 'portal' && <StillnessCatalyst m={m} wayfindingState={wayfindingState} codexSurface={codexReady && surface ? surface : null} />}
 
       {/* SONIC AWARENESS CONTROLS */}
@@ -2078,7 +2078,7 @@ function AppInner() {
         <SubterraneanBay onClose={() => setShowSubterraneanBay(false)} eqParams={eqParams} setEqParams={setEqParams} />
       )}
 
-      {/* ABOUT CREÅTIVE STEEPING — full orientation panel */}
+      {/* ABOUT CREÅTIVE STEEPING :: full orientation panel */}
       {aboutOpen && (
         <div onClick={() => setAboutOpen(false)} style={{
           position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.88)',
@@ -2115,7 +2115,7 @@ function AppInner() {
 
             {/* ─── The Practice ─── */}
             <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.95rem', lineHeight: 1.85, color: m.text1, marginBottom: '32px' }}>
-              Creative Steeping is an immersive, experiential in-venture — a hyper-connective journaling practice designed for the fierce creative nature within you. It is a ritual, a journey, and a veneration of your human spirit in pursuit of self-awareness, creative expression, and identity.
+              Creative Steeping is an immersive, experiential in-venture :: a hyper-connective journaling practice designed for the fierce creative nature within you. It is a ritual, a journey, and a veneration of your human spirit in pursuit of self-awareness, creative expression, and identity.
             </p>
 
             {/* ─── The Seven Steeps ─── */}
@@ -2135,7 +2135,7 @@ function AppInner() {
                 <div key={num} style={{ display: 'flex', alignItems: 'baseline', gap: '12px' }}>
                   <span style={{ color: m.accent, fontSize: '0.65rem', flexShrink: 0, opacity: 0.6, minWidth: '20px' }}>{num}</span>
                   <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', color: m.text1, lineHeight: 1.4 }}>
-                    {title}<span style={{ color: m.text2, opacity: 0.55, fontSize: '0.75rem' }}> — {sub}</span>
+                    {title}<span style={{ color: m.text2, opacity: 0.55, fontSize: '0.75rem' }}> :: {sub}</span>
                   </span>
                 </div>
               ))}
@@ -2151,17 +2151,17 @@ function AppInner() {
               {
                 name: 'The Hexagong',
                 icon: '⬡',
-                body: 'The six-sided vessel at the center of the experience. Each face of the Hexagong is a Steep — a day, a dimension, a door. As you steep, it illuminates. Vessels unlock through depth of practice, not passage of time.'
+                body: 'The six-sided vessel at the center of the experience. Each face of the Hexagong is a Steep :: a day, a dimension, a door. As you steep, it illuminates. Vessels unlock through depth of practice, not passage of time.'
               },
               {
                 name: 'The Sage',
                 icon: '◈',
-                body: 'The portal\'s behavioral intelligence. The Sage reads stillness, typing rhythm, and the depth of what you write — then reflects back a response tuned to exactly where you are in your journey. A practicing witness to your unfolding.'
+                body: 'The portal\'s behavioral intelligence. The Sage reads stillness, typing rhythm, and the depth of what you write :: then reflects back a response tuned to exactly where you are in your journey. A practicing witness to your unfolding.'
               },
               {
                 name: 'The Sonnet Engine',
                 icon: '♪',
-                body: 'As you write, each keystroke finds its frequency — a tone tuned to your current Steep. Every tone arises from your writing and returns to you as vibration. In acoustics, a vibration only matters when it transfers energy to something else. This one transfers yours back.'
+                body: 'As you write, each keystroke finds its frequency :: a tone tuned to your current Steep. Every tone arises from your writing and returns to you as vibration. In acoustics, a vibration only matters when it transfers energy to something else. This one transfers yours back.'
               },
             ].map(({ name, icon, body }) => (
               <div key={name} style={{ display: 'flex', gap: '16px', marginBottom: '22px', alignItems: 'flex-start' }}>
@@ -2186,7 +2186,7 @@ function AppInner() {
               </p>
             </div>
             <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.8, color: m.text2, marginBottom: '16px' }}>
-              The Sonnet Engine generates music <em>from</em> you, not for you. Research in music neuroscience confirms that when the music is yours — generated from your own behavioral and emotional signature — the brain releases its own natural opioids and the immune system responds. There is no closer relationship to individual musical preference than music that emerges from your own creative state, in real time.
+              The Sonnet Engine generates music <em>from</em> you, not for you. Research in music neuroscience confirms that when the music is yours :: generated from your own behavioral and emotional signature :: the brain releases its own natural opioids and the immune system responds. There is no closer relationship to individual musical preference than music that emerges from your own creative state, in real time.
             </p>
             <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.8, color: m.text2, marginBottom: '32px' }}>
               For practitioners who feel creatively blocked, the portal holds another entrance: when the written word stills, the sonic current moves. Sound before language. Hearing before knowing. The practice creates the conditions its own content requires.
@@ -2198,10 +2198,10 @@ function AppInner() {
               The Steeperverse
             </div>
             <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.8, color: m.text2, marginBottom: '16px' }}>
-              Creative Steeping is a solo practice that becomes richer in community. The Steeperverse is the gathering place — where Steepers share reflections, hold space for each other's unfolding, and witness the mythic narratives of their peers.
+              Creative Steeping is a solo practice that becomes richer in community. The Steeperverse is the gathering place :: where Steepers share reflections, hold space for each other's unfolding, and witness the mythic narratives of their peers.
             </p>
             <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.8, color: m.text2, marginBottom: '32px' }}>
-              Community Steeping unlocks something the solo practice cannot — the recognition that your inner landscape, when shared, resonates. What you thought was yours alone turns out to be the room's. This is the deepest offer of the Conclave of Voices: not that your audience finds you, but that you find each other.
+              Community Steeping unlocks something the solo practice cannot :: the recognition that your inner landscape, when shared, resonates. What you thought was yours alone turns out to be the room's. This is the deepest offer of the Conclave of Voices: not that your audience finds you, but that you find each other.
             </p>
 
             {/* ─── Voices from the Practice ─── */}
@@ -2221,7 +2221,7 @@ function AppInner() {
                 role: "Creative Synthesizer"
               },
               {
-                text: "What sets you apart does not set you apart from others — it magnetizes others to the unique fragrance of your song.",
+                text: "What sets you apart does not set you apart from others :: it magnetizes others to the unique fragrance of your song.",
                 name: "Sylvia Baffour",
                 role: "Emotional Intelligence Expert"
               },
@@ -2233,7 +2233,7 @@ function AppInner() {
                   "{text}"
                 </p>
                 <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: m.accent, opacity: 0.8 }}>
-                  {name} <span style={{ opacity: 0.5 }}>— {role}</span>
+                  {name} <span style={{ opacity: 0.5 }}>:: {role}</span>
                 </div>
               </div>
             ))}
@@ -2244,7 +2244,7 @@ function AppInner() {
               The Architect
             </div>
             <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: 1.8, color: m.text2, marginBottom: '32px' }}>
-              Kamau Zuberi Akabueze (KzA) — founder of THE ÅLIËN SCÖÕL for Creative Thinking. Over 25 years fusing creativity and strategy, he has dedicated his life to uplifting the creative spirit in everyone he encounters. Creative Steeping is the living distillation of that practice.
+              Kamau Zuberi Akabueze (KzA) :: founder of THE ÅLIËN SCÖÕL for Creative Thinking. Over 25 years fusing creativity and strategy, he has dedicated his life to uplifting the creative spirit in everyone he encounters. Creative Steeping is the living distillation of that practice.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <a href="https://thealienschool.com" target="_blank" rel="noopener noreferrer" style={{
@@ -2304,7 +2304,7 @@ function AppInner() {
               <div style={{ width: '40px', height: '1px', background: m.accent, opacity: 0.4, marginBottom: '32px' }} />
 
               <Section label="The Practice Stays With You" />
-              <Body>The Steeping Space is designed around a foundational principle: your practice belongs to you. The reflections you write, the scores your sessions generate, and the patterns of your creative movement are stored on your own device — in your browser's local storage — and are never transmitted to our servers, sold, or shared with third parties.</Body>
+              <Body>The Steeping Space is designed around a foundational principle: your practice belongs to you. The reflections you write, the scores your sessions generate, and the patterns of your creative movement are stored on your own device :: in your browser's local storage :: and are never transmitted to our servers, sold, or shared with third parties.</Body>
 
               <Rule />
               <Section label="What We Collect" />
@@ -2316,7 +2316,7 @@ function AppInner() {
 
               <Rule />
               <Section label="Authentication" />
-              <Body>Account creation and sign-in are handled by Supabase (supabase.com), a third-party infrastructure provider. When you create an account, your email and encrypted password are stored on Supabase's servers subject to their privacy policy. We use this data solely to authenticate your session — we do not use it for marketing, profiling, or any other purpose.</Body>
+              <Body>Account creation and sign-in are handled by Supabase (supabase.com), a third-party infrastructure provider. When you create an account, your email and encrypted password are stored on Supabase's servers subject to their privacy policy. We use this data solely to authenticate your session :: we do not use it for marketing, profiling, or any other purpose.</Body>
 
               <Rule />
               <Section label="Hosting" />
@@ -2368,21 +2368,21 @@ function AppInner() {
               <div style={{ width: '40px', height: '1px', background: m.accent, opacity: 0.4, marginBottom: '32px' }} />
 
               <Section label="About Creative Steeping" />
-              <Body>Creative Steeping is an immersive digital practice for creative self-inquiry — a seven-day guided journaling ritual that fuses introspection, tea ceremony, and a generative sonic layer into a single contemplative experience. Visitors engage The Steeping Space through text, sound, and behavioral intelligence to move through seven dimensions of creative identity: Essence, Mosaic, Summits, Mirror, Labyrinth, Conclave, and Crown Jewels.</Body>
+              <Body>Creative Steeping is an immersive digital practice for creative self-inquiry :: a seven-day guided journaling ritual that fuses introspection, tea ceremony, and a generative sonic layer into a single contemplative experience. Visitors engage The Steeping Space through text, sound, and behavioral intelligence to move through seven dimensions of creative identity: Essence, Mosaic, Summits, Mirror, Labyrinth, Conclave, and Crown Jewels.</Body>
 
               <Rule />
               <Section label="The Science" />
               <div style={{ borderLeft: `2px solid ${m.accent}50`, paddingLeft: '16px', marginBottom: '24px' }}>
                 <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.9rem', lineHeight: 1.85, color: m.text1, margin: 0, fontStyle: 'italic' }}>
-                  "The Steeping Space may be the most sophisticated non-clinical implementation of music-medicine principles currently available to general audiences — not because it was designed with neuroscience in mind, but because it was designed from a deep understanding of what the human creative system actually needs."
+                  "The Steeping Space may be the most sophisticated non-clinical implementation of music-medicine principles currently available to general audiences :: not because it was designed with neuroscience in mind, but because it was designed from a deep understanding of what the human creative system actually needs."
                 </p>
-                <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', letterSpacing: '0.12em', color: m.accent, opacity: 0.7, marginTop: '10px', textTransform: 'uppercase' }}>The Sound of Becoming — Research Report, 2026</div>
+                <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', letterSpacing: '0.12em', color: m.accent, opacity: 0.7, marginTop: '10px', textTransform: 'uppercase' }}>The Sound of Becoming :: Research Report, 2026</div>
               </div>
-              <Body>The Steeping Space's sonic layer — the Sonnet Engine — generates music in real time from the practitioner's own keystrokes, tuned to their current position in the practice. Research mapping the portal's architecture to Daniel Levitin's <em>Music as Medicine</em> (W.W. Norton, 2025) identifies it as a first-of-its-kind preventative music-medicine intervention: full-brain activation through simultaneous writing and musical creation, bidirectional rhythmic entrainment, and an individual-preference music mechanism that may trigger the brain's natural opioid response.</Body>
+              <Body>The Steeping Space's sonic layer :: the Sonnet Engine :: generates music in real time from the practitioner's own keystrokes, tuned to their current position in the practice. Research mapping the portal's architecture to Daniel Levitin's <em>Music as Medicine</em> (W.W. Norton, 2025) identifies it as a first-of-its-kind preventative music-medicine intervention: full-brain activation through simultaneous writing and musical creation, bidirectional rhythmic entrainment, and an individual-preference music mechanism that may trigger the brain's natural opioid response.</Body>
 
               <Rule />
               <Section label="About the Founder" />
-              <Body>Kamau Zuberi Akabueze (KzA) is the founder of THE ÅLIËN SCÖÕL for Creative Thinking — a creative education practice spanning 25 years of work at the intersection of creativity, strategy, and human development. Creative Steeping is the living distillation of that practice: a methodology, a guidebook, and now a digital portal.</Body>
+              <Body>Kamau Zuberi Akabueze (KzA) is the founder of THE ÅLIËN SCÖÕL for Creative Thinking :: a creative education practice spanning 25 years of work at the intersection of creativity, strategy, and human development. Creative Steeping is the living distillation of that practice: a methodology, a guidebook, and now a digital portal.</Body>
 
               <Rule />
               <Section label="Key Facts" />
@@ -2390,8 +2390,8 @@ function AppInner() {
                 {[
                   ['Practice', 'Seven-steep creative journaling ritual'],
                   ['Format', 'Digital portal · creativesteeping.com'],
-                  ['Sonic Layer', 'The Sonnet Engine — generative music from keystroke behavior'],
-                  ['Intelligence', 'The Sage — behavioral wayfinding, fully local'],
+                  ['Sonic Layer', 'The Sonnet Engine :: generative music from keystroke behavior'],
+                  ['Intelligence', 'The Sage :: behavioral wayfinding, fully local'],
                   ['Data', 'Practice data stays on the visitor\'s device. No tracking.'],
                   ['Guidebook', 'Creative Steeping: A Journey to the Essence of Your Flavor'],
                   ['Founded', 'THE ÅLIËN SCÖÕL · thealienschool.com'],

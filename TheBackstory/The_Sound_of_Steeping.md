@@ -13,7 +13,7 @@ Here is your map to the acoustic forces responding to your journey.
 
 **[ ꩜ ] 70-Millimeter Software Theremin**
 *   **The Technology:** A Web Audio API continuous-tracking algorithm mapping the X/Y coordinates of the user's cursor to stereo panning (`panner.pan`), frequency modulation (`osc.frequency`), and lowpass filter cutoffs (`filter.frequency`). 
-*   **The Experience:** The physical Theremin is famous for being an instrument played without touching it—your hands move through an invisible electromagnetic field. By scaling this concept to a "70-Millimeter" cinematic gauge, your entire screen becomes a massive, frictionless control surface. You are not "using a mouse;" your cursor acts as a hand waving through a heavy, reactive atmosphere. Simply sweeping across the screen swells the volume, deepens the bass, and throws the sound across the stereo field, turning basic navigation into a cinematic performance.
+*   **The Experience:** The physical Theremin is famous for being an instrument played without touching it :: your hands move through an invisible electromagnetic field. By scaling this concept to a "70-Millimeter" cinematic gauge, your entire screen becomes a massive, frictionless control surface. You are not "using a mouse;" your cursor acts as a hand waving through a heavy, reactive atmosphere. Simply sweeping across the screen swells the volume, deepens the bass, and throws the sound across the stereo field, turning basic navigation into a cinematic performance.
 
 **[ 🔔 ] The Striking Bowl (The Invitation)**
 Standard interfaces "beep" to confirm a mindless click. The Steeperverse strikes a deeply resonant, metallic singing bowl. It is not an alert; it is the ringing of a bell. A threshold. An invitation to focus.
@@ -28,7 +28,7 @@ Standard interfaces "beep" to confirm a mindless click. The Steeperverse strikes
 
 **[ 🕰️ ] Time Symphonics (The Sand Sonnet)**
 *   **The Technology:** An interval-based sequencing array that fires a deeply filtered, metronomic sine-wave (`playSandSonnet`) at exact 60-second intervals during a 5, 15, or 22-minute timer.
-*   **The Experience:** Fear the countdown clock no more. Instead of an urgent, ticking alarm reminding you of dwindling resources, the passage of time is sonified as a single, gentle *sine-wave breath*—or occasionally an organic, randomized avian trill that bursts across the stereo field exactly on the minute mark. Time is no longer rushing you; it is your metronome.
+*   **The Experience:** Fear the countdown clock no more. Instead of an urgent, ticking alarm reminding you of dwindling resources, the passage of time is sonified as a single, gentle *sine-wave breath* :: or occasionally an organic, randomized avian trill that bursts across the stereo field exactly on the minute mark. Time is no longer rushing you; it is your metronome.
 
 ---
 
@@ -40,7 +40,7 @@ Standard interfaces "beep" to confirm a mindless click. The Steeperverse strikes
 
 **[ ⚡ ] Kinetic Snaps (Tactile Microsounds)**
 *   **The Technology:** An incredibly short (15-millisecond) burst of harsh square-wave noise (`crackleOsc.type = 'square'`) injected at the exact attack moment of a melodic tone. 
-*   **The Experience:** To return physical weight to the digital void, a harsh, microscopic burst of noise is injected at the exact attack moment of your keystroke. It doesn't just ring like a melodic bell—it *cracks* and *snaps* like a typewriter hammer physically slamming into heavy paper.
+*   **The Experience:** To return physical weight to the digital void, a harsh, microscopic burst of noise is injected at the exact attack moment of your keystroke. It doesn't just ring like a melodic bell :: it *cracks* and *snaps* like a typewriter hammer physically slamming into heavy paper.
 
 ---
 
@@ -52,7 +52,7 @@ Standard interfaces "beep" to confirm a mindless click. The Steeperverse strikes
 
 **[ 🎵 ] Triplicate Resonance (Synesthetic Memory)**
 *   **The Technology:** The Web Audio API dynamically assigns specific chord progressions based on the exact string-character ID of a vessel (`playConsideringHarmonic(vessel.num.charCodeAt(1))`).
-*   **The Experience:** Every Vessel on the Hex-Kintsugi lattice possesses a unique, mathematical harmonic signature. When you open a vessel, it doesn't just load—*it sings its name*. You will learn to navigate the Steeperverse not by reading the screen, but by recognizing the physical chords echoing in the room.
+*   **The Experience:** Every Vessel on the Hex-Kintsugi lattice possesses a unique, mathematical harmonic signature. When you open a vessel, it doesn't just load :: *it sings its name*. You will learn to navigate the Steeperverse not by reading the screen, but by recognizing the physical chords echoing in the room.
 
 ---
 

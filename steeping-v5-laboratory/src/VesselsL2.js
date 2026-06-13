@@ -6,7 +6,7 @@ export const VESSELS_L2 = [
     id: "L2.W1",
     name: "A Creative Being in Progress",
     invocation: "In the grand you-ness of the life you are living...",
-    body: "Each act, moment or encounter represents the unique journey of a creative being. A creative being in progress and pursuit. Genius and generosity. Interacting with more creativity than they know. Creative Steeping is an immersive and experiential in-venture — a hyper-connective journaling practice to, and for, the ﬁerce creative nature within you.",
+    body: "Each act, moment or encounter represents the unique journey of a creative being. A creative being in progress and pursuit. Genius and generosity. Interacting with more creativity than they know. Creative Steeping is an immersive and experiential in-venture :: a hyper-connective journaling practice to, and for, the ﬁerce creative nature within you.",
     interaction: {
       prompt: "What is the fierce creative nature within you seeking today?",
       placeholder: "My nature seeks..."

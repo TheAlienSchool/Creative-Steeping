@@ -4,7 +4,7 @@
 To ground the 5D Biophilic Architecture of The Steeping Space in material reality, we must look to the history of how humanity has measured, listened to, and translated the consciousness of plants. This study tracks three distinct eras of Plant Bioacoustics and translates them directly into actionable architecture for the Steeperverse.
 
 ### Era I: The Polygraph & Primary Perception (1960s)
-*The Science:* Cleve Backster's use of galvanic skin response (polygraph) machines on Dracaena plants revealed rapid shifts in biological impedance/electrical resistance in response to human intent and environmental trauma. He hypothesized "Primary Perception"—a cellular telepathy existing beneath standard human senses.
+*The Science:* Cleve Backster's use of galvanic skin response (polygraph) machines on Dracaena plants revealed rapid shifts in biological impedance/electrical resistance in response to human intent and environmental trauma. He hypothesized "Primary Perception" :: a cellular telepathy existing beneath standard human senses.
 *The Steeping Principle:* Plants do not "hear" words; they feel the electrical weight of intent. The interface must respond to the user's somatic presence, not just their clicks.
 
 ### Era II: Biodata Sonification (1970s–Present)
@@ -33,7 +33,7 @@ We must evolve our internal React hooks and database architecture to reflect bio
 The 1-9 Spatial Seeds defined in the HDM Integration Plan will now anchor to biologically accurate plant frequencies rather than purely musical scales.
 *   **Seed 2 (The Alchemical Mirror / Receptivity):** Anchored exactly at **220Hz** (The Root Foraging Frequency). The audio engine mimics the sound of hidden water, coaxing the user's awareness to "grow" toward it.
 *   **Seed 4 (The Alchemical Architect / Structure):** Anchored in the **10–240Hz** spectrum, simulating the rhythmic "Growth Clicks" of cellular expansion. Deep, structured, biological percussion.
-*   **Seed 0 (The Infinite Void / Active Pause):** The soundscape shifts into profound silence and sub-bass resonance, representing *Xylem Cavitation*—the sound of breaking the internal tension column to allow for deep rest and eventual regeneration.
+*   **Seed 0 (The Infinite Void / Active Pause):** The soundscape shifts into profound silence and sub-bass resonance, representing *Xylem Cavitation* :: the sound of breaking the internal tension column to allow for deep rest and eventual regeneration.
 
 ### 3. Implementation Planning (Algorithmic Biorhythms)
 The generative math inside the Web Audio API should no longer rely strictly on generic `Math.random()`. Instead, it will use Perlin Noise or Brownian Motion algorithms to simulate **micro-voltage conductivity shifts**. The visual pulses of the Hexagong and the UI membranes will map directly to these simulated impedance drops, making the interface feel like a living, breathing Dracaena plant hooked up to a 1960s polygraph. 
@@ -45,4 +45,4 @@ The AI system prompt for the Sage must adopt the vocabulary of *Primary Percepti
 ### 5. Insight Banking (Supabase Architecture)
 When the user stores an insight, a note, or completes an "Existence Audit" in the Steeping Ledger, it is no longer saved conceptually as a simple text row. It is banked as an **Acoustic Emission**. 
 *   In Supabase, the table `steeping_ledgers` is treated culturally as an *Emission Archive*. 
-*   Each entry captures the `spatial_seed`, the time elapsed, and is visually represented in the UI not as a standard text document, but as a plotted point on a biometric graph—visualizing the user's intellectual and spiritual output as living, breathing plant data that contributes to the health of the entire Steeperverse ecosystem.
+*   Each entry captures the `spatial_seed`, the time elapsed, and is visually represented in the UI not as a standard text document, but as a plotted point on a biometric graph :: visualizing the user's intellectual and spiritual output as living, breathing plant data that contributes to the health of the entire Steeperverse ecosystem.

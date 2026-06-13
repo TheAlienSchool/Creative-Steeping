@@ -10,7 +10,7 @@ const glyphs = ['▚', '◿', '▱', '△', '꩜', '⌇', '∰', '⟡', '⎈', '
 const emojis = ['👁️‍🗨️', '🪐', '☄️', '🔮', '🌀', '🧿', '💠', '🪬', '📡', '🧬', '🦠', '🪼', '🍄', '🐚', '🪸', '🌋', '🌌', '🌠', '🪨', '⏳'];
 const concepts = ['ECLIPSE', 'NULL', 'VOID', 'GRAV', 'LUMEN', 'TIDAL', 'HEX', 'NOVA', 'PULSE', 'WAVE', 'ECHO', 'CHASM', 'PRISM', 'SYNTAX', 'VIBE'];
 const actions = ['OVERFLOW', 'DRIFT', 'LOCK', 'SPIN', 'WASH', 'DROP', 'FRACTURE', 'SPLIT', 'MERGE', 'RESONATE', 'ALIGNED', 'BREACH', 'ECHO'];
-const decorators = ['///', '***', '~~~', '|||', '---', ':::', '+++', '==='];
+const decorators = ['///', '***', '~~~', '|||', '---', ' :: :', '+++', '==='];
 
 // Poetic lore mechanics:
 const subjects = [

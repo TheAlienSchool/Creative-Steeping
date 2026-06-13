@@ -24,7 +24,7 @@ The portal must feel like a conscious pause, a moment of reflective curiosity th
 
 **6\. Eliminate Redundant Framing:** Trust the design and the user. Do not narrate the mechanics of an interaction if the UI itself makes the next step clear. The prompt is the experience.
 
-**7\. Animate the Practice, Not the Person:** The voice animates the *practice* as an active, intelligent force. It is "Life's enlivening guidance," not just "Life." The focus is on the *doing*—the ritual, the discipline, the return.
+**7\. Animate the Practice, Not the Person:** The voice animates the *practice* as an active, intelligent force. It is "Life's enlivening guidance," not just "Life." The focus is on the *doing* :: the ritual, the discipline, the return.
 
 **8\. The Voice is a Teacher, Not a Descriptor:** Shift from describing what the user is doing (e.g., "You are learning...") to a gentle, direct imperative (e.g., "Learn to..."). This positions the voice as a guide, not a narrator.
 
@@ -32,7 +32,7 @@ The portal must feel like a conscious pause, a moment of reflective curiosity th
 
 ## **Signature Syntax & Lexicon**
 
-- **The Double Colon `::`:** The primary tool for elaboration, replacing the em dash. A tÅs brand mark.  
+- **The Double Colon ` :: `:** The primary tool for elaboration, replacing the em dash. A tÅs brand mark.  
 - **Sensory Specificity:** Prompts must live in the body, not just the mind (e.g., "a flavor you love to savor").  
 - **Artifact over Trace:** The Steepee's output is a creation, an "artifact," not a mere "trace" or mark.  
 - **Reclaimed Language:** Words like "mundane" are owned and used without the ironic distance of quotation marks.  

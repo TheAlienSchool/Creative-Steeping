@@ -45,18 +45,18 @@
 
 /* Remove the dangerous outline:none from entrance input */
 .entrance-input-group input:focus {
-  outline: none; /* Intentionally removed — replaced by accent border below */
+  outline: none; /* Intentionally removed :: replaced by accent border below */
   border-color: var(--acc);
   box-shadow: 0 0 0 1px var(--acc);
 }
 
-/* All buttons — clear visible focus ring */
+/* All buttons :: clear visible focus ring */
 button:focus-visible {
   outline: 2px solid var(--acc, #d4922a);
   outline-offset: 3px;
 }
 
-/* Sonic slider — restore focus indicator */
+/* Sonic slider :: restore focus indicator */
 .sonic-slider:focus-visible {
   outline: 1px solid var(--acc, #d4922a);
   outline-offset: 4px;
@@ -104,7 +104,7 @@ button:focus-visible {
    Enforced only within reading contexts (vessels, notes, guide).
    Nav chrome keeps its compact monospace scale. */
 
-/* Vessel body text — minimum 17px for comfortable reading */
+/* Vessel body text :: minimum 17px for comfortable reading */
 .vessel-body-text,
 .steeping-note-body p,
 .vessel-detail-body p {
@@ -131,16 +131,16 @@ button:focus-visible {
    Activated by adding [data-reading-mode="open"] to the
    document root. Preserves the design system while optimizing
    for dyslexic reading mechanics:
-   — Open sans-serif body font (Atkinson Hyperlegible or system)
-   — Wider word spacing
-   — Wider letter spacing
-   — Increased line height
-   — Larger base font size
-   — Left-aligned reading (no centered body text blocks)
-   — No italic in body reading zones */
+   :: Open sans-serif body font (Atkinson Hyperlegible or system)
+   :: Wider word spacing
+   :: Wider letter spacing
+   :: Increased line height
+   :: Larger base font size
+   :: Left-aligned reading (no centered body text blocks)
+   :: No italic in body reading zones */
 
 [data-reading-mode="open"] {
-  /* Override only the body reading font — keep mono for nav chrome */
+  /* Override only the body reading font :: keep mono for nav chrome */
   --fBody: 'Atkinson Hyperlegible', 'Arial', sans-serif;
 }
 
@@ -182,7 +182,7 @@ button:focus-visible {
 
 /* ── 7. SCROLLBAR RESTORATION ────────────────────────────────
    The original CSS annihilates scrollbars entirely. This removes
-   the scroll position cue, which is disorienting — especially
+   the scroll position cue, which is disorienting :: especially
    inside the Steeping Notes overlay which is very tall.
    We restore a minimal, styled scrollbar that fits the aesthetic. */
 
@@ -212,17 +212,17 @@ button:focus-visible {
 
 /* ── 8. CONTRAST REINFORCEMENTS ──────────────────────────────
    The accent gold (#d4922a) on very dark bg (#090500) has a
-   contrast ratio of ~5.2:1 — passes WCAG AA for normal text.
-   The text2 color (#a88b68) on dark bg has ~3.1:1 — passes
+   contrast ratio of ~5.2:1 :: passes WCAG AA for normal text.
+   The text2 color (#a88b68) on dark bg has ~3.1:1 :: passes
    large text only. Enforce minimum contrast for any text2 used
    at body size. */
 
-/* Steeping note body secondary text — boost to readable contrast */
+/* Steeping note body secondary text :: boost to readable contrast */
 .steeping-note-body .secondary-text {
   color: var(--t1); /* Upgrade from t2 to t1 in reading zones */
 }
 
-/* Mode selector buttons — ensure the inactive state is still legible */
+/* Mode selector buttons :: ensure the inactive state is still legible */
 .mode-btn {
   opacity: 0.65; /* was potentially lower via inline styles */
   min-width: 44px;  /* WCAG 2.5.5: minimum 44×44px touch target */
@@ -248,7 +248,7 @@ nav button,
   min-width: 44px;
 }
 
-/* Steeping note nav buttons — reactive tiles */
+/* Steeping note nav buttons :: reactive tiles */
 .steeping-note-nav-btn {
   min-height: 44px;
 }
@@ -260,7 +260,7 @@ nav button,
 
 [role="status"],
 [aria-live="polite"] {
-  /* No visual changes — but ensure the element is not display:none
+  /* No visual changes :: but ensure the element is not display:none
      (which would prevent screen reader announcements) */
   position: static;
   visibility: visible;
@@ -313,7 +313,7 @@ nav button,
    Italic is reserved for display text: headings, single-line
    captions, vessel invocations, and decorative accents.
    Multi-sentence reading paragraphs always use normal weight.
-   This is NOT opt-in — it applies in the default state for all
+   This is NOT opt-in :: it applies in the default state for all
    practitioners, because legibility is not a special mode.
 
    The reading-mode section (§5) then upgrades font family,

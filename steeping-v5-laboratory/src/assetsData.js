@@ -205,7 +205,7 @@ export const generateAssets = (m) => ({
         {
             "id": "o13",
             "kicker": "FEAR AND FINITY",
-            "body": "Your fear is exclusively beneficial to the fear monger. A.K.A. The fear creator.\n\nConsidering our simultaneous oneness, the fear creator may just be your creativity.\n\nThat is Creative Thinking in a land of creative possibility in the byproduct of infinity.\n\n**Be In Finity.**\nFear is an ancient idea.\nThere IS a new F-word.\n\n— Kamau on Fear and Finity",
+            "body": "Your fear is exclusively beneficial to the fear monger. A.K.A. The fear creator.\n\nConsidering our simultaneous oneness, the fear creator may just be your creativity.\n\nThat is Creative Thinking in a land of creative possibility in the byproduct of infinity.\n\n**Be In Finity.**\nFear is an ancient idea.\nThere IS a new F-word.\n\n:: Kamau on Fear and Finity",
             "mechanism": "STEEPING OFFERING :: WISDOM",
             "color": m.text1,
             "coords": "[ STBL: 84 | PRSS: 66 | COHR: 89 | DRFT: 11 ]"
@@ -237,7 +237,7 @@ export const generateAssets = (m) => ({
         {
             "id": "o17",
             "kicker": "A LONG CONVERSATION WITH MY SELF",
-            "body": "\"The Human experience is a long conversation with my self... I need to go deep and find that voice.\"\n\n— Kaelo Lentsoe on CREÅTIVE STEEPING",
+            "body": "\"The Human experience is a long conversation with my self... I need to go deep and find that voice.\"\n\n:: Kaelo Lentsoe on CREÅTIVE STEEPING",
             "mechanism": "STEEPING OFFERING :: INSIGHT",
             "color": m.text1,
             "coords": "[ STBL: 86 | PRSS: 54 | COHR: 90 | DRFT: 10 ]"

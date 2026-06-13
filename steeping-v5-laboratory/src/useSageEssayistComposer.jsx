@@ -7,11 +7,11 @@ import { useEffect, useRef, useState } from 'react';
 // and drives the sonic environment accordingly.
 //
 // Flow phases (in order of depth):
-//   kindling      — the threshold before writing begins
-//   opening       — words beginning to arrive, surface tension releasing
-//   current       — rhythm established, the Sage is in the flow
-//   depth         — extended deep writing, stillness between bursts
-//   crystallizing — form solidifying, velocity slowing after depth
+//   kindling      :: the threshold before writing begins
+//   opening       :: words beginning to arrive, surface tension releasing
+//   current       :: rhythm established, the Sage is in the flow
+//   depth         :: extended deep writing, stillness between bursts
+//   crystallizing :: form solidifying, velocity slowing after depth
 //
 // The composer calls setEssayistAmbient + playEssayistTransition
 // from useSonnetEngine when phase or mode changes.

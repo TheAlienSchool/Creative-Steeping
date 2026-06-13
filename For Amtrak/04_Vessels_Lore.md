@@ -14,7 +14,7 @@ These are the core philosophical containers of the Steeping Space.
 
 ## 02 - The Mechanism of Alertness
 **Invocation:** The world outside, A universe within the cup, Both worlds are yours.
-**Body:** There is a particular quality of attention that arrives when the cup is still and the room has quieted. Something in the body slows without being asked. Tea has been inducing this state for millennia — through L-theanine, a compound that broadens your alpha waves and activates the Default Mode Network: the brain's reflective, associative mode. The mode where insight arrives sideways. Steeping functions as a practice of applied patience. It acts as the conscious choice to create a container for contemplation, allowing time to introduce you to new flavors of awareness.
+**Body:** There is a particular quality of attention that arrives when the cup is still and the room has quieted. Something in the body slows without being asked. Tea has been inducing this state for millennia :: through L-theanine, a compound that broadens your alpha waves and activates the Default Mode Network: the brain's reflective, associative mode. The mode where insight arrives sideways. Steeping functions as a practice of applied patience. It acts as the conscious choice to create a container for contemplation, allowing time to introduce you to new flavors of awareness.
 
 ## 03 - Mirror Gazing
 **Invocation:** Tea becomes a mirror, The practice of seeing beyond, The surface reflects deeper.
@@ -38,4 +38,4 @@ These are the core philosophical containers of the Steeping Space.
 
 ## 08 - About the Author
 **Invocation:** The cup held full, Poured into the world it shapes, The author signs here.
-**Body:** You arrived as a visitor. You leave as the author. Every vessel you entered, every reflection you sat with, every interaction you completed — that is the work. The practice extends beyond this portal. It carries a signature now. This steep asks you to place it.
+**Body:** You arrived as a visitor. You leave as the author. Every vessel you entered, every reflection you sat with, every interaction you completed :: that is the work. The practice extends beyond this portal. It carries a signature now. This steep asks you to place it.

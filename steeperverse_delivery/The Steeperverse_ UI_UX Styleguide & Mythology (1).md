@@ -50,7 +50,7 @@ The interface is not a flat screen but a series of parallaxing layers. The user�
 
 - **Layer 1: The Surface:** The initial interactive layer (e.g., the keyboard). It responds directly to touch with sound and subtle visuals.  
 - **Layer 2: The Trace:** After a few gestures, a shadow of the user’s path appears. This is their own history, made visible.  
-- **Layer 3: The Insight:** After a pause or a moment of coherence, this trace “settles,” and a deeper layer may fade in—an earned piece of language, a new quest invitation, or a connection to a previous idea.
+- **Layer 3: The Insight:** After a pause or a moment of coherence, this trace “settles,” and a deeper layer may fade in :: an earned piece of language, a new quest invitation, or a connection to a previous idea.
 
 ### **2\. Frozen-Cinema Memory Artifacts**
 
