@@ -1147,6 +1147,36 @@ export const getSteepingIssues = (m, setTuraoMode, SongbookGlossaryItem, playAlg
         id: 'biophilic',
         buttonLabel: '[ 5D BIOPHILICS ]',
         render: () => <BiophilicIssue m={m} SongbookGlossaryItem={SongbookGlossaryItem} playRootForagingFrequency={playRootForagingFrequency} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} />
+    },
+    {
+        id: 'leaf-archive',
+        buttonLabel: '[ THE LEAF AS ARCHIVE ]',
+        render: () => <LeafArchiveIssue m={m} SongbookGlossaryItem={SongbookGlossaryItem} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} />
+    },
+    {
+        id: 'temperature-calling',
+        buttonLabel: '[ THE TEMPERATURE OF WHAT YOU CALL FORWARD ]',
+        render: () => <TemperatureCallingIssue m={m} SongbookGlossaryItem={SongbookGlossaryItem} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} />
+    },
+    {
+        id: 'steypa',
+        buttonLabel: '[ STEYPA · THE DESCENT ]',
+        render: () => <SteypIssue m={m} SongbookGlossaryItem={SongbookGlossaryItem} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} />
+    },
+    {
+        id: 'seventh-infusion',
+        buttonLabel: '[ THE SEVENTH INFUSION ]',
+        render: () => <SeventhInfusionIssue m={m} SongbookGlossaryItem={SongbookGlossaryItem} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} />
+    },
+    {
+        id: 'jaku',
+        buttonLabel: '[ JAKU · THE TRANQUILITY YOU CANNOT AIM AT ]',
+        render: () => <JakuIssue m={m} SongbookGlossaryItem={SongbookGlossaryItem} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} />
+    },
+    {
+        id: 'yixing',
+        buttonLabel: '[ THE YIXING PRINCIPLE ]',
+        render: () => <YixingIssue m={m} SongbookGlossaryItem={SongbookGlossaryItem} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} />
     }
 ];
 
@@ -2153,4 +2183,889 @@ const BiophilicIssue = ({ m, SongbookGlossaryItem, playRootForagingFrequency, pl
         <PullQuote m={m}>"The interface breathes purely as an acoustic root system."</PullQuote>
     </div>
 );
+
+// ─────────────────────────────────────────────────────────────────────────────
+// THE LEAF AND THE WATER — SIX STEEPING NOTES ON THE NATURE OF STEEPING
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ─── NOTE 01: THE LEAF AS ARCHIVE ────────────────────────────────────────────
+
+const seededRng = (seed) => {
+    let s = seed | 0;
+    return () => {
+        s = Math.imul(1664525, s) + 1013904223 | 0;
+        return (s >>> 0) / 4294967296;
+    };
+};
+
+const RootDepthCanvas = ({ m, wordCount }) => {
+    const canvasRef = useRef(null);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width;
+        const H = canvas.height;
+        const soilY = 70;
+        const depth = Math.min(wordCount / 100, 1);
+        const maxRootY = soilY + (H - soilY - 10) * depth;
+
+        ctx.clearRect(0, 0, W, H);
+
+        // Soil strata lines
+        const strata = [
+            { y: soilY, label: 'TOPSOIL', color: `${m.accent}25` },
+            { y: soilY + (H - soilY) * 0.38, label: 'CLAY', color: `${m.accent}18` },
+            { y: soilY + (H - soilY) * 0.68, label: 'MINERAL STRATA', color: `${m.accent}14` },
+        ];
+        strata.forEach(({ y, label, color }) => {
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 1;
+            ctx.setLineDash([3, 7]);
+            ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+            ctx.setLineDash([]);
+            if (depth > 0.05 && y > soilY) {
+                ctx.fillStyle = `${m.accent}35`;
+                ctx.font = '9px monospace';
+                ctx.textAlign = 'right';
+                ctx.fillText(label, W - 6, y - 3);
+            }
+        });
+
+        // Trunk above soil
+        ctx.strokeStyle = `${m.accent}70`;
+        ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(W / 2, 0); ctx.lineTo(W / 2, soilY); ctx.stroke();
+
+        // Leaf glyph at top
+        ctx.fillStyle = `${m.accent}90`;
+        ctx.font = '18px serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('❧', W / 2, 20);
+
+        if (depth === 0) {
+            ctx.textAlign = 'center';
+            ctx.fillStyle = `${m.accent}30`;
+            ctx.font = '10px monospace';
+            ctx.fillText('BEGIN WRITING · ROOTS DESCEND', W / 2, soilY + 30);
+            return;
+        }
+
+        // Taproot
+        ctx.strokeStyle = `${m.accent}80`;
+        ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(W / 2, soilY); ctx.lineTo(W / 2, maxRootY); ctx.stroke();
+
+        // Branch roots
+        const rng = seededRng(42);
+        const numBranches = Math.floor(depth * 9) + 1;
+        const drawBranch = (x, y, angle, len, gen, rngFn) => {
+            if (gen > 4 || len < 4) return;
+            const ex = x + Math.cos(angle) * len;
+            const ey = y + Math.sin(angle) * len;
+            if (ey < soilY) return;
+            const op = Math.max(0.15, 0.75 - gen * 0.15);
+            ctx.strokeStyle = `rgba(${parseInt(m.accent.slice(1,3),16)},${parseInt(m.accent.slice(3,5),16)},${parseInt(m.accent.slice(5,7),16)},${op})`;
+            ctx.lineWidth = Math.max(0.4, 1.8 - gen * 0.4);
+            ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(ex, ey); ctx.stroke();
+            const spr = 0.35 + rngFn() * 0.4;
+            drawBranch(ex, ey, angle - spr, len * (0.6 + rngFn() * 0.15), gen + 1, rngFn);
+            drawBranch(ex, ey, angle + spr, len * (0.6 + rngFn() * 0.15), gen + 1, rngFn);
+        };
+
+        for (let i = 0; i < numBranches; i++) {
+            const branchY = soilY + ((maxRootY - soilY) * (i + 1) / (numBranches + 1));
+            const side = i % 2 === 0 ? -1 : 1;
+            const baseLen = (W * 0.18) * (1 - i / numBranches * 0.5);
+            drawBranch(W / 2, branchY, Math.PI / 2 + side * (0.7 + rng() * 0.3), baseLen, 0, rng);
+        }
+
+        // Mineral glow at deep depth
+        if (depth > 0.72) {
+            const grd = ctx.createRadialGradient(W / 2, maxRootY, 0, W / 2, maxRootY, 40);
+            grd.addColorStop(0, `${m.accent}28`);
+            grd.addColorStop(1, 'transparent');
+            ctx.fillStyle = grd;
+            ctx.fillRect(W / 2 - 40, maxRootY - 20, 80, 40);
+            ctx.fillStyle = `${m.accent}70`;
+            ctx.font = 'bold 9px monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText('MINERAL ARCHIVE REACHED', W / 2, maxRootY + 14);
+        }
+
+        // Word counter
+        ctx.textAlign = 'left';
+        ctx.fillStyle = `${m.accent}50`;
+        ctx.font = '9px monospace';
+        ctx.fillText(`${wordCount} words · ${Math.round(depth * 100)}% depth`, 6, H - 6);
+    }, [wordCount, m]);
+
+    return (
+        <canvas ref={canvasRef} width={560} height={280}
+            style={{ width: '100%', height: 'auto', display: 'block', background: m.bg, border: `1px solid ${m.accent}15` }} />
+    );
+};
+
+const LeafArchiveIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => {
+    const [text, setText] = useState('');
+    const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+
+    const handleChange = (e) => {
+        setText(e.target.value);
+        const wc = e.target.value.trim().split(/\s+/).length;
+        if (wc > 0 && wc % 25 === 0 && playStrikingBowl) playStrikingBowl(48 + Math.min(wc / 10, 24));
+    };
+
+    return (
+        <div style={{ animation: 'fadeIn 1s ease' }}>
+            <IssueHeader m={m} title="The Leaf as" accent="Archive" published="2026" designation="THE LEAF AND THE WATER · NOTE 01" source="CAMELLIA SINENSIS · TERROIR · THE DEPTH OF ROOTS" kicker="What makes the oldest tea trees irreplaceable is not their age alone. It is what the age allowed them to accumulate." />
+
+            <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
+                <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                    <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>A</span>
+                    tea plant grown in the same valley for five hundred years draws minerals from soil depths a five-year-old plant cannot reach — far past the topsoil, into mineral layers centuries in formation. The leaf carries what the roots found: trace elements, the chemistry of that particular hillside, the accumulated mineral history of five centuries of rainfall and living earth. This is <SongbookGlossaryItem m={m} term="terroir" definition="(French) The totality of environmental conditions — soil, climate, altitude, water — that shaped what is in the cup. The full signature of a place, held in what grew there." /> — the full signature of conditions, held in a leaf.
+                </p>
+                <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                    The leaf is an archive. The practice does not create content. It extracts it. Everything worth saying is already there, gathered over years of being exactly who you are in exactly the conditions you were given. The question is not whether the archive exists. It is whether you have found the right conditions to open it.
+                </p>
+                <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                    The oldest tea trees are sought out specifically because of their depth. No one is looking for younger roots.
+                </p>
+            </div>
+
+            <div style={{ marginBottom: 'var(--space-xl)' }}>
+                <SectionLabel m={m}>[ ROOT DEPTH FIELD ]</SectionLabel>
+                <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, marginBottom: '0.8rem', letterSpacing: '0.08em', lineHeight: 1.5 }}>
+                    The root system deepens as you write. Each word draws the roots further into the mineral archive of your experience.
+                </div>
+                <RootDepthCanvas m={m} wordCount={wordCount} />
+                <textarea value={text} onChange={handleChange}
+                    placeholder="What depth of experience in you has not yet been steeped — not because it isn't there, but because the conditions haven't yet been right to draw it out?"
+                    rows={4}
+                    style={{ width: '100%', background: 'transparent', border: `1px solid ${m.accent}30`, borderBottom: `2px solid ${m.accent}`, color: m.text1, padding: '1rem', fontFamily: 'var(--fBody)', fontSize: '1rem', lineHeight: 1.7, resize: 'none', outline: 'none', boxSizing: 'border-box', marginTop: '1px', fontStyle: 'italic' }} />
+            </div>
+
+            <PullQuote m={m}>"Your lived experience, your specific lineage, the particular texture of your creative history — all of it is present, compressed, in the person who holds the pen. The practice does not create content. It extracts it."</PullQuote>
+        </div>
+    );
+};
+
+// ─── NOTE 02: THE TEMPERATURE OF WHAT YOU CALL FORWARD ───────────────────────
+
+const CompoundBar = ({ m, label, sub, active, intensity }) => (
+    <div style={{ marginBottom: '1.2rem', opacity: active ? 1 : 0.3, transition: 'opacity 0.6s ease' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.3rem' }}>
+            <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.68rem', color: m.accent, letterSpacing: '0.12em' }}>{label}</div>
+            <div style={{ fontFamily: 'var(--fBody)', fontSize: '0.75rem', color: m.text2, fontStyle: 'italic' }}>{sub}</div>
+        </div>
+        <div style={{ height: '3px', background: `${m.accent}15`, position: 'relative' }}>
+            <div style={{ height: '100%', width: `${intensity * 100}%`, background: m.accent, boxShadow: active ? `0 0 8px ${m.accent}` : 'none', transition: 'width 0.8s ease, box-shadow 0.6s ease' }} />
+        </div>
+    </div>
+);
+
+const TemperatureCallingIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => {
+    const [temp, setTemp] = useState(75);
+
+    const getZone = (t) => {
+        if (t < 68) return { zone: 'below', label: 'BELOW STEEPING RANGE', quality: 'Nothing calls forward yet. The water is too cool to open the leaf.', color: m.text2 };
+        if (t <= 80) return { zone: 'theanine', label: 'L-THEANINE ZONE · 70–80°C', quality: 'Calm alertness. The quiet knowing. Alpha-wave territory. What is clear when you are not forcing anything.', color: m.accent };
+        if (t <= 90) return { zone: 'catechins', label: 'CATECHIN ZONE · 80–90°C', quality: 'Brightness. Structure. The bolder compounds that give black tea its spine. What emerges under honest pressure.', color: '#e8b86d' };
+        return { zone: 'tannins', label: 'TANNIN ZONE · 90–100°C', quality: 'Confrontation. Astringency. The bitter edge of over-extraction. Worth knowing what you are doing when you increase the heat.', color: '#c0714a' };
+    };
+
+    const zone = getZone(temp);
+    const theanineIntensity = temp < 70 ? 0 : temp <= 80 ? (temp - 70) / 10 : Math.max(0, 1 - (temp - 80) / 20);
+    const catechinIntensity = temp < 80 ? 0 : temp <= 90 ? (temp - 80) / 10 : Math.max(0, 1 - (temp - 90) / 15);
+    const tanninIntensity = temp < 90 ? 0 : (temp - 90) / 10;
+
+    const handleSlide = (e) => {
+        const t = Number(e.target.value);
+        setTemp(t);
+        if (playStrikingBowl) playStrikingBowl(40 + Math.floor((t - 60) / 2.5));
+    };
+
+    return (
+        <div style={{ animation: 'fadeIn 1s ease' }}>
+            <IssueHeader m={m} title="The Temperature of" accent="What You Call Forward" published="2026" designation="THE LEAF AND THE WATER · NOTE 02" source="L-THEANINE · ALPHA-WAVE RESONANCE · CAMELLIA SINENSIS" kicker="The same leaf. Different temperatures. Entirely different cups." />
+
+            <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
+                <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                    <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
+                    here is an amino acid in almost every cup of quality tea called <SongbookGlossaryItem m={m} term="L-theanine" definition="An amino acid nearly exclusive to Camellia sinensis. At 70–80°C, it enters solution first, carrying calm alertness. It increases alpha-band brain activity (8–14Hz) — the neurological frequency of relaxed creative focus." />. It is found almost nowhere else in the plant kingdom — nearly exclusive to Camellia sinensis, the single species from which all tea is made. At 70 to 80 degrees Celsius, it moves first into solution. It crosses quietly from leaf to water, carrying the quality of calm alertness that tea drinkers across cultures have sought for a thousand years. Research confirms what practitioners knew by experience: L-theanine increases alpha-band oscillatory brain activity — the 8 to 14 Hz range — the neurological frequency of creative cognition and relaxed focus.
+                </p>
+                <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                    Push the temperature higher, and the catechins follow: brightness, astringency, the bolder compounds that give black tea its spine. Higher still, and the tannins release — the bitter edge that marks over-extraction. The same leaf. Different temperatures. Entirely different cups.
+                </p>
+                <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                    What you call forward from yourself depends on what heat you apply. A gentle inquiry draws out the quiet knowing. A harsh interrogation extracts other things. Not wrong things, necessarily. But different ones. The art of steeping is the art of calibration.
+                </p>
+            </div>
+
+            <div style={{ border: `1px solid ${m.accent}30`, padding: 'var(--space-xl)', marginBottom: 'var(--space-xl)', background: 'rgba(0,0,0,0.4)' }}>
+                <SectionLabel m={m}>[ CALIBRATION FIELD ]</SectionLabel>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2rem' }}>
+                    <div style={{ fontFamily: 'var(--fMono)', fontSize: '2.5rem', color: zone.color, minWidth: '70px', transition: 'color 0.5s ease', lineHeight: 1 }}>{temp}°</div>
+                    <div style={{ flex: 1 }}>
+                        <input type="range" min={60} max={100} value={temp} onChange={handleSlide}
+                            style={{ width: '100%', accentColor: m.accent, cursor: 'pointer', height: '2px' }} />
+                        <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, marginTop: '0.4rem' }}>
+                            <span>60°C</span><span>70°C</span><span>80°C</span><span>90°C</span><span>100°C</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: zone.color, letterSpacing: '0.15em', marginBottom: '1.2rem', transition: 'color 0.5s ease' }}>{zone.label}</div>
+                <div style={{ fontFamily: 'var(--fBody)', fontSize: '1rem', color: m.text1, lineHeight: 1.7, fontStyle: 'italic', marginBottom: '1.8rem', minHeight: '3rem', transition: 'opacity 0.4s ease' }}>{zone.quality}</div>
+
+                <CompoundBar m={m} label="L-THEANINE" sub="calm clarity · alpha-wave" active={zone.zone === 'theanine'} intensity={theanineIntensity} />
+                <CompoundBar m={m} label="CATECHINS" sub="structure · brightness" active={zone.zone === 'catechins'} intensity={catechinIntensity} />
+                <CompoundBar m={m} label="TANNINS" sub="confrontation · astringency" active={zone.zone === 'tannins'} intensity={tanninIntensity} />
+
+                <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, marginTop: '1rem', letterSpacing: '0.1em', lineHeight: 1.5 }}>
+                    What temperature are you currently applying to your most important creative question — and is it the right one for what you are trying to call forward?
+                </div>
+            </div>
+
+            <PullQuote m={m}>"The art of steeping is the art of calibration — knowing what you are trying to call forward, and applying precisely the right conditions to do it."</PullQuote>
+        </div>
+    );
+};
+
+// ─── NOTE 03: STEYPA — THE WORD THAT CONTAINS THE DESCENT ────────────────────
+
+const SteypCanvas = ({ m, plunged, plungeProgress }) => {
+    const canvasRef = useRef(null);
+    const animRef = useRef(null);
+    const particlesRef = useRef([]);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width;
+        const H = canvas.height;
+        const surfaceY = H * 0.38;
+
+        if (!plunged) {
+            particlesRef.current = [];
+        }
+
+        const draw = () => {
+            ctx.clearRect(0, 0, W, H);
+
+            // Above-surface atmosphere
+            ctx.fillStyle = `${m.accent}05`;
+            ctx.fillRect(0, 0, W, surfaceY);
+
+            // Surface line — the boundary
+            const lineAlpha = plunged ? 0.5 : 0.8;
+            ctx.strokeStyle = `rgba(${parseInt(m.accent.slice(1,3),16)},${parseInt(m.accent.slice(3,5),16)},${parseInt(m.accent.slice(5,7),16)},${lineAlpha})`;
+            ctx.lineWidth = plunged ? 1.5 : 2;
+            ctx.setLineDash([]);
+            ctx.beginPath(); ctx.moveTo(0, surfaceY); ctx.lineTo(W, surfaceY); ctx.stroke();
+
+            // Surface label
+            ctx.font = '9px monospace';
+            ctx.fillStyle = `${m.accent}60`;
+            ctx.textAlign = 'left';
+            ctx.fillText('SURFACE', 8, surfaceY - 6);
+
+            if (!plunged) {
+                // Hovering element — the element that hasn't plunged yet
+                const t = Date.now() / 1000;
+                const hoverY = surfaceY - 35 + Math.sin(t * 1.2) * 6;
+                ctx.fillStyle = `${m.accent}80`;
+                ctx.font = '16px serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('◆', W / 2, hoverY);
+
+                ctx.fillStyle = `${m.accent}30`;
+                ctx.font = '8px monospace';
+                ctx.fillText('hovering above', W / 2, hoverY + 20);
+            } else {
+                // Plunged — element moving down
+                const elementY = surfaceY + (H - surfaceY - 20) * Math.min(plungeProgress, 1);
+
+                // Ripple at surface
+                const rippleR = plungeProgress * 60;
+                const rippleAlpha = Math.max(0, 0.5 - plungeProgress * 0.4);
+                ctx.strokeStyle = `rgba(${parseInt(m.accent.slice(1,3),16)},${parseInt(m.accent.slice(3,5),16)},${parseInt(m.accent.slice(5,7),16)},${rippleAlpha})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath(); ctx.arc(W / 2, surfaceY, rippleR, 0, Math.PI * 2); ctx.stroke();
+                if (plungeProgress > 0.3) {
+                    ctx.beginPath(); ctx.arc(W / 2, surfaceY, rippleR * 0.55, 0, Math.PI * 2); ctx.stroke();
+                }
+
+                // Element below surface
+                ctx.fillStyle = `${m.accent}`;
+                ctx.font = '16px serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('◆', W / 2, elementY);
+
+                // Below-surface glow at depth
+                if (plungeProgress > 0.5) {
+                    const grd = ctx.createRadialGradient(W / 2, elementY, 0, W / 2, elementY, 30);
+                    grd.addColorStop(0, `${m.accent}25`);
+                    grd.addColorStop(1, 'transparent');
+                    ctx.fillStyle = grd;
+                    ctx.fillRect(W / 2 - 30, elementY - 30, 60, 60);
+                }
+
+                // Text below surface — visible only after plunge
+                if (plungeProgress > 0.6) {
+                    const textAlpha = Math.min(1, (plungeProgress - 0.6) / 0.4);
+                    ctx.fillStyle = `rgba(${parseInt(m.accent.slice(1,3),16)},${parseInt(m.accent.slice(3,5),16)},${parseInt(m.accent.slice(5,7),16)},${textAlpha * 0.55})`;
+                    ctx.font = '9px monospace';
+                    ctx.fillText('THE VIEW FROM INSIDE', W / 2, H - 20);
+                    ctx.fillText('IS THE ONLY VIEW THAT SEES', W / 2, H - 8);
+                }
+            }
+
+            animRef.current = requestAnimationFrame(draw);
+        };
+
+        draw();
+        return () => cancelAnimationFrame(animRef.current);
+    }, [plunged, plungeProgress, m]);
+
+    return (
+        <canvas ref={canvasRef} width={560} height={220}
+            style={{ width: '100%', height: 'auto', display: 'block', background: m.bg, border: `1px solid ${m.accent}15` }} />
+    );
+};
+
+const SteypIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => {
+    const [plunged, setPlunged] = useState(false);
+    const [plungeProgress, setPlungeProgress] = useState(0);
+    const [text, setText] = useState('');
+    const progressRef = useRef(null);
+
+    const triggerPlunge = () => {
+        if (plunged) return;
+        setPlunged(true);
+        if (playStrikingBowl) playStrikingBowl(36);
+        let p = 0;
+        progressRef.current = setInterval(() => {
+            p += 0.018;
+            setPlungeProgress(p);
+            if (p >= 1) { clearInterval(progressRef.current); setPlungeProgress(1); }
+        }, 30);
+        if (playAlgoraveSynth) setTimeout(() => playAlgoraveSynth(), 400);
+    };
+
+    const handleKey = (e) => {
+        if (!plunged && e.key.length === 1) triggerPlunge();
+        setText(e.target.value);
+    };
+
+    return (
+        <div style={{ animation: 'fadeIn 1s ease' }}>
+            <IssueHeader m={m} title="Steypa:" accent="The Word That Contains the Descent" published="2026" designation="THE LEAF AND THE WATER · NOTE 03" source="OLD NORSE · ETYMOLOGY · THE PLUNGE" kicker="To steep is to go in. The descent is not the difficulty that precedes the work. It is the work." />
+
+            <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
+                <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                    <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
+                    he English word steep comes from the Old Norse <SongbookGlossaryItem m={m} term="steypa" definition="Old Norse: to pour, to cast down, to plunge. Not a gentle immersion — a precipitation. Something moved from one state into another through a deliberate descent." /> — to pour, to cast down, to plunge. Not a gentle immersion. A precipitation. The root carries urgency and direction: this is not the tea bag lowered carefully into warm water. This is the casting down. The entry into a different medium. The surrender of altitude for the sake of what is only available below the surface.
+                </p>
+                <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                    Most creative people resist the plunge. We hover above the question — circling it with analysis, mapping it from a distance, hoping to understand it fully before we commit to entering it. What we discover, if we hover long enough, is that the understanding we seek is only available from inside the question. The view from above the surface cannot tell you what is in the water. You have to cast down.
+                </p>
+                <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                    The descent is not the difficulty that precedes the work. It is the work.
+                </p>
+            </div>
+
+            <div style={{ marginBottom: 'var(--space-xl)' }}>
+                <SectionLabel m={m}>[ THE PLUNGE FIELD ]</SectionLabel>
+                <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, marginBottom: '0.8rem', letterSpacing: '0.08em', lineHeight: 1.5 }}>
+                    {plunged ? 'The descent has begun. What question in your creative life are you now inside?' : 'The element hovers above the surface. Begin typing — or press the button below — to cast down.'}
+                </div>
+                <SteypCanvas m={m} plunged={plunged} plungeProgress={plungeProgress} />
+
+                {!plunged && (
+                    <button onClick={triggerPlunge}
+                        style={{ width: '100%', marginTop: '1px', padding: '14px', background: 'transparent', border: `1px solid ${m.accent}50`, color: m.accent, fontFamily: 'var(--fMono)', fontSize: '0.7rem', letterSpacing: '0.2em', cursor: 'pointer', transition: 'all 0.3s ease' }}
+                        onMouseEnter={e => { e.currentTarget.style.background = `${m.accent}10`; e.currentTarget.style.borderColor = m.accent; }}
+                        onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = `${m.accent}50`; }}>
+                        [ CAST DOWN · STEYPA ]
+                    </button>
+                )}
+
+                {plunged && (
+                    <textarea value={text} onChange={e => setText(e.target.value)} onKeyDown={handleKey}
+                        placeholder="What question in your creative life are you still hovering above — and what would it feel like to actually plunge in?"
+                        rows={4}
+                        style={{ width: '100%', background: 'transparent', border: `1px solid ${m.accent}30`, borderBottom: `2px solid ${m.accent}`, color: m.text1, padding: '1rem', fontFamily: 'var(--fBody)', fontSize: '1rem', lineHeight: 1.7, resize: 'none', outline: 'none', boxSizing: 'border-box', marginTop: '1px', fontStyle: 'italic' }} />
+                )}
+            </div>
+
+            <PullQuote m={m}>"To steep is to go in. The view from above the surface cannot tell you what is in the water."</PullQuote>
+        </div>
+    );
+};
+
+// ─── NOTE 04: THE SEVENTH INFUSION ───────────────────────────────────────────
+
+const INFUSION_LAYERS = [
+    { n: 1, label: 'FIRST STEEP', quality: 'Bold. Defined. The most immediately available compounds.', reflection: 'What arrives first when you return to this territory? What is the loudest thing it has to say?' },
+    { n: 2, label: 'SECOND STEEP', quality: 'Still full — the edge beginning to soften.', reflection: 'What did you miss the first time? What does a second approach make visible?' },
+    { n: 3, label: 'THIRD STEEP', quality: 'Lighter now. More nuanced. A subtler conversation.', reflection: 'What requires more than two visits to reveal itself in your creative life?' },
+    { n: 4, label: 'FOURTH STEEP', quality: 'The brightness fades. Depth replaces it.', reflection: 'You have become different water. What does this experience taste like through who you are now?' },
+    { n: 5, label: 'FIFTH STEEP', quality: 'Almost transparent. What remains is the most essential.', reflection: 'What is the quietest truth in this territory? What would only become audible here, after this many returns?' },
+    { n: 6, label: 'SIXTH STEEP', quality: 'Delicate. Luminous. The leaf has given its loudest voice.', reflection: 'What in you corresponds to the leaf at its sixth steep — refined by returns, carrying only the essential?' },
+    { n: 7, label: 'SEVENTH STEEP', quality: 'The quietest truth. What the first cup could not carry.', reflection: 'What does the seventh steep reveal that none of the previous six could? What required all of this to become available?' },
+    { n: 8, label: 'EIGHTH STEEP ·', quality: 'Beyond the expected. Still giving.', reflection: 'This is the territory most people assume is spent. What does sustained returning make possible?' },
+];
+
+const VesselSVG = ({ m, steep }) => {
+    const pct = Math.min((steep - 1) / 6, 1);
+    const opacity = 0.12 + pct * 0.65;
+    const glow = pct * 30;
+    const hue = steep <= 3 ? m.accent : steep <= 5 ? '#c8984a' : '#e8c86a';
+
+    return (
+        <svg viewBox="0 0 120 140" width="120" height="140" style={{ display: 'block', overflow: 'visible' }}>
+            <defs>
+                <radialGradient id={`vesselGlow${steep}`} cx="50%" cy="60%" r="50%">
+                    <stop offset="0%" stopColor={hue} stopOpacity={opacity * 0.6} />
+                    <stop offset="100%" stopColor={hue} stopOpacity={0} />
+                </radialGradient>
+            </defs>
+            {/* Glow */}
+            {pct > 0 && <ellipse cx="60" cy="95" rx="55" ry="50" fill={`url(#vesselGlow${steep})`} />}
+            {/* Vessel body */}
+            <path d="M30,30 Q20,60 25,100 Q30,130 60,130 Q90,130 95,100 Q100,60 90,30 Z"
+                fill="none" stroke={hue} strokeWidth="1.5" opacity={0.35 + pct * 0.5}
+                style={{ filter: pct > 0 ? `drop-shadow(0 0 ${glow}px ${hue})` : 'none', transition: 'all 0.8s ease' }} />
+            {/* Liquid fill */}
+            <clipPath id={`liquidClip${steep}`}>
+                <path d="M30,30 Q20,60 25,100 Q30,130 60,130 Q90,130 95,100 Q100,60 90,30 Z" />
+            </clipPath>
+            <rect x="0" y={130 - pct * 95} width="120" height="120"
+                fill={hue} opacity={opacity * 0.55} clipPath={`url(#liquidClip${steep})`}
+                style={{ transition: 'all 0.8s ease' }} />
+            {/* Handle */}
+            <path d="M93,55 Q115,55 115,75 Q115,95 93,95" fill="none" stroke={hue} strokeWidth="1.2" opacity={0.5} />
+            {/* Spout */}
+            <path d="M27,50 Q5,40 8,60" fill="none" stroke={hue} strokeWidth="1.2" opacity={0.5} />
+            {/* Steep count */}
+            <text x="60" y="88" textAnchor="middle" fontFamily="monospace" fontSize="22" fill={hue} opacity={0.6 + pct * 0.4}>{steep}</text>
+            <text x="60" y="102" textAnchor="middle" fontFamily="monospace" fontSize="7" fill={hue} opacity={0.5} letterSpacing="2">STEEP</text>
+        </svg>
+    );
+};
+
+const SeventhInfusionIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => {
+    const [steep, setSteep] = useState(1);
+    const layer = INFUSION_LAYERS[Math.min(steep - 1, INFUSION_LAYERS.length - 1)];
+
+    const addSteep = () => {
+        const next = steep < 8 ? steep + 1 : steep;
+        setSteep(next);
+        if (playStrikingBowl) playStrikingBowl(48 + next * 4);
+        if (next === 7 && playAlgoraveSynth) setTimeout(() => playAlgoraveSynth(), 500);
+    };
+
+    const reset = () => { setSteep(1); if (playStrikingBowl) playStrikingBowl(42); };
+
+    return (
+        <div style={{ animation: 'fadeIn 1s ease' }}>
+            <IssueHeader m={m} title="The Seventh" accent="Infusion" published="2026" designation="THE LEAF AND THE WATER · NOTE 04" source="GONGFU CHA · PU-ERH · THE QUIETEST TRUTH" kicker="Most people discard the leaf after the first cup. They assume it has been spent." />
+
+            <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
+                <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                    <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>A</span>
+                    high-quality oolong or an aged pu-erh can be steeped seven times. Eight. Sometimes fifteen. Each infusion draws something different from the same leaf — the first steep is bold and defined, carrying the most immediately available compounds. By the third it is lighter, more nuanced. By the sixth or seventh it is something almost transparent: delicate, luminous, carrying only what is most essential. Practitioners of <SongbookGlossaryItem m={m} term="gongfu cha" definition="(功夫茶) The Chinese art of skillful tea preparation — multiple short infusions that extract different qualities from the same leaf at each steeping. The practice of patience made into ceremony." /> say that the later steeps are often the most beautiful. The leaf has given its loudest voice. What remains is the quietest truth.
+                </p>
+                <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                    We do the same with our own creative material. We visit once, extract what arrives most readily, and move on, assuming we have received what the experience has to offer. But the inquiry, like the leaf, is rarely spent after one encounter. A question you held in your twenties, returned to in your thirties, carries entirely different compounds. The same leaves. But you have become different water — a different temperature, a different mineral content, a different readiness for what the leaf holds.
+                </p>
+            </div>
+
+            <div style={{ border: `1px solid ${m.accent}30`, padding: 'var(--space-xl)', marginBottom: 'var(--space-xl)', background: 'rgba(0,0,0,0.4)' }}>
+                <SectionLabel m={m}>[ INFUSION COUNTER ]</SectionLabel>
+
+                <div style={{ display: 'flex', gap: '2.5rem', alignItems: 'flex-start', marginBottom: '2rem', flexWrap: 'wrap' }}>
+                    <VesselSVG m={m} steep={steep} />
+                    <div style={{ flex: 1, minWidth: '200px' }}>
+                        <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, letterSpacing: '0.15em', marginBottom: '0.5rem' }}>{layer.label}</div>
+                        <div style={{ fontFamily: 'var(--fBody)', fontSize: '1rem', color: m.text2, fontStyle: 'italic', lineHeight: 1.6, marginBottom: '1rem' }}>{layer.quality}</div>
+                        <div style={{ fontFamily: 'var(--fBody)', fontSize: '1rem', color: m.text1, lineHeight: 1.7, borderLeft: `2px solid ${m.accent}40`, paddingLeft: '1rem' }}>{layer.reflection}</div>
+                    </div>
+                </div>
+
+                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                    <button onClick={addSteep} disabled={steep >= 8}
+                        style={{ padding: '12px 24px', background: steep < 8 ? 'transparent' : `${m.accent}10`, border: `1px solid ${m.accent}${steep < 8 ? '' : '40'}`, color: steep < 8 ? m.accent : m.text2, fontFamily: 'var(--fMono)', fontSize: '0.7rem', letterSpacing: '0.15em', cursor: steep < 8 ? 'pointer' : 'default', transition: 'all 0.3s ease' }}
+                        onMouseEnter={e => { if (steep < 8) e.currentTarget.style.background = `${m.accent}12`; }}
+                        onMouseLeave={e => { if (steep < 8) e.currentTarget.style.background = 'transparent'; }}>
+                        {steep >= 8 ? '[ FULLY STEEPED ]' : '[ STEEP AGAIN ]'}
+                    </button>
+                    {steep > 1 && (
+                        <button onClick={reset}
+                            style={{ padding: '12px 20px', background: 'transparent', border: `1px dashed ${m.accent}30`, color: m.text2, fontFamily: 'var(--fMono)', fontSize: '0.65rem', letterSpacing: '0.1em', cursor: 'pointer' }}>
+                            [ START FRESH ]
+                        </button>
+                    )}
+                    <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, letterSpacing: '0.08em' }}>
+                        {steep < 7 ? `${7 - steep} steeps to the quietest truth` : steep === 7 ? '· the seventh steep ·' : '· beyond the expected ·'}
+                    </div>
+                </div>
+            </div>
+
+            <PullQuote m={m}>"The richest creative material is not always territory you have not yet visited. It is often ground you have already covered, returned to with the depth that only time and living can bring."</PullQuote>
+        </div>
+    );
+};
+
+// ─── NOTE 05: JAKU — THE TRANQUILITY YOU CANNOT AIM AT ───────────────────────
+
+const JAKU_PHASES = [
+    {
+        id: 'wa', symbol: '和', label: 'WA · Harmony', prompt: 'What in your creative life requires arrangement with genuine care? Name one thing you can attend to honestly — not for performance, but for the room.',
+        done: 'Harmony practiced.',
+    },
+    {
+        id: 'kei', symbol: '敬', label: 'KEI · Respect', prompt: 'Who or what in your work are you currently receiving with full presence? Offer a genuine acknowledgment — of a collaborator, a difficulty, a question that deserves more than you have given it.',
+        done: 'Respect offered.',
+    },
+    {
+        id: 'sei', symbol: '清', label: 'SEI · Purity', prompt: 'Where in your creative practice is something present that does not belong — an assumption, a resentment, a performance? Name it. Removing it is the purification.',
+        done: 'Purity tended.',
+    },
+    {
+        id: 'jaku', symbol: '寂', label: 'JAKU · Tranquility', prompt: null,
+        done: 'Jaku arrived — as consequence.',
+    },
+];
+
+const JakuPhase = ({ m, phase, index, completed, active, onComplete, playStrikingBowl }) => {
+    const [response, setResponse] = useState('');
+    const isLocked = phase.id === 'jaku' && !completed[2];
+    const isDone = completed[index];
+    const isJaku = phase.id === 'jaku';
+
+    const handleComplete = () => {
+        if (response.trim().length < 5 && !isJaku) return;
+        onComplete(index);
+        if (playStrikingBowl) playStrikingBowl(54 + index * 7);
+    };
+
+    return (
+        <div style={{
+            border: `1px solid ${isDone ? m.accent : isLocked ? `${m.accent}12` : `${m.accent}30`}`,
+            marginBottom: '1px', transition: 'all 0.5s ease',
+            background: isDone ? `${m.accent}06` : isLocked ? 'rgba(0,0,0,0.3)' : 'transparent',
+            opacity: isLocked ? 0.35 : 1,
+        }}>
+            <div style={{ padding: 'var(--space-md) var(--space-lg)', display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+                <div style={{ fontSize: '1.8rem', color: isDone ? m.accent : `${m.accent}50`, lineHeight: 1, transition: 'color 0.5s ease', textShadow: isDone ? `0 0 12px ${m.accent}60` : 'none' }}>
+                    {phase.symbol}
+                </div>
+                <div style={{ flex: 1 }}>
+                    <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: isDone ? m.accent : m.text2, letterSpacing: '0.15em', marginBottom: '0.2rem' }}>{phase.label}</div>
+                    {isDone && <div style={{ fontFamily: 'var(--fBody)', fontSize: '0.85rem', color: m.text2, fontStyle: 'italic' }}>{phase.done}</div>}
+                </div>
+                {isDone && <div style={{ color: m.accent, fontSize: '1rem', opacity: 0.8 }}>✓</div>}
+                {isLocked && <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, opacity: 0.6 }}>[ LOCKED ]</div>}
+            </div>
+
+            {active && !isDone && !isLocked && (
+                <div style={{ padding: '0 var(--space-lg) var(--space-lg)', borderTop: `1px dashed ${m.accent}15`, animation: 'fadeIn 0.4s ease' }}>
+                    {!isJaku ? (
+                        <>
+                            <div style={{ fontFamily: 'var(--fBody)', fontSize: '1rem', color: m.text1, lineHeight: 1.7, fontStyle: 'italic', margin: '1rem 0' }}>{phase.prompt}</div>
+                            <textarea value={response} onChange={e => setResponse(e.target.value)}
+                                placeholder="Respond genuinely..."
+                                rows={3}
+                                style={{ width: '100%', background: 'transparent', border: `1px solid ${m.accent}25`, borderBottom: `2px solid ${m.accent}`, color: m.text1, padding: '0.8rem', fontFamily: 'var(--fBody)', fontSize: '0.95rem', lineHeight: 1.6, resize: 'none', outline: 'none', boxSizing: 'border-box', fontStyle: 'italic', marginBottom: '1rem' }} />
+                            <button onClick={handleComplete} disabled={response.trim().length < 5}
+                                style={{ padding: '10px 20px', background: 'transparent', border: `1px solid ${response.trim().length >= 5 ? m.accent : `${m.accent}30`}`, color: response.trim().length >= 5 ? m.accent : m.text2, fontFamily: 'var(--fMono)', fontSize: '0.65rem', letterSpacing: '0.15em', cursor: response.trim().length >= 5 ? 'pointer' : 'default', transition: 'all 0.3s ease' }}>
+                                [ COMPLETE · {phase.label.split(' · ')[0]} ]
+                            </button>
+                        </>
+                    ) : (
+                        <div style={{ padding: '2rem 0', textAlign: 'center' }}>
+                            <div style={{ fontFamily: 'var(--fSerif)', fontSize: '1.5rem', color: m.text1, lineHeight: 1.6, fontStyle: 'italic', marginBottom: '1.5rem', textShadow: `0 0 20px ${m.accent}30` }}>
+                                "You cannot steep for peace.<br />You can only steep honestly,<br />and find that peace was what honest steeping produces."
+                            </div>
+                            <button onClick={() => onComplete(index)}
+                                style={{ padding: '14px 28px', background: `${m.accent}12`, border: `1px solid ${m.accent}`, color: m.accent, fontFamily: 'var(--fMono)', fontSize: '0.7rem', letterSpacing: '0.2em', cursor: 'pointer', boxShadow: `0 0 20px ${m.accent}20`, transition: 'all 0.4s ease' }}
+                                onMouseEnter={e => e.currentTarget.style.boxShadow = `0 0 40px ${m.accent}40`}
+                                onMouseLeave={e => e.currentTarget.style.boxShadow = `0 0 20px ${m.accent}20`}>
+                                [ RECEIVE · JAKU ]
+                            </button>
+                        </div>
+                    )}
+                </div>
+            )}
+        </div>
+    );
+};
+
+const JakuIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => {
+    const [completed, setCompleted] = useState([false, false, false, false]);
+    const activeIndex = completed.indexOf(false);
+    const jakuUnlocked = completed[2];
+    const allDone = completed.every(Boolean);
+
+    const handleComplete = (index) => {
+        setCompleted(prev => {
+            const next = [...prev];
+            next[index] = true;
+            return next;
+        });
+        if (index === 3 && playAlgoraveSynth) {
+            setTimeout(() => playAlgoraveSynth(), 200);
+            setTimeout(() => playAlgoraveSynth(), 900);
+        }
+    };
+
+    const reset = () => { setCompleted([false, false, false, false]); };
+
+    return (
+        <div style={{ animation: 'fadeIn 1s ease' }}>
+            <IssueHeader m={m} title="Jaku:" accent="The Tranquility You Cannot Aim At" published="2026" designation="THE LEAF AND THE WATER · NOTE 05" source="SEN NO RIKYŪ · CHANOYU · 和敬清寂" kicker="Jaku is not a goal to aim for. Not a technique to acquire. It is a consequence of the first three, honestly practiced." />
+
+            <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
+                <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                    <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>S</span>
+                    en no <SongbookGlossaryItem m={m} term="Rikyū" definition="(1522–1591) The Japanese tea master who elevated Chanoyu into a complete philosophy of being. His four principles — wa, kei, sei, jaku — remain the structural foundation of the ceremony." /> — the 16th-century Japanese tea master who shaped Chanoyu into the practice it remains today — gave the ceremony four principles and placed them in a specific order: wa (harmony), kei (respect), sei (purity), and jaku (tranquility). The order is not decorative. It is structural.
+                </p>
+                <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                    Jaku, he said, is the result of practicing the first three. Not a goal to aim for. Not a technique to acquire. A dynamic, profound stillness that arrives as consequence when harmony, respect, and purity have been genuinely practiced. When the room is arranged with care, when the water is attended to honestly, when the guest is received with full presence, the room becomes tranquil. Not because tranquility was targeted. But because it is what those three practices, honestly done, make.
+                </p>
+                <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                    We come to creative practice looking for jaku first. We want the clear head before we have done the work of clearing. Rikyū's sequence names this as the confusion it is — not as criticism, but as orientation.
+                </p>
+            </div>
+
+            <div style={{ marginBottom: 'var(--space-xl)' }}>
+                <SectionLabel m={m}>[ THE FOUR PRINCIPLES · SEQUENTIAL PRACTICE ]</SectionLabel>
+                <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, marginBottom: '1rem', letterSpacing: '0.08em', lineHeight: 1.5 }}>
+                    {allDone ? 'Jaku has arrived. This is what honest practice makes.' : jakuUnlocked ? 'The first three are practiced. Jaku is now available.' : `Practice wa, kei, and sei honestly. Jaku unlocks as consequence.`}
+                </div>
+
+                {JAKU_PHASES.map((phase, i) => (
+                    <JakuPhase key={phase.id} m={m} phase={phase} index={i}
+                        completed={completed} active={activeIndex === i}
+                        onComplete={handleComplete} playStrikingBowl={playStrikingBowl} />
+                ))}
+
+                {allDone && (
+                    <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'flex-end' }}>
+                        <button onClick={reset}
+                            style={{ padding: '10px 18px', background: 'transparent', border: `1px dashed ${m.accent}30`, color: m.text2, fontFamily: 'var(--fMono)', fontSize: '0.6rem', letterSpacing: '0.1em', cursor: 'pointer' }}>
+                            [ BEGIN AGAIN ]
+                        </button>
+                    </div>
+                )}
+            </div>
+
+            <PullQuote m={m}>"You cannot steep for peace. You can only steep honestly, and find that peace was what honest steeping produces."</PullQuote>
+        </div>
+    );
+};
+
+// ─── NOTE 06: THE YIXING PRINCIPLE ───────────────────────────────────────────
+
+const YixingCanvas = ({ m, sessionCount }) => {
+    const canvasRef = useRef(null);
+    const animRef = useRef(null);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width;
+        const H = canvas.height;
+        const pct = Math.min(sessionCount / 20, 1);
+
+        let t = 0;
+        const draw = () => {
+            ctx.clearRect(0, 0, W, H);
+
+            // Patina accumulation — background warmth
+            if (pct > 0) {
+                const bgGrd = ctx.createRadialGradient(W / 2, H * 0.55, 0, W / 2, H * 0.55, W * 0.45);
+                bgGrd.addColorStop(0, `rgba(${parseInt(m.accent.slice(1,3),16)},${parseInt(m.accent.slice(3,5),16)},${parseInt(m.accent.slice(5,7),16)},${pct * 0.08})`);
+                bgGrd.addColorStop(1, 'transparent');
+                ctx.fillStyle = bgGrd;
+                ctx.fillRect(0, 0, W, H);
+            }
+
+            // Vessel body path
+            const vx = W / 2, vy = H * 0.55;
+            const vw = W * 0.28, vh = H * 0.42;
+
+            const drawVessel = (strokeAlpha, fillAlpha) => {
+                ctx.beginPath();
+                ctx.moveTo(vx - vw * 0.6, vy - vh * 0.9);
+                ctx.bezierCurveTo(vx - vw * 0.75, vy - vh * 0.3, vx - vw, vy + vh * 0.5, vx - vw * 0.5, vy + vh);
+                ctx.bezierCurveTo(vx - vw * 0.1, vy + vh * 1.05, vx + vw * 0.1, vy + vh * 1.05, vx + vw * 0.5, vy + vh);
+                ctx.bezierCurveTo(vx + vw, vy + vh * 0.5, vx + vw * 0.75, vy - vh * 0.3, vx + vw * 0.6, vy - vh * 0.9);
+                ctx.closePath();
+
+                const accent = m.accent;
+                const r = parseInt(accent.slice(1,3),16);
+                const g = parseInt(accent.slice(3,5),16);
+                const b = parseInt(accent.slice(5,7),16);
+
+                ctx.fillStyle = `rgba(${r},${g},${b},${fillAlpha})`;
+                ctx.fill();
+                ctx.strokeStyle = `rgba(${r},${g},${b},${strokeAlpha})`;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            };
+
+            // Base vessel
+            drawVessel(0.35 + pct * 0.45, 0.04 + pct * 0.08);
+
+            // Patina shimmer — animated only at depth
+            if (pct > 0.15) {
+                const shimmer = Math.sin(t * 0.02) * 0.15 + 0.15;
+                const shimGrd = ctx.createLinearGradient(vx - vw, vy, vx + vw, vy - vh);
+                shimGrd.addColorStop(0, 'transparent');
+                shimGrd.addColorStop(0.4, `${m.accent}${Math.round(shimmer * pct * 255).toString(16).padStart(2,'0')}`);
+                shimGrd.addColorStop(0.7, 'transparent');
+                shimGrd.addColorStop(1, 'transparent');
+                ctx.fillStyle = shimGrd;
+                ctx.beginPath();
+                ctx.ellipse(vx, vy - vh * 0.2, vw * 0.7, vh * 0.5, -0.4, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Handle
+            ctx.strokeStyle = `${m.accent}${Math.round((0.3 + pct * 0.4) * 255).toString(16).padStart(2,'0')}`;
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.arc(vx + vw * 0.85, vy, vw * 0.28, -Math.PI * 0.7, Math.PI * 0.7);
+            ctx.stroke();
+
+            // Spout
+            ctx.beginPath();
+            ctx.moveTo(vx - vw * 0.75, vy - vh * 0.1);
+            ctx.bezierCurveTo(vx - vw * 1.1, vy - vh * 0.25, vx - vw * 1.2, vy - vh * 0.5, vx - vw * 1.1, vy - vh * 0.65);
+            ctx.stroke();
+
+            // Lid
+            ctx.beginPath();
+            ctx.ellipse(vx, vy - vh * 0.95, vw * 0.5, vh * 0.09, 0, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.ellipse(vx, vy - vh * 1.04, vw * 0.12, vh * 0.06, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Session counter glyph
+            ctx.textAlign = 'center';
+            ctx.fillStyle = `${m.accent}${Math.round((0.25 + pct * 0.55) * 255).toString(16).padStart(2,'0')}`;
+            ctx.font = `${12 + pct * 6}px monospace`;
+            ctx.fillText(sessionCount, vx, vy + vh * 0.4);
+            ctx.font = '8px monospace';
+            ctx.fillStyle = `${m.accent}40`;
+            ctx.fillText('sessions', vx, vy + vh * 0.56);
+
+            // Depth label
+            if (pct > 0) {
+                ctx.font = '8px monospace';
+                ctx.fillStyle = `${m.accent}50`;
+                ctx.fillText(`${Math.round(pct * 100)}% seasoned`, vx, H - 8);
+            }
+
+            t++;
+            animRef.current = requestAnimationFrame(draw);
+        };
+
+        draw();
+        return () => cancelAnimationFrame(animRef.current);
+    }, [sessionCount, m]);
+
+    return (
+        <canvas ref={canvasRef} width={400} height={280}
+            style={{ width: '100%', maxWidth: '400px', height: 'auto', display: 'block', background: m.bg, border: `1px solid ${m.accent}15` }} />
+    );
+};
+
+const YixingIssue = ({ m, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl }) => {
+    const [sessionCount, setSessionCount] = useState(() => {
+        try { return parseInt(localStorage.getItem('yixing_sessions') || '0', 10); }
+        catch { return 0; }
+    });
+    const [justSeasoned, setJustSeasoned] = useState(false);
+
+    const addSession = () => {
+        const next = sessionCount + 1;
+        setSessionCount(next);
+        setJustSeasoned(true);
+        try { localStorage.setItem('yixing_sessions', String(next)); } catch {}
+        if (playStrikingBowl) playStrikingBowl(52 + Math.min(next, 20));
+        if (next >= 5 && playAlgoraveSynth) setTimeout(() => playAlgoraveSynth(), 300);
+        setTimeout(() => setJustSeasoned(false), 3000);
+    };
+
+    const getSeasoningLabel = (n) => {
+        if (n === 0) return 'New clay. Unglazed. Ready.';
+        if (n < 3) return 'First oils entering the clay.';
+        if (n < 7) return 'The practice is taking hold.';
+        if (n < 12) return 'The vessel remembers you now.';
+        if (n < 18) return 'A practitioner\'s hand is visible in the clay.';
+        return 'The vessel will scent plain water. Yang Hu — the pot is alive.';
+    };
+
+    return (
+        <div style={{ animation: 'fadeIn 1s ease' }}>
+            <IssueHeader m={m} title="The Yixing" accent="Principle" published="2026" designation="THE LEAF AND THE WATER · NOTE 06" source="ZISHA CLAY · YANG HU · JIANGSU PROVINCE" kicker="A well-tended Yixing pot, after years of use, will scent plain water. It returns something of what it has held." />
+
+            <div style={{ columnWidth: '400px', columnGap: '4rem', columnRule: `1px solid ${m.accent}20`, fontFamily: 'var(--fBody)', color: m.text1, fontSize: '1.15rem', lineHeight: 1.8, textAlign: 'justify', marginBottom: 'var(--space-xl)' }}>
+                <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                    <span style={{ float: 'left', fontSize: '5rem', lineHeight: '4.5rem', fontFamily: 'var(--fSerif)', color: m.accent, paddingRight: '0.2rem', paddingTop: '0.2rem' }}>T</span>
+                    he Yixing teapot from Jiangsu Province, China, is made from <SongbookGlossaryItem m={m} term="Zisha clay" definition="Purple clay unique to the Dingshan area of Jiangsu, containing quartz, mica, and trace minerals. Fired at high temperatures, it develops both open and closed pores — absorbing tea oils over decades of use." /> — quartz, mica, and trace minerals unique to a small region, fired at temperatures that produce both open and closed pores in the ceramic body. It is never glazed. The unglazed surface is the design. Over months and years of regular use, the clay absorbs tea oils and aromatic compounds from every steep that passes through it. The pot seasons. The traditional Chinese term is <SongbookGlossaryItem m={m} term="Yang Hu" definition="(养壶, Chinese) Nurturing the pot — a lifelong practice of caring for the Yixing vessel as something alive. The pot is shaped by what passes through it, and returns that shaping to every future steep." /> — nurturing the pot — a lifelong practice of caring for the vessel as something alive.
+                </p>
+                <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                    A well-tended Yixing pot, after years of use, will scent plain water. It returns something of what it has held. The traditional guidance: dedicate each pot to a single type of tea. Do not steep green tea in a pot that knows only pu-erh. The memory embedded in the clay would shape the encounter — and not always in the direction you intend.
+                </p>
+                <p style={{ margin: '0 0 var(--space-md) 0' }}>
+                    The vessels in your creative life operate on this principle. A practice you have returned to for years is not the same practice you first began — it carries your oils now, your history, the residue of your previous steepings. The most seasoned vessel is not the most expensive one. It is the one you have used.
+                </p>
+            </div>
+
+            <div style={{ border: `1px solid ${m.accent}30`, padding: 'var(--space-xl)', marginBottom: 'var(--space-xl)', background: 'rgba(0,0,0,0.4)' }}>
+                <SectionLabel m={m}>[ PATINA ACCUMULATION · YANG HU ]</SectionLabel>
+                <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.text2, marginBottom: '1.2rem', letterSpacing: '0.08em', lineHeight: 1.5 }}>
+                    Each practice session seasons the vessel. The luminosity accumulates. This count persists across visits.
+                </div>
+
+                <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
+                    <YixingCanvas m={m} sessionCount={sessionCount} />
+                    <div style={{ flex: 1, minWidth: '180px' }}>
+                        <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, letterSpacing: '0.12em', marginBottom: '0.8rem' }}>SEASONING STATUS</div>
+                        <div style={{ fontFamily: 'var(--fBody)', fontSize: '1.05rem', color: m.text1, fontStyle: 'italic', lineHeight: 1.6, marginBottom: '1.5rem' }}>{getSeasoningLabel(sessionCount)}</div>
+
+                        {justSeasoned && (
+                            <div style={{ fontFamily: 'var(--fBody)', fontSize: '0.9rem', color: m.accent, fontStyle: 'italic', animation: 'fadeIn 0.6s ease', marginBottom: '1rem' }}>
+                                The vessel absorbs this session.
+                            </div>
+                        )}
+
+                        <button onClick={addSession}
+                            style={{ padding: '12px 22px', background: 'transparent', border: `1px solid ${m.accent}`, color: m.accent, fontFamily: 'var(--fMono)', fontSize: '0.68rem', letterSpacing: '0.15em', cursor: 'pointer', transition: 'all 0.4s ease', display: 'block' }}
+                            onMouseEnter={e => { e.currentTarget.style.background = `${m.accent}12`; e.currentTarget.style.boxShadow = `0 0 15px ${m.accent}25`; }}
+                            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.boxShadow = 'none'; }}>
+                            [ SEASON THE VESSEL ]
+                        </button>
+
+                        <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, marginTop: '1.2rem', lineHeight: 1.6, letterSpacing: '0.06em' }}>
+                            What practice or relationship in your creative life has been seasoned by your sustained returning — and what does it return to you now that it could not at the beginning?
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <PullQuote m={m}>"The most seasoned vessel is not the most expensive one. It is the one you have used."</PullQuote>
+        </div>
+    );
+};
 
