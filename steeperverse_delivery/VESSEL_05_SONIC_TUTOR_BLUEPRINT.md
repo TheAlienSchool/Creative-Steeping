@@ -42,7 +42,7 @@ The instrument scales with the practitioner's capacity.
 *   **Mechanic:** Full keyboard utilization. The practitioner must type short, poetic sentences from the *Guide to the Steeperverse*.
 *   **Sonic Mapping:** Reaching the end of a correctly typed word triggers an underlying "Root Chord" pad. The faster and more accurately the word is typed, the richer the chord's harmonics.
 *   **Visuals:** The background Dark Matter void begins to populate with faint, bioluminescent geometry that locks into place with every completed sentence.
-*   **Goal:** Achieve "The Pocket"—a state where typing speed matches the algorithmic rhythm of the portal.
+*   **Goal:** Achieve "The Pocket" :: a state where typing speed matches the algorithmic rhythm of the portal.
 
 ### [ L3 ] The Generative Flow State (Mastery)
 *   **Mechanic:** The practitioner types their own live, unprompted journal entry. 

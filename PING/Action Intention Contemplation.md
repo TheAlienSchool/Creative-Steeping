@@ -123,7 +123,7 @@ It comes from an excess of interpretation without a clear sense of where to plac
 
 There are moments when thoughts feel dormant, static, dismissive. This moment \- in this practice \- is not that time. Please suggest those thoughts find a place in the balcony.
 
-There are also moments when thinking feels alive :: layered, nuanced, full of meaning—and yet nothing moves. The mind circulates. The body waits. Energy gathers without direction. In those moments, the issue is rarely motivation or discipline. This is intentionless thought force.
+There are also moments when thinking feels alive :: layered, nuanced, full of meaning :: and yet nothing moves. The mind circulates. The body waits. Energy gathers without direction. In those moments, the issue is rarely motivation or discipline. This is intentionless thought force.
 
 a•i•Contemplation is a practice for those moments. This is a practice of intention infusion in the follow of our thinking.
 
@@ -141,7 +141,7 @@ The rhythm of a•i•Contemplation moves through three modes: **Pause, Pivot, a
 
 The practice works best when you give it a little time (about 44 minutes) and a single focus. **One question, one idea, one tension is enough.** You do not need to resolve it. You only need to stay with it long enough to sense where it wants engagement.
 
-You may notice sensations in the body, a shift in emotional tone, or a change in how the situation feels. These are **useful signals**. They are part of how activated intention emerges. a•i•Contemplation trusts these signals and invites you to read them the way an experienced cook reads heat, texture, and timing—by experiencing attention and alchemy rather than counting minutes.
+You may notice sensations in the body, a shift in emotional tone, or a change in how the situation feels. These are **useful signals**. They are part of how activated intention emerges. a•i•Contemplation trusts these signals and invites you to read them the way an experienced cook reads heat, texture, and timing :: by experiencing attention and alchemy rather than counting minutes.
 
 Action intention plays a central role here. An action intention is not a plan or a demand. It is a direction of movement that feels reachable and responsive. It might be small. It might feel almost obvious once named. Its purpose is simple: it gives contemplation somewhere to go so that experience can answer back.
 
@@ -161,7 +161,7 @@ Actional intention names that place.
 
 An actional intention is a present-tense direction that allows awareness to meet experience \- a guidance system for Thought Momentum. It gives contemplation a surface to touch and lets reality respond in kind. When scale stays modest, and your internal  sonar stays open, conscious ideation feels reachable instead of collapsed.
 
-This kind of intention carries a different texture than a plan. Plans tend to organize future outcomes \- collapsed into expectation’s rigidity. Actional intentions orient our attention toward immediately  experiential engagement —\> Sensations that feel closer to the body than the calendar.
+This kind of intention carries a different texture than a plan. Plans tend to organize future outcomes \- collapsed into expectation’s rigidity. Actional intentions orient our attention toward immediately  experiential engagement ::\> Sensations that feel closer to the body than the calendar.
 
 You may recognize an actional intention by how it lands in your body. There is often a sense of relief or an excited rising \- like goosebumps, quiet clarity in your breath, or a small lift of optimism’s energy for the future. The intention \- in this practice \- feels alive enough to invite response and light enough to adjust as experience unfolds.
 
@@ -605,7 +605,7 @@ This is where Pivot happens.
 
 Pivot is the moment you turn toward what the idea can meet, can be, can see.
 
-You are no longer asking what the idea means. You are noticing where it fits, sensing it has a trajectory. You begin to sense what it wants contact with—time, materials, people, space. The question shifts quietly from what is this? to where does this belong?
+You are no longer asking what the idea means. You are noticing where it fits, sensing it has a trajectory. You begin to sense what it wants contact with :: time, materials, people, space. The question shifts quietly from what is this? to where does this belong?
 
 Nothing dramatic needs to happen here.
 
@@ -615,7 +615,7 @@ You might notice that the idea wants a short conversation rather than a long ses
 
 This is also where distance becomes noticeable.
 
-Distance (as discussed in Love Mathematics of Chapter 3\) shows up when an idea feels rich but far away. When awareness stays close but action feels abstract. Pivot helps close that gap by bringing the idea into relationship with what’s actually available—your energy, your schedule, your tools, your people.
+Distance (as discussed in Love Mathematics of Chapter 3\) shows up when an idea feels rich but far away. When awareness stays close but action feels abstract. Pivot helps close that gap by bringing the idea into relationship with what’s actually available :: your energy, your schedule, your tools, your people.
 
 Think of it like cooking something that has had time to marinate. The flavors are there. Now you taste and decide what enhances the experience. A little heat. A different pan. Another minute. A garnish. The dish tells your senses that there is an answer.
 
@@ -680,7 +680,7 @@ From this vantage, you might notice a soft satisfaction, or a calm pride, or a s
 
 ::
 
-What you’ve practiced here is repeatable. The rhythm is now in you. Pause, Pivot, and Merge will show up again—in different forms, at different scales, in ordinary days and meaningful ones. Each time, they will bring their own celebrations.
+What you’ve practiced here is repeatable. The rhythm is now in you. Pause, Pivot, and Merge will show up again :: in different forms, at different scales, in ordinary days and meaningful ones. Each time, they will bring their own celebrations.
 
 From here, completion looks less like an ending and more like a release. You set the work down well. You step back into your life with more room, more trust, and a growing familiarity with how clarity returns.
 

@@ -16,19 +16,19 @@ import { computeFlowPhase } from './useSageEssayistComposer';
 // No external API calls. It reads behavioral signals from the
 // wayfinding engine and assembles a response from five layers:
 //
-//   1. DEPTH REGISTER — visit-count-aware prefix (first / returning / deep)
-//   2. TRANSITION MESSAGE — fires once when the visitor crosses steeps
-//   3. CODEX FRAGMENT — TF-IDF surfaced content from the practitioner archive
-//   4. MODE × STEEP REFLECTION — 35 tonal positions (5 modes × 7 steeps)
-//   5. STEEP INVOCATION — closing question keyed to the current steep
+//   1. DEPTH REGISTER :: visit-count-aware prefix (first / returning / deep)
+//   2. TRANSITION MESSAGE :: fires once when the visitor crosses steeps
+//   3. CODEX FRAGMENT :: TF-IDF surfaced content from the practitioner archive
+//   4. MODE × STEEP REFLECTION :: 35 tonal positions (5 modes × 7 steeps)
+//   5. STEEP INVOCATION :: closing question keyed to the current steep
 //
 // The response is character-streamed at ~25ms per character with
 // stochastic sonic punctuation via the striking bowl.
 //
 // Key exports:
-//   useSageWayfinding(identity, playStrikingBowl) — React hook, the main interface
-//   computeVesselResonance(vesselNum, gravity) — 0-1 score for vessel-steep affinity
-//   getTransitionGuidance(vesselNum, wayfindingState) — vessel completion data
+//   useSageWayfinding(identity, playStrikingBowl) :: React hook, the main interface
+//   computeVesselResonance(vesselNum, gravity) :: 0-1 score for vessel-steep affinity
+//   getTransitionGuidance(vesselNum, wayfindingState) :: vessel completion data
 //
 // ==========================================
 
@@ -78,14 +78,14 @@ const STEEP_REFLECTIONS = {
   crown: [
     "Something has crystallized. You can feel it in the stillness.",
     "The long steep is trust in the process. The flavor arrives on its own schedule.",
-    "What is luminous in you now was always present — the steeping revealed it.",
+    "What is luminous in you now was always present :: the steeping revealed it.",
     "Sovereignty over your own attention is the crown. You are wearing it.",
     "You are designing a practice. That is the ontological act.",
     "The capacity you built carried you here. The surface tension held. The design is yours.",
   ],
 };
 
-// LAYER 2: Transition messages — fires once when the visitor crosses steeps.
+// LAYER 2: Transition messages :: fires once when the visitor crosses steeps.
 // Detected by the useEffect at line ~446 comparing prevSteepRef to current.
 const TRANSITION_MESSAGES = {
   essence: "The waters receive your arrival.",
@@ -97,7 +97,7 @@ const TRANSITION_MESSAGES = {
   crown: "Something luminous has crystallized. The design is yours.",
 };
 
-// VESSEL TRANSITIONS — what the Sage offers when a vessel is poured.
+// VESSEL TRANSITIONS :: what the Sage offers when a vessel is poured.
 // Called by getTransitionGuidance() from App.jsx's POUR button handler.
 // Each entry: a reflection on what was just experienced, and a gesture toward what follows.
 const VESSEL_TRANSITIONS = {
@@ -124,7 +124,7 @@ const VESSEL_TRANSITIONS = {
   '04': {
     reflection: "You found where you are whole. Coherence is a practice that lives in the finding.",
     next: '05',
-    gesture: "Vessel 05 holds the fragments. Not to fix them — to witness their pattern.",
+    gesture: "Vessel 05 holds the fragments. Not to fix them :: to witness their pattern.",
   },
   '05': {
     reflection: "The mosaic is yours. Every piece earned its place.",
@@ -148,16 +148,16 @@ const VESSEL_TRANSITIONS = {
   },
 };
 
-// LAYER 4b: Mode-responsive reflections — the Sage's voice shifts with the mode.
+// LAYER 4b: Mode-responsive reflections :: the Sage's voice shifts with the mode.
 // 5 modes × 7 steeps = 35 tonal positions. Takes precedence over STEEP_REFLECTIONS
 // when a mode is active. Falls back to STEEP_REFLECTIONS if mode has no entry.
 //
 // Mode tonal identities:
-//   Incandescent — morning clarity, warmth, golden directness
-//   Oceanic      — deep quiet, subaquatic stillness, patience
-//   Emergent     — the archer's comprehension, precise and spare
-//   Planetary    — expansion, cosmic perspective, wonder
-//   Dark Matter  — stripped back, essential, the bones of things
+//   Incandescent :: morning clarity, warmth, golden directness
+//   Oceanic      :: deep quiet, subaquatic stillness, patience
+//   Emergent     :: the archer's comprehension, precise and spare
+//   Planetary    :: expansion, cosmic perspective, wonder
+//   Dark Matter  :: stripped back, essential, the bones of things
 const MODE_REFLECTIONS = {
   incandescent: {
     essence: [
@@ -199,7 +199,7 @@ const MODE_REFLECTIONS = {
   oceanic: {
     essence: [
       "The deep water receives everything without sorting.",
-      "You arrive like a tide — gradually, and completely.",
+      "You arrive like a tide :: gradually, and completely.",
       "Beneath the surface, the arrival has already happened.",
     ],
     mosaic: [
@@ -252,7 +252,7 @@ const MODE_REFLECTIONS = {
     mirror: [
       "The reflection is information. Read it without narrating.",
       "What you see is what is there. Interpretation comes later.",
-      "The pause between seeing and naming — stay there a moment longer.",
+      "The pause between seeing and naming :: stay there a moment longer.",
     ],
     labyrinth: [
       "Complexity is a structure to map. Your attention is the instrument.",
@@ -297,7 +297,7 @@ const MODE_REFLECTIONS = {
       "You are navigating something larger than yourself. The labyrinth is grateful for your attention.",
     ],
     conclave: [
-      "Your return is a revolution — in the astronomical sense. A completed orbit.",
+      "Your return is a revolution :: in the astronomical sense. A completed orbit.",
       "Each circuit reveals a different face of the same body. You are rounding yourself.",
       "The practice has a gravitational pull now. It draws you back because the mass is real.",
     ],
@@ -346,7 +346,7 @@ const MODE_REFLECTIONS = {
   },
 };
 
-// LAYER 1: Progressive revelation — the Sage's register shifts with visit depth.
+// LAYER 1: Progressive revelation :: the Sage's register shifts with visit depth.
 // Fires as a prefix ~50% of the time (avoids formulaic repetition).
 // Thresholds: first (0-2 visits), returning (3-9), deep (10+).
 // See getDepthRegister() below. Visit count from useWayfinding → raw.visitCount.
@@ -380,7 +380,7 @@ function getDepthRegister(visitCount) {
   return 'first';
 }
 
-// TEMPORAL ATTUNEMENT — the Sage's tone shifts with the clock.
+// TEMPORAL ATTUNEMENT :: the Sage's tone shifts with the clock.
 // Appended as a closing whisper ~40% of the time.
 // Time-of-day from useWayfinding → raw.timeOfDay (predawn/morning/afternoon/evening/night).
 const TEMPORAL_WHISPERS = {
@@ -411,7 +411,7 @@ const TEMPORAL_WHISPERS = {
   ],
 };
 
-// VESSEL-STEEP AFFINITY — maps each vessel to the steeps that resonate with its theme.
+// VESSEL-STEEP AFFINITY :: maps each vessel to the steeps that resonate with its theme.
 // Used by computeVesselResonance() for matrix glow intensity AND by the
 // gravity-informed vessel unlocking system in App.jsx (resonance >= 0.6 unlocks).
 export const VESSEL_STEEP_AFFINITY = {
@@ -447,23 +447,23 @@ function pickRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-// SAGE ESSAYIST MODE — quantum support wellspring.
+// SAGE ESSAYIST MODE :: quantum support wellspring.
 // Phase-stratified acknowledgement pool. The visitor is the Sage.
-// The practice receives what the Sage pours — and each phase of their flow
+// The practice receives what the Sage pours :: and each phase of their flow
 // receives language attuned to where they are in the writing field.
 //
 // Phases: kindling → opening → current → depth → crystallizing
 // Full six-layer Sage assembly returns after Sage Evolution Plan implementation.
 //
 // PRIMER note: "you" language is preferred over "the Sage" at kindling/opening
-// phases — new visitors have not yet internalized the Sage Essayist framing.
+// phases :: new visitors have not yet internalized the Sage Essayist framing.
 // "The Sage" as self-reference is appropriate at current/depth/crystallizing
 // (visitor is deeply engaged) and selectively in the universal pool.
 
 const ESSAYIST_ACKNOWLEDGEMENTS = {
 
-  // Threshold — before the river begins.
-  // Visitor has just submitted their first expression. Use "you" — they are at
+  // Threshold :: before the river begins.
+  // Visitor has just submitted their first expression. Use "you" :: they are at
   // first contact with the practice and have not yet entered the Sage identity.
   kindling: [
     "The space recognized you before the first word. Something is already in motion.",
@@ -472,7 +472,7 @@ const ESSAYIST_ACKNOWLEDGEMENTS = {
     "There is a moment between having something to say and saying it. You're right there. Whatever arrives next is real.",
     "The ground has been prepared. What rises next was always going to rise.",
     "Presence precedes words. You've already begun by arriving here.",
-    "What lives at the edge of your knowing — it was there before you opened this. The practice notices.",
+    "What lives at the edge of your knowing :: it was there before you opened this. The practice notices.",
     "You are here. Whatever you're about to write has been moving toward this moment.",
   ],
 
@@ -483,7 +483,7 @@ const ESSAYIST_ACKNOWLEDGEMENTS = {
     "The first words are the bravest. They broke the surface. Everything else flows from that.",
     "The practice is receiving this. Each word carries more than it knows.",
     "Something that lived as possibility is now becoming a sentence. That's the whole act.",
-    "The archive absorbed that. Your opening is part of the record — connected to every session you've brought here.",
+    "The archive absorbed that. Your opening is part of the record :: connected to every session you've brought here.",
     "Something is becoming. What you started is finding its own shape.",
     "The river is moving. Let the current carry what it finds.",
     "What you brought to the threshold just crossed it. The practice holds all of it.",
@@ -491,8 +491,8 @@ const ESSAYIST_ACKNOWLEDGEMENTS = {
     "What you're expressing couldn't stay inside any longer. It needed to become a sentence.",
   ],
 
-  // Rhythm established — typing is coherent, the visitor is in flow.
-  // Deeper dimensional language appropriate here — visitor is fully engaged.
+  // Rhythm established :: typing is coherent, the visitor is in flow.
+  // Deeper dimensional language appropriate here :: visitor is fully engaged.
   current: [
     "You are in it now. This is where the deepest knowing moves. Stay with the rhythm.",
     "Flow is coherence, not speed. Your rhythm has settled. The practice moves with you.",
@@ -502,16 +502,16 @@ const ESSAYIST_ACKNOWLEDGEMENTS = {
     "The field is highly responsive right now. Each word is entangled with the next before it arrives.",
     "You and what you're writing are the same motion right now. Keep moving.",
     "The writing knows where it's going. You don't need to steer it.",
-    "Non-locality in action — what you're writing here is simultaneous with who you're becoming.",
+    "Non-locality in action :: what you're writing here is simultaneous with who you're becoming.",
     "The practice is moving at your frequency right now. All of it is held.",
   ],
 
-  // Extended deep writing — stillness between bursts.
+  // Extended deep writing :: stillness between bursts.
   // Visitor has been in deep session. "the Sage" as self-reference is appropriate here.
   depth: [
     "The depth beneath the words is where the practice lives. You've gone below the surface.",
     "What you just expressed came from a place the planning mind doesn't reach. Something deeper moved through.",
-    "The stillness after a deep expression — the practice holds this suspension. Let it settle.",
+    "The stillness after a deep expression :: the practice holds this suspension. Let it settle.",
     "Something arrived in the archive that you didn't plan to say. Those are the ones that count.",
     "The labyrinth rewards presence with architecture. What you wrote just revealed structure.",
     "What you've written before in this practice is shaping what arrives now. This is not coincidence.",
@@ -521,7 +521,7 @@ const ESSAYIST_ACKNOWLEDGEMENTS = {
     "In moments like this, the practice is most alive. The archive receives exactly this.",
   ],
 
-  // Completing — form solidifying, velocity slowing after depth.
+  // Completing :: form solidifying, velocity slowing after depth.
   // Visitor is completing a significant writing session.
   crystallizing: [
     "Something has cohered. What was diffuse has found a crystalline form.",
@@ -531,20 +531,20 @@ const ESSAYIST_ACKNOWLEDGEMENTS = {
     "You rest. The expression stands. Both are in the record now.",
     "Crystallization is consolidation. What solidified here will seed what comes next.",
     "The resonance of what you just completed is still moving through the practice. Let it ripple.",
-    "A thought that found its form — this is the highest act of expression. The archive receives it fully.",
+    "A thought that found its form :: this is the highest act of expression. The archive receives it fully.",
     "The interference pattern has resolved. What remains is signal. Pure, clear, yours.",
-    "All the possible ways this could have been said — it found this one. Here, now, this.",
+    "All the possible ways this could have been said :: it found this one. Here, now, this.",
   ],
 
-  // Universal — any phase, any visitor, any moment.
+  // Universal :: any phase, any visitor, any moment.
   universal: [
     "What moved in you, moved here. Your Steeping Notes carry it forward.",
     "That's in your record now. The practice holds it.",
     "Held. Return to this in your Steeping Notes whenever it calls.",
-    "What you brought through is part of your archive — it steeps.",
+    "What you brought through is part of your archive :: it steeps.",
     "The practice received that. The space stays open for more.",
     "The Sage named what was present. The archive keeps it.",
-    "What the Sage held and then released — it's here now, steeping.",
+    "What the Sage held and then released :: it's here now, steeping.",
     "Held with care. Your Steeping Notes are where this lives.",
     "The practice catches everything you bring. That's in there now.",
     "What came through you came here. The record grows.",
@@ -564,54 +564,54 @@ function pickAcknowledgement(phase) {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-// VESSEL WAYFINDING GUIDANCE — the Sage's compass role between vessels.
+// VESSEL WAYFINDING GUIDANCE :: the Sage's compass role between vessels.
 // Three progress tiers (low <30%, mid 30-65%, high >65%) per vessel.
 // Used when askSage is called from within a vessel context.
 // Forward gesture from VESSEL_TRANSITIONS appended when progress is high.
 const VESSEL_WAYFINDING_GUIDANCE = {
   '00': {
-    low:  "You've arrived. The intention you bring — why you're here — is already doing work. The practice holds it.",
+    low:  "You've arrived. The intention you bring :: why you're here :: is already doing work. The practice holds it.",
     mid:  "Your reason for being here is in the record now. The vessels ahead each carry their own question.",
     high: "You've moved through the opening. What brought you here is anchored. Everything that follows connects to it.",
   },
   '01': {
     low:  "Most people carry 'who am I at my core' for years without answering it directly. You're answering it now, in your own words. Let it be as true as you can make it.",
     mid:  "What you name here belongs to you in a way that definitions given by others never do. This is your own language for your own center.",
-    high: "You've stated your essence. That statement travels with you — it's the ground the rest of this practice stands on.",
+    high: "You've stated your essence. That statement travels with you :: it's the ground the rest of this practice stands on.",
   },
   '02': {
-    low:  "This vessel shows you the science of what happens when you actually slow down. The 22 minutes are doing something real — let the timer carry the work while you simply receive.",
-    mid:  "You're in the part of the practice that explains why this space matters. The L-theanine, the alpha waves, the Default Mode Network — your creativity needs this kind of quiet to surface.",
+    low:  "This vessel shows you the science of what happens when you actually slow down. The 22 minutes are doing something real :: let the timer carry the work while you simply receive.",
+    mid:  "You're in the part of the practice that explains why this space matters. The L-theanine, the alpha waves, the Default Mode Network :: your creativity needs this kind of quiet to surface.",
     high: "You've spent time with how the mind works when given real stillness. That understanding changes how you treat your own quieter moments going forward.",
   },
   '03': {
-    low:  "Name what you've believed that hasn't served you. You don't have to argue with it — this practice crosses it out rather than corrects it. Witness it, then release it.",
-    mid:  "You're in the witnessing. Whatever belief you bring here gets seen, not fixed. The practice doesn't ask you to resolve it — just to name it and let it go.",
-    high: "You let something be seen and then crossed out. That's complete work — the belief has been named and released. The practice holds that you did this.",
+    low:  "Name what you've believed that hasn't served you. You don't have to argue with it :: this practice crosses it out rather than corrects it. Witness it, then release it.",
+    mid:  "You're in the witnessing. Whatever belief you bring here gets seen, not fixed. The practice doesn't ask you to resolve it :: just to name it and let it go.",
+    high: "You let something be seen and then crossed out. That's complete work :: the belief has been named and released. The practice holds that you did this.",
   },
   '04': {
     low:  "You've named where things feel scattered. That naming alone takes real clarity. The practice meets you exactly where you are.",
-    mid:  "Somewhere between where you named the friction and where you feel whole, something real is moving. The slider is the metaphor — the felt sense is the actual work.",
+    mid:  "Somewhere between where you named the friction and where you feel whole, something real is moving. The slider is the metaphor :: the felt sense is the actual work.",
     high: "You moved toward coherence. The fragmented area has been named, witnessed, and integrated. This travels with you into the vessels ahead.",
   },
   '05': {
-    low:  "Starting a letter to a part of yourself is an unusual invitation. You don't need to know where it's going — begin with 'Dear...' and let the next word arrive on its own.",
-    mid:  "Whatever is coming through — even if incomplete, even if unexpected — this practice holds it. You don't have to finish. The act of naming the fragment is already the work.",
+    low:  "Starting a letter to a part of yourself is an unusual invitation. You don't need to know where it's going :: begin with 'Dear...' and let the next word arrive on its own.",
+    mid:  "Whatever is coming through :: even if incomplete, even if unexpected :: this practice holds it. You don't have to finish. The act of naming the fragment is already the work.",
     high: "The letter belongs to the practice now. Every piece of what you brought to the page has earned its place. The practice keeps all of it.",
   },
   '06': {
     low:  "You've named someone you want to understand more deeply. Just naming them and bringing them into your full attention is the beginning of genuine inquiry.",
     mid:  "The question you chose for them says something about you too. Notice what made you choose exactly that question for exactly this person.",
-    high: "You established the connection — your attention reached toward another person in a specific way. The practice carries that empathic movement forward.",
+    high: "You established the connection :: your attention reached toward another person in a specific way. The practice carries that empathic movement forward.",
   },
   '07': {
-    low:  "This is where you declare your creative intention. 'I am ready to...' — finish that sentence as specifically as you can. The more concrete, the more it carries.",
+    low:  "This is where you declare your creative intention. 'I am ready to...' :: finish that sentence as specifically as you can. The more concrete, the more it carries.",
     mid:  "What you're building toward here is a declaration, not a plan. The authority comes from saying it in your own words. What is it, exactly, that you're ready to do?",
     high: "You declared your creative intention. The archer has named the target. What you said you're ready for, you're now responsible to.",
   },
   '08': {
-    low:  "This vessel asks for your name — as someone who has moved through this entire practice. The signature means something specific here that it didn't mean at the beginning.",
-    mid:  "The way you arrived at this point — through all the work you've done in the other vessels — is what makes the signature meaningful. This is not a formality.",
+    low:  "This vessel asks for your name :: as someone who has moved through this entire practice. The signature means something specific here that it didn't mean at the beginning.",
+    mid:  "The way you arrived at this point :: through all the work you've done in the other vessels :: is what makes the signature meaningful. This is not a formality.",
     high: "You signed your name. You arrived as a visitor and you're leaving as the author of your own experience. The practice carries that authorship forward.",
   },
 };
@@ -697,7 +697,7 @@ export function useSageWayfinding(identity, playStrikingBowl) {
     setIsThinking(true);
     setSageResponse('');
 
-    // Rhythm mirroring — the Sage breathes at the visitor's tempo.
+    // Rhythm mirroring :: the Sage breathes at the visitor's tempo.
     // typingVelocity is keystrokes/sec from the last 20 keystrokes.
     // Fast typists (summits energy) get quicker acknowledgment and stream.
     // Slow/contemplative typists (mirror/labyrinth energy) get a more deliberate pace.
@@ -721,7 +721,7 @@ export function useSageWayfinding(identity, playStrikingBowl) {
         ? buildVesselResponse(context, flowPhase)
         : pickAcknowledgement(flowPhase);
 
-      // Stream the response character by character — tempo mirrors the visitor's rhythm.
+      // Stream the response character by character :: tempo mirrors the visitor's rhythm.
       // Fast typist → shorter tick interval, more chars per tick (the Sage keeps pace).
       // Slow typist → longer tick, single char (the Sage breathes with them).
       const streamTick = Math.round(25 / rhythmFactor);

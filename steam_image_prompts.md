@@ -20,7 +20,7 @@
 ### [ PART II: THE MANIFESTATIONS OF STEAM ]
 
 7.  **The Cloud of Knowing:** A vast, serene cloud of pure white Steam, so large it dwarfs the surrounding star fields. Within the cloud, faint, ghostly images of ideas and concepts can be seen forming and dissolving.
-8.  **The River of Routine:** A long, flowing river of silvery Steam, winding its way through the cosmos. Along its banks, small, stable structures—routines—have formed, drawing energy from the flow.
+8.  **The River of Routine:** A long, flowing river of silvery Steam, winding its way through the cosmos. Along its banks, small, stable structures :: routines :: have formed, drawing energy from the flow.
 9.  **The Voice Nebula:** A nebula that is not a cloud of gas, but a cloud of voices. The Steam is shaped by sound waves, creating intricate, ever-changing patterns of interference and harmony.
 10. **The Kingdom of Behavior:** A planetary system where the planets are not rock and gas, but stable, crystalline structures of behavior. The entire system is enveloped in a thin, shimmering atmosphere of Steam.
 11. **The Culture Cloud:** A massive, multi-colored cloud of Steam, where different colors represent different cultures. The colors swirl and mix, creating new hues at their boundaries.
@@ -31,6 +31,6 @@
 13. **The Bridge to TURAO:** A breathtaking wide shot showing the boundary between two universes. On the left, the dark, interior cosmos of The Steeperverse. On the right, the bright, receiving cosmos of TURAO. A single, massive bridge of pure white Steam connects the two.
 14. **The Human as Star:** A single human figure, seen from behind, standing at the edge of a cosmic precipice. They are not made of flesh, but of stars. From their body, a gentle, continuous stream of golden Steam rises and flows out into the universe.
 15. **The Steep in Progress:** A close-up of a teacup, but the cup is a galaxy and the tea is a swirling nebula. A thick, fragrant cloud of Steam rises from the cup, carrying the essence of the steep into the cosmos.
-16. **The Offering Received:** A shot of TURAO, the receiving universe. It is a vast, beautiful landscape of light and color. A single, golden wisp of Steam—an offering from a distant steep—arrives and is absorbed into the landscape, making it brighter.
+16. **The Offering Received:** A shot of TURAO, the receiving universe. It is a vast, beautiful landscape of light and color. A single, golden wisp of Steam :: an offering from a distant steep :: arrives and is absorbed into the landscape, making it brighter.
 17. **The Neutrino Stream Made Visible:** A scientific visualization of the Neutrino Stream, but it is not an abstract graph. It is a beautiful, flowing river of golden Steam, connecting every star, every planet, every being in the Steeperverse.
 18. **The Definitive Cosmological Map:** A full-sky map, similar to the constellation map, but this one charts the flow of Steam. It shows the great rivers, the clouds, the geysers, and the bridges, all interconnected in a single, living system. The title reads: "THE COSMOLOGY OF STEAM :: A UNIFIED FIELD THEORY OF ESSENCE."

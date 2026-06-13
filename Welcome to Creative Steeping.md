@@ -7,7 +7,7 @@ This course is…
 • A quiet act of remembering  
 • A chance to witness your unfolding with curiosity, care, and creative trust.
 
-You’ll be meeting yourselves anew each week — in the steam, in the silence, in the sentence that forms when you don’t try too hard.
+You’ll be meeting yourselves anew each week :: in the steam, in the silence, in the sentence that forms when you don’t try too hard.
 
 Each week, you are encouraged to:
 
@@ -23,7 +23,7 @@ A Custom Herbal Recipe (via https://www.instagram.com/raineandriverapothecary/?i
 
 Damiana: Heart-opening, sensual clarity  
 Bacopa: Memory \+ insight enhancer, known to stimulate cognitive pathways  
-Gingko: Vascular expansion for flow — in mind and blood  
+Gingko: Vascular expansion for flow :: in mind and blood  
 Peppermint: Mental refresh, digestive support, and energetic reset  
 Calendula: Emotional immunity \+ gentle solar clarity  
 Eyebright: Visionary support, clarity of focus (both internal and external)
@@ -60,10 +60,10 @@ After Each Session
 Materials You’ll Need
 
 1\. CREÅTIVE STEEPING Guidebook (PDF delivered via email)  
-2\. A journal that welcomes your thoughts — no rules, only resonance  
-3\. A pen or instrument of trust — smooth, expressive, yours  
+2\. A journal that welcomes your thoughts :: no rules, only resonance  
+3\. A pen or instrument of trust :: smooth, expressive, yours  
 4\. Your Contemplation Blend or a tea of choice  
-5\. 45–60 minutes of STEEPING Session Time — uninterrupted if possible
+5\. 45–60 minutes of STEEPING Session Time :: uninterrupted if possible
 
 Beyond that, you are prepared because you know you better than anyone on this Earth.
 

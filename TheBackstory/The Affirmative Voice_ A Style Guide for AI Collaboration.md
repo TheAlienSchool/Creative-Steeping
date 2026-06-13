@@ -108,7 +108,7 @@ When using this technique, ensure that:
 
 By embracing the principles of affirmative framing, we can elevate our collaboration with AI to produce writing that is not only more human and authentic but also more powerful and effective. This approach moves us beyond the formulaic patterns of AI-generated text and toward a style of communication that is clear, confident, and purpose-driven.
 
-This is the standard we will hold our AI collaborations to—a standard of intentional, affirmative communication that reflects the depth and clarity of our own thinking.
+This is the standard we will hold our AI collaborations to :: a standard of intentional, affirmative communication that reflects the depth and clarity of our own thinking.
 
 ---
 

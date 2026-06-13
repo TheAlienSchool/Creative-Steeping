@@ -19,14 +19,14 @@ This is an operative magnetic insight. What follows is a research essay that is 
 
 ### The Trivium: The Architecture of Knowing
 
-The classical world organized human intellectual development through the **Trivium**—the intersection of three roads [1]. It stands as a structural recognition that true knowing requires three points of contact.
+The classical world organized human intellectual development through the **Trivium** :: the intersection of three roads [1]. It stands as a structural recognition that true knowing requires three points of contact.
 
 It consists of three sequential arts:
 1. **Grammar:** The mechanics of language. The *what*. Gathering the raw material of reality.
 2. **Logic (Dialectic):** The mechanics of thought. The *why*. Understanding the relationship between the materials.
 3. **Rhetoric:** The mechanics of communication. The *how*. Expressing the synthesized truth to the world [1].
 
-The Trivium is a complete architecture. You must move through the apex of the triangle—Logic—to pull the line upward into a dimension of meaning. When you are stuck in a linear problem, you are bouncing between Grammar (the facts of your situation) and Rhetoric (what you are trying to say or do about it). The apex is the necessary coordinate for resolution.
+The Trivium is a complete architecture. You must move through the apex of the triangle :: Logic :: to pull the line upward into a dimension of meaning. When you are stuck in a linear problem, you are bouncing between Grammar (the facts of your situation) and Rhetoric (what you are trying to say or do about it). The apex is the necessary coordinate for resolution.
 
 > **Research Exercise 01: The Trivium Pivot**
 > 1. Stand up. Place your feet shoulder-width apart. This is your base line. 
@@ -41,7 +41,7 @@ The Trivium is a complete architecture. You must move through the apex of the tr
 
 In 1971, a jazz musician named Bob Dorough received an assignment from an advertising executive: write a song to teach children multiplication [2]. Dorough looked at the mathematics and realized that three is an architecture. He wrote *"Three Is a Magic Number,"* the song that launched *Schoolhouse Rock!* in 1973 [2]. 
 
-Sixteen years later, in 1989, a hip-hop trio from Long Island—Posdnuos, Trugoy, and Maseo—sampled Dorough’s opening line for their debut album, *3 Feet High and Rising* [3]. De La Soul embodied the geometry. In an era of hip-hop hardening into a binary of "hard" vs. "soft," De La Soul introduced a third coordinate: the Daisy Age [3]. They triangulated the culture.
+Sixteen years later, in 1989, a hip-hop trio from Long Island :: Posdnuos, Trugoy, and Maseo :: sampled Dorough’s opening line for their debut album, *3 Feet High and Rising* [3]. De La Soul embodied the geometry. In an era of hip-hop hardening into a binary of "hard" vs. "soft," De La Soul introduced a third coordinate: the Daisy Age [3]. They triangulated the culture.
 
 *"Somewhere in this hip-hop soul community / Was born three: Mase, Dove, and me / And that's the magic number."* [3]
 
@@ -51,7 +51,7 @@ Dorough and De La Soul understood what Pythagoras mapped thousands of years earl
 > 1. Sit in a chair. Close your eyes.
 > 2. Identify a binary tension currently operating in your life (e.g., Earning a Living vs. Creative Resonance; Staying vs. Leaving).
 > 3. Hold the first option in your left hand. Hold the second in your right. Feel the linear pull between them.
-> 4. Now, imagine a third point hovering exactly three feet above your head. This is the De La Soul coordinate—the Daisy Age, the unexpected synthesis.
+> 4. Now, imagine a third point hovering exactly three feet above your head. This is the De La Soul coordinate :: the Daisy Age, the unexpected synthesis.
 > 5. What is the third option that makes the binary irrelevant? What is the angle that breaks the line?
 
 ---

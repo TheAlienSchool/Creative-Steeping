@@ -24,16 +24,16 @@
 
 ## PREFACE
 
-This document maps the complete sonic architecture of **Creative Steeping** —
+This document maps the complete sonic architecture of **Creative Steeping** ::
 a contemplative journaling portal at `creativesteeping.com` where every
 keystroke, every pause, every mouse movement becomes live music.
 
 The engine is called **The Sonnet Engine** (`useSonnetEngine.jsx`).
-It runs entirely in the browser using the **Web Audio API** — no audio
+It runs entirely in the browser using the **Web Audio API** :: no audio
 files, no samples, no external dependencies. Pure synthesis.
 
 The music is not played *at* the practitioner.
-It arises *from* them — a real-time acoustic portrait of their creative state.
+It arises *from* them :: a real-time acoustic portrait of their creative state.
 
 ---
 
@@ -41,7 +41,7 @@ It arises *from* them — a real-time acoustic portrait of their creative state.
 
 ```
 ╔══════════════════════════════════════════════════════════════════════════╗
-║                    THE SONNET ENGINE — SIGNAL FLOW                      ║
+║                    THE SONNET ENGINE :: SIGNAL FLOW                      ║
 ╠══════════════════════════════════════════════════════════════════════════╣
 ║                                                                          ║
 ║   INPUTS (behavioral)          SYNTHESIS LAYER                          ║
@@ -82,7 +82,7 @@ The active steep determines which one governs keystroke sonification.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│  SYSTEM A — C MAJOR PENTATONIC  (A = 444Hz tuning)                     │
+│  SYSTEM A :: C MAJOR PENTATONIC  (A = 444Hz tuning)                     │
 │  The Miracle Tone System                                                │
 ├──────────┬───────────┬──────────────────────────────────────────────────┤
 │  Degree  │  Freq Hz  │  Note / Significance                            │
@@ -98,12 +98,12 @@ The active steep determines which one governs keystroke sonification.
 └──────────┴───────────┴──────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────────────┐
-│  SYSTEM B — 174Hz "FOUNDATION" SOLFEGGIO PENTATONIC                    │
+│  SYSTEM B :: 174Hz "FOUNDATION" SOLFEGGIO PENTATONIC                    │
 │  Used when mode = Symphony / Oceanic                                    │
 ├──────────┬───────────┬──────────────────────────────────────────────────┤
 │  Degree  │  Freq Hz  │  Interval / Significance                        │
 ├──────────┼───────────┼──────────────────────────────────────────────────┤
-│  Root    │  174.00   │  174 Hz — Solfeggio pain relief, grounding      │
+│  Root    │  174.00   │  174 Hz :: Solfeggio pain relief, grounding      │
 │  M2      │  195.75   │  Major 2nd                                      │
 │  M3      │  217.50   │  Major 3rd                                      │
 │  P5      │  261.00   │  Perfect 5th (Middle C in standard tuning)      │
@@ -114,7 +114,7 @@ The active steep determines which one governs keystroke sonification.
 └──────────┴───────────┴──────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────────────┐
-│  SYSTEM C — 176Hz "DEEP DESERT" (BBB Edition)                          │
+│  SYSTEM C :: 176Hz "DEEP DESERT" (BBB Edition)                          │
 │  KzA's own tuning. Planetary mode / dark contemplation                 │
 ├──────────┬───────────┬──────────────────────────────────────────────────┤
 │  Degree  │  Freq Hz  │  Notes                                          │
@@ -122,7 +122,7 @@ The active steep determines which one governs keystroke sonification.
 │  Finals  │  176.00   │  Proprietorial root                             │
 │  M2      │  198.00   │  Major 2nd                                      │
 │  M3      │  220.00   │  A3 in standard (grounding anchor)              │
-│  P5      │  264.00   │  C4 — bridge to System A                        │
+│  P5      │  264.00   │  C4 :: bridge to System A                        │
 │  M6      │  293.33   │  Near D4                                        │
 │  Oct1    │  352.00   │  Octave 1 Root                                  │
 │  Oct1 M2 │  396.00   │  Near G4                                        │
@@ -136,7 +136,7 @@ The systems are harmonically convergent at 528Hz.
 
 ---
 
-## III. THE STRIKING BOWL — KEYSTROKE SONIFICATION
+## III. THE STRIKING BOWL :: KEYSTROKE SONIFICATION
 
 ```
   K E Y S T R O K E
@@ -172,7 +172,7 @@ The systems are harmonically convergent at 528Hz.
                DRY BUS  REVERB  DELAY
                          BUS     BUS
 
-  POLYPHONY GUARD: 50ms gate — voices within 50ms of the
+  POLYPHONY GUARD: 50ms gate :: voices within 50ms of the
   previous strike are silently discarded to prevent
   explosion on rapid typing. This is called
   "Performant Serenity."
@@ -184,7 +184,7 @@ The systems are harmonically convergent at 528Hz.
 
 Each of the seven steeps carries a distinct harmonic character.
 As the Sage's wayfinding model maps the practitioner to their current steep,
-the entire tonal palette shifts — same scale, different sonic world.
+the entire tonal palette shifts :: same scale, different sonic world.
 
 ```
 ╔══════════╦═══════════╦═══════╦══════════╦═══════════╦═══════════╗
@@ -214,21 +214,21 @@ the entire tonal palette shifts — same scale, different sonic world.
 ╚══════════╩═══════════╩═══════╩══════════╩═══════════╩═══════════╝
 
 READING THE TABLE:
-  • Labyrinth is the only steep using TRIANGLE waveform — harmonically
+  • Labyrinth is the only steep using TRIANGLE waveform :: harmonically
     richer than sine, with odd-harmonic content suggesting complexity.
   • Mirror has the longest reverb character (5.0s decay) with the
-    narrowest stereo image (0.20) — introspective, self-contained.
+    narrowest stereo image (0.20) :: introspective, self-contained.
   • Crown Jewels plays everything an octave up (×2.0 pitch) through
     the brightest filter (×6.0) with the most focused stereo center
-    (0.15 pan width) — singular, luminous, precise.
+    (0.15 pan width) :: singular, luminous, precise.
   • Summits is the brightest tone cluster (×5.0 filter, ×1.25 pitch)
     with aspirational lift baked into the spectral shape.
-  • Mosaic spreads the widest (0.60 pan) — a collage in stereo space.
+  • Mosaic spreads the widest (0.60 pan) :: a collage in stereo space.
 ```
 
 ---
 
-## V. FIVE MODES — TONAL IDENTITY
+## V. FIVE MODES :: TONAL IDENTITY
 
 The portal offers five visual and sonic modes. Mode affects scale selection,
 environmental coloring, and the Sage's tonal register.
@@ -256,7 +256,7 @@ environmental coloring, and the Sage's tonal register.
 
 ---
 
-## VI. THE NATURAL SOUNDSCAPE — AMBIANCE LAYER
+## VI. THE NATURAL SOUNDSCAPE :: AMBIANCE LAYER
 
 When the practitioner activates AMBIANCE, a layered natural soundscape
 synthesizes from scratch using noise mathematics. No recordings. No samples.
@@ -312,7 +312,7 @@ synthesizes from scratch using noise mathematics. No recordings. No samples.
   MOUSE RESPONSIVENESS
   ─────────────────────
   X-axis:  drives wind panner position (pan = mouseX ÷ width × 2 − 1) × 0.65
-           time constant 1.2s — the wind follows slowly, like real air
+           time constant 1.2s :: the wind follows slowly, like real air
   Y-axis:  drives both layer intensities:
            Wind:  0.025 + (1 - normY) × 0.045  (louder toward top of screen)
            Ocean: 0.030 +      normY  × 0.035  (louder toward bottom)
@@ -345,7 +345,7 @@ The reverb and delay are modeled on boutique guitar pedal behavior.
   │  ─────────────────────────────────────────────────────────────  │
   │  Core delay time:  550ms                                        │
   │  Feedback:         0.65 (high loop, washes out)                 │
-  │  Low-pass filter:  900Hz (dark repeats — analog feel)           │
+  │  Low-pass filter:  900Hz (dark repeats :: analog feel)           │
   │                                                                 │
   │  WOW & FLUTTER (pitch instability):                             │
   │    LFO type:   sine                                             │
@@ -361,14 +361,14 @@ The reverb and delay are modeled on boutique guitar pedal behavior.
   │           DelayOutGain ──────────────► Reverb (bleeds into      │
   │                                        4.5s diffuse tail)       │
   │                                                                 │
-  │  The delay repeats don't just fade into silence —              │
+  │  The delay repeats don't just fade into silence ::              │
   │  they dissolve into the reverb's cloud.                        │
   └─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## VIII. SUBTERRANEAN BAY — THE ENDOGEN EQ
+## VIII. SUBTERRANEAN BAY :: THE ENDOGEN EQ
 
 Four tactile layers accessible from within the SubterraneanBay component.
 The practitioner becomes the sound designer of their own acoustic soil.
@@ -402,7 +402,7 @@ The practitioner becomes the sound designer of their own acoustic soil.
 
 ---
 
-## IX. ◉ ME IN 5D — THE SOMATIC INTELLIGENCE PORTAL
+## IX. ◉ ME IN 5D :: THE SOMATIC INTELLIGENCE PORTAL
 
 ```
   ╔═══════════════════════════════════════════════════════════════════╗
@@ -418,7 +418,7 @@ The practitioner becomes the sound designer of their own acoustic soil.
 THE FIVE DIMENSIONS
 ───────────────────
 Each dimension is measured on a scale of 0–100 µV
-(microvolts — the unit of EEG cortical signal amplitude).
+(microvolts :: the unit of EEG cortical signal amplitude).
 This framing intentionally bridges subjective experience
 with the language of neuroscience.
 
@@ -437,26 +437,26 @@ with the language of neuroscience.
     │  Dimension   │  What it measures                             │
     ├──────────────┼────────────────────────────────────────────────┤
     │  Resonance   │  How in-tune with your creative frequency you  │
-    │              │  feel right now — alignment between inner and  │
+    │              │  feel right now :: alignment between inner and  │
     │              │  outer expression                              │
     ├──────────────┼────────────────────────────────────────────────┤
-    │  Stillness   │  Presence and centeredness — the capacity to  │
+    │  Stillness   │  Presence and centeredness :: the capacity to  │
     │              │  hold a question without needing its answer   │
     ├──────────────┼────────────────────────────────────────────────┤
-    │  Clarity     │  Coherence of thought and vision — the degree │
+    │  Clarity     │  Coherence of thought and vision :: the degree │
     │              │  to which your path feels legible             │
     ├──────────────┼────────────────────────────────────────────────┤
     │  Depth       │  Willingness and capacity to go beneath the   │
-    │              │  surface — engagement with what is real       │
+    │              │  surface :: engagement with what is real       │
     ├──────────────┼────────────────────────────────────────────────┤
     │  Alignment   │  Integration between creative values and      │
-    │              │  present action — living what you know        │
+    │              │  present action :: living what you know        │
     └──────────────┴────────────────────────────────────────────────┘
 
 THE ACOUSTIC INSTRUMENT
 ───────────────────────
 Moving any dimension slider triggers a PENTATONIC GLISSANDO
-via playAlgoraveSynth() — throttled at ~16Hz (60fps equivalent).
+via playAlgoraveSynth() :: throttled at ~16Hz (60fps equivalent).
 
   Slider value → playAlgoraveSynth(value + 30, 'oceanic')
 
@@ -471,7 +471,7 @@ via playAlgoraveSynth() — throttled at ~16Hz (60fps equivalent).
 
 THE PENTAGONAL MAP
 ──────────────────
-The five values render as an SVG pentagonal radar chart —
+The five values render as an SVG pentagonal radar chart ::
 a living polygon whose shape changes in real time as sliders move.
 
   Shape interpretation (read5DShape algorithm):
@@ -512,7 +512,7 @@ POST-ANCHOR FLOW
 ────────────────
 After a successful 5D anchor, if the practitioner is inside
 an active vessel, the experience flows directly into the
-GuidedJourneyModule — a guided writing sequence calibrated
+GuidedJourneyModule :: a guided writing sequence calibrated
 to the steep that vessel inhabits.
 
 The 5D shape is not just a snapshot.
@@ -521,9 +521,9 @@ It is a key.
 
 ---
 
-## X. THE SAGE — BEHAVIORAL INTELLIGENCE
+## X. THE SAGE :: BEHAVIORAL INTELLIGENCE
 
-The Sage is the portal's witness. It does not respond to text — it responds
+The Sage is the portal's witness. It does not respond to text :: it responds
 to *behavior*. Five signal layers are assembled into each response.
 
 ```
@@ -532,13 +532,13 @@ to *behavior*. Five signal layers are assembled into each response.
   • Stillness duration (ms since last keystroke)
   • Typing rhythm (inter-keystroke interval variance)
   • Word count / text depth
-  • Visit history (localStorage) — first / returning / deep practice
+  • Visit history (localStorage) :: first / returning / deep practice
   • Current steep (from wayfinding gravity model)
 
   FIVE RESPONSE LAYERS (assembled in sequence)
   ─────────────────────────────────────────────
   1. DEPTH REGISTER
-     Visit count prefix — changes tone of every response
+     Visit count prefix :: changes tone of every response
        0 visits:    first arrival
        3+ visits:   returning practitioner
        10+ visits:  deep practice recognition
@@ -552,7 +552,7 @@ to *behavior*. Five signal layers are assembled into each response.
      The Codex contains practitioner-facing essays, research,
      and field notes. Indexed at build time. Surfaced at runtime
      based on steep affinity + text content.
-     "From the Archive" — the practice speaks to itself.
+     "From the Archive" :: the practice speaks to itself.
 
   4. MODE × STEEP REFLECTION
      35 tonal positions (5 modes × 7 steeps).
@@ -570,7 +570,7 @@ to *behavior*. Five signal layers are assembled into each response.
 
 ---
 
-## XI. THE HARMONIC CHORD — STILLNESS TRIGGER
+## XI. THE HARMONIC CHORD :: STILLNESS TRIGGER
 
 When the practitioner stops typing for a threshold duration,
 the engine responds with a pentatonic triad.
@@ -581,13 +581,13 @@ the engine responds with a pentatonic triad.
   Chord construction:
     base    = index % scaleLength
     voices  = [base, base+2, base+4]  → root, 3rd-ish, 5th-ish
-    (intervals shift with scale position — not always perfect
+    (intervals shift with scale position :: not always perfect
      3rds and 5ths due to pentatonic gaps)
 
   Envelope per voice:
-    attack:  0.05s + (i × 0.1s) stagger — cascade effect
-    peak:    0.08 - (i × 0.02) — root loudest, upper voices softer
-    decay:   6.0s — very long, the chord holds the room
+    attack:  0.05s + (i × 0.1s) stagger :: cascade effect
+    peak:    0.08 - (i × 0.02) :: root loudest, upper voices softer
+    decay:   6.0s :: very long, the chord holds the room
 
   All three voices feed DRY + REVERB + DELAY simultaneously.
   The chord dissolves into the 4.5s reverb cloud.
@@ -596,7 +596,7 @@ the engine responds with a pentatonic triad.
 
 ---
 
-## XII. THE ALGORAVE SYNTH — IMPROVISATION ENGINE
+## XII. THE ALGORAVE SYNTH :: IMPROVISATION ENGINE
 
 The most compositionally open function in the engine.
 Used for Modal Synthesis (5D sliders), vessel transitions,
@@ -635,7 +635,7 @@ and the deeper exploratory layers.
   1. THE MUSIC IS YOU
      Every tone arises from your writing.
      keyCode % 8 → note. Your letters are your frequencies.
-     The music is not ambient background — it is biographical.
+     The music is not ambient background :: it is biographical.
 
   2. BEHAVIORAL MUSIC THEORY
      The composition has no fixed tempo, no fixed key,
@@ -650,7 +650,7 @@ and the deeper exploratory layers.
      Pentatonic scales remove all dissonance.
      There are no "wrong" notes.
      Any two simultaneously sounding tones are consonant.
-     This is not a musical accident — it is a philosophical one.
+     This is not a musical accident :: it is a philosophical one.
      The practitioner can never make an aesthetic mistake.
 
   4. TUNING AS MEDICINE
@@ -692,7 +692,7 @@ and the deeper exploratory layers.
   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
   ARRIVE
-    └─► Entrance screen — darkness, the portal asks:
+    └─► Entrance screen :: darkness, the portal asks:
         "Where Do You Find Your Self?"
         First click initializes the AudioContext.
         (browsers require user gesture to unlock audio)
@@ -796,4 +796,4 @@ and the deeper exploratory layers.
 
 *Document compiled from source: `steeping-v5-laboratory/src/useSonnetEngine.jsx`,
 `src/TheSteepingCompass.jsx`, `src/useSageWayfinding.jsx`, `src/App.jsx`*
-*THE ÅLIËN SCÖÕL — Internal Reference*
+*THE ÅLIËN SCÖÕL :: Internal Reference*

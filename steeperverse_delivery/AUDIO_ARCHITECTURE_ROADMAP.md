@@ -1,6 +1,6 @@
 # THE SONIC UNFOLDMENT: AUDIO ARCHITECTURE ROADMAP
 
-*The Architecture of the Pause — Environmental Design Principles*
+*The Architecture of the Pause :: Environmental Design Principles*
 
 This document serves as the precise, origami-like blueprint for how we will package, fold, and deploy physical audio files into the Steeperverse ecosystem. 
 

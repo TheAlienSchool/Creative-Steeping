@@ -160,10 +160,10 @@ This document centralizes_ the narrative framework, instructional copy, and phil
 ## 🪴 WHAT STEEPERS SAY (Testimonials / The Garden)
 *Found in `WhatSteepersSay.jsx`*
 
-* "As a life-long journaler, I valued the invitation to sip tea and commune with my worth. Epiphanies unfolded, and the mythic narrative of my own genius brought me to tears. I experienced myself as a reliable source for wisdom and observed myself in the mirror of self-perception." — *Sallomé Hralima (writer, filmmaker, mother, partner, friend)*
-* "What sets THE ÅLÏEN SCÖÕL and Creative Steeping apart is its emphasis on self-discovery and sustained growth. Kamau’s guidance is invaluable, and the process empowers you to take charge of your journey. The only thing standing between you and your next big idea is the courage to do the deep work." — *Lisa Heinsdale (Creative Synthesizer)*
-* "Your guidance and support have had a profound impact on me, and I find myself reflecting on our conversations frequently. These insights continue to inspire me day to day as I orient myself towards growth, development, and love." — *Anonymous ÅLÏEN (Leader in Transition)*
-* "The notion that 'what sets you apart does not set you apart from others….' is so beautifully said. Creative Steeping most certainly does guide folks to the 'heart of being'. This is really well written and easy to follow. Bravo to you!" — *Sylvia Baffour (Emotional Intelligence Expert)*
+* "As a life-long journaler, I valued the invitation to sip tea and commune with my worth. Epiphanies unfolded, and the mythic narrative of my own genius brought me to tears. I experienced myself as a reliable source for wisdom and observed myself in the mirror of self-perception." :: *Sallomé Hralima (writer, filmmaker, mother, partner, friend)*
+* "What sets THE ÅLÏEN SCÖÕL and Creative Steeping apart is its emphasis on self-discovery and sustained growth. Kamau’s guidance is invaluable, and the process empowers you to take charge of your journey. The only thing standing between you and your next big idea is the courage to do the deep work." :: *Lisa Heinsdale (Creative Synthesizer)*
+* "Your guidance and support have had a profound impact on me, and I find myself reflecting on our conversations frequently. These insights continue to inspire me day to day as I orient myself towards growth, development, and love." :: *Anonymous ÅLÏEN (Leader in Transition)*
+* "The notion that 'what sets you apart does not set you apart from others….' is so beautifully said. Creative Steeping most certainly does guide folks to the 'heart of being'. This is really well written and easy to follow. Bravo to you!" :: *Sylvia Baffour (Emotional Intelligence Expert)*
 
 ---
 

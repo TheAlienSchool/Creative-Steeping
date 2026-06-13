@@ -40,7 +40,7 @@ export const VESSELS = [
         num: "02",
         name: "The Mechanism of Alertness",
         invocation: "The world outside,\nA universe within the cup,\nBoth worlds are yours.",
-        body: "There is a particular quality of attention that arrives when the cup is still and the room has quieted. Something in the body slows without being asked. Tea has been inducing this state for millennia — through L-theanine, a compound that broadens your alpha waves and activates the Default Mode Network: the brain's reflective, associative mode. The mode where insight arrives sideways. Steeping functions as a practice of applied patience. It acts as the conscious choice to create a container for contemplation, allowing time to introduce you to new flavors of awareness.",
+        body: "There is a particular quality of attention that arrives when the cup is still and the room has quieted. Something in the body slows without being asked. Tea has been inducing this state for millennia :: through L-theanine, a compound that broadens your alpha waves and activates the Default Mode Network: the brain's reflective, associative mode. The mode where insight arrives sideways. Steeping functions as a practice of applied patience. It acts as the conscious choice to create a container for contemplation, allowing time to introduce you to new flavors of awareness.",
         reflection: [
             "Where in your day could you create a small container for quiet contemplation?",
             "What is one mundane activity that you could approach with a new sense of curiosity?"
@@ -135,7 +135,7 @@ export const VESSELS = [
         num: "08",
         name: "About the Author",
         invocation: "The cup held full,\nPoured into the world it shapes,\nThe author signs here.",
-        body: "You arrived as a visitor. You leave as the author. Every vessel you entered, every reflection you sat with, every interaction you completed — that is the work. The practice extends beyond this portal. It carries a signature now. This steep asks you to place it.",
+        body: "You arrived as a visitor. You leave as the author. Every vessel you entered, every reflection you sat with, every interaction you completed :: that is the work. The practice extends beyond this portal. It carries a signature now. This steep asks you to place it.",
         reflection: [
             "What is the most significant insight you have gained?",
             "How has your understanding of yourself shifted?"

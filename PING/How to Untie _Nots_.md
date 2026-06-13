@@ -4,7 +4,7 @@
 
 When we write about the future, we often find ourselves entangled in the past. We define what we are building by describing what we are dismantling. We state our purpose by naming what we refuse to be.
 
-This entanglement shows up in language as a knot—specifically, the family of *nots, don'ts, won'ts, can'ts,* and *isn'ts*.
+This entanglement shows up in language as a knot :: specifically, the family of *nots, don'ts, won'ts, can'ts,* and *isn'ts*.
 
 These words are knots because they bind the reader’s attention to the very structures you are trying to leave behind. A knot requires the reader to hold the old shape in their mind before they can imagine the new one. In a potentialized present, this deconstruction is unnecessary labor. The new architecture renders the old architecture obsolete by its mere existence.
 

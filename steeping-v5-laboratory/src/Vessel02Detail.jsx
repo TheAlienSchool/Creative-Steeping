@@ -214,10 +214,10 @@ export function Vessel02Detail({ modeString, playStrikingBowl, playHarmonicChord
             {/* 5. KzA VOICE PARAGRAPH (Authored by KzA) */}
             <div style={{ marginTop: 'var(--space-xxl)', textAlign: 'center', maxWidth: '700px', margin: 'var(--space-xxl) auto 0 auto' }}>
                 <div style={{ fontFamily: 'var(--fSerif)', fontStyle: 'italic', fontSize: '1.4rem', color: m.text1, lineHeight: 1.8 }}>
-                    "<b>I taught my self to steep</b> because my behavior was moving faster than my clarity. I was making decisions based on <b>unconscious desires for emotional safety</b>. I learned to understand that I can only offer this kind of safety to my self. Contemplating <b>the patience of awakening</b> to my flavor — <b>the transference of my essence</b> and the practice of <b>steeping in union</b> — changed the way I see tea, and uplifted the way I see me."
+                    "<b>I taught my self to steep</b> because my behavior was moving faster than my clarity. I was making decisions based on <b>unconscious desires for emotional safety</b>. I learned to understand that I can only offer this kind of safety to my self. Contemplating <b>the patience of awakening</b> to my flavor :: <b>the transference of my essence</b> and the practice of <b>steeping in union</b> :: changed the way I see tea, and uplifted the way I see me."
                 </div>
                 <div style={{ fontFamily: 'var(--fMono)', color: m.accent, opacity: 0.8, fontSize: '0.8rem', letterSpacing: '0.15em', marginTop: 'var(--space-md)' }}>
-                    — KAMAU ZUBERI AKABUEZE
+                    :: KAMAU ZUBERI AKABUEZE
                 </div>
             </div>
 

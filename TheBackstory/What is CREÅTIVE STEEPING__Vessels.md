@@ -109,7 +109,7 @@ Find their form in warmth.
 
 Coherence is the state of being whole and undivided. It is the alignment of your inner world with your outer actions. In the practice of CREÅTIVE STEEPING, coherence is not a goal to be achieved, but a natural state to be revealed.  
 When you feel scattered, fragmented, or out of sync, it is a signal. It is an invitation to return to the cup. The simple ritual of preparing and drinking tea acts as a harmonizing force. It gathers the disparate parts of your awareness and brings them into a single, focused point of presence.  
-Each steeping session is an opportunity to practice coherence. As you watch the tea leaves unfurl in the hot water, you are witnessing a process of integration. The leaf, the water—becomes a new, unified essence. This is a mirror for your own inner process. The practice of steeping allows your thoughts, feelings, and bodily sensations to merge into a coherent stream of awareness.  
+Each steeping session is an opportunity to practice coherence. As you watch the tea leaves unfurl in the hot water, you are witnessing a process of integration. The leaf, the water :: becomes a new, unified essence. This is a mirror for your own inner process. The practice of steeping allows your thoughts, feelings, and bodily sensations to merge into a coherent stream of awareness.  
 This is the physics of boundary breaking. You are learning to deconstruct the internal barriers that create a sense of fragmentation, not through force, but through the gentle, persistent application of mindful attention.
 
 ## **\[ REFLECTION \]**

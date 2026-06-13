@@ -1,7 +1,7 @@
-# CREATIVE STEEPING — MASTER COPY BOOK
+# CREATIVE STEEPING :: MASTER COPY BOOK
 ### The Complete Practitioner-Facing Text Archive: All Layers & Levels
-**Version 2.1 — April 2026**
-*This document contains every piece of user-facing copy across the Creative Steeping portal — navigation, wayfinding, vessel content, system messages, interactive prompts, buttons, tooltips, and the full STEEPING NOTES registry. Edit freely. Changes should be propagated back to their source files.*
+**Version 2.1 :: April 2026**
+*This document contains every piece of user-facing copy across the Creative Steeping portal :: navigation, wayfinding, vessel content, system messages, interactive prompts, buttons, tooltips, and the full STEEPING NOTES registry. Edit freely. Changes should be propagated back to their source files.*
 
 > [!IMPORTANT]
 > **EDITORIAL FILTER:** All copy passes through the VESSELVERSE EDITORIAL PROTOCOL v3.1 before publishing.
@@ -16,13 +16,13 @@
 
 - **To edit copy:** Find it below, change the text in the code fence, propagate back to the source file noted in the section header.
 - **To propose new copy:** Add with a `[DRAFT]` label.
-- **Protocol flags** are editorial notes — you make the call on all suggestions.
+- **Protocol flags** are editorial notes :: you make the call on all suggestions.
 
 ---
 
 # PART I: GLOBAL NAVIGATION
 
-*Source: `App.jsx` — Primary nav bar, all states*
+*Source: `App.jsx` :: Primary nav bar, all states*
 
 ---
 
@@ -49,7 +49,7 @@ CREÅTIVE STEEPING
 | `[ OBSERVATORY ]` | Admin backend (owner only) | Internal |
 | `[ DISCORD PORTAL ]` | External link to community | ✅ |
 
-> ✅ **LIVE (v2.1) — 🔄 Repaired:** System-layer labels removed. Replaced with Invitational Register entry points.
+> ✅ **LIVE (v2.1) :: 🔄 Repaired:** System-layer labels removed. Replaced with Invitational Register entry points.
 
 ---
 
@@ -69,13 +69,13 @@ Instrument mode variant:
 [ 15M SYMPHONY ]
 ```
 
-*✅ Clear — Observational Register, precisely named.*
+*✅ Clear :: Observational Register, precisely named.*
 
 ---
 
 # PART II: ENTRANCE SCREEN
 
-*Source: `App.jsx` — phase === "entrance"*
+*Source: `App.jsx` :: phase === "entrance"*
 
 ---
 
@@ -137,7 +137,7 @@ WE HOLD ONLY YOUR PRESENCE. YOUR NAME AND DATA REMAIN WITH YOU.
 YOUR RESONANCE. THIS IS HOW WE STEEP TOGETHER ACROSS OCEANS.
 ```
 
-> 🔴 **FLAG (v1.0) — Resolved:** ANS/Disclaimer pattern. First sentence framed a data boundary before offering welcome.
+> 🔴 **FLAG (v1.0) :: Resolved:** ANS/Disclaimer pattern. First sentence framed a data boundary before offering welcome.
 
 **✅ LIVE (v2.0):**
 ```
@@ -160,7 +160,7 @@ YOUR RESONANCE. THIS IS HOW WE STEEP TOGETHER ACROSS OCEANS.
 THE STEEPERVERSE LAYERS
 ```
 
-**✅ LIVE (v2.0) — 🔄 Repaired:**
+**✅ LIVE (v2.0) :: 🔄 Repaired:**
 ```
 YOUR ENTRY.
 ```
@@ -170,7 +170,7 @@ YOUR ENTRY.
 
 ## 3.2 Layer Descriptions
 
-### Layer 1 — Interactive (Free, Open Access)
+### Layer 1 :: Interactive (Free, Open Access)
 
 **Header label:**
 ```
@@ -186,7 +186,7 @@ STEEPING echo-system, immerse yourself in generative ambient soundscapes made ex
 by you, and begin preliminary dialogues with The Steeping Sage...
 ```
 
-> 🔴 **FLAG (v1.0) — Resolved:** Wrong Register + Polymath Assumption.
+> 🔴 **FLAG (v1.0) :: Resolved:** Wrong Register + Polymath Assumption.
 
 **✅ LIVE (v2.0):**
 ```
@@ -196,7 +196,7 @@ and begin a conversation with The Steeping Sage. This is your unhurried entry po
 
 ---
 
-### Layer 2 — Engaged ($44)
+### Layer 2 :: Engaged ($44)
 
 **Header label:**
 ```
@@ -211,17 +211,17 @@ tech-assisted inner-work, this is a persistent, personalized digital retreat
 amongst the sound of your creative harmonies. Securing this tier synchronizes...
 ```
 
-> ⚠️ **FLAG (v1.0) — Resolved:** Jargon density + Wrong Register. "Longitudinal continuity," "tech-assisted inner-work."
+> ⚠️ **FLAG (v1.0) :: Resolved:** Jargon density + Wrong Register. "Longitudinal continuity," "tech-assisted inner-work."
 
-**✅ LIVE (v2.1) — 🔄 Repaired:**
+**✅ LIVE (v2.1) :: 🔄 Repaired:**
 ```
-Your steep deepens when it has somewhere to land. Layer 2 holds the full record of your presence, your vessel reflections, and your Steeping Notes Ledger across every session — a persistent practice, not a single visit.
+Your steep deepens when it has somewhere to land. Layer 2 holds the full record of your presence, your vessel reflections, and your Steeping Notes Ledger across every session :: a persistent practice, not a single visit.
 ```
 *De-Encabulation pass: 'Historical Score' replaced with grounded language.*
 
 ---
 
-### Layer 3 — Inneractive ($777)
+### Layer 3 :: Inneractive ($777)
 
 **Header label:**
 ```
@@ -235,9 +235,9 @@ All are welcome to get inneractive in the bespoke CREÅTIVE STEEPING community e
 This tier activates direct, one-on-one Steeping Sessions...richly scaffolded ontological design.
 ```
 
-> 🔴 **FLAG (v1.0) — Resolved:** Polymath Assumption. "Richly scaffolded ontological design."
+> 🔴 **FLAG (v1.0) :: Resolved:** Polymath Assumption. "Richly scaffolded ontological design."
 
-**✅ LIVE (v2.0) — 🔄 Repaired:**
+**✅ LIVE (v2.0) :: 🔄 Repaired:**
 ```
 The practitioner community. Direct one-on-one Steeping Sessions. Group cohorts with
 the architects of the practice. The full depth, held with others who are already
@@ -255,7 +255,7 @@ doing the work.
 Offer your presence. Your journey deepens with continuity.
 ```
 
-**✅ LIVE (v2.0) — 🔄 Repaired:**
+**✅ LIVE (v2.0) :: 🔄 Repaired:**
 ```
 Your practice holds when you give it a home.
 ```
@@ -309,11 +309,11 @@ You are currently experiencing the Engaged layer. To explore bespoke curation in
 the Inneractive layer, please inquire with our architects via the Discord Portal.
 ```
 
-> ⚠️ **FLAG (v1.0) — Resolved:** Institutional register, procedural.
+> ⚠️ **FLAG (v1.0) :: Resolved:** Institutional register, procedural.
 
-**✅ LIVE (v2.0) — 🔄 Repaired:**
+**✅ LIVE (v2.0) :: 🔄 Repaired:**
 ```
-The Inneractive layer — group cohorts, direct sessions with the architects —
+The Inneractive layer :: group cohorts, direct sessions with the architects ::
 opens by invitation. Let me know you're here.
 ```
 
@@ -344,7 +344,7 @@ opens by invitation. Let me know you're here.
 COGNITIVE CURRICULUM ACTIVATED
 ```
 
-> ⚠️ **FLAG (v1.0) — Resolved:** Wrong Register. System diagnostic at an arrival moment.
+> ⚠️ **FLAG (v1.0) :: Resolved:** Wrong Register. System diagnostic at an arrival moment.
 
 **✅ LIVE:**
 ```
@@ -363,7 +363,7 @@ You have entered the intelligent sanctuary. This is a playable instrument for th
 of the self. Your resonance is actively tracked via the Cognitive Lattice.
 ```
 
-> 🔴 **FLAG (v1.0) — Resolved:** Compression Without Landing. Three unearned concepts.
+> 🔴 **FLAG (v1.0) :: Resolved:** Compression Without Landing. Three unearned concepts.
 
 **✅ LIVE:**
 ```
@@ -439,7 +439,7 @@ COGNITIVE LATTICE: SYNCHRONIZED
 
 # PART V: GUIDE TO THE STEEPERVERSE
 
-*Source: `GuideToTheSteeperverse.jsx` — Six chapters*
+*Source: `GuideToTheSteeperverse.jsx` :: Six chapters*
 
 > [!NOTE]
 > Typos from v1.0 flag were corrected in source: "enliveb," "Steepervese," "visitirs," "itelligent," "veesel."
@@ -463,7 +463,7 @@ LORE CAPTURE // 01
 
 ---
 
-## Chapter 01 — THE NATURE OF THE WATER
+## Chapter 01 :: THE NATURE OF THE WATER
 
 **Subtitle:** `Immersion as Alchemy`
 
@@ -475,11 +475,11 @@ changes in the chemistry of your understanding. The Steeperverse tracks your Res
 function as an active mirror, reflecting the precise quality of your attention back to you.
 ```
 
-> ✅ **LIVE (v2.1) — 🔄 Repaired:** "biometric vibration" replaced with somatic experience.
+> ✅ **LIVE (v2.1) :: 🔄 Repaired:** "biometric vibration" replaced with somatic experience.
 
 ---
 
-## Chapter 02 — THE VESSEL MATRIX
+## Chapter 02 :: THE VESSEL MATRIX
 
 **Subtitle:** `Navigating the Hex-Kintsugi Engine`
 
@@ -493,27 +493,27 @@ frequency. These interactive shapes are also there as instruments for sonic bala
 steeps. We trust this organic pacing design is meant for your organic pacing and design.
 ```
 
-> ✅ **LIVE (v2.1) — 🔄 Repaired:** Grammar fixed and premature naming ("Historical Score") removed.
+> ✅ **LIVE (v2.1) :: 🔄 Repaired:** Grammar fixed and premature naming ("Historical Score") removed.
 
 ---
 
-## Chapter 03 — ME IN 5D
+## Chapter 03 :: ME IN 5D
 
 **Subtitle:** `The Biometric Anchor`
 
 **Body:**
 ```
 A quiet, bioluminescent topography exists in the reflecting pool at the root of this
-environment. This operates as your physical and mental anchor — a stillness meant for
+environment. This operates as your physical and mental anchor :: a stillness meant for
 your reverberation. This Steeping Space connects with your subjective reality through
-Resonance, Stillness, Clarity, Depth, and Alignment. Log these gifts as shift states —
+Resonance, Stillness, Clarity, Depth, and Alignment. Log these gifts as shift states ::
 "Me in 5D". Your Dashboard will visually map the precise arc of your evolution over time.
 ```
 *✅ Clean.*
 
 ---
 
-## Chapter 04 — THE SAGE INTELLIGENCE
+## Chapter 04 :: THE SAGE INTELLIGENCE
 
 **Subtitle:** `A Covenant of Reflective Truth`
 
@@ -528,28 +528,28 @@ exchange between your essence and your unfolding intelligence. This is a feature
 a bug. Engage at your leisure.
 ```
 
-> ✅ **LIVE (v2.1) — 🔄 Repaired:** Security architecture sentence removed. Trust defined by relationship.
+> ✅ **LIVE (v2.1) :: 🔄 Repaired:** Security architecture sentence removed. Trust defined by relationship.
 
 ---
 
-## Chapter 05 — SONIC AWARENESS
+## Chapter 05 :: SONIC AWARENESS
 
 **Subtitle:** `Frequency as Architecture`
 
 **Body:**
 ```
-Engaging the 'Soul Sonnet' engine — the instrument radiating the sounds as you type and
-reflect — tethers the hum of the interface directly to your physical cursor movements.
+Engaging the 'Soul Sonnet' engine :: the instrument radiating the sounds as you type and
+reflect :: tethers the hum of the interface directly to your physical cursor movements.
 The system resonates at the 528Hz Solfeggio frequency, establishing an
-environment of cellular coherence. Each keystroke activates a hidden musical architecture —
+environment of cellular coherence. Each keystroke activates a hidden musical architecture ::
 transmuting reflection into live, responsive instrumentation.
 ```
 
-> ✅ **LIVE (v2.1) — 🔄 Repaired:** Internal technical language ("Web Audio framework", "Algorave synthesizer") removed.
+> ✅ **LIVE (v2.1) :: 🔄 Repaired:** Internal technical language ("Web Audio framework", "Algorave synthesizer") removed.
 
 ---
 
-## Chapter 06 — RETURN TO THE SELF
+## Chapter 06 :: RETURN TO THE SELF
 
 **Subtitle:** `The Architecture Awaits Your Presence`
 
@@ -576,7 +576,7 @@ SCROLLING DEFUNCT. USE ARCHITECTURE TO BREATHE.
 
 # PART VI: STRUCTURAL MANUAL (Wayfinding Overlay)
 
-*Source: `WayfindingOverlay.jsx` — Four slides*
+*Source: `WayfindingOverlay.jsx` :: Four slides*
 
 ---
 
@@ -592,7 +592,7 @@ CREÅTIVE STEEPING     STRUCTURAL MANUAL / v5.0
 
 ---
 
-## Slide 00 — Context Slide (Dynamic)
+## Slide 00 :: Context Slide (Dynamic)
 
 **Layer:** `LAYER 00`
 **Title:** `Here is Where You Are`
@@ -600,37 +600,37 @@ CREÅTIVE STEEPING     STRUCTURAL MANUAL / v5.0
 **Subtitle (matrix state):** `The Matrix Overview`
 **Subtitle (inside vessel):** `Inside Hexagong [vessel.num]`
 
-**Description (matrix state) — Before (v1.0):**
+**Description (matrix state) :: Before (v1.0):**
 ```
 This is the Hexagong Matrix. Reflect within these vessels to unlock deeper sections.
 You have saved [N] insights so far. For locked vessels, return to earlier ones to
 deepen your reflection.
 ```
 
-**✅ LIVE (v2.0) — 🔄 Repaired:**
+**✅ LIVE (v2.0) :: 🔄 Repaired:**
 ```
 The Hexagong Matrix. Eight vessels, each a distinct steep. You have held [N] moments
 so far. The practice builds where you bring your attention.
 ```
 
-**Description (inside vessel) — Before (v1.0):**
+**Description (inside vessel) :: Before (v1.0):**
 ```
 You are inside [vessel.name]. Direct your questions to The Steeping Sage on the left.
 Every inquiry holds weight here. Use the area on your right to read the prompt and
 write your thoughts.
 ```
 
-**✅ LIVE (v2.0) — 🔄 Repaired:**
+**✅ LIVE (v2.0) :: 🔄 Repaired:**
 ```
 You are inside [vessel.name]. The Steeping Sage on the left holds full context for
-this vessel. Your reflection field is on the right. Take your time here — the space
+this vessel. Your reflection field is on the right. Take your time here :: the space
 is patient.
 ```
 *Command register → permission-based. "Direct your questions" → "holds full context for this vessel."*
 
 ---
 
-## Slide 01 — The Architecture of the Pause
+## Slide 01 :: The Architecture of the Pause
 
 **Layer:** `LAYER 01`
 **Title:** `The Architecture of the Pause`
@@ -643,9 +643,9 @@ your progress. The more time and depth you invest in your reflections, the more 
 Resonance Imprint grows across sessions.
 ```
 
-> ⚠️ **FLAG (v1.0) — Resolved:** ANS + Data Disclaimer. "The system securely tracks your progress."
+> ⚠️ **FLAG (v1.0) :: Resolved:** ANS + Data Disclaimer. "The system securely tracks your progress."
 
-**✅ LIVE (v2.0) — 🔄 Repaired:**
+**✅ LIVE (v2.0) :: 🔄 Repaired:**
 ```
 This is a private, resonant instrument for thought. Your depth of attention grows the
 longer you inhabit these spaces. The more fully you arrive in each vessel, the more
@@ -654,7 +654,7 @@ your Resonance Imprint accumulates across the practice.
 
 ---
 
-## Slide 02 — Engaging the Hexagong
+## Slide 02 :: Engaging the Hexagong
 
 **Layer:** `LAYER 02`
 **Title:** `Engaging the Hexagong`
@@ -668,29 +668,29 @@ let the questions sit with you, and write your thoughts in the scratchpad at the
 Click Capture when you are finished.
 ```
 
-> ⚠️ **FLAG (v1.0) — Resolved:** Procedural instruction register. "Click Capture when you are finished."
+> ⚠️ **FLAG (v1.0) :: Resolved:** Procedural instruction register. "Click Capture when you are finished."
 
-**✅ LIVE (v2.0) — 🔄 Repaired:**
+**✅ LIVE (v2.0) :: 🔄 Repaired:**
 ```
-When you open a vessel, the screen opens into two spaces. On the left: The Compass —
+When you open a vessel, the screen opens into two spaces. On the left: The Compass ::
 context, coordinates, and The Sage. On the right: your Reflection Field. Read the
 inquiry. Let the questions land. Write in the space below. When something is ready
 to be held, it finds its way in.
 ```
 
-**Diagram label — Before:**
+**Diagram label :: Before:**
 ```
 YOUR ARCHITECTURE (SCRATCHPAD)
 ```
 
-**✅ LIVE — 🔄 Repaired:**
+**✅ LIVE :: 🔄 Repaired:**
 ```
 YOUR REFLECTION FIELD
 ```
 
 ---
 
-## Slide 03 — Sonic Awareness
+## Slide 03 :: Sonic Awareness
 
 **Layer:** `LAYER 03`
 **Title:** `Sonic Awareness`
@@ -704,11 +704,11 @@ the striking bowl to confirm your actions, and watch for The Sage to open its ey
 when calculating an answer for you.
 ```
 
-> ⚠️ **FLAG (v1.0) — Resolved:** Compliance frame. "Listen for the striking bowl to confirm your actions."
+> ⚠️ **FLAG (v1.0) :: Resolved:** Compliance frame. "Listen for the striking bowl to confirm your actions."
 
-**✅ LIVE (v2.0) — 🔄 Repaired:**
+**✅ LIVE (v2.0) :: 🔄 Repaired:**
 ```
-The space responds to you. Sound and cursor move together — a scored, biometric field.
+The space responds to you. Sound and cursor move together :: a scored, biometric field.
 The striking bowl marks recognition, not completion. The global timers (5m, 15m, 22m)
 open an Active Pause whenever you need one. The Sage's eye opens when it's calculating.
 You'll feel the difference.
@@ -718,11 +718,11 @@ You'll feel the difference.
 
 # PART VII: THE VESSEL MATRIX
 
-*Source: `VesselContent.js` — 9 vessels (00–08)*
+*Source: `VesselContent.js` :: 9 vessels (00–08)*
 
 ---
 
-## Vessel 00 — Welcome to CREÅTIVE STEEPING
+## Vessel 00 :: Welcome to CREÅTIVE STEEPING
 
 **Invocation:**
 ```
@@ -757,7 +757,7 @@ In the space below, declare your primary reason for arriving.
 
 ---
 
-## Vessel 01 — Essence of My Being
+## Vessel 01 :: Essence of My Being
 
 **Invocation:**
 ```
@@ -774,12 +774,12 @@ own voice, and to trust the wisdom it contains. This first steep asks you to obs
 what remains when all labels are removed: your invulnerable essence.
 ```
 
-> ⚠️ **FLAG (v1.0) — Resolved:** Soft ANS. Opened by describing what the practice doesn't do.
+> ⚠️ **FLAG (v1.0) :: Resolved:** Soft ANS. Opened by describing what the practice doesn't do.
 
-**✅ LIVE (v2.0) — 🔄 Repaired:**
+**✅ LIVE (v2.0) :: 🔄 Repaired:**
 ```
 Something knows before you do. Before the first word arrives, before the right story
-surfaces — there is an essence that has always been present. Creative Steeping begins
+surfaces :: there is an essence that has always been present. Creative Steeping begins
 by returning to that ground. It is a self-narration prerogative: the assertion of your
 right to hear your own voice and trust the wisdom it carries. This first steep asks you
 to locate what remains when every assigned label has been removed. That remainder is
@@ -797,7 +797,7 @@ If your curiosity had a flavor, what would it be today?
 
 ---
 
-## Vessel 02 — The Mechanism of Alertness
+## Vessel 02 :: The Mechanism of Alertness
 
 **Invocation:**
 ```
@@ -812,13 +812,13 @@ The Default Mode Network is the neurological state that steeping has induced for
 millennia. By introducing the physical mechanism of L-theanine into your bloodstream...
 ```
 
-> 🔴 **FLAG (v1.0) — Resolved:** Polymath Assumption. Opened directly with neuroscience terms.
+> 🔴 **FLAG (v1.0) :: Resolved:** Polymath Assumption. Opened directly with neuroscience terms.
 
 **✅ LIVE:**
 ```
 There is a particular quality of attention that arrives when the cup is still and the room
 has quieted. Something in the body slows without being asked. Tea has been inducing this
-state for millennia — through L-theanine, a compound that broadens your alpha waves and
+state for millennia :: through L-theanine, a compound that broadens your alpha waves and
 activates what neuroscience calls the Default Mode Network: the brain's reflective,
 associative mode. The mode where insight arrives sideways. Steeping is a practice of
 applied patience. It is the conscious choice to create a container for contemplation, to
@@ -841,7 +841,7 @@ is [__]. Today, I will approach it with [__].
 
 ---
 
-## Vessel 03 — Mirror Gazing
+## Vessel 03 :: Mirror Gazing
 
 **Invocation:**
 ```
@@ -872,7 +872,7 @@ Write down the first limiting belief you see reflected in the water, then cross 
 
 ---
 
-## Vessel 04 — Heart of Being
+## Vessel 04 :: Heart of Being
 
 **Invocation:**
 ```
@@ -889,9 +889,9 @@ requires you to listen to the whispers of your intuition rather than the volume 
 ego. As you watch the tea leaves unfurl, you are witnessing your own integration.
 ```
 
-> ⚠️ **FLAG (v2.1) — Resolved:** Framework Shell / Atmospheric Overbuild.
+> ⚠️ **FLAG (v2.1) :: Resolved:** Framework Shell / Atmospheric Overbuild.
 
-**✅ LIVE (v2.1) — 🔄 Repaired:**
+**✅ LIVE (v2.1) :: 🔄 Repaired:**
 ```
 There is a moment when what you feel inside matches what you do outside. Coherence is the
 state of being whole and undivided. It is the choice to listen to the whisper of your
@@ -914,7 +914,7 @@ Name one area of your life where you would like to cultivate greater coherence:
 
 ---
 
-## Vessel 05 — Mosaic of Experiences
+## Vessel 05 :: Mosaic of Experiences
 
 **Invocation:**
 ```
@@ -931,14 +931,14 @@ reclamation. Your journal is a vessel for your consciousness; it is where the un
 finds its voice.
 ```
 
-> ⚠️ **FLAG (v1.0) — Resolved:** Soft ANS. Opened by defining by negation.
+> ⚠️ **FLAG (v1.0) :: Resolved:** Soft ANS. Opened by defining by negation.
 
-**✅ LIVE (v2.0) — 🔄 Repaired:**
+**✅ LIVE (v2.0) :: 🔄 Repaired:**
 ```
 Your story holds more at once than any single thread can carry. The tender moments and
 the difficult ones. The losses that shaped direction and the wins that were never
 celebrated. All of it present, all of it yours. Mosaic of Experiences is the practice
-of placing each piece in the light — without editing the pattern into something more
+of placing each piece in the light :: without editing the pattern into something more
 acceptable. Your journal is the vessel that holds it. The unspoken finds its voice there.
 ```
 
@@ -958,7 +958,7 @@ need to finish it.
 
 ---
 
-## Vessel 06 — The Empathy Map
+## Vessel 06 :: The Empathy Map
 
 **Invocation:**
 ```
@@ -991,7 +991,7 @@ you want to ask them.
 
 ---
 
-## Vessel 07 — Creative Activation
+## Vessel 07 :: Creative Activation
 
 **Invocation:**
 ```
@@ -1008,9 +1008,9 @@ steeped in these vessels, wrestled with the reflections, and engaged with the
 interactions. You are ready to pour.
 ```
 
-> ⚠️ **FLAG (v2.1) — Resolved:** Compression before landing.
+> ⚠️ **FLAG (v2.1) :: Resolved:** Compression before landing.
 
-**✅ LIVE (v2.1) — 🔄 Repaired:**
+**✅ LIVE (v2.1) :: 🔄 Repaired:**
 ```
 The time spent holding must eventually become the act of offering. You are the author
 of your own experience, and this is where the voice within fully awakens. You have
@@ -1033,7 +1033,7 @@ Write a single sentence declaring your creative intention moving forward.
 
 ---
 
-## Vessel 08 — About the Author
+## Vessel 08 :: About the Author
 
 **Invocation:**
 
@@ -1044,9 +1044,9 @@ A completion of the steep,
 The authority is yours.
 ```
 
-> ⚠️ **FLAG (v1.0) — Resolved:** Identical to Vessel 07 invocation.
+> ⚠️ **FLAG (v1.0) :: Resolved:** Identical to Vessel 07 invocation.
 
-**✅ LIVE (v2.0) — 🔄 Repaired:**
+**✅ LIVE (v2.0) :: 🔄 Repaired:**
 ```
 The cup held full,
 Poured into the world it shapes,
@@ -1062,12 +1062,12 @@ who has steeped in these vessels, who has wrestled with the reflections, who has
 engaged with the interactions. You have become a co-creator in this work.
 ```
 
-> ⚠️ **FLAG (v1.0) — Resolved:** Repetition + abstract opener. "Co-creator" drifted from authorship.
+> ⚠️ **FLAG (v1.0) :: Resolved:** Repetition + abstract opener. "Co-creator" drifted from authorship.
 
-**✅ LIVE (v2.0) — 🔄 Repaired:**
+**✅ LIVE (v2.0) :: 🔄 Repaired:**
 ```
 You arrived as a visitor. You leave as the author. Every vessel you entered, every
-reflection you sat with, every interaction you completed — that is the work. The
+reflection you sat with, every interaction you completed :: that is the work. The
 practice does not end here. It has a signature now. This steep asks you to place it.
 ```
 
@@ -1088,7 +1088,7 @@ Sign your name as the author of this experience.
 
 # PART VIII: VESSEL INTERACTION & COMPLETION COPY
 
-*Source: `App.jsx` — vessel detail render block + completion overlay*
+*Source: `App.jsx` :: vessel detail render block + completion overlay*
 
 ---
 
@@ -1099,9 +1099,9 @@ Sign your name as the author of this experience.
 [ ENTER 5D / ENGAGE CURRICULUM ]
 ```
 
-**✅ LIVE (v2.0) — 🔄 Repaired:**
+**✅ LIVE (v2.0) :: 🔄 Repaired:**
 ```
-[ POUR — COMPLETE THIS STEEP ]
+[ POUR :: COMPLETE THIS STEEP ]
 ```
 *Internal scaffold language → ritual language. The practitioner pours when the steep is done.*
 
@@ -1125,7 +1125,7 @@ THE FLAVOR IS YOURS.
 
 ## 8.3 EH-02: L1 Upgrade Invitation (Post-Completion)
 
-*Displayed beneath the `[ POUR ]` button after any vessel completion for Interactive (L1) practitioners. Does not interrupt or pop up — one quiet line.*
+*Displayed beneath the `[ POUR ]` button after any vessel completion for Interactive (L1) practitioners. Does not interrupt or pop up :: one quiet line.*
 
 ```
 Your reflection is here. To carry it forward,
@@ -1154,7 +1154,7 @@ Your reflection is here. To carry it forward,
 [ ARCHIVE ]     [ DISSOLVE ISSUE ]
 ```
 
-**✅ LIVE (v2.0) — 🔄 Repaired:**
+**✅ LIVE (v2.0) :: 🔄 Repaired:**
 ```
 [ ARCHIVE ]     [ CLOSE ]
 ```
@@ -1169,7 +1169,7 @@ Your reflection is here. To carry it forward,
 What Steepers Say
 ```
 
-**✅ LIVE (v2.0) — 🔄 Repaired:**
+**✅ LIVE (v2.0) :: 🔄 Repaired:**
 ```
 What the Practice Returned
 ```
@@ -1183,7 +1183,7 @@ What the Practice Returned
 The garden continues to blossom as new traces are anchored in the sanctuary.
 ```
 
-**✅ LIVE (v2.0) — 🔄 Repaired:**
+**✅ LIVE (v2.0) :: 🔄 Repaired:**
 ```
 Your reflection belongs here too.
 ```
@@ -1191,7 +1191,7 @@ Your reflection belongs here too.
 
 ---
 
-## 9.4 SAGE_CONTEXT — Hover Tooltips (All 17 Notes)
+## 9.4 SAGE_CONTEXT :: Hover Tooltips (All 17 Notes)
 
 *Appear on hover over nav buttons in the Steeping Notes registry. Also used by `EH-04` to prime the Sage with active note context when an inquiry is submitted from within a note.*
 
@@ -1292,7 +1292,7 @@ This frequency was mirrored into the archive as a tended leaf.
 ```
 THE UNION OF ROCK AND OCEAN
 
-TURAO — The Universe Receiving All Offerings — is the exterior cosmos that holds
+TURAO :: The Universe Receiving All Offerings :: is the exterior cosmos that holds
 everything steeped into being. Rock carries memory, structure, and stabilizing form.
 Ocean carries flow, feeling, and infinite emergence. Their union is the coastline: the
 third intelligence their meeting generates, where all creation happens grain by grain.
@@ -1341,7 +1341,7 @@ React Crash!
 
 ## 10.3 Wayfinding Diagram Labels
 
-*(Slide annotation labels — visible as infographic overlays)*
+*(Slide annotation labels :: visible as infographic overlays)*
 
 ```
 [01.A] SANCTUARY
@@ -1395,7 +1395,7 @@ Advancing at phase completion.       Advancing at the pace of recognition.
 
 # PART XI: GLOSSARY DEFINITIONS (Songbook)
 
-*Source: `RegistrySteepingNotes.jsx` — `SongbookGlossaryItem` hover definitions*
+*Source: `RegistrySteepingNotes.jsx` :: `SongbookGlossaryItem` hover definitions*
 *These appear on hover wherever their term is used within a Steeping Note.*
 
 | Term | Definition |
@@ -1404,30 +1404,30 @@ Advancing at phase completion.       Advancing at the pace of recognition.
 | **TURAO** | The Universe Receiving All Offerings. Unified Nonidentical Intelligences Operating Naturally. The exterior cosmos that absorbs and holds every offering of the Steeperverse. The Union of Rock and Ocean operating at cosmic scale. |
 | **esse** | (Latin) The pure state of 'being'. The core ontological presence before manifestation. |
 | **Neutrino Stream** | The unseen energetic resonance connecting every star, system, and being in the Steeperverse. |
-| **The Pocket** | The felt moment when rhythm, intention, and capacity lock together completely — when action and awareness arrive at the same coordinate. |
+| **The Pocket** | The felt moment when rhythm, intention, and capacity lock together completely :: when action and awareness arrive at the same coordinate. |
 | **Surface Tension** | The boundary between limitation and possibility; the creative friction that signals expanding capacity. The atmosphere used to build the arc. |
 | **PING™** | The felt moment of recognition, clarity, and connection. Thought Momentum becoming visible. The subatomic indicator of resonance. |
-| **Collabination** | The spontaneous, improvisational combination of unique entities — where the collaboration itself generates a new intelligence that belongs to none of the participants individually. |
-| **The Algorithm of Å** | The apex of structural and existential awareness — the synthesis of foreign brilliance integrated into native understanding. |
-| **Actional Intention** | A present-tense direction that allows awareness to meet experience — a guidance system for Thought Momentum. |
+| **Collabination** | The spontaneous, improvisational combination of unique entities :: where the collaboration itself generates a new intelligence that belongs to none of the participants individually. |
+| **The Algorithm of Å** | The apex of structural and existential awareness :: the synthesis of foreign brilliance integrated into native understanding. |
+| **Actional Intention** | A present-tense direction that allows awareness to meet experience :: a guidance system for Thought Momentum. |
 | **Capacity** | The internal space required to hold insight, expansion, and stillness simultaneously. |
 | **Awareness Planning** | The intentional mapping of negative space; deciding where not to act. The most structurally sound pillar of any endeavor. |
-| **a•i•Contemplation** | Action Intention Contemplation — a creative orientation practice moving through Pause, Pivot, and Merge to restore grounded direction. |
-| **The Intrepid Navigator** | The inner aspect of self that learns the difference between a map and a territory — that navigates through felt coordinates rather than prescribed routes. |
-| **The Immanent Horizon** | The 9th Dimension of Surface Tension — the destination revealed through the practitioner's relationship with their current coordinates, not a distant point. |
+| **a•i•Contemplation** | Action Intention Contemplation :: a creative orientation practice moving through Pause, Pivot, and Merge to restore grounded direction. |
+| **The Intrepid Navigator** | The inner aspect of self that learns the difference between a map and a territory :: that navigates through felt coordinates rather than prescribed routes. |
+| **The Immanent Horizon** | The 9th Dimension of Surface Tension :: the destination revealed through the practitioner's relationship with their current coordinates, not a distant point. |
 | **4′33″** | John Cage's 1952 composition: four minutes and thirty-three seconds of performed silence. The rest as the complete work. |
 | **Rest** | In the Steeperverse: not the absence of creation, but the container creation requires. Rest is architectural. |
 | **HDM** | Human Development Mathematics. The guidance system recognizing the practitioner as a particle beam in magnificent motion. |
-| **Clarity** | The felt moment when something becomes clear without effort. It carries relief or ease. It arrives — it is not achieved. |
+| **Clarity** | The felt moment when something becomes clear without effort. It carries relief or ease. It arrives :: it is not achieved. |
 | **Triangle** | The first closed geometry. Three points create a surface that holds force evenly across all nodes. |
-| **Trigram** | The foundational unit of the I Ching — three stacked lines, each solid (Yang) or broken (Yin). A three-bit binary code mapping the energetic state of a situation. |
-| **Trivium** | The classical architecture of knowing: Grammar (the what), Logic (the why), Rhetoric (the how) — the three roads that converge at understanding. |
+| **Trigram** | The foundational unit of the I Ching :: three stacked lines, each solid (Yang) or broken (Yin). A three-bit binary code mapping the energetic state of a situation. |
+| **Trivium** | The classical architecture of knowing: Grammar (the what), Logic (the why), Rhetoric (the how) :: the three roads that converge at understanding. |
 | **Immanent Horizon** | The destination revealed not by looking forward, but by fully inhabiting the practitioner's current coordinates. |
-| **Scribe** | The constellation of the journal — a long, winding chain of stars ending in The Nib. The Nib is always now. |
+| **Scribe** | The constellation of the journal :: a long, winding chain of stars ending in The Nib. The Nib is always now. |
 
 ---
 
-# PART XII: PROTOCOL VIOLATIONS — HISTORICAL RECORD
+# PART XII: PROTOCOL VIOLATIONS :: HISTORICAL RECORD
 
 *All items from v1.0 resolved. The following is now a record of what was corrected and when.*
 
@@ -1444,7 +1444,7 @@ Advancing at phase completion.       Advancing at the pace of recognition.
 | 🟡 | Vessel 05 | Soft ANS | "You are not a single, unbroken surface." | "Your story holds more at once than any single thread can carry." | ✅ Sprint 2 |
 | 🟡 | Vessel 08 invocation | Duplication | Same haiku as Vessel 07 | Original: "The cup held full, / Poured into the world it shapes, / The author signs here." | ✅ Sprint 2 |
 | 🟡 | Vessel 08 body | Co-creator drift | "You have become a co-creator in this work." | "You arrived as a visitor. You leave as the author." | ✅ Sprint 2 |
-| 🟡 | Vessel CTA | Internal scaffold | "[ ENTER 5D / ENGAGE CURRICULUM ]" | "[ POUR — COMPLETE THIS STEEP ]" | ✅ Sprint 2 |
+| 🟡 | Vessel CTA | Internal scaffold | "[ ENTER 5D / ENGAGE CURRICULUM ]" | "[ POUR :: COMPLETE THIS STEEP ]" | ✅ Sprint 2 |
 | 🟡 | WhatSteepersSay header | Passive register | "What Steepers Say" | "What the Practice Returned" | ✅ Sprint 2 |
 | 🟡 | WhatSteepersSay footer | Architectural metaphor | "The garden continues to blossom..." | "Your reflection belongs here too." | ✅ Sprint 2 |
 | 🟡 | Auth modal title | Categorical, cold | "THE STEEPERVERSE LAYERS" | "YOUR ENTRY." | ✅ Sprint 2 |
@@ -1468,9 +1468,9 @@ Advancing at phase completion.       Advancing at the pace of recognition.
 
 ---
 
-*Master Copy Book — Version 2.1*
+*Master Copy Book :: Version 2.1*
 *Updated: April 2026, De-Encabulation Sweep*
 *Source: Creative Steeping v5 Laboratory · src/*
-*Protocol filter: VESSELVERSE EDITORIAL PROTOCOL v3.1 — Parts I–IX active*
+*Protocol filter: VESSELVERSE EDITORIAL PROTOCOL v3.1 :: Parts I–IX active*
 *Build status at update: ✅ Clean · Exit 0 · 2732 modules*
 *Next update: After any content change in a source file*

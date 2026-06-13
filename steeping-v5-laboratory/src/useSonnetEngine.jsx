@@ -43,7 +43,7 @@ const PENTATONIC_SCALE_176 = [
     528.00  // P5 Miracle Hz directly included
 ];
 
-// SONIC WAYFINDING — steep-specific harmonic signatures.
+// SONIC WAYFINDING :: steep-specific harmonic signatures.
 // Each steep modulates the striking bowl's timbre, decay, and pitch offset.
 // The sonic palette shifts as the visitor's wayfinding position changes.
 const STEEP_SONIC_SIGNATURES = {
@@ -80,7 +80,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
     // Oracle Booth Melodic Sequence Tracker
     const synthIndexRef = useRef(0);
 
-    // Sage Essayist Composer — LFO refs for live ambient modulation
+    // Sage Essayist Composer :: LFO refs for live ambient modulation
     const lfoRef = useRef(null);
     const lfoGainRef = useRef(null);
     const ampLfoRef = useRef(null);
@@ -200,7 +200,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         filter.frequency.value = 400;
         filter.Q.value = 1.0; // Lower resonance, softer edges
 
-        // Sine oscillator is now silent — replaced by natural soundscape
+        // Sine oscillator is now silent :: replaced by natural soundscape
         gain.gain.value = 0;
 
         // THE QUIET STORM: Somatic Heartbeat/Breath Amplitude LFO
@@ -255,7 +255,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         frictionFilterRef.current = frictionFilter;
         frictionGainRef.current = frictionGain;
 
-        // OCEAN EDGE LAYER — brown noise shaped to simulate breaking waves
+        // OCEAN EDGE LAYER :: brown noise shaped to simulate breaking waves
         const oceanSource = ctx.createBufferSource();
         const oceanBufSize = ctx.sampleRate * 4;
         const oceanBuf = ctx.createBuffer(1, oceanBufSize, ctx.sampleRate);
@@ -273,7 +273,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         oceanFilter.type = 'bandpass';
         oceanFilter.frequency.value = 320;
         oceanFilter.Q.value = 0.7;
-        // Slow swell LFO — 0.1 Hz ≈ 10-second wave cycle
+        // Slow swell LFO :: 0.1 Hz ≈ 10-second wave cycle
         const waveLFO = ctx.createOscillator();
         waveLFO.type = 'sine';
         waveLFO.frequency.value = 0.1;
@@ -292,7 +292,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         oceanGainRef.current = oceanGain;
         oceanFilterRef.current = oceanFilter;
 
-        // GENTLE WIND LAYER — pink noise approximation for a soft coastal breeze
+        // GENTLE WIND LAYER :: pink noise approximation for a soft coastal breeze
         const windSource = ctx.createBufferSource();
         const windBufSize = ctx.sampleRate * 3;
         const windBuf = ctx.createBuffer(1, windBufSize, ctx.sampleRate);
@@ -315,7 +315,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         windFilter.type = 'bandpass';
         windFilter.frequency.value = 1200;
         windFilter.Q.value = 1.0;
-        // Slow gust LFO — 0.06 Hz ≈ 16-second gust cycle
+        // Slow gust LFO :: 0.06 Hz ≈ 16-second gust cycle
         const gustLFO = ctx.createOscillator();
         gustLFO.type = 'sine';
         gustLFO.frequency.value = 0.06;
@@ -380,19 +380,19 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
             windPannerRef.current.pan.setTargetAtTime(panTarget * 0.65, audioCtxRef.current.currentTime, 1.2);
         }
 
-        // 2. Y-Axis: Wind intensity — higher cursor = stronger wind aloft
+        // 2. Y-Axis: Wind intensity :: higher cursor = stronger wind aloft
         if (windGainRef.current && isAmbientActiveRef.current) {
             const windIntensity = 0.025 + ((1 - normY) * 0.045);
             windGainRef.current.gain.setTargetAtTime(windIntensity, audioCtxRef.current.currentTime, 1.5);
         }
 
-        // 3. Ocean gain — cursor lower on screen = closer to the shore
+        // 3. Ocean gain :: cursor lower on screen = closer to the shore
         if (oceanGainRef.current && isAmbientActiveRef.current) {
             const oceanIntensity = 0.03 + (normY * 0.035);
             oceanGainRef.current.gain.setTargetAtTime(oceanIntensity, audioCtxRef.current.currentTime, 2.5);
         }
 
-        // Sine oscillator is replaced by the soundscape — keep gain at 0
+        // Sine oscillator is replaced by the soundscape :: keep gain at 0
         ambientGainRef.current.gain.setTargetAtTime(0, audioCtxRef.current.currentTime, 0.5);
 
     }, []);
@@ -416,7 +416,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
     // Performant Serenity Voice Limiter
     const lastStrikeTimeRef = useRef(0);
 
-    // Play a harmonic "bell" for keystrokes — modulated by Sonic Wayfinding
+    // Play a harmonic "bell" for keystrokes :: modulated by Sonic Wayfinding
     const playStrikingBowl = useCallback((keyCode) => {
         if (!audioCtxRef.current) return;
         const ctx = audioCtxRef.current;
@@ -444,12 +444,12 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         filter.type = 'lowpass';
         filter.frequency.value = freq * sig.filterMult;
 
-        // Envelope — decay stretches/contracts with the steep's character
+        // Envelope :: decay stretches/contracts with the steep's character
         gain.gain.setValueAtTime(0, ctx.currentTime);
         gain.gain.linearRampToValueAtTime(0.15, ctx.currentTime + 0.02);
         gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + sig.decay);
 
-        // Stereo width shaped by steep — Mirror is narrow, Mosaic is wide
+        // Stereo width shaped by steep :: Mirror is narrow, Mosaic is wide
         panner.pan.value = (Math.random() * sig.panWidth * 2) - sig.panWidth;
 
         osc.connect(filter);
@@ -916,7 +916,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
     const setAmbientActive = useCallback((isActive) => {
         isAmbientActiveRef.current = isActive;
         if (!audioCtxRef.current) return;
-        // Sine oscillator stays silent — natural soundscape takes over
+        // Sine oscillator stays silent :: natural soundscape takes over
         if (ambientGainRef.current) {
             ambientGainRef.current.gain.setTargetAtTime(0, audioCtxRef.current.currentTime, 0.5);
         }
@@ -1009,7 +1009,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
     }, []);
 
     // Brief musical accent when the Essayist crosses a flow phase threshold.
-    // Each phase has its own gestural signature — like punctuation in the sonic field.
+    // Each phase has its own gestural signature :: like punctuation in the sonic field.
     const playEssayistTransition = useCallback((phase) => {
         if (!audioCtxRef.current) return;
         const ctx = audioCtxRef.current;
@@ -1017,7 +1017,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         const t = ctx.currentTime;
 
         if (phase === 'opening') {
-            // Two-note ascending gesture — "a door has opened"
+            // Two-note ascending gesture :: "a door has opened"
             [0, 2].forEach((step, i) => {
                 const osc = ctx.createOscillator();
                 const gain = ctx.createGain();
@@ -1034,7 +1034,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
                 osc.start(start); osc.stop(start + 4.0);
             });
         } else if (phase === 'current') {
-            // Three-note ascending phrase — "the current is found"
+            // Three-note ascending phrase :: "the current is found"
             [0, 2, 4].forEach((step, i) => {
                 const osc = ctx.createOscillator();
                 const gain = ctx.createGain();
@@ -1052,7 +1052,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
                 osc.start(start); osc.stop(start + 3.0);
             });
         } else if (phase === 'depth') {
-            // Single sub-octave tone — "dropping into still water"
+            // Single sub-octave tone :: "dropping into still water"
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
             osc.type = 'sine';
@@ -1065,7 +1065,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
             if (reverbNodeRef.current) gain.connect(reverbNodeRef.current);
             osc.start(t); osc.stop(t + 9.0);
         } else if (phase === 'crystallizing') {
-            // Descending → resolving two-step gesture — "form finding its final shape"
+            // Descending → resolving two-step gesture :: "form finding its final shape"
             [4, 2, 3].forEach((step, i) => {
                 const osc = ctx.createOscillator();
                 const gain = ctx.createGain();

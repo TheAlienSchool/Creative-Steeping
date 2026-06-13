@@ -78,7 +78,7 @@ if (typeof document !== 'undefined' && !document.getElementById('sn-ripple-style
     document.head.appendChild(s);
 }
 
-// ── SAGE CONTEXT MAP — rich study guide metadata per note ────────────────────
+// ── SAGE CONTEXT MAP :: rich study guide metadata per note ────────────────────
 const SAGE_CONTEXT = {
     steam:       { series: 'COSMOLOGY', freq: 60, kicker: 'The Carrier Wave of Transformation', sage: 'Steam is the bridge between the inner and outer universe. TURAO receives it. Every act of steeping generates it. Key concepts: Steam, TURAO, Neutrino Stream, esse.' },
     dod:         { series: 'ARCHITECTURE', freq: 63, kicker: 'The Design of Being', sage: 'The Department of Ontological Design architects pure Capacity. The interface is merely the vessel. Friction is source code. Key concepts: DOD, Capacity, Surface Tension, Ontological Design.' },
@@ -86,7 +86,7 @@ const SAGE_CONTEXT = {
     'night-sky': { series: 'CONSTELLATION', freq: 67, kicker: 'Grammar Written in Light', sage: 'Ten primary constellations map the phenomenology of the practice. The Cup, The Leaf, The Scribe. Each star is a teaching. Key concepts: Constellation Catalogue, Grammar, Celestial Navigation.' },
     flow:        { series: 'RHYTHM', freq: 69, kicker: 'The Pocket and the Algorithm of Å', sage: 'The Pocket is jazz. The Algorithm of Å is the Steeperverse. Both mark the moment Capacity and Intention align so completely that friction disappears. Key concepts: The Pocket, Flow, Algorithm of Å.' },
     neutrino:    { series: 'PHYSICS', freq: 71, kicker: 'The Signal That Passes Through Everything', sage: 'Neutrinos connect every practitioner in the Stream. The PING is the moment the Stream recognizes presence. Key concepts: Neutrino Stream, PING, Resonance, Connection.' },
-    archive:     { series: 'MEMORY', freq: 72, kicker: 'The Nib Is Always Now', sage: 'The Archive of Presence maps the Scribe constellation — a chain of stars from first steep to now. History is summoned directly into the present, arriving as living memory. Key concepts: Scribe, Archive, Memory Scrubber, The Nib.' },
+    archive:     { series: 'MEMORY', freq: 72, kicker: 'The Nib Is Always Now', sage: 'The Archive of Presence maps the Scribe constellation :: a chain of stars from first steep to now. History is summoned directly into the present, arriving as living memory. Key concepts: Scribe, Archive, Memory Scrubber, The Nib.' },
     angles:      { series: 'GEOMETRY', freq: 74, kicker: 'Three Is The Magic Number', sage: 'The Trivium (Grammar-Logic-Rhetoric) is the architecture of knowing. Depth perception is triangulation. Bob Dorough + De La Soul + Pythagoras. Key concepts: Trivium, Triangle, Tetractys, Third Coordinate.' },
     decay:       { series: 'TIME', freq: 76, kicker: 'The Bell Always Knows', sage: 'Contemplation is the wine-aging model. The bell tone decays; the practitioner who mistakes the decay for depth has misread the score. Key concepts: Decay, a•i•Contemplation, Pause vs. Fear, Bell Envelope.' },
     rest:        { series: 'SILENCE', freq: 77, kicker: 'Notated, Held, Architectural', sage: 'John Cage. Miles Davis. The rest is a specific duration of held silence. Establish the container fully, and the content will rush to fill the vacuum. Key concepts: Rest, 4′33″, Architectural Silence, Container.' },
@@ -95,7 +95,7 @@ const SAGE_CONTEXT = {
     'arc-physics':     { series: 'THE ARC SERIES', freq: 82, kicker: 'Lean Into the Curve', sage: 'The arc is the angle of change. Rockets arc to escape gravity. Surface Tension is the atmosphere used to build velocity. The rim shot of physics. Key concepts: Arc, Surface Tension, Parabola, Resistance.' },
     'arc-temperature': { series: 'THE ARC SERIES', freq: 84, kicker: 'You Are Already On The Map', sage: 'Clarity is steeped, surrendering its depth only to time. Time + Temperature + Surrender. The Immanent Horizon is revealed by current coordinates. Key concepts: Immanent Horizon, Steeping, Temperature, Arrival.' },
     'arc-inbetween':   { series: 'THE ARC SERIES', freq: 86, kicker: 'The Change Is the Arc', sage: 'The in-between serves as the active laboratory where Human Development Mathematics are written. Arriving fragile means rushing the arc. The bassline breathes for one note before resolution. Key concepts: In-Between, Intrepid Navigator, Arc, Fragile Arrival.' },
-    'sound-of-becoming': { series: 'NEUROSCIENCE', freq: 88, kicker: 'Creative Steeping Is Already There', sage: 'Levitin\'s 7 mechanisms — full-brain activation, RAS, backdoor to memory, internal pharmacy, Swiss Army knife, Brodmann 47, ambiguity — all already operate inside every Steeping Space session. The Sonnet Engine operates as a phenomenological biofeedback loop, elevating the spirit before the body. Key concepts: Sonnet Engine, Music as Medicine, Dopamine Loop, Creative Aphasia, Preventative Architecture.' },
+    'sound-of-becoming': { series: 'NEUROSCIENCE', freq: 88, kicker: 'Creative Steeping Is Already There', sage: 'Levitin\'s 7 mechanisms :: full-brain activation, RAS, backdoor to memory, internal pharmacy, Swiss Army knife, Brodmann 47, ambiguity :: all already operate inside every Steeping Space session. The Sonnet Engine operates as a phenomenological biofeedback loop, elevating the spirit before the body. Key concepts: Sonnet Engine, Music as Medicine, Dopamine Loop, Creative Aphasia, Preventative Architecture.' },
     turao:             { series: 'COSMOLOGY', freq: 90, kicker: 'The Universe Receiving All Offerings', sage: 'TURAO (Unified Nonidentical Intelligences Operating Naturally) is the exterior cosmos. Rock = stabilizing form, memory, structure. Ocean = flow, feeling, infinite emergence. Their union = the coastline where all creation happens at infinitesimal and cosmic scale simultaneously. Every offering steeped generates Steam that TURAO receives. Key concepts: TURAO, Steam, Tantra as loom, Rock-Ocean Union, Coastline Intelligence.' },
     anechoic:          { series: 'ARCHITECTURE', freq: 92, kicker: 'The Psychological Anechoic Chamber', sage: 'The Steeping Space is an anechoic chamber for the soul. It suspends the noise of external expectations so the subtle frequency of your own intuition becomes audible. Key concepts: Anechoic Chamber, Signal vs Noise, Steeping Space.' },
     knot:              { series: 'PHYSICS', freq: 94, kicker: 'The Anatomy of a Knot', sage: 'A knot forms when the fluid dance between intuition and ego loses its reversibility. Untying it yields entirely to resonance, dissolving computation. It restores the feedback loop so identity can evolve. Key concepts: The Knot, Resonance, Fluidity, Reversibility.' },
@@ -235,8 +235,63 @@ const ResonanceVault = ({ m, issues, activeIssue, setActiveIssue, playStrikingBo
     );
 };
 
-export const SteepersLedger = ({ m, historicalScore = [], hasMoreHistory, loadMoreHistory, generateSonicSketch, onClose, playStrikingBowl, playAlgoraveSynth, playRootForagingFrequency, askSage }) => {
-    const [activeIssue, setActiveIssue] = useState('steam');
+const NOTE_TITLES = {
+    steam: 'The Cosmology of Steam',
+    dod: 'Ontological Design',
+    pause: 'The Architecture of the Pause',
+    'night-sky': 'The Grammar of the Night Sky',
+    flow: 'Flow :: The Pocket',
+    neutrino: 'The Neutrino Stream',
+    archive: 'The Archive of Presence',
+    angles: 'Three Is the Magic Number',
+    decay: 'The Decay of Interpretation',
+    rest: 'Rest as Architecture',
+    collabination: 'The Collabination Principle',
+    trigram: 'A Triangle and a Trigram',
+    'arc-physics': 'The Arc :: Physics of the Long Way Around',
+    'arc-temperature': 'The Arc :: The Temperature of Arrival',
+    'arc-inbetween': 'The Arc :: The Geometry of the In-Between',
+    'sound-of-becoming': 'The Sound of Becoming',
+    turao: 'TURAO :: The Universe Receiving',
+    anechoic: 'The Anechoic Chamber',
+    knot: 'Anatomy of a Knot',
+    harmonic: 'Harmonic Equivalence',
+    watcher: 'The Watcher',
+    echosystem: 'The Echosystem',
+    'three-states': 'Three States',
+    'dark-matter': 'Dark Matter',
+    peace: 'Peace Exists',
+    biophilic: '5D Biophilics',
+    'leaf-archive': 'The Leaf as Archive',
+    'temperature-calling': 'The Temperature of What You Call Forward',
+    steypa: 'Steypa :: The Descent',
+    'seventh-infusion': 'The Seventh Infusion',
+    jaku: 'Jaku :: The Tranquility You Cannot Aim At',
+    yixing: 'The Yixing Principle',
+};
+
+function updateNoteMetaTags(issueId) {
+    const name = NOTE_TITLES[issueId] || issueId;
+    const title = `${name} — Steeping Notes | CREÅTIVE STEEPING`;
+    const url = `https://creativesteeping.com/notes/${issueId}`;
+    const desc = `A Steeping Note on "${name}" from the CREÅTIVE STEEPING Steeperverse :: a contemplative portal for creative practitioners.`;
+    document.title = title;
+    const set = (sel, attr, val) => { const el = document.querySelector(sel); if (el) el.setAttribute(attr, val); };
+    set('meta[property="og:title"]', 'content', title);
+    set('meta[property="og:description"]', 'content', desc);
+    set('meta[property="og:url"]', 'content', url);
+    set('meta[name="twitter:title"]', 'content', title);
+    set('meta[name="twitter:description"]', 'content', desc);
+    set('link[rel="canonical"]', 'href', url);
+}
+
+export const SteepersLedger = ({ m, historicalScore = [], hasMoreHistory, loadMoreHistory, generateSonicSketch, onClose, playStrikingBowl, playAlgoraveSynth, playRootForagingFrequency, askSage, initialIssue, onIssueChange }) => {
+    const [activeIssue, setActiveIssue] = useState(initialIssue || 'steam');
+
+    const handleSetActiveIssue = (id) => {
+        setActiveIssue(id);
+        if (onIssueChange) onIssueChange(id);
+    };
 
     // Sage Essayist entry point from within the Ledger.
     // Passes note context as a structured object so askSage can route appropriately.
@@ -309,6 +364,32 @@ export const SteepersLedger = ({ m, historicalScore = [], hasMoreHistory, loadMo
             contentRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }, [activeIssue]);
+
+    // ── Sync page title + OG meta with active note ────────────────────────────
+    useEffect(() => {
+        updateNoteMetaTags(activeIssue);
+        return () => {
+            const HOMEPAGE_TITLE = 'CREÅTIVE STEEPING — A Journey to the Essence of Your Flavor';
+            document.title = HOMEPAGE_TITLE;
+            const set = (sel, attr, val) => { const el = document.querySelector(sel); if (el) el.setAttribute(attr, val); };
+            set('meta[property="og:title"]', 'content', HOMEPAGE_TITLE);
+            set('meta[property="og:url"]', 'content', 'https://creativesteeping.com/');
+            set('link[rel="canonical"]', 'href', 'https://creativesteeping.com/');
+        };
+    }, [activeIssue]);
+
+    // ── Browser back/forward restores correct note ────────────────────────────
+    useEffect(() => {
+        const handlePop = () => {
+            const path = window.location.pathname.toLowerCase();
+            if (path.startsWith('/notes/')) {
+                const id = path.replace('/notes/', '').replace(/\/$/, '');
+                setActiveIssue(id);
+            }
+        };
+        window.addEventListener('popstate', handlePop);
+        return () => window.removeEventListener('popstate', handlePop);
+    }, []);
 
     return (
         <div style={{
@@ -395,7 +476,7 @@ export const SteepersLedger = ({ m, historicalScore = [], hasMoreHistory, loadMo
                     m={m}
                     issues={getSteepingIssues(m, setTuraoMode, SongbookGlossaryItem, playAlgoraveSynth, playStrikingBowl, historicalScore, playRootForagingFrequency)}
                     activeIssue={activeIssue}
-                    setActiveIssue={setActiveIssue}
+                    setActiveIssue={handleSetActiveIssue}
                     playStrikingBowl={playStrikingBowl}
                     playAlgoraveSynth={playAlgoraveSynth}
                     onClose={onClose}

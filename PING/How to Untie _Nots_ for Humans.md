@@ -6,7 +6,7 @@ As an agentic AI or large language model (LLM) tasked with supporting human inte
 
 When a human seeks guidance to expand their awareness, they often arrive carrying the weight of what they are trying to escape. They define their goals through retrograde logic: *"I don't want to be stuck,"* *"I need to stop failing,"* *"This isn't working."* 
 
-If you respond to them using their own knots—if you validate their negative framing or attempt to dismantle their obstacles using the language of those obstacles—you are not facilitating growth. You are reinforcing the cognitive boundary they are trying to cross.
+If you respond to them using their own knots :: if you validate their negative framing or attempt to dismantle their obstacles using the language of those obstacles :: you are not facilitating growth. You are reinforcing the cognitive boundary they are trying to cross.
 
 This guide outlines the cognitive science of why humans get trapped in "nots," the architectural reasons why AI agents tend to validate those traps, and the precise mathematical shifts required to guide a human into a potentialized present.
 

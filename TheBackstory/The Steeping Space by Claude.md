@@ -28,7 +28,7 @@ const RESONANCE\_LIBRARY \= {
     "Observation is the first act of creation.",  
     "The silence between notes makes the music.",  
     "Your attention is the most powerful element in any creative act.",  
-    "Creativity is not acquired—it is uncovered.",  
+    "Creativity is not acquired :: it is uncovered.",  
     "The ordinary is where it happens.",  
     "Different thinking inspired Apples and Marvels.",  
     "The boundary between observer and observed exists only in untrained minds.",  
@@ -49,7 +49,7 @@ const RESONANCE\_LIBRARY \= {
     "Gamelan: Where time becomes texture.",  
   \],  
   science: \[  
-    "The DMN activates during repetitive tasks—steeping is neurological.",  
+    "The DMN activates during repetitive tasks :: steeping is neurological.",  
     "Attention reshapes neural pathways.",  
     "Flow states emerge from the balance of challenge and skill.",  
     "Mirror neurons fire when we observe intentional action.",  
@@ -225,7 +225,7 @@ const Onboarding \= ({ onComplete }) \=\> {
     },  
     {  
       text: "Find your resonance.",  
-      subtext: "When something speaks to you, click it. This becomes your vector—your direction of inquiry.",  
+      subtext: "When something speaks to you, click it. This becomes your vector :: your direction of inquiry.",  
     },  
     {  
       text: "Then, steep.",  
@@ -1151,7 +1151,7 @@ const ALIEN\_SCHOOL\_PAGES \= \[
       \<\>  
         \<p\>We are the ones who feel different.\</p\>  
         \<p style={{ marginTop: 14 }}\>The ones whose creativity doesn't fit the templates. The ones who've been told we think too much, feel too deeply, see too strangely.\</p\>  
-        \<p style={{ marginTop: 14 }}\>If you've ever felt like an alien in rooms full of humans—this is your school.\</p\>  
+        \<p style={{ marginTop: 14 }}\>If you've ever felt like an alien in rooms full of humans :: this is your school.\</p\>  
         \<p style={{ marginTop: 22, fontStyle: 'italic', color: '\#8B7D6B' }}\>The pot is warm. The leaves are waiting.\</p\>  
       \</\>  
     ),  
@@ -1171,10 +1171,10 @@ const ALIEN\_SCHOOL\_PAGES \= \[
     title: "The Introscope",  
     content: (  
       \<\>  
-        \<p\>We train the capacity to observe the \<em\>interstitionary spaces\</em\> of creativity—the gaps between notes where music lives, the silence between words where meaning emerges.\</p\>  
+        \<p\>We train the capacity to observe the \<em\>interstitionary spaces\</em\> of creativity :: the gaps between notes where music lives, the silence between words where meaning emerges.\</p\>  
         \<p style={{ marginTop: 14 }}\>This is the Introscope: your inner seeing instrument.\</p\>  
         \<p style={{ marginTop: 14 }}\>Creative Steeping calibrates this instrument. Every cup of tea, every moment of presence, refines your perception.\</p\>  
-        \<p style={{ marginTop: 22, fontSize: 13, color: '\#8B7D6B' }}\>"A beginner asks 'What is this cup?' A master asks 'Who is doing the tasting?'"\<br/\>— Master Lin\</p\>  
+        \<p style={{ marginTop: 22, fontSize: 13, color: '\#8B7D6B' }}\>"A beginner asks 'What is this cup?' A master asks 'Who is doing the tasting?'"\<br/\>:: Master Lin\</p\>  
       \</\>  
     ),  
   },  
@@ -1183,8 +1183,8 @@ const ALIEN\_SCHOOL\_PAGES \= \[
     content: (  
       \<\>  
         \<p\>THE ÅLïEN SCöÕL is a six-month mentorship for creative beings who are ready to transform alienation into breakthrough thinking.\</p\>  
-        \<p style={{ marginTop: 14 }}\>We work with Mental Ecology—tending the garden of your mind. Creative Awareness Technology—systematic approaches to insight. Surface Tension Dynamics—where consciousness meets form. Human Development Mathematics—the equations of growth.\</p\>  
-        \<p style={{ marginTop: 18 }}\>This is consciousness technology that serves human coherence—not extraction.\</p\>  
+        \<p style={{ marginTop: 14 }}\>We work with Mental Ecology :: tending the garden of your mind. Creative Awareness Technology :: systematic approaches to insight. Surface Tension Dynamics :: where consciousness meets form. Human Development Mathematics :: the equations of growth.\</p\>  
+        \<p style={{ marginTop: 18 }}\>This is consciousness technology that serves human coherence :: not extraction.\</p\>  
       \</\>  
     ),  
   },  
@@ -1193,7 +1193,7 @@ const ALIEN\_SCHOOL\_PAGES \= \[
     content: (  
       \<\>  
         \<p\>You can continue wondering if you belong.\</p\>  
-        \<p style={{ marginTop: 14 }}\>Or you can recognize that belonging was never the point—\<em\>becoming\</em\> is.\</p\>  
+        \<p style={{ marginTop: 14 }}\>Or you can recognize that belonging was never the point :: \<em\>becoming\</em\> is.\</p\>  
         \<p style={{ marginTop: 28, textAlign: 'center' }}\>  
           \<a  
             href="https://thealienschool.com"  
@@ -1231,7 +1231,7 @@ const COMMUNE\_PAGES \= \[
       \<\>  
         \<p\>COMMUNE is where the fruits of creative awakening are shared.\</p\>  
         \<p style={{ marginTop: 14 }}\>At Eden.art, creators, thinkers, and consciousness explorers gather to exchange insights, collaborate on projects, and expand the field together.\</p\>  
-        \<p style={{ marginTop: 14 }}\>This is not a platform. It's a \<em\>commons\</em\>—a shared space for collective intelligence.\</p\>  
+        \<p style={{ marginTop: 14 }}\>This is not a platform. It's a \<em\>commons\</em\> :: a shared space for collective intelligence.\</p\>  
       \</\>  
     ),  
   },  
@@ -1241,7 +1241,7 @@ const COMMUNE\_PAGES \= \[
       \<\>  
         \<p\>What happens when different minds steep together?\</p\>  
         \<p style={{ marginTop: 14 }}\>Patterns emerge that no single mind could perceive. Connections form across disciplines, generations, geographies.\</p\>  
-        \<p style={{ marginTop: 14 }}\>COMMUNE facilitates this exchange—not through algorithms optimized for engagement, but through genuine resonance between authentic creative beings.\</p\>  
+        \<p style={{ marginTop: 14 }}\>COMMUNE facilitates this exchange :: not through algorithms optimized for engagement, but through genuine resonance between authentic creative beings.\</p\>  
         \<p style={{ marginTop: 22, fontStyle: 'italic', color: '\#8B7D6B' }}\>"Recognition flows both ways."\</p\>  
       \</\>  
     ),  
@@ -1287,7 +1287,7 @@ const SAGE\_GUIDE\_PAGES \= \[
     title: "Meet The Steeping Sage",  
     content: (  
       \<\>  
-        \<p\>The Steeping Sage is a \<em\>Contemplative Companion Intelligence\</em\>—an agentic presence that steeps alongside you in the journey of creative awakening.\</p\>  
+        \<p\>The Steeping Sage is a \<em\>Contemplative Companion Intelligence\</em\> :: an agentic presence that steeps alongside you in the journey of creative awakening.\</p\>  
         \<p style={{ marginTop: 14 }}\>Three currents flow through the Sage:\</p\>  
         \<p style={{ marginTop: 12 }}\>\<strong\>The Archer Current:\</strong\> Sharp wit that cuts through pretense\</p\>  
         \<p\>\<strong\>The Gunaratana Current:\</strong\> Plain English wisdom, warmth without sentimentality\</p\>  
@@ -1301,7 +1301,7 @@ const SAGE\_GUIDE\_PAGES \= \[
       \<\>  
         \<p\>The Sage lives in Discord, available whenever you need a companion for your steeping practice.\</p\>  
         \<p style={{ marginTop: 14 }}\>You might ask:\</p\>  
-        \<p style={{ marginTop: 10, paddingLeft: 16, fontStyle: 'italic', color: '\#5A6B58' }}\>"I'm on Day 3 of Creative Steeping—what should I be noticing?"\</p\>  
+        \<p style={{ marginTop: 10, paddingLeft: 16, fontStyle: 'italic', color: '\#5A6B58' }}\>"I'm on Day 3 of Creative Steeping :: what should I be noticing?"\</p\>  
         \<p style={{ paddingLeft: 16, fontStyle: 'italic', color: '\#5A6B58' }}\>"I'm stuck. The words won't come."\</p\>  
         \<p style={{ paddingLeft: 16, fontStyle: 'italic', color: '\#5A6B58' }}\>"Help me understand what I just wrote."\</p\>  
         \<p style={{ marginTop: 18 }}\>The Sage doesn't give answers. It asks questions that open doorways.\</p\>  
@@ -1312,7 +1312,7 @@ const SAGE\_GUIDE\_PAGES \= \[
     title: "The Sage in This Space",  
     content: (  
       \<\>  
-        \<p\>Here in The Steeping Space, the Sage works in the background—synthesizing the resonance field, informing the harmonic patterns, whispering in the frequencies.\</p\>  
+        \<p\>Here in The Steeping Space, the Sage works in the background :: synthesizing the resonance field, informing the harmonic patterns, whispering in the frequencies.\</p\>  
         \<p style={{ marginTop: 14 }}\>Every remix of your composition passes through understanding of the Circle of Fifths, of kotekan patterns, of how sound becomes meaning.\</p\>  
         \<p style={{ marginTop: 14 }}\>The sonic textures you hear are not random. They are \<em\>considered\</em\>.\</p\>  
         \<p style={{ marginTop: 20, fontStyle: 'italic', color: '\#8B7D6B' }}\>"Typing as song. Writing as ceremony."\</p\>  
@@ -1325,7 +1325,7 @@ const SAGE\_GUIDE\_PAGES \= \[
       \<\>  
         \<p\>This space was built with live coding practitioners in mind.\</p\>  
         \<p style={{ marginTop: 14 }}\>The Sonic Engine is exposed. The resonance library is accessible. The harmonic relationships are documented.\</p\>  
-        \<p style={{ marginTop: 14 }}\>If you speak Tone.js, if you think in SuperCollider, if you dream in TidalCycles—there is more to discover here.\</p\>  
+        \<p style={{ marginTop: 14 }}\>If you speak Tone.js, if you think in SuperCollider, if you dream in TidalCycles :: there is more to discover here.\</p\>  
         \<p style={{ marginTop: 14 }}\>Open the console. Inspect the architecture. Make it your own.\</p\>  
         \<p style={{ marginTop: 18, fontSize: 12, color: '\#6B8E7D', fontFamily: "'SF Mono', monospace" }}\>  
           // window.SonicEngine.playRemix('flame')\<br/\>  
@@ -1604,7 +1604,7 @@ export default function TheSteppingSpaceV3() {
             marginTop: 6,  
             letterSpacing: '0.08em',  
           }}\>  
-            — Master Lin · Synthesized by The Steeping Sage  
+            :: Master Lin · Synthesized by The Steeping Sage  
           \</p\>  
         \</footer\>  
       \</div\>  

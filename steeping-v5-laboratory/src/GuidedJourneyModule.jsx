@@ -436,7 +436,7 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
                         </div>
                     </div>
 
-                    {/* Sage Essayist — vessel compass. The visitor is the Sage. */}
+                    {/* Sage Essayist :: vessel compass. The visitor is the Sage. */}
                     <div style={{
                         marginTop: 'var(--space-xxl)',
                         display: 'flex', flexDirection: 'column', alignItems: 'flex-start'
@@ -445,7 +445,7 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
                             [ sage essayist ]
                         </h3>
                         <p style={{ fontFamily: 'var(--fBody)', fontSize: '1rem', color: m.text2, lineHeight: 1.5, marginBottom: 'var(--space-md)', fontStyle: 'italic', opacity: 0.8 }}>
-                            What is moving in you as you work with this vessel? Write into it — the practice points forward.
+                            What is moving in you as you work with this vessel? Write into it :: the practice points forward.
                         </p>
                         
                         {(isThinking || sageResponse) && (

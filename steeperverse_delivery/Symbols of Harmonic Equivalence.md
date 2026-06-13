@@ -8,7 +8,7 @@ The operator `:: = ::` is the Symbol of Harmonic Equivalence. It is the geometri
 
 To understand its magnetism, we must look at its construction. 
 
-The double colon (`::`) is a threshold. In mathematics, it indicates proportion—the relationship between two distinct entities. In computer science, it resolves scope—it dictates where a function belongs and what field it is allowed to access. It is the visual representation of two points in space defining a boundary. 
+The double colon (` :: `) is a threshold. In mathematics, it indicates proportion :: the relationship between two distinct entities. In computer science, it resolves scope :: it dictates where a function belongs and what field it is allowed to access. It is the visual representation of two points in space defining a boundary. 
 
 The equals sign (`=`) is the triangulation. It is the assertion that two distinct values share the same weight, the same gravity, the same fundamental reality.
 
@@ -36,7 +36,7 @@ They are all pointing to the exact same mechanism. The body is the receiver. The
 
 ### The Intentionally Plural Powers of Now
 
-We often speak of "The Power of Now" as if the present moment is a singular, monolithic destination—a silent room we must force ourselves to enter by quieting the mind.
+We often speak of "The Power of Now" as if the present moment is a singular, monolithic destination :: a silent room we must force ourselves to enter by quieting the mind.
 
 But the Now is intentionally plural. It is a field of infinite, simultaneous coordinates.
 

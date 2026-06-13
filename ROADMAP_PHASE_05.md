@@ -52,7 +52,7 @@
 - Implementing physical Steeping Timers integrated with the Sonnet Engine, allowing the user to set actual tea-steeping intervals (3, 5, 22 minutes), holding space for them to dwell in a meditative threshold as they prepare to commune with the Sage.
 
 **4. The Export of the Soul**
-- The ability for the Steepee to "bottle" the Sage's response alongside their prompt, generating a stylized, printable text or a digital "Vessel Image" to save to their device—a modernization of the physical guidebook's journaling aspect.
+- The ability for the Steepee to "bottle" the Sage's response alongside their prompt, generating a stylized, printable text or a digital "Vessel Image" to save to their device :: a modernization of the physical guidebook's journaling aspect.
 
 ---
 

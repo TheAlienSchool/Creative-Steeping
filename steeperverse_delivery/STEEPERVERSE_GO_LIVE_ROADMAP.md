@@ -1,6 +1,6 @@
 # STEEPERVERSE GO-LIVE ROADMAP
-### From Laboratory to Live — A Step-by-Step Field Guide
-**April 2026 — Updated after Supabase Session completion**
+### From Laboratory to Live :: A Step-by-Step Field Guide
+**April 2026 :: Updated after Supabase Session completion**
 
 ---
 
@@ -16,30 +16,30 @@
 
 ---
 
-## ✅ SESSION 01: SUPABASE — COMPLETE
+## ✅ SESSION 01: SUPABASE :: COMPLETE
 
 Everything below has been confirmed done.
 
 - ✅ `access_tier` column added to `steeper_profiles` with correct values (`interactive`, `journeyer`, `cohort`, `single_steep`, `depth_semester`)
-- ✅ RLS enabled on `steeper_profiles` — own profile read + service role tier update
-- ✅ RLS enabled on `steeping_ledgers` — practitioners access their own rows only
-- ✅ Magic link email template updated — Invitational Register, your voice
-- ✅ Redirect URLs set — localhost for testing, live domain slot ready
-- ✅ Sessions page reviewed — free tier defaults confirmed correct, no changes needed
+- ✅ RLS enabled on `steeper_profiles` :: own profile read + service role tier update
+- ✅ RLS enabled on `steeping_ledgers` :: practitioners access their own rows only
+- ✅ Magic link email template updated :: Invitational Register, your voice
+- ✅ Redirect URLs set :: localhost for testing, live domain slot ready
+- ✅ Sessions page reviewed :: free tier defaults confirmed correct, no changes needed
 
 ---
 
-## ✅ SESSION 02: STRIPE — CREATING YOUR PRODUCTS (COMPLETE)
+## ✅ SESSION 02: STRIPE :: CREATING YOUR PRODUCTS (COMPLETE)
 
 You have successfully created the full product ecosystem in Stripe.
 
 **Your Canonical Price IDs:**
 ```
-Tier 1 — The Journeyer ($44/yr)      : price_1TQvWgFooCmmg6KQTbIEmCmi
-Tier 2 — Cohort Sessions ($777)      : price_1TSkRDFooCmmg6KQbiCjCFm1
-Tier 3a — Single Steep (1) ($222)    : price_1TSkgcFooCmmg6KQ8TzFYWKQ
-Tier 3b — Single Steeps (3) ($600)   : price_1TSkoiFooCmmg6KQg7vTIZaJ
-Tier 4 — The Depth Semester ($2,222) : price_1TSl1oFooCmmg6KQFOQIjcJC
+Tier 1 :: The Journeyer ($44/yr)      : price_1TQvWgFooCmmg6KQTbIEmCmi
+Tier 2 :: Cohort Sessions ($777)      : price_1TSkRDFooCmmg6KQbiCjCFm1
+Tier 3a :: Single Steep (1) ($222)    : price_1TSkgcFooCmmg6KQ8TzFYWKQ
+Tier 3b :: Single Steeps (3) ($600)   : price_1TSkoiFooCmmg6KQg7vTIZaJ
+Tier 4 :: The Depth Semester ($2,222) : price_1TSl1oFooCmmg6KQFOQIjcJC
 ```
 
 **Save your API Keys before moving on:**
@@ -52,16 +52,16 @@ Session 02 is complete.
 
 ---
 
-## ⬜ SESSION 03: EDGE FUNCTIONS — THE INVISIBLE INFRASTRUCTURE
+## ⬜ SESSION 03: EDGE FUNCTIONS :: THE INVISIBLE INFRASTRUCTURE
 
 ### What are Edge Functions?
 Edge Functions are small programs that run on Supabase's servers (not in your browser, not on Bluehost). They do two things:
 
-1. **`create-checkout-session`** — When a practitioner clicks a tier upgrade button, this function safely creates a Stripe payment page and sends them to it. It keeps your Stripe secret key on the server where no one can see it.
+1. **`create-checkout-session`** :: When a practitioner clicks a tier upgrade button, this function safely creates a Stripe payment page and sends them to it. It keeps your Stripe secret key on the server where no one can see it.
 
-2. **`stripe-webhook`** — After a practitioner pays, Stripe tells this function "payment succeeded," and the function updates their `access_tier` in your Supabase database to `engaged` or `inneractive`. This is what actually unlocks the features.
+2. **`stripe-webhook`** :: After a practitioner pays, Stripe tells this function "payment succeeded," and the function updates their `access_tier` in your Supabase database to `engaged` or `inneractive`. This is what actually unlocks the features.
 
-### What you need first — Supabase CLI
+### What you need first :: Supabase CLI
 The CLI is a command-line tool that lets you deploy these functions from your computer to Supabase. You install it once.
 
 **Open your PowerShell / Terminal and run:**
@@ -78,7 +78,7 @@ This will open a browser window asking you to authorize. Click **Authorize**. Yo
 
 ---
 
-### Step 3A — Create the Checkout Function
+### Step 3A :: Create the Checkout Function
 
 In your PowerShell, from inside the `steeping-v5-laboratory` folder, run:
 ```powershell
@@ -129,11 +129,11 @@ Deno.serve(async (req) => {
 ```
 
 > [!NOTE]
-> `Deno.env.get('STRIPE_SECRET_KEY')` means the function reads your secret key from a secure environment variable — you never paste the actual key into this file. You set the variable separately in Step 3C.
+> `Deno.env.get('STRIPE_SECRET_KEY')` means the function reads your secret key from a secure environment variable :: you never paste the actual key into this file. You set the variable separately in Step 3C.
 
 ---
 
-### Step 3B — Create the Webhook Function
+### Step 3B :: Create the Webhook Function
 
 Run:
 ```powershell
@@ -193,9 +193,9 @@ Deno.serve(async (req) => {
 
 ---
 
-### Step 3C — Store Your Secrets Securely
+### Step 3C :: Store Your Secrets Securely
 
-These are the secure environment variables the functions read. You set them once and they live on Supabase's servers — never in your code files.
+These are the secure environment variables the functions read. You set them once and they live on Supabase's servers :: never in your code files.
 
 Run this line in PowerShell to store your Stripe Secret Key. (You only need the secret key since the Price IDs are hardcoded in the functions):
 
@@ -204,11 +204,11 @@ npx supabase secrets set STRIPE_SECRET_KEY=sk_test_YOUR_KEY_HERE
 ```
 
 > [!NOTE]
-> `STRIPE_WEBHOOK_SECRET` gets set in Step 3E after you register the webhook in Stripe — you don't have that value yet.
+> `STRIPE_WEBHOOK_SECRET` gets set in Step 3E after you register the webhook in Stripe :: you don't have that value yet.
 
 ---
 
-### Step 3D — Deploy Both Functions to Supabase
+### Step 3D :: Deploy Both Functions to Supabase
 
 ```powershell
 npx supabase functions deploy create-checkout-session
@@ -223,7 +223,7 @@ Deployed Functions stripe-webhook (took Xs)
 
 ---
 
-### Step 3E — Register the Webhook in Stripe
+### Step 3E :: Register the Webhook in Stripe
 
 Now you need to tell Stripe where to send the "payment succeeded" notification.
 
@@ -242,7 +242,7 @@ Now you need to tell Stripe where to send the "payment succeeded" notification.
 
 5. Click **Add endpoint**
 
-6. On the webhook detail page, click **Reveal** next to **Signing secret**. Copy this value — it starts with `whsec_`.
+6. On the webhook detail page, click **Reveal** next to **Signing secret**. Copy this value :: it starts with `whsec_`.
 
 7. Run:
    ```powershell
@@ -273,11 +273,11 @@ I have successfully wired the Layer 2 and Layer 3 buttons in `AuthOverlay.jsx`. 
 
 > [!NOTE]
 > **Why not Vercel or Netlify?**
-> Since `thealienschool.com` already lives on Bluehost, the most seamless path is to deploy the Steeping Space as a subdirectory of that same host. Vercel and Netlify would give you a separate domain (e.g. `creativesteeping.netlify.app`), which means managing two hosting accounts. Bluehost can serve the Vite build as static files perfectly well — it just requires a few extra configuration steps for SPA routing. Netlify remains a solid option if you ever want to give the Steeping Space its own domain in the future. Stay with Bluehost for now.
+> Since `thealienschool.com` already lives on Bluehost, the most seamless path is to deploy the Steeping Space as a subdirectory of that same host. Vercel and Netlify would give you a separate domain (e.g. `creativesteeping.netlify.app`), which means managing two hosting accounts. Bluehost can serve the Vite build as static files perfectly well :: it just requires a few extra configuration steps for SPA routing. Netlify remains a solid option if you ever want to give the Steeping Space its own domain in the future. Stay with Bluehost for now.
 
 ---
 
-### Step 5A — Update the Vite Config for the Subdirectory
+### Step 5A :: Update the Vite Config for the Subdirectory
 
 Before building, you need to tell your Vite app that it lives at `/steeping/` rather than at the root of the domain. Open:
 
@@ -299,7 +299,7 @@ export default defineConfig({
 
 ---
 
-### Step 5B — Create a Production Environment File
+### Step 5B :: Create a Production Environment File
 
 In the `steeping-v5-laboratory` folder, create a file called `.env.production` (note the dot at the start). Add these two lines with your actual Supabase values:
 
@@ -311,11 +311,11 @@ VITE_SUPABASE_ANON_KEY=[your-anon-key]
 *(Find both in Supabase → Settings → API)*
 
 > [!CAUTION]
-> `.env.production` contains your anon key — this is safe to include in the build (it's designed to be public-facing). Do NOT put your Stripe secret key or Supabase service role key in here. Those live only in Supabase Edge Function secrets (Step 3C).
+> `.env.production` contains your anon key :: this is safe to include in the build (it's designed to be public-facing). Do NOT put your Stripe secret key or Supabase service role key in here. Those live only in Supabase Edge Function secrets (Step 3C).
 
 ---
 
-### Step 5C — Build the App
+### Step 5C :: Build the App
 
 In PowerShell, from inside `steeping-v5-laboratory`:
 
@@ -323,11 +323,11 @@ In PowerShell, from inside `steeping-v5-laboratory`:
 npm run build
 ```
 
-When complete, a `dist/` folder is created inside `steeping-v5-laboratory/`. This folder contains your entire app — HTML, CSS, JavaScript — ready to upload.
+When complete, a `dist/` folder is created inside `steeping-v5-laboratory/`. This folder contains your entire app :: HTML, CSS, JavaScript :: ready to upload.
 
 ---
 
-### Step 5D — Add the SPA Routing File
+### Step 5D :: Add the SPA Routing File
 
 Because the Steeping Space is a single-page React app, Bluehost needs a small instruction file to handle page navigation correctly. Without it, refreshing any page or following a direct link will give a 404 error.
 
@@ -346,7 +346,7 @@ Inside the `dist/` folder, create a new file called `.htaccess` with exactly thi
 
 ---
 
-### Step 5E — Upload to Bluehost
+### Step 5E :: Upload to Bluehost
 
 1. Log in to **Bluehost cPanel**
 2. Click **File Manager**
@@ -367,11 +367,11 @@ Inside the `dist/` folder, create a new file called `.htaccess` with exactly thi
    ```
 
 > [!IMPORTANT]
-> Make sure `.htaccess` uploads correctly — it's a hidden file (starts with a dot) and some systems hide it by default. In Bluehost File Manager, make sure **Show Hidden Files** is enabled in the Settings.
+> Make sure `.htaccess` uploads correctly :: it's a hidden file (starts with a dot) and some systems hide it by default. In Bluehost File Manager, make sure **Show Hidden Files** is enabled in the Settings.
 
 ---
 
-### Step 5F — Update Supabase Redirect URLs (Final)
+### Step 5F :: Update Supabase Redirect URLs (Final)
 
 Now that you have a live URL, go back to:
 
@@ -391,12 +391,12 @@ This ensures magic link emails point to your live domain instead of localhost.
 
 ---
 
-### Step 5G — Add Stripe Webhook for Live Domain (When Ready for Live Mode)
+### Step 5G :: Add Stripe Webhook for Live Domain (When Ready for Live Mode)
 
 When you're ready to go from Stripe test mode to live mode:
 
 1. In Stripe, toggle **Test mode OFF** (switch to Live mode)
-2. Recreate both Products (Engaged + Inneractive) in Live mode — get new Price IDs
+2. Recreate both Products (Engaged + Inneractive) in Live mode :: get new Price IDs
 3. Run:
    ```powershell
    npx supabase secrets set STRIPE_SECRET_KEY=sk_live_YOUR_LIVE_KEY
@@ -407,7 +407,7 @@ When you're ready to go from Stripe test mode to live mode:
 
 ---
 
-### Step 5H — Smoke Test (Final Checklist)
+### Step 5H :: Smoke Test (Final Checklist)
 
 Run through this sequence after upload:
 
@@ -417,10 +417,10 @@ Run through this sequence after upload:
 □ Enter a name → portal phase loads
 □ Submit an email → magic link email arrives with correct copy
 □ Click magic link → redirects to thealienschool.com/steeping (not localhost)
-□ Complete a vessel → [ POUR — COMPLETE THIS STEEP ] appears
+□ Complete a vessel → [ POUR :: COMPLETE THIS STEEP ] appears
 □ Completion ceremony overlay fires and dismisses
-□ Test on a mobile device — scroll, touch targets, Steeping Notes navigation
-□ Test Reading Lens (accessibility) — Atkinson Hyperlegible loads
+□ Test on a mobile device :: scroll, touch targets, Steeping Notes navigation
+□ Test Reading Lens (accessibility) :: Atkinson Hyperlegible loads
 ```
 
 ---
@@ -439,7 +439,7 @@ Run through this sequence after upload:
 
 ---
 
-## PRICE ARCHITECTURE — CONFIRMED
+## PRICE ARCHITECTURE :: CONFIRMED
 
 | Layer | Tier | Price | Billing | Narrative |
 |---|---|---|---|---|
@@ -452,7 +452,7 @@ Run through this sequence after upload:
 
 ---
 
-*Roadmap updated: April 2026 — post Supabase Session*
+*Roadmap updated: April 2026 :: post Supabase Session*
 *Build status: ✅ Clean · Exit 0 · 2732 modules*
-*Protocol version: 3.1 — Parts I–IX active*
+*Protocol version: 3.1 :: Parts I–IX active*
 *Live target: http://thealienschool.com/steeping via Bluehost*

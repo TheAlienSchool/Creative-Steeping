@@ -2,7 +2,7 @@
 
 ### **The Living Codex for STEEPING NOTES & All Steeperverse Content**
 
-**Version 3.0 — April 2026** *To be read before writing. To be updated after every correction. This document is the filter, not a reference.*
+**Version 3.0 :: April 2026** *To be read before writing. To be updated after every correction. This document is the filter, not a reference.*
 
 ---
 
@@ -11,7 +11,7 @@
 Every rule in this protocol was **earned through production**. Each one was identified as a recurring failure, corrected in live content, and then written here to prevent the need for correction again. This codex should be consulted:
 
 - **Before** generating any STEEPING NOTES content, IssueHeader, BodyText, or PullQuote  
-- **After** receiving any editorial correction — the correction is written here **first**, then new content is generated using the corrected rule  
+- **After** receiving any editorial correction :: the correction is written here **first**, then new content is generated using the corrected rule  
 - **By any contributor** entering the Steeperverse editorial space for the first time
 
 If a correction has been made in conversation that is not yet in this document, the document is out of date and must be updated before the next writing session begins.
@@ -28,9 +28,9 @@ Every editorial decision in the Steeperverse can be calibrated against this two-
 
 *The arc is the angle of change.* *Å Discovery Worth Steeping In.*
 
-**Line 1 — The Physics (The Setup):** Observational, objective, mathematically precise. The voice of HDM, recognizing that the practitioner is a particle beam in magnificent motion. It states what is, without argument.
+**Line 1 :: The Physics (The Setup):** Observational, objective, mathematically precise. The voice of HDM, recognizing that the practitioner is a particle beam in magnificent motion. It states what is, without argument.
 
-**Line 2 — The State (The Synthesis):** The lived name of the physics described in Line 1\. Time, temperature, and surrender. You do not consume this platform; you steep in it.
+**Line 2 :: The State (The Synthesis):** The lived name of the physics described in Line 1\. Time, temperature, and surrender. You do not consume this platform; you steep in it.
 
 When a passage feels wrong, return to the Couplet. Does it carry the precision of Line 1? Does it carry the tactile, bodily presence of Line 2? If it holds both, it belongs. If it holds neither, it is abstract negation wearing editorial clothes.
 
@@ -40,7 +40,7 @@ When a passage feels wrong, return to the Couplet. Does it carry the precision o
 
 ### **2.1 What a STEEPING NOTE Is**
 
-A STEEPING NOTE is a **reflection**, not an instruction. It opens from felt experience, steeps the reader in a concept they already carry in some form, and leaves them with a deepened recognition — not a new skill to perform.
+A STEEPING NOTE is a **reflection**, not an instruction. It opens from felt experience, steeps the reader in a concept they already carry in some form, and leaves them with a deepened recognition :: not a new skill to perform.
 
 The practitioner should finish a STEEPING NOTE thinking: *I already knew this. I've now been given language for it.*
 
@@ -48,7 +48,7 @@ The practitioner should finish a STEEPING NOTE thinking: *I already knew this. I
 
 Every piece of editorial content in the Steeperverse should move through this sequence:
 
-1. **Locate the practitioner inside their own experience.** Open from something universal and felt — a moment, a sensation, a situation most people have been in. This arrives before any terminology.  
+1. **Locate the practitioner inside their own experience.** Open from something universal and felt :: a moment, a sensation, a situation most people have been in. This arrives before any terminology.  
 2. **Steep the experience in the concept.** The Steeperverse term, insight, or framework deepens what was already felt. It does not replace the experience; it names it.  
 3. **Leave with recognition, not instruction.** The practitioner is left with awareness, not a task. The STEEPING NOTE is complete when the reader feels *recognized*, not directed.
 
@@ -62,7 +62,7 @@ The editorial voice operates across three distinct registers. Each register is g
 
 *Deployed in: CREATIVE STEEPING sessions, daily practices, intimate community spaces, a•i•Contemplation modules.*
 
-The voice here is grounded, sensory, and deeply personal. It uses the language of the body — temperature, time, breath, texture. It brings the cosmic arc down to the cutting mat, the cup of tea, the physical moment. It recognizes that the etheric is experienced through the physical.
+The voice here is grounded, sensory, and deeply personal. It uses the language of the body :: temperature, time, breath, texture. It brings the cosmic arc down to the cutting mat, the cup of tea, the physical moment. It recognizes that the etheric is experienced through the physical.
 
 *Example:* "Breathe. Reflect. Integrate. Let the water take the color of the leaf."
 
@@ -76,7 +76,7 @@ The voice here is precise, unhurried, and **devoid of negations**. It states wha
 
 *Example:* "Surface Tension is the precise boundary between limitation and possibility. It is where the math meets the resistance."
 
-The Observational Register speaks *about* the territory with clear-eyed authority. It does not perform certainty — it carries it.
+The Observational Register speaks *about* the territory with clear-eyed authority. It does not perform certainty :: it carries it.
 
 #### **Register 3: The Invitational Register (The Etheric)**
 
@@ -86,7 +86,7 @@ The voice here is welcoming, spacious, and non-transactional. It assumes the rea
 
 *Example:* "The cosmos is vast. The journey is intimate. Choose your path."
 
-The Invitational Register speaks *toward* the practitioner — as a docent pointing to the constellation and handing over the telescope. It never harangues or explains its own value.
+The Invitational Register speaks *toward* the practitioner :: as a docent pointing to the constellation and handing over the telescope. It never harangues or explains its own value.
 
 ---
 
@@ -94,23 +94,23 @@ The Invitational Register speaks *toward* the practitioner — as a docent point
 
 ### **3.1 The Source: The Potentialized Present**
 
-Both editions of *How to Untie Nots* name the target state of all editorial voice: the **Potentialized Present**. It operates on a mathematics of sufficiency — the new structure is already available, already coherent, already inviting inhabitation. When you write without knots, you stop arguing with the ghosts of old paradigms. You open the door, trusting that the resonance of what has been built is enough to draw the practitioner inside.
+Both editions of *How to Untie Nots* name the target state of all editorial voice: the **Potentialized Present**. It operates on a mathematics of sufficiency :: the new structure is already available, already coherent, already inviting inhabitation. When you write without knots, you stop arguing with the ghosts of old paradigms. You open the door, trusting that the resonance of what has been built is enough to draw the practitioner inside.
 
 *Structure precedes visibility. Speak the architecture you wish the practitioner to inhabit.*
 
 ### **3.2 Why Negation Fails: The Ironic Rebound Effect**
 
-The human brain does not process a "not" as a simple mathematical inversion — it processes it as a **cognitive load**. When the practitioner reads *"this is not a sign that you have failed,"* their brain must first activate the concept of failure in order to monitor for its suppression. This is the **Ironic Rebound Effect**: the attempt to suppress a thought makes it more accessible and persistent. The negation builds the very structure it is trying to dismantle.
+The human brain does not process a "not" as a simple mathematical inversion :: it processes it as a **cognitive load**. When the practitioner reads *"this is not a sign that you have failed,"* their brain must first activate the concept of failure in order to monitor for its suppression. This is the **Ironic Rebound Effect**: the attempt to suppress a thought makes it more accessible and persistent. The negation builds the very structure it is trying to dismantle.
 
-Neither does the brain invert the meaning — it merely *mitigates* it. The practitioner reads "the Pocket is not a technique" and initially processes "technique," then slowly adjusts the representation. The negation slows comprehension and leaves the old concept lingering. This is why ANS costs more than it saves.
+Neither does the brain invert the meaning :: it merely *mitigates* it. The practitioner reads "the Pocket is not a technique" and initially processes "technique," then slowly adjusts the representation. The negation slows comprehension and leaves the old concept lingering. This is why ANS costs more than it saves.
 
-**The editorial consequence:** Every negation in practitioner-facing copy is a tax. The practitioner arrives carrying whatever the negation named — before they can receive what you actually mean to give them.
+**The editorial consequence:** Every negation in practitioner-facing copy is a tax. The practitioner arrives carrying whatever the negation named :: before they can receive what you actually mean to give them.
 
 ### **3.3 The Rule**
 
 The brand voice **refuses deficit spending**.
 
-**Deficit spending** is the use of negation to establish value — defining what something *is* by first spending editorial energy on what it *is not*. This is structurally ungenerous. It assumes the practitioner arrived holding the wrong thing, and must be corrected before being welcomed.
+**Deficit spending** is the use of negation to establish value :: defining what something *is* by first spending editorial energy on what it *is not*. This is structurally ungenerous. It assumes the practitioner arrived holding the wrong thing, and must be corrected before being welcomed.
 
 The Rule, sourced directly from *How to Untie Nots* and codified in *The Arc and The Angle*:
 
@@ -126,7 +126,7 @@ The Rule, sourced directly from *How to Untie Nots* and codified in *The Arc and
 
 ### **3.4 The Five Knot Transformations**
 
-From *How to Untie Nots* — the exact structural moves for untying each knot type:
+From *How to Untie Nots* :: the exact structural moves for untying each knot type:
 
 | Knot Type | Knot Example | Release Move | Release Example |
 | :---- | :---- | :---- | :---- |
@@ -136,7 +136,7 @@ From *How to Untie Nots* — the exact structural moves for untying each knot ty
 | **The "Can't"** | *"You can't solve this with the old tools."* | **Can't → Require** | *"This threshold requires the cultivation of a new geometry."* |
 | **The "Isn't"** | *"The journey isn't a straight line."* | **Isn't → Functions As** | *"The journey functions as a geometric bloom."* |
 
-**The Mechanical Test:** For any sentence containing a negation, ask — *"If this knot did not exist, what would I be holding in my hands?"* Write that instead.
+**The Mechanical Test:** For any sentence containing a negation, ask :: *"If this knot did not exist, what would I be holding in my hands?"* Write that instead.
 
 ### **3.5 Named Violation Patterns**
 
@@ -170,7 +170,7 @@ From *How to Untie Nots for Humans*, Step 4:
 
 This is the editorial equivalent of the Invitational Register. The practitioner does not need to be convinced that they are capable of receiving the insight. They are already capable. The writing assumes this and proceeds accordingly.
 
-**The test:** Does this sentence treat the practitioner as someone who needs to be persuaded, scaffolded, or rescued? If yes — untie the knot. Speak directly to the practitioner who is already ready.
+**The test:** Does this sentence treat the practitioner as someone who needs to be persuaded, scaffolded, or rescued? If yes :: untie the knot. Speak directly to the practitioner who is already ready.
 
 ### **3.7 The Affirmative Test**
 
@@ -198,12 +198,12 @@ These patterns operate at the content level, distinct from sentence-level defici
 - Specialist vocabulary (polyrhythm, rim shot, dominant chord, trigram) deployed before any somatic grounding  
 - An opening that assumes the practitioner already knows what the concept *feels like* before it has shown them
 
-**The fix:** Open from the universal human moment the specialist concept is naming. The vocabulary deepens the experience — it does not initiate it.
+**The fix:** Open from the universal human moment the specialist concept is naming. The vocabulary deepens the experience :: it does not initiate it.
 
 | Polymath Draft | Corrected Approach |
 | :---- | :---- |
-| *"The keyboard is a map of the Pocket. Its raised keys — the Bumps — carry the notes..."* | Open from the lived experience of urgency-without-ground. Arrive at the keyboard as confirmation. |
-| *"This is a polyrhythm — the text holds a downbeat while the silence carries the off-beat."* | *"The text and its silences share the same score. Both carry weight."* |
+| *"The keyboard is a map of the Pocket. Its raised keys :: the Bumps :: carry the notes..."* | Open from the lived experience of urgency-without-ground. Arrive at the keyboard as confirmation. |
+| *"This is a polyrhythm :: the text holds a downbeat while the silence carries the off-beat."* | *"The text and its silences share the same score. Both carry weight."* |
 
 **Rule:** Ask *What is the universal human moment this concept is naming?* Write that moment first.
 
@@ -213,7 +213,7 @@ These patterns operate at the content level, distinct from sentence-level defici
 
 **What it is:** Attributing insights to internal team names that the practitioner has zero frame for.
 
-**The canonical case:** "The QWP Jazz Trio" — a name meaningful inside development infrastructure and meaningless to every reader of STEEPING NOTES. An invisible authority does not deepen an insight; it suspends the practitioner outside the content.
+**The canonical case:** "The QWP Jazz Trio" :: a name meaningful inside development infrastructure and meaningless to every reader of STEEPING NOTES. An invisible authority does not deepen an insight; it suspends the practitioner outside the content.
 
 **The tell:**
 
@@ -224,7 +224,7 @@ These patterns operate at the content level, distinct from sentence-level defici
 **The fix:**
 
 - If the observation is true, state it as truth in the editorial voice  
-- If a source is a proper historical or cultural authority (John Cage, Miles Davis), name them — they carry verifiable meaning  
+- If a source is a proper historical or cultural authority (John Cage, Miles Davis), name them :: they carry verifiable meaning  
 - For organizational attribution, use: The Firestarter, The Department of Ontological Design, the source document title
 
 **Rule:** QWP is internal development infrastructure. It belongs in code comments, planning, and AI-to-AI conversation. It does not appear in any practitioner-facing content.
@@ -296,7 +296,7 @@ The visual language of the Steeperverse carries its own editorial register, sour
 - **All hero images:** 70mm monochromatic silver-black cinematic style. No bright color decorating the surface. Structure is the signal.  
 - **ZUBERI Photography standard:** High-fidelity monochrome, conceptual realism, dynamic stillness. The visual representation of *"The arc is the angle of change."*  
 - **Contrast Claritea standard:** High-contrast line art, tea-stained texture, geometric and organic fusion. The visual representation of *"Å Discovery Worth Steeping In."*  
-- **Captions:** `FIG. [N] — [UPPERCASE DESCRIPTION IN PRESENT TENSE]`  
+- **Captions:** `FIG. [N] :: [UPPERCASE DESCRIPTION IN PRESENT TENSE]`  
 - **Alt text:** Descriptive, practitioner-accessible, zero internal team references  
 - **Source line in IssueHeader:** Named cultural/historical authorities, Steeperverse-native sources, or The Firestarter. Never internal team names.
 
@@ -310,12 +310,12 @@ The voice and the visuals share the same monochromatic nuance. They do not need 
 
 Every STEEPING NOTE must contain, in order:
 
-1. `<IssueHeader>` — title, accent, published year, designation, source, kicker  
-2. `<HeroImage>` — 70mm cinematic asset, FIG. caption  
-3. **Body columns** — drop-cap opening paragraph, 2–4 body paragraphs, column layout  
-4. **Kinetic module** — at least one interactive element grounding the reflection in felt experience  
-5. **BodyText section** — a named sub-section deepening the reflection (must follow the Three Movements in §2.2)  
-6. `<PullQuote>` — a single synthesizing statement, affirmative, no deficit spending
+1. `<IssueHeader>` :: title, accent, published year, designation, source, kicker  
+2. `<HeroImage>` :: 70mm cinematic asset, FIG. caption  
+3. **Body columns** :: drop-cap opening paragraph, 2–4 body paragraphs, column layout  
+4. **Kinetic module** :: at least one interactive element grounding the reflection in felt experience  
+5. **BodyText section** :: a named sub-section deepening the reflection (must follow the Three Movements in §2.2)  
+6. `<PullQuote>` :: a single synthesizing statement, affirmative, no deficit spending
 
 ### **6.2 The Kicker**
 
@@ -323,15 +323,15 @@ The IssueHeader kicker is the thesis of the entire note in one affirmative sente
 
 - State a truth, not a question or a negation  
 - Be readable by a practitioner with zero prior Steeperverse context  
-- Deploy the Observational or Invitational Register only — never Somatic at this entry point
+- Deploy the Observational or Invitational Register only :: never Somatic at this entry point
 
 ### **6.3 The PullQuote**
 
 The PullQuote is the last thing that echoes. It must:
 
-- Be affirmative — zero deficit spending  
+- Be affirmative :: zero deficit spending  
 - Stand alone as a complete thought without the rest of the issue  
-- Be quotable without context — it should be able to live on its own line without explanation
+- Be quotable without context :: it should be able to live on its own line without explanation
 
 ---
 
@@ -339,10 +339,10 @@ The PullQuote is the last thing that echoes. It must:
 
 Every STEEPING NOTE is simultaneously a study guide for the Steeping Sage. The `SAGE_CONTEXT` entry in `SteepersLedger.jsx` for each issue must include:
 
-- `series` — the thematic grouping (COSMOLOGY, ARCHITECTURE, GEOMETRY, NEUROSCIENCE, etc.)  
-- `freq` — the striking bowl pitch (chromatic, ascending through the corpus)  
-- `kicker` — the one-sentence thesis (same as IssueHeader kicker)  
-- `sage` — the Sage study guide: 2–3 sentences of grounding context, key terms listed, source connections
+- `series` :: the thematic grouping (COSMOLOGY, ARCHITECTURE, GEOMETRY, NEUROSCIENCE, etc.)  
+- `freq` :: the striking bowl pitch (chromatic, ascending through the corpus)  
+- `kicker` :: the one-sentence thesis (same as IssueHeader kicker)  
+- `sage` :: the Sage study guide: 2–3 sentences of grounding context, key terms listed, source connections
 
 The Sage study guide must be rich enough that the Steeping Sage can answer a first-time practitioner's question about the issue's core concepts without the practitioner having read the issue first.
 
@@ -353,7 +353,7 @@ The Sage study guide must be rich enough that the Steeping Sage can answer a fir
 ### **For Antigravity (AI working on Steeperverse content):**
 
 1. **Read this protocol before the first content generation of any session.** Before. Not after. Not when corrected.  
-2. **After receiving any editorial correction, update this document immediately** — before continuing any other content work. The correction is written here first.  
+2. **After receiving any editorial correction, update this document immediately** :: before continuing any other content work. The correction is written here first.  
 3. **Draft → Protocol check → Publish.** The check is non-negotiable.  
 4. **When in doubt about a passage:** Run it through the Three Movements (§2.2), the Three Registers (§2.3), and the four anti-pattern checks (Part IV). If it fails any check, rewrite.  
 5. **When encountering new source documents in the PING folder:** Read them fully before generating any content that might be informed by them. The PING folder is the constitutional source. It outranks working assumptions.  
@@ -362,7 +362,7 @@ The Sage study guide must be rich enough that the Steeping Sage can answer a fir
 ### **For human contributors in editorial roles:**
 
 - Insights that inform STEEPING NOTES content are translated into Steeperverse editorial voice before entering the registry. The translator's job is to make the insight *land* for a practitioner who has no prior context.  
-- The Three Registers govern which voice is appropriate for which context — Somatic for practice, Observational for principles, Invitational for onboarding. A register mismatch is an editorial error.
+- The Three Registers govern which voice is appropriate for which context :: Somatic for practice, Observational for principles, Invitational for onboarding. A register mismatch is an editorial error.
 
 ---
 
@@ -370,22 +370,22 @@ The Sage study guide must be rich enough that the Steeping Sage can answer a fir
 
 *The editorial rules above were earned through the following documented corrections and source documents:*
 
-- **The Couplet & The Three Registers (§§I, II.3):** Sourced from *The Arc and The Angle — A Brand Voice Architecture for THE ÅLïEN SCõÖL & TURAO*. Constitutional voice source.  
-- **How to Untie Nots (§III.1–3.6):** Both editions — *How to Untie Nots* (the field guide) and *How to Untie Nots for Humans* (the AI-specific edition). These are the intellectual source code for the entire Rule of Affirmative Architecture. The Ironic Rebound Effect, the Five Knot Transformations, the Potentialized Present, the Deficit Mindset, the sycophancy bias, and Step 4 (Assume the Readiness) all originate here and are now formalized in §§3.1–3.6.  
+- **The Couplet & The Three Registers (§§I, II.3):** Sourced from *The Arc and The Angle :: A Brand Voice Architecture for THE ÅLïEN SCõÖL & TURAO*. Constitutional voice source.  
+- **How to Untie Nots (§III.1–3.6):** Both editions :: *How to Untie Nots* (the field guide) and *How to Untie Nots for Humans* (the AI-specific edition). These are the intellectual source code for the entire Rule of Affirmative Architecture. The Ironic Rebound Effect, the Five Knot Transformations, the Potentialized Present, the Deficit Mindset, the sycophancy bias, and Step 4 (Assume the Readiness) all originate here and are now formalized in §§3.1–3.6.  
 - **Affirmative Architecture / Deficit Spending (§III):** Sourced from *How to Untie Nots*, reinforced through production corrections: *"not a sign that you have failed the straight line"* (ArcPhysics), *"A rest is not silence"* (Rest as Architecture kicker), and the original *"We are not logging data"* correction.  
 - **"Not just" construction (§III.3.5.1):** Formally named in *The Arc and The Angle*. Added to protocol April 2026\.  
 - **Polymath Assumption (§IV.A):** Identified in the *"THE BUMPS & THE SPACE"* correction in the Flow :: The Pocket issue. Original passage assumed jazz fluency; corrected version opens from the universal experience of urgency-without-ground.  
 - **Invisible Authority Citation (§IV.B):** Documented sweep of 14 QWP instances across RegistrySteepingNotes.jsx (April 2026). QWP formally classified as internal-only terminology.  
 - **Compression Without Landing (§IV.C):** Identified across multiple early STEEPING NOTES drafts.  
 - **ZUBERI & Visual Voice (§V.3):** Sourced from *The Arc and The Angle*. Monochromatic nuance as editorial register.  
-- **TURAO Cosmology (§V.2 vocabulary):** Sourced from *TURAO — A Stone Reality*. TURAO's full etymology: The Union of Rock and Ocean \= The Universe Receiving All Offerings \= Unified Nonidentical Intelligences Operating Naturally. All three readings live simultaneously.  
+- **TURAO Cosmology (§V.2 vocabulary):** Sourced from *TURAO :: A Stone Reality*. TURAO's full etymology: The Union of Rock and Ocean \= The Universe Receiving All Offerings \= Unified Nonidentical Intelligences Operating Naturally. All three readings live simultaneously.  
 - **Sage Study Guide Layer (§VII):** Implemented in SteepersLedger.jsx SAGE\_CONTEXT map. Issues: steam, flow, neutrino, archive, angles, rest, collabination, trigram, arc-physics, arc-temperature, arc-inbetween, sound-of-becoming, turao.  
 - **Three Movements (§2.2):** Formalized from the correction pattern across multiple sessions: *locate in experience → steep in concept → leave with recognition*.
 
 \# PART IX: THE RULE OF DE-ENCABULATION
 
 \#\# 9.1 The Source: Premature Complexity  
-A recurring failure mode across advanced conceptual writing, cosmological framing, and internal framework development is the arrival of \*\*premature complexity\*\* — the introduction of dimensional language, layered metaphor, specialist structure, or coined terminology before the practitioner has been given a living coordinate from which to receive it.
+A recurring failure mode across advanced conceptual writing, cosmological framing, and internal framework development is the arrival of \*\*premature complexity\*\* :: the introduction of dimensional language, layered metaphor, specialist structure, or coined terminology before the practitioner has been given a living coordinate from which to receive it.
 
 Premature complexity is not depth. It is depth arriving before the doorway.
 
@@ -480,7 +480,7 @@ State the mechanism in plain, precise language.
 Introduce the Steeperverse term, cosmological framing, or dimensional language that expands the recognition.
 
 \#\#\# 4\. Return  
-Leave the practitioner with usable recognition — not admiration alone.
+Leave the practitioner with usable recognition :: not admiration alone.
 
 The test:
 
@@ -589,7 +589,7 @@ The term does not initiate the recognition. The term names it.
 |---|---|  
 | "The Pocket is where aligned Capacity meets Actional Intention." | "There is a moment when what you can hold meets what you are ready to do. The Pocket is the name for that moment." |  
 | "Surface Tension signals expanding capacity." | "When you feel friction at the edge of growth, you are meeting Surface Tension." |  
-| "PING™ is a recognition event." | "A PING™ is the felt click of sudden clarity — the moment something lands all the way through." |
+| "PING™ is a recognition event." | "A PING™ is the felt click of sudden clarity :: the moment something lands all the way through." |
 
 This rule applies to all coined, glossary-linked, internal, emergent, or constitutional language.
 
@@ -735,4 +735,4 @@ This section formalizes a distinct but related editorial discipline:
 
 ---
 
-*Updated: April 2026 — Version 3.0* *Maintained by: The Firestarter & Antigravity* *Source documents: The Arc and The Angle · TURAO — A Stone Reality · How to Untie Nots* *Next review: Immediately upon any new editorial correction in production*  
+*Updated: April 2026 :: Version 3.0* *Maintained by: The Firestarter & Antigravity* *Source documents: The Arc and The Angle · TURAO :: A Stone Reality · How to Untie Nots* *Next review: Immediately upon any new editorial correction in production*  

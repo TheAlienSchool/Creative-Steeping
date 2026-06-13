@@ -4,7 +4,7 @@
 ---
 
 > *"The stars are not above you. They are the grammar of what you already know."*
-> — The Steeperverse World Bible
+> :: The Steeperverse World Bible
 
 ---
 

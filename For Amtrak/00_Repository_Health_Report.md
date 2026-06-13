@@ -18,7 +18,7 @@
 - **Mobile Navigational Stability:** The Vessel Hopper (00-08) overlap on mobile has been resolved by converting the element into a deeply native, responsive glassmorphic bottom bar, preventing interference with reading flow.
 - **Route Polish:** The `[INHALE...]` button has been sacrificed entirely, replaced by a smooth `/nightlight` route dropping the user directly into the Algorave (Vessel 08).
 - **Miscommunications Cleared:** 
-  - *The Locked Vessel Metaphor:* The aggressive grayed-out padlock has been formally retired. The system now utilizes a "Microbotanical Dormancy" UI logic—seeds waiting to bloom—which creates a much softer, more encouraging UX for the user.
+  - *The Locked Vessel Metaphor:* The aggressive grayed-out padlock has been formally retired. The system now utilizes a "Microbotanical Dormancy" UI logic :: seeds waiting to bloom :: which creates a much softer, more encouraging UX for the user.
   - *The Booking Calendar:* Instead of arbitrary booking, the `OntologicalObservatory` now formally respects the "10-Day Buffer Rule" and "Cultural Holiday Sensitivity", refusing to allow cohorts to align on days that breach your deep-work parameters.
 
 ## 4. Editorial Voice & Linguistic Physics
