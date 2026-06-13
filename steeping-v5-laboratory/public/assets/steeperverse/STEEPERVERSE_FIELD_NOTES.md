@@ -6,7 +6,7 @@
 ---
 
 > *"The cosmos is not outside you. It is the structure of what you already are."*
-> — The Steeperverse World Bible
+> :: The Steeperverse World Bible
 
 ---
 
@@ -14,9 +14,9 @@
 
 Eighteen frames. Two instruments. One world.
 
-The **Eula Mae Ford Steeperverse Satellite** captures the deep field — the vast, the ancient, the structural. It sees what the naked eye cannot: the filaments of connection between stars, the geometry of gas clouds, the neutrino streams that pass through everything without stopping.
+The **Eula Mae Ford Steeperverse Satellite** captures the deep field :: the vast, the ancient, the structural. It sees what the naked eye cannot: the filaments of connection between stars, the geometry of gas clouds, the neutrino streams that pass through everything without stopping.
 
-The **Mabel Harris Interplanetary Steeperverse Planetarium Telescope** sees the proximate — the planetary bodies, the orbital mechanics, the surfaces of worlds. It is the instrument of intimacy, of close observation, of the detail that reveals the whole.
+The **Mabel Harris Interplanetary Steeperverse Planetarium Telescope** sees the proximate :: the planetary bodies, the orbital mechanics, the surfaces of worlds. It is the instrument of intimacy, of close observation, of the detail that reveals the whole.
 
 All 18 frames are captured in monochromatic silver-black, the visual language of the Steeperverse :: the full spectrum of human experience rendered in the two most fundamental tones of existence.
 
@@ -26,7 +26,7 @@ All 18 frames are captured in monochromatic silver-black, the visual language of
 **Instrument:** Eula Mae Ford Satellite
 **Cosmological Region:** The Outer Rim :: The First Look
 
-The opening frame. The full depth of the Steeperverse in a single exposure. Thousands of galaxies — each one a human, each one a complete creative universe — fill the field. No two are alike. No two are alone. This is the answer to "Who Do You Think You Are?" rendered at cosmological scale.
+The opening frame. The full depth of the Steeperverse in a single exposure. Thousands of galaxies :: each one a human, each one a complete creative universe :: fill the field. No two are alike. No two are alone. This is the answer to "Who Do You Think You Are?" rendered at cosmological scale.
 
 *Portal Application: Entrance screen background, parallax layer 1 (deepest)*
 
@@ -36,7 +36,7 @@ The opening frame. The full depth of the Steeperverse in a single exposure. Thou
 **Instrument:** Eula Mae Ford Satellite
 **Cosmological Region:** The Chord Archipelago :: Stellar Nursery
 
-A stellar nursery where new stars are born from the compression of gas and dust into patterns of extraordinary regularity. The patterns are not imposed — they emerge. This is the visual argument for indigenous intelligence :: the innate knowing that organizes itself into beauty without instruction.
+A stellar nursery where new stars are born from the compression of gas and dust into patterns of extraordinary regularity. The patterns are not imposed :: they emerge. This is the visual argument for indigenous intelligence :: the innate knowing that organizes itself into beauty without instruction.
 
 *Portal Application: Vessel 01 background, parallax layer 2*
 

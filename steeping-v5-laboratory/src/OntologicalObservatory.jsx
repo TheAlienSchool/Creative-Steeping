@@ -3,7 +3,7 @@ import { format, addMonths, subMonths, startOfMonth, endOfMonth, startOfWeek, en
 import { supabase } from './supabaseClient';
 import { Sparkles, Activity, Plus, Shield } from 'lucide-react';
 
-// THE OBSERVER PATTERN — Analytics Without Extraction.
+// THE OBSERVER PATTERN :: Analytics Without Extraction.
 // All data stays in the visitor's localStorage. The Observatory reads
 // aggregate patterns from the archive without ever transmitting individual data.
 // See docs/SAGE-INTELLIGENCE-BRIEF.md for the full architecture.
@@ -12,7 +12,7 @@ function computeObserverPatterns() {
         const archive = JSON.parse(localStorage.getItem('steeping_historical_score') || '[]');
         const visitCount = parseInt(localStorage.getItem('steeping-space:visits') || '0', 10);
 
-        // Steep distribution — which steeps appear most in the archive
+        // Steep distribution :: which steeps appear most in the archive
         const steepCounts = {};
         const modeCounts = {};
         let totalWords = 0;
@@ -317,7 +317,7 @@ export const OntologicalObservatory = ({ m, onClose, playStrikingBowl, playAlgor
                             Orchestrating<br/>the <span style={{ color: m.accent }}>Sanctuary.</span>
                         </div>
 
-                        {/* THE OBSERVER PATTERN — Behavioral Telemetry */}
+                        {/* THE OBSERVER PATTERN :: Behavioral Telemetry */}
                         <div style={{ border: `1px solid ${m.accent}30`, padding: 'var(--space-xl)', background: `linear-gradient(135deg, ${m.accent}05 0%, transparent 100%)`, marginBottom: '2rem' }}>
                             <h3 style={{ fontFamily: 'var(--fMono)', color: m.accent, fontSize: '0.75rem', letterSpacing: '0.2em', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                 <Activity size={16} /> OBSERVER PATTERN

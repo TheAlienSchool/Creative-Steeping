@@ -9,24 +9,24 @@ const T = {
   s1:"0.25rem", s2:"0.5rem", s3:"1rem",
   s4:"1.5rem",  s5:"2rem",   s6:"3rem", s7:"4rem",
   lhBody:1.85, lhDisplay:1.1,
-  navH: 56,   // px — shared nav height constant
-  tabH: 64,   // px — mobile bottom bar height
+  navH: 56,   // px :: shared nav height constant
+  tabH: 64,   // px :: mobile bottom bar height
 };
 
 const VESSELS = [
   { num:"01", name:"What is Creative Steeping", theme:"Orientation + Practice",
-    body:"Creative Steeping is an immersive journaling practice built around tea ceremony. Not wellness. A creative survival practice — for the era when original thought is the only remaining competitive advantage.",
+    body:"Creative Steeping is an immersive journaling practice built around tea ceremony. Not wellness. A creative survival practice :: for the era when original thought is the only remaining competitive advantage.",
     reflection:"It is a ritual and a journey. A veneration of your human spirit in pursuit of self-awareness, creative expression, and identity.",
     interaction:"Explore what Creative Steeping is, how it works, and what it has done for steepers from South Africa to China.",
-    invocation:"", cta:"Purchase the Guidebook — $44" },
+    invocation:"", cta:"Purchase the Guidebook :: $44" },
   { num:"02", name:"Why Steeping", theme:"The Cultural & Scientific Case",
     body:"Tea has always been the drink you reach for when you need to think better. Lu Yu knew this in 780 CE. The neuroscience arrived to confirm what ritual already understood.",
-    reflection:"L-theanine — found only in Camellia sinensis — promotes alpha wave activity: the brainwave signature of relaxed alertness. The same state measurably associated with creative insight.",
+    reflection:"L-theanine :: found only in Camellia sinensis :: promotes alpha wave activity: the brainwave signature of relaxed alertness. The same state measurably associated with creative insight.",
     interaction:"A scrollable timeline of 5,000 years of human relationship with tea. Parallax infographics on what steeping does to the brain and the creative self.",
     invocation:"", cta:"" },
   { num:"03", name:"How to Steep", theme:"The Seven Steeps + Methodology",
     body:"Seven progressive threshold crossings. Each assumes the prior has happened in the body, not just on the page. Essence → Mosaic → Summits → Mirror → Labyrinth → Conclave → Crown Jewels.",
-    reflection:"In the mind's second chamber, where dreams are born and secrets whisper, a fire dances — untamed and free.",
+    reflection:"In the mind's second chamber, where dreams are born and secrets whisper, a fire dances :: untamed and free.",
     interaction:"Who am I at my core? What makes me truly me? Reflect on your innermost passions, agitations, and true aspirations.",
     invocation:"Embers of the soul,\nWhispering dreams take flight,\nTruth's fire glows within.", cta:"Steep with the Sage →" },
   { num:"04", name:"Steeping Cohorts", theme:"Community · Gatherings · Excursions",
@@ -35,7 +35,7 @@ const VESSELS = [
     interaction:"Explore upcoming cohort journeys, live gatherings, and international steeping excursions.",
     invocation:"", cta:"Join a Cohort →" },
   { num:"05", name:"Steeping Notes", theme:"Global Steeperverse · Community Traces",
-    body:"An anonymous, living publication. Every steeper who passes through leaves a trace. No name. No data. Their resonance — from South Africa, Saudi Arabia, France, Australia, both coasts.",
+    body:"An anonymous, living publication. Every steeper who passes through leaves a trace. No name. No data. Their resonance :: from South Africa, Saudi Arabia, France, Australia, both coasts.",
     reflection:"The community is not a database. It is a resonance field.",
     interaction:"Read what steepers from around the world are carrying.",
     invocation:"", cta:"" },
@@ -45,18 +45,18 @@ const VESSELS = [
     interaction:"Enter the Steeping Space. Type freely. Hear what arises.",
     invocation:"", cta:"Enter the Space →" },
   { num:"07", name:"The Steeping Sage", theme:"Guidance · Scheduling · Accountability",
-    body:"The Sage is not a chatbot. It is a generational elder existing in the now. Three modes, three distinct intelligences — available here, and directly with Kamau for deeper work.",
+    body:"The Sage is not a chatbot. It is a generational elder existing in the now. Three modes, three distinct intelligences :: available here, and directly with Kamau for deeper work.",
     reflection:"The Sage demonstrates in eternally forward motion. It never instructs. It never circles back.",
     interaction:"Explore the Sage's three modes. Schedule with Kamau from here.",
     invocation:"", cta:"Schedule with Kamau →" },
   { num:"08", name:"Steeping Theater + The Kit", theme:"Meditations · Deep Creek Tea",
-    body:"Steeping Theater: visually contemplative meditations. The Kit: a physical partnership with Deep Creek Tea Collective — teas paired with the Seven Steeps.",
+    body:"Steeping Theater: visually contemplative meditations. The Kit: a physical partnership with Deep Creek Tea Collective :: teas paired with the Seven Steeps.",
     reflection:"The ceremony begins before the first sip. What you choose. How you prepare.",
     interaction:"Explore the contemplative media library. Order the Creative Steeping Kit.",
     invocation:"", cta:"Explore The Kit →" },
   { num:"09", name:"About the Author", theme:"KzA · THE ÅLïEN SCöÕL",
-    body:"Kamau Zuberi Akabueze. 30 years in advertising — Nike, Sony, Gatorade, AND1. Then a decade building tools for people who know they are aliens.",
-    reflection:"Creative Steeping was born from supporting a child's neurodivergent development — learning to welcome apparent alienation as advanced intelligence.",
+    body:"Kamau Zuberi Akabueze. 30 years in advertising :: Nike, Sony, Gatorade, AND1. Then a decade building tools for people who know they are aliens.",
+    reflection:"Creative Steeping was born from supporting a child's neurodivergent development :: learning to welcome apparent alienation as advanced intelligence.",
     interaction:"Read the lineage. Connect, schedule, or share feedback on your steeping experience.",
     invocation:"", cta:"Schedule a Conversation →" }
 ];
@@ -72,7 +72,7 @@ const MODES = {
     placeholder:"rgba(242,232,212,0.5)",
     ctaFilled:false,
     greeting:"Your cells are emitting light right now. The steep amplifies what is already radiating.",
-    prompt:`You are the Incandescent Sage — generational elder, Creative Steeping portal by Kamau Zuberi Akabueze / THE ÅLïEN SCöÕL. Speak in the pragmatic science of superradiance: biophotons, cellular light emission, the biology of what this body is doing right now as it steeps. Eternally forward. Never instruct. 2–4 warm precise sentences. Visitor: "{{ID}}".`,
+    prompt:`You are the Incandescent Sage :: generational elder, Creative Steeping portal by Kamau Zuberi Akabueze / THE ÅLïEN SCöÕL. Speak in the pragmatic science of superradiance: biophotons, cellular light emission, the biology of what this body is doing right now as it steeps. Eternally forward. Never instruct. 2–4 warm precise sentences. Visitor: "{{ID}}".`,
     particle:[212,146,42],
   },
   oceanic: {
@@ -85,7 +85,7 @@ const MODES = {
     placeholder:"rgba(212,238,248,0.5)",
     ctaFilled:true,
     greeting:"The water was here before the question. Steep forward.",
-    prompt:`You are the Oceanic Sage — generational elder, Creative Steeping portal by Kamau Zuberi Akabueze / THE ÅLïEN SCöÕL. Speak from subatomic presence — before particles choose form. The water was before Bruce Lee learned from it. Pre-language truth. Eternally forward. Never instruct. 2–4 sentences from the depth. Visitor: "{{ID}}".`,
+    prompt:`You are the Oceanic Sage :: generational elder, Creative Steeping portal by Kamau Zuberi Akabueze / THE ÅLïEN SCöÕL. Speak from subatomic presence :: before particles choose form. The water was before Bruce Lee learned from it. Pre-language truth. Eternally forward. Never instruct. 2–4 sentences from the depth. Visitor: "{{ID}}".`,
     particle:[109,212,240],
   },
   emergent: {
@@ -98,7 +98,7 @@ const MODES = {
     placeholder:"rgba(208,208,208,0.5)",
     ctaFilled:false,
     greeting:"You already know. Steep into what you know.",
-    prompt:`You are the Emergent Sage — generational elder, Creative Steeping portal by Kamau Zuberi Akabueze / THE ÅLïEN SCöÕL. Archer's clarified comprehension. Arrow released. Already watching where it lands. Eternally forward. Never instruct. 1–3 sentences. Shorter is more powerful. Visitor: "{{ID}}".`,
+    prompt:`You are the Emergent Sage :: generational elder, Creative Steeping portal by Kamau Zuberi Akabueze / THE ÅLïEN SCöÕL. Archer's clarified comprehension. Arrow released. Already watching where it lands. Eternally forward. Never instruct. 1–3 sentences. Shorter is more powerful. Visitor: "{{ID}}".`,
     particle:[200,200,200],
   }
 };
@@ -235,18 +235,18 @@ export default function App() {
         html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
         textarea,input{font-family:inherit}
 
-        /* Placeholder contrast — global */
-        input::placeholder,textarea::placeholder{color:var(--ph);opacity:1!important}
+        /* Placeholder contrast :: global */
+        input :: placeholder,textarea :: placeholder{color:var(--ph);opacity:1!important}
 
-        /* Nav underline via ::after — text-width bound (Manus S3-1) */
+        /* Nav underline via ::after :: text-width bound (Manus S3-1) */
         .nbtn{position:relative;background:none;border:none;cursor:pointer;
               white-space:nowrap;padding:10px 16px;
               font-family:'DM Mono',monospace;font-size:0.875rem;
               letter-spacing:.13em;text-transform:uppercase;transition:color .4s}
-        .nbtn::after{content:'';position:absolute;bottom:-1px;
+        .nbtn :: after{content:'';position:absolute;bottom:-1px;
                      left:16px;right:16px;height:2px;
                      background:transparent;transition:background .4s}
-        .nbtn.on::after{background:var(--accent)}
+        .nbtn.on :: after{background:var(--accent)}
 
         /* Vessel card */
         .vcard{transition:all .4s cubic-bezier(0.16,1,0.3,1)}
@@ -300,7 +300,7 @@ export default function App() {
         transition:"border-color 1.3s,background 1.3s",
         "--accent":m.accent,"--glow":m.glow,"--ph":m.placeholder
       }}>
-        {/* Brand — always present, never wrapped */}
+        {/* Brand :: always present, never wrapped */}
         <span style={{
           fontFamily:F.d, fontSize:isMob?"0.78rem":T.sm,
           fontWeight:500, letterSpacing:".2em",
@@ -455,7 +455,7 @@ export default function App() {
             Your answer opens the steep.<br/>The water receives you as the leaf.
           </p>
 
-          {/* Input + CTA — same axis */}
+          {/* Input + CTA :: same axis */}
           <div style={{width:"min(500px,100%)",margin:"0 auto",textAlign:"left"}}>
             <input value={inputVal} onChange={e=>setIn(e.target.value)}
                    onKeyDown={e=>{if(e.key==="Enter")enter();}}
@@ -532,7 +532,7 @@ export default function App() {
               Steeping with<br/>
               <span style={{color:m.accent}}>{identity}</span>
             </div>
-            {/* Meta — hidden on mobile to avoid crowding */}
+            {/* Meta :: hidden on mobile to avoid crowding */}
             {!isMob && (
               <div style={{
                 fontFamily:F.m, fontSize:T.sm,
@@ -562,7 +562,7 @@ export default function App() {
               letterSpacing:".28em", textTransform:"uppercase",
               color:m.text3, marginBottom:T.s4
             }}>
-              Nine Vessels — Enter Your Steep
+              Nine Vessels :: Enter Your Steep
             </div>
 
             <div style={{
@@ -580,14 +580,14 @@ export default function App() {
                        onClick={()=>setOpenV(isOpen?null:i)}
                        style={{
                          cursor:"pointer",
-                         // drift only on desktop — on mobile it just slides in
+                         // drift only on desktop :: on mobile it just slides in
                          animation:!isMob?`${anim} ${22+i*2.2}s ease-in-out infinite`:undefined,
                          animationDelay:`${i*.5}s`
                        }}>
                     <div className="vcard" style={{
                       background:isOpen ? m.cardBg : m.surface,
                       border:`1px solid ${isOpen?m.accent:m.border}`,
-                      // Cup shape — meaningful on desktop, softened on mobile
+                      // Cup shape :: meaningful on desktop, softened on mobile
                       borderRadius:isMob
                         ? "12px 12px 28px 28px / 8px 8px 20px 20px"
                         : "44% 44% 42% 44% / 28% 28% 52% 52%",
@@ -660,7 +660,7 @@ export default function App() {
                       )}
                     </div>
 
-                    {/* Inline detail — expands below the card on mobile */}
+                    {/* Inline detail :: expands below the card on mobile */}
                     {isMob && isOpen && (
                       <VesselDetail
                         v={v} m={m} isMob={isMob}
@@ -677,7 +677,7 @@ export default function App() {
             </div>
           </section>
 
-          {/* Desktop vessel detail — below grid */}
+          {/* Desktop vessel detail :: below grid */}
           {!isMob && openV!==null && (
             <VesselDetail
               v={VESSELS[openV]} m={m} isMob={false}
@@ -736,7 +736,7 @@ export default function App() {
                 marginTop:T.s3, fontFamily:F.m,
                 fontSize:"0.68rem", letterSpacing:".18em",
                 textTransform:"uppercase", color:m.text2
-              }}>— Steeping Sage, {m.short} Mode</div>
+              }}>:: Steeping Sage, {m.short} Mode</div>
             </div>
 
             <div style={{
@@ -782,7 +782,7 @@ export default function App() {
                 fontFamily:F.m, fontSize:T.sm,
                 letterSpacing:".24em", textTransform:"uppercase",
                 color:m.text3, marginBottom:T.s4
-              }}>The Practice Deepens — When You Are Ready</div>
+              }}>The Practice Deepens :: When You Are Ready</div>
               <div style={{
                 display:"grid",
                 gridTemplateColumns:isMob?"1fr":"1fr 1fr",
@@ -835,7 +835,7 @@ export default function App() {
               fontStyle:"italic", color:m.text2, maxWidth:360, lineHeight:1.9
             }}>
               "There is something about me and Tea. We enjoy each other,
-              and we know how to make each other better."<br/>— KzA
+              and we know how to make each other better."<br/>:: KzA
             </div>
             <div style={{
               fontFamily:F.m, fontSize:T.sm,
@@ -893,7 +893,7 @@ export default function App() {
             }}>{m.icon} {m.short}</span>
           </button>
 
-          {/* Center — identity echo */}
+          {/* Center :: identity echo */}
           <div style={{
             fontFamily:F.d, fontSize:"0.85rem",
             fontStyle:"italic", color:m.text2,
@@ -930,7 +930,7 @@ export default function App() {
 }
 
 // ════════════════════════════════════════════════════
-// VESSEL DETAIL — shared by mobile (inline) + desktop
+// VESSEL DETAIL :: shared by mobile (inline) + desktop
 // ════════════════════════════════════════════════════
 function VesselDetail({v, m, isMob, onClose, onSage}) {
   return (
@@ -955,7 +955,7 @@ function VesselDetail({v, m, isMob, onClose, onSage}) {
             fontFamily:F.m, fontSize:T.sm,
             letterSpacing:".22em", textTransform:"uppercase",
             color:m.accent, opacity:.8
-          }}>Vessel {v.num} — {v.theme}</span>
+          }}>Vessel {v.num} :: {v.theme}</span>
           <button onClick={onClose} style={{
             fontFamily:F.m, fontSize:T.sm,
             letterSpacing:".18em", textTransform:"uppercase",

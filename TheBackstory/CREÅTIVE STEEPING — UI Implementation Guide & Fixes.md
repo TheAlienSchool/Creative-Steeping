@@ -1,4 +1,4 @@
-# CREÅTIVE STEEPING — UI Implementation Guide & Fixes
+# CREÅTIVE STEEPING :: UI Implementation Guide & Fixes
 
 **Date:** Feb 23, 2026
 **Author:** Manus AI
@@ -135,8 +135,8 @@ These issues impact usability and visual consistency.
     *   **Problem:** Inconsistent nav underline; illegible attribution text.
     *   **Scope:** Nav Component, Quote Card Component
     *   **Solution:**
-        1.  **Nav Underline:** Refactor the active state underline to be a `::after` pseudo-element with `width: 100%` relative to the text element, not a fixed pixel value.
-        2.  **Attribution Text:** Update the attribution line (`— STEEPING SAGE...`) to use `color: var(--color-text-secondary);` and `font-size: var(--font-size-xs);` across all themes.
+        1.  **Nav Underline:** Refactor the active state underline to be a ` :: after` pseudo-element with `width: 100%` relative to the text element, not a fixed pixel value.
+        2.  **Attribution Text:** Update the attribution line (`:: STEEPING SAGE...`) to use `color: var(--color-text-secondary);` and `font-size: var(--font-size-xs);` across all themes.
 
 ### Phase 3: Low-Priority (Polish Pass)
 

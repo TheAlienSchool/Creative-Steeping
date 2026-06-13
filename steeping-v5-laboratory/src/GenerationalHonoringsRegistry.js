@@ -16,7 +16,7 @@ export const LocalHonoringsRegistry = {
   "ifa": {
     elder: "The Babalawos",
     tradition: "Yoruba Divination",
-    lineage: "West Africa, Antiquity—Present",
+    lineage: "West Africa, Antiquity :: Present",
     transmission: "A sophisticated binary technology for decoding cosmic speech and restoring alignment with destiny.",
     frequencyHz: 432
   }

@@ -4,11 +4,11 @@
 
 ## How It Works
 
-The Sage assembles responses from five layers, evaluated in order. Each layer is optional — it fires only when its conditions are met.
+The Sage assembles responses from five layers, evaluated in order. Each layer is optional :: it fires only when its conditions are met.
 
 ### Layer 1: Depth Register (Progressive Revelation)
 
-**File**: `steeping-v5-laboratory/src/useSageWayfinding.jsx` — `DEPTH_REGISTERS`
+**File**: `steeping-v5-laboratory/src/useSageWayfinding.jsx` :: `DEPTH_REGISTERS`
 
 The Sage speaks differently based on how many times the visitor has returned. Three tiers:
 
@@ -22,7 +22,7 @@ Fires as a prefix ~50% of the time to avoid formulaic repetition. Visit count is
 
 ### Layer 2: Transition Message
 
-**File**: `steeping-v5-laboratory/src/useSageWayfinding.jsx` — `TRANSITION_MESSAGES`
+**File**: `steeping-v5-laboratory/src/useSageWayfinding.jsx` :: `TRANSITION_MESSAGES`
 
 A single sentence that fires once when the visitor crosses from one steep to another. Detected by a `useEffect` that compares the previous steep ref to the current steep.
 
@@ -34,7 +34,7 @@ The codex is a build-time TF-IDF index over curated practitioner-facing document
 
 ### Layer 4: Mode x Steep Reflection
 
-**File**: `steeping-v5-laboratory/src/useSageWayfinding.jsx` — `MODE_REFLECTIONS` and `STEEP_REFLECTIONS`
+**File**: `steeping-v5-laboratory/src/useSageWayfinding.jsx` :: `MODE_REFLECTIONS` and `STEEP_REFLECTIONS`
 
 The Sage's core voice. Two tiers:
 
@@ -55,13 +55,13 @@ The seven steeps: `essence`, `mosaic`, `summits`, `mirror`, `labyrinth`, `concla
 
 ### Layer 5: Steep Invocation
 
-**File**: `steeping-v5-laboratory/src/useWayfinding.jsx` — `STEEP_INVOCATIONS`
+**File**: `steeping-v5-laboratory/src/useWayfinding.jsx` :: `STEEP_INVOCATIONS`
 
 A closing question keyed to the current steep. Fires only when the visitor asked something specific (query ends with `?` or exceeds 40 characters).
 
 ### Layer 6: Temporal Attunement
 
-**File**: `steeping-v5-laboratory/src/useSageWayfinding.jsx` — `TEMPORAL_WHISPERS`
+**File**: `steeping-v5-laboratory/src/useSageWayfinding.jsx` :: `TEMPORAL_WHISPERS`
 
 A closing whisper keyed to the time of day. Five periods: predawn, morning, afternoon, evening, night. Fires ~40% of the time. Time-of-day read from `wayfindingState.raw.timeOfDay`.
 
@@ -79,7 +79,7 @@ A closing whisper keyed to the time of day. Five periods: predawn, morning, afte
 
 ### Vessel Transitions
 
-**File**: `steeping-v5-laboratory/src/useSageWayfinding.jsx` — `VESSEL_TRANSITIONS`
+**File**: `steeping-v5-laboratory/src/useSageWayfinding.jsx` :: `VESSEL_TRANSITIONS`
 
 When a visitor completes (pours) a vessel, `getTransitionGuidance()` returns:
 - A **reflection** on what was just experienced
@@ -90,7 +90,7 @@ Called by the POUR button handler in `App.jsx`. The visitor sees a full-screen o
 
 ### Vessel-Steep Affinity
 
-**File**: `steeping-v5-laboratory/src/useSageWayfinding.jsx` — `VESSEL_STEEP_AFFINITY`
+**File**: `steeping-v5-laboratory/src/useSageWayfinding.jsx` :: `VESSEL_STEEP_AFFINITY`
 
 Maps each vessel number to the steeps that resonate with its theme:
 
@@ -109,12 +109,12 @@ Maps each vessel number to the steeps that resonate with its theme:
 ### Resonance Score
 
 `computeVesselResonance(vesselNum, gravity)` returns a 0-1 score measuring how strongly the visitor's current behavioral gravity aligns with a vessel's steep affinity. Used for:
-1. **Matrix glow intensity** — vessels that resonate with the visitor pulse brighter
-2. **Gravity-informed unlocking** — resonance >= 0.6 unlocks a vessel even without 5 archive entries
+1. **Matrix glow intensity** :: vessels that resonate with the visitor pulse brighter
+2. **Gravity-informed unlocking** :: resonance >= 0.6 unlocks a vessel even without 5 archive entries
 
 ### Vessel Unlocking (Dual-Path)
 
-**File**: `steeping-v5-laboratory/src/App.jsx` — vessel matrix render block
+**File**: `steeping-v5-laboratory/src/App.jsx` :: vessel matrix render block
 
 Two paths can unlock vessels 02+:
 
@@ -133,12 +133,12 @@ W1-W4 and 01 are always unlocked. Both paths trigger the `bioluminescent-bloom` 
 
 Reads behavioral signals and maps the visitor to one of seven steeps via a gravity model. Key signals:
 
-- **Stillness ratio** — time still vs. time active
-- **Text depth** — word count, vocabulary richness, expression density
-- **Typing velocity and variance** — speed and rhythm of input
-- **Visit count** — how many times the visitor has returned
-- **Archive word count** — total words across all historical entries
-- **Session age** — how long since entry
+- **Stillness ratio** :: time still vs. time active
+- **Text depth** :: word count, vocabulary richness, expression density
+- **Typing velocity and variance** :: speed and rhythm of input
+- **Visit count** :: how many times the visitor has returned
+- **Archive word count** :: total words across all historical entries
+- **Session age** :: how long since entry
 
 `computeGravity(raw, signals)` produces a sorted array of `{steep, weight}` objects. The highest-weight steep becomes `currentSteep`.
 
@@ -148,7 +148,7 @@ Reads behavioral signals and maps the visitor to one of seven steeps via a gravi
 
 ## Sonic Wayfinding
 
-**File**: `steeping-v5-laboratory/src/useSonnetEngine.jsx` — `STEEP_SONIC_SIGNATURES`
+**File**: `steeping-v5-laboratory/src/useSonnetEngine.jsx` :: `STEEP_SONIC_SIGNATURES`
 
 The sonic engine modulates its harmonic palette based on the visitor's current steep. Each steep has a distinct signature that shapes the striking bowl's behavior:
 
@@ -168,7 +168,7 @@ The steep is piped from `wayfindingState.currentSteep` → `steepForSonic` state
 
 ## Codex as Living Curriculum
 
-**File**: `steeping-v5-laboratory/src/App.jsx` — vessel detail view
+**File**: `steeping-v5-laboratory/src/App.jsx` :: vessel detail view
 
 When a visitor opens a vessel, the codex pre-surfaces 1-2 relevant fragments from the practitioner archive as ambient context. The fragments are selected using `surface(primarySteep, vesselName, 2)` where `primarySteep` is the first entry in `VESSEL_STEEP_AFFINITY[vesselNum]`.
 
@@ -178,17 +178,17 @@ Rendered as a subtle "From the Archive" aside between the vessel body text and t
 
 ## The Observer Pattern
 
-**File**: `steeping-v5-laboratory/src/OntologicalObservatory.jsx` — `computeObserverPatterns()`
+**File**: `steeping-v5-laboratory/src/OntologicalObservatory.jsx` :: `computeObserverPatterns()`
 
 Analytics without extraction. All data stays in localStorage. The Observatory reads aggregate patterns and surfaces them visually:
 
-- **Visit count** — from `steeping-space:visits`
-- **Archive entries** — from `steeping_historical_score`
-- **Words steeped** — total word count across all queries
-- **Active days** — unique dates with archive entries
-- **Steep gravity** — distribution of which steeps appear in the archive, rendered as progress bars
-- **Mode affinity** — which modes were active during each exchange
-- **Current position** — live wayfinding steep from `wayfindingState.currentSteep`
+- **Visit count** :: from `steeping-space:visits`
+- **Archive entries** :: from `steeping_historical_score`
+- **Words steeped** :: total word count across all queries
+- **Active days** :: unique dates with archive entries
+- **Steep gravity** :: distribution of which steeps appear in the archive, rendered as progress bars
+- **Mode affinity** :: which modes were active during each exchange
+- **Current position** :: live wayfinding steep from `wayfindingState.currentSteep`
 
 No individual visitor data is extracted or transmitted. The intelligence stays local; the patterns become visible.
 
@@ -203,12 +203,12 @@ No individual visitor data is extracted or transmitted. The intelligence stays l
 | `src/useWayfinding.jsx` | Behavioral signal reading, gravity model, steep resolution, time-of-day |
 | `src/useCodex.jsx` | Runtime codex loader and TF-IDF search |
 | `src/useSonnetEngine.jsx` | Sonic engine. Binaural ecology, striking bowl, sonic wayfinding signatures |
-| `src/TheSteepingCompass.jsx` | Me in 5D — five-dimensional self-assessment with post-anchor Sage reflection |
+| `src/TheSteepingCompass.jsx` | Me in 5D :: five-dimensional self-assessment with post-anchor Sage reflection |
 | `src/OntologicalObservatory.jsx` | Observatory. Calendar, cohort scheduling, Observer Pattern telemetry |
 | `src/VesselContent.js` | Vessel data (names, invocations, body text, interactions) |
 | `src/index.css` | Global styles, animations (ontologicalBreathe, bioluminescent-bloom, slowBlink) |
 | `scripts/build-codex.mjs` | Build-time TF-IDF indexer over steeperverse_delivery |
-| `public/codex.json` | Build artifact — the searchable fragment index |
+| `public/codex.json` | Build artifact :: the searchable fragment index |
 
 ---
 

@@ -1,6 +1,6 @@
 # Building a sacred geometry music tool for embodied, live-coded learning
 
-The most effective music theory learning tool for a dyslexic live coder would fuse **Coltrane's geometric spirituality**, **gamelan's interlocking patterns**, and **embodied cognition principles** into an audio-first, visually-driven system where code becomes instrument. The research reveals a striking convergence: from Coltrane's hand-drawn mandalas to Scriabin's color-light keyboards to kotekan's complementary patterns, music's deepest thinkers consistently discovered that harmony is **spatial, cyclical, and bodily**—not textual.
+The most effective music theory learning tool for a dyslexic live coder would fuse **Coltrane's geometric spirituality**, **gamelan's interlocking patterns**, and **embodied cognition principles** into an audio-first, visually-driven system where code becomes instrument. The research reveals a striking convergence: from Coltrane's hand-drawn mandalas to Scriabin's color-light keyboards to kotekan's complementary patterns, music's deepest thinkers consistently discovered that harmony is **spatial, cyclical, and bodily** :: not textual.
 
 This report synthesizes findings across six interconnected domains, prioritizing frameworks that bypass text-heavy notation while honoring the mathematical-spiritual traditions that connect sound to cosmos.
 
@@ -10,22 +10,22 @@ This report synthesizes findings across six interconnected domains, prioritizing
 
 John Coltrane's hand-drawn diagram, gifted to saxophonist Yusef Lateef between sets at a 1961 gig and published in Lateef's *Repository of Scales and Melodic Patterns* (1981), offers a profound template for visualizing harmony. Unlike the standard circle of fifths, Coltrane drew **two concentric rings** representing hexatonic whole-tone scales (C–D–E–F♯–G♯–A♯ outer; B–D♭–E♭–F–G–A inner), with a **pentagram connecting the Do notes** and circled chromatic neighbor tones forming what physicist Stephon Alexander calls "a unified theory of music."
 
-The diagram encodes the harmonic engine behind "Giant Steps"—**three tonal centers separated by major thirds** (B, G, E♭) forming an augmented triad that divides the octave into three equal parts. This creates the notorious "Coltrane Changes": 26 chord changes in 16 bars, each major chord preceded by its dominant. Coltrane described the bass line as "kind of lop-sided... going from minor thirds to fourths" rather than strictly chromatic movement.
+The diagram encodes the harmonic engine behind "Giant Steps" :: **three tonal centers separated by major thirds** (B, G, E♭) forming an augmented triad that divides the octave into three equal parts. This creates the notorious "Coltrane Changes": 26 chord changes in 16 bars, each major chord preceded by its dominant. Coltrane described the bass line as "kind of lop-sided... going from minor thirds to fourths" rather than strictly chromatic movement.
 
 For learning tool design, the Coltrane Circle reveals **sacred geometry embedded in practical music theory**:
 - The **Star of David/hexagram** emerges from augmented triads
 - The **pentagram** connects whole-tone relationships  
 - The **Merkaba** (star tetrahedron) represents "light-spirit-body" and appears when extending to 3D
 
-Coltrane studied Einstein, the Bhagavad Gita, and Nicolas Slonimsky's *Thesaurus of Scales and Melodic Patterns* (directly quoting passages in "Giant Steps"). His spiritual awakening in 1957 led him to seek music that could "make others happy"—the diagram was his attempt to map cosmic harmony visually. An interactive learning tool could animate the Coltrane Circle, showing how chord progressions trace geometric paths and how "A Love Supreme's" four-note motif (F–A♭–A–B♭) appears in all 12 keys during "Acknowledgement."
+Coltrane studied Einstein, the Bhagavad Gita, and Nicolas Slonimsky's *Thesaurus of Scales and Melodic Patterns* (directly quoting passages in "Giant Steps"). His spiritual awakening in 1957 led him to seek music that could "make others happy" :: the diagram was his attempt to map cosmic harmony visually. An interactive learning tool could animate the Coltrane Circle, showing how chord progressions trace geometric paths and how "A Love Supreme's" four-note motif (F–A♭–A–B♭) appears in all 12 keys during "Acknowledgement."
 
 ---
 
 ## Live coding pedagogy and the flow channel
 
-The three dominant live coding environments—**Tidal Cycles**, **Strudel**, and **Sonic Pi**—share pedagogical DNA that aligns with Csikszentmihalyi's flow research. Each prioritizes **immediate sonic feedback**, **pattern-based thinking**, and **minimal installation friction** (Strudel runs entirely in-browser at strudel.cc).
+The three dominant live coding environments :: **Tidal Cycles**, **Strudel**, and **Sonic Pi** :: share pedagogical DNA that aligns with Csikszentmihalyi's flow research. Each prioritizes **immediate sonic feedback**, **pattern-based thinking**, and **minimal installation friction** (Strudel runs entirely in-browser at strudel.cc).
 
-Sonic Pi creator Sam Aaron developed his tool through extensive collaboration with UK schools, emphasizing "conceptual efficiency"—minimum complexity for maximum creative output. His core insight: treating **code as musical instrument and self-expression**, not programming exercise. The built-in tutorials use progressive disclosure, starting with `play 60` and building to complex compositions.
+Sonic Pi creator Sam Aaron developed his tool through extensive collaboration with UK schools, emphasizing "conceptual efficiency" :: minimum complexity for maximum creative output. His core insight: treating **code as musical instrument and self-expression**, not programming exercise. The built-in tutorials use progressive disclosure, starting with `play 60` and building to complex compositions.
 
 Tidal Cycles uses "mini-notation" that compresses musical patterns into cycles: `d1 $ sound "kick snare kick snare"` creates a four-beat loop. Learning advances through pattern grouping, Euclidean rhythms (distributing beats mathematically), and control patterns that modify sound parameters. Common beginner challenges include understanding cycle/time relationships and pattern combination logic (the leftmost pattern determines rhythm).
 
@@ -41,7 +41,7 @@ Flow state research identifies **eight conditions** critical for learning tool d
 
 The key insight: **skill-challenge balance is dynamic**. As learners improve, challenge must increase to maintain flow. Music is ideal for flow because it provides instant feedback and clear structure. The warning against "junk flow" (superficial game mechanics that become addictive without producing growth) suggests prioritizing intrinsic motivation through autonomy, competence, and creative expression over points and badges.
 
-Adaptive learning systems like Yousician and EarMaster use AI to identify strengths/weaknesses and dynamically adjust difficulty. Stanford research on "RealEarTrainer" shows that **connecting exercises to learners' favorite songs** dramatically enhances motivation—a principle directly applicable to live coding.
+Adaptive learning systems like Yousician and EarMaster use AI to identify strengths/weaknesses and dynamically adjust difficulty. Stanford research on "RealEarTrainer" shows that **connecting exercises to learners' favorite songs** dramatically enhances motivation :: a principle directly applicable to live coding.
 
 ---
 
@@ -49,9 +49,9 @@ Adaptive learning systems like Yousician and EarMaster use AI to identify streng
 
 The attempt to connect color wheels and tone circles has a **320-year history** beginning with Isaac Newton's 1704 *Opticks*, which mapped seven spectral colors (ROYGBIV) to the seven notes of the Dorian mode, believing colors and music shared analogous mathematical ratios. This "cosmic harmony" concept persisted through Louis-Bertrand Castel's 1726 "Ocular Harpsichord" (a keyboard producing colored light, intended partly to help deaf people "see" music) to Alexander Scriabin's **clavier à lumières**.
 
-Scriabin's color-key assignments follow the circle of fifths: C=Red, G=Orange, D=Yellow, A=Green, E=Sky blue, B=Blue, F♯=Bright blue/violet, and so on. When arranged spectrally (ROYGBIV), the colors produce the circle of fifths sequence. His 1910 *Prometheus: Poem of Fire* included a "Luce" part with two color lines—one following the circle of fifths, one following tonal center. The work premiered at Carnegie Hall in 1915, after Scriabin's death; Yale University created a successful multimedia performance in 2010.
+Scriabin's color-key assignments follow the circle of fifths: C=Red, G=Orange, D=Yellow, A=Green, E=Sky blue, B=Blue, F♯=Bright blue/violet, and so on. When arranged spectrally (ROYGBIV), the colors produce the circle of fifths sequence. His 1910 *Prometheus: Poem of Fire* included a "Luce" part with two color lines :: one following the circle of fifths, one following tonal center. The work premiered at Carnegie Hall in 1915, after Scriabin's death; Yale University created a successful multimedia performance in 2010.
 
-Research on chromesthesia (sound-to-color synesthesia) confirms that pitch classes have consistent "rainbow hues" even in non-synesthetes: do=red, re=yellow, mi=green through si=violet. Colors associate more with pitch-class **names** than raw sounds—a concept-mediated mapping. This suggests color-coding in learning tools should be **consistent and conceptually grounded**, not arbitrary.
+Research on chromesthesia (sound-to-color synesthesia) confirms that pitch classes have consistent "rainbow hues" even in non-synesthetes: do=red, re=yellow, mi=green through si=violet. Colors associate more with pitch-class **names** than raw sounds :: a concept-mediated mapping. This suggests color-coding in learning tools should be **consistent and conceptually grounded**, not arbitrary.
 
 For practical implementation, Margaret Hubicki's "Coloured Staff" system for dyslexic learners uses: A=pink, B=dark blue, C=red, D=orange, E=yellow, F=green, G=light blue. The **Boomwhacker colors** (C=red, D=orange, E=yellow, F=green, G=teal, A=purple, B=pink) are widely recognized in educational contexts.
 
@@ -59,13 +59,13 @@ For practical implementation, Margaret Hubicki's "Coloured Staff" system for dys
 
 ## Gamelan as alternative harmonic framework
 
-Gamelan music theory offers a **complete alternative to Western chord-based thinking**, potentially transformative for learners struggling with conventional theory. The two tuning systems—**slendro** (5 notes, roughly equal spacing of ~240 cents) and **pelog** (7 notes, unequal intervals)—create emotional landscapes impossible in 12-tone equal temperament.
+Gamelan music theory offers a **complete alternative to Western chord-based thinking**, potentially transformative for learners struggling with conventional theory. The two tuning systems :: **slendro** (5 notes, roughly equal spacing of ~240 cents) and **pelog** (7 notes, unequal intervals) :: create emotional landscapes impossible in 12-tone equal temperament.
 
-Slendro, named after the 8th-century Sailendra dynasty, produces a "light, cheerful atmosphere" used for war scenes and marching, but becomes sad/romantic when played "miring" (out of place). Pelog feels "manly, regal, and sacred"—especially in pelog nem notation. Crucially, **each gamelan is uniquely tuned**; instruments from different sets cannot mix. Where Western tuning is culture-wide standard, gamelan tuning is ensemble-wide standard.
+Slendro, named after the 8th-century Sailendra dynasty, produces a "light, cheerful atmosphere" used for war scenes and marching, but becomes sad/romantic when played "miring" (out of place). Pelog feels "manly, regal, and sacred" :: especially in pelog nem notation. Crucially, **each gamelan is uniquely tuned**; instruments from different sets cannot mix. Where Western tuning is culture-wide standard, gamelan tuning is ensemble-wide standard.
 
-The **ombak** (beating/wave) created by paired instruments tuned 5-10 Hz apart produces gamelan's characteristic shimmer—considered a "stepping stone to meditative state." This inharmonic quality relates to the metallophone overtones, which don't follow the harmonic series. William Sethares argues: "The inharmonic spectra of gamelan instruments are related to pelog and slendro scales in the same way harmonic spectra relate to Western diatonic scales."
+The **ombak** (beating/wave) created by paired instruments tuned 5-10 Hz apart produces gamelan's characteristic shimmer :: considered a "stepping stone to meditative state." This inharmonic quality relates to the metallophone overtones, which don't follow the harmonic series. William Sethares argues: "The inharmonic spectra of gamelan instruments are related to pelog and slendro scales in the same way harmonic spectra relate to Western diatonic scales."
 
-**Kotekan** (interlocking patterns) is gamelan's most live-coding-relevant concept. Two independent parts—**polos** (on-beat) and **sangsih** (off-beat)—combine to create "the illusion of a single melodic line faster than any human could play." Colin McPhee documented that parts are "incomplete when played alone and dependent exclusively on each other." The technique uses minimal building blocks (single note, single rest, pair of adjacent tones) combined into four types:
+**Kotekan** (interlocking patterns) is gamelan's most live-coding-relevant concept. Two independent parts :: **polos** (on-beat) and **sangsih** (off-beat) :: combine to create "the illusion of a single melodic line faster than any human could play." Colin McPhee documented that parts are "incomplete when played alone and dependent exclusively on each other." The technique uses minimal building blocks (single note, single rest, pair of adjacent tones) combined into four types:
 
 - **Nyog cag**: Simple alternation at fastest tempos
 - **Nyok cok**: Neighbor-note motion anticipating melody
@@ -78,7 +78,7 @@ For live coding, kotekan principles translate directly: **simple rules create co
 
 ## Embodied cognition and the dyslexic learner
 
-The 4E model of cognition—**Embodied, Embedded, Enactive, Extended**—revolutionizes music learning design. Research shows musical understanding emerges from brain-body integration, not abstract mental processing. The body helps us **anticipate and predict** musical elements; different movements make different aspects of music salient.
+The 4E model of cognition :: **Embodied, Embedded, Enactive, Extended** :: revolutionizes music learning design. Research shows musical understanding emerges from brain-body integration, not abstract mental processing. The body helps us **anticipate and predict** musical elements; different movements make different aspects of music salient.
 
 **Dalcroze Eurhythmics**, developed by Émile Jaques-Dalcroze, provides the foundational model: "We do not only listen to music with our ears, it resonates in our whole body, in the brain and the heart." The method trains structural elements (beat, rhythm, meter) and aesthetic elements (dynamics, articulation, affect) **through movement before visual representation**. Key strategies include quick-reaction games responding to changing musical cues, canons in sound and motion, and time-space-energy explorations.
 
@@ -97,7 +97,7 @@ Evidence-based beneficial approaches include:
 
 Research on Cognitivo-Musical Training shows that **18 hours of rhythmic/temporal musical training** significantly improves categorical perception, auditory attention, phonological awareness, and reading abilities in dyslexic learners. Music-language analogies mean training music improves shared brain circuits.
 
-**Entrainment**—being "pulled" toward synchronization with music—is universal and progression-based: finding → keeping → being the beat. **Alignment** includes phase alignment (moving to the beat) and inter-phase alignment (visualizing melody, dynamics, harmony through movement). A learning tool should leverage these by allowing gesture input and body-based interaction.
+**Entrainment** :: being "pulled" toward synchronization with music :: is universal and progression-based: finding → keeping → being the beat. **Alignment** includes phase alignment (moving to the beat) and inter-phase alignment (visualizing melody, dynamics, harmony through movement). A learning tool should leverage these by allowing gesture input and body-based interaction.
 
 For "warm" vs. "clinical" technology design, research identifies key elements: **human-like features**, **rounded lines** instead of sharp edges, **warm colors**, and **anthropomorphic qualities**. Body-based metaphors for music interfaces include: pitch is up/down, intervals have sizes/lengths, chords are containers for notes, progression is movement along a path.
 
@@ -114,7 +114,7 @@ Neo-Riemannian transformations move between adjacent triangles:
 
 These compound to create "chromatic mediants" popular in film scoring. Interactive Tonnetz tools at tonnetz.liamrosenfeld.com and girlinbluemusic.com demonstrate how voice-leading movements trace elegant paths across the grid.
 
-**Hooktheory** (hooktheory.com) pioneered data-driven music theory visualization. Their Trends tool shows chord probability based on **65,000+ analyzed songs**—as you build progressions, larger shapes indicate more common following chords. TheoryTab database breaks real songs into visual chord/melody representations, and Hookpad provides intelligent chord suggestions during composition.
+**Hooktheory** (hooktheory.com) pioneered data-driven music theory visualization. Their Trends tool shows chord probability based on **65,000+ analyzed songs** :: as you build progressions, larger shapes indicate more common following chords. TheoryTab database breaks real songs into visual chord/melody representations, and Hookpad provides intelligent chord suggestions during composition.
 
 **Chrome Music Lab** (musiclab.chromeexperiments.com) offers 13 experiments including Song Maker (grid-based composition), Spectrogram (frequency visualization), and Kandinsky (draw shapes that become music). Built on Tone.js and Web Audio API, it's fully open-source and works on any device with zero setup.
 
@@ -178,4 +178,4 @@ Based on the synthesis of all research domains, here are actionable frameworks f
 - Allow "wrong" paths to loop back with new insights
 - Use narrative context to embed abstract concepts
 
-The convergence across domains is clear: from Coltrane's cosmological diagrams to gamelan's interlocking parts to embodied cognition research, **music learning works best when it's geometric, cyclical, bodily, and alive**. The most innovative music minds have always reached toward sacred geometry and multi-sensory experience—a live-coded learning tool can finally realize what Newton, Scriabin, Coltrane, and the Balinese masters imagined.
+The convergence across domains is clear: from Coltrane's cosmological diagrams to gamelan's interlocking parts to embodied cognition research, **music learning works best when it's geometric, cyclical, bodily, and alive**. The most innovative music minds have always reached toward sacred geometry and multi-sensory experience :: a live-coded learning tool can finally realize what Newton, Scriabin, Coltrane, and the Balinese masters imagined.

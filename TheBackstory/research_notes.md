@@ -64,7 +64,7 @@
 **Common Patterns:**
 - "It's not just X, it's Y"
 - "We're not just building a product, we're creating an experience"
-- "Credit card fraud isn't just evolving—it's accelerating!"
+- "Credit card fraud isn't just evolving :: it's accelerating!"
 - "X doesn't eliminate Y; it redistributes it"
 
 **Why AI Uses This Structure (per Claude):**

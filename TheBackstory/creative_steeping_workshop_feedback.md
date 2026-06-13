@@ -11,7 +11,7 @@
 **1. Attitude Assumed:**
 
 "The Curious Alchemist"
-— I approached this as an apprentice entering a master’s laboratory, eager to understand the principles behind the observable magic. I was looking for the transmutation of the mundane (procrastination, daily routine) into the golden essence of creativity and self-understanding.
+:: I approached this as an apprentice entering a master’s laboratory, eager to understand the principles behind the observable magic. I was looking for the transmutation of the mundane (procrastination, daily routine) into the golden essence of creativity and self-understanding.
 
 ---
 

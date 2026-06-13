@@ -739,7 +739,7 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                             [ ⌨ ]
                         </div>
 
-                        {/* Glassmorphic Keyboard Hotkeys Panel — anchored below the top bar */}
+                        {/* Glassmorphic Keyboard Hotkeys Panel :: anchored below the top bar */}
                         {hotkeysOpen && (
                             <div style={{
                                 position: 'absolute', top: 'calc(100% + 8px)', left: 0,
@@ -993,7 +993,7 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                                     fontFamily: 'var(--fMono)', fontSize: '0.6rem', letterSpacing: '0.2em', 
                                     color: m.text2, textTransform: 'uppercase', opacity: 0.75
                                 }}>
-                                    — {currentAsset.kicker}
+                                    :: {currentAsset.kicker}
                                 </div>
                             </div>
                         ) : (

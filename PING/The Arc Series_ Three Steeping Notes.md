@@ -13,7 +13,7 @@ We are taught to worship the straight line. The shortest distance between two po
 
 But the straight line is an abstraction. It exists on paper, but it rarely exists in physics, and it never exists in human development. When a rocket leaves the atmosphere, it does not fly straight up. If it did, gravity would pull it straight back down. It flies in a curve. It arcs. It leans into the resistance of the atmosphere to generate the velocity required to escape it.
 
-The resistance you are feeling right now—the Surface Tension—is not a sign that you have failed the straight line. It is the atmosphere you are using to build your arc.
+The resistance you are feeling right now :: the Surface Tension :: is not a sign that you have failed the straight line. It is the atmosphere you are using to build your arc.
 
 Do not force the immediate solution. Do not demand the straight line. Lean into the curve. Let the geometry do the work.
 

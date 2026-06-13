@@ -76,11 +76,11 @@ Human Development Mathematics (HDM) is a guidance system for the 21st-century hu
 
 It emerged from a simple, powerful equation: **Seek Guidance \+ Embrace Growth.**
 
-While the equation is simple, its application in a world of competing demands, economic pressures, and relational complexities—what we call **Surface Tension**—is not. HDM provides the mathematical tools to navigate this complexity with integrity and grace.
+While the equation is simple, its application in a world of competing demands, economic pressures, and relational complexities :: what we call **Surface Tension** :: is not. HDM provides the mathematical tools to navigate this complexity with integrity and grace.
 
 ### **The Core Principles of HDM**
 
-1. **The Mathematics of Being:** HDM posits that our internal states—our thoughts, emotions, and intentions—operate according to mathematical principles. They are not random; they are part of a coherent, elegant system.  
+1. **The Mathematics of Being:** HDM posits that our internal states :: our thoughts, emotions, and intentions :: operate according to mathematical principles. They are not random; they are part of a coherent, elegant system.  
 2. **Surface Tension as a Coordinate System:** Surface Tension is the boundary between our inner world and the outer world. It is not an obstacle; it is a coordinate system that tells us precisely where we are. HDM teaches us how to read this system.  
 3. **Love as Primary Mathematics:** The most powerful force in the HDM framework is what we call "primary mathematics" or "love math." It is the transformation of perception through love, a force that transcends Surface Tension and creates new possibilities.
 
@@ -232,7 +232,7 @@ This is the foundational inquiry. It is the return to the source. Before you can
 
 **The Three Applications:**
 
-1. **In Product:** Our products and experiences are designed to create a gentle, intentional surface tension in the user. The portal, the journal, the workshops — they are all containers for this creative force.  
+1. **In Product:** Our products and experiences are designed to create a gentle, intentional surface tension in the user. The portal, the journal, the workshops :: they are all containers for this creative force.  
 2. **In Communication:** Our language creates surface tension. We use koans and clarity, staccato and space, to create a rhythm that pulls the reader forward. We do not give them all the answers. We give them better questions.  
 3. **In Strategy:** We do not seek to dominate markets. We seek to create new ones. We operate at the edge of the known, at the boundary of the possible. This is where the greatest creative and commercial opportunities reside.
 

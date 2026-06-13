@@ -133,4 +133,4 @@ The correction strengthens the coherence of the entire framework and ensures tha
 
 ## Final Recommendation
 
-**Make the correction with confidence.** This is not overthought—it's a critical conceptual clarification that ensures the integrity of the Creative Steeping experience. The rest of your guidebook already supports this corrected understanding beautifully.
+**Make the correction with confidence.** This is not overthought :: it's a critical conceptual clarification that ensures the integrity of the Creative Steeping experience. The rest of your guidebook already supports this corrected understanding beautifully.

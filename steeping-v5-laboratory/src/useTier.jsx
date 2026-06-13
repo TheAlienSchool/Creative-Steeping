@@ -16,7 +16,7 @@ export const useTier = () => {
     const { profile, user } = useAuth();
 
     // The tier lives on the profile row. If no profile exists,
-    // the practitioner is Interactive (L1) — open, ungated.
+    // the practitioner is Interactive (L1) :: open, ungated.
     const tier = profile?.access_tier ?? 'interactive';
 
     const isInteractive  = tier === 'interactive';
@@ -26,10 +26,10 @@ export const useTier = () => {
     // Authenticated at any tier (magic link sent and confirmed)
     const isAuthenticated = !!user;
 
-    // Engaged OR Inneractive — the Historical Score persists
+    // Engaged OR Inneractive :: the Historical Score persists
     const hasPersistentScore = isEngaged || isInneractive;
 
-    // Inneractive — direct session booking, group cohorts
+    // Inneractive :: direct session booking, group cohorts
     const hasInneractivePrivilege = isInneractive;
 
     return {
