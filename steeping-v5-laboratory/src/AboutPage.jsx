@@ -327,6 +327,22 @@ export function AboutPage() {
             onMouseLeave={e => e.currentTarget.style.opacity = 1}>
             Begin Your Steep ↗
           </a>
+          <a href="/engage"
+            style={{
+              display: 'inline-block',
+              fontFamily: "'DM Mono', monospace",
+              fontSize: '0.78rem', letterSpacing: '0.2em',
+              textTransform: 'uppercase', color: m.accent,
+              border: `1px solid ${m.accent}`, textDecoration: 'none',
+              padding: '13px 28px', textAlign: 'center',
+              transition: 'background 0.3s, color 0.3s',
+              maxWidth: '280px', fontWeight: 'bold',
+              boxSizing: 'border-box'
+            }}
+            onMouseEnter={e => { e.currentTarget.style.background = m.accent; e.currentTarget.style.color = m.bg; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = m.accent; }}>
+            Explore Program Details ↗
+          </a>
           <a href="https://thealienschool.com" target="_blank" rel="noopener noreferrer" style={{
             fontFamily: "'DM Mono', monospace",
             fontSize: '0.72rem', color: m.text2, textDecoration: 'none',

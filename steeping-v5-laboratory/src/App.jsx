@@ -37,6 +37,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { VESSELS_L2 } from './VesselsL2';
 import { VesselL2Detail } from './VesselL2Detail';
 import { AboutPage } from './AboutPage';
+import { EngagePage } from './EngagePage';
 
 import './App.css';
 
@@ -990,6 +991,17 @@ function AppInner() {
                 onMouseLeave={e => e.currentTarget.style.borderBottom = '1px solid transparent'}
                 title="5D Biometric Resonance Anchor">
                 <b>[ ME IN 5D ]</b>
+              </button>
+
+              <button onClick={() => { window.location.pathname = '/engage'; setNavMenuOpen(false); }} style={{
+                background: 'none', border: 'none',
+                color: 'var(--acc)', borderBottom: '1px solid transparent',
+                transition: 'border-bottom 1.2s ease', cursor: 'pointer', fontFamily: 'var(--fMono)',
+                fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap'
+              }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--acc)'}
+                onMouseLeave={e => e.currentTarget.style.borderBottom = '1px solid transparent'}
+                title="View Program details and tiers">
+                <b>[ PROGRAM DETAILS ]</b>
               </button>
 
               {/* Divider before About */}
@@ -2459,6 +2471,7 @@ function AppInner() {
 export default function App() {
   const path = window.location.pathname.toLowerCase();
   if (path.includes('/about')) return <AboutPage />;
+  if (path.includes('/engage')) return <EngagePage />;
   return (
     <ErrorBoundary>
       <AppInner />
