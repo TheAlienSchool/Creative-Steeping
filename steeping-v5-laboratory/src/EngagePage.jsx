@@ -318,12 +318,106 @@ export function EngagePage() {
 
   // Archival Pool download handler
   const handleDownloadSheet = () => {
-    const content = `CREATIVE STEEPING :: PATHWAY OUTLINE\nFormat: ${formats[selectedFormat].title}\nPrice: ${formats[selectedFormat].price}\nDuration: ${formats[selectedFormat].duration}\nDelivery: ${formats[selectedFormat].delivery}`;
-    const blob = new Blob([content], { type: 'text/plain' });
+    const f = formats[selectedFormat];
+    const border = "========================================================================";
+    
+    const content = `${border}
+         ▄▄          C R E Å T I V E   S T E E P I N G
+       ▄▓██▓▄        
+     ▄▓██████▓▄      Pathway Alignment Specification
+   ▄▓██████████▓▄    
+  ▓██████████████▓   THE ÅLIËN SCÖÕL FOR CREATIVE THINKING
+  ▓████████▓███████▓ https://creativesteeping.com
+  ▓██████▓▀ ▀██████▓ 
+  ▓█████▓▀   ▀█████▓ 
+  ▀▓███▓▀     ▀▓██▓▀ 
+    ▀▀          ▀▀   
+${border}
+
+Greetings Seeker, Practitioner, or Team Leader,
+
+This document holds the specifications of your selected pathway for
+Creative Steeping. Fusing the physical chemistry of tea-making with the
+generative science of reflective journaling, our programs guide you
+to establish self-perception, personal authority, and strategic alignment.
+
+------------------------------------------------------------------------
+ pathway specifications
+------------------------------------------------------------------------
+Pathway:      ${f.title}
+Designation:  ${f.subtitle}
+Duration:     ${f.duration}
+Format:       ${f.delivery}
+Artifacts:    ${f.artifacts}
+Price:        ${f.price}
+
+The Opportunity:
+"${f.oneBeliefOpportunity}"
+
+Description:
+${f.desc}
+
+------------------------------------------------------------------------
+ the pillars of the practice
+------------------------------------------------------------------------
+I. Guided Introspection & Ritual
+Slowing down to honor your own metabolism. The chemical onset of L-theanine
+from your tea vascularizes cognitive flow, while the day-by-day progression
+of the portal challenges limiting patterns and harvests clarity from your
+internal landscape.
+
+II. Action-Oriented Reflection
+Contemplation without execution is stagnation. The practice drives you to
+identify challenges as dynamic catapults for growth, encouraging you to
+plant "seeds of promise" that translate inner wisdom into daily material
+strategies.
+
+III. Quantum Connection
+Your thoughts carry a physical signature. By sonifying your writing rhythms
+through the Solfeggio-tuned Sonnet Engine, your individual consciousness
+actively interfaces with your surroundings, materializing focused intention.
+
+------------------------------------------------------------------------
+ programmatic digital tiers
+------------------------------------------------------------------------
+[ LAYER 1 : ENTRANCE ]   ::   FREE
+The Steeperverse opens here. Navigate freely, generate sound with your
+movements, and begin a conversation with The Steeping Sage.
+
+[ LAYER 2 : ENGAGED ]    ::   $44
+Your steep deepens when it has somewhere to land. Layer 2 holds the full
+record of your presence, your vessel reflections, and your Steeping Ledger.
+
+[ LAYER 3 : INNERACTIVE ] ::   $777
+The practitioner community. Direct one-on-one Steeping Sessions. Group
+cohorts with the architects of the practice. The full depth, held with
+others who are already doing the work.
+
+------------------------------------------------------------------------
+ about the founder
+------------------------------------------------------------------------
+Kamau Zuberi Akabueze (KzA) is the founder of THE ÅLIËN SCÖÕL for Creative
+Thinking :: a creative education practice spanning 25 years of work at
+the intersection of creativity, strategy, and human development. Creative
+Steeping is the living distillation of that practice: a methodology, a
+guidebook, and now a digital portal.
+
+------------------------------------------------------------------------
+ contact & scheduling
+------------------------------------------------------------------------
+To align your pathway orientation or share this spec with your team:
+Schedule with KzA:  https://calendly.com/bethecandle/1-1-w-kza
+General Inquiry:    kza@thealienschool.com
+Website:            https://creativesteeping.com
+
+"The being and the practice are inseparable."
+${border}`;
+
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `creative_steeping_${selectedFormat}_overview.txt`;
+    a.download = `creative_steeping_${selectedFormat}_pathway.txt`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -337,7 +431,7 @@ export function EngagePage() {
       delivery: "Live 1:1 Virtual Sessions + Private Portal Integration",
       artifacts: "Personalized Steeping Reflections + Custom Guidebook Edition",
       oneBeliefOpportunity: "A dedicated mirror of self-perception that scales your specific flavor of intelligence.",
-      price: "$777 / Full Journey"
+      price: "$777 / Practitioner"
     },
     group: {
       title: "Steeping Circles",
@@ -347,7 +441,7 @@ export function EngagePage() {
       delivery: "Weekly Virtual Gatherings + Collaborative Sanctuary Access",
       artifacts: "Group Constellation Map + Shared Reflection Archive",
       oneBeliefOpportunity: "Community-driven resonance that proves your inner voice is also the room's voice.",
-      price: "$2,200 / Practitioner"
+      price: "$2,200 / Full Journey"
     },
     org: {
       title: "Organizational Steeping",
