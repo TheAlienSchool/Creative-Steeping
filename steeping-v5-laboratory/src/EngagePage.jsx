@@ -86,6 +86,14 @@ const SteepingNoteVisuality = () => {
     setCoords({ stbl: 75, prss: 40, cohr: 85, drft: 15 });
   };
 
+  const handlePrev = () => {
+    setActiveNoteIdx(prev => (prev === 0 ? notesList.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setActiveNoteIdx(prev => (prev === notesList.length - 1 ? 0 : prev + 1));
+  };
+
   const activeNote = notesList[activeNoteIdx];
 
   return (
@@ -94,92 +102,135 @@ const SteepingNoteVisuality = () => {
         Move your cursor across the card below to experience the real-time somatic coordinates tracking that guides practitioners through their journals.
       </BodyText>
       
-      <div
-        ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={{
-          background: `linear-gradient(135deg, ${m.cardBg} 0%, ${m.surface} 100%)`,
-          border: `1px solid ${m.accent}50`,
-          borderRadius: '4px',
-          padding: '32px 28px',
-          position: 'relative',
-          boxShadow: `0 8px 32px rgba(212, 146, 42, ${coords.cohr / 1000 + 0.05})`,
-          transition: 'box-shadow 0.15s ease',
-          cursor: 'crosshair',
-          overflow: 'hidden'
-        }}
-      >
-        <div style={{
-          position: 'absolute', inset: 0, opacity: 0.06,
-          backgroundImage: `radial-gradient(${m.accent} 1px, transparent 1px)`,
-          backgroundSize: '16px 16px', pointerEvents: 'none'
-        }} />
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', position: 'relative' }}>
+        {/* Left Arrow Button */}
+        <button
+          onClick={handlePrev}
+          style={{
+            background: 'none', border: `1px solid ${m.accent}30`,
+            color: m.accent, width: '36px', height: '36px',
+            borderRadius: '50%', cursor: 'pointer', display: 'flex',
+            alignItems: 'center', justifyContent: 'center',
+            fontSize: '0.9rem', transition: 'all 0.3s ease',
+            flexShrink: 0, fontFamily: "'DM Mono', monospace"
+          }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor = m.accent; e.currentTarget.style.background = `${m.accent}15`; }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor = `${m.accent}30`; e.currentTarget.style.background = 'none'; }}
+          title="Previous Note"
+        >
+          ←
+        </button>
 
-        <div style={{
-          fontFamily: "'DM Mono', monospace",
-          fontSize: '0.62rem',
-          letterSpacing: '0.15em',
-          color: m.accent,
-          marginBottom: '20px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          borderBottom: `1px solid ${m.accent}20`,
-          paddingBottom: '10px'
-        }}>
-          <span>STBL: {coords.stbl}%</span>
-          <span>PRSS: {coords.prss}%</span>
-          <span>COHR: {coords.cohr}%</span>
-          <span>DRFT: {coords.drft}%</span>
-        </div>
-
-        <div style={{ minHeight: '110px' }}>
+        {/* Card Component */}
+        <div
+          ref={cardRef}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          style={{
+            flex: 1,
+            background: `radial-gradient(circle at ${coords.cohr}% ${coords.prss}%, ${m.cardBg} 0%, ${m.surface} 100%)`,
+            border: `1px solid rgba(212, 146, 42, ${0.25 + coords.cohr / 150})`,
+            borderRadius: '4px',
+            padding: '32px 28px',
+            position: 'relative',
+            boxShadow: `0 12px 48px rgba(212, 146, 42, ${coords.cohr / 350 + 0.08})`,
+            transition: 'box-shadow 0.15s ease, border-color 0.15s ease',
+            cursor: 'crosshair',
+            overflow: 'hidden'
+          }}
+        >
           <div style={{
-            fontSize: '0.65rem', letterSpacing: '0.22em', textTransform: 'uppercase',
-            color: m.accent, marginBottom: '12px', fontFamily: "'DM Mono', monospace"
+            position: 'absolute', inset: 0, opacity: 0.06,
+            backgroundImage: `radial-gradient(${m.accent} 1px, transparent 1px)`,
+            backgroundSize: '16px 16px', pointerEvents: 'none'
+          }} />
+
+          {/* Dynamic coordinate status bar with highlighted text values on high coordinate focus */}
+          <div style={{
+            fontFamily: "'DM Mono', monospace",
+            fontSize: '0.62rem',
+            letterSpacing: '0.15em',
+            color: m.text2,
+            marginBottom: '20px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            borderBottom: `1px solid ${m.accent}20`,
+            paddingBottom: '10px'
           }}>
-            {activeNote.kicker}
+            <span style={{ color: coords.stbl > 70 ? m.accent : m.text2, textShadow: coords.stbl > 70 ? `0 0 8px ${m.accent}` : 'none', transition: 'color 0.2s, text-shadow 0.2s' }}>STBL: {coords.stbl}%</span>
+            <span style={{ color: coords.prss > 70 ? m.accent : m.text2, textShadow: coords.prss > 70 ? `0 0 8px ${m.accent}` : 'none', transition: 'color 0.2s, text-shadow 0.2s' }}>PRSS: {coords.prss}%</span>
+            <span style={{ color: coords.cohr > 70 ? m.accent : m.text2, textShadow: coords.cohr > 70 ? `0 0 8px ${m.accent}` : 'none', transition: 'color 0.2s, text-shadow 0.2s' }}>COHR: {coords.cohr}%</span>
+            <span style={{ color: coords.drft > 70 ? m.accent : m.text2, textShadow: coords.drft > 70 ? `0 0 8px ${m.accent}` : 'none', transition: 'color 0.2s, text-shadow 0.2s' }}>DRFT: {coords.drft}%</span>
           </div>
-          <p style={{
-            fontFamily: "'Atkinson Hyperlegible', sans-serif",
-            fontSize: '0.98rem', lineHeight: '1.75', color: m.text1,
-            margin: 0
+
+          <div style={{ minHeight: '110px' }}>
+            <div style={{
+              fontSize: '0.65rem', letterSpacing: '0.22em', textTransform: 'uppercase',
+              color: m.accent, marginBottom: '12px', fontFamily: "'DM Mono', monospace"
+            }}>
+              {activeNote.kicker}
+            </div>
+            <p style={{
+              fontFamily: "'Atkinson Hyperlegible', sans-serif",
+              fontSize: '0.98rem', lineHeight: '1.75', color: m.text1,
+              margin: 0
+            }}>
+              {activeNote.body}
+            </p>
+          </div>
+
+          {/* Somatic wave tracking animation with highly visible, responsive curves */}
+          <div style={{ marginTop: '24px', height: '48px', opacity: 0.9 }}>
+            <svg width="100%" height="48" viewBox="0 0 400 48" style={{ display: 'block', overflow: 'visible' }}>
+              <path
+                d={`M 0 24 Q 100 ${24 - (coords.prss - 50) * 0.8} 200 24 T 400 24`}
+                fill="none"
+                stroke={m.accent}
+                strokeWidth="2.2"
+                opacity="0.9"
+                style={{ transition: 'd 0.08s ease' }}
+              />
+              <path
+                d={`M 0 24 Q 100 ${24 + (coords.stbl - 50) * 0.6} 200 24 T 400 24`}
+                fill="none"
+                stroke={m.accent}
+                strokeWidth="1"
+                opacity="0.45"
+                style={{ transition: 'd 0.08s ease' }}
+              />
+            </svg>
+          </div>
+
+          <div style={{
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+            marginTop: '20px', borderTop: `1px solid ${m.accent}15`, paddingTop: '12px',
+            fontSize: '0.58rem', fontFamily: "'DM Mono', monospace", letterSpacing: '0.12em', color: m.text2
           }}>
-            {activeNote.body}
-          </p>
+            <span>{activeNote.mechanism}</span>
+            <span style={{ opacity: 0.6 }}>COORDINATE CALIBRATION SYSTEM</span>
+          </div>
         </div>
 
-        <div style={{ marginTop: '24px', height: '24px', opacity: 0.8 }}>
-          <svg width="100%" height="24" viewBox="0 0 400 24" style={{ display: 'block' }}>
-            <path
-              d={`M 0 12 Q 50 ${12 - coords.prss / 6} 100 12 T 200 12 T 300 12 T 400 12`}
-              fill="none"
-              stroke={m.accent}
-              strokeWidth="1.5"
-              opacity="0.8"
-              style={{ transition: 'd 0.1s ease' }}
-            />
-            <path
-              d={`M 0 12 Q 50 ${12 + coords.stbl / 8} 100 12 T 200 12 T 300 12 T 400 12`}
-              fill="none"
-              stroke={m.accent}
-              strokeWidth="0.8"
-              opacity="0.4"
-              style={{ transition: 'd 0.1s ease' }}
-            />
-          </svg>
-        </div>
-
-        <div style={{
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          marginTop: '20px', borderTop: `1px solid ${m.accent}15`, paddingTop: '12px',
-          fontSize: '0.58rem', fontFamily: "'DM Mono', monospace", letterSpacing: '0.12em', color: m.text2
-        }}>
-          <span>{activeNote.mechanism}</span>
-          <span style={{ opacity: 0.6 }}>COORDINATE CALIBRATION SYSTEM</span>
-        </div>
+        {/* Right Arrow Button */}
+        <button
+          onClick={handleNext}
+          style={{
+            background: 'none', border: `1px solid ${m.accent}30`,
+            color: m.accent, width: '36px', height: '36px',
+            borderRadius: '50%', cursor: 'pointer', display: 'flex',
+            alignItems: 'center', justifyContent: 'center',
+            fontSize: '0.9rem', transition: 'all 0.3s ease',
+            flexShrink: 0, fontFamily: "'DM Mono', monospace"
+          }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor = m.accent; e.currentTarget.style.background = `${m.accent}15`; }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor = `${m.accent}30`; e.currentTarget.style.background = 'none'; }}
+          title="Next Note"
+        >
+          →
+        </button>
       </div>
 
+      {/* Nav dots */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '16px' }}>
         {notesList.map((_, idx) => (
           <button
@@ -286,17 +337,17 @@ export function EngagePage() {
       delivery: "Live 1:1 Virtual Sessions + Private Portal Integration",
       artifacts: "Personalized Steeping Reflections + Custom Guidebook Edition",
       oneBeliefOpportunity: "A dedicated mirror of self-perception that scales your specific flavor of intelligence.",
-      price: "$2,200 / Full Journey"
+      price: "$777 / Full Journey"
     },
     group: {
       title: "Steeping Circles",
       subtitle: "Shared Contemplative Resonance",
       desc: "A group cohort journey built for veil-conscious navigators who seek collective depth. Together, we steep in solo reflection while bridging individual insights through a community conclave. We hold space for peer unfoldings, transforming obstacles into a shared dynamic catapult.",
-      duration: "7-Week Cohort Session",
+      duration: "9-Week Total Arc (Intro Week 1 + 7-Week Steep + Integration Week 9)",
       delivery: "Weekly Virtual Gatherings + Collaborative Sanctuary Access",
       artifacts: "Group Constellation Map + Shared Reflection Archive",
       oneBeliefOpportunity: "Community-driven resonance that proves your inner voice is also the room's voice.",
-      price: "$777 / Practitioner"
+      price: "$2,200 / Practitioner"
     },
     org: {
       title: "Organizational Steeping",
@@ -304,7 +355,7 @@ export function EngagePage() {
       desc: "Fusing business strategy with deep mindfulness. Designed for teams and corporate environments experiencing structural friction. We compost difficult organizational experiences and plant clear 'seeds of promise' that align individual roles with collective vision.",
       duration: "Custom (1-Day Intensive to 4-Week Programs)",
       delivery: "Live On-Site / Virtual Hybrid Sessions + Team Ledger",
-      artifacts: "Corporate Alignment Assessment + Dynamic Cultural Catapult Framework",
+      artifacts: "Corporate Alignment Assessment + Dynamic Cultural Catalyst Framework",
       oneBeliefOpportunity: "Unlocking collective creative responsibility and active team mindfulness.",
       price: "Inquire for Custom Quote"
     }
@@ -516,32 +567,83 @@ export function EngagePage() {
             {/* SVG Interactive Map */}
             <div style={{
               background: m.surface, border: `1px solid ${m.accent}20`,
-              padding: '20px', display: 'flex', justifyContent: 'center',
-              marginBottom: '32px', borderRadius: '2px'
+              padding: '24px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center',
+              marginBottom: '32px', borderRadius: '2px', position: 'relative'
             }}>
-              <svg width="240" height="200" viewBox="0 0 240 200">
+              <svg width="340" height="210" viewBox="0 0 340 210" style={{ overflow: 'visible' }}>
                 {/* Triangular coordinate bounds */}
-                <polygon points="120,20 30,170 210,170" fill="none" stroke={`${m.accent}30`} strokeWidth="1" />
-                <line x1="120" y1="20" x2="120" y2="170" stroke={`${m.accent}15`} strokeDasharray="3" />
+                <polygon points="160,45 70,155 250,155" fill="none" stroke={`${m.accent}30`} strokeWidth="1" />
                 
-                {/* Format Centroids */}
-                {/* Scholar: Top Node */}
-                <circle cx="120" cy="40" r={selectedFormat === 'scholar' ? "9" : "6"} fill={selectedFormat === 'scholar' ? m.accent : `${m.accent}50`} style={{ transition: 'all 0.3s' }} />
-                <text x="120" y="25" fill={m.text1} fontSize="8" fontFamily="var(--fMono)" textAnchor="middle">SCHOLAR</text>
+                {/* Center point lines (Dashed axes representing balance) */}
+                <line x1="160" y1="45" x2="160" y2="118" stroke={`${m.accent}15`} strokeDasharray="3" />
+                <line x1="70" y1="155" x2="160" y2="118" stroke={`${m.accent}15`} strokeDasharray="3" />
+                <line x1="250" y1="155" x2="160" y2="118" stroke={`${m.accent}15`} strokeDasharray="3" />
                 
-                {/* Group: Left Node */}
-                <circle cx="50" cy="150" r={selectedFormat === 'group' ? "9" : "6"} fill={selectedFormat === 'group' ? m.accent : `${m.accent}50`} style={{ transition: 'all 0.3s' }} />
-                <text x="35" y="165" fill={m.text1} fontSize="8" fontFamily="var(--fMono)" textAnchor="end">GROUP</text>
+                {/* Edge/Vector Labels */}
+                {/* Left: Individual reflection path */}
+                <text x="95" y="95" fill={m.text2} fontSize="7.5" fontFamily="var(--fMono)" textAnchor="end" opacity="0.7">
+                  INDIVIDUAL REFLECTION
+                </text>
+                {/* Right: Leadership path */}
+                <text x="225" y="95" fill={m.text2} fontSize="7.5" fontFamily="var(--fMono)" textAnchor="start" opacity="0.7">
+                  LEADERSHIP ALIGNMENT
+                </text>
+                {/* Bottom: Team cohesion path */}
+                <text x="160" y="146" fill={m.text2} fontSize="7.5" fontFamily="var(--fMono)" textAnchor="middle" opacity="0.7">
+                  COLLECTIVE RESOUNDING
+                </text>
 
-                {/* Organization: Right Node */}
-                <circle cx="190" cy="150" r={selectedFormat === 'org' ? "9" : "6"} fill={selectedFormat === 'org' ? m.accent : `${m.accent}50`} style={{ transition: 'all 0.3s' }} />
-                <text x="205" y="165" fill={m.text1} fontSize="8" fontFamily="var(--fMono)" textAnchor="start">CORP/ORG</text>
+                {/* Dynamic path link vector line */}
+                {selectedFormat === 'scholar' && <line x1="160" y1="45" x2="160" y2="118" stroke={m.accent} strokeWidth="2" strokeLinecap="round" />}
+                {selectedFormat === 'group' && <line x1="70" y1="155" x2="160" y2="118" stroke={m.accent} strokeWidth="2" strokeLinecap="round" />}
+                {selectedFormat === 'org' && <line x1="250" y1="155" x2="160" y2="118" stroke={m.accent} strokeWidth="2" strokeLinecap="round" />}
 
-                {/* Dynamic path link line */}
-                {selectedFormat === 'scholar' && <line x1="120" y1="40" x2="120" y2="110" stroke={m.accent} strokeWidth="1.5" />}
-                {selectedFormat === 'group' && <line x1="50" y1="150" x2="110" y2="120" stroke={m.accent} strokeWidth="1.5" />}
-                {selectedFormat === 'org' && <line x1="190" y1="150" x2="130" y2="120" stroke={m.accent} strokeWidth="1.5" />}
+                {/* Format Centroids (Clickable vertices) */}
+                {/* Scholar Node */}
+                <g onClick={() => handleFormatSelect('scholar')} style={{ cursor: 'pointer' }}>
+                  <circle cx="160" cy="45" r="14" fill="transparent" />
+                  <circle cx="160" cy="45" r={selectedFormat === 'scholar' ? "9" : "6"} fill={selectedFormat === 'scholar' ? m.accent : `${m.accent}40`} style={{ transition: 'all 0.3s' }} />
+                  {selectedFormat === 'scholar' && <circle cx="160" cy="45" r="13" fill="none" stroke={m.accent} strokeWidth="1" strokeDasharray="3,3" />}
+                  <text x="160" y="22" fill={selectedFormat === 'scholar' ? m.accent : m.text1} fontSize="8.5" fontFamily="var(--fMono)" fontWeight="bold" textAnchor="middle" style={{ transition: 'fill 0.3s' }}>
+                    1:1 ALCHEMY
+                  </text>
+                </g>
+                
+                {/* Group Node */}
+                <g onClick={() => handleFormatSelect('group')} style={{ cursor: 'pointer' }}>
+                  <circle cx="70" cy="155" r="14" fill="transparent" />
+                  <circle cx="70" cy="155" r={selectedFormat === 'group' ? "9" : "6"} fill={selectedFormat === 'group' ? m.accent : `${m.accent}40`} style={{ transition: 'all 0.3s' }} />
+                  {selectedFormat === 'group' && <circle cx="70" cy="155" r="13" fill="none" stroke={m.accent} strokeWidth="1" strokeDasharray="3,3" />}
+                  <text x="70" y="178" fill={selectedFormat === 'group' ? m.accent : m.text1} fontSize="8.5" fontFamily="var(--fMono)" fontWeight="bold" textAnchor="middle" style={{ transition: 'fill 0.3s' }}>
+                    GROUP SANCTUARY
+                  </text>
+                </g>
+
+                {/* Organization Node */}
+                <g onClick={() => handleFormatSelect('org')} style={{ cursor: 'pointer' }}>
+                  <circle cx="250" cy="155" r="14" fill="transparent" />
+                  <circle cx="250" cy="155" r={selectedFormat === 'org' ? "9" : "6"} fill={selectedFormat === 'org' ? m.accent : `${m.accent}40`} style={{ transition: 'all 0.3s' }} />
+                  {selectedFormat === 'org' && <circle cx="250" cy="155" r="13" fill="none" stroke={m.accent} strokeWidth="1" strokeDasharray="3,3" />}
+                  <text x="250" y="178" fill={selectedFormat === 'org' ? m.accent : m.text1} fontSize="8.5" fontFamily="var(--fMono)" fontWeight="bold" textAnchor="middle" style={{ transition: 'fill 0.3s' }}>
+                    CORP SOVEREIGNTY
+                  </text>
+                </g>
               </svg>
+
+              {/* Dynamic Path Legend Box */}
+              <div style={{
+                marginTop: '24px', borderTop: `1px solid ${m.accent}15`, paddingTop: '16px',
+                width: '100%', display: 'flex', flexDirection: 'column', gap: '6px'
+              }}>
+                <div style={{ fontSize: '0.62rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: m.accent, fontWeight: 'bold' }}>
+                  ACTIVE FOCUS :: {selectedFormat === 'scholar' ? 'ALCHEMY PATHWAY' : selectedFormat === 'group' ? 'SANCTUARY PATHWAY' : 'SOVEREIGNTY PATHWAY'}
+                </div>
+                <div style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.82rem', lineHeight: '1.5', color: m.text2 }}>
+                  {selectedFormat === 'scholar' && "Maximized Intimacy. Focused on individual self-perception, personal authority, and aligning your core flavor through a private, custom 7-week arc with KzA."}
+                  {selectedFormat === 'group' && "Shared Intimate Resonance. Merging solo reflection with collaborative group conclaves. Balanced peer learning across a structured 9-week total cohort session."}
+                  {selectedFormat === 'org' && "Scaled Organizational Transition. Fusing executive guidance with team ledger mindfulness. Aligns team roles to remove friction and establish collective intuition."}
+                </div>
+              </div>
             </div>
 
             <RuleDivider />
