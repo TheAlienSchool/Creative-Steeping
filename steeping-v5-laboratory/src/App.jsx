@@ -611,6 +611,15 @@ function AppInner() {
   // Initialize the Sonnet Audio Engine (receives steep for harmonic modulation)
   const { initEngine, updateBinauralTracking, playStrikingBowl, playHarmonicChord, playAlgoraveSynth, playConsideringHarmonic, playSandSonnet, playCompletionCue, playRootForagingFrequency, setMasterVolume, setAmbientActive, setSymphonyTuning, setEssayistAmbient, playEssayistTransition } = useSonnetEngine(mode, eqParams, steepForSonic);
 
+  // Dynamic keystroke play based on current Engine Mode (Soul Sonnet vs Immersive)
+  const playKeystroke = useCallback((keyCode) => {
+    if (audioEngineMode === 'immersive') {
+      playAlgoraveSynth(keyCode, mode);
+    } else {
+      playStrikingBowl(keyCode);
+    }
+  }, [audioEngineMode, playAlgoraveSynth, playStrikingBowl, mode]);
+
   // Initialize The Steeping Sage :: Innerverse Wayfinding Engine
   const { askSage, sageResponse, isThinking, historicalScore, hasMoreHistory, loadMoreHistory, setSageResponse, wayfindingState, onTextChange: wayfindingTextChange, codexReady, surface } = useSageWayfinding(identity, playStrikingBowl);
 
@@ -1090,7 +1099,7 @@ function AppInner() {
                   initEngine();
                   // Avoid sonifying non-character keys like Shift/Backspace endlessly
                   if (e.key.length === 1 || e.key === 'Enter') {
-                    playStrikingBowl(e.keyCode);
+                    playKeystroke(e.keyCode);
                     if (canvasRef.current && canvasRef.current.triggerResonance) {
                       // Trigger visual wave from roughly center-bottom screen
                       canvasRef.current.triggerResonance(window.innerWidth / 2, window.innerHeight * 0.65);
@@ -1197,7 +1206,7 @@ function AppInner() {
                       onInput={(e) => wayfindingTextChange(e.target.value)}
                       onKeyDown={(e) => {
                         if (e.key.length === 1 || e.key === 'Enter' || e.key === 'Backspace') {
-                          playStrikingBowl(e.keyCode || 50);
+                          playKeystroke(e.keyCode || 50);
                         }
                         if (e.key === 'Enter' && !e.shiftKey) {
                           e.preventDefault();
@@ -1597,7 +1606,7 @@ function AppInner() {
                     ) : (
                       <>
                         {activeVessel.id?.startsWith('L2') ? (
-                          <VesselL2Detail vessel={activeVessel} modeString={mode} playStrikingBowl={playStrikingBowl} playHarmonicChord={playHarmonicChord} />
+                          <VesselL2Detail vessel={activeVessel} modeString={mode} playStrikingBowl={playKeystroke} playHarmonicChord={playHarmonicChord} />
                         ) : (
                         <>
                         <div
@@ -1687,14 +1696,14 @@ function AppInner() {
                             </ul>
                           </div>
 
-                          {activeVessel.num === "00" && <Vessel00Detail modeString={mode} playStrikingBowl={playStrikingBowl} />}
-                          {activeVessel.num === "01" && <Vessel01Detail modeString={mode} playStrikingBowl={playStrikingBowl} playHarmonicChord={playHarmonicChord} />}
-                          {activeVessel.num === "03" && <Vessel03Detail modeString={mode} playStrikingBowl={playStrikingBowl} playHarmonicChord={playHarmonicChord} />}
-                          {activeVessel.num === "04" && <Vessel04Detail modeString={mode} playStrikingBowl={playStrikingBowl} playHarmonicChord={playHarmonicChord} />}
-                          {activeVessel.num === "05" && <Vessel05Detail modeString={mode} playStrikingBowl={playStrikingBowl} playHarmonicChord={playHarmonicChord} />}
-                          {activeVessel.num === "06" && <Vessel06Detail modeString={mode} playStrikingBowl={playStrikingBowl} playHarmonicChord={playHarmonicChord} />}
-                          {activeVessel.num === "07" && <Vessel07Detail modeString={mode} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} playCompletionCue={playCompletionCue} />}
-                          {activeVessel.num === "08" && <Vessel08Detail modeString={mode} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playStrikingBowl} />}
+                          {activeVessel.num === "00" && <Vessel00Detail modeString={mode} playStrikingBowl={playKeystroke} />}
+                          {activeVessel.num === "01" && <Vessel01Detail modeString={mode} playStrikingBowl={playKeystroke} playHarmonicChord={playHarmonicChord} />}
+                          {activeVessel.num === "03" && <Vessel03Detail modeString={mode} playStrikingBowl={playKeystroke} playHarmonicChord={playHarmonicChord} />}
+                          {activeVessel.num === "04" && <Vessel04Detail modeString={mode} playStrikingBowl={playKeystroke} playHarmonicChord={playHarmonicChord} />}
+                          {activeVessel.num === "05" && <Vessel05Detail modeString={mode} playStrikingBowl={playKeystroke} playHarmonicChord={playHarmonicChord} />}
+                          {activeVessel.num === "06" && <Vessel06Detail modeString={mode} playStrikingBowl={playKeystroke} playHarmonicChord={playHarmonicChord} />}
+                          {activeVessel.num === "07" && <Vessel07Detail modeString={mode} playStrikingBowl={playKeystroke} playAlgoraveSynth={playAlgoraveSynth} playCompletionCue={playCompletionCue} />}
+                          {activeVessel.num === "08" && <Vessel08Detail modeString={mode} playAlgoraveSynth={playAlgoraveSynth} playStrikingBowl={playKeystroke} />}
 
                           {activeVessel.num === "02" && (
                             <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 'var(--space-lg)' }}>
@@ -1713,7 +1722,7 @@ function AppInner() {
                                   e.target.style.height = e.target.scrollHeight + "px";
                                 }}
                                 onKeyDown={(e) => {
-                                  if (e.key.length === 1) playStrikingBowl(e.keyCode);
+                                  if (e.key.length === 1) playKeystroke(e.keyCode);
                                 }}
                                 style={{
                                   borderBottom: '3px solid var(--t2)', paddingBottom: '1rem',
@@ -1973,13 +1982,13 @@ function AppInner() {
         </div>
       )}
 
-      {ledgerOpen && <SteepersLedger m={m} initialIssue={initialNote} onIssueChange={(id) => { window.history.pushState(null, '', `/notes/${id}`); }} historicalScore={historicalScore} hasMoreHistory={hasMoreHistory} loadMoreHistory={loadMoreHistory} generateSonicSketch={generateSonicSketch} onClose={() => { setLedgerOpen(false); setInitialNote(null); window.history.pushState(null, '', '/'); }} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} playRootForagingFrequency={playRootForagingFrequency} askSage={handleAskSage} />}
+      {ledgerOpen && <SteepersLedger m={m} initialIssue={initialNote} onIssueChange={(id) => { window.history.pushState(null, '', `/notes/${id}`); }} historicalScore={historicalScore} hasMoreHistory={hasMoreHistory} loadMoreHistory={loadMoreHistory} generateSonicSketch={generateSonicSketch} onClose={() => { setLedgerOpen(false); setInitialNote(null); window.history.pushState(null, '', '/'); }} playStrikingBowl={playKeystroke} playAlgoraveSynth={playAlgoraveSynth} playRootForagingFrequency={playRootForagingFrequency} askSage={handleAskSage} />}
 
       {showCompass && (
         <TheSteepingCompass
           m={m}
           onClose={() => setShowCompass(false)}
-          playStrikingBowl={playStrikingBowl}
+          playStrikingBowl={playKeystroke}
           playAlgoraveSynth={playAlgoraveSynth}
           activeVessel={activeVessel}
           generateSonicSketch={generateSonicSketch}
@@ -1994,18 +2003,18 @@ function AppInner() {
         <GuideToTheSteeperverse
           m={m}
           onClose={() => setShowGuide(false)}
-          playStrikingBowl={playStrikingBowl}
+          playStrikingBowl={playKeystroke}
         />
       )}
       {authOpen && <AuthOverlay m={m} onClose={() => setAuthOpen(false)} />}
 
-      {showObservatory && <OntologicalObservatory m={m} onClose={() => setShowObservatory(false)} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} wayfindingState={wayfindingState} />}
-      {showLegacyPortal && <LegacyScreengrabPortal m={m} onClose={() => setShowLegacyPortal(false)} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} />}
-      {showCalendar && <SteepingCalendar m={m} onClose={() => setShowCalendar(false)} playStrikingBowl={playStrikingBowl} playAlgoraveSynth={playAlgoraveSynth} />}
+      {showObservatory && <OntologicalObservatory m={m} onClose={() => setShowObservatory(false)} playStrikingBowl={playKeystroke} playAlgoraveSynth={playAlgoraveSynth} wayfindingState={wayfindingState} />}
+      {showLegacyPortal && <LegacyScreengrabPortal m={m} onClose={() => setShowLegacyPortal(false)} playStrikingBowl={playKeystroke} playAlgoraveSynth={playAlgoraveSynth} />}
+      {showCalendar && <SteepingCalendar m={m} onClose={() => setShowCalendar(false)} playStrikingBowl={playKeystroke} playAlgoraveSynth={playAlgoraveSynth} />}
       {/* RITUAL TIMERS (Phase 06 Container) */}
       <GlobalSteepingTimer
         m={m}
-        playStrikingBowl={playStrikingBowl}
+        playStrikingBowl={playKeystroke}
         playConsideringHarmonic={playConsideringHarmonic}
         playSandSonnet={playSandSonnet}
         instrumentMode={instrumentMode}
@@ -2032,6 +2041,7 @@ function AppInner() {
 
         {sonicExpanded && (
           <motion.div
+            onClick={(e) => e.stopPropagation()} // Prevent panel from collapsing when clicking controls
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -2041,7 +2051,7 @@ function AppInner() {
             <div className="sonic-row">
               <span style={{ opacity: 0.7 }}>ENGINE</span>
               <button
-                className={`sonic-toggle`}
+                className={`sonic-toggle ${audioEngineMode === 'immersive' ? 'active' : ''}`}
                 aria-label={`Switch audio engine mode. Current: ${audioEngineMode === 'soul_sonnet' ? 'Soul Sonnet' : 'Immersive'}`}
                 onClick={(e) => { e.stopPropagation(); setAudioEngineMode(prev => prev === 'soul_sonnet' ? 'immersive' : 'soul_sonnet'); }}
               >

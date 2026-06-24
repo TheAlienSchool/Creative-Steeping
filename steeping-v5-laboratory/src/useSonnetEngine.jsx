@@ -209,7 +209,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         const ampLfoGain = ctx.createGain();
         ampLfo.type = 'sine';
         ampLfo.frequency.value = 0.2;
-        ampLfoGain.gain.value = 0.03; // Gentle, barely perceptible volume fluctuation
+        ampLfoGain.gain.value = 0; // Silent until ambient activated
         
         ampLfo.connect(ampLfoGain);
         ampLfoGain.connect(gain.gain);
@@ -281,7 +281,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         waveLFOGain.gain.value = 0.018;
         waveLFO.connect(waveLFOGain);
         const oceanGain = ctx.createGain();
-        oceanGain.gain.value = 0.015; // Silent until ambient activated
+        oceanGain.gain.value = 0; // Silent until ambient activated
         waveLFOGain.connect(oceanGain.gain);
         waveLFO.start();
         oceanSource.connect(oceanFilter);
@@ -325,7 +325,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         const windPanner = ctx.createStereoPanner();
         windPanner.pan.value = 0;
         const windGain = ctx.createGain();
-        windGain.gain.value = 0.01; // Silent until ambient activated
+        windGain.gain.value = 0; // Silent until ambient activated
         gustLFOGain.connect(windGain.gain);
         gustLFO.start();
         windSource.connect(windFilter);
@@ -920,13 +920,17 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         if (ambientGainRef.current) {
             ambientGainRef.current.gain.setTargetAtTime(0, audioCtxRef.current.currentTime, 0.5);
         }
-        // Ocean: fade in to 0.05 when active, retreat to near-silence when off
-        if (oceanGainRef.current) {
-            oceanGainRef.current.gain.setTargetAtTime(isActive ? 0.05 : 0.008, audioCtxRef.current.currentTime, 2.0);
+        // Somatic heartbeat LFO: active when toggled on, silent when off
+        if (ampLfoGainRef.current) {
+            ampLfoGainRef.current.gain.setTargetAtTime(isActive ? 0.03 : 0, audioCtxRef.current.currentTime, 2.0);
         }
-        // Wind: fade in to 0.03 when active, retreat to near-silence when off
+        // Ocean: fade in to 0.05 when active, completely silent when off
+        if (oceanGainRef.current) {
+            oceanGainRef.current.gain.setTargetAtTime(isActive ? 0.05 : 0, audioCtxRef.current.currentTime, 2.0);
+        }
+        // Wind: fade in to 0.03 when active, completely silent when off
         if (windGainRef.current) {
-            windGainRef.current.gain.setTargetAtTime(isActive ? 0.03 : 0.006, audioCtxRef.current.currentTime, 2.0);
+            windGainRef.current.gain.setTargetAtTime(isActive ? 0.03 : 0, audioCtxRef.current.currentTime, 2.0);
         }
     }, []);
 
