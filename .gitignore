@@ -1,0 +1,19 @@
+# Google Cloud Service Account Credentials
+creative-steeping-core-b73e74da5190.json
+
+# API Keys and local environments
+.env
+.env.local
+.env.*.local
+*.json.local
+
+# Build and local development outputs
+node_modules/
+dist/
+dist-ssr/
+*.local
+.vscode/
+
+# Ignore video files that are local video assets or temp downloads
+*.mp4
+*.zip
