@@ -25,7 +25,7 @@ const Rule = () => (
 
 export function CreativeContext() {
   const [activeTab, setActiveTab] = useState('overview');
-  const [co-copied, setCopied] = useState(false);
+  const [coCopied, setCopied] = useState(false);
 
   useEffect(() => {
     document.title = 'Creative Context Portal :: THE ÅLIËN SCÖÕL';
@@ -170,7 +170,7 @@ export function CreativeContext() {
               e.currentTarget.style.background = m.surface;
               e.currentTarget.style.borderColor = `${m.accent}60`;
             }}>
-            {co-copied ? "✓ Context Co-Copied" : "Copy Database to Clipboard"}
+            {coCopied ? "✓ Context Co-Copied" : "Copy Database to Clipboard"}
           </button>
 
           <button 
