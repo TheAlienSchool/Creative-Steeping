@@ -38,6 +38,7 @@ import { VESSELS_L2 } from './VesselsL2';
 import { VesselL2Detail } from './VesselL2Detail';
 import { AboutPage } from './AboutPage';
 import { EngagePage } from './EngagePage';
+import { CreativeContext } from './CreativeContext';
 
 import './App.css';
 
@@ -1028,6 +1029,19 @@ function AppInner() {
                 [ ABOUT CREÅTIVE STEEPING ]
               </button>
 
+              {/* ④ PORTAL CONTEXT :: agentic context room integration */}
+              <button onClick={() => { window.location.pathname = '/creative-context'; setNavMenuOpen(false); }} style={{
+                background: 'none', border: 'none',
+                color: 'var(--acc)', borderBottom: '1px solid transparent',
+                transition: 'border-bottom 1.2s ease, color 0.3s ease', cursor: 'pointer', fontFamily: 'var(--fMono)',
+                fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap',
+                opacity: 0.6, marginTop: '8px'
+              }} onMouseEnter={e => { e.currentTarget.style.borderBottom = '1px solid var(--acc)'; e.currentTarget.style.opacity = 1; }}
+                onMouseLeave={e => { e.currentTarget.style.borderBottom = '1px solid transparent'; e.currentTarget.style.opacity = 0.6; }}
+                title="Agentic Alignment room containing core repository context and schema parameters">
+                [ CREATIVE CONTEXT ]
+              </button>
+
             </div>
           </div>
         </div>
@@ -1319,7 +1333,7 @@ function AppInner() {
             {/* Hex-Kintsugi Grid OR Active Vessel Detail */}
             {!activeVessel ? (
               <div className="vessel-matrix">
-                {(['inneractive', 'journeyer', 'cohort', 'depth_semester'].includes(profile?.access_tier) ? VESSELS_L2 : VESSELS).map((vessel, i) => {
+                {(isInneractive ? VESSELS_L2 : VESSELS).map((vessel, i) => {
                   // VESSEL UNLOCKING :: Dual-path: archive depth OR behavioral readiness.
                   // Path 1 (archiveReady): 5+ historical score entries (the original Cryo-Lock).
                   // Path 2 (behaviorallyReady): gravity resonance >= 0.6 from the wayfinding engine.
@@ -1898,7 +1912,7 @@ function AppInner() {
                     if (playStrikingBowl) playStrikingBowl(60);
                     const nextNum = vesselTransition.nextVessel;
                     setVesselTransition(null);
-                    const allVessels = ['inneractive', 'journeyer', 'cohort', 'depth_semester'].includes(profile?.access_tier) ? VESSELS_L2 : VESSELS;
+                    const allVessels = isInneractive ? VESSELS_L2 : VESSELS;
                     const next = allVessels.find(v => v.num === nextNum);
                     if (next) {
                       setIsClosingVessel(true);
@@ -2480,6 +2494,7 @@ function AppInner() {
 
 export default function App() {
   const path = window.location.pathname.toLowerCase();
+  if (path.includes('/creative-context')) return <CreativeContext />;
   if (path.includes('/about')) return <AboutPage />;
   if (path.includes('/engage')) return <EngagePage />;
   return (

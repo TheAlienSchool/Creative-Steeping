@@ -380,15 +380,15 @@ actively interfaces with your surroundings, materializing focused intention.
 ------------------------------------------------------------------------
  programmatic digital tiers
 ------------------------------------------------------------------------
-[ LAYER 1 : ENTRANCE ]   ::   FREE
+[ LAYER 1 : NOMAD ]      ::   FREE
 The Steeperverse opens here. Navigate freely, generate sound with your
 movements, and begin a conversation with The Steeping Sage.
 
-[ LAYER 2 : ENGAGED ]    ::   $44
+[ LAYER 2 : GUIDED SCHOLAR ] ::   $44
 Your steep deepens when it has somewhere to land. Layer 2 holds the full
 record of your presence, your vessel reflections, and your Steeping Ledger.
 
-[ LAYER 3 : INNERACTIVE ] ::   $777
+[ LAYER 3 : COHORT INITIATE ] ::   $777
 The practitioner community. Direct one-on-one Steeping Sessions. Group
 cohorts with the architects of the practice. The full depth, held with
 others who are already doing the work.
@@ -889,7 +889,7 @@ ${border}`;
               {/* Tier 1 */}
               <div style={{ border: `1px solid ${m.accent}20`, padding: '20px', background: `${m.surface}40` }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '8px' }}>
-                  <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.75rem', fontWeight: 'bold', color: m.text1 }}>[ LAYER 1 : ENTRANCE ]</span>
+                  <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.75rem', fontWeight: 'bold', color: m.text1 }}>[ LAYER 1 : NOMAD ]</span>
                   <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.8rem', color: m.accent }}>FREE</span>
                 </div>
                 <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: '1.6', color: m.text2, margin: 0 }}>
@@ -900,7 +900,7 @@ ${border}`;
               {/* Tier 2 */}
               <div style={{ border: `1px solid ${m.accent}40`, padding: '20px', background: `${m.surface}70` }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '8px' }}>
-                  <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.75rem', fontWeight: 'bold', color: m.text1 }}>[ LAYER 2 : ENGAGED ]</span>
+                  <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.75rem', fontWeight: 'bold', color: m.text1 }}>[ LAYER 2 : GUIDED SCHOLAR ]</span>
                   <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.85rem', color: m.accent }}>$44</span>
                 </div>
                 <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: '1.6', color: m.text2, margin: 0 }}>
@@ -911,7 +911,7 @@ ${border}`;
               {/* Tier 3 */}
               <div style={{ border: `1px solid ${m.accent}`, padding: '20px', background: m.surface }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '8px' }}>
-                  <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.75rem', fontWeight: 'bold', color: m.text1 }}>[ LAYER 3 : INNERACTIVE ]</span>
+                  <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.75rem', fontWeight: 'bold', color: m.text1 }}>[ LAYER 3 : COHORT INITIATE ]</span>
                   <span style={{ fontFamily: "'DM Mono', monospace", fontSize: '0.85rem', color: m.accent }}>$777</span>
                 </div>
                 <p style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif", fontSize: '0.85rem', lineHeight: '1.6', color: m.text2, margin: 0 }}>
