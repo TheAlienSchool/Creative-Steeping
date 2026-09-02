@@ -278,7 +278,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         waveLFO.type = 'sine';
         waveLFO.frequency.value = 0.1;
         const waveLFOGain = ctx.createGain();
-        waveLFOGain.gain.value = 0.018;
+        waveLFOGain.gain.value = 0.006;
         waveLFO.connect(waveLFOGain);
         const oceanGain = ctx.createGain();
         oceanGain.gain.value = 0.015; // Silent until ambient activated
@@ -388,7 +388,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
 
         // 3. Ocean gain — cursor lower on screen = closer to the shore
         if (oceanGainRef.current && isAmbientActiveRef.current) {
-            const oceanIntensity = 0.03 + (normY * 0.035);
+            const oceanIntensity = 0.018 + (normY * 0.012);
             oceanGainRef.current.gain.setTargetAtTime(oceanIntensity, audioCtxRef.current.currentTime, 2.5);
         }
 
@@ -922,7 +922,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         }
         // Ocean: fade in to 0.05 when active, retreat to near-silence when off
         if (oceanGainRef.current) {
-            oceanGainRef.current.gain.setTargetAtTime(isActive ? 0.05 : 0.008, audioCtxRef.current.currentTime, 2.0);
+            oceanGainRef.current.gain.setTargetAtTime(isActive ? 0.042 : 0.001, audioCtxRef.current.currentTime, 2.0);
         }
         // Wind: fade in to 0.03 when active, retreat to near-silence when off
         if (windGainRef.current) {
@@ -1126,4 +1126,3 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         playEssayistTransition,
     };
 }
-
