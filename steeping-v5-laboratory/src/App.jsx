@@ -2355,15 +2355,19 @@ function AppInner() {
               <div style={{ width: '40px', height: '1px', background: m.accent, opacity: 0.4, marginBottom: '32px' }} />
 
               <Section label="The Practice Stays With You" />
-              <Body>The Steeping Space is designed around a foundational principle: your practice belongs to you. The reflections you write, the scores your sessions generate, and the patterns of your creative movement are stored on your own device :: in your browser's local storage :: and are never transmitted to our servers, sold, or shared with third parties.</Body>
+              <Body>The Steeping Space is designed around a foundational principle: your practice belongs to you. Your pace through the vessels, your Sage conversations, your steep scores, your ink drawings, and the patterns of your creative movement are stored on your own device :: in your browser's local storage :: and are never transmitted to our servers, sold, or shared with third parties.</Body>
+
+              <Rule />
+              <Section label="The One Exception: Your Hexagong Journal" />
+              <Body>If you hold an account above the Nomad tier, the written reflections you leave in a Hexagong's scratchpad are saved to our database so they're waiting for you when you return :: this is the one place your words travel beyond your device. Row-level security on that table means only your own authenticated session can read or write your entry. No other practitioner, and no code path in this app, can reach it. You may clear a scratchpad entry at any time, and deleting your account removes it entirely.</Body>
 
               <Rule />
               <Section label="What We Collect" />
-              <Body>If you create an account, we collect your email address and a secure password hash through Supabase, our authentication provider. This is the only information that leaves your device. We do not collect your name, location, payment information, or any other personal identifiers. We do not run advertising. We do not use tracking pixels or third-party analytics.</Body>
+              <Body>If you create an account, we collect your email address and a secure password hash through Supabase, our authentication provider. If you write in a Hexagong's scratchpad, that text is saved to our database as described above. Beyond these two things, nothing else leaves your device. We do not collect your name, location, payment information, or any other personal identifiers. We do not run advertising. We do not use tracking pixels or third-party analytics.</Body>
 
               <Rule />
               <Section label="What Lives on Your Device" />
-              <Body>Your browser's local storage holds: your visit count, practice archive and steep scores, ink drawings made within vessels, reading lens preference, and 5D compass engagement state. This data is yours. It does not leave your browser. Clearing your browser's local storage removes it entirely.</Body>
+              <Body>Your browser's local storage holds nearly everything else: your visit count, practice archive and steep scores, Sage conversations, ink drawings made within vessels, reading lens preference, and 5D compass engagement state. This data is yours. It does not leave your browser, and clearing your browser's local storage removes it entirely :: though it will not remove a Hexagong entry already saved to your account, since that lives in our database, not your browser.</Body>
 
               <Rule />
               <Section label="Authentication" />
