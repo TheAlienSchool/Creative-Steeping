@@ -56,7 +56,7 @@ function resolveTimeOfDay() {
   return "night";
 }
 
-function getVisitCount() {
+export function getVisitCount() {
   try {
     const raw = localStorage.getItem(VISIT_KEY);
     return raw ? parseInt(raw, 10) : 0;

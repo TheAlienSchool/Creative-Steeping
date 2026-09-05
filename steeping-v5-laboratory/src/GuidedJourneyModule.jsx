@@ -4,6 +4,7 @@ import { GUIDED_JOURNEY_DATA } from './GuidedJourneyData';
 import { supabase } from './supabaseClient';
 import { useAuth } from './useAuth';
 import { EyeOfTheSage } from './EyeOfTheSage';
+import { OrientationTerm } from './OrientationTerm';
 
 // Environmental ASCII elements that unlock and glow for each specific vessel
 const ASCIIS = {
@@ -627,7 +628,7 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
                     <div style={{ position: 'relative', marginTop: '4rem' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '16px' }}>
                             <h3 style={{ fontFamily: 'var(--fMono)', fontSize: '0.8rem', letterSpacing: '0.25em', color: m.accent, textTransform: 'uppercase', margin: 0 }}>
-                                [ YOUR ARCHITECTURE ]
+                                <OrientationTerm term="your architecture" m={m}>[ YOUR ARCHITECTURE ]</OrientationTerm>
                             </h3>
                             <div style={{ display: 'flex', gap: 'var(--space-md)', alignItems: 'center' }}>
                                 <button

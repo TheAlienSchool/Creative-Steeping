@@ -3,7 +3,9 @@ import { useResonanceCanvas } from './useResonanceCanvas';
 import { useSonnetEngine } from './useSonnetEngine';
 import { useSageWayfinding, getTransitionGuidance, computeVesselResonance, VESSEL_STEEP_AFFINITY } from './useSageWayfinding';
 import { useSageEssayistComposer } from './useSageEssayistComposer';
-import { STEEP_LABELS } from './useWayfinding';
+import { STEEP_LABELS, getVisitCount } from './useWayfinding';
+import { WayfindingOverlay } from './WayfindingOverlay';
+import { OrientationTerm } from './OrientationTerm';
 import { EyeOfTheSage } from './EyeOfTheSage';
 import { VESSELS } from './VesselContent';
 import { Vessel00Detail } from './Vessel00Detail';
@@ -428,6 +430,8 @@ function AppInner() {
   const [aboutOpen, setAboutOpen] = useState(false); // About Creative Steeping panel
   const [privacyOpen, setPrivacyOpen] = useState(false); // Privacy Policy panel
   const [pressOpen, setPressOpen] = useState(false); // Press panel
+  const [showOrientation, setShowOrientation] = useState(false); // Orient Me overlay
+  const [orientationMode, setOrientationMode] = useState('core'); // 'core' (auto) | 'full' (nav-triggered)
   const [isClosingVessel, setIsClosingVessel] = useState(false);
   const [hasEngaged5D, setHasEngaged5D] = useState(() => localStorage.getItem('steeping_5d_engaged') === 'true');
   const [lockedTooltipOpen, setLockedTooltipOpen] = useState(null); // vessel.num of locked tooltip showing
@@ -466,6 +470,16 @@ function AppInner() {
         setInitialNote(noteId);
         window.history.replaceState(null, '', `/notes/${noteId}`);
       }
+    }
+  }, []);
+
+  // Orient Me :: auto-open for first-time visitors. Must run before useWayfinding's own
+  // mount effect increments the visit counter, so this reads the count while it's still 0.
+  useEffect(() => {
+    if (urlDirectedPhase.current) return; // don't fight an explicit deep link (/legacy, /dashboard, /nightlight, /notes/:id)
+    if (getVisitCount() === 0) {
+      setOrientationMode('core');
+      setShowOrientation(true);
     }
   }, []);
 
@@ -977,7 +991,7 @@ function AppInner() {
                 fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap'
               }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--acc)'}
                 onMouseLeave={e => e.currentTarget.style.borderBottom = '1px solid transparent'}>
-                <b>[ STEEPING NOTES ]</b>
+                <b><OrientationTerm term="steeping notes" m={m}>[ STEEPING NOTES ]</OrientationTerm></b>
               </button>
 
               <button onClick={() => { setShowGuide(true); setNavMenuOpen(false); }} style={{
@@ -989,7 +1003,18 @@ function AppInner() {
               }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--acc)'}
                 onMouseLeave={e => e.currentTarget.style.borderBottom = '1px solid transparent'}
                 title="View the Guide to the Steeperverse">
-                <b>[ GUIDE TO THE STEEPERVERSE ]</b>
+                <b><OrientationTerm term="guide to the steeperverse" m={m}>[ GUIDE TO THE STEEPERVERSE ]</OrientationTerm></b>
+              </button>
+
+              <button onClick={() => { setOrientationMode('full'); setShowOrientation(true); setNavMenuOpen(false); }} style={{
+                background: 'none', border: 'none',
+                color: 'var(--acc)', borderBottom: '1px solid transparent',
+                transition: 'border-bottom 1.2s ease', cursor: 'pointer', fontFamily: 'var(--fMono)',
+                fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap'
+              }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--acc)'}
+                onMouseLeave={e => e.currentTarget.style.borderBottom = '1px solid transparent'}
+                title="A tour of everything inside Creative Steeping">
+                <b>[ ORIENT ME ]</b>
               </button>
 
               <button onClick={() => { setShowCompass(true); setNavMenuOpen(false); }} style={{
@@ -1000,7 +1025,7 @@ function AppInner() {
               }} onMouseEnter={e => e.currentTarget.style.borderBottom = '1px solid var(--acc)'}
                 onMouseLeave={e => e.currentTarget.style.borderBottom = '1px solid transparent'}
                 title="5D Biometric Resonance Anchor">
-                <b>[ ME IN 5D ]</b>
+                <b><OrientationTerm term="me in 5d" m={m}>[ ME IN 5D ]</OrientationTerm></b>
               </button>
 
               <button onClick={() => { window.location.pathname = '/engage'; setNavMenuOpen(false); }} style={{
@@ -1640,7 +1665,9 @@ function AppInner() {
                           }}
                         >
                           <div style={{ fontFamily: 'var(--fMono)', color: 'var(--acc)', fontWeight: 'bold', opacity: 0.8, letterSpacing: '0.2em', marginBottom: 'var(--space-sm)' }}>
-                            {mode === 'l1' ? `HEXAGONG ${activeVessel.num}` : (activeVessel.num === '00' ? `CREÅTIVE STEEPING Intro` : `CREÅTIVE STEEPING Day ${activeVessel.num}`)}
+                            {mode === 'l1'
+                              ? <OrientationTerm term="hexagong" m={m}>{`HEXAGONG ${activeVessel.num}`}</OrientationTerm>
+                              : (activeVessel.num === '00' ? `CREÅTIVE STEEPING Intro` : `CREÅTIVE STEEPING Day ${activeVessel.num}`)}
                           </div>
                           <h2 style={{ fontFamily: 'var(--fSerif)', fontSize: 'clamp(48px, 6vw, 64px)', fontWeight: 700, fontStyle: 'italic', marginBottom: 'var(--space-xl)', color: 'var(--t1)', whiteSpace: 'pre-line', textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>
                             {activeVessel.name}
@@ -2018,6 +2045,22 @@ function AppInner() {
           m={m}
           onClose={() => setShowGuide(false)}
           playStrikingBowl={playKeystroke}
+        />
+      )}
+
+      {showOrientation && (
+        <WayfindingOverlay
+          m={m}
+          onClose={() => setShowOrientation(false)}
+          playStrikingBowl={playKeystroke}
+          activeVessel={activeVessel}
+          mode={orientationMode}
+          onOpenNote={(noteId) => {
+            setShowOrientation(false);
+            setLedgerOpen(true);
+            setInitialNote(noteId);
+            window.history.pushState(null, '', `/notes/${noteId}`);
+          }}
         />
       )}
       {authOpen && <AuthOverlay m={m} onClose={() => setAuthOpen(false)} />}
