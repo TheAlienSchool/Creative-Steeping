@@ -48,12 +48,14 @@ def scan_file(filepath):
     archive_score = min(len(archive_matches) * 20, 100)
 
     # 5. Language Resonance Check (Negation hunting in user-facing text)
-    # Extract string literals and HTML text blocks to inspect user-facing copy
+    # Extract string literals and HTML text blocks to inspect user-facing copy.
+    # This is regex-based, not a real JSX parser — bounding matches against '{', '}'
+    # and newlines keeps a stray '>'/'<' from a comparison or arrow function from
+    # swallowing an unrelated stretch of code as if it were one line of prose.
     user_strings = []
-    # Find HTML text blocks (simple tag stripping/matching)
-    html_text = re.findall(r'>([^<]+)<', content)
+    html_text = re.findall(r'>([^<>{}\n]{1,400})<', content)
     user_strings.extend(html_text)
-    
+
     # Find double and single quoted string literals
     js_strings = re.findall(r'"([^"\\]*(?:\\.[^"\\]*)*)"|\'([^\'\\]*(?:\\.[^\'\\]*)*)\'', content)
     for pair in js_strings:
@@ -61,15 +63,19 @@ def scan_file(filepath):
         if literal:
             user_strings.extend(literal.split('\n'))
 
+    CODE_MARKERS = ['console.', 'url', 'class=', 'import', 'from', 'select',
+                     'id:', 'layer:', 'const ', 'function', '=>', 'style=',
+                     'return ', 'export ', 'useState', 'useEffect']
+
+    def looks_like_prose(text):
+        return len(text) >= 3 and not any(marker in text for marker in CODE_MARKERS)
+
     negation_hits = []
     for line in user_strings:
         line_clean = line.strip()
-        if len(line_clean) < 3:
+        if not looks_like_prose(line_clean):
             continue
-        # Skip technical code statements (regexes, logs, console lines, comments)
-        if any(marker in line_clean for marker in ['console.', 'url', 'class=', 'import', 'from', 'select']):
-            continue
-            
+
         for pattern in FORBIDDEN_NEGATIONS:
             match = re.search(pattern, line_clean, re.IGNORECASE)
             if match:
@@ -78,8 +84,26 @@ def scan_file(filepath):
 
     lang_score = 100 - min(len(negation_hits) * 10, 80)
 
+    # 6. Vertical Economy Check (The Uncluttered Vessel)
+    # Flags a slide/block that runs far longer than its siblings in the same file —
+    # the failure mode a word-count check can actually catch (see CLARITY_BRIDGE_AUDIT_LENS.md
+    # Field Note for the two failure modes it cannot: flattened rhythm, and lost wayfinding).
+    prose_blocks = [line.strip() for line in user_strings if len(line.strip()) >= 40 and looks_like_prose(line.strip())]
+    outlier_block = None
+    if len(prose_blocks) < 2:
+        economy_score = 100
+        economy_ratio = 1.0
+    else:
+        word_counts = sorted(len(b.split()) for b in prose_blocks)
+        median_words = word_counts[len(word_counts) // 2]
+        longest_words = word_counts[-1]
+        economy_ratio = (longest_words / median_words) if median_words else 1.0
+        economy_score = 100 if economy_ratio <= 1.4 else max(0, int(100 - (economy_ratio - 1.4) * 140))
+        if economy_score < 80:
+            outlier_block = max(prose_blocks, key=lambda b: len(b.split()))
+
     # Overall Resonance Math
-    total_score = int((somatic_score + topo_score + pacing_score + archive_score + lang_score) / 5)
+    total_score = int((somatic_score + topo_score + pacing_score + archive_score + lang_score + economy_score) / 6)
 
     print(f"\n:: CLARITY BRIDGE COMPLIANCE :: {total_score}%")
     print(f"------------------------------------------------------------")
@@ -88,6 +112,7 @@ def scan_file(filepath):
     print(f"3. Pacing & Coherence (Gates)   :: {pacing_score}% (found: {', '.join(pacing_matches) or 'none'})")
     print(f"4. Reflection Archiving (Pool)  :: {archive_score}% (found: {', '.join(archive_matches) or 'none'})")
     print(f"5. Language Resonance           :: {lang_score}%")
+    print(f"6. Vertical Economy (Vessel)    :: {economy_score}% (longest block is {round(economy_ratio, 2)}x the median)")
 
     if negation_hits:
         print(f"\n:: LANGUAGE ALIGNMENT OPPORTUNITIES ::")
@@ -108,7 +133,10 @@ def scan_file(filepath):
         print("   * Consider providing a journal download or historical local save link.")
     if lang_score < 90:
         print("   * Consider rewriting identified negations to use affirmative constructions.")
-    
+    if economy_score < 80 and outlier_block:
+        print(f"   * Consider trimming the longest block toward the deck's median length: \"{outlier_block[:80]}\"")
+        print("     (Trim the padding, not the rhythm or the wayfinding — see the Field Note.)")
+
     if total_score >= 90:
         print("\n:: RESONANCE STATUS :: Excellent. The bridge stands sturdy.")
     else:

@@ -667,6 +667,10 @@ nav.top-nav {
     max-width: 100% !important;
   }
 
+  .wayfinding-text-inner {
+    overflow-y: auto !important;
+  }
+
   /* Guide To The Steeperverse Responsive */
   .guide-header {
     flex-wrap: wrap;
