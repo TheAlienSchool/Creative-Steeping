@@ -97,15 +97,18 @@ export const StillnessCatalyst = ({ m, wayfindingState, codexSurface }) => {
                 pointerEvents: 'none',
             }} />
 
-            {/* The Floating Text Layer */}
+            {/* The Floating Text Layer.
+                Harris register when the note is codex-sourced (noteSource set) — witnessed
+                content reads instrumental and tracked. Authored catalysts keep the warm
+                italic voice; that's Sage speaking, not the archive. */}
             <div style={{
-                fontFamily: 'var(--fBody)',
-                fontSize: '1.05rem', // Rescaled from 1.4rem
-                fontStyle: 'italic',
+                fontFamily: noteSource ? 'var(--fMono)' : 'var(--fBody)',
+                fontSize: noteSource ? '0.92rem' : '1.05rem', // Rescaled from 1.4rem
+                fontStyle: noteSource ? 'normal' : 'italic',
                 color: m ? m.text1 : '#fff',
                 textShadow: m ? `0 0 10px ${m.accent}60, 0 0 16px rgba(0,0,0,1)` : '0 0 16px rgba(0,0,0,1)',
-                letterSpacing: '0.04em',
-                lineHeight: 1.6,
+                letterSpacing: noteSource ? '0.02em' : '0.04em',
+                lineHeight: noteSource ? 1.7 : 1.6,
                 padding: '0.5rem',
                 display: 'inline-block',
                 maxWidth: '250px',

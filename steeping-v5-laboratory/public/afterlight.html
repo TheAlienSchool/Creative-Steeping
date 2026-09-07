@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Afterlight ∴ Creative Steeping</title>
+<meta name="description" content="A playable steeping instrument — journal through Creative Steeping's five typographic registers, private enough for a nightstand, loud enough for a stage." />
+<meta name="robots" content="noindex" />
+<meta name="theme-color" content="#00080a" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%99%3C/text%3E%3C/svg%3E" />
+<style>
+  :root{
+    --bg:#00080a; --surface:#001a22; --accent:#38bdf8; --text1:#e0f2fe; --text2:#7dd3fc;
+    --ping:#fff3dc; --ping-glow:rgba(255,243,220,.65);
+    --font-sans:'DM Sans',-apple-system,sans-serif;
+    --font-mono:'DM Mono',ui-monospace,monospace;
+    --font-serif:'EB Garamond',Georgia,serif;
+    --stream-size: clamp(1.3rem, 2.6vw, 2.1rem);
+    color-scheme: dark;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--text1); overflow:hidden;
+    font-family:var(--font-sans); transition:background-color 1.1s ease;
+  }
+
+  #stage{position:fixed; inset:0; overflow:hidden}
+
+  #vignette{
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% 38%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%),
+      radial-gradient(ellipse 120% 90% at 50% 100%, var(--surface), var(--bg) 60%);
+    transition:background 1.1s ease;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    body.idle #vignette{animation:vignette-breathe 9s ease-in-out infinite}
+  }
+  @keyframes vignette-breathe{
+    0%,100%{opacity:.85} 50%{opacity:1}
+  }
+
+  /* ── chrome ─────────────────────────────────────────── */
+  .chrome{
+    position:fixed; z-index:5; font-family:var(--font-mono);
+    letter-spacing:.2em; text-transform:uppercase; color:var(--text2);
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  #wordmark{top:2.2rem; left:2.4rem; font-size:.72rem}
+  #wordmark b{display:block; color:var(--text1); font-size:.95rem; letter-spacing:.32em; font-weight:500}
+  #wordmark span{display:block; margin-top:.4rem; font-size:.6rem; letter-spacing:.14em; opacity:.75}
+
+  #modeTag{
+    bottom:2.2rem; right:2.4rem; font-size:.62rem; text-align:right;
+    display:flex; align-items:center; gap:.7rem; justify-content:flex-end;
+  }
+  #modeTag .dot{width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px var(--accent)}
+  #muteToggle{
+    background:none; border:0; padding:0; cursor:pointer; color:var(--text2); font-size:.85rem;
+    line-height:1; opacity:.75; transition:opacity .3s ease, color .3s ease;
+  }
+  #muteToggle:hover{opacity:1; color:var(--accent)}
+  #muteToggle.muted{opacity:.4}
+
+  #legendToggle{
+    bottom:2.2rem; left:2.4rem; font-size:.66rem; cursor:pointer;
+    background:none; border:1px solid color-mix(in srgb, var(--text2) 40%, transparent);
+    color:var(--text2); border-radius:50%; width:1.9rem; height:1.9rem; z-index:6;
+    display:flex; align-items:center; justify-content:center; font-family:var(--font-mono);
+  }
+  #legendToggle:hover{border-color:var(--accent); color:var(--accent)}
+
+  body.performance .chrome, body.performance #legendToggle{opacity:0; pointer-events:none; transform:translateY(6px)}
+
+  /* ── stream ─────────────────────────────────────────── */
+  #streamWrap{
+    position:absolute; inset:0; display:flex; justify-content:center; z-index:2;
+  }
+  #stream{
+    width:min(78ch, 88vw); max-height:100%; overflow-y:auto; overflow-x:hidden;
+    padding:14vh 1rem 22vh; scrollbar-width:none;
+  }
+  #stream::-webkit-scrollbar{display:none}
+
+  .locked-line, .ghost-line{
+    font-size:var(--stream-size); line-height:1.5; margin:0 0 .55em;
+    font-weight:700; letter-spacing:.005em; position:relative; padding-left:1.15em;
+    word-wrap:break-word;
+  }
+  .locked-line::before{
+    content:''; position:absolute; left:0; top:.15em; bottom:.15em; width:2px;
+    background:color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+  .locked-line.pinged::before{background:var(--ping); box-shadow:0 0 8px var(--ping-glow)}
+  .locked-line.pinged .ping-glyph{
+    color:var(--ping); margin-right:.35em; text-shadow:0 0 10px var(--ping-glow); font-weight:400;
+  }
+  .locked-line .neume{
+    display:inline-block; font-size:.62em; font-weight:400; margin-right:.5em;
+    color:var(--text2); opacity:.6; font-family:var(--font-mono); vertical-align:.15em;
+  }
+  .locked-line.captured::before{background:var(--accent); box-shadow:0 0 6px var(--accent)}
+  .locked-line .capture-glyph{
+    color:var(--accent); margin-right:.3em; font-weight:400; text-shadow:0 0 8px color-mix(in srgb, var(--accent) 60%, transparent);
+  }
+
+  .ghost-line{
+    font-family:var(--font-serif); font-style:italic; font-weight:400; font-size:calc(var(--stream-size) * .62);
+    color:var(--text2); opacity:.6; padding-left:1.15em;
+  }
+  .ghost-line::before{content:'◌'; position:absolute; left:0; top:0; font-family:var(--font-mono); font-style:normal}
+
+  @media (prefers-reduced-motion: no-preference){
+    .locked-line.pulse-in{animation:steam-pulse .6s cubic-bezier(.2,.8,.3,1)}
+  }
+  @keyframes steam-pulse{
+    0%{opacity:0; transform:scale(1.035); text-shadow:0 0 22px color-mix(in srgb, var(--accent) 70%, transparent)}
+    60%{opacity:1}
+    100%{opacity:1; transform:scale(1); text-shadow:0 0 0 transparent}
+  }
+  @media (prefers-reduced-motion: no-preference){
+    body.idle .locked-line{animation:idle-breathe 7s ease-in-out infinite}
+  }
+  @keyframes idle-breathe{0%,100%{opacity:1}50%{opacity:.82}}
+
+  /* live line */
+  #liveRow{position:relative; font-size:var(--stream-size); line-height:1.5; min-height:1.5em; padding-left:1.15em}
+  #liveRow::before{content:'∴'; position:absolute; left:0; top:0; color:var(--accent); font-family:var(--font-mono); opacity:.85}
+  #harrisLive{
+    font-family:var(--font-sans); font-weight:300; letter-spacing:.02em; color:var(--text1);
+  }
+  #hbaLive{display:none; font-family:var(--font-serif); font-style:italic; font-weight:500; color:var(--text1)}
+  #hbaLive.on{display:inline}
+  #harrisLive.hidden-live{display:none}
+  .hba-char{display:inline-block; animation:hba-breathe var(--dur,4s) ease-in-out infinite; animation-delay:var(--del,0s); transform-origin:bottom center}
+  @media (prefers-reduced-motion: reduce){ .hba-char{animation:none} }
+  @keyframes hba-breathe{
+    0%{transform:translateY(0) scaleY(1); opacity:.88}
+    50%{transform:translateY(-2px) scaleY(1.02); opacity:1}
+    100%{transform:translateY(0) scaleY(1); opacity:.88}
+  }
+  .caret{display:inline-block; width:.5ch; margin-left:.05em; background:var(--accent); opacity:.9; animation:caret-blink 1.1s step-end infinite; vertical-align:text-bottom; height:.9em}
+  @keyframes caret-blink{0%,49%{opacity:.9}50%,100%{opacity:0}}
+
+  #hiddenInput{
+    position:absolute; inset:0; opacity:0; border:0; padding:0; margin:0; width:1px; height:1px; caret-color:transparent;
+  }
+
+  /* ── overlays ───────────────────────────────────────── */
+  #vaporCanvas, #pingLayer{position:fixed; inset:0; z-index:4; pointer-events:none; width:100%; height:100%}
+
+  #toast{
+    position:fixed; top:2.2rem; left:50%; transform:translate(-50%,-8px); z-index:10;
+    font-family:var(--font-mono); font-size:.68rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--text2); background:color-mix(in srgb, var(--surface) 80%, transparent);
+    border:1px solid color-mix(in srgb, var(--text2) 30%, transparent); padding:.6rem 1.1rem; border-radius:2px;
+    opacity:0; transition:opacity .5s ease, transform .5s ease; pointer-events:none;
+  }
+  #toast.show{opacity:1; transform:translate(-50%,0)}
+
+  #legend{
+    position:fixed; inset:0; z-index:20; background:rgba(0,0,0,.68); backdrop-filter:blur(3px);
+    display:none; align-items:center; justify-content:center; padding:2rem;
+  }
+  #legend.open{display:flex}
+  .legend-card{
+    background:var(--surface); border:1px solid color-mix(in srgb, var(--text2) 25%, transparent);
+    border-radius:6px; padding:2.4rem 2.6rem; max-width:520px; width:100%;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);
+  }
+  .legend-card h2{
+    margin:0 0 .3rem; font-family:var(--font-mono); font-size:.85rem; letter-spacing:.24em; text-transform:uppercase; color:var(--text1); font-weight:500;
+  }
+  .legend-card .sub{margin:0 0 1.6rem; font-family:var(--font-serif); font-style:italic; color:var(--text2); font-size:1rem}
+  .legend-card dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:.65rem 1.2rem; font-size:.88rem}
+  .legend-card dt{font-family:var(--font-mono); color:var(--accent); white-space:nowrap}
+  .legend-card dd{margin:0; color:var(--text1)}
+  .legend-close{
+    margin-top:1.8rem; background:none; border:1px solid color-mix(in srgb, var(--text2) 40%, transparent);
+    color:var(--text2); font-family:var(--font-mono); font-size:.65rem; letter-spacing:.18em; text-transform:uppercase;
+    padding:.55rem 1.1rem; border-radius:2px; cursor:pointer;
+  }
+  .legend-close:hover{color:var(--accent); border-color:var(--accent)}
+
+  #clearConfirm{
+    position:fixed; bottom:2.2rem; left:50%; transform:translateX(-50%); z-index:11;
+    font-family:var(--font-mono); font-size:.68rem; letter-spacing:.1em; color:var(--text1);
+    background:color-mix(in srgb, var(--surface) 92%, transparent); border:1px solid var(--accent);
+    padding:.7rem 1.2rem; border-radius:2px; display:none; text-align:center;
+  }
+  #clearConfirm.show{display:block}
+  #clearConfirm b{color:var(--accent)}
+
+  #backToSteeping{
+    position:fixed; top:2.2rem; right:2.4rem; z-index:5; font-family:var(--font-mono);
+    font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--text2);
+    text-decoration:none; opacity:.6; transition:opacity .3s ease, color .3s ease;
+  }
+  #backToSteeping:hover{opacity:1; color:var(--accent)}
+  body.performance #backToSteeping{opacity:0; pointer-events:none}
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;700&family=EB+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<a id="backToSteeping" href="/">← creativesteeping.com</a>
+
+<div id="stage">
+  <div id="vignette"></div>
+
+  <div class="chrome" id="wordmark"><b>Afterlight</b><span>a playable steeping instrument</span></div>
+  <div class="chrome" id="modeTag">
+    <button id="muteToggle" aria-label="Mute sound" title="Mute (Alt + M)">♪</button>
+    <span id="modeName">Oceanic</span><span class="dot" id="modeDot"></span>
+  </div>
+  <button id="legendToggle" aria-label="Show how to play" title="How to play (Alt + /)">?</button>
+
+  <div id="streamWrap">
+    <div id="stream">
+      <div id="lockedLines"></div>
+      <div id="ghost" class="ghost-line">type. pause and a thought starts to breathe. ⌫ lets it go as vapor. ↵ declares one line — one beat. echo a word across two lines and they ping.</div>
+      <div id="liveRow">
+        <span id="harrisLive"></span><span id="hbaLive"></span><span class="caret" id="caret"></span>
+        <input id="hiddenInput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Journal — type your line, press enter to declare it">
+      </div>
+    </div>
+  </div>
+
+  <canvas id="vaporCanvas"></canvas>
+  <svg id="pingLayer"></svg>
+  <div id="toast"></div>
+  <div id="clearConfirm">Session held in this thought. Press <b>Alt + Backspace</b> again to release it.</div>
+
+  <div id="legend">
+    <div class="legend-card">
+      <h2>Afterlight</h2>
+      <p class="sub">Five registers, scored in light and in sound. Play it quietly at a nightstand, or loud on a wall.</p>
+      <dl>
+        <dt>type</dt><dd>Harris — a droplet meeting water. A falling pitch, a soft splash. You are typing on a pond.</dd>
+        <dt>pause</dt><dd>HBA — a drone that becomes a compass. Wide and undulating at first — pitch and pan both adrift — narrowing the longer you stay, until it settles center and in tune. An echo grows alongside it, the room listening back.</dd>
+        <dt>⌫ backspace</dt><dd>Vapor — a filtered sweep falls with each dissolving character.</dd>
+        <dt>↵ enter</dt><dd>Steam — a dense harmonic chord stab. One thought, one beat, one impact.</dd>
+        <dt>alt + ↵</dt><dd>Capture — mark this line as an authored insight. A single struck bell, its own accent-colored mark.</dd>
+        <dt>shared word</dt><dd>Ping™ — a bell, root and major third, resonant tail — arrives just after Steam settles.</dd>
+        <dt>↗ / ≈</dt><dd>A neume beside each line — arrived straight, or breathed first. The shape it took, not its notes.</dd>
+        <dt>alt + 1–5</dt><dd>Shift the mode. Each mode is its own key on a five-note scale, tuned to Steeping Beats' own days.</dd>
+        <dt>alt + p</dt><dd>Performance mode — the room opens or closes with a filtered sweep.</dd>
+        <dt>alt + ⌫</dt><dd>Release the whole session — a soft tap to ask, a full vapor cascade to confirm.</dd>
+        <dt>alt + m</dt><dd>Mute the instrument. The visuals keep playing in silence.</dd>
+      </dl>
+      <button class="legend-close" id="legendClose">Close ∴ Alt + /</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var MODE_ORDER = ["incandescent","oceanic","emergent","planetary","darkMatter"];
+  var MODES = {
+    incandescent:{name:"Incandescent", bg:"#090500", surface:"#1c1000", accent:"#d4922a", text1:"#fff0d9", text2:"#a88b68"},
+    oceanic:     {name:"Oceanic",      bg:"#00080a", surface:"#001a22", accent:"#38bdf8", text1:"#e0f2fe", text2:"#7dd3fc"},
+    emergent:    {name:"Emergent",     bg:"#050505", surface:"#1a1a1a", accent:"#e5e5e5", text1:"#ffffff", text2:"#a3a3a3"},
+    planetary:   {name:"Planetary",    bg:"#050008", surface:"#0a0010", accent:"#ff00ff", text1:"#ffffff", text2:"#e0b3ff"},
+    darkMatter:  {name:"Dark Matter",  bg:"#000000", surface:"#050505", accent:"#6b7280", text1:"#f3f4f6", text2:"#9ca3af"}
+  };
+  var STOPWORDS = ["that","and","with","this","from","have","your","about","into","then","than","they",
+    "when","what","which","would","could","should","been","were","that's","just","only","also","were",
+    "there","their","been","does","doesn","didn","cant","wont","here","some","such","very","more","most"];
+
+  var STORE_KEY = "afterlight:session:v1";
+
+  var els = {
+    stage: document.getElementById("stage"),
+    stream: document.getElementById("stream"),
+    lockedLines: document.getElementById("lockedLines"),
+    ghost: document.getElementById("ghost"),
+    harrisLive: document.getElementById("harrisLive"),
+    hbaLive: document.getElementById("hbaLive"),
+    caret: document.getElementById("caret"),
+    input: document.getElementById("hiddenInput"),
+    modeName: document.getElementById("modeName"),
+    toast: document.getElementById("toast"),
+    legend: document.getElementById("legend"),
+    legendToggle: document.getElementById("legendToggle"),
+    legendClose: document.getElementById("legendClose"),
+    clearConfirm: document.getElementById("clearConfirm"),
+    vaporCanvas: document.getElementById("vaporCanvas"),
+    pingLayer: document.getElementById("pingLayer"),
+    muteToggle: document.getElementById("muteToggle")
+  };
+
+  var state = { mode: "oceanic", lines: [], muted: false };
+  var prevValue = "";
+  var dwellTimer = null;
+  var idleTimer = null;
+  var pendingClear = false;
+  var pendingClearTimer = null;
+  var breathedThisLine = false; // did HBA fire before this line locked? — feeds the neume mark
+  var audioCtx = null;
+  var masterGain = null;
+  var noiseBuffer = null;
+  var hbaVoice = null; // sustained HBA oscillator pair, while a line breathes
+
+  // Each mode is its own key — the whole instrument transposes when the mode does.
+  var MODE_ROOT = { incandescent:196.00, oceanic:220.00, emergent:246.94, planetary:207.65, darkMatter:164.81 };
+  // Alt+1..5 "instrument touch" pitches — a fixed five-note scale, independent of mode, so a
+  // performer can play mode changes like notes. Tuned to Steeping Beats' own per-day keys
+  // (DRE_LMS_STEEPING_BEATS.md) so the two instruments share a harmonic home if played together.
+  var TOUCH_SCALE = [261.63, 196.00, 293.66, 220.00, 164.81]; // C4 · G3 · D4 · A3 · E3
+  function rootFreq(){ return MODE_ROOT[state.mode] || 220; }
+
+  // ── persistence ──────────────────────────────────────
+  function load(){
+    try{
+      var raw = localStorage.getItem(STORE_KEY);
+      if(!raw) return;
+      var saved = JSON.parse(raw);
+      if(saved && Array.isArray(saved.lines)){
+        state.lines = saved.lines;
+        if(saved.mode && MODES[saved.mode]) state.mode = saved.mode;
+        state.muted = !!saved.muted;
+        if(state.lines.length) showToast("session restored ∴ " + state.lines.length + " line" + (state.lines.length===1?"":"s"));
+      }
+    }catch(e){}
+  }
+  function save(){
+    try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
+  }
+
+  // ── mode ─────────────────────────────────────────────
+  function applyMode(key, announce){
+    var m = MODES[key]; if(!m) return;
+    state.mode = key;
+    var root = document.documentElement.style;
+    root.setProperty("--bg", m.bg);
+    root.setProperty("--surface", m.surface);
+    root.setProperty("--accent", m.accent);
+    root.setProperty("--text1", m.text1);
+    root.setProperty("--text2", m.text2);
+    els.modeName.textContent = m.name;
+    if(announce) showToast(m.name + " mode");
+    save();
+  }
+
+  // ── toast ────────────────────────────────────────────
+  var toastTimer = null;
+  function showToast(msg){
+    els.toast.textContent = msg;
+    els.toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ els.toast.classList.remove("show"); }, 2200);
+  }
+
+  // ── rendering: locked lines ──────────────────────────
+  function significantWords(text){
+    var words = text.toLowerCase().match(/[a-z'']{4,}/g) || [];
+    var out = [];
+    for(var i=0;i<words.length;i++){
+      if(STOPWORDS.indexOf(words[i]) === -1 && out.indexOf(words[i]) === -1) out.push(words[i]);
+    }
+    return out;
+  }
+
+  function renderLockedLine(line, opts){
+    var div = document.createElement("div");
+    div.className = "locked-line"
+      + (line.ping ? " pinged" : "")
+      + (line.captured ? " captured" : "")
+      + (opts && opts.animate ? " pulse-in" : "");
+    var neume = document.createElement("span");
+    neume.className = "neume";
+    neume.title = line.contour === "breathed" ? "breathed before it declared" : "arrived straight";
+    neume.textContent = line.contour === "breathed" ? "≈" : "↗";
+    div.appendChild(neume);
+    if(line.captured){
+      var c = document.createElement("span");
+      c.className = "capture-glyph"; c.textContent = "✦";
+      div.appendChild(c);
+    }
+    if(line.ping){
+      var g = document.createElement("span");
+      g.className = "ping-glyph"; g.textContent = "◆";
+      div.appendChild(g);
+    }
+    div.appendChild(document.createTextNode(line.text));
+    els.lockedLines.appendChild(div);
+    return div;
+  }
+
+  function renderAllLocked(){
+    els.lockedLines.innerHTML = "";
+    els.ghost.style.display = state.lines.length ? "none" : "block";
+    state.lines.forEach(function(l){ renderLockedLine(l, {animate:false}); });
+    els.stream.scrollTop = els.stream.scrollHeight;
+  }
+
+  // ── locking a line (STEAM) + ping detection ──────────
+  function lockLine(text, opts){
+    text = text.trim();
+    if(!text) return;
+    els.ghost.style.display = "none";
+    var captured = !!(opts && opts.captured);
+
+    var mine = significantWords(text);
+    var matchIndex = -1;
+    for(var i = state.lines.length - 1; i >= 0; i--){
+      var theirs = significantWords(state.lines[i].text);
+      var hit = false;
+      for(var w=0; w<mine.length; w++){ if(theirs.indexOf(mine[w]) !== -1){ hit = true; break; } }
+      if(hit){ matchIndex = i; state.lines[i].ping = true; break; }
+    }
+    var didPing = matchIndex !== -1;
+    var newLine = {
+      text: text, ping: didPing, captured: captured,
+      contour: breathedThisLine ? "breathed" : "direct"
+    };
+    breathedThisLine = false;
+    state.lines.push(newLine);
+
+    renderAllLocked();
+    var newEl = els.lockedLines.lastElementChild;
+    newEl.classList.add("pulse-in");
+    playSteamStab();
+
+    if(captured) setTimeout(playCapture, 130);
+    if(didPing){
+      var oldEl = els.lockedLines.children[matchIndex];
+      requestAnimationFrame(function(){ drawPing(oldEl, newEl); });
+      setTimeout(playPing, captured ? 300 : 150); // one dominant event at a time
+    }
+    save();
+  }
+
+  // ── live line: HARRIS / HBA ───────────────────────────
+  function stopDwell(){
+    clearTimeout(dwellTimer);
+    els.hbaLive.classList.remove("on");
+    els.harrisLive.classList.remove("hidden-live");
+    releaseHbaVoice();
+  }
+  function startDwell(){
+    clearTimeout(dwellTimer);
+    dwellTimer = setTimeout(function(){
+      var val = els.input.value;
+      if(!val) return;
+      buildHBA(val, els.hbaLive);
+      els.hbaLive.classList.add("on");
+      els.harrisLive.classList.add("hidden-live");
+      startHbaVoice();
+      breathedThisLine = true;
+    }, 1400);
+  }
+  function buildHBA(text, container){
+    container.innerHTML = "";
+    for(var i=0;i<text.length;i++){
+      var ch = text[i];
+      var span = document.createElement("span");
+      if(ch === " "){ span.style.display="inline-block"; span.style.width="0.32em"; span.textContent=" "; container.appendChild(span); continue; }
+      span.className = "hba-char";
+      span.textContent = ch;
+      span.style.setProperty("--dur", (3.4 + Math.random()*2.2).toFixed(2)+"s");
+      span.style.setProperty("--del", (i*0.1 + Math.random()*0.08).toFixed(2)+"s");
+      container.appendChild(span);
+    }
+  }
+
+  function refreshIdle(){
+    document.body.classList.remove("idle");
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(function(){ document.body.classList.add("idle"); }, 6000);
+  }
+
+  // ── vapor: backspace + clear dissolve ────────────────
+  var vctx = els.vaporCanvas.getContext("2d");
+  var particles = [];
+  function resizeCanvas(){
+    var dpr = window.devicePixelRatio || 1;
+    els.vaporCanvas.width = innerWidth * dpr;
+    els.vaporCanvas.height = innerHeight * dpr;
+    vctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+
+  function vaporBurst(x, y, glyph){
+    var accent = getComputedStyle(document.documentElement).getPropertyValue("--text1").trim() || "#e0f2fe";
+    for(var i=0;i<10;i++){
+      particles.push({
+        x:x, y:y,
+        vx:(Math.random()-0.5)*2.4, vy:-Math.random()*1.6 - 0.3,
+        life:1, decay:0.012 + Math.random()*0.014,
+        size: Math.random()*2 + 1,
+        color: accent
+      });
+    }
+  }
+  function vaporLoop(){
+    requestAnimationFrame(vaporLoop);
+    vctx.clearRect(0,0,innerWidth,innerHeight);
+    for(var i=particles.length-1;i>=0;i--){
+      var p = particles[i];
+      p.x += p.vx; p.y += p.vy; p.vy += 0.012;
+      p.life -= p.decay;
+      if(p.life <= 0){ particles.splice(i,1); continue; }
+      vctx.beginPath();
+      vctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+      vctx.fillStyle = hexToRgba(p.color, Math.max(p.life,0)*0.75);
+      vctx.fill();
+    }
+  }
+  function hexToRgba(hex, a){
+    hex = hex.trim();
+    if(hex[0] !== "#") return "rgba(224,242,254,"+a+")";
+    var n = hex.length===4
+      ? [hex[1]+hex[1],hex[2]+hex[2],hex[3]+hex[3]]
+      : [hex.slice(1,3),hex.slice(3,5),hex.slice(5,7)];
+    var r=parseInt(n[0],16), g=parseInt(n[1],16), b=parseInt(n[2],16);
+    return "rgba("+r+","+g+","+b+","+a+")";
+  }
+  requestAnimationFrame(vaporLoop);
+
+  function caretPoint(){
+    var r = els.caret.getBoundingClientRect();
+    return { x: r.left, y: r.top + r.height/2 };
+  }
+
+  // ── ping: SVG arc + audio ────────────────────────────
+  function drawPing(fromEl, toEl){
+    var a = fromEl.getBoundingClientRect();
+    var b = toEl.getBoundingClientRect();
+    var x1 = a.left - 6, y1 = a.top + a.height/2;
+    var x2 = b.left - 6, y2 = b.top + b.height/2;
+    var mx = (x1+x2)/2 - 60;
+    var path = document.createElementNS("http://www.w3.org/2000/svg","path");
+    var d = "M"+x1+","+y1+" Q"+mx+","+((y1+y2)/2)+" "+x2+","+y2;
+    path.setAttribute("d", d);
+    path.setAttribute("fill","none");
+    path.setAttribute("stroke", "var(--ping)");
+    path.setAttribute("stroke-width","1.5");
+    path.setAttribute("stroke-linecap","round");
+    path.style.filter = "drop-shadow(0 0 6px var(--ping-glow))";
+    var len = 400;
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+    path.style.transition = "stroke-dashoffset 0.9s cubic-bezier(.2,.7,.3,1), opacity 0.6s ease 1.1s";
+    els.pingLayer.appendChild(path);
+    requestAnimationFrame(function(){ path.style.strokeDashoffset = "0"; });
+    setTimeout(function(){ path.style.opacity = "0"; }, 1100);
+    setTimeout(function(){ path.remove(); }, 1900);
+  }
+
+  // ══════════════════════════════════════════════════════
+  // SOUND ENGINE — one exclusive compositional voice per register.
+  // Every register keeps the sonic behavior TTP already assigns it:
+  // Harris inharmonic/clipped, HBA warm-fifth/held, Vapor formant-sweep,
+  // Steam dense-stack/impact, Ping bell/major-third/resonant-tail.
+  // Alt is not a content register — it's the performer's hand on the
+  // instrument itself, voiced as a five-note "touch" scale.
+  // ══════════════════════════════════════════════════════
+  var BASE_VOLUME = 0.5;
+
+  function ensureAudio(){
+    if(!audioCtx){
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if(!AC) return null;
+      audioCtx = new AC();
+      masterGain = audioCtx.createGain();
+      masterGain.gain.value = state.muted ? 0 : BASE_VOLUME;
+      masterGain.connect(audioCtx.destination);
+
+      var dur = 1, rate = audioCtx.sampleRate, n = rate * dur;
+      noiseBuffer = audioCtx.createBuffer(1, n, rate);
+      var data = noiseBuffer.getChannelData(0);
+      for(var i=0;i<n;i++) data[i] = Math.random()*2 - 1;
+    }
+    if(audioCtx.state === "suspended") audioCtx.resume();
+    return audioCtx;
+  }
+
+  function setMuted(muted, announce){
+    state.muted = muted;
+    els.muteToggle.classList.toggle("muted", muted);
+    els.muteToggle.textContent = muted ? "♪̷" : "♪";
+    if(masterGain && audioCtx){
+      masterGain.gain.setTargetAtTime(muted ? 0 : BASE_VOLUME, audioCtx.currentTime, 0.05);
+    }
+    if(announce) showToast(muted ? "sound off" : "sound on");
+    save();
+  }
+
+  // HARRIS — a droplet meeting water. Precise arrival, inharmonic per TTP's own rule,
+  // but wet: a falling pitch glide and a soft splash transient instead of a dry click.
+  // We are typing on the surface of a pond.
+  function playHarrisTick(ch){
+    var ctx = ensureAudio(); if(!ctx || !noiseBuffer) return;
+    var now = ctx.currentTime;
+    var code = ch ? ch.charCodeAt(0) : 72;
+    var freq = rootFreq() * 3 + (code % 31) * 5; // inharmonic: not a clean ratio of the root
+
+    // the droplet — a falling pitch glide, the physical signature of a drop meeting water
+    var osc = ctx.createOscillator();
+    var filt = ctx.createBiquadFilter();
+    var gain = ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(freq * 1.9, now);
+    osc.frequency.exponentialRampToValueAtTime(freq, now + 0.034);
+    filt.type = "lowpass";
+    filt.frequency.value = 2200;
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(0.055, now + 0.004);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+    osc.connect(filt).connect(gain).connect(masterGain);
+    osc.start(now); osc.stop(now + 0.13);
+
+    // the splash — a thin filtered-noise transient under the onset, the wetness of contact
+    var src = ctx.createBufferSource();
+    src.buffer = noiseBuffer;
+    var sFilt = ctx.createBiquadFilter();
+    sFilt.type = "bandpass"; sFilt.frequency.value = freq * 5; sFilt.Q.value = 2.2;
+    var sGain = ctx.createGain();
+    sGain.gain.setValueAtTime(0, now);
+    sGain.gain.linearRampToValueAtTime(0.02, now + 0.002);
+    sGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.035);
+    src.connect(sFilt).connect(sGain).connect(masterGain);
+    src.start(now); src.stop(now + 0.04);
+  }
+
+  // HBA — a drone that becomes a compass. Two voices in a fifth, undulating wide and
+  // slow when the pause begins — pitch adrift, pan adrift, direction unknown. The longer
+  // you stay, the more the wobble narrows and slows until it settles center and in tune:
+  // the needle finding north. A feedback delay grows alongside it — the room listening
+  // back a little more for every second you hold still (the Conditional Echo).
+  var HBA_RESOLVE = 12; // seconds of continuous dwell before the compass fully settles
+  function startHbaVoice(){
+    var ctx = ensureAudio(); if(!ctx) return;
+    if(hbaVoice) return;
+    var now = ctx.currentTime;
+    var r = rootFreq();
+    var end = now + HBA_RESOLVE;
+
+    var oscA = ctx.createOscillator(), oscB = ctx.createOscillator();
+    var gainA = ctx.createGain(), gainB = ctx.createGain();
+    oscA.type = "triangle"; oscA.frequency.value = r;
+    oscB.type = "triangle"; oscB.frequency.value = r * 1.5; // perfect fifth
+    gainA.gain.setValueAtTime(0, now); gainA.gain.linearRampToValueAtTime(0.045, now + 0.7);
+    gainB.gain.setValueAtTime(0, now); gainB.gain.linearRampToValueAtTime(0.03, now + 0.9);
+
+    // the undulation — one shared LFO drives both pitch wobble and pan drift so the
+    // voice wavers as a single body, not two competing needles
+    var detuneLFO = ctx.createOscillator(); detuneLFO.type = "sine";
+    var detuneDepth = ctx.createGain();
+    detuneLFO.frequency.setValueAtTime(0.22, now);
+    detuneLFO.frequency.linearRampToValueAtTime(0.045, end);
+    detuneDepth.gain.setValueAtTime(7, now);
+    detuneDepth.gain.linearRampToValueAtTime(0.4, end); // wobble narrows to near-stillness
+    detuneLFO.connect(detuneDepth);
+    detuneDepth.connect(oscA.detune);
+    detuneDepth.connect(oscB.detune);
+
+    var panner = ctx.createStereoPanner();
+    var panLFO = ctx.createOscillator(); panLFO.type = "sine";
+    var panDepth = ctx.createGain();
+    panLFO.frequency.setValueAtTime(0.16, now);
+    panLFO.frequency.linearRampToValueAtTime(0.05, end);
+    panDepth.gain.setValueAtTime(0.6, now);
+    panDepth.gain.linearRampToValueAtTime(0.03, end); // drift narrows to center — north found
+    panLFO.connect(panDepth);
+    panDepth.connect(panner.pan);
+
+    // the growing echo — a short feedback delay whose presence deepens with dwell time
+    var delay = ctx.createDelay(1.2);
+    delay.delayTime.value = 0.28;
+    var feedback = ctx.createGain();
+    feedback.gain.setValueAtTime(0.1, now);
+    feedback.gain.linearRampToValueAtTime(0.52, end);
+    var wet = ctx.createGain();
+    wet.gain.setValueAtTime(0.015, now);
+    wet.gain.linearRampToValueAtTime(0.09, end);
+
+    oscA.connect(gainA); oscB.connect(gainB);
+    gainA.connect(panner); gainB.connect(panner);
+    panner.connect(masterGain);
+    panner.connect(delay); delay.connect(feedback); feedback.connect(delay);
+    delay.connect(wet); wet.connect(masterGain);
+
+    oscA.start(now); oscB.start(now); detuneLFO.start(now); panLFO.start(now);
+    hbaVoice = { oscA:oscA, oscB:oscB, gainA:gainA, gainB:gainB, detuneLFO:detuneLFO,
+      detuneDepth:detuneDepth, panLFO:panLFO, panDepth:panDepth, panner:panner,
+      delay:delay, feedback:feedback, wet:wet };
+  }
+  function releaseHbaVoice(){
+    if(!hbaVoice || !audioCtx) return;
+    var now = audioCtx.currentTime;
+    var v = hbaVoice; hbaVoice = null;
+    [v.gainA, v.gainB, v.detuneDepth, v.panDepth, v.wet].forEach(function(g){
+      g.gain.cancelScheduledValues(now);
+      g.gain.setValueAtTime(g.gain.value, now);
+      g.gain.exponentialRampToValueAtTime(0.0001, now + 1.8); // long exhale
+    });
+    v.feedback.gain.cancelScheduledValues(now);
+    v.feedback.gain.setValueAtTime(v.feedback.gain.value, now);
+    v.feedback.gain.linearRampToValueAtTime(0, now + 1.8); // let the echo decay away too
+    [v.oscA, v.oscB, v.detuneLFO, v.panLFO].forEach(function(o){ o.stop(now + 1.85); });
+  }
+
+  // VAPOR — filtered noise, formant sweep down (and a little back up), dissolve.
+  function playVaporSweep(scale){
+    var ctx = ensureAudio(); if(!ctx || !noiseBuffer) return;
+    scale = scale || 1;
+    var now = ctx.currentTime;
+    var r = rootFreq();
+    var src = ctx.createBufferSource();
+    src.buffer = noiseBuffer; src.loop = true;
+    var filt = ctx.createBiquadFilter();
+    filt.type = "bandpass"; filt.Q.value = 1.4;
+    var gain = ctx.createGain();
+    var dur = 0.22 * scale;
+    filt.frequency.setValueAtTime(r * 9, now);
+    filt.frequency.exponentialRampToValueAtTime(r * 2.2, now + dur * 0.75);
+    filt.frequency.exponentialRampToValueAtTime(r * 3.5, now + dur);
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(0.05 * Math.min(scale,1.4), now + dur*0.15);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+    src.connect(filt).connect(gain).connect(masterGain);
+    src.start(now); src.stop(now + dur + 0.05);
+  }
+  function playVaporCascade(voices){
+    voices = voices || 4;
+    for(var i=0;i<voices;i++){
+      (function(i){ setTimeout(function(){ playVaporSweep(2.6); }, i * 90); })(i);
+    }
+  }
+
+  // STEAM — dense harmonic stack, fast attack, short decisive decay.
+  function playSteamStab(){
+    var ctx = ensureAudio(); if(!ctx) return;
+    var now = ctx.currentTime;
+    var r = rootFreq();
+    [r, r*1.5, r*2, r*2.25].forEach(function(freq, idx){
+      var osc = ctx.createOscillator();
+      var gain = ctx.createGain();
+      osc.type = "sawtooth";
+      osc.frequency.value = freq;
+      var filt = ctx.createBiquadFilter();
+      filt.type = "lowpass"; filt.frequency.value = 2600;
+      var peak = idx===0 ? 0.08 : 0.045;
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(peak, now + 0.006);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.38);
+      osc.connect(filt).connect(gain).connect(masterGain);
+      osc.start(now); osc.stop(now + 0.4);
+    });
+  }
+
+  // PING™ — bell onset, root + major third, resonant tail.
+  function playPing(){
+    var ctx = ensureAudio(); if(!ctx) return;
+    var now = ctx.currentTime;
+    var base = rootFreq() * 2.5;
+    [base, base * 1.25].forEach(function(freq, idx){
+      var osc = ctx.createOscillator();
+      var gain = ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(idx===0 ? 0.09 : 0.06, now + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.7);
+      osc.connect(gain).connect(masterGain);
+      osc.start(now); osc.stop(now + 1.75);
+    });
+  }
+
+  // CAPTURE — a single struck bell, not a two-tone one. An authored insight, marked by
+  // the performer rather than noticed by the system — distinct from Ping's echo.
+  function playCapture(){
+    var ctx = ensureAudio(); if(!ctx) return;
+    var now = ctx.currentTime;
+    var osc = ctx.createOscillator();
+    var gain = ctx.createGain();
+    osc.type = "sine"; osc.frequency.value = rootFreq() * 3;
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(0.08, now + 0.015);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.05);
+    osc.connect(gain).connect(masterGain);
+    osc.start(now); osc.stop(now + 1.1);
+  }
+
+  // ALT / instrument touch — a plucked tap, its own five-note scale. Not a content
+  // register; this is the sound of the performer's hand on the instrument.
+  function playInstrumentTap(freq, soft){
+    var ctx = ensureAudio(); if(!ctx) return;
+    var now = ctx.currentTime;
+    var osc = ctx.createOscillator();
+    var osc2 = ctx.createOscillator();
+    var gain = ctx.createGain();
+    osc.type = "triangle"; osc.frequency.value = freq;
+    osc2.type = "sine"; osc2.frequency.value = freq * 2.005; // slight detune for a struck, not pure, tone
+    var peak = soft ? 0.035 : 0.075;
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(peak, now + 0.008);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + (soft ? 0.4 : 0.55));
+    osc.connect(gain).connect(masterGain);
+    osc2.connect(gain).connect(masterGain);
+    osc.start(now); osc2.start(now);
+    osc.stop(now + 0.6); osc2.stop(now + 0.6);
+  }
+
+  // ALT+P — the room opening or closing, one filtered sweep.
+  function playRoomSweep(opening){
+    var ctx = ensureAudio(); if(!ctx || !noiseBuffer) return;
+    var now = ctx.currentTime;
+    var src = ctx.createBufferSource();
+    src.buffer = noiseBuffer; src.loop = true;
+    var filt = ctx.createBiquadFilter();
+    filt.type = "lowpass"; filt.Q.value = 0.7;
+    var gain = ctx.createGain();
+    var dur = 0.55;
+    if(opening){
+      filt.frequency.setValueAtTime(300, now);
+      filt.frequency.linearRampToValueAtTime(4200, now + dur);
+    } else {
+      filt.frequency.setValueAtTime(4200, now);
+      filt.frequency.linearRampToValueAtTime(300, now + dur);
+    }
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(0.035, now + dur*0.3);
+    gain.gain.linearRampToValueAtTime(0, now + dur);
+    src.connect(filt).connect(gain).connect(masterGain);
+    src.start(now); src.stop(now + dur + 0.05);
+  }
+
+  // ── clear session ─────────────────────────────────────
+  function dissolveAndClear(){
+    playVaporCascade(5); // the largest scale of the same Vapor family — clearing is the ultimate dissolve
+    var children = Array.prototype.slice.call(els.lockedLines.children);
+    children.forEach(function(el, i){
+      var r = el.getBoundingClientRect();
+      vaporBurst(r.left + Math.min(r.width,200)*Math.random(), r.top + r.height/2);
+      el.style.transition = "opacity .7s ease, filter .7s ease, transform .7s ease";
+      el.style.transitionDelay = (i*40) + "ms";
+      requestAnimationFrame(function(){
+        el.style.opacity = "0"; el.style.filter = "blur(4px)"; el.style.transform = "translateY(-6px)";
+      });
+    });
+    setTimeout(function(){
+      state.lines = [];
+      renderAllLocked();
+      save();
+      showToast("session released");
+    }, 750 + children.length*40);
+  }
+
+  // ── input wiring ──────────────────────────────────────
+  els.input.addEventListener("input", function(){
+    var val = els.input.value;
+    stopDwell();
+    els.harrisLive.textContent = val;
+    els.hbaLive.classList.remove("on");
+    if(val.length < prevValue.length){
+      var pt = caretPoint();
+      vaporBurst(pt.x, pt.y);
+      playVaporSweep(1);
+    } else if(val.length > prevValue.length){
+      playHarrisTick(val[val.length-1]);
+    }
+    prevValue = val;
+    if(val) startDwell(); else breathedThisLine = false;
+    refreshIdle();
+  });
+
+  els.input.addEventListener("keydown", function(e){
+    if(e.altKey){
+      var idx = ["Digit1","Digit2","Digit3","Digit4","Digit5"].indexOf(e.code);
+      if(idx !== -1){ e.preventDefault(); playInstrumentTap(TOUCH_SCALE[idx], false); applyMode(MODE_ORDER[idx], true); return; }
+      if(e.code === "KeyP"){ e.preventDefault(); playRoomSweep(!document.body.classList.contains("performance")); togglePerformance(); return; }
+      if(e.code === "KeyM"){ e.preventDefault(); ensureAudio(); setMuted(!state.muted, true); return; }
+      if(e.code === "Slash"){ e.preventDefault(); toggleLegend(); return; }
+      if(e.code === "Backspace"){ e.preventDefault(); handleAltBackspace(); return; }
+      if(e.code === "Enter"){
+        e.preventDefault();
+        lockLine(els.input.value, {captured:true});
+        els.input.value = ""; prevValue = ""; els.harrisLive.textContent = "";
+        stopDwell();
+        return;
+      }
+      return;
+    }
+    if(e.key === "Enter"){
+      e.preventDefault();
+      lockLine(els.input.value);
+      els.input.value = ""; prevValue = ""; els.harrisLive.textContent = "";
+      stopDwell();
+    } else if(e.key === "Escape"){
+      if(els.legend.classList.contains("open")) toggleLegend();
+    }
+    refreshIdle();
+  });
+
+  function handleAltBackspace(){
+    if(!state.lines.length) return;
+    if(!pendingClear){
+      pendingClear = true;
+      playInstrumentTap(TOUCH_SCALE[0] * 0.5, true);
+      els.clearConfirm.classList.add("show");
+      clearTimeout(pendingClearTimer);
+      pendingClearTimer = setTimeout(function(){ pendingClear = false; els.clearConfirm.classList.remove("show"); }, 3000);
+    } else {
+      pendingClear = false;
+      els.clearConfirm.classList.remove("show");
+      clearTimeout(pendingClearTimer);
+      dissolveAndClear();
+    }
+  }
+
+  function togglePerformance(){
+    document.body.classList.toggle("performance");
+    showToast(document.body.classList.contains("performance") ? "performance mode" : "journal mode");
+  }
+  function toggleLegend(){
+    els.legend.classList.toggle("open");
+  }
+
+  els.legendToggle.addEventListener("click", toggleLegend);
+  els.legendClose.addEventListener("click", toggleLegend);
+  els.legend.addEventListener("click", function(e){ if(e.target === els.legend) toggleLegend(); });
+
+  els.muteToggle.addEventListener("click", function(e){
+    e.stopPropagation();
+    ensureAudio();
+    setMuted(!state.muted, true);
+  });
+
+  els.stage.addEventListener("click", function(e){
+    if(els.legend.classList.contains("open")) return;
+    els.input.focus();
+  });
+
+  // ── boot ────────────────────────────────────────────
+  load();
+  applyMode(state.mode, false);
+  els.muteToggle.classList.toggle("muted", state.muted);
+  els.muteToggle.textContent = state.muted ? "♪̷" : "♪";
+  renderAllLocked();
+  refreshIdle();
+  setTimeout(function(){ els.input.focus(); }, 300);
+})();
+</script>
+</body>
+</html>

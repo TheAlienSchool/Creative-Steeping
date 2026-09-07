@@ -1710,10 +1710,13 @@ function AppInner() {
                                 }}>
                                   From the Archive
                                 </div>
+                                {/* Harris register: witnessed/surveyed content reads as witnessed —
+                                    instrumental and tracked, not the warm italic voice Sage speaks in. */}
                                 {fragments.map((r, idx) => (
                                   <div key={idx} style={{
-                                    fontFamily: 'var(--fSerif)', fontStyle: 'italic',
-                                    fontSize: '0.95rem', lineHeight: 1.7, color: 'var(--t2)',
+                                    fontFamily: 'var(--fMono)', fontStyle: 'normal',
+                                    fontSize: '0.85rem', lineHeight: 1.75, letterSpacing: '0.015em',
+                                    color: 'var(--t2)',
                                     marginBottom: idx < fragments.length - 1 ? 'var(--space-md)' : 0
                                   }}>
                                     {r.fragment.text}

@@ -4,7 +4,10 @@ import React, { useState, useEffect } from 'react';
 export function SubterraneanBay({ onClose, eqParams, setEqParams }) {
     // Sliders: 0.0 to 1.0
     const handleParamChange = (key, value) => {
-        setEqParams(prev => ({ ...prev, [key]: parseFloat(value) }));
+        const parsed = parseFloat(value);
+        // A malformed or empty slider value shouldn't corrupt state with NaN — every
+        // downstream AudioParam calculation trusts these values without re-checking.
+        setEqParams(prev => ({ ...prev, [key]: Number.isFinite(parsed) ? parsed : prev[key] }));
     };
 
     return (

@@ -405,7 +405,8 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
     
     // Geometry & Audio Integration
     const [mc, setMc] = useState(0);
-    const [coordsText, setCoordsText] = useState('[ STBL: 95 | PRSS: 10 | COHR: 98 | DRFT: 2 ]');
+    // Design-sensibility diagnostics: computed for our own tuning, never surfaced to visitors.
+    const coordsTextRef = useRef('[ STBL: 95 | PRSS: 10 | COHR: 98 | DRFT: 2 ]');
     const harrisRef = useRef(null);
     const hbaRef = useRef(null);
     const vaporRef = useRef(null);
@@ -440,7 +441,7 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
             const PRSS = Math.round(distance * 100);
             const COHR = Math.round(100 - (normX * 100));
             const DRFT = Math.round(normY * 100);
-            setCoordsText(`[ STBL: ${STBL} | PRSS: ${PRSS} | COHR: ${COHR} | DRFT: ${DRFT} ]`);
+            coordsTextRef.current = `[ STBL: ${STBL} | PRSS: ${PRSS} | COHR: ${COHR} | DRFT: ${DRFT} ]`;
         };
         window.addEventListener('mousemove', handleInteraction);
         window.addEventListener('touchmove', handleInteraction);
@@ -1068,21 +1069,6 @@ export const LegacyScreengrabPortal = ({ m, onClose, playStrikingBowl, playAlgor
                             CREATIVESTEEPING.COM
                         </a>
                         
-                        {/* Subtle Diagnostic Coordinates & Audio Telemetry Overlay */}
-                        <div style={{
-                            fontFamily: 'var(--fMono)', fontSize: '0.45rem', letterSpacing: '0.15em',
-                            color: m.accent, opacity: 0.45, textTransform: 'uppercase', marginTop: '2px',
-                            display: 'flex', flexDirection: 'column', gap: '3px', alignItems: 'center'
-                        }}>
-                            <div>{coordsText}</div>
-                            {kineticState === 'playing' && (
-                                <div style={{ display: 'flex', gap: '8px', opacity: 0.8, fontSize: '0.4rem', letterSpacing: '0.1em' }}>
-                                    <span>HARS: {Math.round(Math.max(0, Math.pow(Math.cos(mc * Math.PI / 2), 3)) * 100)}%</span>
-                                    <span>HBA: {Math.round(Math.max(0, Math.pow(Math.sin(mc * Math.PI), 3)) * 100)}%</span>
-                                    <span>VAPR: {Math.round(Math.max(0, Math.pow(Math.sin(mc * Math.PI / 2), 3)) * 100)}%</span>
-                                </div>
-                            )}
-                        </div>
                     </div>
                 </motion.div>
             </div>

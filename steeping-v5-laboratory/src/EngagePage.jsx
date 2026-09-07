@@ -99,7 +99,7 @@ const SteepingNoteVisuality = () => {
   return (
     <div style={{ marginBottom: '40px' }}>
       <BodyText>
-        Move your cursor across the card below to experience the real-time somatic coordinates tracking that guides practitioners through their journals.
+        Move your cursor across the card below — the light and glow respond to where you rest your attention.
       </BodyText>
       
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', position: 'relative' }}>
@@ -144,24 +144,6 @@ const SteepingNoteVisuality = () => {
             backgroundImage: `radial-gradient(${m.accent} 1px, transparent 1px)`,
             backgroundSize: '16px 16px', pointerEvents: 'none'
           }} />
-
-          {/* Dynamic coordinate status bar with highlighted text values on high coordinate focus */}
-          <div style={{
-            fontFamily: "'DM Mono', monospace",
-            fontSize: '0.62rem',
-            letterSpacing: '0.15em',
-            color: m.text2,
-            marginBottom: '20px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            borderBottom: `1px solid ${m.accent}20`,
-            paddingBottom: '10px'
-          }}>
-            <span style={{ color: coords.stbl > 70 ? m.accent : m.text2, textShadow: coords.stbl > 70 ? `0 0 8px ${m.accent}` : 'none', transition: 'color 0.2s, text-shadow 0.2s' }}>STBL: {coords.stbl}%</span>
-            <span style={{ color: coords.prss > 70 ? m.accent : m.text2, textShadow: coords.prss > 70 ? `0 0 8px ${m.accent}` : 'none', transition: 'color 0.2s, text-shadow 0.2s' }}>PRSS: {coords.prss}%</span>
-            <span style={{ color: coords.cohr > 70 ? m.accent : m.text2, textShadow: coords.cohr > 70 ? `0 0 8px ${m.accent}` : 'none', transition: 'color 0.2s, text-shadow 0.2s' }}>COHR: {coords.cohr}%</span>
-            <span style={{ color: coords.drft > 70 ? m.accent : m.text2, textShadow: coords.drft > 70 ? `0 0 8px ${m.accent}` : 'none', transition: 'color 0.2s, text-shadow 0.2s' }}>DRFT: {coords.drft}%</span>
-          </div>
 
           <div style={{ minHeight: '110px' }}>
             <div style={{

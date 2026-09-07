@@ -3,13 +3,9 @@ import { motion, useAnimation } from 'framer-motion';
 import { Volume2, VolumeX, ExternalLink, Activity } from 'lucide-react';
 
 export const SteamSansEngine = ({ m }) => {
-    const [coords, setCoords] = useState({
-        STBL: 95,
-        PRSS: 10,
-        COHR: 98,
-        DRFT: 2
-    });
-    
+    // Design-sensibility diagnostics: computed for our own tuning, never surfaced to visitors.
+    const coordsRef = useRef({ STBL: 95, PRSS: 10, COHR: 98, DRFT: 2 });
+
     const [isPlaying, setIsPlaying] = useState(false);
     const [mc, setMc] = useState(0); // Master Coordinate (0 = HARRIS, 1 = VAPOR)
 
@@ -47,13 +43,12 @@ export const SteamSansEngine = ({ m }) => {
             
             setMc(distance);
             
-            // Update visual telemetry readouts
-            setCoords({
+            coordsRef.current = {
                 STBL: Math.round(100 - (distance * 100)),
                 PRSS: Math.round(distance * 100),
                 COHR: Math.round(100 - (normX * 100)),
                 DRFT: Math.round(normY * 100)
-            });
+            };
         };
 
         window.addEventListener('mousemove', handleInteraction);
@@ -191,49 +186,14 @@ export const SteamSansEngine = ({ m }) => {
                     <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.7rem', color: m.accent, letterSpacing: '0.2em', opacity: 0.8 }}>
                         CURRENT STATE: {registerName}
                     </div>
-                    <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.55rem', color: m.text2, letterSpacing: '0.15em', opacity: 0.6 }}>
-                        WHY ARE WORDS CHANGING STATES? <br/>
-                        <span style={{ fontStyle: 'italic', color: m.accent }}>// ÆQ·14: YOU ARE READING YOUR OWN COORDINATES.</span>
-                    </div>
                 </div>
             </div>
 
-            {/* Read-Only Telemetry Panel */}
-            <div style={{
-                display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-                gap: '2rem', marginTop: 'var(--space-xl)', borderTop: `1px solid ${m.accent}20`,
-                paddingTop: 'var(--space-xl)'
-            }}>
-                <TelemetryReadout label="STBL · STABILITY" value={coords.STBL} m={m} />
-                <TelemetryReadout label="PRSS · PRESSURE" value={coords.PRSS} m={m} />
-                <TelemetryReadout label="COHR · COHERENCE" value={coords.COHR} m={m} />
-                <TelemetryReadout label="DRFT · DRIFT" value={coords.DRFT} m={m} />
-            </div>
-            
+            {/* The STBL/PRSS/COHR/DRFT geometry beneath this register is a design-sensibility
+                diagnostic, not something a visitor needs to read — it stays internal to `coords`. */}
             <div style={{ textAlign: 'center', marginTop: '2rem', fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, opacity: 0.5, letterSpacing: '0.2em' }}>
                 HOVER TO EXPLORE THE SPATIAL GEOMETRY
             </div>
         </div>
     );
 };
-
-const TelemetryReadout = ({ label, value, m }) => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', borderLeft: `1px solid ${m.accent}30`, paddingLeft: '1rem' }}>
-        <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, letterSpacing: '0.15em', opacity: 0.8 }}>
-            {label}
-        </div>
-        <div style={{ fontFamily: 'var(--fMono)', fontSize: '1.4rem', color: m.text1 }}>
-            {value}<span style={{ fontSize: '0.8rem', opacity: 0.5 }}>%</span>
-        </div>
-        <div style={{
-            width: '100%', height: '2px', background: `${m.accent}20`,
-            position: 'relative'
-        }}>
-            <motion.div 
-                animate={{ width: `${value}%` }}
-                transition={{ type: 'spring', bounce: 0, duration: 0.2 }}
-                style={{ position: 'absolute', left: 0, top: 0, height: '100%', background: m.accent }}
-            />
-        </div>
-    </div>
-);

@@ -405,7 +405,7 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         // 1. Friction Layer Update (Endogen)
         if (frictionGainRef.current && frictionFilterRef.current) {
             const vol = eqParams?.friction * 0.15 || 0;
-            const cutoff = 80 + (eqParams?.friction * 1400); // Opens up the hiss
+            const cutoff = 80 + (eqParams?.friction * 1400 || 0); // Opens up the hiss
             frictionGainRef.current.gain.setTargetAtTime(vol, ctx.currentTime, 0.4);
             frictionFilterRef.current.frequency.setTargetAtTime(cutoff, ctx.currentTime, 0.4);
         }

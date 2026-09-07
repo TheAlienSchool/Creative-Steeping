@@ -5,6 +5,40 @@ import { supabase } from './supabaseClient';
 import { useAuth } from './useAuth';
 import { EyeOfTheSage } from './EyeOfTheSage';
 import { OrientationTerm } from './OrientationTerm';
+import { useVaporField, getTextareaCaretClientCoords } from './useVaporField';
+
+// HBA register: held language breathes while it's read. Wraps a paragraph's plain-text
+// children in per-character spans that oscillate gently — the same hba-breathe behavior
+// already proven in STEAM SANS Atlas. Nested markdown elements (strong/em/etc.) are left
+// untouched. Delay/duration are derived from character position, not Math.random(), so
+// the animation stays stable while Sage's response streams in character by character —
+// a live re-render must not reset an already-breathing character's phase.
+function breatheParagraph(children) {
+    const nodes = Array.isArray(children) ? children : [children];
+    let pos = 0;
+    return nodes.map((node, i) => {
+        if (typeof node !== 'string') return node;
+        return node.split('').map((ch, j) => {
+            const idx = pos++;
+            if (ch === ' ') {
+                return <span key={`${i}-${j}`} style={{ display: 'inline-block', width: '0.28em' }}> </span>;
+            }
+            return (
+                <span
+                    key={`${i}-${j}`}
+                    className="hba-breathe-char"
+                    style={{
+                        display: 'inline-block',
+                        animationDelay: `${(idx % 40) * 0.03}s`,
+                        animationDuration: `${3.6 + (idx % 7) * 0.3}s`
+                    }}
+                >
+                    {ch}
+                </span>
+            );
+        });
+    });
+}
 
 // Environmental ASCII elements that unlock and glow for each specific vessel
 const ASCIIS = {
@@ -154,6 +188,10 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
     const [isDrawingMode, setIsDrawingMode] = useState(false);
     const [isDrawing, setIsDrawing] = useState(false);
     const canvasRef = useRef(null);
+
+    // VAPOR: what a visitor deletes from the scratchpad dissolves instead of vanishing.
+    const scratchpadRef = useRef(null);
+    const { canvasRef: vaporCanvasRef, burst: vaporBurst, sweep: vaporSweep } = useVaporField();
 
     // Feature Layer: Engagement Telemetry & Back-end Analytics
     const timeSpent = useRef(0);
@@ -380,6 +418,16 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
                     50% { border-color: var(--fluid-accent-glow); box-shadow: -10px 0 20px var(--fluid-accent-glow); }
                     100% { border-color: var(--fluid-text-dim); box-shadow: -10px 0 20px transparent; }
                 }
+                @keyframes hba-breathe-char {
+                    0%   { transform: translateY(0) scaleY(1); opacity: 0.88; }
+                    50%  { transform: translateY(-1px) scaleY(1.015); opacity: 1; }
+                    100% { transform: translateY(0) scaleY(1); opacity: 0.88; }
+                }
+                .hba-breathe-char {
+                    animation-name: hba-breathe-char;
+                    animation-timing-function: ease-in-out;
+                    animation-iteration-count: infinite;
+                }
             `}</style>
             
             {/* LEFT COLUMN: THE COMPASS (Sticky Reflection & ASCII Checkpoint) */}
@@ -457,12 +505,12 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
 
                         {sageResponse && (() => {
                             let mainResponse = sageResponse;
-                            let sanscription = null;
-                            
-                            // Extract the 4-vector SANscription geometry
+
+                            // The 4-vector geometry (STBL/PRSS/COHR/DRFT) is a design-sensibility
+                            // diagnostic, not something a visitor needs to see — strip it out of
+                            // Sage's visible words rather than badge it.
                             const sansMatch = sageResponse.match(/\[\s*STBL:\s*\d+\s*\|\s*PRSS:\s*\d+\s*\|\s*COHR:\s*\d+\s*\|\s*DRFT:\s*\d+\s*\]/);
                             if (sansMatch) {
-                                sanscription = sansMatch[0];
                                 mainResponse = sageResponse.replace(sansMatch[0], '').trim();
                             }
 
@@ -481,7 +529,7 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
                                 }}>
                                     <ReactMarkdown
                                         components={{
-                                            p: ({node, ...props}) => <p style={{ margin: '0 0 var(--space-md) 0' }} {...props} />,
+                                            p: ({node, children, ...props}) => <p style={{ margin: '0 0 var(--space-md) 0' }} {...props}>{breatheParagraph(children)}</p>,
                                             strong: ({node, ...props}) => <strong style={{ color: m.accent, fontWeight: 600, fontStyle: 'normal', letterSpacing: '0.05em' }} {...props} />,
                                             em: ({node, ...props}) => <em style={{ opacity: 0.8 }} {...props} />,
                                             ul: ({node, ...props}) => <ul style={{ margin: 'var(--space-md) 0', paddingLeft: '2rem', listStyleType: 'square', color: m.accent }} {...props} />,
@@ -494,22 +542,6 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
                                     >
                                         {mainResponse}
                                     </ReactMarkdown>
-
-                                    {/* The Social Geometric Badge */}
-                                    {sanscription && (
-                                        <div style={{
-                                            marginTop: 'var(--space-lg)', alignSelf: 'flex-start',
-                                            padding: '8px 16px', border: `1px solid ${m.accent}60`,
-                                            background: m.surface, color: m.accent,
-                                            fontFamily: 'var(--fMono)', fontSize: '0.75rem',
-                                            letterSpacing: '0.2em', textTransform: 'uppercase',
-                                            boxShadow: `0 0 15px ${m.accent}20`,
-                                            animation: 'sage-manifest 2s ease forwards'
-                                        }}>
-                                            <span style={{ opacity: 0.5, marginRight: '8px' }}>DIAGNOSTIC //</span>
-                                            <span style={{ fontWeight: 'bold' }}>{sanscription}</span>
-                                        </div>
-                                    )}
                                 </div>
                             );
                         })()}
@@ -676,13 +708,22 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
                             <div style={{ position: 'absolute', top: '2rem', left: 0, right: 0, height: '1px', background: `${m.accent}20`, pointerEvents: 'none', zIndex: 1 }} />
 
                             <textarea
+                                ref={scratchpadRef}
                                 value={scratchpadText}
                                 onChange={(e) => setScratchpadText(e.target.value)}
                                 onKeyDown={(e) => {
                                     keystrokes.current += 1; // Log telemetry
-                                    
+
+                                    const canDeleteBack = e.key === 'Backspace' && e.target.selectionStart > 0;
+                                    const canDeleteFwd = e.key === 'Delete' && e.target.selectionStart < e.target.value.length;
+                                    if (canDeleteBack || canDeleteFwd) {
+                                        const { x, y } = getTextareaCaretClientCoords(e.target);
+                                        vaporBurst(x, y, m?.accent);
+                                        vaporSweep(220);
+                                    }
+
                                     if (!playStrikingBowl) return;
-                                    
+
                                     const signatureSounds = {
                                         'Enter': 40,
                                         '?': 120,
@@ -747,6 +788,16 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
                                     background: isDrawingMode ? `${m.surface}40` : 'transparent',
                                     transition: 'background 0.5s ease',
                                     touchAction: 'none' // CRITICAL: prevents scroll when drawing on mobile
+                                }}
+                            />
+
+                            {/* VAPOR overlay: purely visual, never intercepts clicks/typing/drawing. */}
+                            <canvas
+                                ref={vaporCanvasRef}
+                                style={{
+                                    position: 'absolute', top: 0, left: 0,
+                                    width: '100%', height: '100%',
+                                    pointerEvents: 'none', zIndex: 4,
                                 }}
                             />
                         </div>

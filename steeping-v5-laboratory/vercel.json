@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/afterlight",
+      "destination": "/afterlight.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

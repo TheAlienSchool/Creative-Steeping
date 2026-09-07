@@ -206,20 +206,12 @@ export function SteepingCalendar({ m, onClose, playStrikingBowl, playAlgoraveSyn
                                             <div style={{ fontFamily: 'var(--fSerif)', fontSize: '1.2rem', fontStyle: 'italic', color: m.text1, marginBottom: 'var(--space-sm)' }}>
                                                 "{echo.query}"
                                             </div>
-                                            {/* Look for SANscription badge in the response to display visually */}
-                                            {echo.response && echo.response.includes('[ STBL') ? (
-                                                <div style={{
-                                                    marginTop: 'var(--space-sm)', display: 'inline-block',
-                                                    padding: '4px 8px', background: `${m.accent}20`, color: m.accent,
-                                                    fontFamily: 'var(--fMono)', fontSize: '0.65rem', letterSpacing: '0.1em'
-                                                }}>
-                                                    {echo.response.match(/\[ STBL(.*?)\]/)[0]}
-                                                </div>
-                                            ) : (
-                                                <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, letterSpacing: '0.1em' }}>
-                                                    [ STRUCTURAL ECHO RECORDED ]
-                                                </div>
-                                            )}
+                                            {/* The STBL/PRSS/COHR/DRFT geometry is a design-sensibility
+                                                diagnostic, not a visitor-facing readout — even an archived
+                                                echo that happens to carry one shows the neutral label. */}
+                                            <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.65rem', color: m.accent, letterSpacing: '0.1em' }}>
+                                                [ STRUCTURAL ECHO RECORDED ]
+                                            </div>
                                         </div>
                                     ))}
                                 </div>

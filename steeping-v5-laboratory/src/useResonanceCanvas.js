@@ -14,6 +14,10 @@ export function useResonanceCanvas(modeAccentRGB) {
         const canvas = canvasRef.current;
         if (!canvas) return;
         const ctx = canvas.getContext('2d', { alpha: true });
+        // A 2D context can be unavailable — a test environment without canvas support
+        // (jsdom), or a real browser after a context-loss event. Either way, there is
+        // nothing to render; skip setup rather than crash the render loop.
+        if (!ctx) return;
 
         let width = window.innerWidth;
         let height = window.innerHeight;
