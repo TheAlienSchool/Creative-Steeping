@@ -16,6 +16,58 @@ function markSlideSeen(id) {
     } catch (e) {}
 }
 
+// The cinematic opener — always dynamicSlides[0], regardless of seen-state. The one slide in the
+// deck that performs an entrance (a one-shot reveal, not a loop) rather than starting static.
+const WELCOME_TITLE_WORDS = ['Welcome', 'to', 'Creative', 'Steeping'];
+const welcomeTitle = (
+    <>
+        {WELCOME_TITLE_WORDS.map((word, i) => (
+            <span key={i} style={{
+                display: 'inline-block', opacity: 0,
+                animation: `wayfindingWordReveal 0.7s ease-out ${0.3 + i * 0.15}s forwards`
+            }}>
+                {word}{i < WELCOME_TITLE_WORDS.length - 1 ? ' ' : ''}
+            </span>
+        ))}
+    </>
+);
+const welcomeSlide = {
+    id: 'welcome',
+    layer: "THE THRESHOLD",
+    title: welcomeTitle,
+    subtitle: "Before You Begin",
+    description: "This is a short tour of what's here — the vessels, the Compass, the sound underneath it all. Page through at your own pace, or skip straight to the practice with the arrow below.",
+    diagram: (m, playStrikingBowl) => {
+        const wedge = (cx, cy, r, i) => {
+            const a1 = (Math.PI / 3) * i - Math.PI / 2;
+            const a2 = (Math.PI / 3) * (i + 1) - Math.PI / 2;
+            return `${cx},${cy} ${cx + r * Math.cos(a1)},${cy + r * Math.sin(a1)} ${cx + r * Math.cos(a2)},${cy + r * Math.sin(a2)}`;
+        };
+        return (
+            <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <div style={{ position: 'absolute', width: '92%', height: '92%', borderRadius: '50%', background: `radial-gradient(circle, ${m.glow} 0%, transparent 70%)` }} />
+                <svg style={{ width: '78%', height: '78%' }} viewBox="0 0 100 100">
+                    {[0, 1, 2, 3, 4, 5].map(i => (
+                        <polygon
+                            key={i}
+                            points={wedge(50, 50, 40, i)}
+                            fill={`${m.accent}${i % 2 === 0 ? '18' : '0d'}`}
+                            stroke={m.accent}
+                            strokeWidth="0.8"
+                            style={{
+                                opacity: 0, transformOrigin: '50px 50px',
+                                animation: `wayfindingWedgeReveal 0.6s ease-out ${i * 0.12}s forwards`
+                            }}
+                            onAnimationEnd={i === 5 ? () => playStrikingBowl && playStrikingBowl(30) : undefined}
+                        />
+                    ))}
+                </svg>
+                <div style={{ position: 'absolute', left: '9%', bottom: '9%', fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, textTransform: 'uppercase' }}>[ THE HEXAGONG ]</div>
+            </div>
+        );
+    }
+};
+
 // Shared diagram for icon-based slides — a glowing disc with a slow rotating ring,
 // scaled to genuinely fill the 600x600 frame rather than sit small at its center.
 const makeIconDiagram = (icon, label, noteValue) => (m, playStrikingBowl) => (
@@ -309,7 +361,24 @@ const CORE_TEASER_ORDER = ['compass', 'ledger', 'sound-of-becoming', 'hexagong-d
 
 const FULL_SLIDES = [...STATIC_SLIDES, ...BREADTH_SLIDES];
 
-export const WayfindingOverlay = ({ m, onClose, playStrikingBowl, activeVessel, mode = 'core', onOpenNote }) => {
+// A light per-mode transposition for the diagram ticks — same playStrikingBowl, a different
+// scale degree per mode, so each of the five modes has an audibly distinct flavor here.
+const MODE_NOTE_OFFSET = { incandescent: 0, oceanic: 2, emergent: 4, planetary: 6, darkMatter: 8 };
+
+// The five flowPhase names already used by the Sage Essayist composer (useSageEssayistComposer.jsx)
+// read as a depth journey — Orient Me's own deck has the same shape, so deck position maps onto it.
+const FLOW_PHASES = ['kindling', 'opening', 'current', 'depth', 'crystallizing'];
+function phaseForPosition(index, total) {
+    if (total <= 1) return 'kindling';
+    const ratio = index / (total - 1);
+    const i = Math.min(FLOW_PHASES.length - 1, Math.floor(ratio * FLOW_PHASES.length));
+    return FLOW_PHASES[i];
+}
+
+export const WayfindingOverlay = ({
+    m, onClose, playStrikingBowl, activeVessel, mode = 'core', onOpenNote,
+    visualMode = 'incandescent', setEssayistAmbient, playEssayistTransition
+}) => {
     // 1. Calculate Historical Depth
     let historicalDepth = 0;
     try {
@@ -378,17 +447,53 @@ export const WayfindingOverlay = ({ m, onClose, playStrikingBowl, activeVessel, 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mode]);
 
-    const dynamicSlides = [contextSlide, ...(mode === 'full' ? orderedFullSlides : CORE_SLIDES)];
+    const dynamicSlides = [welcomeSlide, contextSlide, ...(mode === 'full' ? orderedFullSlides : CORE_SLIDES)];
 
     const [currentSlide, setCurrentSlide] = useState(0);
     const [animating, setAnimating] = useState(false);
     const textColRef = useRef(null);
     const [showScrollHint, setShowScrollHint] = useState(false);
 
+    // Every playStrikingBowl call in this overlay goes through here, so the active mode's
+    // soul (a fixed scale-degree offset) flavors every tick, not just the animated diagrams.
+    const strike = (noteValue) => {
+        if (!playStrikingBowl) return;
+        playStrikingBowl(noteValue + (MODE_NOTE_OFFSET[visualMode] ?? 0));
+    };
+
     // Initial mount animation
     useEffect(() => {
-        if (playStrikingBowl) playStrikingBowl(100); // Grand entrance sound
+        strike(100); // Grand entrance sound
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    // The shared ambient drone glides to this mode's personality as the visitor moves through
+    // the deck — deck position becomes flowPhase, the same vocabulary the Sage Essayist composer
+    // already uses (useSageEssayistComposer.jsx). Only sounds the transition accent on an actual
+    // phase change, mirroring how that composer decides when to sound it.
+    const lastPhaseRef = useRef(null);
+    const visualModeRef = useRef(visualMode);
+    useEffect(() => { visualModeRef.current = visualMode; }, [visualMode]);
+
+    useEffect(() => {
+        if (!setEssayistAmbient) return;
+        const phase = phaseForPosition(currentSlide, dynamicSlides.length);
+        setEssayistAmbient(phase, visualMode);
+        if (lastPhaseRef.current !== null && phase !== lastPhaseRef.current && playEssayistTransition) {
+            playEssayistTransition(phase, visualMode);
+        }
+        lastPhaseRef.current = phase;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentSlide, visualMode]);
+
+    // Hand the drone back to a neutral baseline on close, rather than leaving it colored
+    // by wherever Orient Me happened to leave off.
+    useEffect(() => {
+        return () => {
+            if (setEssayistAmbient) setEssayistAmbient('kindling', visualModeRef.current);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [setEssayistAmbient]);
 
     // Mobile only: the text column keeps its scrollable fallback (App.css:665-669),
     // unlike the desktop no-scroll layout above, so give it a hint there's more below.
@@ -407,7 +512,7 @@ export const WayfindingOverlay = ({ m, onClose, playStrikingBowl, activeVessel, 
         if (animating) return;
         setAnimating(true);
         const leaving = dynamicSlides[currentSlide];
-        if (leaving && leaving.id !== 'you-are-here') markSlideSeen(leaving.id);
+        if (leaving && leaving.id !== 'you-are-here' && leaving.id !== 'welcome') markSlideSeen(leaving.id);
         setTimeout(() => {
             setCurrentSlide(nextIndex);
             setAnimating(false);
@@ -415,12 +520,12 @@ export const WayfindingOverlay = ({ m, onClose, playStrikingBowl, activeVessel, 
     };
 
     const handleNext = () => {
-        if (playStrikingBowl) playStrikingBowl(60);
+        strike(60);
         advance((currentSlide + 1) % dynamicSlides.length);
     };
 
     const handlePrev = () => {
-        if (playStrikingBowl) playStrikingBowl(50);
+        strike(50);
         advance((currentSlide - 1 + dynamicSlides.length) % dynamicSlides.length);
     };
 
@@ -451,6 +556,14 @@ export const WayfindingOverlay = ({ m, onClose, playStrikingBowl, activeVessel, 
                     0%, 100% { opacity: 0.3; }
                     50% { opacity: 0.75; }
                 }
+                @keyframes wayfindingWordReveal {
+                    from { opacity: 0; transform: translateY(14px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                @keyframes wayfindingWedgeReveal {
+                    from { opacity: 0; transform: scale(0.8); }
+                    to { opacity: 1; transform: scale(1); }
+                }
             `}</style>
             {/* Top Navigation Bar Component */}
             <div style={{
@@ -463,7 +576,7 @@ export const WayfindingOverlay = ({ m, onClose, playStrikingBowl, activeVessel, 
                     <span style={{ color: m.accent }}>{mode === 'full' ? 'STRUCTURAL MANUAL / FULL' : 'STRUCTURAL MANUAL / CORE'}</span>
                 </div>
                 <button
-                    onClick={() => { if(playStrikingBowl) playStrikingBowl(40); onClose(); }}
+                    onClick={() => { strike(40); onClose(); }}
                     style={{
                         background: 'none', border: `1px solid ${m.text2}40`, color: m.text1,
                         padding: '8px 16px', fontFamily: 'var(--fMono)', fontSize: '0.65rem', letterSpacing: '0.2em',
@@ -498,7 +611,7 @@ export const WayfindingOverlay = ({ m, onClose, playStrikingBowl, activeVessel, 
 
                     {/* The Diagram rendering for this slide */}
                     <div style={{ width: '100%', maxWidth: '600px', height: '600px', zIndex: 1, border: `1px solid ${m.text2}20`, background: `${m.surface}80`, backdropFilter: 'blur(4px)' }}>
-                        {slide.diagram(m, playStrikingBowl)}
+                        {slide.diagram(m, strike)}
                     </div>
                 </div>
 
@@ -541,7 +654,7 @@ export const WayfindingOverlay = ({ m, onClose, playStrikingBowl, activeVessel, 
 
                         {slide.cta && onOpenNote && (
                             <button
-                                onClick={() => { if (playStrikingBowl) playStrikingBowl(70); onOpenNote(slide.cta.noteId); }}
+                                onClick={() => { strike(70); onOpenNote(slide.cta.noteId); }}
                                 style={{
                                     alignSelf: 'flex-start', marginTop: '18px', flexShrink: 0,
                                     background: 'none', border: `1px solid ${m.accent}`, color: m.accent,

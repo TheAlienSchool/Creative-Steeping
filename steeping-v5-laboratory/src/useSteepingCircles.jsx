@@ -115,7 +115,7 @@ export const useSteepingCircles = () => {
         return false;
     };
 
-    const broadcastPing = async (actionType) => {
+    const broadcastPing = async (actionType, metadata = {}) => {
         if (!user || !myCircle) return;
         // Allows user components (timers, notes) to echo their trace anonymously
         await supabase
@@ -123,7 +123,8 @@ export const useSteepingCircles = () => {
             .insert({
                 profile_id: user.id,
                 circle_id: myCircle.id,
-                action_type: actionType
+                action_type: actionType,
+                metadata
             });
     };
 

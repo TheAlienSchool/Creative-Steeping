@@ -661,8 +661,8 @@ function AppInner() {
   }, [activeVessel?.num, instrumentMode, setSageResponse]);
 
   const handleAskSage = (query, sageMode) => {
-    if (broadcastPing) broadcastPing('SAGE_INQUIRY');
-    askSage(query, sageMode);
+    const siteMatch = askSage(query, sageMode);
+    if (broadcastPing) broadcastPing('SAGE_INQUIRY', { query_text: query, matched_topic: siteMatch?.topic ?? null });
     const textarea = document.getElementById('sage-textarea-input');
     if (textarea) textarea.value = '';
   };
@@ -2055,6 +2055,9 @@ function AppInner() {
           playStrikingBowl={playKeystroke}
           activeVessel={activeVessel}
           mode={orientationMode}
+          visualMode={mode}
+          setEssayistAmbient={setEssayistAmbient}
+          playEssayistTransition={playEssayistTransition}
           onOpenNote={(noteId) => {
             setShowOrientation(false);
             setLedgerOpen(true);

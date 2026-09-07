@@ -2,6 +2,7 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import { useWayfinding, STEEP_LABELS, STEEP_INVOCATIONS, computeGravity } from './useWayfinding';
 import { useCodex } from './useCodex';
 import { computeFlowPhase } from './useSageEssayistComposer';
+import { matchSiteKnowledge } from './SageSiteKnowledge';
 
 // ==========================================
 // THE SAGE WAYFINDING ENGINE
@@ -697,6 +698,11 @@ export function useSageWayfinding(identity, playStrikingBowl) {
     setIsThinking(true);
     setSageResponse('');
 
+    // The point-guard read: an explicit question about the site itself (a called play)
+    // takes priority over the ambient behavioral pools below (a broken play). No match
+    // falls straight through to exactly the prior behavior.
+    const siteMatch = matchSiteKnowledge(query);
+
     // Rhythm mirroring :: the Sage breathes at the visitor's tempo.
     // typingVelocity is keystrokes/sec from the last 20 keystrokes.
     // Fast typists (summits energy) get quicker acknowledgment and stream.
@@ -717,9 +723,11 @@ export function useSageWayfinding(identity, playStrikingBowl) {
       // Vessel context routes to vessel-specific wayfinding guidance.
       // Full six-layer assembly resumes after Sage Evolution Plan implementation.
       const flowPhase = computeFlowPhase(wayfindingState.signals, wayfindingState.signals?.wordCount ?? 0);
-      const response = context?.num
-        ? buildVesselResponse(context, flowPhase)
-        : pickAcknowledgement(flowPhase);
+      const response = siteMatch
+        ? `${siteMatch.insight} ${siteMatch.direction}`
+        : (context?.num
+          ? buildVesselResponse(context, flowPhase)
+          : pickAcknowledgement(flowPhase));
 
       // Stream the response character by character :: tempo mirrors the visitor's rhythm.
       // Fast typist → shorter tick interval, more chars per tick (the Sage keeps pace).
@@ -762,6 +770,8 @@ export function useSageWayfinding(identity, playStrikingBowl) {
         }
       }, streamTick);
     }, thinkDuration);
+
+    return siteMatch ? { topic: siteMatch.topic, label: siteMatch.label } : null;
   }, [wayfindingState, surface, playStrikingBowl]);
 
   return {

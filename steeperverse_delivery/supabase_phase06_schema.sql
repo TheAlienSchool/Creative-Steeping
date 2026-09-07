@@ -39,10 +39,33 @@ CREATE TABLE IF NOT EXISTS membrane_pings (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     circle_id UUID REFERENCES public.steeping_circles(id) on delete cascade not null,
     profile_id UUID REFERENCES public.steeper_profiles(id) on delete cascade not null,
-    action_type TEXT NOT NULL,            -- e.g., 'active_pause_completed', 'insight_added'
+    action_type TEXT NOT NULL,            -- e.g., 'active_pause_completed', 'insight_added', 'SAGE_INQUIRY'
     created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now())
 );
--- Note: 'membrane_pings' should ideally be set up with Supabase Realtime enabled to instantly push visual ripples to other users.
+
+-- Realtime is live for this table (confirmed against pg_publication_tables, 2026-09-06) —
+-- useSteepingCircles.jsx subscribes via .channel(...).on('postgres_changes', { table: 'membrane_pings', ... })
+-- and depends on this publication membership to receive INSERTs. Idempotent: safe to re-run.
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1 FROM pg_publication_tables
+        WHERE pubname = 'supabase_realtime' AND schemaname = 'public' AND tablename = 'membrane_pings'
+    ) THEN
+        ALTER PUBLICATION supabase_realtime ADD TABLE membrane_pings;
+    END IF;
+END $$;
+
+-- Added by the Sage-as-Point-Guard work (2026-09-06, see supabase_membrane_pings_metadata.sql):
+-- carries { query_text, matched_topic } for SAGE_INQUIRY pings; every other action_type
+-- keeps inserting an empty object via the column default. Kept here too so this file stays
+-- the single accurate record of membrane_pings' live shape, not split across two files.
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='membrane_pings' AND column_name='metadata') THEN
+        ALTER TABLE membrane_pings ADD COLUMN metadata JSONB DEFAULT '{}'::jsonb;
+    END IF;
+END $$;
 
 ALTER TABLE membrane_pings ENABLE ROW LEVEL SECURITY;
 -- Users in the same circle can view the pings of their cohort members
