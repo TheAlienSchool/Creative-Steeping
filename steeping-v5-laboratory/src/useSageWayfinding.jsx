@@ -125,7 +125,7 @@ const VESSEL_TRANSITIONS = {
   '04': {
     reflection: "You found where you are whole. Coherence is a practice that lives in the finding.",
     next: '05',
-    gesture: "Vessel 05 holds the fragments. Not to fix them :: to witness their pattern.",
+    gesture: "Vessel 05 holds the fragments :: kept for witnessing, exactly as they arrived.",
   },
   '05': {
     reflection: "The mosaic is yours. Every piece earned its place.",
@@ -146,6 +146,69 @@ const VESSEL_TRANSITIONS = {
     reflection: "You signed your name. The practice carries your signature now.",
     next: null,
     gesture: "The vessels remain. Each return steeps differently.",
+  },
+
+  // L2 (inneractive tier) entries, namespaced 'L2.<num>' to avoid colliding with the
+  // free-tier numbers above — L2's vessel '08' is a completely different vessel
+  // ("Action 01: Reflective Reconnection") from the free tier's '08' ("About the
+  // Author"), so they cannot share a key. See getTransitionGuidance()'s lookup below.
+  // Vessels 01-07 are thematically identical between tiers (same names, same arc) and
+  // intentionally keep using the shared entries above — no L2-specific override needed.
+  // Written as a wayfinding guide: practical, no riddles, priming the next stage.
+  'L2.W1': {
+    reflection: "You named yourself a creative being in progress. That name is the ground you return to.",
+    next: 'W2',
+    gesture: "Vessel W2 turns naming into practice :: meeting your own unknown with integrity.",
+  },
+  'L2.W2': {
+    reflection: "You committed to meeting your own unknown with integrity. That commitment makes the practice trustworthy.",
+    next: 'W3',
+    gesture: "Vessel W3 gives that commitment a rhythm :: introspection, held across seven days.",
+  },
+  'L2.W3': {
+    reflection: "You accepted the seven-day rhythm. Consistency is what lets a practice change something real.",
+    next: 'W4',
+    gesture: "Vessel W4 hands you the simplest instruction of all :: keep the journal.",
+  },
+  'L2.W4': {
+    reflection: "You have the ritual now — tea, breath, page. The orientation is complete.",
+    next: '01',
+    gesture: "Vessel 01 opens with one foundational question :: what remains when every assigned label lifts.",
+  },
+  'L2.08': {
+    reflection: "You scheduled your return. Reflective Reconnection keeps an insight alive.",
+    next: '09',
+    gesture: "Vessel 09 turns reflection outward, into a vision you can pursue on purpose.",
+  },
+  'L2.09': {
+    reflection: "You sharpened your vision into a shape you can measure your progress against.",
+    next: '10',
+    gesture: "Vessel 10 asks you to speak that vision aloud, to someone who can hold it with you.",
+  },
+  'L2.10': {
+    reflection: "You named who needs to hear what you've learned. Sharing it keeps the work moving.",
+    next: '11',
+    gesture: "Vessel 11 turns intention into commitment :: a specific skill, a real deadline.",
+  },
+  'L2.11': {
+    reflection: "You committed to a specific skill. A workshop gives intention a deadline.",
+    next: '12',
+    gesture: "Vessel 12 slows the pace, long enough to notice the gaps worth minding.",
+  },
+  'L2.12': {
+    reflection: "You found a place in your routine for a real pause. Five minutes is exactly where the noticing happens.",
+    next: '13',
+    gesture: "Vessel 13 starts keeping the record :: writing gives memory a second place to live.",
+  },
+  'L2.13': {
+    reflection: "You named your most significant milestone this week. Writing it down makes it usable later.",
+    next: '14',
+    gesture: "Vessel 14 turns outward once more, to who will walk the next stretch with you.",
+  },
+  'L2.14': {
+    reflection: "You named who you're inviting into the next chapter. This practice is built to be carried together.",
+    next: null,
+    gesture: "The seven actions are complete. Every vessel stays open for whenever the practice calls you back.",
   },
 };
 
@@ -577,7 +640,7 @@ const VESSEL_WAYFINDING_GUIDANCE = {
   },
   '01': {
     low:  "Most people carry 'who am I at my core' for years without answering it directly. You're answering it now, in your own words. Let it be as true as you can make it.",
-    mid:  "What you name here belongs to you in a way that definitions given by others never do. This is your own language for your own center.",
+    mid:  "What you name here belongs to you in a way only self-given language can. This is your own language for your own center.",
     high: "You've stated your essence. That statement travels with you :: it's the ground the rest of this practice stands on.",
   },
   '02': {
@@ -586,8 +649,8 @@ const VESSEL_WAYFINDING_GUIDANCE = {
     high: "You've spent time with how the mind works when given real stillness. That understanding changes how you treat your own quieter moments going forward.",
   },
   '03': {
-    low:  "Name what you've believed that hasn't served you. You don't have to argue with it :: this practice crosses it out rather than corrects it. Witness it, then release it.",
-    mid:  "You're in the witnessing. Whatever belief you bring here gets seen, not fixed. The practice doesn't ask you to resolve it :: just to name it and let it go.",
+    low:  "Name what you've believed that has held you back. Witnessing is enough here :: this practice crosses it out rather than corrects it. Witness it, then release it.",
+    mid:  "You're in the witnessing. Whatever belief you bring here gets seen, exactly as it is. The practice asks only that you name it and let it go.",
     high: "You let something be seen and then crossed out. That's complete work :: the belief has been named and released. The practice holds that you did this.",
   },
   '04': {
@@ -596,8 +659,8 @@ const VESSEL_WAYFINDING_GUIDANCE = {
     high: "You moved toward coherence. The fragmented area has been named, witnessed, and integrated. This travels with you into the vessels ahead.",
   },
   '05': {
-    low:  "Starting a letter to a part of yourself is an unusual invitation. You don't need to know where it's going :: begin with 'Dear...' and let the next word arrive on its own.",
-    mid:  "Whatever is coming through :: even if incomplete, even if unexpected :: this practice holds it. You don't have to finish. The act of naming the fragment is already the work.",
+    low:  "Starting a letter to a part of yourself is an unusual invitation. Begin with 'Dear...' and let the next word arrive on its own :: the destination reveals itself as you write.",
+    mid:  "Whatever is coming through :: even incomplete, even unexpected :: this practice holds it. Naming the fragment is already the work, complete as it stands.",
     high: "The letter belongs to the practice now. Every piece of what you brought to the page has earned its place. The practice keeps all of it.",
   },
   '06': {
@@ -607,23 +670,33 @@ const VESSEL_WAYFINDING_GUIDANCE = {
   },
   '07': {
     low:  "This is where you declare your creative intention. 'I am ready to...' :: finish that sentence as specifically as you can. The more concrete, the more it carries.",
-    mid:  "What you're building toward here is a declaration, not a plan. The authority comes from saying it in your own words. What is it, exactly, that you're ready to do?",
+    mid:  "What you're building toward here is a declaration :: the authority comes from saying it in your own words. What is it, exactly, that you're ready to do?",
     high: "You declared your creative intention. The archer has named the target. What you said you're ready for, you're now responsible to.",
   },
   '08': {
-    low:  "This vessel asks for your name :: as someone who has moved through this entire practice. The signature means something specific here that it didn't mean at the beginning.",
-    mid:  "The way you arrived at this point :: through all the work you've done in the other vessels :: is what makes the signature meaningful. This is not a formality.",
+    low:  "This vessel asks for your name :: as someone who has moved through this entire practice. The signature carries new weight now, earned through everything that came before.",
+    mid:  "The way you arrived at this point :: through all the work you've done in the other vessels :: is what makes the signature meaningful. This is testimony.",
     high: "You signed your name. You arrived as a visitor and you're leaving as the author of your own experience. The practice carries that authorship forward.",
   },
 };
 
+// L2 vessels can share a plain number with an unrelated free-tier vessel (e.g. L2's '08'
+// is "Action 01: Reflective Reconnection", the free tier's '08' is "About the Author") —
+// so any VESSEL_TRANSITIONS lookup keyed only by number must check the namespaced
+// 'L2.<num>' entry first when the vessel actually belongs to that tier.
+function lookupTransition(vesselNum, vesselId) {
+  const namespaced = vesselId?.startsWith('L2') ? VESSEL_TRANSITIONS[`L2.${vesselNum}`] : null;
+  return namespaced || VESSEL_TRANSITIONS[vesselNum];
+}
+
 function buildVesselResponse(context, flowPhase) {
-  const { num, progress } = context;
+  const { num, progress, id } = context;
   const progressNum = typeof progress === 'number' ? progress : 0;
   const tier = progressNum < 30 ? 'low' : progressNum > 65 ? 'high' : 'mid';
   const vesselGuidance = VESSEL_WAYFINDING_GUIDANCE[num]?.[tier];
-  const forwardGesture = tier === 'high' && VESSEL_TRANSITIONS[num]?.gesture
-    ? `\n\n${VESSEL_TRANSITIONS[num].gesture}`
+  const transition = lookupTransition(num, id);
+  const forwardGesture = tier === 'high' && transition?.gesture
+    ? `\n\n${transition.gesture}`
     : '';
   // Fall back to phase-aware acknowledgement if vessel has no specific guidance
   return vesselGuidance
@@ -631,8 +704,8 @@ function buildVesselResponse(context, flowPhase) {
     : `${pickAcknowledgement(flowPhase)}${forwardGesture}`;
 }
 
-export function getTransitionGuidance(vesselNum, wayfindingState) {
-  const transition = VESSEL_TRANSITIONS[vesselNum];
+export function getTransitionGuidance(vesselNum, wayfindingState, vesselId) {
+  const transition = lookupTransition(vesselNum, vesselId);
   if (!transition) return null;
 
   const steep = wayfindingState?.currentSteep || 'essence';

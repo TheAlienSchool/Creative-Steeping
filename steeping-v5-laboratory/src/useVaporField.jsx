@@ -156,6 +156,7 @@ const MIRRORED_PROPS = [
   'borderTopWidth', 'borderRightWidth', 'borderBottomWidth', 'borderLeftWidth',
   'fontStyle', 'fontVariant', 'fontWeight', 'fontStretch', 'fontSize', 'fontFamily',
   'lineHeight', 'letterSpacing', 'wordSpacing', 'tabSize', 'textIndent', 'textTransform',
+  'textAlign',
 ];
 
 export function getTextareaCaretClientCoords(textarea) {
@@ -187,5 +188,35 @@ export function getTextareaCaretClientCoords(textarea) {
   return {
     x: rect.left + offsetX - textarea.scrollLeft,
     y: rect.top + offsetY - textarea.scrollTop,
+  };
+}
+
+// Caret pixel-position for a single-line <input>. Simpler than the textarea
+// version above — no wrapping to account for, so a single hidden span
+// measuring the pre-caret text is enough. Assumes left-aligned text; a
+// centered or right-aligned input would need the offset math adjusted.
+export function getInputCaretClientCoords(input) {
+  const rect = input.getBoundingClientRect();
+  const style = window.getComputedStyle(input);
+
+  const span = document.createElement('span');
+  span.style.position = 'absolute';
+  span.style.visibility = 'hidden';
+  span.style.whiteSpace = 'pre';
+  span.style.font = style.font;
+  span.style.letterSpacing = style.letterSpacing;
+  const caretIndex = input.selectionStart ?? input.value.length;
+  span.textContent = input.value.substring(0, caretIndex);
+  document.body.appendChild(span);
+
+  const textWidth = span.getBoundingClientRect().width;
+  document.body.removeChild(span);
+
+  const paddingLeft = parseFloat(style.paddingLeft) || 0;
+  const borderLeft = parseFloat(style.borderLeftWidth) || 0;
+
+  return {
+    x: rect.left + paddingLeft + borderLeft + textWidth - input.scrollLeft,
+    y: rect.top + rect.height / 2,
   };
 }

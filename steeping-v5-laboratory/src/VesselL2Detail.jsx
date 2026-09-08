@@ -38,7 +38,7 @@ const AnimatedText = ({ text, delayOffset = 0, speed = 0.05, className, style })
     );
 };
 
-export const VesselL2Detail = ({ vessel, modeString, playStrikingBowl, playHarmonicChord }) => {
+export const VesselL2Detail = ({ vessel, modeString, playStrikingBowl, playHarmonicChord, onComplete }) => {
     const { profile } = useAuth();
     const [progressionStage, setProgressionStage] = React.useState(0);
     const [ledgerActive, setLedgerActive] = React.useState(false);
@@ -96,15 +96,18 @@ export const VesselL2Detail = ({ vessel, modeString, playStrikingBowl, playHarmo
 
             {/* Stage 0: Visceral Invocation (Ember Illumination) */}
             <div style={{ minHeight: '6rem', marginBottom: 'var(--space-lg)' }}>
-                <AnimatedText 
-                    text={vessel.invocation} 
+                {/* STEAM :: the invocation still arrives via its own word-stagger reveal —
+                    that's a fine "arrival" on its own — but reads bold, matching how it
+                    now sounds. */}
+                <AnimatedText
+                    text={vessel.invocation}
                     speed={0.1}
-                    style={{ 
-                        fontFamily: 'var(--fSerif)', fontSize: 'clamp(1.5rem, 4vw, 2.2rem)', 
-                        lineHeight: 1.2, fontStyle: 'italic', color: m.text1,
+                    style={{
+                        fontFamily: 'var(--fSerif)', fontSize: 'clamp(1.5rem, 4vw, 2.2rem)',
+                        lineHeight: 1.2, fontStyle: 'italic', fontWeight: 700, color: m.text1,
                         whiteSpace: 'pre-line',
                         textShadow: `0 0 15px ${m.accent}40, 0 0 30px ${m.accent}20`
-                    }} 
+                    }}
                 />
                 {progressionStage === 0 && renderAffirmButton('BREATHE')}
             </div>
@@ -234,6 +237,33 @@ export const VesselL2Detail = ({ vessel, modeString, playStrikingBowl, playHarmo
                             [ ROOT REFLECTION ]
                         </button>
                     </div>
+                </motion.div>
+            )}
+
+            {/* Completion :: the same "steep is complete" ceremony and vessel-transition
+                overlay the free-tier vessel view already has — this tier never had a way
+                to reach it. "Plant" continues this component's own seed/soil metaphor
+                (BREATHE -> LET IT ROOT -> TEND THE SOIL -> PLANT) rather than borrowing
+                the free tier's tea-pour language. */}
+            {progressionStage >= 3 && onComplete && (
+                <motion.div
+                    initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                    transition={{ delay: 1.5 }}
+                    style={{ marginTop: 'var(--space-xl)', display: 'flex', justifyContent: 'center' }}
+                >
+                    <button
+                        onClick={onComplete}
+                        style={{
+                            background: m.accent, color: '#000', border: 'none', padding: '14px 28px',
+                            fontFamily: 'var(--fMono)', fontSize: '0.8rem', letterSpacing: '0.2em', cursor: 'pointer',
+                            fontWeight: 'bold', textTransform: 'uppercase', boxShadow: `0 4px 20px ${m.accent}40`,
+                            transition: 'all 0.4s ease'
+                        }}
+                        onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.02)'; }}
+                        onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
+                    >
+                        [ PLANT THIS SEED ]
+                    </button>
                 </motion.div>
             )}
         </div>

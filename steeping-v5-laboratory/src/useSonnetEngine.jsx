@@ -521,6 +521,106 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         });
     }, []);
 
+    // STEAM :: naming, declaration, manifesto. Four voices fire and decay through ONE shared
+    // envelope/filter/panner — that's what makes this read as a single declarative gesture
+    // rather than a chord arpeggio (contrast playHarmonicChord's per-note staggered envelopes
+    // above). Waveform and decay shape are fixed — Steam's identity holds constant across every
+    // steep. Only pitch (sig.pitchShift) and stereo spread (sig.panWidth) are steep-aware.
+    //
+    // First pass fired all 4 sawtooths at once with a 6ms attack straight into a static-open
+    // filter — four dense, harmonically-loud waveforms slamming in together like that reads as
+    // a buzzer/alarm, not a declaration. The fix is a filter envelope: the voice starts closed
+    // (muffled) and opens as it lands, with a brief hold at the peak before it decays — the
+    // sound blooms into being instead of hitting like a klaxon. The reverb/delay tap is
+    // untouched; that tail was already right.
+    const playSteamDeclaration = useCallback((index) => {
+        if (!audioCtxRef.current) return;
+        const ctx = audioCtxRef.current;
+        const sig = steepSignatureRef.current;
+        const scale = activeScaleRef.current;
+
+        const safeIndex = (typeof index === 'number' && !isNaN(index)) ? index : 0;
+        const root = scale[safeIndex % scale.length] * sig.pitchShift;
+
+        const now = ctx.currentTime;
+        const attack = 0.024; // decisive, but not a click
+        const hold = 0.05;    // a breath at the peak before it lets go
+        const decay = 0.6;    // longer, more resonant — matches the tail, doesn't fight it
+
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.Q.value = 0.7; // gentle slope — no resonant peak adding extra edge
+        filter.frequency.setValueAtTime(650, now); // starts closed/muffled
+        filter.frequency.linearRampToValueAtTime(2200, now + attack + hold); // opens as it blooms
+
+        const panner = ctx.createStereoPanner();
+        panner.pan.value = (Math.random() * sig.panWidth * 2) - sig.panWidth;
+
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0, now);
+        gain.gain.linearRampToValueAtTime(0.13, now + attack);
+        gain.gain.setValueAtTime(0.13, now + attack + hold);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + attack + hold + decay);
+
+        filter.connect(panner);
+        panner.connect(gain);
+        gain.connect(masterGainRef.current || ctx.destination);
+        if (reverbNodeRef.current) gain.connect(reverbNodeRef.current);
+        if (delayNodeRef.current) gain.connect(delayNodeRef.current);
+
+        const stopAt = now + attack + hold + decay + 0.1;
+        [1, 1.5, 2, 2.25].forEach((ratio) => {
+            const osc = ctx.createOscillator();
+            // triangle, not sawtooth — sawtooth belongs to playAlgoraveSynth's separate
+            // Immersive-mode palette. Every other declaration-adjacent, multi-voice cue in
+            // this engine (playHarmonicChord, playCompletionCue, playConsideringHarmonic,
+            // playAncestralResonance) stays in the sine/triangle family; Steam should too.
+            osc.type = 'triangle'; // fixed — Steam's identity
+            osc.frequency.value = root * ratio;
+            osc.connect(filter);
+            osc.start(now);
+            osc.stop(stopAt);
+        });
+    }, []);
+
+    // PING™ :: the moment two conditions actually meet and a changed state becomes available.
+    // Root + major third (5:4), bell onset, long resonant tail. Waveform and decay are fixed —
+    // Ping's identity holds constant; pitch and stereo spread are steep-aware, same split as Steam.
+    const playPingCrossing = useCallback((index) => {
+        if (!audioCtxRef.current) return;
+        const ctx = audioCtxRef.current;
+        const sig = steepSignatureRef.current;
+        const scale = activeScaleRef.current;
+
+        const safeIndex = (typeof index === 'number' && !isNaN(index)) ? index : 0;
+        const root = scale[safeIndex % scale.length] * sig.pitchShift;
+        const now = ctx.currentTime;
+
+        [1, 1.25].forEach((ratio, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            const panner = ctx.createStereoPanner();
+
+            osc.type = 'sine'; // fixed — Ping's identity (bell)
+            osc.frequency.value = root * ratio;
+
+            panner.pan.value = (i === 0 ? -1 : 1) * sig.panWidth;
+
+            gain.gain.setValueAtTime(0, now);
+            gain.gain.linearRampToValueAtTime(0.09, now + 0.02); // bell onset — softened slightly
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.7); // long resonant tail
+
+            osc.connect(panner);
+            panner.connect(gain);
+            gain.connect(masterGainRef.current || ctx.destination);
+            if (reverbNodeRef.current) gain.connect(reverbNodeRef.current);
+            if (delayNodeRef.current) gain.connect(delayNodeRef.current);
+
+            osc.start(now);
+            osc.stop(now + 2.0);
+        });
+    }, []);
+
     // ALGORAVE SYNTH: A responsive, thick subtractive synthesizer mimicking a performative instrument
     const playAlgoraveSynth = useCallback((keyCode, modeString = 'incandescent') => {
         if (!audioCtxRef.current) return;
@@ -1117,6 +1217,8 @@ export function useSonnetEngine(modeString, eqParams = { friction: 0, avian: 0, 
         updateBinauralTracking,
         playStrikingBowl,
         playHarmonicChord,
+        playSteamDeclaration,
+        playPingCrossing,
         playAlgoraveSynth,
         playSandSonnet,
         playConsideringHarmonic,

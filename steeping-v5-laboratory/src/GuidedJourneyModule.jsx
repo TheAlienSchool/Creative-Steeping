@@ -5,7 +5,7 @@ import { supabase } from './supabaseClient';
 import { useAuth } from './useAuth';
 import { EyeOfTheSage } from './EyeOfTheSage';
 import { OrientationTerm } from './OrientationTerm';
-import { useVaporField, getTextareaCaretClientCoords } from './useVaporField';
+import { useVaporField, getTextareaCaretClientCoords, getInputCaretClientCoords } from './useVaporField';
 
 // HBA register: held language breathes while it's read. Wraps a paragraph's plain-text
 // children in per-character spans that oscillate gently — the same hba-breathe behavior
@@ -192,6 +192,9 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
     // VAPOR: what a visitor deletes from the scratchpad dissolves instead of vanishing.
     const scratchpadRef = useRef(null);
     const { canvasRef: vaporCanvasRef, burst: vaporBurst, sweep: vaporSweep } = useVaporField();
+    // A second, independent instance for the Sage query input — the hook owns its
+    // own canvas/particle state per surface, so each input gets its own field.
+    const { canvasRef: sageQueryVaporRef, burst: sageQueryBurst, sweep: sageQuerySweep } = useVaporField();
 
     // Feature Layer: Engagement Telemetry & Back-end Analytics
     const timeSpent = useRef(0);
@@ -546,28 +549,46 @@ export const GuidedJourneyModule = ({ activeVessel, m, playStrikingBowl, playAlg
                             );
                         })()}
 
-                        <input 
-                            type="text" 
-                            value={sageQuery}
-                            onChange={(e) => setSageQuery(e.target.value)}
-                            placeholder="What are you discovering here?"
-                            onKeyDown={(e) => {
-                                if (e.key === 'Enter' && sageQuery.trim()) {
-                                    if(askSage) askSage(sageQuery, undefined, { progress: progressPercent, num: activeVessel.num, name: activeVessel.name });
-                                    setSageQuery('');
-                                } else if (e.key.length === 1 && playStrikingBowl) {
-                                    playStrikingBowl(150); // High ping for query
-                                }
-                            }}
-                            style={{
-                                width: '100%', background: 'transparent', border: 'none', 
-                                borderBottom: `1px solid ${m.accent}40`, color: m.text1,
-                                fontFamily: 'var(--fBody)', fontSize: '1.2rem', padding: 'var(--space-xs) 0',
-                                outline: 'none', transition: 'border-color 0.4s ease'
-                            }}
-                            onFocus={e => e.target.style.borderBottom = `1px solid ${m.accent}`}
-                            onBlur={e => e.target.style.borderBottom = `1px solid ${m.accent}40`}
-                        />
+                        <div style={{ position: 'relative', width: '100%' }}>
+                            <input
+                                type="text"
+                                value={sageQuery}
+                                onChange={(e) => setSageQuery(e.target.value)}
+                                placeholder="What are you discovering here?"
+                                onKeyDown={(e) => {
+                                    const canDeleteBack = e.key === 'Backspace' && e.target.selectionStart > 0;
+                                    const canDeleteFwd = e.key === 'Delete' && e.target.selectionStart < e.target.value.length;
+                                    if (canDeleteBack || canDeleteFwd) {
+                                        const { x, y } = getInputCaretClientCoords(e.target);
+                                        sageQueryBurst(x, y, m?.accent);
+                                        sageQuerySweep(220);
+                                    }
+
+                                    if (e.key === 'Enter' && sageQuery.trim()) {
+                                        if(askSage) askSage(sageQuery, undefined, { progress: progressPercent, num: activeVessel.num, name: activeVessel.name, id: activeVessel.id });
+                                        setSageQuery('');
+                                    } else if (e.key.length === 1 && playStrikingBowl) {
+                                        playStrikingBowl(150); // High ping for query
+                                    }
+                                }}
+                                style={{
+                                    width: '100%', background: 'transparent', border: 'none',
+                                    borderBottom: `1px solid ${m.accent}40`, color: m.text1,
+                                    fontFamily: 'var(--fBody)', fontSize: '1.2rem', padding: 'var(--space-xs) 0',
+                                    outline: 'none', transition: 'border-color 0.4s ease'
+                                }}
+                                onFocus={e => e.target.style.borderBottom = `1px solid ${m.accent}`}
+                                onBlur={e => e.target.style.borderBottom = `1px solid ${m.accent}40`}
+                            />
+                            <canvas
+                                ref={sageQueryVaporRef}
+                                style={{
+                                    position: 'absolute', top: 0, left: 0,
+                                    width: '100%', height: '100%',
+                                    pointerEvents: 'none', zIndex: 4,
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

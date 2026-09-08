@@ -324,21 +324,23 @@ export const OntologicalObservatory = ({ m, onClose, playStrikingBowl, playAlgor
                             </h3>
                             {patterns && (
                                 <>
+                                {/* Harris register: witnessed/surveyed telemetry reads instrumental —
+                                    tracked mono, not the site's warm serif voice. */}
                                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
                                     <div>
-                                        <div style={{ fontFamily: 'var(--fSerif)', fontSize: '2.5rem', color: m.text1 }}>{patterns.visitCount}</div>
+                                        <div style={{ fontFamily: 'var(--fMono)', fontStyle: 'normal', letterSpacing: '0.02em', fontSize: '2.5rem', color: m.text1 }}>{patterns.visitCount}</div>
                                         <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, letterSpacing: '0.1em' }}>VISITS</div>
                                     </div>
                                     <div>
-                                        <div style={{ fontFamily: 'var(--fSerif)', fontSize: '2.5rem', color: m.text1 }}>{patterns.totalEntries}</div>
+                                        <div style={{ fontFamily: 'var(--fMono)', fontStyle: 'normal', letterSpacing: '0.02em', fontSize: '2.5rem', color: m.text1 }}>{patterns.totalEntries}</div>
                                         <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, letterSpacing: '0.1em' }}>ARCHIVE ENTRIES</div>
                                     </div>
                                     <div>
-                                        <div style={{ fontFamily: 'var(--fSerif)', fontSize: '2.5rem', color: m.text1 }}>{patterns.totalWords.toLocaleString()}</div>
+                                        <div style={{ fontFamily: 'var(--fMono)', fontStyle: 'normal', letterSpacing: '0.02em', fontSize: '2.5rem', color: m.text1 }}>{patterns.totalWords.toLocaleString()}</div>
                                         <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, letterSpacing: '0.1em' }}>WORDS STEEPED</div>
                                     </div>
                                     <div>
-                                        <div style={{ fontFamily: 'var(--fSerif)', fontSize: '2.5rem', color: m.text1 }}>{patterns.activeDays}</div>
+                                        <div style={{ fontFamily: 'var(--fMono)', fontStyle: 'normal', letterSpacing: '0.02em', fontSize: '2.5rem', color: m.text1 }}>{patterns.activeDays}</div>
                                         <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.text2, letterSpacing: '0.1em' }}>ACTIVE DAYS</div>
                                     </div>
                                 </div>
@@ -347,7 +349,7 @@ export const OntologicalObservatory = ({ m, onClose, playStrikingBowl, playAlgor
                                 {wayfindingState && (
                                     <div style={{ padding: '0.75rem', borderTop: `1px solid ${m.accent}20`, marginBottom: '1rem' }}>
                                         <div style={{ fontFamily: 'var(--fMono)', fontSize: '0.6rem', color: m.accent, letterSpacing: '0.15em', marginBottom: '0.5rem' }}>CURRENT POSITION</div>
-                                        <div style={{ fontFamily: 'var(--fSerif)', fontSize: '1.4rem', color: m.text1, fontStyle: 'italic' }}>
+                                        <div style={{ fontFamily: 'var(--fMono)', fontStyle: 'normal', letterSpacing: '0.02em', fontSize: '1.4rem', color: m.text1 }}>
                                             {STEEP_LABELS_OBS[wayfindingState.currentSteep] || wayfindingState.currentSteep}
                                         </div>
                                     </div>

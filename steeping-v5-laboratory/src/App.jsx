@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useResonanceCanvas } from './useResonanceCanvas';
+import { useVaporField, getTextareaCaretClientCoords } from './useVaporField';
 import { useSonnetEngine } from './useSonnetEngine';
 import { useSageWayfinding, getTransitionGuidance, computeVesselResonance, VESSEL_STEEP_AFFINITY } from './useSageWayfinding';
 import { useSageEssayistComposer } from './useSageEssayistComposer';
@@ -624,7 +625,27 @@ function AppInner() {
   const [steepForSonic, setSteepForSonic] = useState('essence');
 
   // Initialize the Sonnet Audio Engine (receives steep for harmonic modulation)
-  const { initEngine, updateBinauralTracking, playStrikingBowl, playHarmonicChord, playAlgoraveSynth, playConsideringHarmonic, playSandSonnet, playCompletionCue, playRootForagingFrequency, setMasterVolume, setAmbientActive, setSymphonyTuning, setEssayistAmbient, playEssayistTransition } = useSonnetEngine(mode, eqParams, steepForSonic);
+  const { initEngine, updateBinauralTracking, playStrikingBowl, playHarmonicChord, playAlgoraveSynth, playConsideringHarmonic, playSandSonnet, playCompletionCue, playRootForagingFrequency, playSteamDeclaration, playPingCrossing, setMasterVolume, setAmbientActive, setSymphonyTuning, setEssayistAmbient, playEssayistTransition } = useSonnetEngine(mode, eqParams, steepForSonic);
+
+  // VAPOR: the entrance/wayfinding "what is alive in you" textarea dissolves what's deleted.
+  const { canvasRef: sageVaporRef, burst: sageVaporBurst, sweep: sageVaporSweep } = useVaporField();
+  // VAPOR: the vessel-transition overlay coalesces into being out of a particle burst.
+  const { canvasRef: transitionVaporRef, burst: transitionVaporBurst } = useVaporField();
+  const transitionContainerRef = useRef(null);
+  useEffect(() => {
+    if (!vesselTransition || !transitionContainerRef.current) return;
+    const rect = transitionContainerRef.current.getBoundingClientRect();
+    transitionVaporBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, m.accent);
+  }, [vesselTransition]);
+
+  // STEAM :: the invocation declares itself once per vessel-open — including re-entering
+  // a previously-visited vessel later. Each entrance is its own declaration, by design.
+  useEffect(() => {
+    if (!activeVessel) return;
+    playSteamDeclaration(activeVessel.num ? activeVessel.num.charCodeAt(1) : 0);
+  }, [activeVessel?.num]);
+
+  const pingedVesselsRef = useRef(new Set());
 
   // Dynamic keystroke play based on current Engine Mode (Soul Sonnet vs Immersive)
   const playKeystroke = useCallback((keyCode) => {
@@ -644,6 +665,49 @@ function AppInner() {
       setSteepForSonic(wayfindingState.currentSteep);
     }
   }, [wayfindingState?.currentSteep, steepForSonic]);
+
+  // PING™ :: fires exactly once per vessel, at the real moment of crossing. `justUnlocked`
+  // (computed inline in the vessel-matrix render below) is a per-render boolean, not an
+  // edge-detected event — re-deriving it here in a top-level effect (hooks can't run inside
+  // the .map() itself) with a session-long ref guard is what makes this a one-shot rather
+  // than a refire on every render while the vessel stays freshly-unlocked.
+  useEffect(() => {
+    const list = isInneractive ? VESSELS_L2 : VESSELS;
+    let historicalDepth = 0;
+    try {
+      historicalDepth = JSON.parse(localStorage.getItem('steeping_historical_score') || '[]').length;
+    } catch (e) { }
+    list.forEach((vessel) => {
+      const vesselString = vessel.id?.split('.')[1] || "0";
+      const vesselNumber = vesselString.startsWith('W') ? 0 : parseInt(vesselString, 10);
+      if (vesselNumber < 2) return;
+      const gravityResonance = computeVesselResonance(vessel.num, wayfindingState?.gravity);
+      const behaviorallyReady = gravityResonance >= 0.6;
+      const archiveReady = historicalDepth >= 5;
+      const justUnlocked = historicalDepth === 5 || (behaviorallyReady && !archiveReady);
+      if (justUnlocked && !pingedVesselsRef.current.has(vessel.num)) {
+        pingedVesselsRef.current.add(vessel.num);
+        playPingCrossing(vessel.num.charCodeAt(1));
+      }
+    });
+  }, [wayfindingState?.gravity, isInneractive]);
+
+  // Shared completion flow — the "steep is complete" ceremony followed by the vessel-
+  // transition "what's next" overlay. Originally inline on the free-tier POUR button;
+  // extracted so VesselL2Detail's own completion button (a different tier's vessel
+  // presentation, with no equivalent trigger of its own) can call the exact same flow.
+  const completeVessel = useCallback(() => {
+    if (!activeVessel) return;
+    if (playCompletionCue) playCompletionCue();
+    setCompletedVesselName(activeVessel.name);
+    setVesselCompletionActive(true);
+    if (!isEngaged) setShowUpgradeInvite(true);
+    const guidance = getTransitionGuidance(activeVessel.num, wayfindingState, activeVessel.id);
+    setTimeout(() => {
+      setVesselCompletionActive(false);
+      setVesselTransition(guidance);
+    }, 3200);
+  }, [activeVessel, isEngaged, wayfindingState, playCompletionCue]);
 
   // Sage Essayist Composer :: drives sonic environment through flow phases
   useSageEssayistComposer({
@@ -1247,6 +1311,15 @@ function AppInner() {
                         if (e.key.length === 1 || e.key === 'Enter' || e.key === 'Backspace') {
                           playKeystroke(e.keyCode || 50);
                         }
+                        if (e.key === 'Backspace' || e.key === 'Delete') {
+                          const canDeleteBack = e.key === 'Backspace' && e.target.selectionStart > 0;
+                          const canDeleteFwd = e.key === 'Delete' && e.target.selectionStart < e.target.value.length;
+                          if (canDeleteBack || canDeleteFwd) {
+                            const { x, y } = getTextareaCaretClientCoords(e.target);
+                            sageVaporBurst(x, y, m.accent);
+                            sageVaporSweep(220);
+                          }
+                        }
                         if (e.key === 'Enter' && !e.shiftKey) {
                           e.preventDefault();
                           document.getElementById('sage-transmit-btn')?.click();
@@ -1261,6 +1334,14 @@ function AppInner() {
                         textShadow: sageTestingBusy ? '0 0 16px var(--acc)' : 'none',
                         boxShadow: sageTestingBusy ? '0px 10px 20px -10px var(--acc)' : 'none',
                         transition: 'all 0.4s'
+                      }}
+                    />
+                    <canvas
+                      ref={sageVaporRef}
+                      style={{
+                        position: 'absolute', top: 0, left: 0,
+                        width: '100%', height: '100%',
+                        pointerEvents: 'none', zIndex: 4,
                       }}
                     />
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'var(--space-sm)' }}>
@@ -1476,6 +1557,13 @@ function AppInner() {
                           </div>
                         )}
 
+                        {/* PING™ :: layered alongside bioluminescent-bloom, not replacing it —
+                            the luminous mark of a real crossing (see the sound cue fired once
+                            per vessel in the top-level unlock-watching effect below). */}
+                        {justUnlocked && (
+                          <div className="ping-glyph" style={{ position: 'absolute', inset: 0, zIndex: 6, pointerEvents: 'none' }} />
+                        )}
+
                         {/* Bioluminescent Reactive Surface Light */}
                         <div className="vessel-bioluminescence" style={{
                           position: 'absolute', inset: 0,
@@ -1645,7 +1733,7 @@ function AppInner() {
                     ) : (
                       <>
                         {activeVessel.id?.startsWith('L2') ? (
-                          <VesselL2Detail vessel={activeVessel} modeString={mode} playStrikingBowl={playKeystroke} playHarmonicChord={playHarmonicChord} />
+                          <VesselL2Detail vessel={activeVessel} modeString={mode} playStrikingBowl={playKeystroke} playHarmonicChord={playHarmonicChord} onComplete={completeVessel} />
                         ) : (
                         <>
                         <div
@@ -1675,10 +1763,12 @@ function AppInner() {
                         </div>
 
                         <>
-                          <div style={{
-                            fontFamily: 'var(--fSerif)', fontStyle: 'italic', color: 'var(--acc)',
+                          {/* STEAM :: the invocation declares itself, bold and decisive, fresh on every open. */}
+                          <div key={activeVessel.num} style={{
+                            fontFamily: 'var(--fSerif)', fontStyle: 'italic', fontWeight: 700, color: 'var(--acc)',
                             fontSize: '1.2rem', lineHeight: 1.8, marginBottom: 'var(--space-xl)',
-                            whiteSpace: 'pre-line', borderLeft: '1px solid var(--acc)', paddingLeft: 'var(--space-md)'
+                            whiteSpace: 'pre-line', borderLeft: '1px solid var(--acc)', paddingLeft: 'var(--space-md)',
+                            animation: 'steam-manifest 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards'
                           }}>
                             {activeVessel.invocation}
                           </div>
@@ -1814,17 +1904,7 @@ function AppInner() {
 
                           {parseInt(activeVessel.num) >= 1 && parseInt(activeVessel.num) <= 8 && (
                             <div style={{ marginTop: 'var(--space-xxl)', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', borderTop: '1px dashed var(--acc)', paddingTop: 'var(--space-xl)' }}>
-                              <button onClick={() => {
-                                if (playCompletionCue) playCompletionCue();
-                                setCompletedVesselName(activeVessel.name);
-                                setVesselCompletionActive(true);
-                                if (!isEngaged) setShowUpgradeInvite(true);
-                                const guidance = getTransitionGuidance(activeVessel.num, wayfindingState);
-                                setTimeout(() => {
-                                  setVesselCompletionActive(false);
-                                  setVesselTransition(guidance);
-                                }, 3200);
-                              }} style={{
+                              <button onClick={completeVessel} style={{
                                 background: 'var(--acc)', color: 'var(--bg)', border: 'none', padding: '16px 32px',
                                 fontFamily: 'var(--fMono)', fontSize: '0.85rem', letterSpacing: '0.2em', cursor: 'pointer',
                                 fontWeight: 'bold', textTransform: 'uppercase', boxShadow: '0 4px 20px rgba(212, 146, 42, 0.4)',
@@ -1907,16 +1987,24 @@ function AppInner() {
           position: 'fixed', inset: 0, zIndex: 2000,
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
           background: `rgba(0,0,0,0.92)`, backdropFilter: 'blur(24px)',
-          animation: 'fadeIn 0.8s ease forwards',
           padding: 'var(--space-xl)'
         }}>
-          <div style={{ maxWidth: '520px', textAlign: 'center' }}>
+          {/* VAPOR: a one-shot particle burst at the moment this overlay arrives — layered
+              under the text's own CSS coalesce below. (Note: the previous 'fadeIn' animation
+              named here had no matching @keyframes anywhere reachable in the app — every
+              element below was actually snapping in at full opacity with zero animation.
+              vapor-coalesce, defined in index.css, replaces that dead reference for real.) */}
+          <canvas
+            ref={transitionVaporRef}
+            style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 1 }}
+          />
+          <div ref={transitionContainerRef} style={{ maxWidth: '520px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
             {/* The Sage's reflection on what was just completed */}
             <div style={{
               fontFamily: 'var(--fSerif)', fontStyle: 'italic',
               fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', color: m.text1,
               lineHeight: 1.8, marginBottom: 'var(--space-xxl)',
-              animation: 'fadeIn 1.5s ease forwards'
+              animation: 'vapor-coalesce 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards'
             }}>
               {vesselTransition.reflection}
             </div>
@@ -1926,7 +2014,8 @@ function AppInner() {
               fontFamily: 'var(--fBody)', fontSize: '1.05rem',
               color: m.text2, lineHeight: 1.7,
               marginBottom: 'var(--space-xxl)',
-              animation: 'fadeIn 2.5s ease forwards'
+              animation: 'vapor-coalesce 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards',
+              opacity: 0
             }}>
               {vesselTransition.gesture}
             </div>
@@ -1934,7 +2023,9 @@ function AppInner() {
             {/* Navigation options :: stunningly simple */}
             <div style={{
               display: 'flex', flexDirection: 'column', alignItems: 'center',
-              gap: 'var(--space-lg)', animation: 'fadeIn 3.5s ease forwards'
+              gap: 'var(--space-lg)',
+              animation: 'vapor-coalesce 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards',
+              opacity: 0
             }}>
               {vesselTransition.nextVessel && (
                 <button
